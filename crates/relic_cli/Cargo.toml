@@ -1,0 +1,10 @@
+[package]
+name = "relic_cli"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+
+[dependencies]
+relic_core = { path = "../relic_core" }
+relic_tokenizer = { path = "../relic_tokenizer" }

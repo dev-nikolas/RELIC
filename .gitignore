@@ -1,0 +1,10 @@
+/target
+/data
+/reports
+/artifacts
+*.bin
+*.pt
+*.safetensors
+__pycache__/
+*.py[cod]
+.venv/
