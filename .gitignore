@@ -1,7 +1,6 @@
 /target
 /data
 /reports
-/artifacts
 *.bin
 *.pt
 *.safetensors

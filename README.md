@@ -9,7 +9,7 @@
 
 > **Ingenieria de Sistemas y Modelos de Lenguaje:** Construccion integral de un modelo Transformer decodificador moderno (10.03M parametros) entrenado desde cero, acompasado de un motor de inferencia nativo en Rust puro sin dependencias externas ni runtime de Python.
 
-[Reporte de Benchmark](reports/benchmark_report.json) • [Metricas de Entrenamiento](reports/dry_run_metrics.json) • [Workflow CI Multiplataforma](.github/workflows/ci.yml)
+[Implementaciones Futuras](IMPLEMENTACIONES.md) • [Reporte de Benchmark](reports/benchmark_report.json) • [Metricas de Entrenamiento](reports/dry_run_metrics.json) • [Guia de Contribucion](CONTRIBUTING.md) • [Licencia Apache 2.0](LICENSE)
 
 ---
 
