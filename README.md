@@ -9,7 +9,7 @@
 
 > **Ingenieria de Sistemas y Modelos de Lenguaje:** Construccion integral de un modelo Transformer decodificador moderno (10.03M parametros) entrenado desde cero, acompasado de un motor de inferencia nativo en Rust puro sin dependencias externas ni runtime de Python.
 
-[Plan Maestro (PLAN.md)](PLAN.md) • [Reporte de Benchmark](reports/benchmark_report.json) • [Metricas de Entrenamiento](reports/dry_run_metrics.json) • [Workflow CI Multiplataforma](.github/workflows/ci.yml)
+[Reporte de Benchmark](reports/benchmark_report.json) • [Metricas de Entrenamiento](reports/dry_run_metrics.json) • [Workflow CI Multiplataforma](.github/workflows/ci.yml)
 
 ---
 
@@ -123,9 +123,3 @@ RELIC/
 │   └── benchmark.py              # Benchmark comparativo PyTorch vs Rust
 └── .github/workflows/ci.yml      # CI Multiplataforma (Windows y Linux)
 ```
-
----
-
-## Hoja de Ruta de Ingenieria
-
-El detalle metodologico completo, la deduccion matematica de hiperparametros y los criterios de aceptacion de cada fase estan documentados en [PLAN.md](PLAN.md).
