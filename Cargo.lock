@@ -53,6 +53,7 @@ version = "0.1.0"
 dependencies = [
  "relic_core",
  "relic_tokenizer",
+ "serde_json",
 ]
 
 [[package]]

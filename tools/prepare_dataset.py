@@ -20,28 +20,44 @@ try:
 except ImportError:
     from tools.common import DATA_DIR, STORY_SEP
 
-UNICODE_TO_ASCII = {
+import unicodedata
+
+# Mapeo de comillas tipográficas raras a comillas legibles estándar
+QUOTE_NORMALIZATION = {
     "\u2018": "'", "\u2019": "'", "\u201a": "'", "\u201b": "'",
     "\u201c": '"', "\u201d": '"', "\u201e": '"',
-    "\u2013": "-", "\u2014": "-", "\u2015": "-", "\u2212": "-",
-    "\u2026": "...", "\u00a0": " ", "\u2002": " ", "\u2003": " ", "\u2009": " ",
+    "\u00a0": " ", "\u2002": " ", "\u2003": " ", "\u2009": " ",
 }
-_TRANSLATE = str.maketrans(UNICODE_TO_ASCII)
-_NOT_PRINTABLE_ASCII = re.compile(r"[^\x20-\x7e\n]")
+_TRANSLATE = str.maketrans(QUOTE_NORMALIZATION)
 
 
 def clean(text: str) -> str | None:
-    """Normaliza una historia. Devuelve None si hay que descartarla."""
+    """Normaliza una muestra preservando español y código. Descarta corrupción y caracteres invisibles."""
+    if not isinstance(text, str):
+        return None
     text = text.translate(_TRANSLATE)
     text = text.replace("\r\n", "\n").replace("\r", "\n")
-    text = re.sub(r"[ \t\f\v]+", " ", text)
-    text = re.sub(r" ?\n ?", "\n", text)
-    text = re.sub(r"\n{3,}", "\n\n", text)
-    text = text.strip()
-    if _NOT_PRINTABLE_ASCII.search(text):
+    if "\ufffd" in text or "<|" in text:
         return None
-    if "<|" in text:
-        return None
+
+    # Normalizar espaciado preservando sangrías de código
+    lines = [line.rstrip() for line in text.split("\n")]
+    cleaned_lines = []
+    empty_count = 0
+    for line in lines:
+        if not line:
+            empty_count += 1
+            if empty_count <= 2:
+                cleaned_lines.append("")
+        else:
+            empty_count = 0
+            cleaned_lines.append(line)
+    text = "\n".join(cleaned_lines).strip()
+
+    # Validar que no contenga caracteres de control corruptos
+    for c in text:
+        if c not in ("\n", "\t") and unicodedata.category(c).startswith("C"):
+            return None
     return text
 
 

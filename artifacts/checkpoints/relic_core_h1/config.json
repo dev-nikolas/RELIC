@@ -1,0 +1,17 @@
+{
+  "name": "relic-core-h1",
+  "status": "frozen",
+  "frozen_at": "2026-10-21T12:20:00Z",
+  "architecture": "Compact Gated Recurrence",
+  "total_parameters": 102720,
+  "hyperparameters": {
+    "vocab_size": 128,
+    "d_model": 64,
+    "n_layers": 2,
+    "d_ff": 160,
+    "norm": "RMSNorm",
+    "activation": "SwiGLU",
+    "weight_tying": true,
+    "space_complexity": "O(1) hidden state"
+  }
+}

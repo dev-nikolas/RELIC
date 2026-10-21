@@ -1,0 +1,26 @@
+{
+  "baseline_reference": "Transformer Causal Base (102,720 params)",
+  "metrics": {
+    "dyck": {
+      "acc_id": 100.0,
+      "acc_ood": 100.0,
+      "inference_tokens_per_sec": 23174.4,
+      "peak_rss_mb": 321.8,
+      "flops_per_forward": 5363072
+    },
+    "graph": {
+      "acc_id": 53.5,
+      "acc_ood": 55.0,
+      "inference_tokens_per_sec": 23894.1,
+      "peak_rss_mb": 345.1,
+      "flops_per_forward": 11138688
+    },
+    "rules": {
+      "acc_id": 10.0,
+      "acc_ood": 0.0,
+      "inference_tokens_per_sec": 20544.2,
+      "peak_rss_mb": 321.9,
+      "flops_per_forward": 11963776
+    }
+  }
+}

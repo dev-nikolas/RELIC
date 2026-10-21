@@ -8,3 +8,5 @@ license.workspace = true
 [dependencies]
 relic_core = { path = "../relic_core" }
 relic_tokenizer = { path = "../relic_tokenizer" }
+serde_json = "1.0"
+
