@@ -3,14 +3,15 @@ members = [
     "crates/relic_core",
     "crates/relic_tokenizer",
     "crates/relic_cli",
+    "crates/relic_server",
 ]
 resolver = "2"
 
 [workspace.package]
 version = "0.1.0"
 edition = "2021"
-authors = ["RELIC Team"]
-license = "MIT OR Apache-2.0"
+authors = ["Nicolas Pachon", "RELIC Team"]
+license = "AGPL-3.0-only"
 
 [profile.release]
 opt-level = 3

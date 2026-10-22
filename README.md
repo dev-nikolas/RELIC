@@ -1,7 +1,7 @@
 # RELIC — Núcleo cognitivo local y verificable en Rust
 
 [![Rust 1.80+](https://img.shields.io/badge/Rust-1.80%2B-orange.svg?style=flat-square&logo=rust)](https://www.rust-lang.org/)
-[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg?style=flat-square)](LICENSE)
+[![License: AGPL v3](https://img.shields.io/badge/License-AGPL_v3-blue.svg?style=flat-square)](LICENSE)
 [![CI](https://img.shields.io/badge/CI-Windows%20%7C%20Linux-brightgreen.svg?style=flat-square&logo=githubactions)](.github/workflows/ci.yml)
 
 > Un runtime pequeño, local y sin Python que combina un modelo de lenguaje compacto con un motor de razonamiento **exacto y verificable**. Está pensado para correr en equipos modestos y como base de un experimento más grande: un sistema con memoria asociativa, personalidad estable y capacidad de adaptarse a sus propios errores.
@@ -110,7 +110,22 @@ El CLI imprime el RSS al terminar cada ejecución, así que la cifra de memoria 
 
 ## Inicio rápido
 
-### Rust
+### Servidor HTTP y Frontend Integrado (3 comandos)
+
+```bash
+# 1. Compilar el servidor HTTP nativo con un solo hilo (óptimo para RAM limitada)
+cargo build --release -j 1 -p relic_server
+
+# 2. Iniciar el servidor en el puerto 4000 (sirve la API y el frontend SPA compilado)
+cargo run --release -p relic_server -- 4000
+
+# 3. Validar conectividad, razonamiento determinista y streaming
+python tools/smoke_test.py
+```
+Abre en tu navegador `http://127.0.0.1:4000` para interactuar con la interfaz completa.
+
+### CLI y Motor Local
+
 
 ```bash
 # Pruebas del workspace
@@ -178,6 +193,12 @@ Se listan para que quien revise el proyecto sepa qué esperar:
 
 Ver [`CONTRIBUTING.md`](CONTRIBUTING.md). Toda propuesta que cambie la arquitectura debe incluir pruebas que fallen antes y pasen después.
 
-## Licencia
+## Licencia y Propiedad Intelectual
 
-Apache 2.0. Ver [`LICENSE`](LICENSE).
+Este proyecto, su arquitectura conceptual y su código fuente están protegidos y sujetos a términos estrictos de atribución y control de distribución:
+
+1. **Atribución Obligatoria del Mérito y la Idea:** Cualquier persona o entidad que use, investigue, cite o desarrolle obras basadas en RELIC **debe otorgar crédito directo, explícito e ineludible a Nicolás Pachón** sobre la idea original, la teoría de procedimiento, la arquitectura intermedia (RIR) y la implementación. Queda terminantemente prohibido atribuirse la autoría o mérito intelectual de estos conceptos o de su código.
+2. **Notificación Previa para Compartir o Distribuir:** No está permitido redistribuir, compartir públicamente, transferir a terceros ni desplegar en entornos externos este software o trabajos derivados **sin haber informado formalmente y por escrito con antelación al autor original (Nicolás Pachón)**.
+3. **Copyleft Fuerte (AGPLv3):** Complementariamente, se rige bajo la **GNU Affero General Public License v3.0 (AGPL-3.0)**, garantizando que el software permanezca libre de privatizaciones encubiertas en la nube o redes.
+
+Para consultar los términos legales detallados, ver [`LICENSE`](LICENSE).
