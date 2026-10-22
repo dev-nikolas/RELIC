@@ -1,0 +1,44 @@
+[
+  {
+    "input": "¿cuánto es 1 + 1?",
+    "expected_output": "2",
+    "expected_route": "deterministic_arithmetic",
+    "date": "2026-10-21",
+    "description": "Fallo histórico: Antes respondía 'arquitecto' en checkpoints tempranos por alucinación autorregresiva; debe despacharse siempre por el motor aritmético determinista."
+  },
+  {
+    "input": "1 + 1",
+    "expected_output": "2",
+    "expected_route": "deterministic_arithmetic",
+    "date": "2026-10-21",
+    "description": "Expresión matemática elemental directa; validación de despacho exacto."
+  },
+  {
+    "input": "tengo 10 gatos y recibo 5",
+    "expected_output": "15",
+    "expected_route": "deterministic_arithmetic",
+    "date": "2026-10-21",
+    "description": "Problema de inventario multi-palabra con entidad; debe preservar entidad y sumar correctamente."
+  },
+  {
+    "input": "tengo algunas manzanas y luego compro 5",
+    "expected_output": "cantidad inicial",
+    "expected_route": "epistemic_rejection",
+    "date": "2026-10-21",
+    "description": "Falta de cantidad inicial; el sistema debe emitir rechazo epistémico (INCOMPLETE) en lugar de inventar un número."
+  },
+  {
+    "input": "¿Depende el crate relic_cli del paquete memmap2?",
+    "expected_output": "relic_cli",
+    "expected_route": "deterministic_graph",
+    "date": "2026-10-21",
+    "description": "Consulta de alcanzabilidad en grafo de dependencias de Rust; debe resolver camino BFS determinista."
+  },
+  {
+    "input": "¿Es posible ir de Bogotá a Madrid pasando por París evitando Tokio?",
+    "expected_output": "Bogotá",
+    "expected_route": "deterministic_graph",
+    "date": "2026-10-21",
+    "description": "Consulta espacial en memoria episódica con restricciones 'via' y 'avoid'."
+  }
+]

@@ -1,0 +1,142 @@
+[
+  {
+    "id": "query_direct_01",
+    "category": "direct_paraphrase",
+    "text": "¿Existe un camino de Madrid hasta París?",
+    "expected_intent": "reachability",
+    "expected_origin": "Madrid",
+    "expected_destination": "París",
+    "expected_via": null,
+    "is_negated": false
+  },
+  {
+    "id": "query_direct_02",
+    "category": "direct_paraphrase",
+    "text": "¿Se puede llegar desde Madrid a París?",
+    "expected_intent": "reachability",
+    "expected_origin": "Madrid",
+    "expected_destination": "París",
+    "expected_via": null,
+    "is_negated": false
+  },
+  {
+    "id": "query_direct_03",
+    "category": "direct_paraphrase",
+    "text": "¿Es posible alcanzar París partiendo de Madrid?",
+    "expected_intent": "reachability",
+    "expected_origin": "Madrid",
+    "expected_destination": "París",
+    "expected_via": null,
+    "is_negated": false
+  },
+  {
+    "id": "query_direct_04",
+    "category": "direct_paraphrase",
+    "text": "¿Hay conexión entre Madrid y París?",
+    "expected_intent": "reachability",
+    "expected_origin": "Madrid",
+    "expected_destination": "París",
+    "expected_via": null,
+    "is_negated": false
+  },
+  {
+    "id": "query_direct_05",
+    "category": "direct_paraphrase",
+    "text": "Dime si Marta puede ir de Madrid a París",
+    "expected_intent": "reachability",
+    "expected_origin": "Madrid",
+    "expected_destination": "París",
+    "expected_via": null,
+    "is_negated": false
+  },
+  {
+    "id": "query_via_01",
+    "category": "waypoint_constraint",
+    "text": "¿Puede Marta llegar a la biblioteca pasando por la estación?",
+    "expected_intent": "path_with_waypoint",
+    "expected_origin": "Marta",
+    "expected_destination": "biblioteca",
+    "expected_via": "estación",
+    "is_negated": false
+  },
+  {
+    "id": "query_via_02",
+    "category": "waypoint_constraint",
+    "text": "¿Es factible viajar de Bogotá a Buenos Aires haciendo escala en Lima?",
+    "expected_intent": "path_with_waypoint",
+    "expected_origin": "Bogotá",
+    "expected_destination": "Buenos Aires",
+    "expected_via": "Lima",
+    "is_negated": false
+  },
+  {
+    "id": "query_neg_01",
+    "category": "negation",
+    "text": "¿No es posible ir de nodo_A a nodo_B?",
+    "expected_intent": "reachability",
+    "expected_origin": "nodo_A",
+    "expected_destination": "nodo_B",
+    "expected_via": null,
+    "is_negated": true
+  },
+  {
+    "id": "query_neg_02",
+    "category": "negation",
+    "text": "¿Es imposible conectar el servidor_1 con la base_de_datos?",
+    "expected_intent": "reachability",
+    "expected_origin": "servidor_1",
+    "expected_destination": "base_de_datos",
+    "expected_via": null,
+    "is_negated": true
+  },
+  {
+    "id": "query_incomplete_01",
+    "category": "incomplete_data",
+    "text": "¿Cómo puedo llegar a la biblioteca?",
+    "expected_intent": "incomplete",
+    "expected_origin": null,
+    "expected_destination": "biblioteca",
+    "expected_via": null,
+    "is_negated": false
+  },
+  {
+    "id": "query_incomplete_02",
+    "category": "incomplete_data",
+    "text": "¿Se puede salir de la estación central?",
+    "expected_intent": "incomplete",
+    "expected_origin": "estación central",
+    "expected_destination": null,
+    "expected_via": null,
+    "is_negated": false
+  },
+  {
+    "id": "query_unknown_01",
+    "category": "unknown_entities",
+    "text": "¿Se puede viajar desde la Atlántida hasta Narnia?",
+    "expected_intent": "reachability",
+    "expected_origin": "Atlántida",
+    "expected_destination": "Narnia",
+    "expected_via": null,
+    "is_negated": false
+  },
+  {
+    "id": "query_rule_01",
+    "category": "rule_request",
+    "text": "Invierte el orden de la palabra 'RelicCore'",
+    "expected_intent": "rule_transformation",
+    "expected_origin": "RelicCore",
+    "expected_destination": "reverse",
+    "expected_via": null,
+    "is_negated": false
+  },
+  {
+    "id": "query_rule_02",
+    "category": "rule_request",
+    "text": "Pasa a mayúsculas y minúsculas invertidas el texto 'Bogota2026'",
+    "expected_intent": "rule_transformation",
+    "expected_origin": "Bogota2026",
+    "expected_destination": "swap_case",
+    "expected_via": null,
+    "is_negated": false
+  }
+]

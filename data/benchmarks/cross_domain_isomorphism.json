@@ -1,0 +1,132 @@
+[
+  {
+    "pair_id": "isomorphic_pair_01",
+    "case_type": "reachability_simple",
+    "domain_a": {
+      "domain": "SpatialGraph",
+      "text": "¿Se puede viajar desde Madrid hasta París?",
+      "expected_initial": "Madrid",
+      "expected_target": "París",
+      "expected_via": null,
+      "expected_avoid": null,
+      "is_negated": false,
+      "expected_outcome": "REACHABLE",
+      "expected_abstract_hops": 2
+    },
+    "domain_b": {
+      "domain": "SoftwareDependency",
+      "text": "¿Depende el crate relic_cli del paquete memmap2?",
+      "expected_initial": "relic_cli",
+      "expected_target": "memmap2",
+      "expected_via": null,
+      "expected_avoid": null,
+      "is_negated": false,
+      "expected_outcome": "REACHABLE",
+      "expected_abstract_hops": 2
+    }
+  },
+  {
+    "pair_id": "isomorphic_pair_02",
+    "case_type": "waypoint_constraint",
+    "domain_a": {
+      "domain": "SpatialGraph",
+      "text": "¿Puede Marta llegar a la biblioteca pasando por la estación?",
+      "expected_initial": "Marta",
+      "expected_target": "biblioteca",
+      "expected_via": "estación",
+      "expected_avoid": null,
+      "is_negated": false,
+      "expected_outcome": "REACHABLE",
+      "expected_abstract_hops": 2
+    },
+    "domain_b": {
+      "domain": "SoftwareDependency",
+      "text": "¿Puede compilarse app_service hacia database_connector pasando por auth_gateway?",
+      "expected_initial": "app_service",
+      "expected_target": "database_connector",
+      "expected_via": "auth_gateway",
+      "expected_avoid": null,
+      "is_negated": false,
+      "expected_outcome": "REACHABLE",
+      "expected_abstract_hops": 2
+    }
+  },
+  {
+    "pair_id": "isomorphic_pair_03",
+    "case_type": "avoid_constraint",
+    "domain_a": {
+      "domain": "SpatialGraph",
+      "text": "¿Se puede llegar de Madrid a París sin pasar por Barcelona?",
+      "expected_initial": "Madrid",
+      "expected_target": "París",
+      "expected_via": null,
+      "expected_avoid": "Barcelona",
+      "is_negated": false,
+      "expected_outcome": "UNREACHABLE",
+      "expected_abstract_hops": 0
+    },
+    "domain_b": {
+      "domain": "SoftwareDependency",
+      "text": "¿Se puede compilar relic_cli hacia memmap2 sin pasar por relic_core?",
+      "expected_initial": "relic_cli",
+      "expected_target": "memmap2",
+      "expected_via": null,
+      "expected_avoid": "relic_core",
+      "is_negated": false,
+      "expected_outcome": "UNREACHABLE",
+      "expected_abstract_hops": 0
+    }
+  },
+  {
+    "pair_id": "isomorphic_pair_04",
+    "case_type": "uncertainty_unknown_entity",
+    "domain_a": {
+      "domain": "SpatialGraph",
+      "text": "¿Se puede viajar desde Atlántida hasta París?",
+      "expected_initial": "Atlántida",
+      "expected_target": "París",
+      "expected_via": null,
+      "expected_avoid": null,
+      "is_negated": false,
+      "expected_outcome": "REJECT_UNKNOWN",
+      "expected_abstract_hops": 0
+    },
+    "domain_b": {
+      "domain": "SoftwareDependency",
+      "text": "¿Depende el componente crate_fantasma_xyz del paquete serde?",
+      "expected_initial": "crate_fantasma_xyz",
+      "expected_target": "serde",
+      "expected_via": null,
+      "expected_avoid": null,
+      "is_negated": false,
+      "expected_outcome": "REJECT_UNKNOWN",
+      "expected_abstract_hops": 0
+    }
+  },
+  {
+    "pair_id": "isomorphic_pair_05",
+    "case_type": "incomplete_query",
+    "domain_a": {
+      "domain": "SpatialGraph",
+      "text": "¿Cómo puedo llegar a la biblioteca?",
+      "expected_initial": null,
+      "expected_target": "biblioteca",
+      "expected_via": null,
+      "expected_avoid": null,
+      "is_negated": false,
+      "expected_outcome": "ASK_CLARIFICATION",
+      "expected_abstract_hops": 0
+    },
+    "domain_b": {
+      "domain": "SoftwareDependency",
+      "text": "¿Cómo se resuelve la dependencia hacia database_connector?",
+      "expected_initial": null,
+      "expected_target": "database_connector",
+      "expected_via": null,
+      "expected_avoid": null,
+      "is_negated": false,
+      "expected_outcome": "ASK_CLARIFICATION",
+      "expected_abstract_hops": 0
+    }
+  }
+]

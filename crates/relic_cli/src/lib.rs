@@ -10,6 +10,7 @@ pub mod graph;
 pub mod knowledge;
 pub mod math;
 pub mod monitor;
+pub mod parity;
 pub mod query;
 
 pub use dispatch::{parse_dispatch_intent, parse_inventory_problem, DispatchIntent, QuerySpec};

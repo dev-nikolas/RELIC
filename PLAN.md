@@ -55,17 +55,23 @@ Revisión exhaustiva de [`Simple_Domain/frontend/src/services/simpleDomainApi.ts
 
 ## 3. Justificación Arquitectónica del Servidor HTTP
 
-### ¿Por qué un Servidor Síncrono Ultraliviano (`tiny_http`) frente a `axum`/`tokio`?
-1. **Sobrecarga de Compilación y RAM:**
-   - `axum` + `tokio` arrastra una jerarquía de más de 80 dependencias transitivas (`hyper`, `tower`, `h2`, `http-body`, `socket2`, `mio`, `pin-project`). En hardware con recursos estrictos de memoria, compilar ese árbol puede agotar la memoria disponible o requerir swapping intensivo.
-   - `tiny_http` solo depende de 4 crates minúsculos (`ascii`, `chunked_transfer`, `url`), compilando en pocos segundos con mínima huella de memoria.
-2. **Naturaleza del Cómputo (CPU-bound vs I/O-bound):**
-   - La inferencia de RELIC (forward passes neuronales, recorridos BFS y aritmética exacta) es 100% ligada a la CPU (`CPU-bound`).
-   - Un runtime asíncrono como Tokio está diseñado para decenas de miles de conexiones I/O concurrentes inactivas. En una aplicación de escritorio local monousuario, un pool de hilos de trabajo síncrono (`worker threads`) ofrece el mismo rendimiento y latencia sin la complejidad ni el consumo de un reactor asíncrono.
-3. **Soporte Nativo de Streaming (SSE):**
-   - `tiny_http` permite streaming de respuestas mediante codificación por trozos (`chunked transfer encoding`), permitiendo enviar eventos SSE token por token con `flush()` inmediato sin necesidad de async streams complejos.
-4. **Regla de Compilación:**
-   - La compilación local se ejecutará estrictamente con un solo hilo: `cargo build --release -j 1`.
+### Justificación de Implementación en Rust: Simplicidad de Despliegue Local
+La adopción de `relic_server` en Rust se fundamenta estrictamente en la **simplicidad de despliegue local y autonomía operativa**:
+- **Binario único autocontenido:** Elimina la necesidad de instalar o mantener un entorno de ejecución de Python, gestores de paquetes (`pip`/`uv`), entornos virtuales (`.venv`) o servidores Node.js para servir el frontend compilado.
+- **Servicio integral:** El mismo ejecutable nativo atiende las APIs de inferencia y entrega los activos estáticos del frontend (`dist`), permitiendo levantar todo el sistema con un solo comando.
+
+### Elección de `tiny_http` frente a `axum`/`tokio`
+1. **Minimización de dependencias y tiempos de compilación:**
+   - `tiny_http` solo requiere 4 dependencias mínimas (`ascii`, `chunked_transfer`, `httpdate`, `log`), compilando en segundos con `cargo build --release -j 1`.
+   - `axum` + `tokio` arrastra decenas de crates transitivos innecesarios para un servicio monousuario de escritorio.
+2. **Naturaleza del Cómputo (CPU-bound):**
+   - El cómputo en RELIC (evaluación de Transformer, BFS en grafos y aritmética exacta) es CPU-bound. Un pool síncrono de 4 hilos de trabajo atiende peticiones locales concurrentes sin el overhead de un reactor asíncrono.
+3. **Soporte de Streaming SSE:**
+   - Emisión limpia de Server-Sent Events mediante codificación por fragmentos (chunked transfer).
+
+### Medición Real de Memoria (Comando Ejecutado)
+- **Comando:** `Get-Process relic_server | Select-Object Id, ProcessName, @{Name="WS_MB";Expression={[math]::Round($_.WorkingSet64 / 1MB, 2)}}`
+- **Memoria Residente Real Medida (Working Set):** **46.05 MB** (en modo de ejecución con frontend y pesos mapeados).
 
 ---
 

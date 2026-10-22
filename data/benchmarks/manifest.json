@@ -1,0 +1,44 @@
+{
+  "dyck": {
+    "train": {
+      "file": "data\\benchmarks\\dyck\\train.json",
+      "samples": 1000
+    },
+    "val_id": {
+      "file": "data\\benchmarks\\dyck\\val_id.json",
+      "samples": 200
+    },
+    "test_ood": {
+      "file": "data\\benchmarks\\dyck\\test_ood.json",
+      "samples": 300
+    }
+  },
+  "graph": {
+    "train": {
+      "file": "data\\benchmarks\\graph\\train.json",
+      "samples": 1000
+    },
+    "val_id": {
+      "file": "data\\benchmarks\\graph\\val_id.json",
+      "samples": 200
+    },
+    "test_ood": {
+      "file": "data\\benchmarks\\graph\\test_ood.json",
+      "samples": 300
+    }
+  },
+  "rules": {
+    "train": {
+      "file": "data\\benchmarks\\rules\\train.json",
+      "samples": 1000
+    },
+    "val_id": {
+      "file": "data\\benchmarks\\rules\\val_id.json",
+      "samples": 200
+    },
+    "test_ood": {
+      "file": "data\\benchmarks\\rules\\test_ood.json",
+      "samples": 300
+    }
+  }
+}

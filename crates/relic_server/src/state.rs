@@ -1,15 +1,13 @@
 //! # relic_server::state
 //!
-//! Estado compartido en memoria del servidor, modelo neuronal y grafo episódico.
+//! Estado de inferencia compartido en memoria (modelo y grafo episódico). Sin estado conversacional.
 //! Menos de 180 líneas.
 
-use std::collections::HashMap;
-use std::path::{Path, PathBuf};
+use std::path::Path;
 use std::sync::{Arc, RwLock};
 use relic_cli::knowledge::load_default_knowledge;
 use relic_core::{EpisodicMemory, RelicConfig, RelicModel, SafetensorsLoader};
 use relic_tokenizer::{BpeTokenizer, Vocab};
-use crate::types::Conversation;
 
 #[derive(Clone)]
 pub struct ServerState {
@@ -17,9 +15,7 @@ pub struct ServerState {
     pub model: Option<Arc<RelicModel>>,
     pub tokenizer: Option<Arc<BpeTokenizer>>,
     pub memory: Arc<RwLock<EpisodicMemory>>,
-    pub conversations: Arc<RwLock<HashMap<String, Conversation>>>,
     pub weights_loaded: bool,
-    pub static_dir: Option<PathBuf>,
 }
 
 impl ServerState {
@@ -51,25 +47,12 @@ impl ServerState {
             None
         };
 
-        let static_candidates = [
-            PathBuf::from("../Simple_Domain/frontend/dist"),
-            PathBuf::from("../../Simple_Domain/frontend/dist"),
-            PathBuf::from("c:/Users/Nicolas Pachon/Desktop/Seis Ojos/Simple_Domain/frontend/dist"),
-            PathBuf::from("dist"),
-        ];
-        let static_dir = static_candidates.into_iter().find(|p| p.is_dir());
-        if let Some(ref dir) = static_dir {
-            println!("[relic_server] Frontend compilado detectado en: {:?}", dir);
-        }
-
         Self {
             config,
             model,
             tokenizer,
             memory: Arc::new(RwLock::new(memory)),
-            conversations: Arc::new(RwLock::new(HashMap::new())),
             weights_loaded,
-            static_dir,
         }
     }
 }

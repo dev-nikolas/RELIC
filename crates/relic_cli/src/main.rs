@@ -20,6 +20,10 @@ fn main() {
                 handle_query(&query);
             }
             "bench" => handle_bench(),
+            "parity" => {
+                let tokens = if args.len() > 2 { args[2].clone() } else { "12,45,99".to_string() };
+                relic_cli::parity::handle_parity(&tokens);
+            }
             "demo" => {
                 let prompt = if args.len() > 2 {
                     args[2..].join(" ")

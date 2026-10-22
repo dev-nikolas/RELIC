@@ -1,0 +1,1802 @@
+[
+  {
+    "id": "dyck_ood_0000",
+    "depth": 8,
+    "prompt": "( b ( a ) [ [ [ z ] x ] c ] ( a ( c ( z { y { [ { d z } a { a b d y y } ] c ( { ->",
+    "target": "}"
+  },
+  {
+    "id": "dyck_ood_0001",
+    "depth": 5,
+    "prompt": "[ { z [ [ ( b ) [ x x a ] d [ b a ] d ] d { { ->",
+    "target": "}"
+  },
+  {
+    "id": "dyck_ood_0002",
+    "depth": 8,
+    "prompt": "{ a ( ) b ( d ( ) z { } { } b ) a ( ( [ ( [ d ( ) d [ { y } z ] [ b [ c ->",
+    "target": "]"
+  },
+  {
+    "id": "dyck_ood_0003",
+    "depth": 5,
+    "prompt": "{ b ( ) [ { } [ ] a [ y ] b ( [ z ] z [ { b d ->",
+    "target": "}"
+  },
+  {
+    "id": "dyck_ood_0004",
+    "depth": 5,
+    "prompt": "( ( [ ] { ( ) ( c ) [ x { b d } x ] z } c { ( [ ] [ ->",
+    "target": "]"
+  },
+  {
+    "id": "dyck_ood_0005",
+    "depth": 6,
+    "prompt": "( ( ( c ) [ ( ) ] ) d { ( a ( { d { } } ( ( y a ) b [ ->",
+    "target": "]"
+  },
+  {
+    "id": "dyck_ood_0006",
+    "depth": 8,
+    "prompt": "( ( y [ ( z ( y [ ] [ y [ z ] ] ) ( ) b ) a ( ) { a } c { ( b { a } c [ z { z [ ] c ( y ->",
+    "target": ")"
+  },
+  {
+    "id": "dyck_ood_0007",
+    "depth": 5,
+    "prompt": "[ [ a { ( { c } ( y ) ) } b ] ( z [ ( a [ c ->",
+    "target": "]"
+  },
+  {
+    "id": "dyck_ood_0008",
+    "depth": 7,
+    "prompt": "( z { b { } a ( { d [ { [ ] [ ] { x ->",
+    "target": "}"
+  },
+  {
+    "id": "dyck_ood_0009",
+    "depth": 8,
+    "prompt": "[ ( ) d [ ( a ) ] { y } z [ ] ( ) { [ d ] { { } } [ z ] } d [ ] [ y ( c ) x ] { ( ( { ( x ( [ ->",
+    "target": "]"
+  },
+  {
+    "id": "dyck_ood_0010",
+    "depth": 6,
+    "prompt": "( c [ y ] { a [ x ] ( [ z { { z } d ( z ) [ ] } { [ ] } b ( y [ ->",
+    "target": "]"
+  },
+  {
+    "id": "dyck_ood_0011",
+    "depth": 5,
+    "prompt": "[ x { ( { x ( b a ) [ ] } [ y ] { [ a ->",
+    "target": "]"
+  },
+  {
+    "id": "dyck_ood_0012",
+    "depth": 5,
+    "prompt": "( ( c [ { } ( ) a [ b { a } ] x { [ a ] z { a x } a { ->",
+    "target": "}"
+  },
+  {
+    "id": "dyck_ood_0013",
+    "depth": 6,
+    "prompt": "( d ( { [ ] a { { ( y c c a ) } x [ c ] ( x ( a b ) ) ( [ c ->",
+    "target": "]"
+  },
+  {
+    "id": "dyck_ood_0014",
+    "depth": 7,
+    "prompt": "( [ a ] [ d ] c ( { x } [ x ] x { } { } { [ ( b [ ] [ x ( ) y ] [ ( y ->",
+    "target": ")"
+  },
+  {
+    "id": "dyck_ood_0015",
+    "depth": 7,
+    "prompt": "{ ( d ) x { } c [ d { [ b [ x [ [ ] d [ z y a ] { a b } c ] y ] x { } ( { b ( ->",
+    "target": ")"
+  },
+  {
+    "id": "dyck_ood_0016",
+    "depth": 8,
+    "prompt": "[ { c [ { a } ] { } [ y ] { x [ c [ ] z ] } c [ z { { { a } x { } { { z } b [ ] ( ( ->",
+    "target": ")"
+  },
+  {
+    "id": "dyck_ood_0017",
+    "depth": 6,
+    "prompt": "( ( d { { [ { } x [ ] b ] b } } x ( b ) { [ ( z ) z [ ( x ) b { ->",
+    "target": "}"
+  },
+  {
+    "id": "dyck_ood_0018",
+    "depth": 8,
+    "prompt": "( a [ y { y { y [ c { b [ y { } ] { { a } x } y ( x ) d ( z [ ] y { d } x [ ] c ) } a { } a ( [ c [ ->",
+    "target": "]"
+  },
+  {
+    "id": "dyck_ood_0019",
+    "depth": 8,
+    "prompt": "( { ( { { ( ) [ [ [ y ] c { } ( z a z ) ] ( d { y } a ) ( z ( b ) ) z { { ->",
+    "target": "}"
+  },
+  {
+    "id": "dyck_ood_0020",
+    "depth": 5,
+    "prompt": "{ y ( a ) z { d } { z } [ z ] [ ] ( ) ( z [ ( ) [ b ] z { z { ->",
+    "target": "}"
+  },
+  {
+    "id": "dyck_ood_0021",
+    "depth": 8,
+    "prompt": "[ [ ( b [ { c } [ [ d [ ( a ) b [ a ] [ c ] a [ y ] { c ->",
+    "target": "}"
+  },
+  {
+    "id": "dyck_ood_0022",
+    "depth": 5,
+    "prompt": "{ x [ ( x { a } ) y ] d [ ] { } z ( b ( ) ) [ ] ( ( { { ->",
+    "target": "}"
+  },
+  {
+    "id": "dyck_ood_0023",
+    "depth": 7,
+    "prompt": "[ [ ( x { } { y { ( ) z [ y { a } { } x { y y } c ] [ ] c ( ) { { ->",
+    "target": "}"
+  },
+  {
+    "id": "dyck_ood_0024",
+    "depth": 7,
+    "prompt": "[ ( b { { ( [ ( z ) y ( ) ] ( [ ] a ) ) y { x [ [ y y ] c ] z } ( a [ [ ->",
+    "target": "]"
+  },
+  {
+    "id": "dyck_ood_0025",
+    "depth": 5,
+    "prompt": "{ ( b ( [ ( d ) [ d z ] { y } { } d [ ->",
+    "target": "]"
+  },
+  {
+    "id": "dyck_ood_0026",
+    "depth": 6,
+    "prompt": "[ d { x [ a ( ) { d } x ( ) ( [ { a y } b [ a b x ->",
+    "target": "]"
+  },
+  {
+    "id": "dyck_ood_0027",
+    "depth": 8,
+    "prompt": "[ [ [ ] ] ( [ x ( [ { d ( ( ) ( b ) ) x { x } { { z } b { c b ->",
+    "target": "}"
+  },
+  {
+    "id": "dyck_ood_0028",
+    "depth": 8,
+    "prompt": "{ [ b ] ( ) [ [ d [ z { } ( a { } ) { { { b { } [ b ] } ( { z ->",
+    "target": "}"
+  },
+  {
+    "id": "dyck_ood_0029",
+    "depth": 8,
+    "prompt": "{ { [ a ] { y { } ( ( { ( b ) [ b ( y ) [ a y ] { b } [ ] b ] ( y [ ->",
+    "target": "]"
+  },
+  {
+    "id": "dyck_ood_0030",
+    "depth": 8,
+    "prompt": "( a { a } z [ ] b ( ( ) ( { { c [ { } c [ x ] ( a ) d [ z ] [ ( ) ] ( ) ] d ( y { } ( { ->",
+    "target": "}"
+  },
+  {
+    "id": "dyck_ood_0031",
+    "depth": 6,
+    "prompt": "[ { ( ) } { } ( d ( ( ) b { [ a [ z ] ( c z ->",
+    "target": ")"
+  },
+  {
+    "id": "dyck_ood_0032",
+    "depth": 7,
+    "prompt": "{ { ( { y } { d { x } } b ) [ y { b } y ] c [ ] } [ d ( x ) a ( ( { } y ( ( a { b ->",
+    "target": "}"
+  },
+  {
+    "id": "dyck_ood_0033",
+    "depth": 7,
+    "prompt": "( a ( ( y { } a ( ) b [ [ y { x [ z ] } y { ( b ) } [ b ] { } a ( ) d ( y [ ] ) ( [ ->",
+    "target": "]"
+  },
+  {
+    "id": "dyck_ood_0034",
+    "depth": 5,
+    "prompt": "[ [ ] ( x ) b [ ] { z } [ d ( a [ ] y ) d ( a ( x ) z ) c ] [ { [ d ( ->",
+    "target": ")"
+  },
+  {
+    "id": "dyck_ood_0035",
+    "depth": 7,
+    "prompt": "{ a ( ( d ) a ) ( ) ( x ( [ z ( { c ( x z ) } ) { ( ) [ [ ->",
+    "target": "]"
+  },
+  {
+    "id": "dyck_ood_0036",
+    "depth": 8,
+    "prompt": "{ ( ( d ) ) a { ( a [ ] c ( { ( ( [ c x z ] y { y } { } d ) z ) ( [ ( ->",
+    "target": ")"
+  },
+  {
+    "id": "dyck_ood_0037",
+    "depth": 5,
+    "prompt": "{ ( { x { ( ) } y ( d ) { y } } x [ x [ a ] [ b ( x b ->",
+    "target": ")"
+  },
+  {
+    "id": "dyck_ood_0038",
+    "depth": 5,
+    "prompt": "[ z [ ] { { } x } a { [ y ] c [ ] c } ( ( ) [ x { ( d ->",
+    "target": ")"
+  },
+  {
+    "id": "dyck_ood_0039",
+    "depth": 6,
+    "prompt": "[ [ d ] { [ d ( ) z { { y } ( ( a ) b { d } y ( ) [ b c ] c { c } d ( ->",
+    "target": ")"
+  },
+  {
+    "id": "dyck_ood_0040",
+    "depth": 6,
+    "prompt": "{ a ( ( ) z ) b { y } ( ) ( c { a } ( x { y } b ) x [ ] b ) [ ( d ( { { c ->",
+    "target": "}"
+  },
+  {
+    "id": "dyck_ood_0041",
+    "depth": 6,
+    "prompt": "( x [ a ] d [ ] [ d ] [ y ] b ( d { b ( ( [ c ] b { a } c [ d z ->",
+    "target": "]"
+  },
+  {
+    "id": "dyck_ood_0042",
+    "depth": 7,
+    "prompt": "{ c ( [ [ z ( y { { c } } c { x } a { a { a x d } c ( ) b } ) x ] ] a [ ( { z ( [ ->",
+    "target": "]"
+  },
+  {
+    "id": "dyck_ood_0043",
+    "depth": 8,
+    "prompt": "[ [ y { { b ( b ( ) x ) x } } x ] y { a [ ( d ( [ ( [ ] z { } ( b z ) [ ->",
+    "target": "]"
+  },
+  {
+    "id": "dyck_ood_0044",
+    "depth": 6,
+    "prompt": "[ a { x ( c ) x } ( a ) { { c } z } c ( b ( c [ { ( c ) b ( ->",
+    "target": ")"
+  },
+  {
+    "id": "dyck_ood_0045",
+    "depth": 8,
+    "prompt": "( ( z { d [ [ ] [ ( [ y ] x ) y ] b ( ) d ] x [ ] } ( y { [ ] } z ) ) x { } { c [ ( { ( ( { b ->",
+    "target": "}"
+  },
+  {
+    "id": "dyck_ood_0046",
+    "depth": 7,
+    "prompt": "{ [ { ( [ ( { c } { c } y ) [ ] ] ) [ ] { { } } } y { b { { b { { ->",
+    "target": "}"
+  },
+  {
+    "id": "dyck_ood_0047",
+    "depth": 8,
+    "prompt": "[ ( d [ z ( b ) { y ( { [ ] ( ) x } ) } d ] ( ( { c [ c ] ( ) c } { x [ { ( d ->",
+    "target": ")"
+  },
+  {
+    "id": "dyck_ood_0048",
+    "depth": 5,
+    "prompt": "{ ( b ( [ ] ( { b z } d ) [ x [ ] ] ) d { c { ( ->",
+    "target": ")"
+  },
+  {
+    "id": "dyck_ood_0049",
+    "depth": 5,
+    "prompt": "{ z { } { d ( { d } c ( [ ] ) ) { { } [ ( c x ->",
+    "target": ")"
+  },
+  {
+    "id": "dyck_ood_0050",
+    "depth": 5,
+    "prompt": "( [ c { x [ [ c ] [ ] [ a b y z ] b ( x a y ->",
+    "target": ")"
+  },
+  {
+    "id": "dyck_ood_0051",
+    "depth": 5,
+    "prompt": "{ b ( a { } ( { z } { ( ) ( c ) d { } [ b ->",
+    "target": "]"
+  },
+  {
+    "id": "dyck_ood_0052",
+    "depth": 5,
+    "prompt": "{ ( b { { c { } b ( d ) z } z { ( ) ( d ) } } { { ( ->",
+    "target": ")"
+  },
+  {
+    "id": "dyck_ood_0053",
+    "depth": 6,
+    "prompt": "[ ( { } b [ [ ] { a ( z { z } { d z } { ->",
+    "target": "}"
+  },
+  {
+    "id": "dyck_ood_0054",
+    "depth": 6,
+    "prompt": "{ c [ [ b [ ( ( y ) { y x } ( ) x ) ] a { d { y ( a ) x } ( b [ y ->",
+    "target": "]"
+  },
+  {
+    "id": "dyck_ood_0055",
+    "depth": 7,
+    "prompt": "[ ( b ) ( ( d ) b { ( b ) x } z [ x { d [ b { y } x [ ( c ) c ( y ) ] z { d } c ] x [ { b { d ->",
+    "target": "}"
+  },
+  {
+    "id": "dyck_ood_0056",
+    "depth": 5,
+    "prompt": "( [ x [ { ( z ) z } ( { } c ) x [ x ( ->",
+    "target": ")"
+  },
+  {
+    "id": "dyck_ood_0057",
+    "depth": 7,
+    "prompt": "[ z [ ( y [ ] ( { } ( { } ) { y } [ { { } y { z } { b } ( ->",
+    "target": ")"
+  },
+  {
+    "id": "dyck_ood_0058",
+    "depth": 8,
+    "prompt": "( { z } ( b ( ) a [ { } x [ ( { ( ( ) ( x ) y { } { a y b x x } x ) } b [ ] ) ( z ( ( ( ->",
+    "target": ")"
+  },
+  {
+    "id": "dyck_ood_0059",
+    "depth": 6,
+    "prompt": "( ( b { } b ( c { } ( ( d ( b ) ) ) [ a ( { } [ c b ->",
+    "target": "]"
+  },
+  {
+    "id": "dyck_ood_0060",
+    "depth": 7,
+    "prompt": "{ { d { x { d } [ x [ ] { ( ) ( y ) { { c } ( c ) [ z ] } [ [ z ->",
+    "target": "]"
+  },
+  {
+    "id": "dyck_ood_0061",
+    "depth": 7,
+    "prompt": "{ ( d ) [ ] b [ x [ { } ] ( { a [ ( { c } y [ ] [ ] ( c ) d { ->",
+    "target": "}"
+  },
+  {
+    "id": "dyck_ood_0062",
+    "depth": 6,
+    "prompt": "{ x { { [ [ d [ a x ] ] c ( { } { } c ( c ) [ ->",
+    "target": "]"
+  },
+  {
+    "id": "dyck_ood_0063",
+    "depth": 7,
+    "prompt": "{ ( x [ b ] c ( ) b ) { x [ z [ y ( ) b { d ( { } ( d ) d ) [ { ->",
+    "target": "}"
+  },
+  {
+    "id": "dyck_ood_0064",
+    "depth": 5,
+    "prompt": "( b { d { { b ( d ) x } b ( [ x x ] { c } z { } ( z d b ->",
+    "target": ")"
+  },
+  {
+    "id": "dyck_ood_0065",
+    "depth": 6,
+    "prompt": "( [ ] ( [ x { c [ ( ) ( z ) ] { } ( z ( y y x z ) z { ->",
+    "target": "}"
+  },
+  {
+    "id": "dyck_ood_0066",
+    "depth": 8,
+    "prompt": "{ b { b ( { b { [ ( z { } ) [ ( d z b z b ) { ->",
+    "target": "}"
+  },
+  {
+    "id": "dyck_ood_0067",
+    "depth": 7,
+    "prompt": "( [ d ] c [ z ( { ( ) { z [ d ( a ) y ] d [ b ] y [ ( c ) a ( z a ->",
+    "target": ")"
+  },
+  {
+    "id": "dyck_ood_0068",
+    "depth": 8,
+    "prompt": "{ a { } d { { { } { { ( d ) } [ { } ] d } [ b ] a [ [ y { c } { x } a [ x [ ] x ] ] [ { { { ->",
+    "target": "}"
+  },
+  {
+    "id": "dyck_ood_0069",
+    "depth": 8,
+    "prompt": "{ [ d { y } { } ( ( b ( a ) ( [ y { z ( ) } d ] ( ( ) ) d ) x ) d [ ] ) ] x { y { { z { { [ d [ b ->",
+    "target": "]"
+  },
+  {
+    "id": "dyck_ood_0070",
+    "depth": 6,
+    "prompt": "( c [ ( ) ] { ( ( b ) a { } ) ( ) } { [ c ( ) c [ { { ->",
+    "target": "}"
+  },
+  {
+    "id": "dyck_ood_0071",
+    "depth": 5,
+    "prompt": "[ { } [ ( ( { a } d [ d ] ) d { [ ] [ c d ->",
+    "target": "]"
+  },
+  {
+    "id": "dyck_ood_0072",
+    "depth": 7,
+    "prompt": "[ ( ) [ [ z ( z ) [ c ] ] [ { { [ { } d ] } x } ] a ] [ [ [ ] { z ( ( c [ ->",
+    "target": "]"
+  },
+  {
+    "id": "dyck_ood_0073",
+    "depth": 8,
+    "prompt": "( [ { ( c ) } [ d [ a [ [ [ { y } b ] z ] ] [ ] b ( { { ( ) } [ y { ->",
+    "target": "}"
+  },
+  {
+    "id": "dyck_ood_0074",
+    "depth": 7,
+    "prompt": "( { } ( ) d { } a { } z { [ { ( ) ( ) a } ] x ( { { c } { b } a { ( b { ->",
+    "target": "}"
+  },
+  {
+    "id": "dyck_ood_0075",
+    "depth": 8,
+    "prompt": "( a [ ] a { { a [ { [ [ ( x ) ] y ( y ) ] [ [ z ] { [ y ] { y d ->",
+    "target": "}"
+  },
+  {
+    "id": "dyck_ood_0076",
+    "depth": 6,
+    "prompt": "( ( [ z ( x { { } } y { a } x ) { ( { } { ->",
+    "target": "}"
+  },
+  {
+    "id": "dyck_ood_0077",
+    "depth": 5,
+    "prompt": "{ ( z ) { [ ] } d [ ( ( [ b c ] c { } ) a [ y { } x ( ->",
+    "target": ")"
+  },
+  {
+    "id": "dyck_ood_0078",
+    "depth": 8,
+    "prompt": "{ ( ( ) z [ [ z { x ( a { } d ) [ x ] } x { y [ { a } [ b ] d ( y ) [ ( x ->",
+    "target": ")"
+  },
+  {
+    "id": "dyck_ood_0079",
+    "depth": 8,
+    "prompt": "[ { } { a ( [ x ] d ( a ( a [ ] ( d ) ( c [ ( a x a ) d [ z ] c ] [ c ] ( c { x ->",
+    "target": "}"
+  },
+  {
+    "id": "dyck_ood_0080",
+    "depth": 7,
+    "prompt": "[ x { x { [ { a } x { { y } ( a ) a ( x ) x ( x ) ( ) { z { b c ->",
+    "target": "}"
+  },
+  {
+    "id": "dyck_ood_0081",
+    "depth": 6,
+    "prompt": "[ [ x ( ) z { } ( b ( z [ [ d ] ] ) y ( [ x [ y z d ->",
+    "target": "]"
+  },
+  {
+    "id": "dyck_ood_0082",
+    "depth": 7,
+    "prompt": "[ { } { ( ) ( ) z { } y [ ] y } ( d ( [ { [ ] z } ] { x ( z [ { ->",
+    "target": "}"
+  },
+  {
+    "id": "dyck_ood_0083",
+    "depth": 6,
+    "prompt": "{ c ( [ d [ [ ( a z ) ] [ { a } d [ x c ] [ ->",
+    "target": "]"
+  },
+  {
+    "id": "dyck_ood_0084",
+    "depth": 8,
+    "prompt": "[ b [ b ( ) ( b ( y { } c ( ) d { ( ( d ) { ( ) z { c } } ( ( a ->",
+    "target": ")"
+  },
+  {
+    "id": "dyck_ood_0085",
+    "depth": 7,
+    "prompt": "[ { [ ( [ [ { y } [ ] b ] { ( b ) [ ] [ ] b } ] ( { [ ->",
+    "target": "]"
+  },
+  {
+    "id": "dyck_ood_0086",
+    "depth": 8,
+    "prompt": "[ [ ( x [ a { { { } } { } ( c [ { y b } ] { y ( ) ( z ) } ( ( ->",
+    "target": ")"
+  },
+  {
+    "id": "dyck_ood_0087",
+    "depth": 8,
+    "prompt": "{ z { ( ( d ) x [ c [ ] ( { } { { { b z b } } } { c [ ] } { d ( ) [ ] [ { ->",
+    "target": "}"
+  },
+  {
+    "id": "dyck_ood_0088",
+    "depth": 8,
+    "prompt": "[ [ { c [ y { ( ) } d { y [ [ ] a [ ] { { } d [ ] y [ b ] ( x ->",
+    "target": ")"
+  },
+  {
+    "id": "dyck_ood_0089",
+    "depth": 7,
+    "prompt": "( [ x ( ( y ) ( x ( ) { { ( x b b ) { } [ ] } ( ( ) [ ->",
+    "target": "]"
+  },
+  {
+    "id": "dyck_ood_0090",
+    "depth": 8,
+    "prompt": "( ( [ { a } d ] a ( { b ( x ( { { } } { z { d } x } ) ( ) ( [ a [ d ->",
+    "target": "]"
+  },
+  {
+    "id": "dyck_ood_0091",
+    "depth": 6,
+    "prompt": "[ [ [ c ] a ( { [ c { } a ] } ) [ [ c [ [ c z x ] a ] a ( { c ->",
+    "target": "}"
+  },
+  {
+    "id": "dyck_ood_0092",
+    "depth": 7,
+    "prompt": "{ { { { x [ x ] z { d { { x } { } x ( ) z } c } d } [ x ] [ d ( ( z [ d ->",
+    "target": "]"
+  },
+  {
+    "id": "dyck_ood_0093",
+    "depth": 8,
+    "prompt": "{ [ [ [ ] y { [ [ ] { [ { } [ ] z ] b { [ x ] { } } ( y ) d ( { ->",
+    "target": "}"
+  },
+  {
+    "id": "dyck_ood_0094",
+    "depth": 8,
+    "prompt": "{ [ ] b [ b ( [ { { } y { } y { a [ { y } ( d ) [ ] y ] } ( [ a [ ->",
+    "target": "]"
+  },
+  {
+    "id": "dyck_ood_0095",
+    "depth": 6,
+    "prompt": "{ d [ ( ) ] ( ( ) d { } { z [ b { { } } y ( ( ) ( x ) x [ d c ->",
+    "target": "]"
+  },
+  {
+    "id": "dyck_ood_0096",
+    "depth": 6,
+    "prompt": "[ { [ ( ( ( z ) ( ) x ( d ) z { c c ->",
+    "target": "}"
+  },
+  {
+    "id": "dyck_ood_0097",
+    "depth": 5,
+    "prompt": "( [ ] { } a ( c ) { { ( ) } ( z [ [ c d ] { ->",
+    "target": "}"
+  },
+  {
+    "id": "dyck_ood_0098",
+    "depth": 8,
+    "prompt": "{ ( x { a } ) ( ) [ ] ( ( y [ ] b { b ( x [ ( ( y d d ) b [ x ] ) { } { [ ->",
+    "target": "]"
+  },
+  {
+    "id": "dyck_ood_0099",
+    "depth": 5,
+    "prompt": "( y ( ) { { { [ ] } c ( d ( ) x ) { [ z ] [ x ->",
+    "target": "]"
+  },
+  {
+    "id": "dyck_ood_0100",
+    "depth": 6,
+    "prompt": "[ ( ) [ { ( ) z ( [ ( x ) ( x ) ( c b ) y { } b ( ->",
+    "target": ")"
+  },
+  {
+    "id": "dyck_ood_0101",
+    "depth": 5,
+    "prompt": "{ b [ [ a { } ( y { c y } b { x } [ x ] ( a ->",
+    "target": ")"
+  },
+  {
+    "id": "dyck_ood_0102",
+    "depth": 7,
+    "prompt": "{ a ( z ) { ( z ) } [ [ [ { { c { a a y } y ( a ) } [ z { ->",
+    "target": "}"
+  },
+  {
+    "id": "dyck_ood_0103",
+    "depth": 7,
+    "prompt": "[ ( c ( x { ( b [ ( z ) c ] ) } ) c { x [ ] ( ) z ( c { } { } ) x { y [ ( b ( y ->",
+    "target": ")"
+  },
+  {
+    "id": "dyck_ood_0104",
+    "depth": 5,
+    "prompt": "{ { [ ] } ( c { { y } [ b { } x ] z { } { [ ] } b [ b [ ->",
+    "target": "]"
+  },
+  {
+    "id": "dyck_ood_0105",
+    "depth": 6,
+    "prompt": "[ { } [ z ( ( { d { } z [ ] d { z } ( ) ( c ) c [ ->",
+    "target": "]"
+  },
+  {
+    "id": "dyck_ood_0106",
+    "depth": 7,
+    "prompt": "( d [ [ ] z ] ( d ( c ) d ( ) a ( { } [ ] { x } ( ) { } ) { ( a [ z ( x { d ->",
+    "target": "}"
+  },
+  {
+    "id": "dyck_ood_0107",
+    "depth": 8,
+    "prompt": "{ [ { d } d [ x ] ] [ c [ d { } [ ( z [ [ ( x ) z ] b ] ( ( a { d } ) d ( ( ->",
+    "target": ")"
+  },
+  {
+    "id": "dyck_ood_0108",
+    "depth": 8,
+    "prompt": "{ c [ x ] x ( a ) d { ( ) y ( a ( y ) ( c ) ( ( ) c { { d { [ ] { c } [ ] } [ a ( x ->",
+    "target": ")"
+  },
+  {
+    "id": "dyck_ood_0109",
+    "depth": 8,
+    "prompt": "( d [ y ] [ ( y ) b [ x ( c [ { d ( [ x d ] y ) x } ] ( [ [ ( y ) [ x ] ] { { x ->",
+    "target": "}"
+  },
+  {
+    "id": "dyck_ood_0110",
+    "depth": 7,
+    "prompt": "( c ( { } ( c ( [ ( { z } { a } ) x ] { a { { a } ( z b ) { c ->",
+    "target": "}"
+  },
+  {
+    "id": "dyck_ood_0111",
+    "depth": 5,
+    "prompt": "[ b { ( b ) b ( b ( c ( ) ( ) b { x } z [ z ->",
+    "target": "]"
+  },
+  {
+    "id": "dyck_ood_0112",
+    "depth": 6,
+    "prompt": "[ [ [ d ] ( y ( ( { z b c } ( a ) b ( ) z ( y c ->",
+    "target": ")"
+  },
+  {
+    "id": "dyck_ood_0113",
+    "depth": 8,
+    "prompt": "( ( ) b [ ] b { } { } { [ ] x } [ d { ( b ( z ) a ( ) d ) } c { b } ] c { } { ( [ { a ( ( ( ->",
+    "target": ")"
+  },
+  {
+    "id": "dyck_ood_0114",
+    "depth": 5,
+    "prompt": "{ { b ( { } { c } x ( d ) { z { z y } x } ( [ z ] ( ->",
+    "target": ")"
+  },
+  {
+    "id": "dyck_ood_0115",
+    "depth": 7,
+    "prompt": "[ [ z ] { c { } { [ { } [ ( y [ ] d { z } a [ ] d ( c ->",
+    "target": ")"
+  },
+  {
+    "id": "dyck_ood_0116",
+    "depth": 5,
+    "prompt": "{ x [ ( { } [ c { b } a ( x ) ] ) [ b [ z ( a ->",
+    "target": ")"
+  },
+  {
+    "id": "dyck_ood_0117",
+    "depth": 7,
+    "prompt": "{ y ( d { d [ ] } z { b } ( ) ( z ) ( d { d } d [ a [ ( ) { [ b ] a [ ] [ z ->",
+    "target": "]"
+  },
+  {
+    "id": "dyck_ood_0118",
+    "depth": 5,
+    "prompt": "{ [ { c [ y ] ( d ( b d ) y ( a ) ) { ( ) [ d ->",
+    "target": "]"
+  },
+  {
+    "id": "dyck_ood_0119",
+    "depth": 8,
+    "prompt": "{ d ( b ) ( z ( d ) c ) { ( [ z [ { { b } { ( ) } } ] z ( z ( c [ ] x [ x ] b ) { x ( [ ->",
+    "target": "]"
+  },
+  {
+    "id": "dyck_ood_0120",
+    "depth": 8,
+    "prompt": "{ ( [ d [ a ] ( y ( ( a { y } d { ( a x ) } { { } { x y ->",
+    "target": "}"
+  },
+  {
+    "id": "dyck_ood_0121",
+    "depth": 5,
+    "prompt": "{ b { [ x [ y ] ] { ( [ ] z [ ] z ( a ) d ) x ( x { b } d ( b ->",
+    "target": ")"
+  },
+  {
+    "id": "dyck_ood_0122",
+    "depth": 7,
+    "prompt": "{ [ ( [ x { a ( ( b x ) [ ] d ( ) c ) } { } c ] { } ) ] [ ( ( [ c { [ ->",
+    "target": "]"
+  },
+  {
+    "id": "dyck_ood_0123",
+    "depth": 6,
+    "prompt": "[ a [ ] y ( ) ( ) { b ( z ( ( a { y } ) ( ) ( c ( d ->",
+    "target": ")"
+  },
+  {
+    "id": "dyck_ood_0124",
+    "depth": 7,
+    "prompt": "{ z [ z ] a { } ( [ b ( b ) ] ) [ a ] z [ { { { ( y ) { [ b z ] } } { y [ { ->",
+    "target": "}"
+  },
+  {
+    "id": "dyck_ood_0125",
+    "depth": 8,
+    "prompt": "{ a [ ( [ ( { { ( y d ) { } d [ y ] } { d } { [ ] c ( b ) ( ) z } z [ { ->",
+    "target": "}"
+  },
+  {
+    "id": "dyck_ood_0126",
+    "depth": 8,
+    "prompt": "[ d ( x [ x ] ( ) [ x ] { [ ] } [ d [ ] ] { d ( c [ { ( ( d ) x ( ) { ->",
+    "target": "}"
+  },
+  {
+    "id": "dyck_ood_0127",
+    "depth": 6,
+    "prompt": "{ ( { { z [ ] d } y { y ( z { a y } ) c } d [ a ( b ) { } b ( ( d ->",
+    "target": ")"
+  },
+  {
+    "id": "dyck_ood_0128",
+    "depth": 5,
+    "prompt": "{ ( [ ] { [ y ] a ( ) c ( a { c } [ ] x [ ] ) ( { ->",
+    "target": "}"
+  },
+  {
+    "id": "dyck_ood_0129",
+    "depth": 7,
+    "prompt": "{ ( b [ d ] d ) z ( y ( y [ [ y ( a ) y [ ] a ] ] ) [ ] ( [ { c } d ( ( y ( ->",
+    "target": ")"
+  },
+  {
+    "id": "dyck_ood_0130",
+    "depth": 8,
+    "prompt": "( { y } ( c ) c [ y [ x ( z [ { { y [ ] } { [ z y ] ( ) ( ->",
+    "target": ")"
+  },
+  {
+    "id": "dyck_ood_0131",
+    "depth": 8,
+    "prompt": "[ [ ] c [ ] z [ y { } [ y ] ( b ( a { } [ ( z ) { } ] ( d ) { x } z ( z ) z { x ( { c [ ->",
+    "target": "]"
+  },
+  {
+    "id": "dyck_ood_0132",
+    "depth": 7,
+    "prompt": "[ { ( ) [ [ ] [ [ c ] d [ { { a } } ] ( [ z { x ->",
+    "target": "}"
+  },
+  {
+    "id": "dyck_ood_0133",
+    "depth": 6,
+    "prompt": "{ [ [ { } [ { { } d } ( b [ c ] x ) z [ ( d ) { b z ->",
+    "target": "}"
+  },
+  {
+    "id": "dyck_ood_0134",
+    "depth": 5,
+    "prompt": "{ { [ ] ( [ { z } ] ) b } [ ( ( [ y ->",
+    "target": "]"
+  },
+  {
+    "id": "dyck_ood_0135",
+    "depth": 8,
+    "prompt": "{ d { y ( { c ( c ) ( ) c } ) z [ d [ ] ( b { y [ [ y [ ] { a } x [ y ->",
+    "target": "]"
+  },
+  {
+    "id": "dyck_ood_0136",
+    "depth": 7,
+    "prompt": "( { a } ( c ) a { } ( a ) [ [ c { ( { ( d ) { } { d } b { b } } y { { ->",
+    "target": "}"
+  },
+  {
+    "id": "dyck_ood_0137",
+    "depth": 7,
+    "prompt": "( y ( { x [ y ] } z ) [ ( x [ a [ ] ( { [ ] } y [ c ( ) ] d ( y [ z ->",
+    "target": "]"
+  },
+  {
+    "id": "dyck_ood_0138",
+    "depth": 8,
+    "prompt": "( ( ( ( ) ) ( d ) d [ [ b ] ] d { b } y ) z { d } c [ ] x [ a ] b { [ { { ( ( ( ->",
+    "target": ")"
+  },
+  {
+    "id": "dyck_ood_0139",
+    "depth": 5,
+    "prompt": "( [ [ z ( ( b ) [ b d a ] ( ->",
+    "target": ")"
+  },
+  {
+    "id": "dyck_ood_0140",
+    "depth": 7,
+    "prompt": "( { { z ( ( ( b ) ) [ [ ] { [ ] } { ( z ) x } d { { y d ->",
+    "target": "}"
+  },
+  {
+    "id": "dyck_ood_0141",
+    "depth": 8,
+    "prompt": "{ c [ ] a { d } ( a { y [ ( b [ ] ) ] x } c ( c ( x [ c [ ( b ( y ) ) z [ [ ] z ( b ) b [ z ->",
+    "target": "]"
+  },
+  {
+    "id": "dyck_ood_0142",
+    "depth": 8,
+    "prompt": "( y [ ( y [ [ a ( z ) y [ ( [ b z ] [ x ] b ) d ( ) c { } z { } ] x [ ] d [ [ [ ->",
+    "target": "]"
+  },
+  {
+    "id": "dyck_ood_0143",
+    "depth": 7,
+    "prompt": "( { { ( b { [ y ] y ( { } ) ( ( z ) ) } c { c } b [ [ { ->",
+    "target": "}"
+  },
+  {
+    "id": "dyck_ood_0144",
+    "depth": 5,
+    "prompt": "( ( ( [ x { } ] ) ) [ ] ( z ) [ x ] a { } { a { { ( ->",
+    "target": ")"
+  },
+  {
+    "id": "dyck_ood_0145",
+    "depth": 7,
+    "prompt": "[ z { } a [ ( y ) ] [ c { z { } } ] x ( { d } ( y ) { [ [ ] ( d [ [ ->",
+    "target": "]"
+  },
+  {
+    "id": "dyck_ood_0146",
+    "depth": 6,
+    "prompt": "[ [ { ( [ [ z x ] [ ] z [ d a ] { } ( ->",
+    "target": ")"
+  },
+  {
+    "id": "dyck_ood_0147",
+    "depth": 8,
+    "prompt": "{ c { b } d ( a { c } [ [ { [ d [ z [ ] a ( d ) ( ) z ( b c a ) { x ->",
+    "target": "}"
+  },
+  {
+    "id": "dyck_ood_0148",
+    "depth": 8,
+    "prompt": "[ y { z { } c { { { a } x [ ] z } c } { d ( ) [ x ] [ [ ] y ( c [ x ] ( ) ( c { d } ) { ( z ( ->",
+    "target": ")"
+  },
+  {
+    "id": "dyck_ood_0149",
+    "depth": 8,
+    "prompt": "{ b ( ( y ( ) [ [ [ d { a { } x } ( ) ( y ) ( ) a { b [ x a ] { } } ( [ y ->",
+    "target": "]"
+  },
+  {
+    "id": "dyck_ood_0150",
+    "depth": 8,
+    "prompt": "{ z [ ] [ [ { d { x ( { a } ) b { z ( ) } y [ ] y } } b ( ) ] ] d [ a ] { b [ ( ( x { ( [ ->",
+    "target": "]"
+  },
+  {
+    "id": "dyck_ood_0151",
+    "depth": 7,
+    "prompt": "{ y [ b { c { x } c ( ) } ] y { } { ( ) { { } ( ) } } ( b ( [ { c [ { ->",
+    "target": "}"
+  },
+  {
+    "id": "dyck_ood_0152",
+    "depth": 8,
+    "prompt": "( b [ ] x ( ( y { b [ { } ] } z ) ( x ) d [ ( ) ] d [ ] [ ( { ( b [ ( ) ] c ) { { { ->",
+    "target": "}"
+  },
+  {
+    "id": "dyck_ood_0153",
+    "depth": 5,
+    "prompt": "( d [ [ ( b ( y ) b { } [ d ] [ ] ) { z { d } ( x c ) } b ( a ( ->",
+    "target": ")"
+  },
+  {
+    "id": "dyck_ood_0154",
+    "depth": 7,
+    "prompt": "( { ( c { a ( { } a ) ( b ( { } b { z c } ( c z ) d ) a { [ c x z ->",
+    "target": "]"
+  },
+  {
+    "id": "dyck_ood_0155",
+    "depth": 6,
+    "prompt": "( ( [ ] d { { { } } y ( ) z [ [ ] [ ] ] ( ( ( a ) x { ->",
+    "target": "}"
+  },
+  {
+    "id": "dyck_ood_0156",
+    "depth": 8,
+    "prompt": "( { } { } c [ { [ z [ y [ x ( a ) { { b } } ( b ) [ { z } ] [ x ( ->",
+    "target": ")"
+  },
+  {
+    "id": "dyck_ood_0157",
+    "depth": 8,
+    "prompt": "{ x { [ d ( c ) y { } [ c { d } ] [ x ] b [ y { { } c } { z [ { y { z } c } c ] y { [ ( c ->",
+    "target": ")"
+  },
+  {
+    "id": "dyck_ood_0158",
+    "depth": 7,
+    "prompt": "( { } [ ( ( c ) [ [ { a } z ( [ x b a ] b ) ] ] [ ] a { z ( z ) d [ ( { a ->",
+    "target": "}"
+  },
+  {
+    "id": "dyck_ood_0159",
+    "depth": 6,
+    "prompt": "[ z [ b ] { } c [ ( z ) ( z { { { z } b ( z ) c { x } [ a ->",
+    "target": "]"
+  },
+  {
+    "id": "dyck_ood_0160",
+    "depth": 6,
+    "prompt": "( a [ b ] [ [ x [ ] d ( ) z [ { } y { { b c } { c ->",
+    "target": "}"
+  },
+  {
+    "id": "dyck_ood_0161",
+    "depth": 5,
+    "prompt": "( b [ x [ z ( [ y ] { y c } c ) y ] ( ) y [ b [ ( a ->",
+    "target": ")"
+  },
+  {
+    "id": "dyck_ood_0162",
+    "depth": 5,
+    "prompt": "[ z ( { a } y ) a [ a [ ( ) x ] c [ b { a { z d y d } c } [ { ->",
+    "target": "}"
+  },
+  {
+    "id": "dyck_ood_0163",
+    "depth": 5,
+    "prompt": "[ [ ] ( a { b { } y } ( b ( ) [ ( a ) z [ d b ] b ] { a [ ->",
+    "target": "]"
+  },
+  {
+    "id": "dyck_ood_0164",
+    "depth": 5,
+    "prompt": "{ z { [ { } d { d { d c } z [ y y z ] z ( ->",
+    "target": ")"
+  },
+  {
+    "id": "dyck_ood_0165",
+    "depth": 8,
+    "prompt": "[ y ( z ) ( a { } { } ) a ( ( ) y ) [ y ( ( y ) [ ] b ) c ] [ ] b ( { } z ) [ ( c [ { d ( y { ( z ->",
+    "target": ")"
+  },
+  {
+    "id": "dyck_ood_0166",
+    "depth": 5,
+    "prompt": "( d [ ] b ( [ { d ( ) } c [ ( x b y ->",
+    "target": ")"
+  },
+  {
+    "id": "dyck_ood_0167",
+    "depth": 7,
+    "prompt": "{ z [ ] ( ) ( ( b ) c [ x ( y ( ) x [ ] y ) d [ [ [ { y } ( ) x ] ] { y [ a { ->",
+    "target": "}"
+  },
+  {
+    "id": "dyck_ood_0168",
+    "depth": 7,
+    "prompt": "{ z { d { c [ ( [ { b d } ( c x b ) ( d ->",
+    "target": ")"
+  },
+  {
+    "id": "dyck_ood_0169",
+    "depth": 7,
+    "prompt": "( { z { ( b [ d [ ( ) ] c ] c [ d { c { z y z } { } y { b } z ( y ) [ ] c ( d ->",
+    "target": ")"
+  },
+  {
+    "id": "dyck_ood_0170",
+    "depth": 5,
+    "prompt": "{ [ { { x ( c ) y ( d c ) [ d ] } [ ( y ->",
+    "target": ")"
+  },
+  {
+    "id": "dyck_ood_0171",
+    "depth": 7,
+    "prompt": "{ b ( [ { [ ] ( a { } z ( x { a } ) d [ y ( c x x x ) a ] { ( ->",
+    "target": ")"
+  },
+  {
+    "id": "dyck_ood_0172",
+    "depth": 7,
+    "prompt": "[ x [ ] z [ [ ] x ] [ ] { ( y [ [ ] c { } ] { ( ) [ ( d ) ( ( ->",
+    "target": ")"
+  },
+  {
+    "id": "dyck_ood_0173",
+    "depth": 7,
+    "prompt": "[ { x ( y [ { [ y ] } ( ) ( ) d [ a ] { [ d { x } c ] } [ z { { } x [ a ->",
+    "target": "]"
+  },
+  {
+    "id": "dyck_ood_0174",
+    "depth": 5,
+    "prompt": "( { [ z ] b } [ ] { ( d [ ] [ ] [ [ ] [ ->",
+    "target": "]"
+  },
+  {
+    "id": "dyck_ood_0175",
+    "depth": 7,
+    "prompt": "[ ( ) [ d ] ( ) y ( ( z [ z ( ( y [ a ] ) b { [ ] [ ] { } ( ->",
+    "target": ")"
+  },
+  {
+    "id": "dyck_ood_0176",
+    "depth": 7,
+    "prompt": "( { z { [ y ] } x [ ] [ z { } ] } ( ) [ [ { ( [ [ ] d ] ) a { { { y ->",
+    "target": "}"
+  },
+  {
+    "id": "dyck_ood_0177",
+    "depth": 7,
+    "prompt": "{ { [ b { d ( x { d ( a x ) x [ b ] z [ d y ->",
+    "target": "]"
+  },
+  {
+    "id": "dyck_ood_0178",
+    "depth": 5,
+    "prompt": "[ y [ x [ y { } ( [ ] { z z a y } ( y ->",
+    "target": ")"
+  },
+  {
+    "id": "dyck_ood_0179",
+    "depth": 6,
+    "prompt": "{ d { [ b ] c { ( a ( y ) ) [ ( y [ z a a ->",
+    "target": "]"
+  },
+  {
+    "id": "dyck_ood_0180",
+    "depth": 7,
+    "prompt": "[ y ( y ( ) a [ y ] ) [ y [ b { b { { b ( b ) c } b } } a ( { [ [ ->",
+    "target": "]"
+  },
+  {
+    "id": "dyck_ood_0181",
+    "depth": 5,
+    "prompt": "[ a ( ( [ ] { } ( ) d { ( x x ) x [ ] d ( a z ->",
+    "target": ")"
+  },
+  {
+    "id": "dyck_ood_0182",
+    "depth": 5,
+    "prompt": "( [ [ [ ] a [ [ y ] b ( b x a c ) [ ] b { x ->",
+    "target": "}"
+  },
+  {
+    "id": "dyck_ood_0183",
+    "depth": 8,
+    "prompt": "{ ( b [ [ ] b ] ) x ( d ) d { { ( ) ( ) } { ( ) [ [ c ] ] x [ [ y [ c [ [ ] ( ->",
+    "target": ")"
+  },
+  {
+    "id": "dyck_ood_0184",
+    "depth": 7,
+    "prompt": "[ [ ] y { } y ( ) ( ( z { d ( y ( x ( y ) ) ) { ( x ) ( ) } } { { } } b [ b { { { ->",
+    "target": "}"
+  },
+  {
+    "id": "dyck_ood_0185",
+    "depth": 6,
+    "prompt": "( x [ z { b ( { ( b a ) ( ) ( ) } { [ ->",
+    "target": "]"
+  },
+  {
+    "id": "dyck_ood_0186",
+    "depth": 6,
+    "prompt": "{ [ d ( ) [ ] ( ( y ) b [ y [ ( c ) a [ ] z [ ] c [ c ->",
+    "target": "]"
+  },
+  {
+    "id": "dyck_ood_0187",
+    "depth": 6,
+    "prompt": "{ [ z ( y [ c [ ( z ) c [ x ] ] [ ( y ) ( y y y c ) b ] { [ ->",
+    "target": "]"
+  },
+  {
+    "id": "dyck_ood_0188",
+    "depth": 5,
+    "prompt": "( ( ( { a { z y } [ c ] ( y ) ( d x b b ->",
+    "target": ")"
+  },
+  {
+    "id": "dyck_ood_0189",
+    "depth": 8,
+    "prompt": "{ z { ( { } [ ] ) } a { y } { ( { z [ { x { [ ] { } z } } { } ] { b ( ( ( ->",
+    "target": ")"
+  },
+  {
+    "id": "dyck_ood_0190",
+    "depth": 7,
+    "prompt": "[ z { ( ( ) z ( [ ] d [ b ] ) ) d } a { [ { b [ d ( d { c c ->",
+    "target": "}"
+  },
+  {
+    "id": "dyck_ood_0191",
+    "depth": 7,
+    "prompt": "[ y [ ( c ) y ] y { a } y { ( [ x ] ( b { y ( ( c ) ) x } d { [ ( ->",
+    "target": ")"
+  },
+  {
+    "id": "dyck_ood_0192",
+    "depth": 8,
+    "prompt": "[ [ ] x ( y ) b { ( x { b } ) y { c { a { [ ] } b { c [ c [ ] [ c ] b { z [ c ] a ( ->",
+    "target": ")"
+  },
+  {
+    "id": "dyck_ood_0193",
+    "depth": 7,
+    "prompt": "( ( b [ c [ z ] z [ y { x { } { z { } { z } c { d } { } { a ->",
+    "target": "}"
+  },
+  {
+    "id": "dyck_ood_0194",
+    "depth": 6,
+    "prompt": "( b ( { ( x [ y ] ( x ) c { a ( ) c { x } ( b ) d } [ [ c x ->",
+    "target": "]"
+  },
+  {
+    "id": "dyck_ood_0195",
+    "depth": 6,
+    "prompt": "{ c [ a [ ] a { b } { { z [ b ( z z ) a { x } ( ) ] y } z [ { a { x ->",
+    "target": "}"
+  },
+  {
+    "id": "dyck_ood_0196",
+    "depth": 6,
+    "prompt": "[ { [ [ b ] y { } x ( ) ] y } d [ ( { z ( { a } { a a ->",
+    "target": "}"
+  },
+  {
+    "id": "dyck_ood_0197",
+    "depth": 8,
+    "prompt": "( b ( a [ d [ ] x { x ( z [ x ( a [ ] c { y x } x [ ] ) y ] ) z ( a { c } a { x [ ( ->",
+    "target": ")"
+  },
+  {
+    "id": "dyck_ood_0198",
+    "depth": 5,
+    "prompt": "[ z { } { c } [ b ( y ) ] ( a { [ ] ( [ d ] c ( ) c { ->",
+    "target": "}"
+  },
+  {
+    "id": "dyck_ood_0199",
+    "depth": 6,
+    "prompt": "{ ( { c ( z ) [ [ { y } [ ] { } ] { y } ( { } [ ] { y ->",
+    "target": "}"
+  },
+  {
+    "id": "dyck_ood_0200",
+    "depth": 7,
+    "prompt": "{ ( ) b ( y ) d [ d [ [ x [ ( ) { z } { y [ y ] { d c y ->",
+    "target": "}"
+  },
+  {
+    "id": "dyck_ood_0201",
+    "depth": 5,
+    "prompt": "( [ ( x ( ) b ) c { z } y { x [ a ( y b ) ] } ( ) { { ( ->",
+    "target": ")"
+  },
+  {
+    "id": "dyck_ood_0202",
+    "depth": 6,
+    "prompt": "[ { a } ( [ c ] { x [ { { } ( d a ) { c z } a { ->",
+    "target": "}"
+  },
+  {
+    "id": "dyck_ood_0203",
+    "depth": 6,
+    "prompt": "[ x ( b ) x ( [ { } d [ d ( ) ] ] ) [ d ( b ) c ] { c { a { { ( y ->",
+    "target": ")"
+  },
+  {
+    "id": "dyck_ood_0204",
+    "depth": 6,
+    "prompt": "{ ( ) { ( x ( ( ( a a ) x ) x ( z ( y ) ) [ a { y x } x ( ->",
+    "target": ")"
+  },
+  {
+    "id": "dyck_ood_0205",
+    "depth": 8,
+    "prompt": "( { } [ [ z { c { } ( z ) ( z [ x { x } d [ b [ c ] [ ] x { a } a ( ) b [ ] { ->",
+    "target": "}"
+  },
+  {
+    "id": "dyck_ood_0206",
+    "depth": 6,
+    "prompt": "[ [ a [ { { d } } y [ x ] ] [ [ { y [ ] c } [ { } [ ->",
+    "target": "]"
+  },
+  {
+    "id": "dyck_ood_0207",
+    "depth": 8,
+    "prompt": "{ [ y { c } ( ) x ] { ( c ( ) { { ( ) c { } c { } [ { } ( ( y y b ) c ( ->",
+    "target": ")"
+  },
+  {
+    "id": "dyck_ood_0208",
+    "depth": 8,
+    "prompt": "{ x ( ( { ( ) z { b { } c ( a ) { a ( c ( ) ( x ) ) [ a [ ] c ] } d [ [ ] ] z [ b [ { d ->",
+    "target": "}"
+  },
+  {
+    "id": "dyck_ood_0209",
+    "depth": 5,
+    "prompt": "[ ( x ( a { ( x ) ( y ) y } z ) [ ] b { ( d [ ] ( ->",
+    "target": ")"
+  },
+  {
+    "id": "dyck_ood_0210",
+    "depth": 8,
+    "prompt": "( { x [ { x ( y ( [ [ ] [ z b y ] d [ ] ( ) b [ x ] a { } a [ ] ( b ->",
+    "target": ")"
+  },
+  {
+    "id": "dyck_ood_0211",
+    "depth": 5,
+    "prompt": "( [ ] b [ [ { ( x ) } ] z ] { } [ ( [ b ] x [ { ->",
+    "target": "}"
+  },
+  {
+    "id": "dyck_ood_0212",
+    "depth": 8,
+    "prompt": "{ b [ ] ( { } b ) { c } b { c { { { } b [ x { { ( y ) } b [ ] [ d ( c ) ] [ ( ->",
+    "target": ")"
+  },
+  {
+    "id": "dyck_ood_0213",
+    "depth": 6,
+    "prompt": "( { } [ { } [ { a { ( y z ) [ y ] d ( a ->",
+    "target": ")"
+  },
+  {
+    "id": "dyck_ood_0214",
+    "depth": 8,
+    "prompt": "[ [ { [ c ( z { } ) d ( ) c ] b } ] [ ( ( ) [ y { b } ] b ) b ] a ( [ { [ [ x [ { ->",
+    "target": "}"
+  },
+  {
+    "id": "dyck_ood_0215",
+    "depth": 7,
+    "prompt": "( a { x { d } { { a [ x { ( ) x [ x b ] ( ) x { y } [ y ] y [ d ] c } c ( x { ->",
+    "target": "}"
+  },
+  {
+    "id": "dyck_ood_0216",
+    "depth": 5,
+    "prompt": "( b ( c [ [ [ d ] ] ] a ( d ( ) y { x } ) [ ] [ [ { ->",
+    "target": "}"
+  },
+  {
+    "id": "dyck_ood_0217",
+    "depth": 8,
+    "prompt": "{ d ( ) [ a { y { } } [ z ] a ( ) d ( ) b ] [ ( ) [ { x ( { x { x [ b y d ->",
+    "target": "]"
+  },
+  {
+    "id": "dyck_ood_0218",
+    "depth": 8,
+    "prompt": "( { } [ x ( ( ) b ) y [ ] x [ ( ) [ ] ] x ( ) y ] ( { } ( c ( d ( ) ( ( [ ( ->",
+    "target": ")"
+  },
+  {
+    "id": "dyck_ood_0219",
+    "depth": 5,
+    "prompt": "{ ( { { [ b ] { c b a } z ( c z y c ->",
+    "target": ")"
+  },
+  {
+    "id": "dyck_ood_0220",
+    "depth": 8,
+    "prompt": "{ { { x ( ( b ( a [ { c } b ( z z ) [ ] ] [ c ] d [ z ( a z d ) ] { [ ->",
+    "target": "]"
+  },
+  {
+    "id": "dyck_ood_0221",
+    "depth": 6,
+    "prompt": "{ z [ ( y ) b [ d [ z { [ a ] a } [ ] d ] ] { c [ ( x ( x y ) { ->",
+    "target": "}"
+  },
+  {
+    "id": "dyck_ood_0222",
+    "depth": 8,
+    "prompt": "[ [ { y } b ] y ( b ( [ { } ( b ) { } [ [ [ ] ( { y } y ) x ] ] ] b { [ x ( [ x { y ->",
+    "target": "}"
+  },
+  {
+    "id": "dyck_ood_0223",
+    "depth": 7,
+    "prompt": "( { } z [ { { [ { { z } } { [ z c d x ] b { } { c ->",
+    "target": "}"
+  },
+  {
+    "id": "dyck_ood_0224",
+    "depth": 5,
+    "prompt": "{ ( ) b [ [ [ d [ d ] d ] { x { z } } ] ] ( c ) [ x ( x ) ( { ( ->",
+    "target": ")"
+  },
+  {
+    "id": "dyck_ood_0225",
+    "depth": 8,
+    "prompt": "[ [ [ { } ] [ c ] { y } [ a { d [ ] ( ( { { } ( a y y z d ) d [ d z d ->",
+    "target": "]"
+  },
+  {
+    "id": "dyck_ood_0226",
+    "depth": 6,
+    "prompt": "{ [ { b [ { a { } c { } ( ) a ( b a ) { } } z [ x [ ->",
+    "target": "]"
+  },
+  {
+    "id": "dyck_ood_0227",
+    "depth": 5,
+    "prompt": "{ c { } { [ [ ( ) ( ) y ( ) { b } ] { z [ z z ] [ ->",
+    "target": "]"
+  },
+  {
+    "id": "dyck_ood_0228",
+    "depth": 8,
+    "prompt": "[ { c [ ] b ( d { } x ) [ y [ ( a [ x ( [ ] ) b ] [ { y [ z d c ] { } } { y { z ->",
+    "target": "}"
+  },
+  {
+    "id": "dyck_ood_0229",
+    "depth": 7,
+    "prompt": "( x { [ ( y { } [ y ] c { a { x ( ) { c } { b } } z } ) ] c { [ [ [ [ ->",
+    "target": "]"
+  },
+  {
+    "id": "dyck_ood_0230",
+    "depth": 5,
+    "prompt": "{ [ y [ x ( ( z ) ) a ( ( y ) ) ( ) ] b [ [ ] [ [ ->",
+    "target": "]"
+  },
+  {
+    "id": "dyck_ood_0231",
+    "depth": 5,
+    "prompt": "[ ( ) y ( d ( ) ) { d ( { [ b b a ->",
+    "target": "]"
+  },
+  {
+    "id": "dyck_ood_0232",
+    "depth": 5,
+    "prompt": "{ { y } y ( ) a ( ) { d [ { ( y ) ( b ) ( ) [ ->",
+    "target": "]"
+  },
+  {
+    "id": "dyck_ood_0233",
+    "depth": 5,
+    "prompt": "{ z ( c { } c ) [ b ] { } z { a [ ( ( ) c ) ] ( z { y { ->",
+    "target": "}"
+  },
+  {
+    "id": "dyck_ood_0234",
+    "depth": 8,
+    "prompt": "{ { } a [ ] { { { { [ ] [ x { b { } y } ( b [ x ] [ z ] ( ) { ->",
+    "target": "}"
+  },
+  {
+    "id": "dyck_ood_0235",
+    "depth": 7,
+    "prompt": "{ z { } d ( ( { y ( [ { b } x ( x ) ] d ) { { a ( x z x d ->",
+    "target": ")"
+  },
+  {
+    "id": "dyck_ood_0236",
+    "depth": 7,
+    "prompt": "[ [ ] [ d ] x [ { } ( { d } { b [ z { b } ] } b ( y [ [ c ] { z } ] { [ a [ ->",
+    "target": "]"
+  },
+  {
+    "id": "dyck_ood_0237",
+    "depth": 8,
+    "prompt": "[ { ( x [ [ ] ( { b ( { } ) } ) [ [ b ( x { x } [ b ] c [ ] z ( c ->",
+    "target": ")"
+  },
+  {
+    "id": "dyck_ood_0238",
+    "depth": 7,
+    "prompt": "[ { { y } a { } [ y ] { { ( b [ [ b d ] a [ ] b ] ( [ z b ->",
+    "target": "]"
+  },
+  {
+    "id": "dyck_ood_0239",
+    "depth": 5,
+    "prompt": "{ { ( a [ ( z ) ] [ ( c ) { a a b b z ->",
+    "target": "}"
+  },
+  {
+    "id": "dyck_ood_0240",
+    "depth": 7,
+    "prompt": "{ a [ { ( d ) { ( [ [ a ] ( z z ) ] { a ( c ) z } ( ) d ) [ d { b [ ->",
+    "target": "]"
+  },
+  {
+    "id": "dyck_ood_0241",
+    "depth": 7,
+    "prompt": "{ ( { c { ( a { z } x { } [ { d } { } { x c z ->",
+    "target": "}"
+  },
+  {
+    "id": "dyck_ood_0242",
+    "depth": 8,
+    "prompt": "[ { b ( d [ ( c ( ( ( d ) ) { { d } [ ] } ) ) y ] c [ { a } d ] x { x ( b { x ( y ( d ->",
+    "target": ")"
+  },
+  {
+    "id": "dyck_ood_0243",
+    "depth": 7,
+    "prompt": "( { y } ( a { x } { [ x [ { b } b ] b [ [ [ b y ] b [ d ->",
+    "target": "]"
+  },
+  {
+    "id": "dyck_ood_0244",
+    "depth": 5,
+    "prompt": "( z [ { y [ c ] } a [ ] ( b { b } ) ] x { [ y { ( c ->",
+    "target": ")"
+  },
+  {
+    "id": "dyck_ood_0245",
+    "depth": 6,
+    "prompt": "{ { d } [ a ( z ) [ ] ] [ ] { a { } [ ( { } ( b ( ) d ) x ) [ z ( [ ->",
+    "target": "]"
+  },
+  {
+    "id": "dyck_ood_0246",
+    "depth": 8,
+    "prompt": "( { ( [ b ] ) [ ] } { y { } a } [ ( x ) z ( { } y ) { [ ] x ( ( d [ [ { ->",
+    "target": "}"
+  },
+  {
+    "id": "dyck_ood_0247",
+    "depth": 7,
+    "prompt": "( x { a ( a ) { x } y ( c ) y [ [ [ ] c ] ] } x [ ] { ( d ) [ a ( { { ( ->",
+    "target": ")"
+  },
+  {
+    "id": "dyck_ood_0248",
+    "depth": 6,
+    "prompt": "{ a [ ( a { } [ z ( ) [ ] [ z { d } b ] a [ { ->",
+    "target": "}"
+  },
+  {
+    "id": "dyck_ood_0249",
+    "depth": 6,
+    "prompt": "{ z ( ( ( y [ x ] [ [ b c b x ] y ] ) z { d } b [ { ( b ->",
+    "target": ")"
+  },
+  {
+    "id": "dyck_ood_0250",
+    "depth": 8,
+    "prompt": "{ [ x [ x { } c [ z ( y ( { z } d ) d [ ( [ z d ] b ) d ( z ( ) ) ( a ( y ) d ) y ( d ) ] z { x { [ ->",
+    "target": "]"
+  },
+  {
+    "id": "dyck_ood_0251",
+    "depth": 5,
+    "prompt": "[ [ ] [ c { [ ] } c { { b [ ] ( a y ) b { ->",
+    "target": "}"
+  },
+  {
+    "id": "dyck_ood_0252",
+    "depth": 7,
+    "prompt": "[ { { c ( ( { { } } [ [ y z a ] a [ ] y ] b ) x { c } ) [ y [ x ( a ( ) ( ->",
+    "target": ")"
+  },
+  {
+    "id": "dyck_ood_0253",
+    "depth": 8,
+    "prompt": "( a { { { { } a } a ( { } [ ( b [ [ y ] b ] { } y { { y c y y } y [ z ->",
+    "target": "]"
+  },
+  {
+    "id": "dyck_ood_0254",
+    "depth": 5,
+    "prompt": "( x { } { } ( d { z } [ ] { z } { [ [ z c ] ( ->",
+    "target": ")"
+  },
+  {
+    "id": "dyck_ood_0255",
+    "depth": 6,
+    "prompt": "{ [ ] x [ [ b ( y ) ( y [ c ( y ) { c } x ( d ) y [ ] { } [ ->",
+    "target": "]"
+  },
+  {
+    "id": "dyck_ood_0256",
+    "depth": 7,
+    "prompt": "{ [ x ( { { ( x { d a } c [ a a b ] y ) } z } ) ] b ( z ( ( d ) ) { ( { [ ( ->",
+    "target": ")"
+  },
+  {
+    "id": "dyck_ood_0257",
+    "depth": 8,
+    "prompt": "[ { a [ c { b { ( d [ z { y a c z a x } b ( ) d { b } z ] ) x [ a ] a [ ( { y ->",
+    "target": "}"
+  },
+  {
+    "id": "dyck_ood_0258",
+    "depth": 7,
+    "prompt": "{ c { z ( ) [ c ] } [ ( ( [ [ [ y ] [ d ] [ a ] ] ( a ) [ ( ->",
+    "target": ")"
+  },
+  {
+    "id": "dyck_ood_0259",
+    "depth": 7,
+    "prompt": "{ ( b { y { { { y { x } ( b z ) [ ] { } } ( { z } b [ y ->",
+    "target": "]"
+  },
+  {
+    "id": "dyck_ood_0260",
+    "depth": 6,
+    "prompt": "( [ ( ( y ( z [ ] ( ) y ) b ) ( y ) ) ( ) x ] { a } ( a [ [ ( z { ->",
+    "target": "}"
+  },
+  {
+    "id": "dyck_ood_0261",
+    "depth": 7,
+    "prompt": "( x [ ] x ( ( ) [ [ ( x { b [ b z ] ( a ) c ( z ) z [ ] d { z ->",
+    "target": "}"
+  },
+  {
+    "id": "dyck_ood_0262",
+    "depth": 8,
+    "prompt": "[ [ a ] ( { c } b [ d { { } b [ d { ( ( a ) ) { } ( b ( b ) ( d c ) [ ->",
+    "target": "]"
+  },
+  {
+    "id": "dyck_ood_0263",
+    "depth": 6,
+    "prompt": "( x { y ( ) ( ) b [ ( [ ] x ) d ( y ) c { ( ) b { z } z [ { d ->",
+    "target": "}"
+  },
+  {
+    "id": "dyck_ood_0264",
+    "depth": 6,
+    "prompt": "[ c ( y { { { b [ z ] ( z ) } y } [ b [ a ] x ] ( x ) c { y { [ ->",
+    "target": "]"
+  },
+  {
+    "id": "dyck_ood_0265",
+    "depth": 5,
+    "prompt": "( y [ ( z [ { y d } x ] ( [ y ] x ( ) { } ) y { [ y ->",
+    "target": "]"
+  },
+  {
+    "id": "dyck_ood_0266",
+    "depth": 5,
+    "prompt": "[ c [ ( y ) ] ( [ y ] c { a [ ] d } { ( z { } [ a ->",
+    "target": "]"
+  },
+  {
+    "id": "dyck_ood_0267",
+    "depth": 6,
+    "prompt": "[ ( ( ) { } { x { a [ y ( z ) a ] } c } c [ ] { { } y [ { ( z ->",
+    "target": ")"
+  },
+  {
+    "id": "dyck_ood_0268",
+    "depth": 8,
+    "prompt": "[ x ( z [ ] y ) { { a ( ) x ( ) } y [ ] x } { { [ b ( ) ] z ( ( [ y ( ) ] { x { ( ->",
+    "target": ")"
+  },
+  {
+    "id": "dyck_ood_0269",
+    "depth": 8,
+    "prompt": "[ [ { { { } d } y ( z ) } [ ] ] { z [ ] b ( ( ) ) a { } ( ) c } { } y ( ( [ ( ( ( [ ->",
+    "target": "]"
+  },
+  {
+    "id": "dyck_ood_0270",
+    "depth": 7,
+    "prompt": "[ [ c { ( ) [ [ z ] { [ { b c } [ ] x ( x ) { z } { ->",
+    "target": "}"
+  },
+  {
+    "id": "dyck_ood_0271",
+    "depth": 8,
+    "prompt": "{ ( d ( b [ { { } b ( ( a ) y ) ( [ b ] d ( c { } ) [ y { c } y [ ] { ->",
+    "target": "}"
+  },
+  {
+    "id": "dyck_ood_0272",
+    "depth": 6,
+    "prompt": "( c [ ( { { x ( x ) [ ] { a } } { a ( ) } ( [ d ->",
+    "target": "]"
+  },
+  {
+    "id": "dyck_ood_0273",
+    "depth": 7,
+    "prompt": "( z ( [ ( d { b { { d } [ ] x { } d } c [ d ] { c { d } { } ( ->",
+    "target": ")"
+  },
+  {
+    "id": "dyck_ood_0274",
+    "depth": 6,
+    "prompt": "( a { { } a [ ] d ( ) d [ { } d [ ] { a } [ ] x ( [ x ( ) x { ->",
+    "target": "}"
+  },
+  {
+    "id": "dyck_ood_0275",
+    "depth": 7,
+    "prompt": "{ [ ( z ) ] ( ) x ( ) a ( { a [ [ b ( d { d x a a } b { d } ( c b ) ( ->",
+    "target": ")"
+  },
+  {
+    "id": "dyck_ood_0276",
+    "depth": 7,
+    "prompt": "[ { y } { y [ ] c [ x ] { } } z [ b { d } ] [ ] ( { { ( c { { ->",
+    "target": "}"
+  },
+  {
+    "id": "dyck_ood_0277",
+    "depth": 7,
+    "prompt": "( ( c [ c ( [ b ] ( z ) ) c { ( z ) { d ( b [ ] ( ) [ a ->",
+    "target": "]"
+  },
+  {
+    "id": "dyck_ood_0278",
+    "depth": 8,
+    "prompt": "( [ z [ ] y ] x [ b ( b { } { y } { ( c ) b } z ) { { { c [ ] x { ( x ) x ( c ( c ->",
+    "target": ")"
+  },
+  {
+    "id": "dyck_ood_0279",
+    "depth": 6,
+    "prompt": "{ { } { [ [ [ [ d d b ] z { b a } y ] ( [ z ->",
+    "target": "]"
+  },
+  {
+    "id": "dyck_ood_0280",
+    "depth": 6,
+    "prompt": "{ [ d ] { { b [ c [ ] { } d ] } ( ) } [ [ ] b ( y ( ( ) [ ( ->",
+    "target": ")"
+  },
+  {
+    "id": "dyck_ood_0281",
+    "depth": 5,
+    "prompt": "[ ( a ) { } ( ) x ( [ y ] { } ( y [ ] ( { b x } a ( c ->",
+    "target": ")"
+  },
+  {
+    "id": "dyck_ood_0282",
+    "depth": 7,
+    "prompt": "{ d [ c [ ] x ] [ ] b ( { { d [ ] { c } [ x ( { d z } b ) d ] x { { [ ->",
+    "target": "]"
+  },
+  {
+    "id": "dyck_ood_0283",
+    "depth": 7,
+    "prompt": "( ( y [ ] ) ( [ c ] [ ( b { ( [ ] x ) [ { b } ( a ->",
+    "target": ")"
+  },
+  {
+    "id": "dyck_ood_0284",
+    "depth": 8,
+    "prompt": "[ x { b ( x { a ( b ) } ) x { { { z { [ ] [ ] x } } c { x { c [ ( y ) ] ( { x ->",
+    "target": "}"
+  },
+  {
+    "id": "dyck_ood_0285",
+    "depth": 6,
+    "prompt": "{ { x } b [ ] z [ ] b [ ( { } { [ { c x x } ] x ( ( b ->",
+    "target": ")"
+  },
+  {
+    "id": "dyck_ood_0286",
+    "depth": 5,
+    "prompt": "{ ( b ) a [ ] ( ) [ d ] { { { c [ z ] a } { c ( ->",
+    "target": ")"
+  },
+  {
+    "id": "dyck_ood_0287",
+    "depth": 8,
+    "prompt": "( b ( c ) x { a { { a { z { y [ { } ( y c ) x ] ( { } ) [ ( x ) { } ] x { { ->",
+    "target": "}"
+  },
+  {
+    "id": "dyck_ood_0288",
+    "depth": 6,
+    "prompt": "{ x [ y [ ( d { { b } a } ( y [ c ] c ) ( y ( z ) z [ c ->",
+    "target": "]"
+  },
+  {
+    "id": "dyck_ood_0289",
+    "depth": 8,
+    "prompt": "( d { { ( [ ( x ( ) a [ x ] c ( ) ) ] ) } d [ { { } [ x ( x { } b [ z [ ] x { ->",
+    "target": "}"
+  },
+  {
+    "id": "dyck_ood_0290",
+    "depth": 8,
+    "prompt": "( [ ] { b ( x ) ( b { z { x { c } } c [ ( d ) x ] b { d { ( z ( a ) b [ c ] y ( z ->",
+    "target": ")"
+  },
+  {
+    "id": "dyck_ood_0291",
+    "depth": 6,
+    "prompt": "{ [ ( a ( ) c ( ( ( b ) [ ] ( ) a { x } ) d ( ( z ->",
+    "target": ")"
+  },
+  {
+    "id": "dyck_ood_0292",
+    "depth": 6,
+    "prompt": "{ a { ( z { [ ( z ) ] { a [ ] c ( a z ) z ( ) a } [ ( ->",
+    "target": ")"
+  },
+  {
+    "id": "dyck_ood_0293",
+    "depth": 7,
+    "prompt": "{ ( [ { b { x } } [ ] y { } ( ( { ( d d ) ( y ) d } { b } a ) x ) { a ( x ( [ c ->",
+    "target": "]"
+  },
+  {
+    "id": "dyck_ood_0294",
+    "depth": 6,
+    "prompt": "[ a ( { } [ a [ { [ x ] z [ a ] d } { ( b x ) ( ) z [ ] ( ->",
+    "target": ")"
+  },
+  {
+    "id": "dyck_ood_0295",
+    "depth": 7,
+    "prompt": "( ( d [ a ] ) z [ a ( ) ( d ) x ( ) a ] { [ z { { ( c ( a ) { } y [ b z ->",
+    "target": "]"
+  },
+  {
+    "id": "dyck_ood_0296",
+    "depth": 7,
+    "prompt": "( [ d ] ( ( c { a { ( c [ a ] ) } c { x { { a } z ( ) [ b x ->",
+    "target": "]"
+  },
+  {
+    "id": "dyck_ood_0297",
+    "depth": 8,
+    "prompt": "{ ( y ( ( { [ ] } a [ ] y [ a { } ( y ) a ( b ) b ( d ( { } { } ( y ) c { } y [ ->",
+    "target": "]"
+  },
+  {
+    "id": "dyck_ood_0298",
+    "depth": 6,
+    "prompt": "{ x { y [ ] } d ( { d { c [ c ( ) ] z } [ { c { } ( b x ) [ b ->",
+    "target": "]"
+  },
+  {
+    "id": "dyck_ood_0299",
+    "depth": 5,
+    "prompt": "{ ( ) [ a ] ( ( ( { c } d ( c d z b ) b { x a ->",
+    "target": "}"
+  }
+]

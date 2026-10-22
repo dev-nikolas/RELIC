@@ -1,0 +1,83 @@
+{
+  "total_samples": 453,
+  "partitions": {
+    "train": {
+      "count": 287,
+      "families": [
+        "F5_unsupported_open_domain",
+        "F1_direct_possession_add",
+        "F3_graph_dependency",
+        "F4_incomplete_math",
+        "F2_abstract_math_add",
+        "F1_direct_possession_sub",
+        "F5_unsupported_creative",
+        "F2_abstract_math_sub",
+        "F1_direct_possession_multistep"
+      ]
+    },
+    "val": {
+      "count": 101,
+      "families": [
+        "F4_incomplete_graph",
+        "F6_inverted_clause_val",
+        "F4_ambiguous_inventory",
+        "F1_direct_possession_add",
+        "F3_graph_dependency",
+        "F1_direct_possession_sub",
+        "F2_abstract_math_add",
+        "F4_incomplete_inventory",
+        "F5_unsupported_history",
+        "F2_abstract_math_sub",
+        "F1_direct_possession_multistep"
+      ]
+    },
+    "test_id": {
+      "count": 30,
+      "families": [
+        "F6_inverted_clause_val",
+        "F1_direct_possession_sub",
+        "F1_direct_possession_add",
+        "F1_direct_possession_multistep"
+      ]
+    },
+    "test_ood": {
+      "count": 65,
+      "families": [
+        "F9_unseen_lexicon_ceder",
+        "F9_unseen_lexicon_descarte",
+        "F7_passive_voice",
+        "F9_unseen_lexicon_incorporar",
+        "F9_unseen_lexicon_cosechar",
+        "F8_strict_negation",
+        "F9_unseen_lexicon_repartir",
+        "F9_unseen_lexicon_donar_caridad",
+        "F9_unseen_lexicon_adquirir",
+        "F9_unseen_lexicon_recolectar",
+        "F9_unseen_lexicon_hurtar",
+        "F9_unseen_lexicon_heredar",
+        "F7_inverted_clauses",
+        "F9_unseen_lexicon_consumir",
+        "F9_unseen_lexicon_obsequiar",
+        "F9_unseen_lexicon_descomponer",
+        "F9_unseen_lexicon_traspasar",
+        "F9_unseen_lexicon_ingresar",
+        "F9_unseen_lexicon_hallar",
+        "F9_unseen_lexicon_extraviar",
+        "F9_unseen_lexicon_suministrar",
+        "F4_incomplete_ambiguous"
+      ],
+      "unseen_constructs": [
+        "passive_voice",
+        "inverted_clauses",
+        "proclitic_pronouns",
+        "unseen_verbs: extraviar, obsequiar",
+        "indefinite_rejection: algunas, otra"
+      ]
+    }
+  },
+  "leakage_audit": {
+    "train_val_overlap": 0,
+    "train_ood_overlap": 0,
+    "status": "ZERO_LEAKAGE_CONFIRMED"
+  }
+}

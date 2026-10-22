@@ -1,33 +1,51 @@
 """Dataset y dataloader eficiente para entrenamiento autoregresivo de RELIC-10M.
-Diseno limpio, sin fugas de memoria y menos de 180 lineas.
+Tokeniza una sola vez, cachea en disco como uint16 y soporta streaming en bloques.
+Menos de 180 líneas.
 """
 
 from pathlib import Path
+import numpy as np
 import torch
 from torch.utils.data import Dataset
 from tokenizers import Tokenizer
 
 
 class StoryDataset(Dataset):
-    """Dataset que tokeniza y segmenta el texto plano en secuencias de longitud fija."""
+    """Dataset que carga secuencias de tokens cacheadas en disco en bloques de longitud fija."""
 
-    def __init__(self, file_path: Path | str, tokenizer: Tokenizer, seq_len: int = 256) -> None:
+    def __init__(
+        self,
+        file_path: Path | str,
+        tokenizer: Tokenizer,
+        seq_len: int = 256,
+        force_retokenize: bool = False,
+    ) -> None:
         self.seq_len = seq_len
-        with open(file_path, "r", encoding="utf-8") as f:
-            text = f.read()
+        path = Path(file_path)
+        bin_path = path.with_suffix(".bin")
 
-        # Codificar texto completo a una secuencia continua de IDs
-        enc = tokenizer.encode(text)
-        token_ids = enc.ids
+        if bin_path.exists() and not force_retokenize:
+            # Carga instantánea de tokens precalculados desde disco (uint16)
+            arr = np.fromfile(bin_path, dtype=np.uint16)
+            token_ids = torch.from_numpy(arr.astype(np.int64))
+        else:
+            if not path.exists():
+                raise FileNotFoundError(f"No se encontró el archivo de texto en {path}")
+            with open(path, "r", encoding="utf-8") as f:
+                text = f.read()
 
-        # Descartar remanente para division exacta en bloques de seq_len + 1 (input y target)
+            enc = tokenizer.encode(text)
+            ids_arr = np.array(enc.ids, dtype=np.uint16)
+            ids_arr.tofile(bin_path)
+            token_ids = torch.from_numpy(ids_arr.astype(np.int64))
+
         block_size = seq_len + 1
         num_blocks = len(token_ids) // block_size
         if num_blocks == 0:
-            raise ValueError(f"El texto en {file_path} es demasiado corto para bloques de {block_size}")
+            raise ValueError(f"Tokens insuficientes en {path} ({len(token_ids)}) para bloques de {block_size}")
 
         trimmed_len = num_blocks * block_size
-        self.data = torch.tensor(token_ids[:trimmed_len], dtype=torch.long)
+        self.data = token_ids[:trimmed_len]
         self.num_blocks = num_blocks
 
     def __len__(self) -> int:

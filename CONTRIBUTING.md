@@ -51,6 +51,9 @@ Agradecemos el interes en contribuir a RELIC. Este proyecto mantiene estandares 
 
 ---
 
-## 4. Licencia de Contribuciones
+## 4. Licencia de Contribuciones y Atribución Intelectual
 
-Todas las contribuciones enviadas seran licenciadas bajo los terminos de la **Licencia Apache 2.0**, garantizando proteccion reciproca de patentes y reconocimiento perpetuo de autoria.
+Todas las contribuciones enviadas seran licenciadas bajo los terminos de la **Licencia AGPL-3.0 con Clausulas Adicionales de Atribucion Directa y Notificacion Previa al Autor Original (Nicolas Pachon)**.
+Al colaborar en este repositorio, se reconoce de manera vinculante que:
+- El merito conceptual, formulacion teorica y arquitectura base de RELIC corresponden a Nicolas Pachon.
+- Ningun colaborador ni tercero podra redistribuir o compartir derivados sin notificar previamente al autor y asegurar la atribucion explicita de la idea y del codigo.

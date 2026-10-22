@@ -19,7 +19,9 @@ def export_checkpoint_to_safetensors(
 ) -> None:
     """Convierte un checkpoint .pt a formato .safetensors."""
     print(f"Cargando checkpoint desde {ckpt_path}...")
-    state_dict = torch.load(ckpt_path, map_location="cpu", weights_only=True)
+    state_dict = torch.load(ckpt_path, map_location="cpu")
+    if isinstance(state_dict, dict) and "model" in state_dict:
+        state_dict = state_dict["model"]
 
     target_dict = {}
     total_bytes = 0

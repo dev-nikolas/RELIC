@@ -1,0 +1,7002 @@
+[
+  {
+    "id": "rule_id_0000",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: DHE=HED, FCC=CCF, CAE=AEC. Consulta: CBA=",
+    "target": "BAC"
+  },
+  {
+    "id": "rule_id_0001",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: AFCD=FADC, BFHA=FBAH, GEFF=EGFF. Consulta: HAEE=",
+    "target": "AHEE"
+  },
+  {
+    "id": "rule_id_0002",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: HCG=CHG, EBH=BEH, DFC=FDC. Consulta: HGE=",
+    "target": "GHE"
+  },
+  {
+    "id": "rule_id_0003",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: GHF=HFG, CHB=HBC, ABF=BFA. Consulta: ABG=",
+    "target": "BGA"
+  },
+  {
+    "id": "rule_id_0004",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: CGFEA=ACGFE, DAHGH=HDAHG, EEGDE=EEEGD. Consulta: CDDAH=",
+    "target": "HCDDA"
+  },
+  {
+    "id": "rule_id_0005",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: FGEF=FFGE, FACA=AFAC, EGHF=FEGH. Consulta: HHBA=",
+    "target": "AHHB"
+  },
+  {
+    "id": "rule_id_0006",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: BAGEC=CEGAB, HHGEH=HEGHH, EAECH=HCEAE. Consulta: HCCCC=",
+    "target": "CCCCH"
+  },
+  {
+    "id": "rule_id_0007",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: GDBF=DGFB, AGGC=GACG, GEED=EGDE. Consulta: GBAE=",
+    "target": "BGEA"
+  },
+  {
+    "id": "rule_id_0008",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: HDD=DHD, GFH=FGH, AEF=EAF. Consulta: BAE=",
+    "target": "ABE"
+  },
+  {
+    "id": "rule_id_0009",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: HGFHA=AHGFH, HEFFB=BHEFF, CADBB=BCADB. Consulta: FEDFB=",
+    "target": "BFEDF"
+  },
+  {
+    "id": "rule_id_0010",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: DBC=BDC, HDE=DHE, GHB=HGB. Consulta: BEC=",
+    "target": "EBC"
+  },
+  {
+    "id": "rule_id_0011",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: GDD=DGD, FDB=DFB, DBF=BDF. Consulta: ECA=",
+    "target": "CEA"
+  },
+  {
+    "id": "rule_id_0012",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: HCFGD=CHGFD, CFBHC=FCHBC, AGECH=GACEH. Consulta: HADBF=",
+    "target": "AHBDF"
+  },
+  {
+    "id": "rule_id_0013",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: FEBE=EFEB, GEED=DGEE, BCDC=CBCD. Consulta: ABGB=",
+    "target": "BABG"
+  },
+  {
+    "id": "rule_id_0014",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: AHAG=GAHA, FGDA=AFGD, AABF=FAAB. Consulta: AGCB=",
+    "target": "BAGC"
+  },
+  {
+    "id": "rule_id_0015",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: GCGAB=CGAGB, AFGFF=FAFGF, CEBCF=ECCBF. Consulta: BEHGB=",
+    "target": "EBGHB"
+  },
+  {
+    "id": "rule_id_0016",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: FGDHB=BHDGF, GABDC=CDBAG, GACDF=FDCAG. Consulta: BDBDD=",
+    "target": "DDBDB"
+  },
+  {
+    "id": "rule_id_0017",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: CBEFE=BCFEE, CGBHF=GCHBF, FBABG=BFBAG. Consulta: EDBAD=",
+    "target": "DEABD"
+  },
+  {
+    "id": "rule_id_0018",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: HAFD=DFAH, BBEF=FEBB, AAFD=DFAA. Consulta: DGBG=",
+    "target": "GBGD"
+  },
+  {
+    "id": "rule_id_0019",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: BBGC=CGBB, CHAA=AAHC, HGBH=HBGH. Consulta: CAHF=",
+    "target": "FHAC"
+  },
+  {
+    "id": "rule_id_0020",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: HECF=FCEH, CGAC=CAGC, FGBE=EBGF. Consulta: FAEA=",
+    "target": "AEAF"
+  },
+  {
+    "id": "rule_id_0021",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: BAE=ABE, BFA=FBA, FDG=DFG. Consulta: EGH=",
+    "target": "GEH"
+  },
+  {
+    "id": "rule_id_0022",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: CHH=HCH, HCA=AHC, GDF=FGD. Consulta: BGE=",
+    "target": "EBG"
+  },
+  {
+    "id": "rule_id_0023",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: HHA=AHH, EDG=GED, GGC=CGG. Consulta: DGG=",
+    "target": "GDG"
+  },
+  {
+    "id": "rule_id_0024",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: FGDE=EDGF, DHFB=BFHD, GGAG=GAGG. Consulta: FCCB=",
+    "target": "BCCF"
+  },
+  {
+    "id": "rule_id_0025",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: FBA=ABF, AEC=CEA, DAC=CAD. Consulta: GGC=",
+    "target": "CGG"
+  },
+  {
+    "id": "rule_id_0026",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: BDE=DEB, EGA=GAE, DHB=HBD. Consulta: HGE=",
+    "target": "GEH"
+  },
+  {
+    "id": "rule_id_0027",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: ADDDD=DADDD, FDEFC=CFDEF, BBCDC=CBBCD. Consulta: FBEGA=",
+    "target": "AFBEG"
+  },
+  {
+    "id": "rule_id_0028",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: CEGCF=ECCGF, AGHDH=GADHH, ECAEH=CEEAH. Consulta: ACGBF=",
+    "target": "CABGF"
+  },
+  {
+    "id": "rule_id_0029",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: BEAD=EBDA, HHAF=HHFA, FFBF=FFFB. Consulta: HBHC=",
+    "target": "BHCH"
+  },
+  {
+    "id": "rule_id_0030",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: EHG=HGE, HAG=AGH, CGF=GFC. Consulta: CCG=",
+    "target": "CGC"
+  },
+  {
+    "id": "rule_id_0031",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: CHEEC=HEECC, CAAHD=AAHDC, ACHDB=CHDBA. Consulta: EGDGH=",
+    "target": "GDGHE"
+  },
+  {
+    "id": "rule_id_0032",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: AEC=CAE, BGC=CBG, CCD=DCC. Consulta: DAE=",
+    "target": "EDA"
+  },
+  {
+    "id": "rule_id_0033",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: BBD=BDB, DBG=BGD, FDB=DBF. Consulta: CHC=",
+    "target": "HCC"
+  },
+  {
+    "id": "rule_id_0034",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: AHFGH=HFGHA, HFAAD=FAADH, ECHAB=CHABE. Consulta: HFDCG=",
+    "target": "FDCGH"
+  },
+  {
+    "id": "rule_id_0035",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: AGEA=GAAE, BEBC=EBCB, DCBG=CDGB. Consulta: CEBG=",
+    "target": "ECGB"
+  },
+  {
+    "id": "rule_id_0036",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: FHHAA=HFAHA, CGFBD=GCBFD, EHCFE=HEFCE. Consulta: BACGA=",
+    "target": "ABGCA"
+  },
+  {
+    "id": "rule_id_0037",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: CECH=ECHC, HDCB=DHBC, HEGC=EHCG. Consulta: AFGG=",
+    "target": "FAGG"
+  },
+  {
+    "id": "rule_id_0038",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: DCFH=CDHF, CCBC=CCCB, HBHF=BHFH. Consulta: GAFA=",
+    "target": "AGAF"
+  },
+  {
+    "id": "rule_id_0039",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: FGFG=GFGF, CGEE=ECGE, DDGB=BDDG. Consulta: FHFG=",
+    "target": "GFHF"
+  },
+  {
+    "id": "rule_id_0040",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: DGDD=DDGD, EBGE=EEBG, CDFH=HCDF. Consulta: HDHC=",
+    "target": "CHDH"
+  },
+  {
+    "id": "rule_id_0041",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: GACAD=ACADG, HHCFA=HCFAH, BHHAB=HHABB. Consulta: BHHAG=",
+    "target": "HHAGB"
+  },
+  {
+    "id": "rule_id_0042",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: HCGHE=CHHGE, FGGEF=GFEGF, EBGCF=BECGF. Consulta: DEDDA=",
+    "target": "EDDDA"
+  },
+  {
+    "id": "rule_id_0043",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: FCHB=CHBF, EDBH=DBHE, CFHB=FHBC. Consulta: FDGE=",
+    "target": "DGEF"
+  },
+  {
+    "id": "rule_id_0044",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: BAD=DAB, EEF=FEE, FEH=HEF. Consulta: DFG=",
+    "target": "GFD"
+  },
+  {
+    "id": "rule_id_0045",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: FCE=CEF, CDH=DHC, GCC=CCG. Consulta: BHH=",
+    "target": "HHB"
+  },
+  {
+    "id": "rule_id_0046",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: HGA=AGH, ADF=FDA, GDF=FDG. Consulta: ECB=",
+    "target": "BCE"
+  },
+  {
+    "id": "rule_id_0047",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: HGC=CHG, HEC=CHE, ADE=EAD. Consulta: GAE=",
+    "target": "EGA"
+  },
+  {
+    "id": "rule_id_0048",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: GAA=AGA, BCG=GBC, FAH=HFA. Consulta: FCB=",
+    "target": "BFC"
+  },
+  {
+    "id": "rule_id_0049",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: BGG=GGB, CGH=HGC, DCH=HCD. Consulta: BEG=",
+    "target": "GEB"
+  },
+  {
+    "id": "rule_id_0050",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: BEC=CEB, DAG=GAD, HHB=BHH. Consulta: FFA=",
+    "target": "AFF"
+  },
+  {
+    "id": "rule_id_0051",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: EBB=BBE, GGB=GBG, BGF=GFB. Consulta: EHB=",
+    "target": "HBE"
+  },
+  {
+    "id": "rule_id_0052",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: DBC=BCD, EGA=GAE, BDH=DHB. Consulta: EGE=",
+    "target": "GEE"
+  },
+  {
+    "id": "rule_id_0053",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: ABEGE=BEGEA, AGGBB=GGBBA, HDDCB=DDCBH. Consulta: DDAGE=",
+    "target": "DAGED"
+  },
+  {
+    "id": "rule_id_0054",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: ABH=HAB, ADF=FAD, CAA=ACA. Consulta: AFC=",
+    "target": "CAF"
+  },
+  {
+    "id": "rule_id_0055",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: EFH=HFE, EBG=GBE, BHE=EHB. Consulta: FGB=",
+    "target": "BGF"
+  },
+  {
+    "id": "rule_id_0056",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: EGCB=BEGC, FDCB=BFDC, DEBF=FDEB. Consulta: ADAC=",
+    "target": "CADA"
+  },
+  {
+    "id": "rule_id_0057",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: EEAGB=BGAEE, BADBC=CBDAB, FGHDB=BDHGF. Consulta: FBDDA=",
+    "target": "ADDBF"
+  },
+  {
+    "id": "rule_id_0058",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: CDB=BDC, GFB=BFG, BHH=HHB. Consulta: FAG=",
+    "target": "GAF"
+  },
+  {
+    "id": "rule_id_0059",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: CFB=FBC, GAD=ADG, BEH=EHB. Consulta: GBG=",
+    "target": "BGG"
+  },
+  {
+    "id": "rule_id_0060",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: CGCD=GCDC, HFDG=FHGD, DDEC=DDCE. Consulta: EADF=",
+    "target": "AEFD"
+  },
+  {
+    "id": "rule_id_0061",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: ACEAA=AACEA, HFFCH=HHFFC, CFBHE=ECFBH. Consulta: AABDG=",
+    "target": "GAABD"
+  },
+  {
+    "id": "rule_id_0062",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: EAHBF=FBHAE, EHDFH=HFDHE, DAHCF=FCHAD. Consulta: ECBCC=",
+    "target": "CCBCE"
+  },
+  {
+    "id": "rule_id_0063",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: DDACE=EDDAC, CAGEG=GCAGE, GFFBB=BGFFB. Consulta: HCAAC=",
+    "target": "CHCAA"
+  },
+  {
+    "id": "rule_id_0064",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: DBDHG=BDHGD, HEEAC=EEACH, EBCDC=BCDCE. Consulta: DDHFA=",
+    "target": "DHFAD"
+  },
+  {
+    "id": "rule_id_0065",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: DEEEA=AEEED, BACAE=EACAB, FFEBG=GBEFF. Consulta: CFFDA=",
+    "target": "ADFFC"
+  },
+  {
+    "id": "rule_id_0066",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: DHHDC=CDHHD, DFDGH=HGDFD, FACAG=GACAF. Consulta: FDGGG=",
+    "target": "GGGDF"
+  },
+  {
+    "id": "rule_id_0067",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: DAF=FDA, AHC=CAH, CCA=ACC. Consulta: BGF=",
+    "target": "FBG"
+  },
+  {
+    "id": "rule_id_0068",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: HHAB=HABH, AFDD=FDDA, HEFD=EFDH. Consulta: DHAH=",
+    "target": "HAHD"
+  },
+  {
+    "id": "rule_id_0069",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: AGCF=FCGA, BCGG=GGCB, HHAB=BAHH. Consulta: BEBA=",
+    "target": "ABEB"
+  },
+  {
+    "id": "rule_id_0070",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: ABH=BHA, DEA=EAD, FGE=GEF. Consulta: FGA=",
+    "target": "GAF"
+  },
+  {
+    "id": "rule_id_0071",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: GHGH=HGHG, HAFG=AHGF, DDDE=DDED. Consulta: CFDD=",
+    "target": "FCDD"
+  },
+  {
+    "id": "rule_id_0072",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: CCF=FCC, BHD=DBH, HCG=GHC. Consulta: ABC=",
+    "target": "CAB"
+  },
+  {
+    "id": "rule_id_0073",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: FCHG=CHGF, AGFG=GFGA, BHBH=HBHB. Consulta: GBDD=",
+    "target": "BDDG"
+  },
+  {
+    "id": "rule_id_0074",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: AGH=GAH, CDF=DCF, ACG=CAG. Consulta: DHA=",
+    "target": "HDA"
+  },
+  {
+    "id": "rule_id_0075",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: GCFE=EGCF, ECGE=EECG, DCHF=FDCH. Consulta: BHEG=",
+    "target": "GBHE"
+  },
+  {
+    "id": "rule_id_0076",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: DFB=BFD, BAF=FAB, CAF=FAC. Consulta: DFC=",
+    "target": "CFD"
+  },
+  {
+    "id": "rule_id_0077",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: HBED=BHDE, DCEE=CDEE, EAGC=AECG. Consulta: DCDE=",
+    "target": "CDED"
+  },
+  {
+    "id": "rule_id_0078",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: GBFG=BFGG, EGBG=GBGE, FEGA=EGAF. Consulta: GHGC=",
+    "target": "HGCG"
+  },
+  {
+    "id": "rule_id_0079",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: HDBCE=EHDBC, GDABH=HGDAB, AEGCA=AAEGC. Consulta: AEDEG=",
+    "target": "GAEDE"
+  },
+  {
+    "id": "rule_id_0080",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: AGD=GAD, CAH=ACH, BHE=HBE. Consulta: EHH=",
+    "target": "HEH"
+  },
+  {
+    "id": "rule_id_0081",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: DFEB=FEBD, EADF=ADFE, HHDB=HDBH. Consulta: FGEA=",
+    "target": "GEAF"
+  },
+  {
+    "id": "rule_id_0082",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: EGF=FGE, HFD=DFH, BGA=AGB. Consulta: DEA=",
+    "target": "AED"
+  },
+  {
+    "id": "rule_id_0083",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: DFF=FFD, DFG=FGD, FDA=DAF. Consulta: ADH=",
+    "target": "DHA"
+  },
+  {
+    "id": "rule_id_0084",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: FBC=BCF, AHC=HCA, HHD=HDH. Consulta: AFC=",
+    "target": "FCA"
+  },
+  {
+    "id": "rule_id_0085",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: DFDG=FDGD, FCBG=CFGB, CBAB=BCBA. Consulta: BDEF=",
+    "target": "DBFE"
+  },
+  {
+    "id": "rule_id_0086",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: CABEF=FCABE, BEEBD=DBEEB, AEBFF=FAEBF. Consulta: CEDEF=",
+    "target": "FCEDE"
+  },
+  {
+    "id": "rule_id_0087",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: GBCBH=BCBHG, GBAFF=BAFFG, FBBFB=BBFBF. Consulta: CCGDB=",
+    "target": "CGDBC"
+  },
+  {
+    "id": "rule_id_0088",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: AHGHB=BHGHA, HGFAC=CAFGH, CBFHC=CHFBC. Consulta: EHHCG=",
+    "target": "GCHHE"
+  },
+  {
+    "id": "rule_id_0089",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: FCC=CCF, BAA=AAB, FDA=ADF. Consulta: CEG=",
+    "target": "GEC"
+  },
+  {
+    "id": "rule_id_0090",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: FBG=GFB, BFA=ABF, BAC=CBA. Consulta: CBD=",
+    "target": "DCB"
+  },
+  {
+    "id": "rule_id_0091",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: FDFF=FFDF, FGEH=HEGF, DCGD=DGCD. Consulta: HDEG=",
+    "target": "GEDH"
+  },
+  {
+    "id": "rule_id_0092",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: DFAG=GAFD, BBBG=GBBB, DABG=GBAD. Consulta: EBHF=",
+    "target": "FHBE"
+  },
+  {
+    "id": "rule_id_0093",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: AGHD=DAGH, GACF=FGAC, BFDG=GBFD. Consulta: AHFH=",
+    "target": "HAHF"
+  },
+  {
+    "id": "rule_id_0094",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: FDBED=DFEBD, FEAAG=EFAAG, EGAAC=GEAAC. Consulta: EAACF=",
+    "target": "AECAF"
+  },
+  {
+    "id": "rule_id_0095",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: GBB=BBG, DCA=ACD, DAC=CAD. Consulta: FCH=",
+    "target": "HCF"
+  },
+  {
+    "id": "rule_id_0096",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: FAC=CFA, HAD=DHA, AEG=GAE. Consulta: EFC=",
+    "target": "CEF"
+  },
+  {
+    "id": "rule_id_0097",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: AFHHC=FHHCA, BDCEG=DCEGB, DBHDA=BHDAD. Consulta: FEFHH=",
+    "target": "EFHHF"
+  },
+  {
+    "id": "rule_id_0098",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: DBF=BFD, AEE=EEA, FHC=HCF. Consulta: HCH=",
+    "target": "CHH"
+  },
+  {
+    "id": "rule_id_0099",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: AEB=EAB, DFH=FDH, DCF=CDF. Consulta: BEF=",
+    "target": "EBF"
+  },
+  {
+    "id": "rule_id_0100",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: HHC=CHH, GAF=FGA, DFC=CDF. Consulta: GGF=",
+    "target": "FGG"
+  },
+  {
+    "id": "rule_id_0101",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: DAFB=ADBF, ACFF=CAFF, AEDE=EAED. Consulta: AGGF=",
+    "target": "GAFG"
+  },
+  {
+    "id": "rule_id_0102",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: FHFG=GFHF, FHFA=AFHF, FEHF=FHEF. Consulta: GCFA=",
+    "target": "AFCG"
+  },
+  {
+    "id": "rule_id_0103",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: BFDD=DDFB, GGBC=CBGG, EACF=FCAE. Consulta: BDDF=",
+    "target": "FDDB"
+  },
+  {
+    "id": "rule_id_0104",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: BGAD=GADB, GAFG=AFGG, AEEB=EEBA. Consulta: CAFC=",
+    "target": "AFCC"
+  },
+  {
+    "id": "rule_id_0105",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: EHD=HED, ECA=CEA, FAD=AFD. Consulta: CAE=",
+    "target": "ACE"
+  },
+  {
+    "id": "rule_id_0106",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: DAA=ADA, BDD=DBD, EHG=GEH. Consulta: GHE=",
+    "target": "EGH"
+  },
+  {
+    "id": "rule_id_0107",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: HHEEE=HEEEH, CCECE=CECEC, FEDAH=EDAHF. Consulta: HHGDG=",
+    "target": "HGDGH"
+  },
+  {
+    "id": "rule_id_0108",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: DFA=FDA, EDF=DEF, BAE=ABE. Consulta: AED=",
+    "target": "EAD"
+  },
+  {
+    "id": "rule_id_0109",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: DHFDG=HDDFG, GCEGE=CGGEE, HBHBG=BHBHG. Consulta: HGGGH=",
+    "target": "GHGGH"
+  },
+  {
+    "id": "rule_id_0110",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: ACGCC=CACGC, FHCBG=GFHCB, GBEFA=AGBEF. Consulta: DDBCH=",
+    "target": "HDDBC"
+  },
+  {
+    "id": "rule_id_0111",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: AAAG=GAAA, HFEE=EHFE, DEEF=FDEE. Consulta: HBCG=",
+    "target": "GHBC"
+  },
+  {
+    "id": "rule_id_0112",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: HFD=FHD, DBG=BDG, DCC=CDC. Consulta: HEC=",
+    "target": "EHC"
+  },
+  {
+    "id": "rule_id_0113",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: BBD=DBB, FEH=HEF, FAD=DAF. Consulta: CGE=",
+    "target": "EGC"
+  },
+  {
+    "id": "rule_id_0114",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: ADE=DEA, BBH=BHB, BGH=GHB. Consulta: DAF=",
+    "target": "AFD"
+  },
+  {
+    "id": "rule_id_0115",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: ADDDF=DDDFA, DEBAH=EBAHD, ADEGA=DEGAA. Consulta: EBDFF=",
+    "target": "BDFFE"
+  },
+  {
+    "id": "rule_id_0116",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: BFA=FAB, GGC=GCG, CEH=EHC. Consulta: DEF=",
+    "target": "EFD"
+  },
+  {
+    "id": "rule_id_0117",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: EDA=ADE, BGD=DGB, DFB=BFD. Consulta: CFH=",
+    "target": "HFC"
+  },
+  {
+    "id": "rule_id_0118",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: CGG=GCG, GAB=BGA, HAD=DHA. Consulta: HCC=",
+    "target": "CHC"
+  },
+  {
+    "id": "rule_id_0119",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: CHHH=HHHC, CEAG=GAEC, GCDH=HDCG. Consulta: ADFE=",
+    "target": "EFDA"
+  },
+  {
+    "id": "rule_id_0120",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: HCADC=CDACH, BFAEA=AEAFB, GFCBC=CBCFG. Consulta: BCBFD=",
+    "target": "DFBCB"
+  },
+  {
+    "id": "rule_id_0121",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: GBH=HBG, CCE=ECC, DHB=BHD. Consulta: BCF=",
+    "target": "FCB"
+  },
+  {
+    "id": "rule_id_0122",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: EEFA=AEEF, CDGC=CCDG, EBBF=FEBB. Consulta: BAEB=",
+    "target": "BBAE"
+  },
+  {
+    "id": "rule_id_0123",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: CGH=GHC, HCG=CGH, GFH=FHG. Consulta: CFF=",
+    "target": "FFC"
+  },
+  {
+    "id": "rule_id_0124",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: BHBEH=HBHBE, GCGGF=FGCGG, AGDBH=HAGDB. Consulta: HGDGB=",
+    "target": "BHGDG"
+  },
+  {
+    "id": "rule_id_0125",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: DFAD=DAFD, DEBA=ABED, EDFB=BFDE. Consulta: CFGH=",
+    "target": "HGFC"
+  },
+  {
+    "id": "rule_id_0126",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: GHHAG=GAHHG, GCBBA=ABBCG, FHHEE=EEHHF. Consulta: DFFCB=",
+    "target": "BCFFD"
+  },
+  {
+    "id": "rule_id_0127",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: GFFH=HFFG, HAAG=GAAH, HAGH=HGAH. Consulta: BDEF=",
+    "target": "FEDB"
+  },
+  {
+    "id": "rule_id_0128",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: DEH=EDH, EFA=FEA, GAA=AGA. Consulta: GCA=",
+    "target": "CGA"
+  },
+  {
+    "id": "rule_id_0129",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: CFF=FFC, ABE=BEA, BCF=CFB. Consulta: FFE=",
+    "target": "FEF"
+  },
+  {
+    "id": "rule_id_0130",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: CFFED=DCFFE, FBHHE=EFBHH, ABCHG=GABCH. Consulta: GGBDH=",
+    "target": "HGGBD"
+  },
+  {
+    "id": "rule_id_0131",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: AHEFH=HEFHA, GDBEA=DBEAG, CECDE=ECDEC. Consulta: GEFGG=",
+    "target": "EFGGG"
+  },
+  {
+    "id": "rule_id_0132",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: FFE=EFF, DEA=AED, EFA=AFE. Consulta: AHG=",
+    "target": "GHA"
+  },
+  {
+    "id": "rule_id_0133",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: DEDC=EDCD, DAGA=ADAG, CDGD=DCDG. Consulta: FGGE=",
+    "target": "GFEG"
+  },
+  {
+    "id": "rule_id_0134",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: HEA=AEH, AFF=FFA, CHE=EHC. Consulta: AAF=",
+    "target": "FAA"
+  },
+  {
+    "id": "rule_id_0135",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: FHFC=CFHF, EEAF=FEEA, CEHA=ACEH. Consulta: DAAF=",
+    "target": "FDAA"
+  },
+  {
+    "id": "rule_id_0136",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: BFEE=EBFE, HFGF=FHFG, HCBE=EHCB. Consulta: ECBC=",
+    "target": "CECB"
+  },
+  {
+    "id": "rule_id_0137",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: EFF=FEF, EBA=BEA, CHB=HCB. Consulta: HAA=",
+    "target": "AHA"
+  },
+  {
+    "id": "rule_id_0138",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: BFEDC=CBFED, BAGCA=ABAGC, BHGFB=BBHGF. Consulta: GDCFG=",
+    "target": "GGDCF"
+  },
+  {
+    "id": "rule_id_0139",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: BHF=HBF, FAH=AFH, FAE=AFE. Consulta: GBB=",
+    "target": "BGB"
+  },
+  {
+    "id": "rule_id_0140",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: BFG=GBF, AGF=FAG, CGF=FCG. Consulta: BBC=",
+    "target": "CBB"
+  },
+  {
+    "id": "rule_id_0141",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: GCBB=BGCB, HBCD=DHBC, GBAF=FGBA. Consulta: HHFH=",
+    "target": "HHHF"
+  },
+  {
+    "id": "rule_id_0142",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: AAFB=AABF, FGAF=GFFA, EHEH=HEHE. Consulta: FAAC=",
+    "target": "AFCA"
+  },
+  {
+    "id": "rule_id_0143",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: HFAAH=HHFAA, DAFBA=ADAFB, HFHEC=CHFHE. Consulta: CECFB=",
+    "target": "BCECF"
+  },
+  {
+    "id": "rule_id_0144",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: BCDH=CDHB, HBEF=BEFH, GCBH=CBHG. Consulta: CHFF=",
+    "target": "HFFC"
+  },
+  {
+    "id": "rule_id_0145",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: GBE=EBG, EHC=CHE, DFG=GFD. Consulta: AHG=",
+    "target": "GHA"
+  },
+  {
+    "id": "rule_id_0146",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: HCB=BCH, EGD=DGE, DBG=GBD. Consulta: GBC=",
+    "target": "CBG"
+  },
+  {
+    "id": "rule_id_0147",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: EECGB=BGCEE, DGDGB=BGDGD, BHFBA=ABFHB. Consulta: AGAHB=",
+    "target": "BHAGA"
+  },
+  {
+    "id": "rule_id_0148",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: BFCA=FCAB, ECGE=CGEE, EBFH=BFHE. Consulta: HGCA=",
+    "target": "GCAH"
+  },
+  {
+    "id": "rule_id_0149",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: HGHF=GHFH, AHAG=HAGA, GCDA=CDAG. Consulta: CHDB=",
+    "target": "HDBC"
+  },
+  {
+    "id": "rule_id_0150",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: BFBAG=GBFBA, EBCGA=AEBCG, FGACA=AFGAC. Consulta: DEFHE=",
+    "target": "EDEFH"
+  },
+  {
+    "id": "rule_id_0151",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: HCC=CCH, GHA=HAG, FGA=GAF. Consulta: CGB=",
+    "target": "GBC"
+  },
+  {
+    "id": "rule_id_0152",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: BGAH=HBGA, CBCH=HCBC, CDCG=GCDC. Consulta: CFEB=",
+    "target": "BCFE"
+  },
+  {
+    "id": "rule_id_0153",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: ADEEB=BADEE, GDEEA=AGDEE, GAFDD=DGAFD. Consulta: ACEBB=",
+    "target": "BACEB"
+  },
+  {
+    "id": "rule_id_0154",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: AGFB=BFGA, EEAG=GAEE, HDDA=ADDH. Consulta: CAAE=",
+    "target": "EAAC"
+  },
+  {
+    "id": "rule_id_0155",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: GAD=ADG, CEH=EHC, FHE=HEF. Consulta: HFD=",
+    "target": "FDH"
+  },
+  {
+    "id": "rule_id_0156",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: HGFBB=GFBBH, FDAHB=DAHBF, CHHAB=HHABC. Consulta: BAAAB=",
+    "target": "AAABB"
+  },
+  {
+    "id": "rule_id_0157",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: HHFF=FHHF, FCEG=GFCE, DFHC=CDFH. Consulta: CAFE=",
+    "target": "ECAF"
+  },
+  {
+    "id": "rule_id_0158",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: AGH=GAH, AFB=FAB, EBG=BEG. Consulta: CDB=",
+    "target": "DCB"
+  },
+  {
+    "id": "rule_id_0159",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: CEDFG=GFDEC, FADHD=DHDAF, FCAFE=EFACF. Consulta: CEGEB=",
+    "target": "BEGEC"
+  },
+  {
+    "id": "rule_id_0160",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: HEDGD=EHGDD, HDDAG=DHADG, CEBBG=ECBBG. Consulta: FGGCE=",
+    "target": "GFCGE"
+  },
+  {
+    "id": "rule_id_0161",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: FCDHD=CFHDD, EAGHB=AEHGB, GCDEH=CGEDH. Consulta: GECAG=",
+    "target": "EGACG"
+  },
+  {
+    "id": "rule_id_0162",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: CFA=FAC, EHB=HBE, ECH=CHE. Consulta: EHA=",
+    "target": "HAE"
+  },
+  {
+    "id": "rule_id_0163",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: DAG=ADG, GDE=DGE, ACF=CAF. Consulta: BGF=",
+    "target": "GBF"
+  },
+  {
+    "id": "rule_id_0164",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: EGDDB=BEGDD, AHFCC=CAHFC, BFEBH=HBFEB. Consulta: AAEHF=",
+    "target": "FAAEH"
+  },
+  {
+    "id": "rule_id_0165",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: GCDA=AGCD, EDBD=DEDB, DEEE=EDEE. Consulta: DDHF=",
+    "target": "FDDH"
+  },
+  {
+    "id": "rule_id_0166",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: CGCH=HCGC, EDDF=FDDE, GBDB=BDBG. Consulta: BHEG=",
+    "target": "GEHB"
+  },
+  {
+    "id": "rule_id_0167",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: DCCHC=CDHCC, CGEAA=GCAEA, GDFEB=DGEFB. Consulta: HFCGB=",
+    "target": "FHGCB"
+  },
+  {
+    "id": "rule_id_0168",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: EFEC=CEFE, BACE=ECAB, DGFA=AFGD. Consulta: FBGF=",
+    "target": "FGBF"
+  },
+  {
+    "id": "rule_id_0169",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: GGF=FGG, GGC=CGG, FCH=HCF. Consulta: FDG=",
+    "target": "GDF"
+  },
+  {
+    "id": "rule_id_0170",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: BHAAE=EAAHB, FAHEB=BEHAF, HCCCD=DCCCH. Consulta: EHADC=",
+    "target": "CDAHE"
+  },
+  {
+    "id": "rule_id_0171",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: GDABE=DGBAE, CEAFG=ECFAG, ADGEH=DAEGH. Consulta: HEHHH=",
+    "target": "EHHHH"
+  },
+  {
+    "id": "rule_id_0172",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: CHA=HAC, ECD=CDE, AHC=HCA. Consulta: CED=",
+    "target": "EDC"
+  },
+  {
+    "id": "rule_id_0173",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: DFDBB=FDBDB, BGGFF=GBFGF, BHCGE=HBGCE. Consulta: BEHHC=",
+    "target": "EBHHC"
+  },
+  {
+    "id": "rule_id_0174",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: ECCAE=CCAEE, ECADH=CADHE, GDECH=DECHG. Consulta: EDHGC=",
+    "target": "DHGCE"
+  },
+  {
+    "id": "rule_id_0175",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: AFCC=CCFA, FHGH=HGHF, AHEH=HEHA. Consulta: HBCH=",
+    "target": "HCBH"
+  },
+  {
+    "id": "rule_id_0176",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: FCDGE=EFCDG, GDCCE=EGDCC, FHGCE=EFHGC. Consulta: GCEFD=",
+    "target": "DGCEF"
+  },
+  {
+    "id": "rule_id_0177",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: EBAF=FEBA, EEAE=EEEA, HHDB=BHHD. Consulta: BGBH=",
+    "target": "HBGB"
+  },
+  {
+    "id": "rule_id_0178",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: ABDDG=BDDGA, BCGDF=CGDFB, AFDBE=FDBEA. Consulta: GGCFE=",
+    "target": "GCFEG"
+  },
+  {
+    "id": "rule_id_0179",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: EHF=FHE, DEA=AED, CED=DEC. Consulta: DDC=",
+    "target": "CDD"
+  },
+  {
+    "id": "rule_id_0180",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: BCDE=CBED, DFGH=FDHG, FGHH=GFHH. Consulta: CEDF=",
+    "target": "ECFD"
+  },
+  {
+    "id": "rule_id_0181",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: DHBDA=HDDBA, AGADA=GADAA, FGEDF=GFDEF. Consulta: HFDFF=",
+    "target": "FHFDF"
+  },
+  {
+    "id": "rule_id_0182",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: HDFE=EFDH, EGDH=HDGE, EACE=ECAE. Consulta: ACDE=",
+    "target": "EDCA"
+  },
+  {
+    "id": "rule_id_0183",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: ACFA=CFAA, GFBA=FBAG, EBED=BEDE. Consulta: GHGB=",
+    "target": "HGBG"
+  },
+  {
+    "id": "rule_id_0184",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: BAA=ABA, FCC=CFC, DBE=EDB. Consulta: BBA=",
+    "target": "ABB"
+  },
+  {
+    "id": "rule_id_0185",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: FBB=BBF, HHG=GHH, FAA=AAF. Consulta: BBH=",
+    "target": "HBB"
+  },
+  {
+    "id": "rule_id_0186",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: FEDB=BFED, DGCD=DDGC, FHBG=GFHB. Consulta: ECFE=",
+    "target": "EECF"
+  },
+  {
+    "id": "rule_id_0187",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: DGC=GCD, HDE=DEH, CHD=HDC. Consulta: AFH=",
+    "target": "FHA"
+  },
+  {
+    "id": "rule_id_0188",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: GDED=DGDE, CAAB=ACBA, HBHE=BHEH. Consulta: EECH=",
+    "target": "EEHC"
+  },
+  {
+    "id": "rule_id_0189",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: BDAHC=CBDAH, FECEE=EFECE, HBGAE=EHBGA. Consulta: ADEDH=",
+    "target": "HADED"
+  },
+  {
+    "id": "rule_id_0190",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: FDH=HFD, EGA=AEG, FDD=DFD. Consulta: EFD=",
+    "target": "DEF"
+  },
+  {
+    "id": "rule_id_0191",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: EGFCC=GECFC, CCBHB=CCHBB, DHADA=HDDAA. Consulta: GCAFH=",
+    "target": "CGFAH"
+  },
+  {
+    "id": "rule_id_0192",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: AHEFG=HEFGA, DBGGE=BGGED, FCBEH=CBEHF. Consulta: BGBDF=",
+    "target": "GBDFB"
+  },
+  {
+    "id": "rule_id_0193",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: BDC=CBD, DBC=CDB, GFH=HGF. Consulta: EBH=",
+    "target": "HEB"
+  },
+  {
+    "id": "rule_id_0194",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: BBEEH=HEEBB, EHAFG=GFAHE, BFBAH=HABFB. Consulta: HABDF=",
+    "target": "FDBAH"
+  },
+  {
+    "id": "rule_id_0195",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: AEDDA=AAEDD, GFDED=DGFDE, HGAGD=DHGAG. Consulta: HHBHD=",
+    "target": "DHHBH"
+  },
+  {
+    "id": "rule_id_0196",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: AED=EAD, EDA=DEA, HGD=GHD. Consulta: GAH=",
+    "target": "AGH"
+  },
+  {
+    "id": "rule_id_0197",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: EGEA=GEAE, EHAH=HEHA, GFDF=FGFD. Consulta: CHGH=",
+    "target": "HCHG"
+  },
+  {
+    "id": "rule_id_0198",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: CGD=DGC, HGF=FGH, HHE=EHH. Consulta: GBH=",
+    "target": "HBG"
+  },
+  {
+    "id": "rule_id_0199",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: BFGCB=FBCGB, HACCB=AHCCB, BGDHA=GBHDA. Consulta: CHBFG=",
+    "target": "HCFBG"
+  },
+  {
+    "id": "rule_id_0200",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: HADAD=ADADH, HHGDD=HGDDH, BHFBB=HFBBB. Consulta: GBFEE=",
+    "target": "BFEEG"
+  },
+  {
+    "id": "rule_id_0201",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: GBAB=BGBA, FHDH=HFHD, GAEG=GGAE. Consulta: DDAD=",
+    "target": "DDDA"
+  },
+  {
+    "id": "rule_id_0202",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: CAFCH=AFCHC, ADEHA=DEHAA, FBACC=BACCF. Consulta: BEFEG=",
+    "target": "EFEGB"
+  },
+  {
+    "id": "rule_id_0203",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: FGFBD=DBFGF, BFHEA=AEHFB, BHBFH=HFBHB. Consulta: BFBGC=",
+    "target": "CGBFB"
+  },
+  {
+    "id": "rule_id_0204",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: BEGEF=FBEGE, HCFHH=HHCFH, DGAEG=GDGAE. Consulta: ACBFD=",
+    "target": "DACBF"
+  },
+  {
+    "id": "rule_id_0205",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: BDDHA=ABDDH, ABDHG=GABDH, FEDCB=BFEDC. Consulta: CFHAH=",
+    "target": "HCFHA"
+  },
+  {
+    "id": "rule_id_0206",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: CCCD=DCCC, EACD=DCAE, HEHD=DHEH. Consulta: HGDD=",
+    "target": "DDGH"
+  },
+  {
+    "id": "rule_id_0207",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: GACAH=AGACH, GDHDE=DGDHE, ECHGA=CEGHA. Consulta: HBAHF=",
+    "target": "BHHAF"
+  },
+  {
+    "id": "rule_id_0208",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: CBGG=GCBG, HHEG=GHHE, GHFC=CGHF. Consulta: HBCF=",
+    "target": "FHBC"
+  },
+  {
+    "id": "rule_id_0209",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: CCBGC=CCGBC, HEFGG=EHGFG, EGAGC=GEGAC. Consulta: EHEHF=",
+    "target": "HEHEF"
+  },
+  {
+    "id": "rule_id_0210",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: GBBDF=FDBBG, AHACH=HCAHA, FCHFH=HFHCF. Consulta: GFGFA=",
+    "target": "AFGFG"
+  },
+  {
+    "id": "rule_id_0211",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: GAABE=AGBAE, EBEHB=BEHEB, FBHHA=BFHHA. Consulta: HDAHB=",
+    "target": "DHHAB"
+  },
+  {
+    "id": "rule_id_0212",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: GED=EGD, AGE=GAE, DGG=GDG. Consulta: CFF=",
+    "target": "FCF"
+  },
+  {
+    "id": "rule_id_0213",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: FHA=AHF, DHE=EHD, FEH=HEF. Consulta: CDG=",
+    "target": "GDC"
+  },
+  {
+    "id": "rule_id_0214",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: DFFB=FFBD, HBCE=BCEH, CHHA=HHAC. Consulta: GGEB=",
+    "target": "GEBG"
+  },
+  {
+    "id": "rule_id_0215",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: CCB=BCC, HAC=CAH, EFB=BFE. Consulta: CEE=",
+    "target": "EEC"
+  },
+  {
+    "id": "rule_id_0216",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: EEG=EGE, AHF=HFA, DFF=FFD. Consulta: GAF=",
+    "target": "AFG"
+  },
+  {
+    "id": "rule_id_0217",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: GGDGD=GGGDD, GBECG=BGCEG, DDAHA=DDHAA. Consulta: FEFBB=",
+    "target": "EFBFB"
+  },
+  {
+    "id": "rule_id_0218",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: BFF=FBF, FHC=HFC, DBG=BDG. Consulta: GAH=",
+    "target": "AGH"
+  },
+  {
+    "id": "rule_id_0219",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: CHAA=ACHA, AFCF=FAFC, DDHA=ADDH. Consulta: BCDA=",
+    "target": "ABCD"
+  },
+  {
+    "id": "rule_id_0220",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: GFEC=CGFE, GGBE=EGGB, AEEE=EAEE. Consulta: ECAA=",
+    "target": "AECA"
+  },
+  {
+    "id": "rule_id_0221",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: GAHED=DGAHE, BEAGF=FBEAG, FFHCF=FFFHC. Consulta: DGCHA=",
+    "target": "ADGCH"
+  },
+  {
+    "id": "rule_id_0222",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: BAAH=HBAA, BEDA=ABED, GEAA=AGEA. Consulta: AABB=",
+    "target": "BAAB"
+  },
+  {
+    "id": "rule_id_0223",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: DEEH=EDHE, AHEA=HAAE, BDEB=DBBE. Consulta: ABAC=",
+    "target": "BACA"
+  },
+  {
+    "id": "rule_id_0224",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: BEC=CEB, CED=DEC, EEA=AEE. Consulta: DAE=",
+    "target": "EAD"
+  },
+  {
+    "id": "rule_id_0225",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: AFCDF=FCDFA, AEAGA=EAGAA, DAAFC=AAFCD. Consulta: EDGEF=",
+    "target": "DGEFE"
+  },
+  {
+    "id": "rule_id_0226",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: FDAC=DFCA, CHAA=HCAA, DBHG=BDGH. Consulta: AAGF=",
+    "target": "AAFG"
+  },
+  {
+    "id": "rule_id_0227",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: AEHAG=EHAGA, EAHDC=AHDCE, BFDDD=FDDDB. Consulta: GDGAB=",
+    "target": "DGABG"
+  },
+  {
+    "id": "rule_id_0228",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: GAGC=CGAG, FEEA=AEEF, EGAD=DAGE. Consulta: FEHA=",
+    "target": "AHEF"
+  },
+  {
+    "id": "rule_id_0229",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: BGAF=FAGB, ECAE=EACE, HEDE=EDEH. Consulta: HDFB=",
+    "target": "BFDH"
+  },
+  {
+    "id": "rule_id_0230",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: GADA=ADAG, HAAB=BAAH, BGEA=AEGB. Consulta: AGCD=",
+    "target": "DCGA"
+  },
+  {
+    "id": "rule_id_0231",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: DHDFC=CFDHD, EHBHC=CHBHE, FFHAB=BAHFF. Consulta: GGAAG=",
+    "target": "GAAGG"
+  },
+  {
+    "id": "rule_id_0232",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: CGEB=BEGC, AHBG=GBHA, EHFB=BFHE. Consulta: ACHE=",
+    "target": "EHCA"
+  },
+  {
+    "id": "rule_id_0233",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: FFAHH=HFFAH, BCADG=GBCAD, AGGFF=FAGGF. Consulta: AEHGC=",
+    "target": "CAEHG"
+  },
+  {
+    "id": "rule_id_0234",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: ADFH=DFHA, BEAH=EAHB, ABAE=BAEA. Consulta: DGEB=",
+    "target": "GEBD"
+  },
+  {
+    "id": "rule_id_0235",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: AFHGF=FHGFA, EFGAD=FGADE, DEFHA=EFHAD. Consulta: AFAFA=",
+    "target": "FAFAA"
+  },
+  {
+    "id": "rule_id_0236",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: HFC=CHF, BAG=GBA, BCF=FBC. Consulta: DGD=",
+    "target": "DDG"
+  },
+  {
+    "id": "rule_id_0237",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: FDEGH=DFGEH, GGAEC=GGEAC, FFGBF=FFBGF. Consulta: CBFBC=",
+    "target": "BCBFC"
+  },
+  {
+    "id": "rule_id_0238",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: HBE=EBH, EAC=CAE, EHA=AHE. Consulta: FHH=",
+    "target": "HHF"
+  },
+  {
+    "id": "rule_id_0239",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: GFAG=FAGG, EBHF=BHFE, GBFB=BFBG. Consulta: CEDD=",
+    "target": "EDDC"
+  },
+  {
+    "id": "rule_id_0240",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: CFEF=FCFE, HBGG=BHGG, BBFH=BBHF. Consulta: CEEC=",
+    "target": "ECCE"
+  },
+  {
+    "id": "rule_id_0241",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: HBG=GBH, ECA=ACE, ADG=GDA. Consulta: GDH=",
+    "target": "HDG"
+  },
+  {
+    "id": "rule_id_0242",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: EEF=EFE, ACD=CDA, AAB=ABA. Consulta: DHC=",
+    "target": "HCD"
+  },
+  {
+    "id": "rule_id_0243",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: EAAD=AADE, AHFE=HFEA, FDEB=DEBF. Consulta: FGDC=",
+    "target": "GDCF"
+  },
+  {
+    "id": "rule_id_0244",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: DGHHG=GHHGD, BGAHE=EHAGB, HHDCG=GCDHH. Consulta: DBGHB=",
+    "target": "BHGBD"
+  },
+  {
+    "id": "rule_id_0245",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: CGEA=GCAE, CEFA=ECAF, FBGB=BFBG. Consulta: DDAD=",
+    "target": "DDDA"
+  },
+  {
+    "id": "rule_id_0246",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: FDC=DFC, GED=EGD, DHC=HDC. Consulta: HEA=",
+    "target": "EHA"
+  },
+  {
+    "id": "rule_id_0247",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: AFCEH=HAFCE, EBADA=AEBAD, BECAC=CBECA. Consulta: DBFEB=",
+    "target": "BDBFE"
+  },
+  {
+    "id": "rule_id_0248",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: HAAAD=DAAAH, FBEHC=CHEBF, DBGFD=DFGBD. Consulta: BCEHB=",
+    "target": "BHECB"
+  },
+  {
+    "id": "rule_id_0249",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: AHD=HAD, CAA=ACA, EDD=DED. Consulta: FDE=",
+    "target": "DFE"
+  },
+  {
+    "id": "rule_id_0250",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: GFGDA=FGDGA, ECDAA=CEADA, EAEHA=AEHEA. Consulta: GEDEH=",
+    "target": "EGEDH"
+  },
+  {
+    "id": "rule_id_0251",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: GHC=CHG, GBH=HBG, AAG=GAA. Consulta: CAD=",
+    "target": "DAC"
+  },
+  {
+    "id": "rule_id_0252",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: GDE=EDG, HHF=FHH, DGG=GGD. Consulta: CDH=",
+    "target": "HDC"
+  },
+  {
+    "id": "rule_id_0253",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: EDACH=HCADE, BFAGB=BGAFB, GFEEB=BEEFG. Consulta: ADGCC=",
+    "target": "CCGDA"
+  },
+  {
+    "id": "rule_id_0254",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: BGAE=GBEA, CEHH=ECHH, EHCE=HEEC. Consulta: FACD=",
+    "target": "AFDC"
+  },
+  {
+    "id": "rule_id_0255",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: BBBHF=FHBBB, HEGDG=GDGEH, DBFHA=AHFBD. Consulta: GAEAB=",
+    "target": "BAEAG"
+  },
+  {
+    "id": "rule_id_0256",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: FBCA=ACBF, BBFD=DFBB, GBGC=CGBG. Consulta: EABH=",
+    "target": "HBAE"
+  },
+  {
+    "id": "rule_id_0257",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: AGG=GAG, ABE=BAE, FEG=EFG. Consulta: BHH=",
+    "target": "HBH"
+  },
+  {
+    "id": "rule_id_0258",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: FHED=HEDF, AADF=ADFA, HAEC=AECH. Consulta: CDDF=",
+    "target": "DDFC"
+  },
+  {
+    "id": "rule_id_0259",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: GDD=DGD, HAA=AHA, BHE=EBH. Consulta: BCC=",
+    "target": "CBC"
+  },
+  {
+    "id": "rule_id_0260",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: FHFE=EFHF, BEBB=BBEB, DGAE=EDGA. Consulta: ACHC=",
+    "target": "CACH"
+  },
+  {
+    "id": "rule_id_0261",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: GBD=BGD, AFB=FAB, AEC=EAC. Consulta: AFE=",
+    "target": "FAE"
+  },
+  {
+    "id": "rule_id_0262",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: GBEE=EEBG, CBEB=BEBC, BFHG=GHFB. Consulta: CBHB=",
+    "target": "BHBC"
+  },
+  {
+    "id": "rule_id_0263",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: BEHFE=EHFEB, ECGCF=CGCFE, DHAEB=HAEBD. Consulta: EGCCC=",
+    "target": "GCCCE"
+  },
+  {
+    "id": "rule_id_0264",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: BEA=AEB, CAF=FAC, HEC=CEH. Consulta: FFD=",
+    "target": "DFF"
+  },
+  {
+    "id": "rule_id_0265",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: HGBCA=GHCBA, EEEGE=EEGEE, DCHED=CDEHD. Consulta: BBHDB=",
+    "target": "BBDHB"
+  },
+  {
+    "id": "rule_id_0266",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: CHEHD=HCHED, GDBDD=DGDBD, BDHDE=DBDHE. Consulta: GGHCE=",
+    "target": "GGCHE"
+  },
+  {
+    "id": "rule_id_0267",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: CEGHF=ECHGF, GGHGC=GGGHC, ACDAA=CAADA. Consulta: CHGHB=",
+    "target": "HCHGB"
+  },
+  {
+    "id": "rule_id_0268",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: CGFAD=DCGFA, EFDDB=BEFDD, EGCDH=HEGCD. Consulta: AHFBG=",
+    "target": "GAHFB"
+  },
+  {
+    "id": "rule_id_0269",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: DEBGG=GDEBG, BGAGA=ABGAG, EHFBD=DEHFB. Consulta: FHDCE=",
+    "target": "EFHDC"
+  },
+  {
+    "id": "rule_id_0270",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: EDFC=CEDF, GFGH=HGFG, DFHA=ADFH. Consulta: CBFB=",
+    "target": "BCBF"
+  },
+  {
+    "id": "rule_id_0271",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: EHA=AEH, EGF=FEG, FCD=DFC. Consulta: FBC=",
+    "target": "CFB"
+  },
+  {
+    "id": "rule_id_0272",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: DHBCE=EDHBC, CBBGE=ECBBG, GFGAF=FGFGA. Consulta: FDFCE=",
+    "target": "EFDFC"
+  },
+  {
+    "id": "rule_id_0273",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: DFA=ADF, HCB=BHC, FFH=HFF. Consulta: CBH=",
+    "target": "HCB"
+  },
+  {
+    "id": "rule_id_0274",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: DECHH=HDECH, GGCAG=GGGCA, DHADE=EDHAD. Consulta: AHCDE=",
+    "target": "EAHCD"
+  },
+  {
+    "id": "rule_id_0275",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: GHEE=EGHE, EHHF=FEHH, AHDA=AAHD. Consulta: CABE=",
+    "target": "ECAB"
+  },
+  {
+    "id": "rule_id_0276",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: DFAE=EDFA, DAAC=CDAA, BGFG=GBGF. Consulta: CADA=",
+    "target": "ACAD"
+  },
+  {
+    "id": "rule_id_0277",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: CGB=GBC, EGG=GGE, ECG=CGE. Consulta: HAH=",
+    "target": "AHH"
+  },
+  {
+    "id": "rule_id_0278",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: HDE=EHD, HEC=CHE, FAA=AFA. Consulta: HGB=",
+    "target": "BHG"
+  },
+  {
+    "id": "rule_id_0279",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: EBG=BGE, DBC=BCD, BHH=HHB. Consulta: EHB=",
+    "target": "HBE"
+  },
+  {
+    "id": "rule_id_0280",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: CBD=DBC, EED=DEE, HFA=AFH. Consulta: HEA=",
+    "target": "AEH"
+  },
+  {
+    "id": "rule_id_0281",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: EBBA=BEAB, GEHE=EGEH, AAGA=AAAG. Consulta: DCFA=",
+    "target": "CDAF"
+  },
+  {
+    "id": "rule_id_0282",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: FFHB=BFFH, HHEC=CHHE, GCED=DGCE. Consulta: DCDC=",
+    "target": "CDCD"
+  },
+  {
+    "id": "rule_id_0283",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: CAG=ACG, CFH=FCH, GCF=CGF. Consulta: CBH=",
+    "target": "BCH"
+  },
+  {
+    "id": "rule_id_0284",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: BFBDA=ADBFB, HHEFF=FFEHH, HFEGH=HGEFH. Consulta: AEBBG=",
+    "target": "GBBEA"
+  },
+  {
+    "id": "rule_id_0285",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: GGBAF=GGABF, BGECA=GBCEA, EDBHG=DEHBG. Consulta: FHAGC=",
+    "target": "HFGAC"
+  },
+  {
+    "id": "rule_id_0286",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: HECHD=DHECH, GFFFE=EGFFF, DGCGB=BDGCG. Consulta: FFBHA=",
+    "target": "AFFBH"
+  },
+  {
+    "id": "rule_id_0287",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: GGAA=AGGA, BEEF=FBEE, HGHC=CHGH. Consulta: ABCF=",
+    "target": "FABC"
+  },
+  {
+    "id": "rule_id_0288",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: GEBCF=FGEBC, FBDEA=AFBDE, DAADG=GDAAD. Consulta: ECBBB=",
+    "target": "BECBB"
+  },
+  {
+    "id": "rule_id_0289",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: HGG=GHG, GCD=DGC, DHE=EDH. Consulta: HEE=",
+    "target": "EHE"
+  },
+  {
+    "id": "rule_id_0290",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: HCCE=CHEC, BFEE=FBEE, AHAG=HAGA. Consulta: FCFC=",
+    "target": "CFCF"
+  },
+  {
+    "id": "rule_id_0291",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: DEDH=HDED, GBEE=EEBG, AAGD=DGAA. Consulta: GBBB=",
+    "target": "BBBG"
+  },
+  {
+    "id": "rule_id_0292",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: CHF=FCH, HBB=BHB, AEC=CAE. Consulta: EHD=",
+    "target": "DEH"
+  },
+  {
+    "id": "rule_id_0293",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: BFBCB=BCBFB, FFECG=GCEFF, BEHFD=DFHEB. Consulta: CAABG=",
+    "target": "GBAAC"
+  },
+  {
+    "id": "rule_id_0294",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: FFHB=FFBH, CAAA=ACAA, EGFF=GEFF. Consulta: DBFD=",
+    "target": "BDDF"
+  },
+  {
+    "id": "rule_id_0295",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: DBE=EDB, GAB=BGA, EGF=FEG. Consulta: EBF=",
+    "target": "FEB"
+  },
+  {
+    "id": "rule_id_0296",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: AGH=HAG, FEA=AFE, CGD=DCG. Consulta: DAH=",
+    "target": "HDA"
+  },
+  {
+    "id": "rule_id_0297",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: GGADG=GGGAD, GHBHF=FGHBH, CFFED=DCFFE. Consulta: EAGCG=",
+    "target": "GEAGC"
+  },
+  {
+    "id": "rule_id_0298",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: GFEDH=HGFED, FEBHE=EFEBH, DBHFG=GDBHF. Consulta: GCBCC=",
+    "target": "CGCBC"
+  },
+  {
+    "id": "rule_id_0299",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: HGAH=HAGH, BCFD=DFCB, DHBD=DBHD. Consulta: AHEG=",
+    "target": "GEHA"
+  },
+  {
+    "id": "rule_id_0300",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: FHE=HFE, FDB=DFB, FAB=AFB. Consulta: BGC=",
+    "target": "GBC"
+  },
+  {
+    "id": "rule_id_0301",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: EGG=GEG, BBH=HBB, ADE=EAD. Consulta: EBF=",
+    "target": "FEB"
+  },
+  {
+    "id": "rule_id_0302",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: GAGD=AGDG, GGDE=GDEG, EHAG=HAGE. Consulta: CHAF=",
+    "target": "HAFC"
+  },
+  {
+    "id": "rule_id_0303",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: GBF=FBG, CFE=EFC, HBE=EBH. Consulta: ECC=",
+    "target": "CCE"
+  },
+  {
+    "id": "rule_id_0304",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: FBFDE=EDFBF, FAACG=GCAAF, CFBGH=HGBFC. Consulta: CHBDD=",
+    "target": "DDBHC"
+  },
+  {
+    "id": "rule_id_0305",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: EGA=GEA, AGE=GAE, HAE=AHE. Consulta: FBA=",
+    "target": "BFA"
+  },
+  {
+    "id": "rule_id_0306",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: EACED=DECAE, AHGFF=FFGHA, GCGGB=BGGCG. Consulta: EBCGE=",
+    "target": "EGCBE"
+  },
+  {
+    "id": "rule_id_0307",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: CFGFH=FCFGH, FHAGC=HFGAC, BEBGC=EBGBC. Consulta: GCEBG=",
+    "target": "CGBEG"
+  },
+  {
+    "id": "rule_id_0308",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: AGC=CGA, FAD=DAF, DHA=AHD. Consulta: BCH=",
+    "target": "HCB"
+  },
+  {
+    "id": "rule_id_0309",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: HAGDC=AHDGC, HGHGC=GHGHC, AHDEA=HAEDA. Consulta: FGEFH=",
+    "target": "GFFEH"
+  },
+  {
+    "id": "rule_id_0310",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: DCB=BDC, FBA=AFB, ACD=DAC. Consulta: BBH=",
+    "target": "HBB"
+  },
+  {
+    "id": "rule_id_0311",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: GCHA=CGAH, BDGG=DBGG, GFHE=FGEH. Consulta: GBAE=",
+    "target": "BGEA"
+  },
+  {
+    "id": "rule_id_0312",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: FCB=BCF, CBB=BBC, GEE=EEG. Consulta: DCG=",
+    "target": "GCD"
+  },
+  {
+    "id": "rule_id_0313",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: CABA=ACAB, DHAA=ADHA, GCFH=HGCF. Consulta: EACG=",
+    "target": "GEAC"
+  },
+  {
+    "id": "rule_id_0314",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: DAFAB=BAFAD, CHBCC=CCBHC, HBHEA=AEHBH. Consulta: DDAGG=",
+    "target": "GGADD"
+  },
+  {
+    "id": "rule_id_0315",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: CFBD=DCFB, DCBH=HDCB, HCFH=HHCF. Consulta: CCFH=",
+    "target": "HCCF"
+  },
+  {
+    "id": "rule_id_0316",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: FDGFF=FFGDF, AADDD=DDDAA, HGCAA=AACGH. Consulta: BAGDF=",
+    "target": "FDGAB"
+  },
+  {
+    "id": "rule_id_0317",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: CAH=AHC, BDH=DHB, CCD=CDC. Consulta: AGH=",
+    "target": "GHA"
+  },
+  {
+    "id": "rule_id_0318",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: CCAFD=DCCAF, EFHGC=CEFHG, CHECG=GCHEC. Consulta: CADAH=",
+    "target": "HCADA"
+  },
+  {
+    "id": "rule_id_0319",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: FEGB=BGEF, GGHA=AHGG, BCHF=FHCB. Consulta: BBFD=",
+    "target": "DFBB"
+  },
+  {
+    "id": "rule_id_0320",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: EEGEA=EGEAE, AAHDA=AHDAA, ADBCF=DBCFA. Consulta: DAFGH=",
+    "target": "AFGHD"
+  },
+  {
+    "id": "rule_id_0321",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: DBB=BDB, GBC=CGB, DAB=BDA. Consulta: FEH=",
+    "target": "HFE"
+  },
+  {
+    "id": "rule_id_0322",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: ECF=CFE, EBD=BDE, GAD=ADG. Consulta: AEB=",
+    "target": "EBA"
+  },
+  {
+    "id": "rule_id_0323",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: ECHD=DHCE, HEBD=DBEH, GFBF=FBFG. Consulta: DFDG=",
+    "target": "GDFD"
+  },
+  {
+    "id": "rule_id_0324",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: BBBGH=BBGBH, DAGCG=ADCGG, BCCBB=CBBCB. Consulta: HFFDH=",
+    "target": "FHDFH"
+  },
+  {
+    "id": "rule_id_0325",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: BBC=CBB, FED=DFE, DGG=GDG. Consulta: HCD=",
+    "target": "DHC"
+  },
+  {
+    "id": "rule_id_0326",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: CHE=ECH, EDH=HED, AHG=GAH. Consulta: DCE=",
+    "target": "EDC"
+  },
+  {
+    "id": "rule_id_0327",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: FCC=CFC, GEE=EGE, AHC=HAC. Consulta: FCG=",
+    "target": "CFG"
+  },
+  {
+    "id": "rule_id_0328",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: CEAH=EAHC, DHFG=HFGD, HBGC=BGCH. Consulta: DEFE=",
+    "target": "EFED"
+  },
+  {
+    "id": "rule_id_0329",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: BGABC=GBBAC, HEAGE=EHGAE, EHBFH=HEFBH. Consulta: FAGGA=",
+    "target": "AFGGA"
+  },
+  {
+    "id": "rule_id_0330",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: HGCFA=AHGCF, DHCCD=DDHCC, DCCEE=EDCCE. Consulta: EHAHE=",
+    "target": "EEHAH"
+  },
+  {
+    "id": "rule_id_0331",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: BCFC=CBCF, HCGE=EHCG, CDBD=DCDB. Consulta: DBAF=",
+    "target": "FDBA"
+  },
+  {
+    "id": "rule_id_0332",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: FEHC=EFCH, FEEC=EFCE, FEFC=EFCF. Consulta: GABA=",
+    "target": "AGAB"
+  },
+  {
+    "id": "rule_id_0333",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: GEEAC=EEACG, ADDGC=DDGCA, CGHBH=GHBHC. Consulta: ABEHD=",
+    "target": "BEHDA"
+  },
+  {
+    "id": "rule_id_0334",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: AHC=CHA, HGA=AGH, ADB=BDA. Consulta: GEA=",
+    "target": "AEG"
+  },
+  {
+    "id": "rule_id_0335",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: DGCC=GDCC, BABC=ABCB, FHHA=HFAH. Consulta: FBBE=",
+    "target": "BFEB"
+  },
+  {
+    "id": "rule_id_0336",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: HBEA=BEAH, GGEB=GEBG, BHHF=HHFB. Consulta: FDHC=",
+    "target": "DHCF"
+  },
+  {
+    "id": "rule_id_0337",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: BAA=ABA, GAD=AGD, HAF=AHF. Consulta: HBG=",
+    "target": "BHG"
+  },
+  {
+    "id": "rule_id_0338",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: CECH=ECHC, AHDC=HACD, BFDA=FBAD. Consulta: HEFF=",
+    "target": "EHFF"
+  },
+  {
+    "id": "rule_id_0339",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: EDD=DED, FCG=CFG, FBB=BFB. Consulta: DHB=",
+    "target": "HDB"
+  },
+  {
+    "id": "rule_id_0340",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: HCE=EHC, GHF=FGH, ABB=BAB. Consulta: EDB=",
+    "target": "BED"
+  },
+  {
+    "id": "rule_id_0341",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: DFGA=AGFD, ABFB=BFBA, DABF=FBAD. Consulta: FHAA=",
+    "target": "AAHF"
+  },
+  {
+    "id": "rule_id_0342",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: AGB=BAG, FFC=CFF, DEA=ADE. Consulta: HAF=",
+    "target": "FHA"
+  },
+  {
+    "id": "rule_id_0343",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: HADFE=EHADF, EDAAH=HEDAA, DBFCE=EDBFC. Consulta: BFBAF=",
+    "target": "FBFBA"
+  },
+  {
+    "id": "rule_id_0344",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: FCC=CCF, GGF=GFG, HAF=AFH. Consulta: AEH=",
+    "target": "EHA"
+  },
+  {
+    "id": "rule_id_0345",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: FCA=CFA, FDC=DFC, DGC=GDC. Consulta: CHG=",
+    "target": "HCG"
+  },
+  {
+    "id": "rule_id_0346",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: HCE=EHC, HFG=GHF, FGD=DFG. Consulta: ACE=",
+    "target": "EAC"
+  },
+  {
+    "id": "rule_id_0347",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: CEHGE=EGHEC, EDEFG=GFEDE, DDBDE=EDBDD. Consulta: CGDGE=",
+    "target": "EGDGC"
+  },
+  {
+    "id": "rule_id_0348",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: BHH=HHB, GBC=CBG, GBE=EBG. Consulta: EFC=",
+    "target": "CFE"
+  },
+  {
+    "id": "rule_id_0349",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: BCGBA=ABCGB, BHCHC=CBHCH, GCDBA=AGCDB. Consulta: DBFBD=",
+    "target": "DDBFB"
+  },
+  {
+    "id": "rule_id_0350",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: EBEFG=GFEBE, FCFDB=BDFCF, DDBDE=EDBDD. Consulta: DDFCA=",
+    "target": "ACFDD"
+  },
+  {
+    "id": "rule_id_0351",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: EAB=BAE, BBE=EBB, AHB=BHA. Consulta: EGH=",
+    "target": "HGE"
+  },
+  {
+    "id": "rule_id_0352",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: HCAB=CABH, HDHC=DHCH, GGFE=GFEG. Consulta: EGCF=",
+    "target": "GCFE"
+  },
+  {
+    "id": "rule_id_0353",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: EBFA=AFBE, HBBC=CBBH, ACAH=HACA. Consulta: CCFE=",
+    "target": "EFCC"
+  },
+  {
+    "id": "rule_id_0354",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: FBC=BCF, EFH=FHE, CEG=EGC. Consulta: FDF=",
+    "target": "DFF"
+  },
+  {
+    "id": "rule_id_0355",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: GGFG=GGGF, BFCG=FBGC, CCAG=CCGA. Consulta: GDCF=",
+    "target": "DGFC"
+  },
+  {
+    "id": "rule_id_0356",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: DGBE=EBGD, FGFB=BFGF, DBDG=GDBD. Consulta: DFEG=",
+    "target": "GEFD"
+  },
+  {
+    "id": "rule_id_0357",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: FAB=AFB, FEG=EFG, DCH=CDH. Consulta: ECF=",
+    "target": "CEF"
+  },
+  {
+    "id": "rule_id_0358",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: GCCC=CGCC, BECA=ABEC, ACFB=BACF. Consulta: HGAE=",
+    "target": "EHGA"
+  },
+  {
+    "id": "rule_id_0359",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: BFF=FFB, HCD=CDH, CFG=FGC. Consulta: GHG=",
+    "target": "HGG"
+  },
+  {
+    "id": "rule_id_0360",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: BGFA=ABGF, FCHG=GFCH, EAGC=CEAG. Consulta: EFHB=",
+    "target": "BEFH"
+  },
+  {
+    "id": "rule_id_0361",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: HGEG=GHGE, ECHG=CEGH, DDHG=DDGH. Consulta: FGGE=",
+    "target": "GFEG"
+  },
+  {
+    "id": "rule_id_0362",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: EDAF=DEFA, HHDB=HHBD, ABFH=BAHF. Consulta: CAAE=",
+    "target": "ACEA"
+  },
+  {
+    "id": "rule_id_0363",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: HHDG=GDHH, DAHH=HHAD, AHHB=BHHA. Consulta: ACBF=",
+    "target": "FBCA"
+  },
+  {
+    "id": "rule_id_0364",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: DEH=EDH, AEB=EAB, HCB=CHB. Consulta: EDF=",
+    "target": "DEF"
+  },
+  {
+    "id": "rule_id_0365",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: CBHFE=BCFHE, DAAFF=ADFAF, FHDBH=HFBDH. Consulta: BACHF=",
+    "target": "ABHCF"
+  },
+  {
+    "id": "rule_id_0366",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: HDDA=DDAH, DAHE=AHED, FHDC=HDCF. Consulta: GGBH=",
+    "target": "GBHG"
+  },
+  {
+    "id": "rule_id_0367",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: GABC=AGCB, DHEC=HDCE, HAGE=AHEG. Consulta: CGFB=",
+    "target": "GCBF"
+  },
+  {
+    "id": "rule_id_0368",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: BABD=DBAB, EECF=FCEE, GHDB=BDHG. Consulta: CDEG=",
+    "target": "GEDC"
+  },
+  {
+    "id": "rule_id_0369",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: HGDDG=GHDDG, DGCAG=GDACG, FCFFC=CFFFC. Consulta: EBFCD=",
+    "target": "BECFD"
+  },
+  {
+    "id": "rule_id_0370",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: BGEH=HEGB, EFGH=HGFE, DFDG=GDFD. Consulta: EEAD=",
+    "target": "DAEE"
+  },
+  {
+    "id": "rule_id_0371",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: DDCA=DCAD, CEAB=EABC, CAGF=AGFC. Consulta: DAFF=",
+    "target": "AFFD"
+  },
+  {
+    "id": "rule_id_0372",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: DHCG=HCGD, CGCD=GCDC, AACA=ACAA. Consulta: FHBA=",
+    "target": "HBAF"
+  },
+  {
+    "id": "rule_id_0373",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: AGED=GADE, GGDA=GGAD, GEBD=EGDB. Consulta: FCHB=",
+    "target": "CFBH"
+  },
+  {
+    "id": "rule_id_0374",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: GADB=BGAD, EDFG=GEDF, DEEA=ADEE. Consulta: FEBB=",
+    "target": "BFEB"
+  },
+  {
+    "id": "rule_id_0375",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: GFBE=FGEB, CBHB=BCBH, BCEF=CBFE. Consulta: FDCH=",
+    "target": "DFHC"
+  },
+  {
+    "id": "rule_id_0376",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: CAD=DCA, EGD=DEG, GEA=AGE. Consulta: BBE=",
+    "target": "EBB"
+  },
+  {
+    "id": "rule_id_0377",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: AHD=HDA, FBB=BBF, BEF=EFB. Consulta: BBD=",
+    "target": "BDB"
+  },
+  {
+    "id": "rule_id_0378",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: BHGAE=EBHGA, EFDHC=CEFDH, GACFA=AGACF. Consulta: DBDHF=",
+    "target": "FDBDH"
+  },
+  {
+    "id": "rule_id_0379",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: DGGAC=GGACD, AAHCC=AHCCA, BBFBH=BFBHB. Consulta: BFFFH=",
+    "target": "FFFHB"
+  },
+  {
+    "id": "rule_id_0380",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: HBG=BHG, ACH=CAH, AHF=HAF. Consulta: FAC=",
+    "target": "AFC"
+  },
+  {
+    "id": "rule_id_0381",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: DEC=EDC, AFG=FAG, GEE=EGE. Consulta: CFE=",
+    "target": "FCE"
+  },
+  {
+    "id": "rule_id_0382",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: CHHA=ACHH, FDCB=BFDC, AHEF=FAHE. Consulta: GCGH=",
+    "target": "HGCG"
+  },
+  {
+    "id": "rule_id_0383",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: GBAE=EABG, AFFF=FFFA, AGBA=ABGA. Consulta: FAGB=",
+    "target": "BGAF"
+  },
+  {
+    "id": "rule_id_0384",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: HAC=AHC, DCF=CDF, BFA=FBA. Consulta: CGD=",
+    "target": "GCD"
+  },
+  {
+    "id": "rule_id_0385",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: CGCDF=GCDCF, BEEEC=EBEEC, DEDFD=EDFDD. Consulta: EHBDD=",
+    "target": "HEDBD"
+  },
+  {
+    "id": "rule_id_0386",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: HFFFE=FHFFE, EAABH=AEBAH, DCCDF=CDDCF. Consulta: DCCBE=",
+    "target": "CDBCE"
+  },
+  {
+    "id": "rule_id_0387",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: HAD=DHA, FFD=DFF, FED=DFE. Consulta: BEB=",
+    "target": "BBE"
+  },
+  {
+    "id": "rule_id_0388",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: HGCH=HHGC, FCCG=GFCC, CAEG=GCAE. Consulta: GBEA=",
+    "target": "AGBE"
+  },
+  {
+    "id": "rule_id_0389",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: HED=EHD, EBH=BEH, GBC=BGC. Consulta: DHD=",
+    "target": "HDD"
+  },
+  {
+    "id": "rule_id_0390",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: CCBGC=CBGCC, BHHAB=HHABB, HECHD=ECHDH. Consulta: FACAB=",
+    "target": "ACABF"
+  },
+  {
+    "id": "rule_id_0391",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: HCDD=CHDD, BHGF=HBFG, BEBG=EBGB. Consulta: CABH=",
+    "target": "ACHB"
+  },
+  {
+    "id": "rule_id_0392",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: AFFBD=FABFD, HEFGG=EHGFG, GCCAC=CGACC. Consulta: FBAHH=",
+    "target": "BFHAH"
+  },
+  {
+    "id": "rule_id_0393",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: HFEH=HHFE, EGDA=AEGD, ADGB=BADG. Consulta: CEHE=",
+    "target": "ECEH"
+  },
+  {
+    "id": "rule_id_0394",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: ECBD=DECB, FAGD=DFAG, BBHH=HBBH. Consulta: HBHG=",
+    "target": "GHBH"
+  },
+  {
+    "id": "rule_id_0395",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: CAFHA=AHFAC, HHDFG=GFDHH, BCEGH=HGECB. Consulta: DGEBD=",
+    "target": "DBEGD"
+  },
+  {
+    "id": "rule_id_0396",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: AEE=EEA, BCE=ECB, AAE=EAA. Consulta: DFG=",
+    "target": "GFD"
+  },
+  {
+    "id": "rule_id_0397",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: EGEE=GEEE, DEEC=EDCE, BHAE=HBEA. Consulta: FHCC=",
+    "target": "HFCC"
+  },
+  {
+    "id": "rule_id_0398",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: CAEC=CEAC, DFFB=BFFD, DABC=CBAD. Consulta: CGBA=",
+    "target": "ABGC"
+  },
+  {
+    "id": "rule_id_0399",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: EEEDA=AEEED, EBBBD=DEBBB, GHFDF=FGHFD. Consulta: HAGFA=",
+    "target": "AHAGF"
+  },
+  {
+    "id": "rule_id_0400",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: ECHAB=CEAHB, DCHBC=CDBHC, BCBAH=CBABH. Consulta: AEAGF=",
+    "target": "EAGAF"
+  },
+  {
+    "id": "rule_id_0401",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: GCAG=CGGA, ADHE=DAEH, EGDF=GEFD. Consulta: DEEG=",
+    "target": "EDGE"
+  },
+  {
+    "id": "rule_id_0402",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: BAE=EAB, BAA=AAB, CAD=DAC. Consulta: GAF=",
+    "target": "FAG"
+  },
+  {
+    "id": "rule_id_0403",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: CAF=AFC, BCC=CCB, CHB=HBC. Consulta: DCH=",
+    "target": "CHD"
+  },
+  {
+    "id": "rule_id_0404",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: BBBE=BBEB, BFBF=FBFB, AFHE=FAEH. Consulta: HCGA=",
+    "target": "CHAG"
+  },
+  {
+    "id": "rule_id_0405",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: HGC=GHC, FHB=HFB, GAE=AGE. Consulta: BAF=",
+    "target": "ABF"
+  },
+  {
+    "id": "rule_id_0406",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: FFH=FHF, BGD=GDB, GGB=GBG. Consulta: DFA=",
+    "target": "FAD"
+  },
+  {
+    "id": "rule_id_0407",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: BADGA=ABADG, HDBFH=HHDBF, AGDHH=HAGDH. Consulta: ABFCE=",
+    "target": "EABFC"
+  },
+  {
+    "id": "rule_id_0408",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: CFE=ECF, DHC=CDH, HCA=AHC. Consulta: GFD=",
+    "target": "DGF"
+  },
+  {
+    "id": "rule_id_0409",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: HFGGE=EGGFH, BFEDA=ADEFB, DFCDA=ADCFD. Consulta: FBHHH=",
+    "target": "HHHBF"
+  },
+  {
+    "id": "rule_id_0410",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: DGAE=GAED, ABCE=BCEA, DEHE=EHED. Consulta: DEDH=",
+    "target": "EDHD"
+  },
+  {
+    "id": "rule_id_0411",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: BHAGE=HBGAE, GGFEB=GGEFB, CEAFA=ECFAA. Consulta: DHCDG=",
+    "target": "HDDCG"
+  },
+  {
+    "id": "rule_id_0412",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: AFGHH=HAFGH, ADCDB=BADCD, EEFDB=BEEFD. Consulta: FEAGD=",
+    "target": "DFEAG"
+  },
+  {
+    "id": "rule_id_0413",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: GBF=BFG, ECF=CFE, GDF=DFG. Consulta: CAB=",
+    "target": "ABC"
+  },
+  {
+    "id": "rule_id_0414",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: FHD=DFH, HHG=GHH, GGB=BGG. Consulta: DGC=",
+    "target": "CDG"
+  },
+  {
+    "id": "rule_id_0415",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: FHAGF=HFGAF, GCDEG=CGEDG, DEECC=EDCEC. Consulta: ACCDD=",
+    "target": "CADCD"
+  },
+  {
+    "id": "rule_id_0416",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: DGDA=GDAD, EHBH=HBHE, CHFD=HFDC. Consulta: CBAH=",
+    "target": "BAHC"
+  },
+  {
+    "id": "rule_id_0417",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: AHBFG=HBFGA, ABECD=BECDA, CFECD=FECDC. Consulta: BGACA=",
+    "target": "GACAB"
+  },
+  {
+    "id": "rule_id_0418",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: FDDH=DFHD, CHFD=HCDF, DECC=EDCC. Consulta: CHAA=",
+    "target": "HCAA"
+  },
+  {
+    "id": "rule_id_0419",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: GCGHA=AGCGH, BBCAF=FBBCA, HHDGA=AHHDG. Consulta: DHGFG=",
+    "target": "GDHGF"
+  },
+  {
+    "id": "rule_id_0420",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: BFH=FBH, DFC=FDC, BFC=FBC. Consulta: EAG=",
+    "target": "AEG"
+  },
+  {
+    "id": "rule_id_0421",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: FHE=HFE, DFF=FDF, EBC=BEC. Consulta: HED=",
+    "target": "EHD"
+  },
+  {
+    "id": "rule_id_0422",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: CFD=DFC, FHE=EHF, FGC=CGF. Consulta: FCC=",
+    "target": "CCF"
+  },
+  {
+    "id": "rule_id_0423",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: EGDC=CEGD, FABA=AFAB, DHHH=HDHH. Consulta: DCFE=",
+    "target": "EDCF"
+  },
+  {
+    "id": "rule_id_0424",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: FABE=EFAB, AEHE=EAEH, BHCH=HBHC. Consulta: BCEF=",
+    "target": "FBCE"
+  },
+  {
+    "id": "rule_id_0425",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: HFC=CFH, FCG=GCF, BED=DEB. Consulta: AAE=",
+    "target": "EAA"
+  },
+  {
+    "id": "rule_id_0426",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: CHGC=HCCG, HDDA=DHAD, DDHF=DDFH. Consulta: EFFC=",
+    "target": "FECF"
+  },
+  {
+    "id": "rule_id_0427",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: GFED=DGFE, BAHH=HBAH, HEAG=GHEA. Consulta: GBFF=",
+    "target": "FGBF"
+  },
+  {
+    "id": "rule_id_0428",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: DAA=AAD, CGB=GBC, EHH=HHE. Consulta: AAC=",
+    "target": "ACA"
+  },
+  {
+    "id": "rule_id_0429",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: CDEEB=BCDEE, HDEBG=GHDEB, BHABE=EBHAB. Consulta: FDEHA=",
+    "target": "AFDEH"
+  },
+  {
+    "id": "rule_id_0430",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: DEHC=CHED, ACDD=DDCA, AGDE=EDGA. Consulta: HFEB=",
+    "target": "BEFH"
+  },
+  {
+    "id": "rule_id_0431",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: EFCBD=DBCFE, DCCAD=DACCD, DEGBH=HBGED. Consulta: CDEDB=",
+    "target": "BDEDC"
+  },
+  {
+    "id": "rule_id_0432",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: DFHH=HDFH, EHAF=FEHA, HGFC=CHGF. Consulta: GHFG=",
+    "target": "GGHF"
+  },
+  {
+    "id": "rule_id_0433",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: GHC=HCG, EGA=GAE, HED=EDH. Consulta: AEC=",
+    "target": "ECA"
+  },
+  {
+    "id": "rule_id_0434",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: GFEA=AGFE, FBFF=FFBF, EDDH=HEDD. Consulta: EBFA=",
+    "target": "AEBF"
+  },
+  {
+    "id": "rule_id_0435",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: EGC=GEC, DAE=ADE, GAH=AGH. Consulta: GHG=",
+    "target": "HGG"
+  },
+  {
+    "id": "rule_id_0436",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: HCDB=CHBD, AACH=AAHC, HAFC=AHCF. Consulta: AHEF=",
+    "target": "HAFE"
+  },
+  {
+    "id": "rule_id_0437",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: BDECB=DECBB, AEAFH=EAFHA, DCHCH=CHCHD. Consulta: FFHGB=",
+    "target": "FHGBF"
+  },
+  {
+    "id": "rule_id_0438",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: DGF=GDF, HFF=FHF, FEE=EFE. Consulta: EGD=",
+    "target": "GED"
+  },
+  {
+    "id": "rule_id_0439",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: HGBHE=EHBGH, AECFG=GFCEA, CCDFD=DFDCC. Consulta: AFFBE=",
+    "target": "EBFFA"
+  },
+  {
+    "id": "rule_id_0440",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: GAHAF=AHAFG, EEFAE=EFAEE, ABCEA=BCEAA. Consulta: EBCBF=",
+    "target": "BCBFE"
+  },
+  {
+    "id": "rule_id_0441",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: DFG=GDF, GFH=HGF, BDF=FBD. Consulta: HFA=",
+    "target": "AHF"
+  },
+  {
+    "id": "rule_id_0442",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: FAGAC=CAGAF, GHDGA=AGDHG, DBDBF=FBDBD. Consulta: AHEAD=",
+    "target": "DAEHA"
+  },
+  {
+    "id": "rule_id_0443",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: FHHCC=CFHHC, GBBBB=BGBBB, CFCAF=FCFCA. Consulta: BDEEH=",
+    "target": "HBDEE"
+  },
+  {
+    "id": "rule_id_0444",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: HECB=EHBC, HGFG=GHGF, CDCB=DCBC. Consulta: HCAD=",
+    "target": "CHDA"
+  },
+  {
+    "id": "rule_id_0445",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: ABEHE=BEHEA, DGEEC=GEECD, EDEEE=DEEEE. Consulta: EGBFF=",
+    "target": "GBFFE"
+  },
+  {
+    "id": "rule_id_0446",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: AHDF=FDHA, ECAF=FACE, HEEG=GEEH. Consulta: DCGA=",
+    "target": "AGCD"
+  },
+  {
+    "id": "rule_id_0447",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: CHD=DHC, CHF=FHC, BCG=GCB. Consulta: HGA=",
+    "target": "AGH"
+  },
+  {
+    "id": "rule_id_0448",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: ABG=GBA, BGD=DGB, CFE=EFC. Consulta: FDA=",
+    "target": "ADF"
+  },
+  {
+    "id": "rule_id_0449",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: FEAEA=AEAEF, EFAEH=HEAFE, DHHDD=DDHHD. Consulta: FHEAG=",
+    "target": "GAEHF"
+  },
+  {
+    "id": "rule_id_0450",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: FBE=BFE, FAD=AFD, BEG=EBG. Consulta: FHB=",
+    "target": "HFB"
+  },
+  {
+    "id": "rule_id_0451",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: HCBD=CHDB, HBBG=BHGB, HCHF=CHFH. Consulta: DFEH=",
+    "target": "FDHE"
+  },
+  {
+    "id": "rule_id_0452",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: ABGG=GGBA, HFGA=AGFH, CDEH=HEDC. Consulta: DHHA=",
+    "target": "AHHD"
+  },
+  {
+    "id": "rule_id_0453",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: HCD=DHC, EHC=CEH, FEE=EFE. Consulta: BDH=",
+    "target": "HBD"
+  },
+  {
+    "id": "rule_id_0454",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: GBGB=BGBG, FCAG=CAGF, HDAE=DAEH. Consulta: HDHG=",
+    "target": "DHGH"
+  },
+  {
+    "id": "rule_id_0455",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: DFG=FDG, CEE=ECE, FBC=BFC. Consulta: GAE=",
+    "target": "AGE"
+  },
+  {
+    "id": "rule_id_0456",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: EEEC=EECE, BFAA=FAAB, GBFH=BFHG. Consulta: AADB=",
+    "target": "ADBA"
+  },
+  {
+    "id": "rule_id_0457",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: AEBHD=DHBEA, CEBDA=ADBEC, GGCDA=ADCGG. Consulta: CGFHB=",
+    "target": "BHFGC"
+  },
+  {
+    "id": "rule_id_0458",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: FEA=EAF, BBG=BGB, CAF=AFC. Consulta: CEC=",
+    "target": "ECC"
+  },
+  {
+    "id": "rule_id_0459",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: FDBA=DFAB, BCDF=CBFD, FFAD=FFDA. Consulta: AGAC=",
+    "target": "GACA"
+  },
+  {
+    "id": "rule_id_0460",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: ACF=CFA, AEE=EEA, ABE=BEA. Consulta: DAH=",
+    "target": "AHD"
+  },
+  {
+    "id": "rule_id_0461",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: CEFF=FFEC, AHFC=CFHA, DGHH=HHGD. Consulta: FGDA=",
+    "target": "ADGF"
+  },
+  {
+    "id": "rule_id_0462",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: BFCH=HCFB, AFHA=AHFA, FCFF=FFCF. Consulta: BGGA=",
+    "target": "AGGB"
+  },
+  {
+    "id": "rule_id_0463",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: BCHD=CHDB, CEAE=EAEC, CECF=ECFC. Consulta: CEBD=",
+    "target": "EBDC"
+  },
+  {
+    "id": "rule_id_0464",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: HBG=GHB, AAE=EAA, FAB=BFA. Consulta: DBD=",
+    "target": "DDB"
+  },
+  {
+    "id": "rule_id_0465",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: FCGH=HGCF, GHGE=EGHG, DABE=EBAD. Consulta: HECE=",
+    "target": "ECEH"
+  },
+  {
+    "id": "rule_id_0466",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: HACE=EHAC, GGFH=HGGF, CDBH=HCDB. Consulta: HDCE=",
+    "target": "EHDC"
+  },
+  {
+    "id": "rule_id_0467",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: BCCAE=CCAEB, CDAAF=DAAFC, EAEEC=AEECE. Consulta: HCEBH=",
+    "target": "CEBHH"
+  },
+  {
+    "id": "rule_id_0468",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: ADD=DDA, FGA=GAF, DAB=ABD. Consulta: BGA=",
+    "target": "GAB"
+  },
+  {
+    "id": "rule_id_0469",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: GEDHA=EGHDA, AEFFF=EAFFF, FDFEA=DFEFA. Consulta: AEEBC=",
+    "target": "EABEC"
+  },
+  {
+    "id": "rule_id_0470",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: GFB=BGF, FAB=BFA, BHD=DBH. Consulta: ACH=",
+    "target": "HAC"
+  },
+  {
+    "id": "rule_id_0471",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: FCDBD=CFBDD, ACABG=CABAG, BHBHE=HBHBE. Consulta: AEBHB=",
+    "target": "EAHBB"
+  },
+  {
+    "id": "rule_id_0472",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: FGFHA=GFHAF, AGAEB=GAEBA, DABDA=ABDAD. Consulta: DCEDD=",
+    "target": "CEDDD"
+  },
+  {
+    "id": "rule_id_0473",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: BADG=GBAD, AHGC=CAHG, EGEB=BEGE. Consulta: CCBH=",
+    "target": "HCCB"
+  },
+  {
+    "id": "rule_id_0474",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: FEDFB=BFEDF, FDBAC=CFDBA, HEDDA=AHEDD. Consulta: FFGFG=",
+    "target": "GFFGF"
+  },
+  {
+    "id": "rule_id_0475",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: CEHC=CCEH, FEEG=GFEE, DBAC=CDBA. Consulta: FEFB=",
+    "target": "BFEF"
+  },
+  {
+    "id": "rule_id_0476",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: EBAH=BEHA, FECB=EFBC, ECFH=CEHF. Consulta: DAAA=",
+    "target": "ADAA"
+  },
+  {
+    "id": "rule_id_0477",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: DDAF=FDDA, CDDH=HCDD, DCEE=EDCE. Consulta: EBGE=",
+    "target": "EEBG"
+  },
+  {
+    "id": "rule_id_0478",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: AAB=ABA, DBH=BHD, CEA=EAC. Consulta: ACF=",
+    "target": "CFA"
+  },
+  {
+    "id": "rule_id_0479",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: HAEBB=BHAEB, DGEFE=EDGEF, FDADA=AFDAD. Consulta: FAGAC=",
+    "target": "CFAGA"
+  },
+  {
+    "id": "rule_id_0480",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: DEBF=EDFB, DHDE=HDED, GHCA=HGAC. Consulta: GFAB=",
+    "target": "FGBA"
+  },
+  {
+    "id": "rule_id_0481",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: AHGAH=HAHGA, HDEFA=AHDEF, BHCBD=DBHCB. Consulta: FHCCC=",
+    "target": "CFHCC"
+  },
+  {
+    "id": "rule_id_0482",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: DAFDG=ADDFG, HHFGD=HHGFD, ADDCF=DACDF. Consulta: FHFAF=",
+    "target": "HFAFF"
+  },
+  {
+    "id": "rule_id_0483",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: ECDB=BECD, HEFE=EHEF, BGHE=EBGH. Consulta: BEEG=",
+    "target": "GBEE"
+  },
+  {
+    "id": "rule_id_0484",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: HHC=CHH, FFH=HFF, FDH=HFD. Consulta: FAG=",
+    "target": "GFA"
+  },
+  {
+    "id": "rule_id_0485",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: HFEE=EEFH, EEHC=CHEE, GEAB=BAEG. Consulta: EFAD=",
+    "target": "DAFE"
+  },
+  {
+    "id": "rule_id_0486",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: CBG=BCG, EDA=DEA, FAH=AFH. Consulta: EGA=",
+    "target": "GEA"
+  },
+  {
+    "id": "rule_id_0487",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: FCAC=CFCA, CHBA=ACHB, HEDC=CHED. Consulta: CCAC=",
+    "target": "CCCA"
+  },
+  {
+    "id": "rule_id_0488",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: FDD=DFD, FHA=HFA, DCH=CDH. Consulta: EFF=",
+    "target": "FEF"
+  },
+  {
+    "id": "rule_id_0489",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: BHDGG=GGDHB, HFDGF=FGDFH, DHCBA=ABCHD. Consulta: EEDFF=",
+    "target": "FFDEE"
+  },
+  {
+    "id": "rule_id_0490",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: HEDA=EDAH, HCGD=CGDH, FDDA=DDAF. Consulta: BAHB=",
+    "target": "AHBB"
+  },
+  {
+    "id": "rule_id_0491",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: EAAGF=FEAAG, HDFBD=DHDFB, ADDAF=FADDA. Consulta: GAGEE=",
+    "target": "EGAGE"
+  },
+  {
+    "id": "rule_id_0492",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: HHBA=HHAB, AHBE=HAEB, EBGB=BEBG. Consulta: BFCA=",
+    "target": "FBAC"
+  },
+  {
+    "id": "rule_id_0493",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: ADD=DAD, CGF=GCF, AFD=FAD. Consulta: ADB=",
+    "target": "DAB"
+  },
+  {
+    "id": "rule_id_0494",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: ACEH=CEHA, GCCB=CCBG, EFDE=FDEE. Consulta: FABD=",
+    "target": "ABDF"
+  },
+  {
+    "id": "rule_id_0495",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: DFE=EDF, ADE=EAD, HBE=EHB. Consulta: FGH=",
+    "target": "HFG"
+  },
+  {
+    "id": "rule_id_0496",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: FEFCF=FCFEF, EGEGH=HGEGE, AFFBA=ABFFA. Consulta: FGGED=",
+    "target": "DEGGF"
+  },
+  {
+    "id": "rule_id_0497",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: AHAAC=CAHAA, ECHDD=DECHD, BDGCH=HBDGC. Consulta: GEGED=",
+    "target": "DGEGE"
+  },
+  {
+    "id": "rule_id_0498",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: EAD=AED, FGA=GFA, ADF=DAF. Consulta: FDC=",
+    "target": "DFC"
+  },
+  {
+    "id": "rule_id_0499",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: GCGHF=FGCGH, BEGEE=EBEGE, ACBCF=FACBC. Consulta: BHCHH=",
+    "target": "HBHCH"
+  },
+  {
+    "id": "rule_id_0500",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: FDFD=DFDF, DEHG=GDEH, EFDF=FEFD. Consulta: ADDE=",
+    "target": "EADD"
+  },
+  {
+    "id": "rule_id_0501",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: BGEBD=GEBDB, AAFGF=AFGFA, CCFEC=CFECC. Consulta: GEEGB=",
+    "target": "EEGBG"
+  },
+  {
+    "id": "rule_id_0502",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: CBA=BCA, GFF=FGF, DCC=CDC. Consulta: CHG=",
+    "target": "HCG"
+  },
+  {
+    "id": "rule_id_0503",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: FFDH=HDFF, HABB=BBAH, BDFF=FFDB. Consulta: BGHD=",
+    "target": "DHGB"
+  },
+  {
+    "id": "rule_id_0504",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: EBC=BCE, FFD=FDF, BFD=FDB. Consulta: CHE=",
+    "target": "HEC"
+  },
+  {
+    "id": "rule_id_0505",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: FEDH=EDHF, BGEE=GEEB, FGHG=GHGF. Consulta: AEHB=",
+    "target": "EHBA"
+  },
+  {
+    "id": "rule_id_0506",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: AAGF=FAAG, EBAE=EEBA, ABGC=CABG. Consulta: AABE=",
+    "target": "EAAB"
+  },
+  {
+    "id": "rule_id_0507",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: EDF=FDE, GAB=BAG, EFF=FFE. Consulta: BCC=",
+    "target": "CCB"
+  },
+  {
+    "id": "rule_id_0508",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: FDCH=DFHC, FCCH=CFHC, DEEB=EDBE. Consulta: BEHA=",
+    "target": "EBAH"
+  },
+  {
+    "id": "rule_id_0509",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: CFE=FEC, GDE=DEG, FAE=AEF. Consulta: DHE=",
+    "target": "HED"
+  },
+  {
+    "id": "rule_id_0510",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: FHGB=HGBF, EEDB=EDBE, BGHF=GHFB. Consulta: FHHG=",
+    "target": "HHGF"
+  },
+  {
+    "id": "rule_id_0511",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: FEHAG=GAHEF, CHACF=FCAHC, EACEE=EECAE. Consulta: DECDB=",
+    "target": "BDCED"
+  },
+  {
+    "id": "rule_id_0512",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: ABFCA=AABFC, DGDBH=HDGDB, BHEBH=HBHEB. Consulta: ECFBH=",
+    "target": "HECFB"
+  },
+  {
+    "id": "rule_id_0513",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: FHC=HCF, EGG=GGE, FGE=GEF. Consulta: GAB=",
+    "target": "ABG"
+  },
+  {
+    "id": "rule_id_0514",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: HEAD=EHDA, FGGD=GFDG, GHBG=HGGB. Consulta: GEDC=",
+    "target": "EGCD"
+  },
+  {
+    "id": "rule_id_0515",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: HDDF=FHDD, ADCF=FADC, HGBE=EHGB. Consulta: BFHH=",
+    "target": "HBFH"
+  },
+  {
+    "id": "rule_id_0516",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: DEDDA=EDDDA, BGGEG=GBEGG, GBAFD=BGFAD. Consulta: FEACA=",
+    "target": "EFCAA"
+  },
+  {
+    "id": "rule_id_0517",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: CDGDE=ECDGD, CAABG=GCAAB, CFECC=CCFEC. Consulta: AHBBA=",
+    "target": "AAHBB"
+  },
+  {
+    "id": "rule_id_0518",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: DAE=EAD, DDA=ADD, EBB=BBE. Consulta: ADG=",
+    "target": "GDA"
+  },
+  {
+    "id": "rule_id_0519",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: AEDF=FAED, DFEC=CDFE, GEFB=BGEF. Consulta: GFFH=",
+    "target": "HGFF"
+  },
+  {
+    "id": "rule_id_0520",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: AGEH=GAHE, BAAE=ABEA, FACC=AFCC. Consulta: CHHC=",
+    "target": "HCCH"
+  },
+  {
+    "id": "rule_id_0521",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: FGD=DFG, DGE=EDG, HAD=DHA. Consulta: BAG=",
+    "target": "GBA"
+  },
+  {
+    "id": "rule_id_0522",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: GHEG=HEGG, FHAB=HABF, AFBD=FBDA. Consulta: DHGF=",
+    "target": "HGFD"
+  },
+  {
+    "id": "rule_id_0523",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: CDHCA=ACHDC, GDHGF=FGHDG, DEFCB=BCFED. Consulta: EDHBG=",
+    "target": "GBHDE"
+  },
+  {
+    "id": "rule_id_0524",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: HGHFG=GHFHG, GEHAD=EGAHD, FAFHG=AFHFG. Consulta: HCEFE=",
+    "target": "CHFEE"
+  },
+  {
+    "id": "rule_id_0525",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: EEFC=EFCE, DDFA=DFAD, BCCD=CCDB. Consulta: EEHA=",
+    "target": "EHAE"
+  },
+  {
+    "id": "rule_id_0526",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: GEDHH=EDHHG, DHDGE=HDGED, ECFDF=CFDFE. Consulta: FCFAC=",
+    "target": "CFACF"
+  },
+  {
+    "id": "rule_id_0527",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: GHD=DHG, FCE=ECF, GCF=FCG. Consulta: BDC=",
+    "target": "CDB"
+  },
+  {
+    "id": "rule_id_0528",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: BCHE=CBEH, CFGG=FCGG, GDCB=DGBC. Consulta: EGHH=",
+    "target": "GEHH"
+  },
+  {
+    "id": "rule_id_0529",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: FFAHH=FAHHF, EAEEB=AEEBE, FDDHF=DDHFF. Consulta: DCECH=",
+    "target": "CECHD"
+  },
+  {
+    "id": "rule_id_0530",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: DBG=BGD, CGG=GGC, BGD=GDB. Consulta: EAA=",
+    "target": "AAE"
+  },
+  {
+    "id": "rule_id_0531",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: EEAC=EACE, FBCG=BCGF, DAHH=AHHD. Consulta: FAAF=",
+    "target": "AAFF"
+  },
+  {
+    "id": "rule_id_0532",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: HEHD=DHEH, EFAE=EAFE, FDAF=FADF. Consulta: BGBB=",
+    "target": "BBGB"
+  },
+  {
+    "id": "rule_id_0533",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: HBF=BHF, EFD=FED, HCE=CHE. Consulta: BDA=",
+    "target": "DBA"
+  },
+  {
+    "id": "rule_id_0534",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: DBG=GDB, FHG=GFH, FDE=EFD. Consulta: BBH=",
+    "target": "HBB"
+  },
+  {
+    "id": "rule_id_0535",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: GGC=GCG, GEE=EEG, BBA=BAB. Consulta: FBF=",
+    "target": "BFF"
+  },
+  {
+    "id": "rule_id_0536",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: CGDC=CCGD, EAFA=AEAF, AAEF=FAAE. Consulta: HDGB=",
+    "target": "BHDG"
+  },
+  {
+    "id": "rule_id_0537",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: FHDAF=HDAFF, HBDHG=BDHGH, EEHBB=EHBBE. Consulta: CHFFD=",
+    "target": "HFFDC"
+  },
+  {
+    "id": "rule_id_0538",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: FHGFB=HFFGB, ACEHF=CAHEF, ABAEF=BAEAF. Consulta: FDECA=",
+    "target": "DFCEA"
+  },
+  {
+    "id": "rule_id_0539",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: GHGAG=HGAGG, DBBGE=BDGBE, AGHBG=GABHG. Consulta: BGAFF=",
+    "target": "GBFAF"
+  },
+  {
+    "id": "rule_id_0540",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: EDCB=DEBC, AGEG=GAGE, BDAG=DBGA. Consulta: DCEE=",
+    "target": "CDEE"
+  },
+  {
+    "id": "rule_id_0541",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: AAG=AGA, BAE=AEB, GDE=DEG. Consulta: EAF=",
+    "target": "AFE"
+  },
+  {
+    "id": "rule_id_0542",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: EDG=DGE, CCG=CGC, FBC=BCF. Consulta: FDC=",
+    "target": "DCF"
+  },
+  {
+    "id": "rule_id_0543",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: BCD=DCB, DFE=EFD, DAA=AAD. Consulta: CDE=",
+    "target": "EDC"
+  },
+  {
+    "id": "rule_id_0544",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: BAHHE=EHHAB, EDEBB=BBEDE, FHHED=DEHHF. Consulta: EDEAG=",
+    "target": "GAEDE"
+  },
+  {
+    "id": "rule_id_0545",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: CECH=ECHC, ABGG=BAGG, HADA=AHAD. Consulta: CECG=",
+    "target": "ECGC"
+  },
+  {
+    "id": "rule_id_0546",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: GHB=HBG, CDD=DDC, BEG=EGB. Consulta: ACE=",
+    "target": "CEA"
+  },
+  {
+    "id": "rule_id_0547",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: HGHAH=HHGHA, EAGCH=HEAGC, GBBED=DGBBE. Consulta: FECGG=",
+    "target": "GFECG"
+  },
+  {
+    "id": "rule_id_0548",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: HECG=ECGH, EEDB=EDBE, DGGC=GGCD. Consulta: BDAB=",
+    "target": "DABB"
+  },
+  {
+    "id": "rule_id_0549",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: FDECF=FCEDF, FGADC=CDAGF, EADEB=BEDAE. Consulta: CCFGG=",
+    "target": "GGFCC"
+  },
+  {
+    "id": "rule_id_0550",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: DEGB=BDEG, AFGC=CAFG, GBHE=EGBH. Consulta: HCFD=",
+    "target": "DHCF"
+  },
+  {
+    "id": "rule_id_0551",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: CDDG=DDGC, CBGG=BGGC, CAFB=AFBC. Consulta: DHCG=",
+    "target": "HCGD"
+  },
+  {
+    "id": "rule_id_0552",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: GDHCC=CGDHC, CBCHH=HCBCH, CHCBE=ECHCB. Consulta: CDHHC=",
+    "target": "CCDHH"
+  },
+  {
+    "id": "rule_id_0553",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: CBBF=BCFB, HFGA=FHAG, EAEC=AECE. Consulta: GBBC=",
+    "target": "BGCB"
+  },
+  {
+    "id": "rule_id_0554",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: BCDCC=CBCDC, HHHCD=DHHHC, FHDGC=CFHDG. Consulta: BCHAH=",
+    "target": "HBCHA"
+  },
+  {
+    "id": "rule_id_0555",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: AFFC=CAFF, HEEC=CHEE, GGEC=CGGE. Consulta: ABCF=",
+    "target": "FABC"
+  },
+  {
+    "id": "rule_id_0556",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: DFC=CFD, CBD=DBC, EAB=BAE. Consulta: DCH=",
+    "target": "HCD"
+  },
+  {
+    "id": "rule_id_0557",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: ACHG=GACH, GCGC=CGCG, EFHD=DEFH. Consulta: HEBE=",
+    "target": "EHEB"
+  },
+  {
+    "id": "rule_id_0558",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: HECB=BHEC, BDFE=EBDF, EBDG=GEBD. Consulta: BBGC=",
+    "target": "CBBG"
+  },
+  {
+    "id": "rule_id_0559",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: EDDB=DEBD, DBGD=BDDG, DCHF=CDFH. Consulta: HEGG=",
+    "target": "EHGG"
+  },
+  {
+    "id": "rule_id_0560",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: ACGAE=CGAEA, CCFAG=CFAGC, GBEHF=BEHFG. Consulta: CCBDG=",
+    "target": "CBDGC"
+  },
+  {
+    "id": "rule_id_0561",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: GHCAC=HGACC, BDACC=DBCAC, EAFDC=AEDFC. Consulta: GCAGE=",
+    "target": "CGGAE"
+  },
+  {
+    "id": "rule_id_0562",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: GCE=CGE, BGG=GBG, AHF=HAF. Consulta: DAB=",
+    "target": "ADB"
+  },
+  {
+    "id": "rule_id_0563",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: CHG=GHC, GHB=BHG, BHC=CHB. Consulta: BFH=",
+    "target": "HFB"
+  },
+  {
+    "id": "rule_id_0564",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: GGDAA=GDAAG, EAGFA=AGFAE, EBHDB=BHDBE. Consulta: BAGDA=",
+    "target": "AGDAB"
+  },
+  {
+    "id": "rule_id_0565",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: HHDEE=EEDHH, HEFHB=BHFEH, BDFGG=GGFDB. Consulta: HCFEE=",
+    "target": "EEFCH"
+  },
+  {
+    "id": "rule_id_0566",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: EAFAG=GEAFA, BDEHH=HBDEH, GGFAB=BGGFA. Consulta: HFFHD=",
+    "target": "DHFFH"
+  },
+  {
+    "id": "rule_id_0567",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: HEB=BEH, FGA=AGF, FHA=AHF. Consulta: GGE=",
+    "target": "EGG"
+  },
+  {
+    "id": "rule_id_0568",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: AEH=HAE, FEE=EFE, FAC=CFA. Consulta: FEF=",
+    "target": "FFE"
+  },
+  {
+    "id": "rule_id_0569",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: HCBE=EHCB, FABC=CFAB, FFBF=FFFB. Consulta: AFAC=",
+    "target": "CAFA"
+  },
+  {
+    "id": "rule_id_0570",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: DEBGA=AGBED, GDDEB=BEDDG, BBBDG=GDBBB. Consulta: HCAHA=",
+    "target": "AHACH"
+  },
+  {
+    "id": "rule_id_0571",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: DGGEG=GDEGG, DEAFH=EDFAH, DHBCF=HDCBF. Consulta: HEFCH=",
+    "target": "EHCFH"
+  },
+  {
+    "id": "rule_id_0572",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: HGGE=GGEH, AEBB=EBBA, FGAF=GAFF. Consulta: DCCA=",
+    "target": "CCAD"
+  },
+  {
+    "id": "rule_id_0573",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: EEAD=DAEE, DBGD=DGBD, DDAA=AADD. Consulta: HBCG=",
+    "target": "GCBH"
+  },
+  {
+    "id": "rule_id_0574",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: DCEEF=FDCEE, FAHEC=CFAHE, HBCHD=DHBCH. Consulta: AEBCH=",
+    "target": "HAEBC"
+  },
+  {
+    "id": "rule_id_0575",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: DAGF=FGAD, BFCB=BCFB, HBHH=HHBH. Consulta: GHHD=",
+    "target": "DHHG"
+  },
+  {
+    "id": "rule_id_0576",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: BEGF=FGEB, AGAA=AAGA, AEAD=DAEA. Consulta: BCAA=",
+    "target": "AACB"
+  },
+  {
+    "id": "rule_id_0577",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: AGGH=HAGG, AGHD=DAGH, HEDH=HHED. Consulta: AECB=",
+    "target": "BAEC"
+  },
+  {
+    "id": "rule_id_0578",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: AEDBD=EDBDA, HAHEE=AHEEH, CFAHB=FAHBC. Consulta: BDBCE=",
+    "target": "DBCEB"
+  },
+  {
+    "id": "rule_id_0579",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: EGCA=GCAE, HECH=ECHH, HCDH=CDHH. Consulta: DGAF=",
+    "target": "GAFD"
+  },
+  {
+    "id": "rule_id_0580",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: BEEEA=ABEEE, CHAHF=FCHAH, GEHEA=AGEHE. Consulta: ACGGD=",
+    "target": "DACGG"
+  },
+  {
+    "id": "rule_id_0581",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: HCHEE=EHCHE, CFBFG=GCFBF, GBAEG=GGBAE. Consulta: CAGGB=",
+    "target": "BCAGG"
+  },
+  {
+    "id": "rule_id_0582",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: DGAD=GADD, HHEG=HEGH, CACD=ACDC. Consulta: ADFG=",
+    "target": "DFGA"
+  },
+  {
+    "id": "rule_id_0583",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: FBAFG=BFFAG, CDEDE=DCDEE, ABFGE=BAGFE. Consulta: BCHEE=",
+    "target": "CBEHE"
+  },
+  {
+    "id": "rule_id_0584",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: CEF=ECF, BFC=FBC, EBD=BED. Consulta: ACE=",
+    "target": "CAE"
+  },
+  {
+    "id": "rule_id_0585",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: FEBBG=EFBBG, HBBEE=BHEBE, BABGC=ABGBC. Consulta: CGCFA=",
+    "target": "GCFCA"
+  },
+  {
+    "id": "rule_id_0586",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: BHFFG=HFFGB, FGDHD=GDHDF, FFCBD=FCBDF. Consulta: DDHGF=",
+    "target": "DHGFD"
+  },
+  {
+    "id": "rule_id_0587",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: GFGE=FGEG, CABB=ACBB, CHGC=HCCG. Consulta: AFFH=",
+    "target": "FAHF"
+  },
+  {
+    "id": "rule_id_0588",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: HBDD=BHDD, DABF=ADFB, BBDA=BBAD. Consulta: ABGB=",
+    "target": "BABG"
+  },
+  {
+    "id": "rule_id_0589",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: EHDDA=AEHDD, GACDF=FGACD, HHHBG=GHHHB. Consulta: CCCFD=",
+    "target": "DCCCF"
+  },
+  {
+    "id": "rule_id_0590",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: EBCA=AEBC, FDFF=FFDF, DCEH=HDCE. Consulta: EADG=",
+    "target": "GEAD"
+  },
+  {
+    "id": "rule_id_0591",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: CEGA=ECAG, DEFD=EDDF, HEFE=EHEF. Consulta: FAEA=",
+    "target": "AFAE"
+  },
+  {
+    "id": "rule_id_0592",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: GCB=BGC, EAD=DEA, GED=DGE. Consulta: DFF=",
+    "target": "FDF"
+  },
+  {
+    "id": "rule_id_0593",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: GEHC=CGEH, CBCG=GCBC, FDEB=BFDE. Consulta: EEGB=",
+    "target": "BEEG"
+  },
+  {
+    "id": "rule_id_0594",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: GDE=DEG, BAC=ACB, CGG=GGC. Consulta: HAF=",
+    "target": "AFH"
+  },
+  {
+    "id": "rule_id_0595",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: GGBC=GGCB, AGCD=GADC, EDBH=DEHB. Consulta: ADHE=",
+    "target": "DAEH"
+  },
+  {
+    "id": "rule_id_0596",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: CAF=AFC, CCE=CEC, DFE=FED. Consulta: EAE=",
+    "target": "AEE"
+  },
+  {
+    "id": "rule_id_0597",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: AEF=EAF, CHA=HCA, DBC=BDC. Consulta: DHB=",
+    "target": "HDB"
+  },
+  {
+    "id": "rule_id_0598",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: HEHF=FHEH, BCFA=AFCB, FBCH=HCBF. Consulta: BDFE=",
+    "target": "EFDB"
+  },
+  {
+    "id": "rule_id_0599",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: AEHHC=CAEHH, CAGCF=FCAGC, HABDD=DHABD. Consulta: AFCAH=",
+    "target": "HAFCA"
+  },
+  {
+    "id": "rule_id_0600",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: ACECB=CECBA, AGAEH=GAEHA, FABDD=ABDDF. Consulta: HHCGC=",
+    "target": "HCGCH"
+  },
+  {
+    "id": "rule_id_0601",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: BBG=GBB, HGD=DGH, DDA=ADD. Consulta: FDD=",
+    "target": "DDF"
+  },
+  {
+    "id": "rule_id_0602",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: GEFGA=EFGAG, FCHBB=CHBBF, AEBEH=EBEHA. Consulta: AFEHG=",
+    "target": "FEHGA"
+  },
+  {
+    "id": "rule_id_0603",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: ABBHB=BAHBB, CFGCC=FCCGC, HAGHB=AHHGB. Consulta: DDHDG=",
+    "target": "DDDHG"
+  },
+  {
+    "id": "rule_id_0604",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: AAB=BAA, HCE=ECH, CGA=AGC. Consulta: GAH=",
+    "target": "HAG"
+  },
+  {
+    "id": "rule_id_0605",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: CABE=ECAB, FBHB=BFBH, EFHF=FEFH. Consulta: HGHH=",
+    "target": "HHGH"
+  },
+  {
+    "id": "rule_id_0606",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: FGAF=FFGA, HBFB=BHBF, FECG=GFEC. Consulta: BAFB=",
+    "target": "BBAF"
+  },
+  {
+    "id": "rule_id_0607",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: HAD=ADH, GDF=DFG, GBE=BEG. Consulta: ECB=",
+    "target": "CBE"
+  },
+  {
+    "id": "rule_id_0608",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: EDDF=FEDD, DHCC=CDHC, CFCD=DCFC. Consulta: DAFH=",
+    "target": "HDAF"
+  },
+  {
+    "id": "rule_id_0609",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: EDHGF=FEDHG, FFBED=DFFBE, AGHAF=FAGHA. Consulta: HFHDC=",
+    "target": "CHFHD"
+  },
+  {
+    "id": "rule_id_0610",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: BBF=BFB, DEF=EFD, CDF=DFC. Consulta: GGD=",
+    "target": "GDG"
+  },
+  {
+    "id": "rule_id_0611",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: CAB=BAC, CHH=HHC, EHH=HHE. Consulta: CFA=",
+    "target": "AFC"
+  },
+  {
+    "id": "rule_id_0612",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: CHFFE=HFFEC, CCEFA=CEFAC, FHGBF=HGBFF. Consulta: GEEDC=",
+    "target": "EEDCG"
+  },
+  {
+    "id": "rule_id_0613",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: BABG=GBAB, EFGD=DGFE, GDAD=DADG. Consulta: DEHC=",
+    "target": "CHED"
+  },
+  {
+    "id": "rule_id_0614",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: CFBAG=GABFC, DBEBE=EBEBD, GDDDC=CDDDG. Consulta: ABFCF=",
+    "target": "FCFBA"
+  },
+  {
+    "id": "rule_id_0615",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: HGED=GHDE, FFAE=FFEA, GDBD=DGDB. Consulta: CGDB=",
+    "target": "GCBD"
+  },
+  {
+    "id": "rule_id_0616",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: EFCEE=FCEEE, HFDFF=FDFFH, BECCD=ECCDB. Consulta: BDHEA=",
+    "target": "DHEAB"
+  },
+  {
+    "id": "rule_id_0617",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: GHH=HHG, AFC=CFA, BBF=FBB. Consulta: HBF=",
+    "target": "FBH"
+  },
+  {
+    "id": "rule_id_0618",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: FDH=DHF, DBF=BFD, FCC=CCF. Consulta: EAD=",
+    "target": "ADE"
+  },
+  {
+    "id": "rule_id_0619",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: BGEFC=CBGEF, DCBEG=GDCBE, AEHHB=BAEHH. Consulta: HDDBF=",
+    "target": "FHDDB"
+  },
+  {
+    "id": "rule_id_0620",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: HBEB=BEBH, CBAD=BADC, BDCA=DCAB. Consulta: ABHE=",
+    "target": "BHEA"
+  },
+  {
+    "id": "rule_id_0621",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: HBB=BHB, ECD=DEC, BGH=HBG. Consulta: DAG=",
+    "target": "GDA"
+  },
+  {
+    "id": "rule_id_0622",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: FADDD=ADDDF, EACDE=ACDEE, FCDFH=CDFHF. Consulta: BFGAD=",
+    "target": "FGADB"
+  },
+  {
+    "id": "rule_id_0623",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: BED=EDB, BAH=AHB, DFB=FBD. Consulta: EGF=",
+    "target": "GFE"
+  },
+  {
+    "id": "rule_id_0624",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: DDBCF=DDCBF, AGBDC=GADBC, GCAFC=CGFAC. Consulta: CFFEE=",
+    "target": "FCEFE"
+  },
+  {
+    "id": "rule_id_0625",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: FDHCE=DFCHE, BDFCB=DBCFB, HGHCC=GHCHC. Consulta: BHDDH=",
+    "target": "HBDDH"
+  },
+  {
+    "id": "rule_id_0626",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: DEG=EDG, DBC=BDC, HCA=CHA. Consulta: DFC=",
+    "target": "FDC"
+  },
+  {
+    "id": "rule_id_0627",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: GFB=BGF, DEC=CDE, BBE=EBB. Consulta: HFF=",
+    "target": "FHF"
+  },
+  {
+    "id": "rule_id_0628",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: DAA=AAD, HED=EDH, FBD=BDF. Consulta: BAA=",
+    "target": "AAB"
+  },
+  {
+    "id": "rule_id_0629",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: GBF=FBG, EDF=FDE, CDD=DDC. Consulta: FEG=",
+    "target": "GEF"
+  },
+  {
+    "id": "rule_id_0630",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: GFEG=FGGE, GEDE=EGED, CHHB=HCBH. Consulta: FABH=",
+    "target": "AFHB"
+  },
+  {
+    "id": "rule_id_0631",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: BCEA=CEAB, HAEF=AEFH, CHGH=HGHC. Consulta: CBGE=",
+    "target": "BGEC"
+  },
+  {
+    "id": "rule_id_0632",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: CBG=GCB, CDA=ACD, FFB=BFF. Consulta: CAG=",
+    "target": "GCA"
+  },
+  {
+    "id": "rule_id_0633",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: CEHHH=HHHEC, ADAFH=HFADA, CHCGD=DGCHC. Consulta: CAACE=",
+    "target": "ECAAC"
+  },
+  {
+    "id": "rule_id_0634",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: DDDE=EDDD, HGHC=CHGH, FFCE=ECFF. Consulta: FGDB=",
+    "target": "BDGF"
+  },
+  {
+    "id": "rule_id_0635",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: HHHDG=HHDHG, HBHHE=BHHHE, DCBEG=CDEBG. Consulta: GDBCA=",
+    "target": "DGCBA"
+  },
+  {
+    "id": "rule_id_0636",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: BDEF=DBFE, ADBG=DAGB, HCDH=CHHD. Consulta: BDAB=",
+    "target": "DBBA"
+  },
+  {
+    "id": "rule_id_0637",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: GCAHC=CHACG, HBCHE=EHCBH, BCHAF=FAHCB. Consulta: GFGGF=",
+    "target": "FGGFG"
+  },
+  {
+    "id": "rule_id_0638",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: GAB=ABG, CHA=HAC, AED=EDA. Consulta: BHG=",
+    "target": "HGB"
+  },
+  {
+    "id": "rule_id_0639",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: ACD=DAC, CAH=HCA, BCE=EBC. Consulta: FBH=",
+    "target": "HFB"
+  },
+  {
+    "id": "rule_id_0640",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: CFEAG=GAEFC, DBBGA=AGBBD, ABBHC=CHBBA. Consulta: GEHDH=",
+    "target": "HDHEG"
+  },
+  {
+    "id": "rule_id_0641",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: FBFBD=DBFBF, DEDGA=AGDED, BFDEA=AEDFB. Consulta: EAEBB=",
+    "target": "BBEAE"
+  },
+  {
+    "id": "rule_id_0642",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: FCGF=FGCF, FFFG=GFFF, ACCF=FCCA. Consulta: GEHB=",
+    "target": "BHEG"
+  },
+  {
+    "id": "rule_id_0643",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: GHGAB=BGHGA, BCGCA=ABCGC, FBDFA=AFBDF. Consulta: HFDCE=",
+    "target": "EHFDC"
+  },
+  {
+    "id": "rule_id_0644",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: AFH=HFA, CEG=GEC, EDH=HDE. Consulta: DDF=",
+    "target": "FDD"
+  },
+  {
+    "id": "rule_id_0645",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: HCE=EHC, AFH=HAF, AGG=GAG. Consulta: GCG=",
+    "target": "GGC"
+  },
+  {
+    "id": "rule_id_0646",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: DBBA=ADBB, CAAB=BCAA, BEBD=DBEB. Consulta: EFGA=",
+    "target": "AEFG"
+  },
+  {
+    "id": "rule_id_0647",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: BDC=CBD, DBH=HDB, CGA=ACG. Consulta: CDH=",
+    "target": "HCD"
+  },
+  {
+    "id": "rule_id_0648",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: DAEBB=ADBEB, FGDCB=GFCDB, HDEDD=DHDED. Consulta: CFGEA=",
+    "target": "FCEGA"
+  },
+  {
+    "id": "rule_id_0649",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: ECAC=CECA, BBDB=BBBD, AGDE=EAGD. Consulta: FHEB=",
+    "target": "BFHE"
+  },
+  {
+    "id": "rule_id_0650",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: AGFAE=GFAEA, BBAEA=BAEAB, ADHHC=DHHCA. Consulta: FBEEG=",
+    "target": "BEEGF"
+  },
+  {
+    "id": "rule_id_0651",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: ADFC=CFDA, HCGC=CGCH, CCBB=BBCC. Consulta: AEEH=",
+    "target": "HEEA"
+  },
+  {
+    "id": "rule_id_0652",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: FACFB=AFFCB, CHHHD=HCHHD, EDGFG=DEFGG. Consulta: DEAEB=",
+    "target": "EDEAB"
+  },
+  {
+    "id": "rule_id_0653",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: GDB=BDG, CDE=EDC, FGA=AGF. Consulta: DFF=",
+    "target": "FFD"
+  },
+  {
+    "id": "rule_id_0654",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: AHGH=HAHG, ABBB=BABB, FFFH=FFHF. Consulta: AHFD=",
+    "target": "HADF"
+  },
+  {
+    "id": "rule_id_0655",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: FGBFB=BFBGF, EFGDG=GDGFE, FGHEE=EEHGF. Consulta: DEHCD=",
+    "target": "DCHED"
+  },
+  {
+    "id": "rule_id_0656",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: CDFF=FCDF, CAHE=ECAH, EGED=DEGE. Consulta: GEAF=",
+    "target": "FGEA"
+  },
+  {
+    "id": "rule_id_0657",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: AGEBD=GEBDA, EDAAC=DAACE, DCBAD=CBADD. Consulta: HAEDC=",
+    "target": "AEDCH"
+  },
+  {
+    "id": "rule_id_0658",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: GHAD=DAHG, DADB=BDAD, GGDA=ADGG. Consulta: ECDG=",
+    "target": "GDCE"
+  },
+  {
+    "id": "rule_id_0659",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: DFDH=FDHD, CFCF=FCFC, FHGG=HGGF. Consulta: BBCG=",
+    "target": "BCGB"
+  },
+  {
+    "id": "rule_id_0660",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: BFG=GBF, GAE=EGA, EAH=HEA. Consulta: AGF=",
+    "target": "FAG"
+  },
+  {
+    "id": "rule_id_0661",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: CEA=ECA, GCH=CGH, BHF=HBF. Consulta: DBH=",
+    "target": "BDH"
+  },
+  {
+    "id": "rule_id_0662",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: HGDG=GDGH, GFDH=FDHG, GEFA=EFAG. Consulta: BCCG=",
+    "target": "CCGB"
+  },
+  {
+    "id": "rule_id_0663",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: CFE=FCE, FHG=HFG, CBB=BCB. Consulta: HFF=",
+    "target": "FHF"
+  },
+  {
+    "id": "rule_id_0664",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: BADFG=GFDAB, ABFFF=FFFBA, FCEDF=FDECF. Consulta: FHBDD=",
+    "target": "DDBHF"
+  },
+  {
+    "id": "rule_id_0665",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: AGDF=FAGD, EHDG=GEHD, BHHD=DBHH. Consulta: EDGG=",
+    "target": "GEDG"
+  },
+  {
+    "id": "rule_id_0666",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: GBEHG=GHEBG, CBEAA=AAEBC, GEGGE=EGGEG. Consulta: FAFCA=",
+    "target": "ACFAF"
+  },
+  {
+    "id": "rule_id_0667",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: HBBDH=BHDBH, EAAFC=AEFAC, CAAFG=ACFAG. Consulta: DFEEF=",
+    "target": "FDEEF"
+  },
+  {
+    "id": "rule_id_0668",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: HGAC=GACH, FCGB=CGBF, FBBA=BBAF. Consulta: HCAE=",
+    "target": "CAEH"
+  },
+  {
+    "id": "rule_id_0669",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: AHF=HFA, DEE=EED, GEB=EBG. Consulta: DCC=",
+    "target": "CCD"
+  },
+  {
+    "id": "rule_id_0670",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: FFFA=AFFF, HFAD=DHFA, AFBF=FAFB. Consulta: BBHB=",
+    "target": "BBBH"
+  },
+  {
+    "id": "rule_id_0671",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: AHD=HDA, DBG=BGD, CHA=HAC. Consulta: BAG=",
+    "target": "AGB"
+  },
+  {
+    "id": "rule_id_0672",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: AHFEA=HFEAA, HFCHC=FCHCH, EHHCG=HHCGE. Consulta: HGFBD=",
+    "target": "GFBDH"
+  },
+  {
+    "id": "rule_id_0673",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: DFDH=FDHD, HFBE=FBEH, GHFD=HFDG. Consulta: BAFH=",
+    "target": "AFHB"
+  },
+  {
+    "id": "rule_id_0674",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: ACFA=AACF, GBEC=CGBE, EGHH=HEGH. Consulta: GGBD=",
+    "target": "DGGB"
+  },
+  {
+    "id": "rule_id_0675",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: EGA=AGE, DBH=HBD, DCA=ACD. Consulta: AFF=",
+    "target": "FFA"
+  },
+  {
+    "id": "rule_id_0676",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: FDG=DGF, GAH=AHG, HGA=GAH. Consulta: GHD=",
+    "target": "HDG"
+  },
+  {
+    "id": "rule_id_0677",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: EHHC=HECH, CHGG=HCGG, DDAD=DDDA. Consulta: FCEE=",
+    "target": "CFEE"
+  },
+  {
+    "id": "rule_id_0678",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: DCB=BDC, HAB=BHA, FAA=AFA. Consulta: BBC=",
+    "target": "CBB"
+  },
+  {
+    "id": "rule_id_0679",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: CBCA=BCAC, ABCB=BABC, FAGE=AFEG. Consulta: BFHC=",
+    "target": "FBCH"
+  },
+  {
+    "id": "rule_id_0680",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: FDDAG=DDAGF, DAFFE=AFFED, GEFGG=EFGGG. Consulta: BCHFA=",
+    "target": "CHFAB"
+  },
+  {
+    "id": "rule_id_0681",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: EED=DEE, CEG=GEC, DDF=FDD. Consulta: CGD=",
+    "target": "DGC"
+  },
+  {
+    "id": "rule_id_0682",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: BBA=ABB, CFD=DFC, EBD=DBE. Consulta: ADC=",
+    "target": "CDA"
+  },
+  {
+    "id": "rule_id_0683",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: BCF=CBF, DHA=HDA, ABC=BAC. Consulta: GCE=",
+    "target": "CGE"
+  },
+  {
+    "id": "rule_id_0684",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: CBBB=BCBB, BGCB=GBBC, ABAG=BAGA. Consulta: AAAD=",
+    "target": "AADA"
+  },
+  {
+    "id": "rule_id_0685",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: EBBF=BEFB, EACA=AEAC, HEAB=EHBA. Consulta: BBFG=",
+    "target": "BBGF"
+  },
+  {
+    "id": "rule_id_0686",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: DAGA=ADAG, FDAH=DFHA, EBAD=BEDA. Consulta: DBCB=",
+    "target": "BDBC"
+  },
+  {
+    "id": "rule_id_0687",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: FEA=AEF, BFC=CFB, FHC=CHF. Consulta: CAH=",
+    "target": "HAC"
+  },
+  {
+    "id": "rule_id_0688",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: GHCCD=DGHCC, HEBGC=CHEBG, DGCHC=CDGCH. Consulta: DCCFE=",
+    "target": "EDCCF"
+  },
+  {
+    "id": "rule_id_0689",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: HFFAG=GHFFA, GDCDB=BGDCD, AAAGG=GAAAG. Consulta: EFBHG=",
+    "target": "GEFBH"
+  },
+  {
+    "id": "rule_id_0690",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: FCH=HCF, FEH=HEF, BCH=HCB. Consulta: CDF=",
+    "target": "FDC"
+  },
+  {
+    "id": "rule_id_0691",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: EDCCH=DCCHE, HBABA=BABAH, DBEFG=BEFGD. Consulta: DHBBB=",
+    "target": "HBBBD"
+  },
+  {
+    "id": "rule_id_0692",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: GEFCD=DCFEG, DHACB=BCAHD, ABAFD=DFABA. Consulta: FGGBG=",
+    "target": "GBGGF"
+  },
+  {
+    "id": "rule_id_0693",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: BGGE=EBGG, FAAA=AFAA, CDCE=ECDC. Consulta: BGBC=",
+    "target": "CBGB"
+  },
+  {
+    "id": "rule_id_0694",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: FFEB=BEFF, AGHH=HHGA, HBCC=CCBH. Consulta: HFGC=",
+    "target": "CGFH"
+  },
+  {
+    "id": "rule_id_0695",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: BDFAF=DFAFB, DDAED=DAEDD, GBDAD=BDADG. Consulta: GGADE=",
+    "target": "GADEG"
+  },
+  {
+    "id": "rule_id_0696",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: EBHA=AEBH, DCFC=CDCF, BHDB=BBHD. Consulta: EECB=",
+    "target": "BEEC"
+  },
+  {
+    "id": "rule_id_0697",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: HEA=AEH, EEH=HEE, HDE=EDH. Consulta: GDA=",
+    "target": "ADG"
+  },
+  {
+    "id": "rule_id_0698",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: BBEEE=EBBEE, CBEDG=GCBED, AHACC=CAHAC. Consulta: BEGFE=",
+    "target": "EBEGF"
+  },
+  {
+    "id": "rule_id_0699",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: AACB=ACBA, DACH=ACHD, HCGF=CGFH. Consulta: CHCH=",
+    "target": "HCHC"
+  },
+  {
+    "id": "rule_id_0700",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: DGBH=GBHD, AHBB=HBBA, DEEG=EEGD. Consulta: CHGA=",
+    "target": "HGAC"
+  },
+  {
+    "id": "rule_id_0701",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: EDB=BDE, HBA=ABH, EFB=BFE. Consulta: EDA=",
+    "target": "ADE"
+  },
+  {
+    "id": "rule_id_0702",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: DGGCF=FCGGD, BCHBD=DBHCB, HDDED=DEDDH. Consulta: HEHGE=",
+    "target": "EGHEH"
+  },
+  {
+    "id": "rule_id_0703",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: FED=DFE, AGC=CAG, EFG=GEF. Consulta: GFD=",
+    "target": "DGF"
+  },
+  {
+    "id": "rule_id_0704",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: HCBD=CBDH, HACF=ACFH, EEEH=EEHE. Consulta: DFDC=",
+    "target": "FDCD"
+  },
+  {
+    "id": "rule_id_0705",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: HHFAH=HHAFH, FDBCB=DFCBB, HGBAH=GHABH. Consulta: ACFEG=",
+    "target": "CAEFG"
+  },
+  {
+    "id": "rule_id_0706",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: BDGA=AGDB, EGEA=AEGE, EDBE=EBDE. Consulta: CGBB=",
+    "target": "BBGC"
+  },
+  {
+    "id": "rule_id_0707",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: HABE=ABEH, AGCG=GCGA, AFHG=FHGA. Consulta: GEGH=",
+    "target": "EGHG"
+  },
+  {
+    "id": "rule_id_0708",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: GFB=BGF, HAC=CHA, ECH=HEC. Consulta: EGC=",
+    "target": "CEG"
+  },
+  {
+    "id": "rule_id_0709",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: EDCG=DEGC, CGCF=GCFC, BBBC=BBCB. Consulta: GHBC=",
+    "target": "HGCB"
+  },
+  {
+    "id": "rule_id_0710",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: AFAEE=EEAFA, BDCCG=GCCDB, DHCED=DECHD. Consulta: DDAEE=",
+    "target": "EEADD"
+  },
+  {
+    "id": "rule_id_0711",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: GGH=HGG, DEG=GED, HGD=DGH. Consulta: DCB=",
+    "target": "BCD"
+  },
+  {
+    "id": "rule_id_0712",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: ABAE=BAEA, AHFA=HAAF, FBCA=BFAC. Consulta: HCEC=",
+    "target": "CHCE"
+  },
+  {
+    "id": "rule_id_0713",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: BBCB=BBBC, AECG=GAEC, FCDG=GFCD. Consulta: DCEH=",
+    "target": "HDCE"
+  },
+  {
+    "id": "rule_id_0714",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: DCE=CDE, DAB=ADB, FDD=DFD. Consulta: BED=",
+    "target": "EBD"
+  },
+  {
+    "id": "rule_id_0715",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: FBA=ABF, HCF=FCH, EEB=BEE. Consulta: FHE=",
+    "target": "EHF"
+  },
+  {
+    "id": "rule_id_0716",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: GCFC=CGCF, BADA=ABAD, FGCE=GFEC. Consulta: HFAG=",
+    "target": "FHGA"
+  },
+  {
+    "id": "rule_id_0717",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: HGAFB=GHFAB, DDAHA=DDHAA, HFEBH=FHBEH. Consulta: FBGGF=",
+    "target": "BFGGF"
+  },
+  {
+    "id": "rule_id_0718",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: AACG=AAGC, AACH=AAHC, FBFE=BFEF. Consulta: CBAC=",
+    "target": "BCCA"
+  },
+  {
+    "id": "rule_id_0719",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: BBA=ABB, FAH=HAF, EBF=FBE. Consulta: CBG=",
+    "target": "GBC"
+  },
+  {
+    "id": "rule_id_0720",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: AHFB=BAHF, EDDC=CEDD, FAEA=AFAE. Consulta: DBEA=",
+    "target": "ADBE"
+  },
+  {
+    "id": "rule_id_0721",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: GEE=EGE, EHD=DEH, CCG=GCC. Consulta: EGF=",
+    "target": "FEG"
+  },
+  {
+    "id": "rule_id_0722",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: EGACF=GACFE, EGHAE=GHAEE, DDCCE=DCCED. Consulta: EDEHF=",
+    "target": "DEHFE"
+  },
+  {
+    "id": "rule_id_0723",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: ECHFF=CEFHF, BHAFA=HBFAA, FGCHH=GFHCH. Consulta: CAFEA=",
+    "target": "ACEFA"
+  },
+  {
+    "id": "rule_id_0724",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: DAG=AGD, FHE=HEF, BCG=CGB. Consulta: EGE=",
+    "target": "GEE"
+  },
+  {
+    "id": "rule_id_0725",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: HFE=EFH, EAF=FAE, BEG=GEB. Consulta: AGD=",
+    "target": "DGA"
+  },
+  {
+    "id": "rule_id_0726",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: EEG=EGE, EEF=EFE, CBG=BGC. Consulta: CDF=",
+    "target": "DFC"
+  },
+  {
+    "id": "rule_id_0727",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: BDHC=DBCH, EGDA=GEAD, DBAH=BDHA. Consulta: CAGG=",
+    "target": "ACGG"
+  },
+  {
+    "id": "rule_id_0728",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: ACAH=CAHA, HAGD=AHDG, AHDH=HAHD. Consulta: EGBE=",
+    "target": "GEEB"
+  },
+  {
+    "id": "rule_id_0729",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: EHDGD=DEHDG, HHAAD=DHHAA, FGBAE=EFGBA. Consulta: HEBHE=",
+    "target": "EHEBH"
+  },
+  {
+    "id": "rule_id_0730",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: AFG=GFA, CDA=ADC, DGF=FGD. Consulta: FAB=",
+    "target": "BAF"
+  },
+  {
+    "id": "rule_id_0731",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: BFAHC=FBHAC, FDBEH=DFEBH, FCDHC=CFHDC. Consulta: HFBHD=",
+    "target": "FHHBD"
+  },
+  {
+    "id": "rule_id_0732",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: EAH=HAE, BBF=FBB, BBC=CBB. Consulta: HBD=",
+    "target": "DBH"
+  },
+  {
+    "id": "rule_id_0733",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: GDC=DCG, ACE=CEA, AEC=ECA. Consulta: CFH=",
+    "target": "FHC"
+  },
+  {
+    "id": "rule_id_0734",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: FFGC=CFFG, AFHG=GAFH, BGGF=FBGG. Consulta: CADC=",
+    "target": "CCAD"
+  },
+  {
+    "id": "rule_id_0735",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: HGCH=HCGH, HGBD=DBGH, FBGH=HGBF. Consulta: BDCG=",
+    "target": "GCDB"
+  },
+  {
+    "id": "rule_id_0736",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: FFFE=FFEF, AHDD=HADD, EGAD=GEDA. Consulta: BFGB=",
+    "target": "FBBG"
+  },
+  {
+    "id": "rule_id_0737",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: CDB=DBC, DBC=BCD, GEA=EAG. Consulta: FEB=",
+    "target": "EBF"
+  },
+  {
+    "id": "rule_id_0738",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: DEEH=HDEE, BGFD=DBGF, DAFF=FDAF. Consulta: BCAH=",
+    "target": "HBCA"
+  },
+  {
+    "id": "rule_id_0739",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: GEC=EGC, AFE=FAE, GFD=FGD. Consulta: DGH=",
+    "target": "GDH"
+  },
+  {
+    "id": "rule_id_0740",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: HDBE=EHDB, FGFC=CFGF, CDCE=ECDC. Consulta: BHGD=",
+    "target": "DBHG"
+  },
+  {
+    "id": "rule_id_0741",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: DCE=EDC, CHF=FCH, AGC=CAG. Consulta: AHG=",
+    "target": "GAH"
+  },
+  {
+    "id": "rule_id_0742",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: BBFGD=DGFBB, DGAGC=CGAGD, AEDED=DEDEA. Consulta: HGDBF=",
+    "target": "FBDGH"
+  },
+  {
+    "id": "rule_id_0743",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: ABH=BAH, GFE=FGE, AGE=GAE. Consulta: GHA=",
+    "target": "HGA"
+  },
+  {
+    "id": "rule_id_0744",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: BEH=EHB, BFE=FEB, EEC=ECE. Consulta: CDG=",
+    "target": "DGC"
+  },
+  {
+    "id": "rule_id_0745",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: BDF=DFB, ECB=CBE, AFF=FFA. Consulta: BHD=",
+    "target": "HDB"
+  },
+  {
+    "id": "rule_id_0746",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: FCG=CGF, GDD=DDG, EHB=HBE. Consulta: AEH=",
+    "target": "EHA"
+  },
+  {
+    "id": "rule_id_0747",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: HCB=CBH, GFH=FHG, CCB=CBC. Consulta: BFG=",
+    "target": "FGB"
+  },
+  {
+    "id": "rule_id_0748",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: EHBGH=HBGHE, HFHDE=FHDEH, GGDFH=GDFHG. Consulta: GHBCD=",
+    "target": "HBCDG"
+  },
+  {
+    "id": "rule_id_0749",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: EDDEE=EEDDE, HADDD=DDDAH, HEDEE=EEDEH. Consulta: BABBH=",
+    "target": "HBBAB"
+  },
+  {
+    "id": "rule_id_0750",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: FDBG=GBDF, GFHB=BHFG, EBHE=EHBE. Consulta: BFHH=",
+    "target": "HHFB"
+  },
+  {
+    "id": "rule_id_0751",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: BGGAC=CBGGA, ECBHB=BECBH, BBDGG=GBBDG. Consulta: GAADE=",
+    "target": "EGAAD"
+  },
+  {
+    "id": "rule_id_0752",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: FEHF=FFEH, AHEC=CAHE, EFCH=HEFC. Consulta: ACCF=",
+    "target": "FACC"
+  },
+  {
+    "id": "rule_id_0753",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: EGGC=GECG, CCCD=CCDC, AHBG=HAGB. Consulta: FFBD=",
+    "target": "FFDB"
+  },
+  {
+    "id": "rule_id_0754",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: CDEE=DCEE, FEGB=EFBG, CDAB=DCBA. Consulta: AEGE=",
+    "target": "EAEG"
+  },
+  {
+    "id": "rule_id_0755",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: DDDC=DDCD, DGDD=GDDD, EEHE=EEEH. Consulta: AHEB=",
+    "target": "HABE"
+  },
+  {
+    "id": "rule_id_0756",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: DGG=GDG, EAG=GEA, CHA=ACH. Consulta: FDC=",
+    "target": "CFD"
+  },
+  {
+    "id": "rule_id_0757",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: HFDHE=EHFDH, CBFGG=GCBFG, CBBFH=HCBBF. Consulta: DBHCE=",
+    "target": "EDBHC"
+  },
+  {
+    "id": "rule_id_0758",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: CGBGF=GCGBF, EGHAC=GEAHC, EBHAF=BEAHF. Consulta: CHCHA=",
+    "target": "HCHCA"
+  },
+  {
+    "id": "rule_id_0759",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: FBC=CFB, DFG=GDF, FGH=HFG. Consulta: GFC=",
+    "target": "CGF"
+  },
+  {
+    "id": "rule_id_0760",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: EDGG=DGGE, HBDB=BDBH, CGGD=GGDC. Consulta: DEGC=",
+    "target": "EGCD"
+  },
+  {
+    "id": "rule_id_0761",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: GDC=CGD, EDA=AED, HBD=DHB. Consulta: EGE=",
+    "target": "EEG"
+  },
+  {
+    "id": "rule_id_0762",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: EAAD=AEDA, FFHE=FFEH, AHDG=HAGD. Consulta: FFFA=",
+    "target": "FFAF"
+  },
+  {
+    "id": "rule_id_0763",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: AHBCA=AAHBC, BHACE=EBHAC, BCEFA=ABCEF. Consulta: HAAEC=",
+    "target": "CHAAE"
+  },
+  {
+    "id": "rule_id_0764",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: EGBAC=CEGBA, DDEFF=FDDEF, HAHAB=BHAHA. Consulta: CDBEF=",
+    "target": "FCDBE"
+  },
+  {
+    "id": "rule_id_0765",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: FEABC=CBAEF, CAADF=FDAAC, EFHHD=DHHFE. Consulta: BDACC=",
+    "target": "CCADB"
+  },
+  {
+    "id": "rule_id_0766",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: HFDB=FHBD, ECGC=CECG, GGEB=GGBE. Consulta: FCFE=",
+    "target": "CFEF"
+  },
+  {
+    "id": "rule_id_0767",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: FAD=ADF, ACF=CFA, CAB=ABC. Consulta: BGF=",
+    "target": "GFB"
+  },
+  {
+    "id": "rule_id_0768",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: HFEHA=FHHEA, HHBAH=HHABH, DBEDD=BDDED. Consulta: AGDAD=",
+    "target": "GAADD"
+  },
+  {
+    "id": "rule_id_0769",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: FGGG=GGGF, CDHG=GHDC, EACB=BCAE. Consulta: DACB=",
+    "target": "BCAD"
+  },
+  {
+    "id": "rule_id_0770",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: BBBEG=GBBBE, DFFHG=GDFFH, DGFFA=ADGFF. Consulta: FBEHB=",
+    "target": "BFBEH"
+  },
+  {
+    "id": "rule_id_0771",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: CDCA=DCAC, AHHC=HHCA, EFDE=FDEE. Consulta: ECDB=",
+    "target": "CDBE"
+  },
+  {
+    "id": "rule_id_0772",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: DCAG=GACD, DBDF=FDBD, HCAC=CACH. Consulta: FHCG=",
+    "target": "GCHF"
+  },
+  {
+    "id": "rule_id_0773",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: GCEB=CEBG, GDFF=DFFG, GBEH=BEHG. Consulta: FDAG=",
+    "target": "DAGF"
+  },
+  {
+    "id": "rule_id_0774",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: EDH=DEH, DBG=BDG, GAH=AGH. Consulta: DCD=",
+    "target": "CDD"
+  },
+  {
+    "id": "rule_id_0775",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: EDC=DEC, FHE=HFE, GBH=BGH. Consulta: AFF=",
+    "target": "FAF"
+  },
+  {
+    "id": "rule_id_0776",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: GEDDH=HDDEG, EGBBD=DBBGE, FFDGB=BGDFF. Consulta: CGFCG=",
+    "target": "GCFGC"
+  },
+  {
+    "id": "rule_id_0777",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: EFF=FEF, CFE=FCE, GBH=BGH. Consulta: HAD=",
+    "target": "AHD"
+  },
+  {
+    "id": "rule_id_0778",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: CFF=FCF, DDG=GDD, ECA=AEC. Consulta: CEH=",
+    "target": "HCE"
+  },
+  {
+    "id": "rule_id_0779",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: HCCGB=CHGCB, DACAH=ADACH, EDAGF=DEGAF. Consulta: ADAHG=",
+    "target": "DAHAG"
+  },
+  {
+    "id": "rule_id_0780",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: EAHE=AEEH, EFAB=FEBA, BADG=ABGD. Consulta: BEHB=",
+    "target": "EBBH"
+  },
+  {
+    "id": "rule_id_0781",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: HEDGG=GGDEH, GHFAA=AAFHG, CBGCH=HCGBC. Consulta: FDDHD=",
+    "target": "DHDDF"
+  },
+  {
+    "id": "rule_id_0782",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: FACBA=AFBCA, GGCDG=GGDCG, CDEEG=DCEEG. Consulta: HECFB=",
+    "target": "EHFCB"
+  },
+  {
+    "id": "rule_id_0783",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: AGE=GEA, GAD=ADG, FCA=CAF. Consulta: DAD=",
+    "target": "ADD"
+  },
+  {
+    "id": "rule_id_0784",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: DEAFF=EDFAF, DCDAH=CDADH, BBAEC=BBEAC. Consulta: DFBCC=",
+    "target": "FDCBC"
+  },
+  {
+    "id": "rule_id_0785",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: EFADC=FEDAC, DGBEB=GDEBB, HDFDE=DHDFE. Consulta: BHAAF=",
+    "target": "HBAAF"
+  },
+  {
+    "id": "rule_id_0786",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: FGBDE=EFGBD, DAEFD=DDAEF, EBADD=DEBAD. Consulta: DHGBC=",
+    "target": "CDHGB"
+  },
+  {
+    "id": "rule_id_0787",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: ACAHE=CAHAE, BADAC=ABADC, GAHAD=AGAHD. Consulta: HHCBD=",
+    "target": "HHBCD"
+  },
+  {
+    "id": "rule_id_0788",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: FCG=CGF, HAC=ACH, HEC=ECH. Consulta: AFA=",
+    "target": "FAA"
+  },
+  {
+    "id": "rule_id_0789",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: EHH=HHE, GHA=HAG, GDD=DDG. Consulta: HDA=",
+    "target": "DAH"
+  },
+  {
+    "id": "rule_id_0790",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: AEC=ECA, FGE=GEF, BBA=BAB. Consulta: HBF=",
+    "target": "BFH"
+  },
+  {
+    "id": "rule_id_0791",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: ABEF=FEBA, FHGC=CGHF, DDGC=CGDD. Consulta: GHBF=",
+    "target": "FBHG"
+  },
+  {
+    "id": "rule_id_0792",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: FEADB=BFEAD, FFDGF=FFFDG, CEGAB=BCEGA. Consulta: AHFDF=",
+    "target": "FAHFD"
+  },
+  {
+    "id": "rule_id_0793",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: GEA=EAG, ABG=BGA, DFA=FAD. Consulta: BGB=",
+    "target": "GBB"
+  },
+  {
+    "id": "rule_id_0794",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: GEH=EHG, ADF=DFA, EGF=GFE. Consulta: GAA=",
+    "target": "AAG"
+  },
+  {
+    "id": "rule_id_0795",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: CBADD=DDABC, DGCHC=CHCGD, ABGGC=CGGBA. Consulta: AAAAC=",
+    "target": "CAAAA"
+  },
+  {
+    "id": "rule_id_0796",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: HDEC=CEDH, CBEA=AEBC, DDFA=AFDD. Consulta: EADH=",
+    "target": "HDAE"
+  },
+  {
+    "id": "rule_id_0797",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: GAH=HAG, DHG=GHD, BAG=GAB. Consulta: EHC=",
+    "target": "CHE"
+  },
+  {
+    "id": "rule_id_0798",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: EEB=BEE, EFD=DFE, GEF=FEG. Consulta: EAA=",
+    "target": "AAE"
+  },
+  {
+    "id": "rule_id_0799",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: CGHGG=GCGHG, GHEAF=HGAEF, BABCE=ABCBE. Consulta: GDEGA=",
+    "target": "DGGEA"
+  },
+  {
+    "id": "rule_id_0800",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: HGD=DGH, GFH=HFG, EHB=BHE. Consulta: GCA=",
+    "target": "ACG"
+  },
+  {
+    "id": "rule_id_0801",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: CGF=GCF, GFB=FGB, CAD=ACD. Consulta: ECB=",
+    "target": "CEB"
+  },
+  {
+    "id": "rule_id_0802",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: FGBBE=EFGBB, AEHDE=EAEHD, DDGBG=GDDGB. Consulta: CFGAA=",
+    "target": "ACFGA"
+  },
+  {
+    "id": "rule_id_0803",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: BDA=DBA, ACB=CAB, DBB=BDB. Consulta: GAE=",
+    "target": "AGE"
+  },
+  {
+    "id": "rule_id_0804",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: DFB=BFD, CDD=DDC, HFG=GFH. Consulta: EBH=",
+    "target": "HBE"
+  },
+  {
+    "id": "rule_id_0805",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: AEDG=EDGA, EADF=ADFE, FGFE=GFEF. Consulta: CEBE=",
+    "target": "EBEC"
+  },
+  {
+    "id": "rule_id_0806",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: CFEBH=FCBEH, EBHAG=BEAHG, GGFHA=GGHFA. Consulta: EBGHC=",
+    "target": "BEHGC"
+  },
+  {
+    "id": "rule_id_0807",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: HFHE=FHEH, DFHB=FHBD, HGEH=GEHH. Consulta: ABBD=",
+    "target": "BBDA"
+  },
+  {
+    "id": "rule_id_0808",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: HDEBF=DHBEF, HDFFB=DHFFB, CDBDD=DCDBD. Consulta: ACCAH=",
+    "target": "CAACH"
+  },
+  {
+    "id": "rule_id_0809",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: GFBH=HBFG, FFBC=CBFF, CACE=ECAC. Consulta: DDHE=",
+    "target": "EHDD"
+  },
+  {
+    "id": "rule_id_0810",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: AADDG=GDDAA, BAHEG=GEHAB, HCFFC=CFFCH. Consulta: HAAAA=",
+    "target": "AAAAH"
+  },
+  {
+    "id": "rule_id_0811",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: GFHE=FGEH, AFEH=FAHE, FFHD=FFDH. Consulta: AACG=",
+    "target": "AAGC"
+  },
+  {
+    "id": "rule_id_0812",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: BAC=ACB, AEF=EFA, DAE=AED. Consulta: DEA=",
+    "target": "EAD"
+  },
+  {
+    "id": "rule_id_0813",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: DGC=CDG, FBA=AFB, EHB=BEH. Consulta: EBC=",
+    "target": "CEB"
+  },
+  {
+    "id": "rule_id_0814",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: FACH=HFAC, FFCG=GFFC, CGBB=BCGB. Consulta: FBBF=",
+    "target": "FFBB"
+  },
+  {
+    "id": "rule_id_0815",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: AHEF=HEFA, EDBF=DBFE, EBDC=BDCE. Consulta: EBAE=",
+    "target": "BAEE"
+  },
+  {
+    "id": "rule_id_0816",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: CBCCG=BCCCG, ADEEA=DAEEA, HDHGE=DHGHE. Consulta: DCCFG=",
+    "target": "CDFCG"
+  },
+  {
+    "id": "rule_id_0817",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: HHFA=AHHF, HCBG=GHCB, HFFE=EHFF. Consulta: GBEB=",
+    "target": "BGBE"
+  },
+  {
+    "id": "rule_id_0818",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: HFD=FHD, HDE=DHE, DBB=BDB. Consulta: GBG=",
+    "target": "BGG"
+  },
+  {
+    "id": "rule_id_0819",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: BFE=EBF, AHD=DAH, ECH=HEC. Consulta: HDG=",
+    "target": "GHD"
+  },
+  {
+    "id": "rule_id_0820",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: DBCC=CCBD, EEFA=AFEE, HEAG=GAEH. Consulta: BEDF=",
+    "target": "FDEB"
+  },
+  {
+    "id": "rule_id_0821",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: EAH=AHE, GDC=DCG, EBF=BFE. Consulta: FDE=",
+    "target": "DEF"
+  },
+  {
+    "id": "rule_id_0822",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: ACFH=CAHF, BGDA=GBAD, AFEF=FAFE. Consulta: GCFF=",
+    "target": "CGFF"
+  },
+  {
+    "id": "rule_id_0823",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: GFBH=HGFB, BFHA=ABFH, EAGF=FEAG. Consulta: AEGA=",
+    "target": "AAEG"
+  },
+  {
+    "id": "rule_id_0824",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: GFBHC=CHBFG, FAFEC=CEFAF, EAEAD=DAEAE. Consulta: DBECA=",
+    "target": "ACEBD"
+  },
+  {
+    "id": "rule_id_0825",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: GEC=EGC, FBB=BFB, CFD=FCD. Consulta: EGF=",
+    "target": "GEF"
+  },
+  {
+    "id": "rule_id_0826",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: AEH=EAH, DHH=HDH, EFA=FEA. Consulta: HDD=",
+    "target": "DHD"
+  },
+  {
+    "id": "rule_id_0827",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: BGGD=DBGG, DCAF=FDCA, HCDC=CHCD. Consulta: DBDB=",
+    "target": "BDBD"
+  },
+  {
+    "id": "rule_id_0828",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: AHE=EAH, DDB=BDD, FAC=CFA. Consulta: CFA=",
+    "target": "ACF"
+  },
+  {
+    "id": "rule_id_0829",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: DCBED=DDCBE, GEGBF=FGEGB, FHHBD=DFHHB. Consulta: FCDDC=",
+    "target": "CFCDD"
+  },
+  {
+    "id": "rule_id_0830",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: FCHF=CHFF, HDGG=DGGH, BAEH=AEHB. Consulta: GFFG=",
+    "target": "FFGG"
+  },
+  {
+    "id": "rule_id_0831",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: DDA=ADD, CHF=FCH, FHB=BFH. Consulta: FAB=",
+    "target": "BFA"
+  },
+  {
+    "id": "rule_id_0832",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: CEBE=EBEC, CEGB=EGBC, FACE=ACEF. Consulta: DEDA=",
+    "target": "EDAD"
+  },
+  {
+    "id": "rule_id_0833",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: BECFH=HFCEB, BCBGF=FGBCB, CAGDA=ADGAC. Consulta: CGGDE=",
+    "target": "EDGGC"
+  },
+  {
+    "id": "rule_id_0834",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: CBCH=BCHC, BEHB=EBBH, EDAD=DEDA. Consulta: EABH=",
+    "target": "AEHB"
+  },
+  {
+    "id": "rule_id_0835",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: HGD=GHD, FHC=HFC, BCD=CBD. Consulta: BCF=",
+    "target": "CBF"
+  },
+  {
+    "id": "rule_id_0836",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: DCC=CDC, FAB=BFA, CAB=BCA. Consulta: BFA=",
+    "target": "ABF"
+  },
+  {
+    "id": "rule_id_0837",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: BBG=GBB, CAD=DAC, DCG=GCD. Consulta: CBF=",
+    "target": "FBC"
+  },
+  {
+    "id": "rule_id_0838",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: FCH=CFH, GAC=AGC, FDB=DFB. Consulta: BDA=",
+    "target": "DBA"
+  },
+  {
+    "id": "rule_id_0839",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: DEDF=FDED, HCEG=GHCE, GGGF=FGGG. Consulta: HFAH=",
+    "target": "HHFA"
+  },
+  {
+    "id": "rule_id_0840",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: ECHG=GHCE, GCEE=EECG, AHHC=CHHA. Consulta: AHFD=",
+    "target": "DFHA"
+  },
+  {
+    "id": "rule_id_0841",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: CFAF=FAFC, ABAB=BABA, ECFD=CFDE. Consulta: FBHH=",
+    "target": "BHHF"
+  },
+  {
+    "id": "rule_id_0842",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: CFF=FFC, CEH=HEC, DCB=BCD. Consulta: BAG=",
+    "target": "GAB"
+  },
+  {
+    "id": "rule_id_0843",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: EFGD=FEDG, HFDG=FHGD, EABF=AEFB. Consulta: DGAC=",
+    "target": "GDCA"
+  },
+  {
+    "id": "rule_id_0844",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: DHBBB=HBBBD, FEFFA=EFFAF, HCCDA=CCDAH. Consulta: EDFAH=",
+    "target": "DFAHE"
+  },
+  {
+    "id": "rule_id_0845",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: DHF=HDF, HFB=FHB, GEH=EGH. Consulta: AEG=",
+    "target": "EAG"
+  },
+  {
+    "id": "rule_id_0846",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: GAC=ACG, CBE=BEC, CDH=DHC. Consulta: CFD=",
+    "target": "FDC"
+  },
+  {
+    "id": "rule_id_0847",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: AFGFC=FAFGC, CFGHD=FCHGD, BFADD=FBDAD. Consulta: BEGEF=",
+    "target": "EBEGF"
+  },
+  {
+    "id": "rule_id_0848",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: AACHC=AAHCC, DCHCA=CDCHA, AGAFF=GAFAF. Consulta: DCEHD=",
+    "target": "CDHED"
+  },
+  {
+    "id": "rule_id_0849",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: AEF=FEA, EHH=HHE, CAE=EAC. Consulta: DBB=",
+    "target": "BBD"
+  },
+  {
+    "id": "rule_id_0850",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: DDHDA=DHDAD, ABHFC=BHFCA, HFCDF=FCDFH. Consulta: EGHCH=",
+    "target": "GHCHE"
+  },
+  {
+    "id": "rule_id_0851",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: ACGA=CAAG, CGEF=GCFE, DBHE=BDEH. Consulta: EAED=",
+    "target": "AEDE"
+  },
+  {
+    "id": "rule_id_0852",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: GBB=BGB, EHH=HEH, FEA=EFA. Consulta: BGF=",
+    "target": "GBF"
+  },
+  {
+    "id": "rule_id_0853",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: AGAB=BAGA, HCCB=BHCC, AEEH=HAEE. Consulta: DGDF=",
+    "target": "FDGD"
+  },
+  {
+    "id": "rule_id_0854",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: BDCG=GCDB, HBGD=DGBH, CEFE=EFEC. Consulta: GCAB=",
+    "target": "BACG"
+  },
+  {
+    "id": "rule_id_0855",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: BCGB=BGCB, EBHB=BHBE, BDEH=HEDB. Consulta: DHBG=",
+    "target": "GBHD"
+  },
+  {
+    "id": "rule_id_0856",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: BHEFG=GBHEF, ACCHA=AACCH, ECAEF=FECAE. Consulta: HFCBC=",
+    "target": "CHFCB"
+  },
+  {
+    "id": "rule_id_0857",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: HABEC=AHEBC, GAGEH=AGEGH, BGGEE=GBEGE. Consulta: EBDBC=",
+    "target": "BEBDC"
+  },
+  {
+    "id": "rule_id_0858",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: DFCGF=FDGCF, ACDHD=CAHDD, FBADG=BFDAG. Consulta: CGDAH=",
+    "target": "GCADH"
+  },
+  {
+    "id": "rule_id_0859",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: AAH=HAA, GDE=EDG, CEG=GEC. Consulta: ABG=",
+    "target": "GBA"
+  },
+  {
+    "id": "rule_id_0860",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: DAC=CAD, BGC=CGB, BCD=DCB. Consulta: GEF=",
+    "target": "FEG"
+  },
+  {
+    "id": "rule_id_0861",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: EDAHG=GEDAH, BEHHG=GBEHH, HACHA=AHACH. Consulta: FCGEH=",
+    "target": "HFCGE"
+  },
+  {
+    "id": "rule_id_0862",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: BHDD=DBHD, CAAF=FCAA, FFCH=HFFC. Consulta: CHED=",
+    "target": "DCHE"
+  },
+  {
+    "id": "rule_id_0863",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: CGHEC=CCGHE, BBBAF=FBBBA, FFCAC=CFFCA. Consulta: DDDHD=",
+    "target": "DDDDH"
+  },
+  {
+    "id": "rule_id_0864",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: BBGFE=BBFGE, DAGBB=ADBGB, FACDE=AFDCE. Consulta: DABCA=",
+    "target": "ADCBA"
+  },
+  {
+    "id": "rule_id_0865",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: DGCF=FDGC, AEDB=BAED, GCFF=FGCF. Consulta: FDHF=",
+    "target": "FFDH"
+  },
+  {
+    "id": "rule_id_0866",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: EHH=HEH, EGB=BEG, GAD=DGA. Consulta: BBH=",
+    "target": "HBB"
+  },
+  {
+    "id": "rule_id_0867",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: CEG=GEC, CDD=DDC, CHD=DHC. Consulta: FAB=",
+    "target": "BAF"
+  },
+  {
+    "id": "rule_id_0868",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: DDHGC=CGHDD, AFAGF=FGAFA, GEFCH=HCFEG. Consulta: HHCCG=",
+    "target": "GCCHH"
+  },
+  {
+    "id": "rule_id_0869",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: GFEC=CGFE, CBAG=GCBA, EGHC=CEGH. Consulta: EAHA=",
+    "target": "AEAH"
+  },
+  {
+    "id": "rule_id_0870",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: CEEA=EEAC, DCEA=CEAD, DFHC=FHCD. Consulta: AGDG=",
+    "target": "GDGA"
+  },
+  {
+    "id": "rule_id_0871",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: ABGD=DGBA, ECBH=HBCE, FGFE=EFGF. Consulta: GEFD=",
+    "target": "DFEG"
+  },
+  {
+    "id": "rule_id_0872",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: BEE=EEB, DBB=BBD, AAF=AFA. Consulta: CCA=",
+    "target": "CAC"
+  },
+  {
+    "id": "rule_id_0873",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: FGCG=GCGF, FDGE=EGDF, FFEE=EEFF. Consulta: DEDE=",
+    "target": "EDED"
+  },
+  {
+    "id": "rule_id_0874",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: ABC=CBA, BBF=FBB, FEH=HEF. Consulta: EEH=",
+    "target": "HEE"
+  },
+  {
+    "id": "rule_id_0875",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: AGAE=GAEA, EHHF=HHFE, ADED=DEDA. Consulta: CFBE=",
+    "target": "FBEC"
+  },
+  {
+    "id": "rule_id_0876",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: HHCF=FCHH, GHAD=DAHG, BHCC=CCHB. Consulta: EFAC=",
+    "target": "CAFE"
+  },
+  {
+    "id": "rule_id_0877",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: FDA=ADF, BAF=FAB, GEE=EEG. Consulta: AAG=",
+    "target": "GAA"
+  },
+  {
+    "id": "rule_id_0878",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: EGCG=GCGE, DCBE=EBCD, ADGC=CGDA. Consulta: HBHC=",
+    "target": "CHBH"
+  },
+  {
+    "id": "rule_id_0879",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: BEFG=GBEF, CBGE=ECBG, CAEF=FCAE. Consulta: EFFH=",
+    "target": "HEFF"
+  },
+  {
+    "id": "rule_id_0880",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: HEFHF=EHHFF, DDGEH=DDEGH, DAAGG=ADGAG. Consulta: AEEHH=",
+    "target": "EAHEH"
+  },
+  {
+    "id": "rule_id_0881",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: HBDD=DHBD, EBCH=HEBC, GBDE=EGBD. Consulta: BHAC=",
+    "target": "CBHA"
+  },
+  {
+    "id": "rule_id_0882",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: GGC=CGG, HEB=BHE, GGA=AGG. Consulta: AGD=",
+    "target": "DAG"
+  },
+  {
+    "id": "rule_id_0883",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: GHHHH=HGHHH, DHFCB=HDCFB, ADCGG=DAGCG. Consulta: BHDEG=",
+    "target": "HBEDG"
+  },
+  {
+    "id": "rule_id_0884",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: AGG=GAG, DGG=GDG, GHD=DGH. Consulta: HGB=",
+    "target": "BHG"
+  },
+  {
+    "id": "rule_id_0885",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: CFE=FCE, EFC=FEC, DGG=GDG. Consulta: DFD=",
+    "target": "FDD"
+  },
+  {
+    "id": "rule_id_0886",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: AGED=GADE, HEHB=EHBH, CECB=ECBC. Consulta: HCHB=",
+    "target": "CHBH"
+  },
+  {
+    "id": "rule_id_0887",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: AGGFG=GFGGA, FCHHF=FHHCF, BEEDD=DDEEB. Consulta: EAFDC=",
+    "target": "CDFAE"
+  },
+  {
+    "id": "rule_id_0888",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: ACAF=FACA, HEGB=BHEG, CFCB=BCFC. Consulta: GBFE=",
+    "target": "EGBF"
+  },
+  {
+    "id": "rule_id_0889",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: BFD=FBD, DBA=BDA, AGH=GAH. Consulta: ACG=",
+    "target": "CAG"
+  },
+  {
+    "id": "rule_id_0890",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: ACFH=HACF, DGGA=ADGG, FAFF=FFAF. Consulta: EACF=",
+    "target": "FEAC"
+  },
+  {
+    "id": "rule_id_0891",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: ACCH=CCHA, GDAH=DAHG, BHFD=HFDB. Consulta: FECB=",
+    "target": "ECBF"
+  },
+  {
+    "id": "rule_id_0892",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: FCDA=CFAD, BCBA=CBAB, EFEB=FEBE. Consulta: ACDA=",
+    "target": "CAAD"
+  },
+  {
+    "id": "rule_id_0893",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: DBFH=BFHD, GDAB=DABG, BBHD=BHDB. Consulta: CFAE=",
+    "target": "FAEC"
+  },
+  {
+    "id": "rule_id_0894",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: ACAEC=CEACA, EEEDE=EDEEE, HBBBB=BBBBH. Consulta: FDFBG=",
+    "target": "GBFDF"
+  },
+  {
+    "id": "rule_id_0895",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: AGHGD=GHGDA, FHDDD=HDDDF, EBGBF=BGBFE. Consulta: CGAAF=",
+    "target": "GAAFC"
+  },
+  {
+    "id": "rule_id_0896",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: CAD=ADC, CFE=FEC, AFD=FDA. Consulta: CGD=",
+    "target": "GDC"
+  },
+  {
+    "id": "rule_id_0897",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: FGGCF=GGCFF, FCCDE=CCDEF, FGFFG=GFFGF. Consulta: ADACG=",
+    "target": "DACGA"
+  },
+  {
+    "id": "rule_id_0898",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: GGFHD=DGGFH, ACDGB=BACDG, GDEAF=FGDEA. Consulta: EFCCA=",
+    "target": "AEFCC"
+  },
+  {
+    "id": "rule_id_0899",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: FDEAG=DFAEG, FGDAC=GFADC, FACCB=AFCCB. Consulta: EBCEA=",
+    "target": "BEECA"
+  },
+  {
+    "id": "rule_id_0900",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: EFFC=FECF, CEDD=ECDD, HHAB=HHBA. Consulta: BDCA=",
+    "target": "DBAC"
+  },
+  {
+    "id": "rule_id_0901",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: CAHCD=ACCHD, BDDAB=DBADB, DDDCA=DDCDA. Consulta: DGBFA=",
+    "target": "GDFBA"
+  },
+  {
+    "id": "rule_id_0902",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: HHFF=FFHH, DBFD=DFBD, BCAA=AACB. Consulta: EFEH=",
+    "target": "HEFE"
+  },
+  {
+    "id": "rule_id_0903",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: CEEEB=BCEEE, ADBFG=GADBF, DCGHD=DDCGH. Consulta: AGGBG=",
+    "target": "GAGGB"
+  },
+  {
+    "id": "rule_id_0904",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: FABDG=GDBAF, HCDEH=HEDCH, HBFGG=GGFBH. Consulta: HCFEH=",
+    "target": "HEFCH"
+  },
+  {
+    "id": "rule_id_0905",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: EEAG=EEGA, AGFF=GAFF, HGHC=GHCH. Consulta: BHCD=",
+    "target": "HBDC"
+  },
+  {
+    "id": "rule_id_0906",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: GHE=EHG, HBF=FBH, FCG=GCF. Consulta: AFE=",
+    "target": "EFA"
+  },
+  {
+    "id": "rule_id_0907",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: EFHGE=FEGHE, BEEDE=EBDEE, HBEFG=BHFEG. Consulta: GAGFC=",
+    "target": "AGFGC"
+  },
+  {
+    "id": "rule_id_0908",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: DEAEF=FEAED, FHDFF=FFDHF, DEEFA=AFEED. Consulta: HDCDA=",
+    "target": "ADCDH"
+  },
+  {
+    "id": "rule_id_0909",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: EHCG=GEHC, HABC=CHAB, CGGH=HCGG. Consulta: FBCD=",
+    "target": "DFBC"
+  },
+  {
+    "id": "rule_id_0910",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: DCDAH=HADCD, AGHFD=DFHGA, BCDHF=FHDCB. Consulta: FDHDD=",
+    "target": "DDHDF"
+  },
+  {
+    "id": "rule_id_0911",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: BEEA=EBAE, FCHC=CFCH, DFBG=FDGB. Consulta: DAGB=",
+    "target": "ADBG"
+  },
+  {
+    "id": "rule_id_0912",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: HCA=CHA, HGA=GHA, EHA=HEA. Consulta: GEG=",
+    "target": "EGG"
+  },
+  {
+    "id": "rule_id_0913",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: CBFEB=BFEBC, FBHBD=BHBDF, HGFDF=GFDFH. Consulta: DAACH=",
+    "target": "AACHD"
+  },
+  {
+    "id": "rule_id_0914",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: CEAA=EAAC, DEAC=EACD, AABD=ABDA. Consulta: CCEC=",
+    "target": "CECC"
+  },
+  {
+    "id": "rule_id_0915",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: ACH=CAH, FGA=GFA, CBA=BCA. Consulta: EAD=",
+    "target": "AED"
+  },
+  {
+    "id": "rule_id_0916",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: BEEEA=ABEEE, EADBD=DEADB, HCHDC=CHCHD. Consulta: BBEHC=",
+    "target": "CBBEH"
+  },
+  {
+    "id": "rule_id_0917",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: EAED=DEAE, HEDE=EDEH, CCDG=GDCC. Consulta: CCAH=",
+    "target": "HACC"
+  },
+  {
+    "id": "rule_id_0918",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: GABB=BBAG, FGHH=HHGF, ACCE=ECCA. Consulta: FCAD=",
+    "target": "DACF"
+  },
+  {
+    "id": "rule_id_0919",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: GHCDC=CGHCD, BHHGB=BBHHG, ABDCG=GABDC. Consulta: AEFGA=",
+    "target": "AAEFG"
+  },
+  {
+    "id": "rule_id_0920",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: AACF=FAAC, BEDD=DBED, EEDG=GEED. Consulta: HECF=",
+    "target": "FHEC"
+  },
+  {
+    "id": "rule_id_0921",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: FBHEH=HEHBF, ABDED=DEDBA, ADDDB=BDDDA. Consulta: DEDEA=",
+    "target": "AEDED"
+  },
+  {
+    "id": "rule_id_0922",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: CAFFG=GFFAC, HACEA=AECAH, HGEBA=ABEGH. Consulta: AHGFH=",
+    "target": "HFGHA"
+  },
+  {
+    "id": "rule_id_0923",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: CEG=ECG, BDC=DBC, DCB=CDB. Consulta: AFG=",
+    "target": "FAG"
+  },
+  {
+    "id": "rule_id_0924",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: GFDAD=FDADG, GHFAA=HFAAG, BFHHA=FHHAB. Consulta: GDDEB=",
+    "target": "DDEBG"
+  },
+  {
+    "id": "rule_id_0925",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: EFAG=FEGA, CCHA=CCAH, GGAB=GGBA. Consulta: AABA=",
+    "target": "AAAB"
+  },
+  {
+    "id": "rule_id_0926",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: CBBA=BBAC, DHDC=HDCD, EBHF=BHFE. Consulta: EEFC=",
+    "target": "EFCE"
+  },
+  {
+    "id": "rule_id_0927",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: CGD=DCG, GEH=HGE, HGD=DHG. Consulta: FDA=",
+    "target": "AFD"
+  },
+  {
+    "id": "rule_id_0928",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: DCCAH=CCAHD, HBCDG=BCDGH, BEHDD=EHDDB. Consulta: AHBGC=",
+    "target": "HBGCA"
+  },
+  {
+    "id": "rule_id_0929",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: DCDH=CDHD, BBFH=BFHB, CECB=ECBC. Consulta: DCCE=",
+    "target": "CCED"
+  },
+  {
+    "id": "rule_id_0930",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: BGAHC=CBGAH, CABED=DCABE, CACBB=BCACB. Consulta: BEEBH=",
+    "target": "HBEEB"
+  },
+  {
+    "id": "rule_id_0931",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: BCF=CFB, FDA=DAF, AAH=AHA. Consulta: DBB=",
+    "target": "BBD"
+  },
+  {
+    "id": "rule_id_0932",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: CCF=FCC, BBC=CBB, DDG=GDD. Consulta: DGA=",
+    "target": "AGD"
+  },
+  {
+    "id": "rule_id_0933",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: FCHD=CFDH, BCFH=CBHF, AFCF=FAFC. Consulta: BBAB=",
+    "target": "BBBA"
+  },
+  {
+    "id": "rule_id_0934",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: FFEB=FEBF, GHFD=HFDG, BHAD=HADB. Consulta: EBEF=",
+    "target": "BEFE"
+  },
+  {
+    "id": "rule_id_0935",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: AHEF=FAHE, BFCC=CBFC, AABA=AAAB. Consulta: EEGD=",
+    "target": "DEEG"
+  },
+  {
+    "id": "rule_id_0936",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: BHE=HEB, FCB=CBF, AGH=GHA. Consulta: AEF=",
+    "target": "EFA"
+  },
+  {
+    "id": "rule_id_0937",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: FGE=EFG, GCD=DGC, BDA=ABD. Consulta: CGC=",
+    "target": "CCG"
+  },
+  {
+    "id": "rule_id_0938",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: EHDHC=CEHDH, EAHBE=EEAHB, FFHEE=EFFHE. Consulta: DABED=",
+    "target": "DDABE"
+  },
+  {
+    "id": "rule_id_0939",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: HBD=BHD, FBE=BFE, EFC=FEC. Consulta: EHD=",
+    "target": "HED"
+  },
+  {
+    "id": "rule_id_0940",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: HBGCH=BGCHH, CHCDD=HCDDC, BAGFB=AGFBB. Consulta: BACHB=",
+    "target": "ACHBB"
+  },
+  {
+    "id": "rule_id_0941",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: FEBAF=EBAFF, CCGBA=CGBAC, AGHFF=GHFFA. Consulta: HFHEA=",
+    "target": "FHEAH"
+  },
+  {
+    "id": "rule_id_0942",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: EADE=ADEE, CDFF=DFFC, AGDD=GDDA. Consulta: DCEH=",
+    "target": "CEHD"
+  },
+  {
+    "id": "rule_id_0943",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: FDFCA=DFCFA, HEAHA=EHHAA, AEHEC=EAEHC. Consulta: ABEFH=",
+    "target": "BAFEH"
+  },
+  {
+    "id": "rule_id_0944",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: BDA=DAB, HFC=FCH, CEF=EFC. Consulta: BGF=",
+    "target": "GFB"
+  },
+  {
+    "id": "rule_id_0945",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: ACB=CAB, CHA=HCA, FHB=HFB. Consulta: GBB=",
+    "target": "BGB"
+  },
+  {
+    "id": "rule_id_0946",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: HGD=GHD, ABG=BAG, ECB=CEB. Consulta: DHD=",
+    "target": "HDD"
+  },
+  {
+    "id": "rule_id_0947",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: ADEC=CEDA, DHFA=AFHD, GEBG=GBEG. Consulta: CBGG=",
+    "target": "GGBC"
+  },
+  {
+    "id": "rule_id_0948",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: CFDG=FCGD, DADD=ADDD, DFCG=FDGC. Consulta: CBBB=",
+    "target": "BCBB"
+  },
+  {
+    "id": "rule_id_0949",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: HGD=DGH, GHD=DHG, HCD=DCH. Consulta: EBC=",
+    "target": "CBE"
+  },
+  {
+    "id": "rule_id_0950",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: HCGBF=CHBGF, AFCEG=FAECG, BHDHE=HBHDE. Consulta: GCHEG=",
+    "target": "CGEHG"
+  },
+  {
+    "id": "rule_id_0951",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: GGC=CGG, DCG=GCD, HFF=FFH. Consulta: HGG=",
+    "target": "GGH"
+  },
+  {
+    "id": "rule_id_0952",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: BECD=EBDC, EBCE=BEEC, FAAA=AFAA. Consulta: HBFD=",
+    "target": "BHDF"
+  },
+  {
+    "id": "rule_id_0953",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: BGBGA=ABGBG, CDDFD=DCDDF, FDFAG=GFDFA. Consulta: GFFEA=",
+    "target": "AGFFE"
+  },
+  {
+    "id": "rule_id_0954",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: GGAHB=GGHAB, BAEBD=ABBED, HDFEB=DHEFB. Consulta: AFAFC=",
+    "target": "FAFAC"
+  },
+  {
+    "id": "rule_id_0955",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: FFEAE=EFFEA, CHDGF=FCHDG, BCCBB=BBCCB. Consulta: EBBBA=",
+    "target": "AEBBB"
+  },
+  {
+    "id": "rule_id_0956",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: CDAHF=FHADC, BGDGG=GGDGB, AEAAD=DAAEA. Consulta: BBDDH=",
+    "target": "HDDBB"
+  },
+  {
+    "id": "rule_id_0957",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: DCEC=CDCE, DGFB=BDGF, AAHD=DAAH. Consulta: GAHA=",
+    "target": "AGAH"
+  },
+  {
+    "id": "rule_id_0958",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: HGGG=GGGH, AAHE=EHAA, DHFC=CFHD. Consulta: FAGG=",
+    "target": "GGAF"
+  },
+  {
+    "id": "rule_id_0959",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: GFH=FHG, AAH=AHA, GHB=HBG. Consulta: HFC=",
+    "target": "FCH"
+  },
+  {
+    "id": "rule_id_0960",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: GCBE=CBEG, BEHA=EHAB, FACD=ACDF. Consulta: CAEB=",
+    "target": "AEBC"
+  },
+  {
+    "id": "rule_id_0961",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: CDGEA=DGEAC, GFHEA=FHEAG, BBFAH=BFAHB. Consulta: DAABG=",
+    "target": "AABGD"
+  },
+  {
+    "id": "rule_id_0962",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: GEBEA=AGEBE, GCBED=DGCBE, EEAHB=BEEAH. Consulta: AFGHF=",
+    "target": "FAFGH"
+  },
+  {
+    "id": "rule_id_0963",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: DFB=BFD, GFE=EFG, CBA=ABC. Consulta: GBD=",
+    "target": "DBG"
+  },
+  {
+    "id": "rule_id_0964",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: BHDHG=HBHDG, EAEHE=AEHEE, EGBFB=GEFBB. Consulta: AHABG=",
+    "target": "HABAG"
+  },
+  {
+    "id": "rule_id_0965",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: DDH=HDD, FAA=AAF, EGD=DGE. Consulta: AGB=",
+    "target": "BGA"
+  },
+  {
+    "id": "rule_id_0966",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: DGBC=CBGD, FAEB=BEAF, BCEE=EECB. Consulta: GEHG=",
+    "target": "GHEG"
+  },
+  {
+    "id": "rule_id_0967",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: DGCEG=GDECG, GFCED=FGECD, BCHAG=CBAHG. Consulta: FBFHG=",
+    "target": "BFHFG"
+  },
+  {
+    "id": "rule_id_0968",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: CAF=FAC, CGG=GGC, CCE=ECC. Consulta: EBB=",
+    "target": "BBE"
+  },
+  {
+    "id": "rule_id_0969",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: ABCCE=BACCE, EHHDC=HEDHC, GEDGC=EGGDC. Consulta: GAHAH=",
+    "target": "AGAHH"
+  },
+  {
+    "id": "rule_id_0970",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: FCCHH=HFCCH, BADFG=GBADF, DGCAB=BDGCA. Consulta: BHEDD=",
+    "target": "DBHED"
+  },
+  {
+    "id": "rule_id_0971",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: BFH=FHB, EBC=BCE, GAF=AFG. Consulta: AHE=",
+    "target": "HEA"
+  },
+  {
+    "id": "rule_id_0972",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: HAABF=FHAAB, DEBCG=GDEBC, ECEGB=BECEG. Consulta: CEDAD=",
+    "target": "DCEDA"
+  },
+  {
+    "id": "rule_id_0973",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: GACEH=HECAG, EBFGD=DGFBE, CEBFD=DFBEC. Consulta: ACHGH=",
+    "target": "HGHCA"
+  },
+  {
+    "id": "rule_id_0974",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: CBB=BBC, HFG=FGH, DAC=ACD. Consulta: ECC=",
+    "target": "CCE"
+  },
+  {
+    "id": "rule_id_0975",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: BACE=ABEC, HABE=AHEB, HEGA=EHAG. Consulta: HFFC=",
+    "target": "FHCF"
+  },
+  {
+    "id": "rule_id_0976",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: BFA=ABF, HBA=AHB, AHG=GAH. Consulta: ABF=",
+    "target": "FAB"
+  },
+  {
+    "id": "rule_id_0977",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: ECA=CEA, FGD=GFD, DCE=CDE. Consulta: CFF=",
+    "target": "FCF"
+  },
+  {
+    "id": "rule_id_0978",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: FGCEE=EFGCE, CAAAB=BCAAA, ECABA=AECAB. Consulta: FAGAH=",
+    "target": "HFAGA"
+  },
+  {
+    "id": "rule_id_0979",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: EECGH=HGCEE, BHBDF=FDBHB, GADHF=FHDAG. Consulta: ECBCF=",
+    "target": "FCBCE"
+  },
+  {
+    "id": "rule_id_0980",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: HCFA=CHAF, DFBF=FDFB, CEAE=ECEA. Consulta: CGEC=",
+    "target": "GCCE"
+  },
+  {
+    "id": "rule_id_0981",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: CFEDE=FEDEC, BCCFB=CCFBB, CEAGC=EAGCC. Consulta: BGECF=",
+    "target": "GECFB"
+  },
+  {
+    "id": "rule_id_0982",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: ECBAH=CEABH, HDFGC=DHGFC, AGCFC=GAFCC. Consulta: FEGEG=",
+    "target": "EFEGG"
+  },
+  {
+    "id": "rule_id_0983",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: ABCB=BCBA, HEEC=EECH, GADF=ADFG. Consulta: FGED=",
+    "target": "GEDF"
+  },
+  {
+    "id": "rule_id_0984",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: FBAB=BABF, GAHC=AHCG, CDEH=DEHC. Consulta: ECDC=",
+    "target": "CDCE"
+  },
+  {
+    "id": "rule_id_0985",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: DCAC=CDCA, HHGD=HHDG, GGHF=GGFH. Consulta: HADE=",
+    "target": "AHED"
+  },
+  {
+    "id": "rule_id_0986",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: ECG=CEG, HBF=BHF, GCF=CGF. Consulta: BDB=",
+    "target": "DBB"
+  },
+  {
+    "id": "rule_id_0987",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: EGFD=DFGE, GBBF=FBBG, CDFH=HFDC. Consulta: ABFH=",
+    "target": "HFBA"
+  },
+  {
+    "id": "rule_id_0988",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: GFHGE=FGGHE, EGAHC=GEHAC, DHDBD=HDBDD. Consulta: GGFEF=",
+    "target": "GGEFF"
+  },
+  {
+    "id": "rule_id_0989",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: EDD=DDE, HED=DEH, EGC=CGE. Consulta: HBG=",
+    "target": "GBH"
+  },
+  {
+    "id": "rule_id_0990",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: AFH=FHA, HBE=BEH, ADE=DEA. Consulta: HFB=",
+    "target": "FBH"
+  },
+  {
+    "id": "rule_id_0991",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: GCEF=FECG, BCAD=DACB, HCFG=GFCH. Consulta: GGAB=",
+    "target": "BAGG"
+  },
+  {
+    "id": "rule_id_0992",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: AGFA=GAAF, CEFH=ECHF, HAAC=AHCA. Consulta: HABG=",
+    "target": "AHGB"
+  },
+  {
+    "id": "rule_id_0993",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: CCD=CDC, DGF=GFD, DBB=BBD. Consulta: DEG=",
+    "target": "EGD"
+  },
+  {
+    "id": "rule_id_0994",
+    "rule_name": "reverse",
+    "is_ood": false,
+    "prompt": "Ejemplos: BAE=EAB, BGG=GGB, HFA=AFH. Consulta: CCD=",
+    "target": "DCC"
+  },
+  {
+    "id": "rule_id_0995",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: HFGC=FHCG, FAFD=AFDF, FDAD=DFDA. Consulta: EGGC=",
+    "target": "GECG"
+  },
+  {
+    "id": "rule_id_0996",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: CHBE=HCEB, EAAA=AEAA, HCHE=CHEH. Consulta: CEEG=",
+    "target": "ECGE"
+  },
+  {
+    "id": "rule_id_0997",
+    "rule_name": "rotate_r1",
+    "is_ood": false,
+    "prompt": "Ejemplos: BDBAD=DBDBA, GAFHA=AGAFH, EBEHA=AEBEH. Consulta: EHHAB=",
+    "target": "BEHHA"
+  },
+  {
+    "id": "rule_id_0998",
+    "rule_name": "swap_pairs",
+    "is_ood": false,
+    "prompt": "Ejemplos: GBFH=BGHF, FCAG=CFGA, HFFE=FHEF. Consulta: HGAE=",
+    "target": "GHEA"
+  },
+  {
+    "id": "rule_id_0999",
+    "rule_name": "rotate_l1",
+    "is_ood": false,
+    "prompt": "Ejemplos: CECA=ECAC, EFCH=FCHE, BGGE=GGEB. Consulta: FAAF=",
+    "target": "AAFF"
+  }
+]

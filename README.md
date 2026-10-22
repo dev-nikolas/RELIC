@@ -110,19 +110,42 @@ El CLI imprime el RSS al terminar cada ejecución, así que la cifra de memoria 
 
 ## Inicio rápido
 
-### Servidor HTTP y Frontend Integrado (3 comandos)
+### Arquitectura de Integración Gateway + Inferencia
+
+```text
+Frontend (React/Vite)  ──>  Backend Python (Gateway :4000)  ──>  relic_server (Inferencia Rust :5000)
+    [Sin cambios]                [Historial y Persistencia]            [Inferencia Sin Estado]
+```
+
+1. **Backend Python:** Actúa como gateway principal, administrando sesiones, historial de mensajes persistentes (`storage/conversations.json`) y coordinación modular.
+2. **relic_server (Rust):** Microservicio de inferencia sin estado. Expone `GET /health`, `POST /api/query` y `POST /api/generate` (SSE). Retorna `{ text, route, status, latency_ms, rss_mb }`.
+3. **Modo degradado automático:** `relic_server` arranca inmediatamente incluso si los pesos neuronales Safetensors no están presentes. En tal caso, `/health` reporta `mode: "degraded"` con `detector_ready: true`, respondiendo al 100% de efectividad por la ruta determinista para aritmética exacta, inventario y grafos de conocimiento.
+
+### Ejecución Local y Prueba de Humo de Integración
 
 ```bash
-# 1. Compilar el servidor HTTP nativo con un solo hilo (óptimo para RAM limitada)
+# 1. Compilar el servicio de inferencia nativo con un solo hilo
 cargo build --release -j 1 -p relic_server
 
-# 2. Iniciar el servidor en el puerto 4000 (sirve la API y el frontend SPA compilado)
-cargo run --release -p relic_server -- 4000
+# 2. Ejecutar la prueba de humo completa (levanta ambos procesos y valida el ciclo completo)
+python tools/smoke_test_gateway.py
 
-# 3. Validar conectividad, razonamiento determinista y streaming
-python tools/smoke_test.py
+# 3. O iniciar relic_server manualmente en el puerto 5000
+./target/release/relic_server 5000
 ```
-Abre en tu navegador `http://127.0.0.1:4000` para interactuar con la interfaz completa.
+
+> [!NOTE]
+> **Alcance del Servidor HTTP y Demostración Local:** Este servicio (`relic_server`) está diseñado estrictamente para **uso local, desarrollo y demostración interactiva**. Su justificación técnica se fundamenta en la **simplicidad de despliegue local** (un único binario autocontenido de cero dependencias externas de ejecución).
+>
+> **Decisión Técnica (Servidor Síncrono vs. Axum/Tokio):** La inferencia local sobre CPU es una carga *CPU-bound monousuario*. Se seleccionó un servidor síncrono multi-hilo minimalista (`tiny_http` con pool de hilos) frente a un stack asíncrono como `axum` + `tokio` para minimizar el footprint de compilación (menos de 20 segundos de build y 4 dependencias frente a más de 80 crates transitivos pesados). Se compila localmente con `-j 1` para respetar equipos con RAM limitada y se delega la generación de binarios completos al pipeline de CI.
+>
+> **Requerimientos para Producción:**
+> - **Autenticación y Autorización:** Tokens JWT / API Keys con control de acceso por usuario (RBAC).
+> - **Rate Limiting:** Control de concurrencia y estrangulamiento de peticiones por IP/cliente.
+> - **Seguridad en Transporte (TLS/HTTPS):** Terminación TLS nativa o delegada mediante reverse proxy (Nginx / Caddy).
+> - **Persistencia Transaccional:** Base de datos relacional (PostgreSQL / SQLite) con soporte ACID para conversaciones.
+> - **Colas y Timeouts Asíncronos:** Cola de trabajo (Redis / Celery) para inferencias largas con políticas de cancelación.
+> - **Observabilidad:** Métricas estructuradas en formato Prometheus / OpenTelemetry y logging centralizado.
 
 ### CLI y Motor Local
 

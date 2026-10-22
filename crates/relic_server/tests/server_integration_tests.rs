@@ -1,8 +1,8 @@
-//! Pruebas de integración de motor y endpoints de relic_server.
+//! Pruebas de integración de motor y endpoints de relic_server sin estado.
 //! Menos de 180 líneas.
 
-use relic_server::conversations::{add_message_and_respond, create_conversation, get_conversation, list_conversations};
 use relic_server::engine::execute_query;
+use relic_server::generate::handle_generate_sse;
 use relic_server::state::ServerState;
 
 #[test]
@@ -56,28 +56,11 @@ fn test_execute_query_free_language_degraded_or_neural() {
 }
 
 #[test]
-fn test_conversation_lifecycle_and_assistant_reply() {
+fn test_handle_generate_sse_output() {
     let state = ServerState::new();
+    let sse_bytes = handle_generate_sse("1 + 1", &state);
+    let sse_str = String::from_utf8_lossy(&sse_bytes);
 
-    // 1. Crear conversación
-    let conv = create_conversation(Some("Test Chat".to_string()), &state);
-    assert_eq!(conv.title, "Test Chat");
-    assert_eq!(conv.messages.len(), 0);
-
-    // 2. Enviar mensaje del usuario con operación aritmética
-    let reply = add_message_and_respond(&conv.id, "cuánto es 5 * 4", &state).expect("Debe generar respuesta");
-    assert_eq!(reply.role, "assistant");
-    assert!(reply.content.contains("20"), "Debe resolver 5 * 4 = 20, recibido: {}", reply.content);
-
-    // 3. Verificar que la conversación ahora contiene 2 mensajes (usuario + asistente)
-    let fetched = get_conversation(&conv.id, &state).expect("Conversación debe existir");
-    assert_eq!(fetched.messages.len(), 2);
-    assert_eq!(fetched.messages[0].role, "user");
-    assert_eq!(fetched.messages[0].content, "cuánto es 5 * 4");
-    assert_eq!(fetched.messages[1].role, "assistant");
-    assert!(fetched.messages[1].content.contains("20"));
-
-    // 4. Listar conversaciones
-    let list = list_conversations(&state);
-    assert!(!list.is_empty());
+    assert!(sse_str.contains("data: "));
+    assert!(sse_str.contains("\"finished\":true"));
 }

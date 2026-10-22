@@ -1,0 +1,2102 @@
+[
+  {
+    "id": "graph_ood_0000",
+    "num_nodes": 8,
+    "path_len": 5,
+    "prompt": "Grafo: N0->N2, N1->N0, N1->N5, N2->N6, N2->N7, N3->N1, N5->N3, N5->N6, N7->N1. ¿Camino N4 a N3? ->",
+    "target": "NO"
+  },
+  {
+    "id": "graph_ood_0001",
+    "num_nodes": 8,
+    "path_len": 6,
+    "prompt": "Grafo: N0->N1, N1->N5, N3->N4, N3->N6, N4->N3, N5->N7, N7->N4. ¿Camino N1 a N2? ->",
+    "target": "NO"
+  },
+  {
+    "id": "graph_ood_0002",
+    "num_nodes": 9,
+    "path_len": 5,
+    "prompt": "Grafo: N0->N5, N2->N0, N2->N6, N3->N8, N5->N7, N6->N5, N7->N4, N8->N2. ¿Camino N8 a N4? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0003",
+    "num_nodes": 8,
+    "path_len": 5,
+    "prompt": "Grafo: N0->N5, N1->N3, N2->N0, N4->N3, N5->N4, N7->N2. ¿Camino N7 a N3? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0004",
+    "num_nodes": 9,
+    "path_len": 4,
+    "prompt": "Grafo: N0->N6, N2->N4, N3->N5, N4->N3, N5->N7, N6->N8, N7->N1, N8->N3. ¿Camino N6 a N4? ->",
+    "target": "NO"
+  },
+  {
+    "id": "graph_ood_0005",
+    "num_nodes": 7,
+    "path_len": 5,
+    "prompt": "Grafo: N0->N2, N1->N3, N1->N5, N2->N5, N3->N4, N3->N6, N4->N0, N5->N1, N6->N2. ¿Camino N3 a N1? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0006",
+    "num_nodes": 10,
+    "path_len": 5,
+    "prompt": "Grafo: N0->N2, N1->N9, N3->N1, N3->N5, N5->N1, N6->N4, N8->N3, N9->N0. ¿Camino N8 a N0? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0007",
+    "num_nodes": 9,
+    "path_len": 5,
+    "prompt": "Grafo: N0->N1, N1->N6, N3->N8, N4->N5, N5->N0, N6->N7. ¿Camino N2 a N1? ->",
+    "target": "NO"
+  },
+  {
+    "id": "graph_ood_0008",
+    "num_nodes": 7,
+    "path_len": 5,
+    "prompt": "Grafo: N0->N6, N2->N1, N2->N3, N3->N0, N3->N1, N3->N5, N5->N1, N5->N3, N6->N0, N6->N5. ¿Camino N1 a N3? ->",
+    "target": "NO"
+  },
+  {
+    "id": "graph_ood_0009",
+    "num_nodes": 8,
+    "path_len": 5,
+    "prompt": "Grafo: N0->N7, N1->N0, N1->N6, N2->N1, N3->N4, N4->N1, N5->N6, N6->N7, N7->N0. ¿Camino N3 a N0? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0010",
+    "num_nodes": 10,
+    "path_len": 6,
+    "prompt": "Grafo: N0->N2, N1->N0, N2->N5, N3->N8, N6->N9, N7->N6, N8->N1, N8->N4, N9->N3. ¿Camino N5 a N0? ->",
+    "target": "NO"
+  },
+  {
+    "id": "graph_ood_0011",
+    "num_nodes": 7,
+    "path_len": 5,
+    "prompt": "Grafo: N1->N4, N2->N3, N3->N1, N4->N5, N5->N2, N6->N3, N6->N5. ¿Camino N0 a N4? ->",
+    "target": "NO"
+  },
+  {
+    "id": "graph_ood_0012",
+    "num_nodes": 7,
+    "path_len": 6,
+    "prompt": "Grafo: N0->N3, N1->N6, N2->N1, N3->N2, N4->N0, N5->N0, N6->N2, N6->N5. ¿Camino N4 a N5? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0013",
+    "num_nodes": 9,
+    "path_len": 6,
+    "prompt": "Grafo: N0->N6, N1->N4, N1->N8, N2->N7, N3->N0, N3->N7, N6->N4, N6->N8, N7->N0, N7->N1, N8->N3. ¿Camino N3 a N2? ->",
+    "target": "NO"
+  },
+  {
+    "id": "graph_ood_0014",
+    "num_nodes": 8,
+    "path_len": 5,
+    "prompt": "Grafo: N1->N2, N1->N5, N2->N7, N3->N6, N6->N2, N7->N1, N7->N6. ¿Camino N5 a N2? ->",
+    "target": "NO"
+  },
+  {
+    "id": "graph_ood_0015",
+    "num_nodes": 10,
+    "path_len": 6,
+    "prompt": "Grafo: N1->N3, N2->N4, N2->N6, N3->N2, N4->N9, N5->N7, N7->N3, N8->N7, N9->N5. ¿Camino N1 a N7? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0016",
+    "num_nodes": 7,
+    "path_len": 4,
+    "prompt": "Grafo: N0->N5, N1->N0, N1->N2, N3->N2, N4->N1, N4->N2, N5->N2, N6->N1. ¿Camino N3 a N5? ->",
+    "target": "NO"
+  },
+  {
+    "id": "graph_ood_0017",
+    "num_nodes": 7,
+    "path_len": 5,
+    "prompt": "Grafo: N0->N5, N1->N2, N2->N6, N3->N4, N4->N0, N4->N5, N6->N4. ¿Camino N0 a N1? ->",
+    "target": "NO"
+  },
+  {
+    "id": "graph_ood_0018",
+    "num_nodes": 10,
+    "path_len": 4,
+    "prompt": "Grafo: N1->N4, N2->N3, N4->N3, N4->N7, N7->N9, N9->N5. ¿Camino N1 a N5? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0019",
+    "num_nodes": 9,
+    "path_len": 5,
+    "prompt": "Grafo: N0->N1, N0->N6, N0->N8, N2->N6, N3->N4, N3->N8, N6->N3, N8->N2. ¿Camino N5 a N3? ->",
+    "target": "NO"
+  },
+  {
+    "id": "graph_ood_0020",
+    "num_nodes": 8,
+    "path_len": 6,
+    "prompt": "Grafo: N0->N1, N1->N2, N1->N7, N2->N0, N2->N3, N4->N2, N4->N3, N5->N3, N7->N5. ¿Camino N6 a N2? ->",
+    "target": "NO"
+  },
+  {
+    "id": "graph_ood_0021",
+    "num_nodes": 8,
+    "path_len": 5,
+    "prompt": "Grafo: N0->N2, N0->N3, N1->N5, N1->N6, N2->N0, N2->N3, N5->N7, N6->N5, N7->N0. ¿Camino N4 a N7? ->",
+    "target": "NO"
+  },
+  {
+    "id": "graph_ood_0022",
+    "num_nodes": 9,
+    "path_len": 4,
+    "prompt": "Grafo: N0->N8, N1->N3, N2->N0, N3->N6, N4->N2, N4->N5, N6->N8, N8->N0. ¿Camino N4 a N3? ->",
+    "target": "NO"
+  },
+  {
+    "id": "graph_ood_0023",
+    "num_nodes": 10,
+    "path_len": 4,
+    "prompt": "Grafo: N0->N2, N0->N8, N1->N0, N1->N6, N3->N9, N7->N3, N8->N4, N9->N1. ¿Camino N0 a N6? ->",
+    "target": "NO"
+  },
+  {
+    "id": "graph_ood_0024",
+    "num_nodes": 9,
+    "path_len": 5,
+    "prompt": "Grafo: N0->N2, N0->N8, N1->N7, N2->N3, N3->N4, N3->N8, N4->N3, N5->N4, N5->N7, N8->N1. ¿Camino N0 a N7? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0025",
+    "num_nodes": 8,
+    "path_len": 4,
+    "prompt": "Grafo: N2->N4, N4->N5, N5->N0, N5->N7, N6->N0, N6->N2. ¿Camino N6 a N7? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0026",
+    "num_nodes": 7,
+    "path_len": 6,
+    "prompt": "Grafo: N0->N4, N1->N6, N2->N5, N4->N1, N5->N3, N6->N2. ¿Camino N0 a N3? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0027",
+    "num_nodes": 7,
+    "path_len": 5,
+    "prompt": "Grafo: N0->N2, N0->N4, N2->N3, N3->N6, N4->N0, N6->N1, N6->N2, N6->N5. ¿Camino N4 a N5? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0028",
+    "num_nodes": 8,
+    "path_len": 4,
+    "prompt": "Grafo: N0->N6, N1->N5, N2->N1, N3->N2, N3->N6, N4->N2, N5->N6, N6->N5. ¿Camino N4 a N3? ->",
+    "target": "NO"
+  },
+  {
+    "id": "graph_ood_0029",
+    "num_nodes": 9,
+    "path_len": 4,
+    "prompt": "Grafo: N0->N8, N1->N0, N1->N5, N2->N8, N3->N0, N5->N3, N8->N2. ¿Camino N5 a N2? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0030",
+    "num_nodes": 10,
+    "path_len": 6,
+    "prompt": "Grafo: N0->N1, N1->N9, N2->N4, N7->N2, N7->N6, N7->N8, N7->N9, N8->N7, N9->N8. ¿Camino N0 a N4? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0031",
+    "num_nodes": 8,
+    "path_len": 4,
+    "prompt": "Grafo: N0->N3, N2->N0, N2->N6, N3->N4, N4->N3, N5->N7, N6->N2, N7->N0. ¿Camino N5 a N4? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0032",
+    "num_nodes": 7,
+    "path_len": 4,
+    "prompt": "Grafo: N0->N2, N0->N4, N2->N4, N2->N5, N4->N1, N4->N6, N6->N2, N6->N4. ¿Camino N6 a N3? ->",
+    "target": "NO"
+  },
+  {
+    "id": "graph_ood_0033",
+    "num_nodes": 8,
+    "path_len": 6,
+    "prompt": "Grafo: N1->N0, N1->N5, N1->N7, N2->N3, N3->N4, N4->N6, N4->N7, N5->N1, N6->N5, N7->N1. ¿Camino N3 a N2? ->",
+    "target": "NO"
+  },
+  {
+    "id": "graph_ood_0034",
+    "num_nodes": 7,
+    "path_len": 5,
+    "prompt": "Grafo: N0->N5, N1->N6, N2->N0, N3->N0, N3->N6, N4->N0, N4->N3, N5->N4, N6->N2. ¿Camino N5 a N1? ->",
+    "target": "NO"
+  },
+  {
+    "id": "graph_ood_0035",
+    "num_nodes": 7,
+    "path_len": 6,
+    "prompt": "Grafo: N0->N4, N1->N6, N2->N0, N2->N5, N3->N2, N4->N5, N5->N1, N5->N2, N6->N3. ¿Camino N6 a N3? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0036",
+    "num_nodes": 7,
+    "path_len": 6,
+    "prompt": "Grafo: N0->N5, N1->N4, N2->N0, N2->N4, N3->N1, N3->N6, N4->N0, N5->N6, N6->N3. ¿Camino N2 a N1? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0037",
+    "num_nodes": 9,
+    "path_len": 4,
+    "prompt": "Grafo: N1->N3, N1->N4, N1->N6, N2->N4, N5->N7, N7->N8, N8->N1, N8->N6. ¿Camino N0 a N1? ->",
+    "target": "NO"
+  },
+  {
+    "id": "graph_ood_0038",
+    "num_nodes": 9,
+    "path_len": 5,
+    "prompt": "Grafo: N1->N3, N2->N7, N2->N8, N4->N6, N5->N4, N6->N2, N8->N3. ¿Camino N5 a N3? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0039",
+    "num_nodes": 7,
+    "path_len": 6,
+    "prompt": "Grafo: N0->N3, N0->N5, N2->N3, N3->N0, N4->N1, N5->N1, N5->N4, N6->N0, N6->N1, N6->N2. ¿Camino N6 a N1? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0040",
+    "num_nodes": 8,
+    "path_len": 5,
+    "prompt": "Grafo: N1->N7, N3->N6, N4->N1, N4->N2, N4->N6, N5->N1, N5->N4, N6->N5, N7->N3. ¿Camino N7 a N1? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0041",
+    "num_nodes": 9,
+    "path_len": 4,
+    "prompt": "Grafo: N0->N4, N0->N5, N0->N7, N1->N8, N2->N1, N4->N7, N5->N0, N5->N6, N7->N1. ¿Camino N7 a N3? ->",
+    "target": "NO"
+  },
+  {
+    "id": "graph_ood_0042",
+    "num_nodes": 8,
+    "path_len": 6,
+    "prompt": "Grafo: N2->N7, N3->N5, N4->N0, N5->N2, N5->N4, N6->N2, N6->N5, N7->N3. ¿Camino N6 a N0? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0043",
+    "num_nodes": 10,
+    "path_len": 4,
+    "prompt": "Grafo: N0->N1, N1->N3, N1->N8, N2->N0, N5->N1, N5->N4, N8->N5, N9->N8. ¿Camino N0 a N4? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0044",
+    "num_nodes": 9,
+    "path_len": 4,
+    "prompt": "Grafo: N1->N7, N4->N1, N5->N7, N7->N6, N8->N4. ¿Camino N8 a N6? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0045",
+    "num_nodes": 8,
+    "path_len": 4,
+    "prompt": "Grafo: N0->N6, N3->N1, N3->N5, N3->N7, N5->N3, N5->N7, N6->N5. ¿Camino N0 a N1? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0046",
+    "num_nodes": 10,
+    "path_len": 6,
+    "prompt": "Grafo: N1->N9, N2->N5, N2->N7, N3->N4, N4->N8, N5->N0, N5->N3, N6->N7, N7->N4, N8->N9, N9->N2. ¿Camino N3 a N0? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0047",
+    "num_nodes": 7,
+    "path_len": 5,
+    "prompt": "Grafo: N0->N2, N1->N0, N2->N4, N3->N0, N3->N1, N4->N5, N6->N3. ¿Camino N3 a N6? ->",
+    "target": "NO"
+  },
+  {
+    "id": "graph_ood_0048",
+    "num_nodes": 7,
+    "path_len": 4,
+    "prompt": "Grafo: N0->N4, N1->N3, N3->N2, N3->N4, N4->N1, N4->N5, N4->N6, N5->N1, N6->N0. ¿Camino N6 a N3? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0049",
+    "num_nodes": 8,
+    "path_len": 4,
+    "prompt": "Grafo: N0->N2, N0->N5, N2->N7, N4->N7, N5->N1, N5->N6, N7->N5. ¿Camino N3 a N4? ->",
+    "target": "NO"
+  },
+  {
+    "id": "graph_ood_0050",
+    "num_nodes": 9,
+    "path_len": 5,
+    "prompt": "Grafo: N0->N4, N0->N6, N1->N3, N3->N5, N4->N1, N4->N6, N5->N6, N7->N3. ¿Camino N0 a N6? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0051",
+    "num_nodes": 10,
+    "path_len": 4,
+    "prompt": "Grafo: N2->N9, N5->N6, N6->N1, N6->N2, N7->N8, N8->N2, N9->N1, N9->N4. ¿Camino N5 a N1? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0052",
+    "num_nodes": 8,
+    "path_len": 6,
+    "prompt": "Grafo: N0->N2, N0->N5, N0->N7, N1->N6, N2->N4, N3->N6, N5->N1, N6->N7, N7->N0, N7->N6. ¿Camino N5 a N4? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0053",
+    "num_nodes": 10,
+    "path_len": 6,
+    "prompt": "Grafo: N0->N7, N0->N8, N2->N3, N4->N3, N4->N6, N5->N4, N6->N9, N7->N0, N8->N5. ¿Camino N7 a N9? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0054",
+    "num_nodes": 10,
+    "path_len": 5,
+    "prompt": "Grafo: N0->N2, N1->N0, N1->N8, N4->N1, N5->N7, N5->N9, N8->N5, N9->N0. ¿Camino N1 a N2? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0055",
+    "num_nodes": 9,
+    "path_len": 5,
+    "prompt": "Grafo: N0->N4, N2->N8, N3->N0, N4->N2, N6->N0, N6->N1, N7->N4, N8->N6. ¿Camino N0 a N1? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0056",
+    "num_nodes": 8,
+    "path_len": 4,
+    "prompt": "Grafo: N0->N6, N2->N1, N5->N0, N6->N0, N6->N2, N7->N0, N7->N2. ¿Camino N5 a N1? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0057",
+    "num_nodes": 10,
+    "path_len": 4,
+    "prompt": "Grafo: N0->N3, N0->N5, N2->N0, N3->N7, N5->N0, N7->N6. ¿Camino N2 a N4? ->",
+    "target": "NO"
+  },
+  {
+    "id": "graph_ood_0058",
+    "num_nodes": 10,
+    "path_len": 5,
+    "prompt": "Grafo: N0->N1, N2->N7, N3->N0, N3->N2, N5->N1, N5->N2, N7->N3, N7->N4, N9->N4. ¿Camino N8 a N5? ->",
+    "target": "NO"
+  },
+  {
+    "id": "graph_ood_0059",
+    "num_nodes": 10,
+    "path_len": 6,
+    "prompt": "Grafo: N0->N1, N0->N8, N1->N5, N3->N2, N4->N0, N4->N2, N5->N3, N6->N4. ¿Camino N3 a N8? ->",
+    "target": "NO"
+  },
+  {
+    "id": "graph_ood_0060",
+    "num_nodes": 9,
+    "path_len": 6,
+    "prompt": "Grafo: N0->N2, N0->N4, N1->N0, N2->N4, N2->N6, N4->N2, N4->N5, N5->N1, N6->N4, N8->N5. ¿Camino N8 a N4? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0061",
+    "num_nodes": 9,
+    "path_len": 5,
+    "prompt": "Grafo: N2->N4, N3->N4, N3->N7, N4->N6, N5->N4, N6->N8, N7->N3, N7->N6, N8->N2. ¿Camino N0 a N6? ->",
+    "target": "NO"
+  },
+  {
+    "id": "graph_ood_0062",
+    "num_nodes": 9,
+    "path_len": 6,
+    "prompt": "Grafo: N0->N4, N1->N0, N2->N6, N4->N3, N4->N7, N5->N2, N7->N5, N7->N6. ¿Camino N1 a N6? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0063",
+    "num_nodes": 7,
+    "path_len": 4,
+    "prompt": "Grafo: N0->N5, N1->N4, N3->N0, N3->N4, N4->N3, N5->N4. ¿Camino N1 a N5? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0064",
+    "num_nodes": 10,
+    "path_len": 4,
+    "prompt": "Grafo: N2->N7, N3->N8, N4->N1, N5->N7, N6->N2, N6->N4, N8->N6, N8->N9. ¿Camino N3 a N7? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0065",
+    "num_nodes": 10,
+    "path_len": 6,
+    "prompt": "Grafo: N0->N2, N1->N7, N2->N9, N4->N2, N5->N2, N6->N1, N6->N9, N7->N4, N8->N5, N9->N0. ¿Camino N6 a N0? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0066",
+    "num_nodes": 7,
+    "path_len": 5,
+    "prompt": "Grafo: N0->N2, N0->N4, N1->N4, N1->N5, N1->N6, N2->N3, N3->N0, N4->N1, N6->N2. ¿Camino N5 a N0? ->",
+    "target": "NO"
+  },
+  {
+    "id": "graph_ood_0067",
+    "num_nodes": 10,
+    "path_len": 5,
+    "prompt": "Grafo: N0->N1, N2->N4, N3->N1, N4->N6, N5->N3, N6->N5, N7->N8. ¿Camino N2 a N1? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0068",
+    "num_nodes": 8,
+    "path_len": 4,
+    "prompt": "Grafo: N0->N3, N1->N7, N3->N6, N5->N0, N5->N1, N7->N3, N7->N5. ¿Camino N3 a N7? ->",
+    "target": "NO"
+  },
+  {
+    "id": "graph_ood_0069",
+    "num_nodes": 9,
+    "path_len": 6,
+    "prompt": "Grafo: N0->N2, N0->N3, N2->N0, N3->N6, N4->N7, N6->N0, N6->N4, N7->N5, N7->N8, N8->N6. ¿Camino N2 a N5? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0070",
+    "num_nodes": 7,
+    "path_len": 5,
+    "prompt": "Grafo: N0->N2, N1->N3, N2->N1, N3->N4, N5->N1, N6->N0. ¿Camino N6 a N4? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0071",
+    "num_nodes": 7,
+    "path_len": 4,
+    "prompt": "Grafo: N0->N3, N0->N5, N2->N3, N2->N4, N2->N6, N3->N2, N4->N3, N5->N3, N6->N2. ¿Camino N0 a N4? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0072",
+    "num_nodes": 9,
+    "path_len": 4,
+    "prompt": "Grafo: N0->N2, N2->N7, N4->N6, N5->N2, N7->N0, N7->N4. ¿Camino N5 a N6? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0073",
+    "num_nodes": 9,
+    "path_len": 4,
+    "prompt": "Grafo: N0->N3, N1->N5, N2->N0, N3->N7, N5->N4, N5->N7, N7->N4. ¿Camino N0 a N5? ->",
+    "target": "NO"
+  },
+  {
+    "id": "graph_ood_0074",
+    "num_nodes": 10,
+    "path_len": 5,
+    "prompt": "Grafo: N1->N9, N2->N1, N4->N2, N4->N6, N5->N7, N6->N2, N7->N4, N9->N8. ¿Camino N7 a N9? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0075",
+    "num_nodes": 7,
+    "path_len": 5,
+    "prompt": "Grafo: N0->N1, N1->N5, N3->N2, N4->N3, N4->N6, N5->N2, N5->N4, N6->N1. ¿Camino N2 a N1? ->",
+    "target": "NO"
+  },
+  {
+    "id": "graph_ood_0076",
+    "num_nodes": 8,
+    "path_len": 5,
+    "prompt": "Grafo: N1->N2, N1->N4, N1->N5, N2->N0, N3->N1, N4->N6, N6->N3, N7->N6. ¿Camino N0 a N3? ->",
+    "target": "NO"
+  },
+  {
+    "id": "graph_ood_0077",
+    "num_nodes": 10,
+    "path_len": 5,
+    "prompt": "Grafo: N0->N3, N0->N5, N1->N2, N2->N6, N3->N2, N5->N1, N6->N0, N7->N0. ¿Camino N1 a N9? ->",
+    "target": "NO"
+  },
+  {
+    "id": "graph_ood_0078",
+    "num_nodes": 9,
+    "path_len": 5,
+    "prompt": "Grafo: N2->N8, N3->N8, N4->N7, N5->N2, N7->N2, N7->N3, N8->N4. ¿Camino N5 a N3? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0079",
+    "num_nodes": 9,
+    "path_len": 4,
+    "prompt": "Grafo: N0->N1, N1->N6, N1->N8, N4->N2, N4->N5, N5->N0, N6->N8, N8->N4, N8->N6. ¿Camino N0 a N4? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0080",
+    "num_nodes": 8,
+    "path_len": 5,
+    "prompt": "Grafo: N0->N6, N1->N3, N1->N4, N3->N0, N5->N1, N6->N7, N7->N5. ¿Camino N4 a N6? ->",
+    "target": "NO"
+  },
+  {
+    "id": "graph_ood_0081",
+    "num_nodes": 7,
+    "path_len": 5,
+    "prompt": "Grafo: N0->N3, N0->N4, N1->N0, N2->N6, N3->N5, N4->N2, N5->N1, N6->N5. ¿Camino N2 a N3? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0082",
+    "num_nodes": 8,
+    "path_len": 4,
+    "prompt": "Grafo: N2->N5, N3->N1, N4->N1, N5->N7, N6->N0, N7->N3. ¿Camino N2 a N1? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0083",
+    "num_nodes": 9,
+    "path_len": 5,
+    "prompt": "Grafo: N0->N4, N1->N0, N4->N3, N4->N7, N4->N8, N6->N1, N6->N3, N8->N1, N8->N7. ¿Camino N6 a N7? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0084",
+    "num_nodes": 8,
+    "path_len": 6,
+    "prompt": "Grafo: N0->N2, N1->N2, N1->N5, N2->N0, N2->N3, N2->N7, N4->N0, N4->N2, N5->N4, N6->N1. ¿Camino N3 a N4? ->",
+    "target": "NO"
+  },
+  {
+    "id": "graph_ood_0085",
+    "num_nodes": 7,
+    "path_len": 4,
+    "prompt": "Grafo: N0->N5, N1->N5, N3->N0, N3->N2, N5->N0, N5->N2, N6->N3. ¿Camino N6 a N2? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0086",
+    "num_nodes": 10,
+    "path_len": 6,
+    "prompt": "Grafo: N0->N8, N1->N0, N3->N9, N4->N6, N5->N7, N6->N1, N7->N4, N8->N5, N8->N9. ¿Camino N3 a N7? ->",
+    "target": "NO"
+  },
+  {
+    "id": "graph_ood_0087",
+    "num_nodes": 8,
+    "path_len": 5,
+    "prompt": "Grafo: N0->N5, N2->N0, N3->N2, N4->N1, N5->N3, N5->N4, N7->N2, N7->N3. ¿Camino N7 a N1? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0088",
+    "num_nodes": 8,
+    "path_len": 4,
+    "prompt": "Grafo: N0->N1, N1->N0, N1->N2, N2->N4, N4->N5, N5->N1, N5->N6. ¿Camino N4 a N7? ->",
+    "target": "NO"
+  },
+  {
+    "id": "graph_ood_0089",
+    "num_nodes": 7,
+    "path_len": 5,
+    "prompt": "Grafo: N2->N1, N3->N2, N3->N5, N4->N3, N5->N2, N5->N3, N6->N4. ¿Camino N6 a N1? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0090",
+    "num_nodes": 9,
+    "path_len": 6,
+    "prompt": "Grafo: N0->N2, N1->N7, N2->N1, N4->N0, N6->N5, N7->N3, N8->N4. ¿Camino N8 a N3? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0091",
+    "num_nodes": 10,
+    "path_len": 5,
+    "prompt": "Grafo: N2->N5, N2->N7, N5->N2, N5->N8, N6->N4, N6->N5, N7->N6, N8->N4. ¿Camino N3 a N4? ->",
+    "target": "NO"
+  },
+  {
+    "id": "graph_ood_0092",
+    "num_nodes": 10,
+    "path_len": 4,
+    "prompt": "Grafo: N3->N7, N4->N2, N4->N8, N5->N3, N6->N1, N6->N9, N7->N4. ¿Camino N1 a N6? ->",
+    "target": "NO"
+  },
+  {
+    "id": "graph_ood_0093",
+    "num_nodes": 9,
+    "path_len": 5,
+    "prompt": "Grafo: N0->N1, N1->N3, N3->N4, N3->N7, N4->N6, N5->N3, N6->N2, N7->N4, N8->N0. ¿Camino N2 a N8? ->",
+    "target": "NO"
+  },
+  {
+    "id": "graph_ood_0094",
+    "num_nodes": 8,
+    "path_len": 6,
+    "prompt": "Grafo: N0->N1, N0->N2, N0->N5, N1->N7, N2->N0, N2->N3, N3->N5, N4->N1, N5->N4, N6->N4, N7->N0. ¿Camino N1 a N4? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0095",
+    "num_nodes": 9,
+    "path_len": 5,
+    "prompt": "Grafo: N1->N5, N2->N5, N3->N8, N5->N6, N6->N7, N7->N3, N8->N3. ¿Camino N2 a N8? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0096",
+    "num_nodes": 8,
+    "path_len": 5,
+    "prompt": "Grafo: N0->N1, N1->N5, N2->N0, N4->N2, N4->N3, N5->N3, N7->N0. ¿Camino N4 a N3? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0097",
+    "num_nodes": 9,
+    "path_len": 6,
+    "prompt": "Grafo: N0->N1, N0->N7, N1->N0, N1->N8, N2->N4, N5->N2, N6->N1, N7->N5. ¿Camino N6 a N4? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0098",
+    "num_nodes": 8,
+    "path_len": 6,
+    "prompt": "Grafo: N0->N5, N1->N2, N1->N4, N2->N4, N3->N5, N4->N5, N4->N7, N5->N3, N7->N0. ¿Camino N0 a N1? ->",
+    "target": "NO"
+  },
+  {
+    "id": "graph_ood_0099",
+    "num_nodes": 7,
+    "path_len": 4,
+    "prompt": "Grafo: N0->N1, N0->N4, N1->N4, N1->N5, N4->N6, N5->N0, N6->N5. ¿Camino N0 a N5? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0100",
+    "num_nodes": 10,
+    "path_len": 5,
+    "prompt": "Grafo: N0->N6, N4->N3, N5->N0, N5->N6, N6->N7, N7->N3, N8->N0, N8->N6, N9->N5. ¿Camino N9 a N3? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0101",
+    "num_nodes": 7,
+    "path_len": 5,
+    "prompt": "Grafo: N0->N3, N0->N4, N1->N5, N2->N0, N2->N1, N3->N0, N3->N1, N5->N2, N5->N4. ¿Camino N3 a N4? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0102",
+    "num_nodes": 8,
+    "path_len": 5,
+    "prompt": "Grafo: N0->N6, N1->N2, N2->N0, N5->N1, N5->N4, N6->N3, N6->N4, N6->N5. ¿Camino N5 a N4? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0103",
+    "num_nodes": 7,
+    "path_len": 6,
+    "prompt": "Grafo: N0->N5, N1->N6, N2->N0, N2->N4, N3->N1, N3->N6, N5->N2, N6->N0, N6->N4. ¿Camino N0 a N3? ->",
+    "target": "NO"
+  },
+  {
+    "id": "graph_ood_0104",
+    "num_nodes": 9,
+    "path_len": 4,
+    "prompt": "Grafo: N1->N8, N2->N7, N4->N2, N6->N2, N7->N3, N7->N5, N8->N0, N8->N6. ¿Camino N8 a N5? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0105",
+    "num_nodes": 9,
+    "path_len": 6,
+    "prompt": "Grafo: N1->N8, N3->N1, N4->N3, N6->N2, N7->N4, N8->N0, N8->N3, N8->N6. ¿Camino N5 a N7? ->",
+    "target": "NO"
+  },
+  {
+    "id": "graph_ood_0106",
+    "num_nodes": 10,
+    "path_len": 4,
+    "prompt": "Grafo: N0->N2, N2->N4, N4->N9, N6->N7, N8->N5, N9->N3. ¿Camino N0 a N3? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0107",
+    "num_nodes": 9,
+    "path_len": 5,
+    "prompt": "Grafo: N1->N2, N2->N0, N2->N7, N3->N5, N4->N0, N5->N7, N6->N2, N7->N1, N8->N4. ¿Camino N1 a N4? ->",
+    "target": "NO"
+  },
+  {
+    "id": "graph_ood_0108",
+    "num_nodes": 7,
+    "path_len": 5,
+    "prompt": "Grafo: N1->N2, N2->N3, N2->N4, N2->N5, N3->N6, N4->N3, N5->N0, N5->N3, N5->N4, N6->N2. ¿Camino N1 a N6? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0109",
+    "num_nodes": 8,
+    "path_len": 6,
+    "prompt": "Grafo: N0->N3, N1->N0, N1->N7, N3->N5, N4->N0, N5->N6, N7->N0, N7->N4, N7->N6. ¿Camino N1 a N6? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0110",
+    "num_nodes": 7,
+    "path_len": 5,
+    "prompt": "Grafo: N0->N2, N2->N3, N4->N3, N4->N6, N5->N4, N6->N0. ¿Camino N5 a N3? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0111",
+    "num_nodes": 7,
+    "path_len": 6,
+    "prompt": "Grafo: N0->N1, N0->N3, N1->N0, N1->N3, N1->N6, N2->N5, N3->N2, N5->N4, N6->N1. ¿Camino N2 a N0? ->",
+    "target": "NO"
+  },
+  {
+    "id": "graph_ood_0112",
+    "num_nodes": 9,
+    "path_len": 5,
+    "prompt": "Grafo: N0->N3, N1->N8, N2->N1, N4->N3, N5->N8, N7->N4, N8->N5, N8->N7. ¿Camino N2 a N3? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0113",
+    "num_nodes": 9,
+    "path_len": 4,
+    "prompt": "Grafo: N1->N4, N3->N1, N3->N4, N4->N0, N5->N4, N6->N3, N7->N1. ¿Camino N6 a N0? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0114",
+    "num_nodes": 7,
+    "path_len": 6,
+    "prompt": "Grafo: N0->N6, N1->N0, N2->N1, N3->N2, N4->N0, N4->N2, N5->N2, N5->N3, N5->N4, N6->N5. ¿Camino N4 a N3? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0115",
+    "num_nodes": 10,
+    "path_len": 6,
+    "prompt": "Grafo: N0->N5, N1->N7, N2->N9, N3->N2, N3->N9, N5->N3, N6->N3, N7->N0, N9->N1. ¿Camino N7 a N1? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0116",
+    "num_nodes": 9,
+    "path_len": 5,
+    "prompt": "Grafo: N2->N4, N2->N5, N2->N8, N3->N2, N3->N4, N5->N6, N6->N0, N8->N3. ¿Camino N8 a N0? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0117",
+    "num_nodes": 9,
+    "path_len": 6,
+    "prompt": "Grafo: N0->N1, N0->N8, N2->N4, N3->N6, N4->N7, N6->N0, N7->N3. ¿Camino N2 a N8? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0118",
+    "num_nodes": 8,
+    "path_len": 4,
+    "prompt": "Grafo: N0->N4, N3->N6, N6->N7, N7->N0, N7->N2. ¿Camino N4 a N2? ->",
+    "target": "NO"
+  },
+  {
+    "id": "graph_ood_0119",
+    "num_nodes": 7,
+    "path_len": 5,
+    "prompt": "Grafo: N0->N5, N0->N6, N1->N5, N2->N3, N2->N4, N3->N1, N3->N6, N5->N6, N6->N4. ¿Camino N5 a N1? ->",
+    "target": "NO"
+  },
+  {
+    "id": "graph_ood_0120",
+    "num_nodes": 8,
+    "path_len": 5,
+    "prompt": "Grafo: N0->N1, N0->N6, N1->N3, N3->N0, N4->N1, N4->N5, N5->N3, N6->N7. ¿Camino N2 a N5? ->",
+    "target": "NO"
+  },
+  {
+    "id": "graph_ood_0121",
+    "num_nodes": 7,
+    "path_len": 6,
+    "prompt": "Grafo: N0->N2, N0->N3, N0->N6, N2->N3, N3->N1, N4->N5, N5->N0, N5->N3, N6->N2. ¿Camino N4 a N1? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0122",
+    "num_nodes": 8,
+    "path_len": 5,
+    "prompt": "Grafo: N1->N0, N1->N4, N1->N5, N2->N0, N4->N1, N4->N3, N5->N2, N6->N7, N7->N4. ¿Camino N3 a N5? ->",
+    "target": "NO"
+  },
+  {
+    "id": "graph_ood_0123",
+    "num_nodes": 9,
+    "path_len": 6,
+    "prompt": "Grafo: N0->N5, N2->N7, N3->N4, N4->N8, N5->N6, N6->N1, N6->N3, N7->N0, N8->N2. ¿Camino N1 a N8? ->",
+    "target": "NO"
+  },
+  {
+    "id": "graph_ood_0124",
+    "num_nodes": 10,
+    "path_len": 5,
+    "prompt": "Grafo: N0->N6, N2->N5, N2->N7, N5->N0, N6->N2, N6->N4, N7->N2, N9->N2. ¿Camino N3 a N6? ->",
+    "target": "NO"
+  },
+  {
+    "id": "graph_ood_0125",
+    "num_nodes": 7,
+    "path_len": 6,
+    "prompt": "Grafo: N0->N4, N1->N3, N2->N1, N3->N4, N4->N6, N5->N2, N6->N5. ¿Camino N0 a N3? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0126",
+    "num_nodes": 9,
+    "path_len": 5,
+    "prompt": "Grafo: N0->N1, N0->N3, N0->N8, N3->N8, N5->N7, N7->N1, N8->N5. ¿Camino N0 a N1? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0127",
+    "num_nodes": 9,
+    "path_len": 6,
+    "prompt": "Grafo: N0->N3, N1->N6, N1->N8, N2->N7, N3->N2, N4->N0, N6->N1, N7->N4, N7->N6. ¿Camino N6 a N0? ->",
+    "target": "NO"
+  },
+  {
+    "id": "graph_ood_0128",
+    "num_nodes": 10,
+    "path_len": 4,
+    "prompt": "Grafo: N0->N6, N2->N5, N3->N8, N5->N7, N7->N4, N8->N0, N8->N5. ¿Camino N1 a N3? ->",
+    "target": "NO"
+  },
+  {
+    "id": "graph_ood_0129",
+    "num_nodes": 8,
+    "path_len": 5,
+    "prompt": "Grafo: N0->N7, N1->N0, N2->N1, N2->N5, N2->N7, N3->N4, N5->N0, N7->N3. ¿Camino N7 a N1? ->",
+    "target": "NO"
+  },
+  {
+    "id": "graph_ood_0130",
+    "num_nodes": 10,
+    "path_len": 5,
+    "prompt": "Grafo: N0->N9, N2->N0, N4->N3, N4->N7, N4->N9, N5->N2, N7->N2, N9->N1. ¿Camino N4 a N1? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0131",
+    "num_nodes": 10,
+    "path_len": 6,
+    "prompt": "Grafo: N0->N8, N1->N0, N1->N2, N1->N5, N2->N1, N3->N7, N5->N0, N6->N0, N7->N2. ¿Camino N7 a N6? ->",
+    "target": "NO"
+  },
+  {
+    "id": "graph_ood_0132",
+    "num_nodes": 9,
+    "path_len": 5,
+    "prompt": "Grafo: N0->N5, N2->N1, N3->N4, N4->N0, N5->N0, N5->N1, N5->N2, N6->N3. ¿Camino N6 a N1? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0133",
+    "num_nodes": 7,
+    "path_len": 5,
+    "prompt": "Grafo: N0->N1, N1->N4, N1->N6, N2->N1, N2->N3, N3->N4, N3->N5, N4->N6, N5->N2. ¿Camino N6 a N4? ->",
+    "target": "NO"
+  },
+  {
+    "id": "graph_ood_0134",
+    "num_nodes": 7,
+    "path_len": 6,
+    "prompt": "Grafo: N0->N1, N0->N5, N1->N0, N2->N3, N3->N0, N3->N1, N4->N6, N5->N3, N6->N2. ¿Camino N4 a N5? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0135",
+    "num_nodes": 9,
+    "path_len": 6,
+    "prompt": "Grafo: N0->N4, N0->N7, N0->N8, N2->N6, N3->N2, N4->N7, N6->N4, N8->N3. ¿Camino N0 a N7? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0136",
+    "num_nodes": 10,
+    "path_len": 4,
+    "prompt": "Grafo: N1->N5, N2->N4, N2->N5, N4->N1, N4->N3, N7->N2, N7->N5, N8->N7. ¿Camino N8 a N3? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0137",
+    "num_nodes": 7,
+    "path_len": 5,
+    "prompt": "Grafo: N1->N2, N2->N4, N3->N1, N4->N0, N4->N1, N5->N0, N5->N6, N6->N2, N6->N3. ¿Camino N6 a N0? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0138",
+    "num_nodes": 9,
+    "path_len": 5,
+    "prompt": "Grafo: N1->N4, N1->N6, N2->N4, N3->N1, N4->N8, N6->N3, N7->N4, N8->N1. ¿Camino N5 a N2? ->",
+    "target": "NO"
+  },
+  {
+    "id": "graph_ood_0139",
+    "num_nodes": 9,
+    "path_len": 6,
+    "prompt": "Grafo: N1->N5, N1->N8, N2->N4, N3->N2, N4->N1, N4->N3, N5->N7, N6->N3, N8->N4. ¿Camino N6 a N7? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0140",
+    "num_nodes": 7,
+    "path_len": 5,
+    "prompt": "Grafo: N0->N1, N0->N4, N1->N3, N1->N5, N2->N6, N4->N0, N5->N4, N6->N4. ¿Camino N3 a N0? ->",
+    "target": "NO"
+  },
+  {
+    "id": "graph_ood_0141",
+    "num_nodes": 8,
+    "path_len": 6,
+    "prompt": "Grafo: N0->N5, N0->N6, N1->N2, N1->N6, N2->N0, N3->N1, N4->N2, N5->N3, N6->N0, N6->N7. ¿Camino N2 a N4? ->",
+    "target": "NO"
+  },
+  {
+    "id": "graph_ood_0142",
+    "num_nodes": 10,
+    "path_len": 6,
+    "prompt": "Grafo: N0->N5, N0->N6, N1->N7, N3->N7, N3->N9, N5->N1, N7->N3, N9->N0, N9->N6. ¿Camino N0 a N6? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0143",
+    "num_nodes": 9,
+    "path_len": 5,
+    "prompt": "Grafo: N0->N2, N1->N0, N2->N7, N2->N8, N3->N1, N4->N1, N5->N7, N7->N3, N8->N0. ¿Camino N8 a N4? ->",
+    "target": "NO"
+  },
+  {
+    "id": "graph_ood_0144",
+    "num_nodes": 8,
+    "path_len": 4,
+    "prompt": "Grafo: N0->N1, N1->N5, N2->N6, N3->N5, N4->N0, N5->N2, N6->N0, N6->N4, N6->N5. ¿Camino N2 a N1? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0145",
+    "num_nodes": 9,
+    "path_len": 4,
+    "prompt": "Grafo: N0->N1, N0->N3, N1->N5, N1->N6, N1->N8, N2->N8, N3->N6, N6->N2, N7->N0. ¿Camino N8 a N7? ->",
+    "target": "NO"
+  },
+  {
+    "id": "graph_ood_0146",
+    "num_nodes": 8,
+    "path_len": 4,
+    "prompt": "Grafo: N0->N6, N2->N3, N2->N6, N3->N5, N4->N0, N5->N6, N6->N2, N6->N3. ¿Camino N4 a N5? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0147",
+    "num_nodes": 9,
+    "path_len": 4,
+    "prompt": "Grafo: N0->N3, N1->N0, N5->N0, N5->N1, N7->N6, N8->N5. ¿Camino N7 a N8? ->",
+    "target": "NO"
+  },
+  {
+    "id": "graph_ood_0148",
+    "num_nodes": 10,
+    "path_len": 5,
+    "prompt": "Grafo: N3->N9, N4->N3, N4->N5, N6->N8, N8->N7, N9->N6. ¿Camino N4 a N7? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0149",
+    "num_nodes": 10,
+    "path_len": 5,
+    "prompt": "Grafo: N0->N7, N2->N3, N3->N1, N4->N9, N5->N8, N7->N8, N8->N2, N8->N5, N9->N5. ¿Camino N4 a N3? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0150",
+    "num_nodes": 9,
+    "path_len": 4,
+    "prompt": "Grafo: N0->N1, N1->N7, N2->N6, N4->N1, N5->N1, N6->N3, N6->N8, N7->N6. ¿Camino N4 a N3? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0151",
+    "num_nodes": 10,
+    "path_len": 6,
+    "prompt": "Grafo: N0->N2, N2->N4, N4->N5, N4->N8, N5->N1, N5->N6, N6->N4, N8->N5, N9->N0. ¿Camino N6 a N7? ->",
+    "target": "NO"
+  },
+  {
+    "id": "graph_ood_0152",
+    "num_nodes": 8,
+    "path_len": 6,
+    "prompt": "Grafo: N1->N5, N2->N3, N3->N7, N4->N5, N5->N0, N6->N4, N7->N0, N7->N2, N7->N6. ¿Camino N3 a N1? ->",
+    "target": "NO"
+  },
+  {
+    "id": "graph_ood_0153",
+    "num_nodes": 7,
+    "path_len": 5,
+    "prompt": "Grafo: N0->N4, N0->N6, N1->N6, N3->N2, N4->N3, N6->N0, N6->N1. ¿Camino N3 a N5? ->",
+    "target": "NO"
+  },
+  {
+    "id": "graph_ood_0154",
+    "num_nodes": 10,
+    "path_len": 4,
+    "prompt": "Grafo: N0->N3, N2->N9, N3->N2, N3->N5, N4->N7, N7->N0, N7->N8. ¿Camino N9 a N4? ->",
+    "target": "NO"
+  },
+  {
+    "id": "graph_ood_0155",
+    "num_nodes": 8,
+    "path_len": 6,
+    "prompt": "Grafo: N0->N3, N1->N2, N2->N4, N2->N5, N3->N4, N3->N5, N3->N7, N4->N1, N5->N2, N6->N0. ¿Camino N7 a N3? ->",
+    "target": "NO"
+  },
+  {
+    "id": "graph_ood_0156",
+    "num_nodes": 10,
+    "path_len": 4,
+    "prompt": "Grafo: N0->N1, N1->N6, N5->N0, N6->N3, N6->N5, N7->N5, N9->N3, N9->N5. ¿Camino N5 a N3? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0157",
+    "num_nodes": 10,
+    "path_len": 5,
+    "prompt": "Grafo: N1->N4, N4->N6, N6->N2, N7->N2, N7->N5, N8->N1, N8->N3, N9->N8. ¿Camino N2 a N4? ->",
+    "target": "NO"
+  },
+  {
+    "id": "graph_ood_0158",
+    "num_nodes": 9,
+    "path_len": 6,
+    "prompt": "Grafo: N1->N2, N2->N0, N3->N1, N3->N2, N4->N3, N5->N4, N7->N4, N7->N8, N8->N4. ¿Camino N2 a N7? ->",
+    "target": "NO"
+  },
+  {
+    "id": "graph_ood_0159",
+    "num_nodes": 7,
+    "path_len": 5,
+    "prompt": "Grafo: N0->N4, N1->N0, N2->N4, N3->N1, N4->N3, N4->N6, N5->N3, N6->N5. ¿Camino N0 a N2? ->",
+    "target": "NO"
+  },
+  {
+    "id": "graph_ood_0160",
+    "num_nodes": 8,
+    "path_len": 6,
+    "prompt": "Grafo: N0->N4, N1->N3, N1->N4, N1->N6, N2->N0, N3->N5, N4->N1, N4->N5, N5->N0, N5->N6. ¿Camino N2 a N6? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0161",
+    "num_nodes": 7,
+    "path_len": 5,
+    "prompt": "Grafo: N1->N4, N2->N0, N3->N1, N3->N4, N4->N2, N4->N5, N5->N1, N5->N2, N5->N6, N6->N5. ¿Camino N6 a N3? ->",
+    "target": "NO"
+  },
+  {
+    "id": "graph_ood_0162",
+    "num_nodes": 9,
+    "path_len": 5,
+    "prompt": "Grafo: N1->N3, N2->N1, N2->N7, N3->N8, N4->N2, N5->N4, N6->N1, N8->N5. ¿Camino N0 a N7? ->",
+    "target": "NO"
+  },
+  {
+    "id": "graph_ood_0163",
+    "num_nodes": 8,
+    "path_len": 4,
+    "prompt": "Grafo: N0->N3, N1->N2, N2->N4, N4->N7, N5->N7, N6->N1, N6->N3. ¿Camino N6 a N7? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0164",
+    "num_nodes": 7,
+    "path_len": 6,
+    "prompt": "Grafo: N0->N5, N1->N6, N2->N0, N3->N1, N5->N4, N6->N0, N6->N2, N6->N4. ¿Camino N5 a N1? ->",
+    "target": "NO"
+  },
+  {
+    "id": "graph_ood_0165",
+    "num_nodes": 10,
+    "path_len": 4,
+    "prompt": "Grafo: N0->N8, N2->N7, N3->N0, N5->N2, N8->N5, N9->N1. ¿Camino N4 a N0? ->",
+    "target": "NO"
+  },
+  {
+    "id": "graph_ood_0166",
+    "num_nodes": 9,
+    "path_len": 6,
+    "prompt": "Grafo: N1->N2, N1->N6, N2->N8, N3->N7, N4->N1, N5->N3, N5->N8, N6->N5, N6->N7, N8->N1. ¿Camino N2 a N7? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0167",
+    "num_nodes": 9,
+    "path_len": 6,
+    "prompt": "Grafo: N0->N6, N1->N2, N1->N4, N2->N4, N2->N5, N4->N5, N5->N8, N6->N1, N7->N5. ¿Camino N0 a N8? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0168",
+    "num_nodes": 9,
+    "path_len": 6,
+    "prompt": "Grafo: N0->N4, N2->N6, N2->N8, N3->N8, N4->N3, N6->N0, N8->N1, N8->N4, N8->N6, N8->N7. ¿Camino N0 a N5? ->",
+    "target": "NO"
+  },
+  {
+    "id": "graph_ood_0169",
+    "num_nodes": 10,
+    "path_len": 6,
+    "prompt": "Grafo: N0->N9, N1->N3, N3->N5, N4->N0, N6->N8, N7->N3, N7->N4, N9->N1. ¿Camino N9 a N7? ->",
+    "target": "NO"
+  },
+  {
+    "id": "graph_ood_0170",
+    "num_nodes": 9,
+    "path_len": 5,
+    "prompt": "Grafo: N0->N7, N1->N8, N3->N5, N4->N0, N5->N4, N7->N1, N7->N8, N8->N3. ¿Camino N2 a N4? ->",
+    "target": "NO"
+  },
+  {
+    "id": "graph_ood_0171",
+    "num_nodes": 8,
+    "path_len": 6,
+    "prompt": "Grafo: N0->N3, N0->N4, N0->N6, N1->N4, N2->N1, N3->N2, N4->N2, N4->N3, N5->N1, N6->N5. ¿Camino N0 a N2? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0172",
+    "num_nodes": 9,
+    "path_len": 4,
+    "prompt": "Grafo: N0->N1, N1->N2, N3->N0, N4->N0, N5->N0, N5->N3, N6->N7. ¿Camino N8 a N7? ->",
+    "target": "NO"
+  },
+  {
+    "id": "graph_ood_0173",
+    "num_nodes": 10,
+    "path_len": 5,
+    "prompt": "Grafo: N0->N9, N1->N2, N2->N0, N2->N3, N3->N6, N4->N0, N5->N1, N6->N0, N7->N6. ¿Camino N1 a N9? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0174",
+    "num_nodes": 7,
+    "path_len": 4,
+    "prompt": "Grafo: N0->N4, N1->N0, N2->N6, N4->N3, N4->N5, N5->N3. ¿Camino N1 a N3? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0175",
+    "num_nodes": 8,
+    "path_len": 6,
+    "prompt": "Grafo: N1->N6, N2->N0, N3->N2, N3->N4, N4->N5, N4->N7, N5->N1, N6->N2. ¿Camino N0 a N5? ->",
+    "target": "NO"
+  },
+  {
+    "id": "graph_ood_0176",
+    "num_nodes": 9,
+    "path_len": 5,
+    "prompt": "Grafo: N0->N2, N0->N5, N1->N3, N1->N4, N2->N6, N5->N4, N6->N1, N6->N2, N7->N3, N8->N0. ¿Camino N5 a N7? ->",
+    "target": "NO"
+  },
+  {
+    "id": "graph_ood_0177",
+    "num_nodes": 9,
+    "path_len": 4,
+    "prompt": "Grafo: N0->N8, N2->N8, N3->N4, N5->N4, N6->N2, N6->N3, N6->N4, N8->N3. ¿Camino N2 a N7? ->",
+    "target": "NO"
+  },
+  {
+    "id": "graph_ood_0178",
+    "num_nodes": 9,
+    "path_len": 4,
+    "prompt": "Grafo: N2->N0, N3->N6, N4->N7, N5->N1, N5->N8, N6->N2, N7->N3. ¿Camino N0 a N1? ->",
+    "target": "NO"
+  },
+  {
+    "id": "graph_ood_0179",
+    "num_nodes": 8,
+    "path_len": 4,
+    "prompt": "Grafo: N0->N4, N0->N6, N1->N5, N3->N4, N5->N4, N5->N6, N6->N1. ¿Camino N0 a N4? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0180",
+    "num_nodes": 7,
+    "path_len": 5,
+    "prompt": "Grafo: N0->N3, N1->N0, N1->N5, N2->N3, N2->N5, N3->N1, N4->N6, N5->N2, N6->N0. ¿Camino N0 a N4? ->",
+    "target": "NO"
+  },
+  {
+    "id": "graph_ood_0181",
+    "num_nodes": 7,
+    "path_len": 4,
+    "prompt": "Grafo: N0->N4, N1->N4, N2->N1, N2->N5, N4->N2, N5->N2, N6->N1, N6->N5. ¿Camino N6 a N4? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0182",
+    "num_nodes": 10,
+    "path_len": 5,
+    "prompt": "Grafo: N2->N6, N3->N1, N3->N9, N6->N5, N6->N8, N8->N3, N9->N2. ¿Camino N7 a N2? ->",
+    "target": "NO"
+  },
+  {
+    "id": "graph_ood_0183",
+    "num_nodes": 10,
+    "path_len": 4,
+    "prompt": "Grafo: N2->N0, N3->N4, N4->N6, N5->N9, N6->N2, N9->N6. ¿Camino N5 a N0? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0184",
+    "num_nodes": 7,
+    "path_len": 6,
+    "prompt": "Grafo: N0->N5, N1->N4, N2->N0, N2->N4, N4->N2, N5->N3, N6->N1. ¿Camino N5 a N0? ->",
+    "target": "NO"
+  },
+  {
+    "id": "graph_ood_0185",
+    "num_nodes": 8,
+    "path_len": 4,
+    "prompt": "Grafo: N1->N4, N2->N4, N3->N7, N4->N1, N4->N3, N7->N0, N7->N5. ¿Camino N5 a N6? ->",
+    "target": "NO"
+  },
+  {
+    "id": "graph_ood_0186",
+    "num_nodes": 10,
+    "path_len": 4,
+    "prompt": "Grafo: N0->N5, N0->N9, N4->N8, N6->N1, N7->N0, N7->N9, N8->N7. ¿Camino N4 a N5? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0187",
+    "num_nodes": 7,
+    "path_len": 4,
+    "prompt": "Grafo: N0->N2, N2->N4, N3->N0, N3->N5, N4->N1, N4->N2, N5->N0. ¿Camino N1 a N2? ->",
+    "target": "NO"
+  },
+  {
+    "id": "graph_ood_0188",
+    "num_nodes": 7,
+    "path_len": 5,
+    "prompt": "Grafo: N0->N4, N2->N0, N2->N3, N2->N6, N3->N5, N5->N0, N6->N2, N6->N5. ¿Camino N6 a N4? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0189",
+    "num_nodes": 7,
+    "path_len": 4,
+    "prompt": "Grafo: N1->N3, N2->N3, N3->N2, N3->N5, N4->N1, N5->N4. ¿Camino N2 a N1? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0190",
+    "num_nodes": 9,
+    "path_len": 5,
+    "prompt": "Grafo: N0->N5, N1->N4, N2->N6, N3->N0, N4->N0, N4->N1, N5->N7, N7->N8, N8->N1. ¿Camino N1 a N8? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0191",
+    "num_nodes": 10,
+    "path_len": 5,
+    "prompt": "Grafo: N0->N8, N1->N6, N1->N9, N3->N2, N5->N0, N7->N0, N7->N5, N8->N1, N8->N2. ¿Camino N6 a N2? ->",
+    "target": "NO"
+  },
+  {
+    "id": "graph_ood_0192",
+    "num_nodes": 9,
+    "path_len": 5,
+    "prompt": "Grafo: N0->N7, N1->N0, N1->N8, N2->N4, N3->N1, N4->N3, N7->N2, N7->N6. ¿Camino N4 a N6? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0193",
+    "num_nodes": 8,
+    "path_len": 6,
+    "prompt": "Grafo: N1->N5, N2->N1, N2->N7, N3->N1, N3->N7, N4->N5, N4->N6, N5->N3, N7->N4, N7->N6. ¿Camino N2 a N6? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0194",
+    "num_nodes": 7,
+    "path_len": 4,
+    "prompt": "Grafo: N0->N2, N0->N5, N1->N0, N1->N6, N4->N3, N5->N1, N6->N5. ¿Camino N6 a N2? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0195",
+    "num_nodes": 9,
+    "path_len": 5,
+    "prompt": "Grafo: N0->N8, N1->N3, N2->N1, N4->N6, N5->N1, N6->N0, N7->N5, N8->N7. ¿Camino N5 a N7? ->",
+    "target": "NO"
+  },
+  {
+    "id": "graph_ood_0196",
+    "num_nodes": 8,
+    "path_len": 5,
+    "prompt": "Grafo: N0->N1, N1->N7, N2->N0, N5->N3, N6->N3, N7->N6. ¿Camino N2 a N3? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0197",
+    "num_nodes": 8,
+    "path_len": 4,
+    "prompt": "Grafo: N0->N2, N1->N0, N4->N6, N5->N0, N5->N2, N5->N4, N6->N1. ¿Camino N4 a N2? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0198",
+    "num_nodes": 9,
+    "path_len": 5,
+    "prompt": "Grafo: N0->N5, N1->N4, N2->N0, N3->N4, N5->N7, N6->N0, N6->N8, N7->N6, N8->N4. ¿Camino N6 a N1? ->",
+    "target": "NO"
+  },
+  {
+    "id": "graph_ood_0199",
+    "num_nodes": 7,
+    "path_len": 5,
+    "prompt": "Grafo: N1->N6, N2->N3, N3->N5, N4->N0, N5->N0, N5->N1, N6->N0, N6->N4, N6->N5. ¿Camino N2 a N4? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0200",
+    "num_nodes": 8,
+    "path_len": 6,
+    "prompt": "Grafo: N0->N3, N1->N0, N2->N6, N3->N4, N3->N7, N4->N5, N5->N2, N6->N1, N7->N5. ¿Camino N0 a N3? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0201",
+    "num_nodes": 8,
+    "path_len": 4,
+    "prompt": "Grafo: N0->N5, N0->N7, N1->N0, N1->N5, N3->N2, N3->N6, N5->N3. ¿Camino N1 a N2? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0202",
+    "num_nodes": 8,
+    "path_len": 4,
+    "prompt": "Grafo: N0->N7, N1->N2, N2->N0, N2->N6, N3->N1, N3->N7, N5->N3. ¿Camino N5 a N6? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0203",
+    "num_nodes": 8,
+    "path_len": 4,
+    "prompt": "Grafo: N1->N0, N2->N5, N3->N4, N4->N6, N5->N1, N5->N7, N6->N3, N7->N1. ¿Camino N3 a N7? ->",
+    "target": "NO"
+  },
+  {
+    "id": "graph_ood_0204",
+    "num_nodes": 9,
+    "path_len": 5,
+    "prompt": "Grafo: N0->N8, N1->N5, N4->N0, N5->N2, N5->N8, N6->N5, N7->N0, N8->N6. ¿Camino N8 a N1? ->",
+    "target": "NO"
+  },
+  {
+    "id": "graph_ood_0205",
+    "num_nodes": 10,
+    "path_len": 4,
+    "prompt": "Grafo: N0->N9, N2->N6, N2->N8, N6->N4, N6->N8, N7->N1, N9->N2. ¿Camino N1 a N7? ->",
+    "target": "NO"
+  },
+  {
+    "id": "graph_ood_0206",
+    "num_nodes": 7,
+    "path_len": 4,
+    "prompt": "Grafo: N0->N6, N2->N0, N4->N1, N4->N6, N5->N3, N6->N4, N6->N5. ¿Camino N2 a N3? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0207",
+    "num_nodes": 8,
+    "path_len": 4,
+    "prompt": "Grafo: N1->N6, N1->N7, N2->N7, N3->N2, N7->N1. ¿Camino N3 a N6? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0208",
+    "num_nodes": 9,
+    "path_len": 5,
+    "prompt": "Grafo: N0->N2, N2->N3, N2->N7, N3->N2, N3->N6, N3->N8, N7->N4, N7->N8, N8->N3. ¿Camino N0 a N6? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0209",
+    "num_nodes": 7,
+    "path_len": 4,
+    "prompt": "Grafo: N0->N1, N1->N5, N3->N4, N4->N0, N4->N1, N4->N5, N5->N3. ¿Camino N1 a N0? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0210",
+    "num_nodes": 9,
+    "path_len": 5,
+    "prompt": "Grafo: N1->N6, N2->N7, N3->N0, N4->N2, N4->N3, N5->N3, N7->N5, N8->N2. ¿Camino N2 a N6? ->",
+    "target": "NO"
+  },
+  {
+    "id": "graph_ood_0211",
+    "num_nodes": 10,
+    "path_len": 6,
+    "prompt": "Grafo: N0->N9, N1->N4, N1->N7, N2->N7, N2->N8, N4->N0, N7->N1, N7->N2, N8->N2. ¿Camino N4 a N6? ->",
+    "target": "NO"
+  },
+  {
+    "id": "graph_ood_0212",
+    "num_nodes": 8,
+    "path_len": 6,
+    "prompt": "Grafo: N0->N2, N0->N5, N0->N6, N1->N2, N2->N3, N3->N7, N4->N0, N5->N2, N5->N4, N7->N1. ¿Camino N1 a N0? ->",
+    "target": "NO"
+  },
+  {
+    "id": "graph_ood_0213",
+    "num_nodes": 10,
+    "path_len": 6,
+    "prompt": "Grafo: N0->N7, N1->N5, N2->N3, N3->N0, N3->N1, N4->N0, N6->N1, N7->N6, N8->N3. ¿Camino N8 a N5? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0214",
+    "num_nodes": 10,
+    "path_len": 6,
+    "prompt": "Grafo: N0->N9, N1->N0, N4->N6, N5->N2, N5->N3, N6->N8, N8->N1, N9->N3. ¿Camino N2 a N1? ->",
+    "target": "NO"
+  },
+  {
+    "id": "graph_ood_0215",
+    "num_nodes": 7,
+    "path_len": 6,
+    "prompt": "Grafo: N0->N5, N1->N0, N1->N3, N1->N5, N2->N0, N2->N4, N4->N1, N5->N6, N6->N0, N6->N3. ¿Camino N6 a N4? ->",
+    "target": "NO"
+  },
+  {
+    "id": "graph_ood_0216",
+    "num_nodes": 10,
+    "path_len": 5,
+    "prompt": "Grafo: N1->N6, N3->N8, N4->N3, N4->N6, N4->N8, N8->N0, N8->N1, N8->N7, N9->N2, N9->N4. ¿Camino N9 a N6? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0217",
+    "num_nodes": 9,
+    "path_len": 6,
+    "prompt": "Grafo: N0->N1, N1->N3, N1->N5, N3->N6, N4->N0, N5->N4, N5->N8, N6->N7. ¿Camino N6 a N5? ->",
+    "target": "NO"
+  },
+  {
+    "id": "graph_ood_0218",
+    "num_nodes": 8,
+    "path_len": 4,
+    "prompt": "Grafo: N0->N1, N1->N0, N1->N2, N1->N7, N5->N6, N6->N0, N6->N2, N6->N4. ¿Camino N5 a N7? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0219",
+    "num_nodes": 8,
+    "path_len": 5,
+    "prompt": "Grafo: N0->N4, N1->N5, N2->N3, N3->N1, N5->N7, N7->N0, N7->N2. ¿Camino N1 a N6? ->",
+    "target": "NO"
+  },
+  {
+    "id": "graph_ood_0220",
+    "num_nodes": 8,
+    "path_len": 6,
+    "prompt": "Grafo: N0->N2, N0->N3, N0->N5, N1->N2, N1->N3, N2->N0, N2->N4, N3->N1, N4->N5, N5->N0, N6->N2. ¿Camino N7 a N5? ->",
+    "target": "NO"
+  },
+  {
+    "id": "graph_ood_0221",
+    "num_nodes": 10,
+    "path_len": 6,
+    "prompt": "Grafo: N0->N3, N0->N5, N2->N5, N2->N9, N3->N0, N3->N4, N3->N5, N4->N8, N5->N1, N8->N0, N9->N4. ¿Camino N2 a N5? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0222",
+    "num_nodes": 8,
+    "path_len": 5,
+    "prompt": "Grafo: N0->N2, N1->N0, N2->N3, N2->N7, N3->N7, N4->N0, N6->N5, N7->N6. ¿Camino N0 a N5? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0223",
+    "num_nodes": 7,
+    "path_len": 5,
+    "prompt": "Grafo: N0->N5, N1->N6, N2->N0, N3->N1, N3->N6, N5->N3, N5->N6. ¿Camino N5 a N0? ->",
+    "target": "NO"
+  },
+  {
+    "id": "graph_ood_0224",
+    "num_nodes": 10,
+    "path_len": 6,
+    "prompt": "Grafo: N1->N4, N2->N4, N4->N7, N5->N6, N6->N7, N7->N1, N7->N5, N8->N9, N9->N5. ¿Camino N3 a N1? ->",
+    "target": "NO"
+  },
+  {
+    "id": "graph_ood_0225",
+    "num_nodes": 8,
+    "path_len": 5,
+    "prompt": "Grafo: N0->N4, N0->N7, N1->N2, N1->N5, N2->N1, N2->N5, N3->N7, N4->N6, N6->N1, N7->N1. ¿Camino N0 a N5? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0226",
+    "num_nodes": 8,
+    "path_len": 6,
+    "prompt": "Grafo: N0->N3, N0->N4, N0->N6, N1->N7, N2->N5, N4->N2, N5->N0, N5->N7, N6->N1. ¿Camino N4 a N7? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0227",
+    "num_nodes": 10,
+    "path_len": 4,
+    "prompt": "Grafo: N0->N2, N2->N5, N4->N8, N5->N4, N6->N8, N8->N4, N8->N6. ¿Camino N2 a N6? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0228",
+    "num_nodes": 10,
+    "path_len": 4,
+    "prompt": "Grafo: N1->N4, N2->N6, N3->N0, N3->N9, N4->N3, N9->N5, N9->N7, N9->N8. ¿Camino N1 a N8? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0229",
+    "num_nodes": 8,
+    "path_len": 4,
+    "prompt": "Grafo: N0->N4, N4->N3, N4->N5, N4->N6, N5->N6, N6->N1, N6->N3. ¿Camino N2 a N7? ->",
+    "target": "NO"
+  },
+  {
+    "id": "graph_ood_0230",
+    "num_nodes": 9,
+    "path_len": 5,
+    "prompt": "Grafo: N0->N3, N1->N0, N1->N2, N2->N6, N3->N7, N4->N1, N5->N7, N6->N0, N7->N2. ¿Camino N4 a N3? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0231",
+    "num_nodes": 10,
+    "path_len": 5,
+    "prompt": "Grafo: N1->N0, N2->N1, N4->N0, N4->N8, N7->N2, N8->N7, N9->N3, N9->N4. ¿Camino N7 a N6? ->",
+    "target": "NO"
+  },
+  {
+    "id": "graph_ood_0232",
+    "num_nodes": 8,
+    "path_len": 5,
+    "prompt": "Grafo: N0->N1, N1->N3, N2->N0, N2->N6, N3->N2, N4->N7, N5->N1, N5->N6, N7->N3. ¿Camino N4 a N1? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0233",
+    "num_nodes": 7,
+    "path_len": 5,
+    "prompt": "Grafo: N0->N3, N1->N0, N1->N4, N2->N1, N3->N5, N5->N1, N5->N2, N6->N3. ¿Camino N0 a N4? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0234",
+    "num_nodes": 7,
+    "path_len": 6,
+    "prompt": "Grafo: N0->N1, N0->N6, N1->N4, N1->N5, N2->N0, N3->N4, N4->N5, N5->N2, N6->N1, N6->N2. ¿Camino N3 a N1? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0235",
+    "num_nodes": 8,
+    "path_len": 6,
+    "prompt": "Grafo: N0->N1, N0->N3, N1->N0, N1->N2, N2->N0, N3->N5, N3->N6, N5->N4, N6->N7, N7->N5. ¿Camino N1 a N5? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0236",
+    "num_nodes": 8,
+    "path_len": 6,
+    "prompt": "Grafo: N0->N1, N0->N3, N0->N6, N1->N4, N2->N0, N4->N2, N5->N7, N6->N5, N7->N1. ¿Camino N3 a N0? ->",
+    "target": "NO"
+  },
+  {
+    "id": "graph_ood_0237",
+    "num_nodes": 7,
+    "path_len": 5,
+    "prompt": "Grafo: N0->N1, N0->N3, N1->N5, N2->N3, N3->N0, N4->N2, N5->N4. ¿Camino N2 a N6? ->",
+    "target": "NO"
+  },
+  {
+    "id": "graph_ood_0238",
+    "num_nodes": 9,
+    "path_len": 6,
+    "prompt": "Grafo: N1->N6, N2->N5, N5->N1, N6->N2, N6->N7, N6->N8, N7->N5, N7->N8, N8->N0, N8->N3, N8->N5. ¿Camino N2 a N3? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0239",
+    "num_nodes": 9,
+    "path_len": 6,
+    "prompt": "Grafo: N0->N5, N1->N6, N2->N6, N3->N2, N4->N0, N5->N8, N6->N3, N6->N5, N8->N1. ¿Camino N0 a N2? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0240",
+    "num_nodes": 8,
+    "path_len": 5,
+    "prompt": "Grafo: N0->N2, N0->N6, N0->N7, N2->N4, N3->N0, N4->N6, N4->N7, N7->N3. ¿Camino N1 a N3? ->",
+    "target": "NO"
+  },
+  {
+    "id": "graph_ood_0241",
+    "num_nodes": 9,
+    "path_len": 4,
+    "prompt": "Grafo: N0->N7, N1->N5, N2->N8, N4->N6, N6->N0, N6->N8, N8->N1, N8->N5. ¿Camino N4 a N5? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0242",
+    "num_nodes": 10,
+    "path_len": 5,
+    "prompt": "Grafo: N0->N5, N0->N9, N2->N0, N2->N8, N3->N6, N3->N8, N5->N8, N8->N2, N9->N6. ¿Camino N4 a N6? ->",
+    "target": "NO"
+  },
+  {
+    "id": "graph_ood_0243",
+    "num_nodes": 7,
+    "path_len": 5,
+    "prompt": "Grafo: N0->N3, N1->N6, N3->N5, N3->N6, N4->N0, N4->N1, N5->N1, N5->N6, N6->N4. ¿Camino N4 a N6? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0244",
+    "num_nodes": 7,
+    "path_len": 6,
+    "prompt": "Grafo: N0->N3, N0->N6, N1->N6, N2->N4, N3->N5, N4->N0, N5->N2, N6->N0, N6->N3, N6->N4. ¿Camino N1 a N2? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0245",
+    "num_nodes": 9,
+    "path_len": 5,
+    "prompt": "Grafo: N1->N7, N2->N3, N3->N5, N4->N6, N5->N4, N5->N8, N7->N3. ¿Camino N8 a N1? ->",
+    "target": "NO"
+  },
+  {
+    "id": "graph_ood_0246",
+    "num_nodes": 9,
+    "path_len": 5,
+    "prompt": "Grafo: N0->N4, N0->N7, N1->N5, N3->N0, N5->N3, N5->N7, N6->N5, N8->N6. ¿Camino N2 a N6? ->",
+    "target": "NO"
+  },
+  {
+    "id": "graph_ood_0247",
+    "num_nodes": 7,
+    "path_len": 4,
+    "prompt": "Grafo: N1->N4, N2->N3, N3->N1, N4->N1, N4->N3, N5->N6, N6->N2. ¿Camino N6 a N4? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0248",
+    "num_nodes": 10,
+    "path_len": 5,
+    "prompt": "Grafo: N0->N6, N1->N4, N2->N8, N3->N9, N4->N3, N5->N7, N6->N3, N8->N1. ¿Camino N2 a N9? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0249",
+    "num_nodes": 10,
+    "path_len": 4,
+    "prompt": "Grafo: N1->N2, N3->N7, N7->N9, N8->N2, N9->N1, N9->N6, N9->N7. ¿Camino N3 a N2? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0250",
+    "num_nodes": 9,
+    "path_len": 4,
+    "prompt": "Grafo: N1->N3, N1->N5, N2->N0, N3->N7, N4->N8, N8->N1. ¿Camino N4 a N7? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0251",
+    "num_nodes": 7,
+    "path_len": 4,
+    "prompt": "Grafo: N1->N0, N2->N1, N3->N4, N4->N5, N5->N2. ¿Camino N3 a N6? ->",
+    "target": "NO"
+  },
+  {
+    "id": "graph_ood_0252",
+    "num_nodes": 10,
+    "path_len": 6,
+    "prompt": "Grafo: N0->N4, N0->N8, N1->N9, N2->N6, N3->N2, N4->N9, N6->N0, N8->N9, N9->N1. ¿Camino N3 a N1? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0253",
+    "num_nodes": 7,
+    "path_len": 6,
+    "prompt": "Grafo: N0->N2, N1->N2, N2->N1, N2->N4, N3->N6, N4->N3, N5->N0, N5->N6, N6->N0, N6->N5. ¿Camino N4 a N1? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0254",
+    "num_nodes": 8,
+    "path_len": 5,
+    "prompt": "Grafo: N0->N4, N1->N3, N2->N5, N3->N0, N3->N5, N4->N0, N5->N0, N6->N1, N7->N6. ¿Camino N7 a N4? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0255",
+    "num_nodes": 9,
+    "path_len": 6,
+    "prompt": "Grafo: N0->N1, N1->N7, N2->N0, N2->N1, N3->N2, N4->N8, N6->N1, N7->N3, N8->N1, N8->N4. ¿Camino N4 a N0? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0256",
+    "num_nodes": 8,
+    "path_len": 4,
+    "prompt": "Grafo: N1->N2, N1->N4, N2->N3, N2->N4, N3->N6, N4->N5, N6->N7. ¿Camino N3 a N2? ->",
+    "target": "NO"
+  },
+  {
+    "id": "graph_ood_0257",
+    "num_nodes": 10,
+    "path_len": 6,
+    "prompt": "Grafo: N0->N5, N2->N4, N4->N0, N6->N1, N7->N8, N8->N2, N8->N3, N9->N6, N9->N7. ¿Camino N9 a N5? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0258",
+    "num_nodes": 7,
+    "path_len": 4,
+    "prompt": "Grafo: N0->N2, N1->N2, N2->N1, N3->N0, N3->N4, N4->N1, N5->N2, N5->N3. ¿Camino N1 a N6? ->",
+    "target": "NO"
+  },
+  {
+    "id": "graph_ood_0259",
+    "num_nodes": 10,
+    "path_len": 4,
+    "prompt": "Grafo: N0->N5, N2->N4, N2->N7, N5->N2, N5->N6, N6->N1, N6->N4, N6->N5, N8->N0. ¿Camino N8 a N4? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0260",
+    "num_nodes": 10,
+    "path_len": 4,
+    "prompt": "Grafo: N0->N2, N0->N6, N2->N8, N5->N9, N6->N0, N7->N3, N7->N5, N8->N9. ¿Camino N2 a N6? ->",
+    "target": "NO"
+  },
+  {
+    "id": "graph_ood_0261",
+    "num_nodes": 9,
+    "path_len": 4,
+    "prompt": "Grafo: N0->N7, N1->N2, N1->N5, N3->N1, N4->N5, N5->N0, N6->N1, N7->N6. ¿Camino N3 a N8? ->",
+    "target": "NO"
+  },
+  {
+    "id": "graph_ood_0262",
+    "num_nodes": 9,
+    "path_len": 4,
+    "prompt": "Grafo: N1->N8, N2->N1, N3->N0, N4->N1, N8->N2, N8->N3. ¿Camino N2 a N0? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0263",
+    "num_nodes": 7,
+    "path_len": 6,
+    "prompt": "Grafo: N0->N6, N1->N3, N2->N1, N2->N3, N3->N0, N3->N5, N4->N0, N4->N2, N5->N6, N6->N4. ¿Camino N5 a N0? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0264",
+    "num_nodes": 10,
+    "path_len": 5,
+    "prompt": "Grafo: N0->N5, N1->N3, N1->N8, N4->N1, N4->N9, N5->N7, N7->N1, N8->N2, N8->N9. ¿Camino N8 a N4? ->",
+    "target": "NO"
+  },
+  {
+    "id": "graph_ood_0265",
+    "num_nodes": 7,
+    "path_len": 6,
+    "prompt": "Grafo: N0->N1, N0->N6, N1->N4, N2->N5, N3->N0, N3->N4, N3->N6, N4->N6, N5->N3. ¿Camino N2 a N6? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0266",
+    "num_nodes": 8,
+    "path_len": 5,
+    "prompt": "Grafo: N1->N0, N1->N2, N3->N2, N3->N6, N3->N7, N4->N1, N4->N3, N5->N3, N6->N4. ¿Camino N7 a N5? ->",
+    "target": "NO"
+  },
+  {
+    "id": "graph_ood_0267",
+    "num_nodes": 7,
+    "path_len": 4,
+    "prompt": "Grafo: N0->N1, N1->N0, N3->N5, N4->N6, N5->N4, N6->N0. ¿Camino N3 a N0? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0268",
+    "num_nodes": 8,
+    "path_len": 5,
+    "prompt": "Grafo: N1->N7, N2->N1, N3->N5, N4->N3, N5->N1, N5->N7, N7->N4. ¿Camino N6 a N1? ->",
+    "target": "NO"
+  },
+  {
+    "id": "graph_ood_0269",
+    "num_nodes": 8,
+    "path_len": 4,
+    "prompt": "Grafo: N1->N6, N3->N4, N5->N1, N5->N3, N5->N4, N6->N3, N6->N5, N7->N5. ¿Camino N5 a N4? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0270",
+    "num_nodes": 10,
+    "path_len": 6,
+    "prompt": "Grafo: N0->N2, N0->N3, N0->N5, N1->N3, N2->N4, N3->N2, N4->N3, N4->N5, N5->N8, N8->N9. ¿Camino N3 a N7? ->",
+    "target": "NO"
+  },
+  {
+    "id": "graph_ood_0271",
+    "num_nodes": 7,
+    "path_len": 5,
+    "prompt": "Grafo: N0->N4, N1->N2, N1->N3, N3->N0, N3->N2, N3->N5, N4->N1, N6->N0, N6->N5. ¿Camino N6 a N5? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0272",
+    "num_nodes": 9,
+    "path_len": 6,
+    "prompt": "Grafo: N0->N7, N3->N1, N3->N5, N4->N0, N4->N5, N4->N7, N5->N6, N6->N4, N7->N3, N7->N8. ¿Camino N8 a N6? ->",
+    "target": "NO"
+  },
+  {
+    "id": "graph_ood_0273",
+    "num_nodes": 10,
+    "path_len": 4,
+    "prompt": "Grafo: N0->N2, N0->N7, N1->N3, N2->N4, N2->N6, N3->N0, N3->N7, N5->N9, N7->N9. ¿Camino N1 a N4? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0274",
+    "num_nodes": 8,
+    "path_len": 5,
+    "prompt": "Grafo: N0->N3, N0->N7, N2->N5, N3->N4, N4->N0, N4->N6, N6->N2, N7->N0. ¿Camino N0 a N5? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0275",
+    "num_nodes": 7,
+    "path_len": 4,
+    "prompt": "Grafo: N1->N3, N3->N2, N3->N5, N4->N1, N5->N0. ¿Camino N1 a N6? ->",
+    "target": "NO"
+  },
+  {
+    "id": "graph_ood_0276",
+    "num_nodes": 8,
+    "path_len": 5,
+    "prompt": "Grafo: N0->N2, N1->N0, N2->N0, N3->N1, N4->N5, N5->N3, N5->N7, N7->N1. ¿Camino N4 a N2? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0277",
+    "num_nodes": 10,
+    "path_len": 4,
+    "prompt": "Grafo: N2->N4, N2->N8, N3->N9, N4->N3, N4->N7, N5->N4, N9->N2. ¿Camino N0 a N7? ->",
+    "target": "NO"
+  },
+  {
+    "id": "graph_ood_0278",
+    "num_nodes": 8,
+    "path_len": 5,
+    "prompt": "Grafo: N1->N6, N2->N5, N3->N1, N3->N6, N4->N5, N5->N3, N5->N4, N6->N0, N7->N2. ¿Camino N7 a N6? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0279",
+    "num_nodes": 8,
+    "path_len": 6,
+    "prompt": "Grafo: N0->N5, N0->N6, N1->N0, N3->N1, N4->N5, N5->N3, N5->N6, N6->N7. ¿Camino N7 a N4? ->",
+    "target": "NO"
+  },
+  {
+    "id": "graph_ood_0280",
+    "num_nodes": 10,
+    "path_len": 6,
+    "prompt": "Grafo: N0->N4, N1->N2, N2->N9, N3->N0, N4->N1, N6->N7, N8->N0, N9->N7. ¿Camino N8 a N7? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0281",
+    "num_nodes": 8,
+    "path_len": 4,
+    "prompt": "Grafo: N1->N6, N2->N3, N2->N5, N3->N6, N4->N2, N5->N4, N5->N6, N7->N3. ¿Camino N6 a N4? ->",
+    "target": "NO"
+  },
+  {
+    "id": "graph_ood_0282",
+    "num_nodes": 8,
+    "path_len": 5,
+    "prompt": "Grafo: N0->N7, N1->N3, N1->N5, N1->N6, N2->N1, N5->N6, N6->N0, N7->N0, N7->N2. ¿Camino N4 a N6? ->",
+    "target": "NO"
+  },
+  {
+    "id": "graph_ood_0283",
+    "num_nodes": 9,
+    "path_len": 6,
+    "prompt": "Grafo: N2->N0, N3->N4, N3->N7, N4->N8, N5->N3, N5->N4, N6->N5, N7->N6, N8->N2. ¿Camino N0 a N5? ->",
+    "target": "NO"
+  },
+  {
+    "id": "graph_ood_0284",
+    "num_nodes": 10,
+    "path_len": 4,
+    "prompt": "Grafo: N0->N4, N1->N4, N2->N0, N4->N0, N4->N5, N5->N9, N7->N8, N8->N0, N8->N1. ¿Camino N7 a N2? ->",
+    "target": "NO"
+  },
+  {
+    "id": "graph_ood_0285",
+    "num_nodes": 10,
+    "path_len": 5,
+    "prompt": "Grafo: N0->N5, N1->N9, N2->N4, N3->N1, N3->N8, N4->N7, N6->N1, N8->N2, N9->N2. ¿Camino N6 a N7? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0286",
+    "num_nodes": 8,
+    "path_len": 4,
+    "prompt": "Grafo: N1->N3, N2->N3, N3->N1, N3->N7, N5->N4, N5->N7, N7->N5. ¿Camino N4 a N0? ->",
+    "target": "NO"
+  },
+  {
+    "id": "graph_ood_0287",
+    "num_nodes": 10,
+    "path_len": 6,
+    "prompt": "Grafo: N0->N1, N1->N5, N1->N6, N2->N3, N3->N4, N4->N2, N4->N9, N5->N6, N9->N0, N9->N6. ¿Camino N9 a N4? ->",
+    "target": "NO"
+  },
+  {
+    "id": "graph_ood_0288",
+    "num_nodes": 8,
+    "path_len": 5,
+    "prompt": "Grafo: N0->N3, N0->N5, N1->N6, N2->N1, N2->N3, N2->N4, N5->N2, N6->N0, N6->N5, N7->N1. ¿Camino N7 a N4? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0289",
+    "num_nodes": 8,
+    "path_len": 5,
+    "prompt": "Grafo: N1->N6, N2->N1, N3->N7, N4->N3, N5->N3, N6->N2, N7->N0, N7->N6. ¿Camino N5 a N1? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0290",
+    "num_nodes": 7,
+    "path_len": 6,
+    "prompt": "Grafo: N0->N1, N0->N6, N1->N2, N2->N4, N3->N5, N4->N3, N5->N0, N6->N4. ¿Camino N1 a N6? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0291",
+    "num_nodes": 7,
+    "path_len": 6,
+    "prompt": "Grafo: N0->N6, N1->N0, N1->N2, N1->N5, N2->N5, N4->N0, N4->N1, N5->N4, N6->N3. ¿Camino N1 a N3? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0292",
+    "num_nodes": 9,
+    "path_len": 4,
+    "prompt": "Grafo: N2->N6, N4->N7, N6->N4, N7->N1, N7->N2. ¿Camino N2 a N1? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0293",
+    "num_nodes": 8,
+    "path_len": 5,
+    "prompt": "Grafo: N1->N2, N1->N4, N3->N1, N3->N7, N4->N5, N5->N1, N5->N6, N7->N1. ¿Camino N3 a N6? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0294",
+    "num_nodes": 9,
+    "path_len": 6,
+    "prompt": "Grafo: N0->N4, N1->N0, N2->N7, N3->N2, N3->N6, N5->N3, N6->N0, N6->N1, N7->N3, N7->N6. ¿Camino N6 a N3? ->",
+    "target": "NO"
+  },
+  {
+    "id": "graph_ood_0295",
+    "num_nodes": 8,
+    "path_len": 6,
+    "prompt": "Grafo: N0->N5, N1->N7, N2->N1, N2->N3, N3->N6, N5->N2, N5->N7, N6->N0, N7->N1, N7->N6. ¿Camino N4 a N6? ->",
+    "target": "NO"
+  },
+  {
+    "id": "graph_ood_0296",
+    "num_nodes": 7,
+    "path_len": 6,
+    "prompt": "Grafo: N0->N1, N0->N3, N2->N4, N3->N5, N4->N1, N5->N2, N6->N0, N6->N1, N6->N2, N6->N5. ¿Camino N6 a N1? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0297",
+    "num_nodes": 7,
+    "path_len": 5,
+    "prompt": "Grafo: N0->N3, N1->N5, N2->N5, N3->N0, N3->N6, N5->N0, N6->N0, N6->N4. ¿Camino N0 a N2? ->",
+    "target": "NO"
+  },
+  {
+    "id": "graph_ood_0298",
+    "num_nodes": 10,
+    "path_len": 6,
+    "prompt": "Grafo: N0->N2, N1->N3, N2->N7, N3->N2, N4->N6, N5->N1, N6->N0, N6->N9, N7->N1, N9->N6. ¿Camino N4 a N3? ->",
+    "target": "SI"
+  },
+  {
+    "id": "graph_ood_0299",
+    "num_nodes": 9,
+    "path_len": 4,
+    "prompt": "Grafo: N0->N2, N1->N7, N2->N6, N4->N8, N5->N7, N6->N1, N6->N7, N8->N0. ¿Camino N6 a N5? ->",
+    "target": "NO"
+  }
+]
