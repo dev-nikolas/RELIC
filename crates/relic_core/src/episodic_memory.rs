@@ -52,6 +52,11 @@ impl EpisodicMemory {
         self.edges.contains(&(u.to_string(), v.to_string()))
     }
 
+    /// Comprueba si un nodo existe en la memoria (como origen o como destino de alguna arista).
+    pub fn contains_node(&self, node: &str) -> bool {
+        self.adj.contains_key(node) || self.edges.iter().any(|(u, v)| u == node || v == node)
+    }
+
     /// Consulta direccionable: devuelve la lista de vecinos alcanzables directamente desde `node`.
     pub fn get_neighbors(&mut self, node: &str) -> &[String] {
         self.query_counter += 1;

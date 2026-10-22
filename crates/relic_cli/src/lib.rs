@@ -12,7 +12,9 @@ pub mod math;
 pub mod monitor;
 pub mod parity;
 pub mod query;
+pub mod relational;
 
 pub use dispatch::{parse_dispatch_intent, parse_inventory_problem, DispatchIntent, QuerySpec};
 pub use graph::parse_query_to_spec;
 pub use math::parse_math_expression;
+pub use relational::{parse_relational_query, RelationalQuerySpec, RelationalQuestionType};

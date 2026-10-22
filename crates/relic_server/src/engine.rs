@@ -102,6 +102,21 @@ pub fn execute_query(query: &str, state: &ServerState) -> QueryResponse {
             }
         }
 
+        DispatchIntent::RelationalReasoning(ref rel) => {
+            let has_cycle = rel.graph.has_cycle("altura_mayor");
+            let ans = match &rel.question_type {
+                relic_cli::relational::RelationalQuestionType::Maximal(ref r) => rel.graph.find_maximal(r),
+            };
+            if has_cycle {
+                ("Inconsistencia lógica: Se detectaron premisas contradictorias en la comparación.".to_string(), "deterministic_relational".to_string(), "INVALID".to_string())
+            } else if let Some(n) = ans {
+                let note = if rel.unparsed_clauses.is_empty() { "" } else { " (Basado exclusivamente en las premisas interpretadas)" };
+                (format!("El más alto es {}.{}", n, note), "deterministic_relational".to_string(), if rel.unparsed_clauses.is_empty() { "VALID".to_string() } else { "PARTIAL_VALID".to_string() })
+            } else {
+                ("Evidencia insuficiente o ambigüedad: Existen múltiples elementos máximos locales o cadenas desconectadas.".to_string(), "deterministic_relational".to_string(), "AMBIGUOUS".to_string())
+            }
+        }
+
         DispatchIntent::Incomplete { ref reason, .. } => {
             (format!("Consulta incompleta: {}", reason), "epistemic_rejection".to_string(), "INCOMPLETE".to_string())
         }

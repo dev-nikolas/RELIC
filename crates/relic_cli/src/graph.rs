@@ -13,23 +13,21 @@ pub fn parse_query_to_spec(text: &str) -> QuerySpec {
         lower.contains("es imposible") || lower.contains("no es posible") || lower.contains("no se puede")
     };
 
-    let avoid = if let Some(idx) = lower.find("sin pasar por ") {
-        let rest = &clean[idx + 14..];
-        let token = rest.split_whitespace().next().unwrap_or("").trim_matches(|c| c == '?' || c == '.' || c == ',');
-        Some(token.to_string())
-    } else {
-        None
-    };
+    let avoid = ["sin pasar por ", "evitando ", "sin cruzar por ", "sin atravesar "].iter().find_map(|&prefix| {
+        lower.find(prefix).map(|idx| {
+            let rest = &clean[idx + prefix.len()..];
+            rest.split_whitespace().next().unwrap_or("").trim_matches(|c| c == '?' || c == '.' || c == ',').to_string()
+        })
+    });
 
-    let via = if let Some(idx) = lower.find("pasando por ") {
-        let rest = &clean[idx + 12..];
-        let token = rest.split_whitespace().next().unwrap_or("").trim_matches(|c| c == '?' || c == '.' || c == ',');
-        Some(token.to_string())
-    } else {
-        None
-    };
+    let via = ["pasando por ", "vía ", "via ", "a través de ", "haciendo escala en "].iter().find_map(|&prefix| {
+        lower.find(prefix).map(|idx| {
+            let rest = &clean[idx + prefix.len()..];
+            rest.split_whitespace().next().unwrap_or("").trim_matches(|c| c == '?' || c == '.' || c == ',').to_string()
+        })
+    });
 
-    if lower.contains("depende") && lower.contains("del") {
+    if lower.contains("depende") && (lower.contains("del ") || lower.contains("de ")) {
         let parts: Vec<&str> = clean.split_whitespace().collect();
         let mut initial = None;
         let mut target = None;
@@ -37,12 +35,15 @@ pub fn parse_query_to_spec(text: &str) -> QuerySpec {
             if (word.eq_ignore_ascii_case("crate") || word.eq_ignore_ascii_case("componente")) && i + 1 < parts.len() {
                 initial = Some(parts[i + 1].trim_matches(|c| c == '?' || c == ',').to_string());
             }
-            if (word.eq_ignore_ascii_case("del") || word.eq_ignore_ascii_case("paquete")) && i + 1 < parts.len() {
+            if (word.eq_ignore_ascii_case("del") || word.eq_ignore_ascii_case("de") || word.eq_ignore_ascii_case("paquete")) && i + 1 < parts.len() {
                 let candidate = parts[i + 1].trim_matches(|c| c == '?' || c == ',');
-                if candidate != "paquete" && candidate != "crate" {
+                if candidate != "paquete" && candidate != "crate" && candidate != "el" && candidate != "la" && candidate != "un" {
                     target = Some(candidate.to_string());
                 } else if i + 2 < parts.len() {
-                    target = Some(parts[i + 2].trim_matches(|c| c == '?' || c == ',').to_string());
+                    let cand2 = parts[i + 2].trim_matches(|c| c == '?' || c == ',');
+                    if cand2 != "paquete" && cand2 != "crate" {
+                        target = Some(cand2.to_string());
+                    }
                 }
             }
         }

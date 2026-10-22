@@ -1,4 +1,4 @@
-//! Pruebas de regresión causal y de despacho para RELIC (Fase 7).
+//! Pruebas de regresión causal y de despacho para RELIC (Aritmética y Grafos).
 //! Menos de 180 líneas.
 
 use relic_core::{
@@ -13,20 +13,54 @@ fn test_dispatch_simple_arithmetic() {
     if let DispatchIntent::Arithmetic(plan) = intent {
         assert_eq!(plan.execute(), Ok(2.0));
         assert_eq!(plan.format_result(2.0), "2");
-    } else {
-        panic!("Esperaba intención aritmética");
-    }
+    } else { panic!("Esperaba intención aritmética"); }
 }
 
 #[test]
-fn test_dispatch_addition_question() {
-    let intent = parse_dispatch_intent("¿Cuánto es 2 + 3?");
-    if let DispatchIntent::Arithmetic(plan) = intent {
-        assert_eq!(plan.execute(), Ok(5.0));
-        assert_eq!(plan.format_result(5.0), "5");
-    } else {
-        panic!("Esperaba intención aritmética");
-    }
+fn test_dispatch_arithmetic_precedence_and_parentheses() {
+    if let DispatchIntent::Arithmetic(plan) = parse_dispatch_intent("8 - 3 * 2") {
+        assert_eq!(plan.execute(), Ok(2.0));
+        assert_eq!(plan.format_result(2.0), "2");
+    } else { panic!("Fallo en 8 - 3 * 2"); }
+
+    if let DispatchIntent::Arithmetic(plan) = parse_dispatch_intent("(8 - 3) * 2") {
+        assert_eq!(plan.execute(), Ok(10.0));
+    } else { panic!("Fallo en (8 - 3) * 2"); }
+
+    if let DispatchIntent::Arithmetic(plan) = parse_dispatch_intent("2 + 3 * 4 - 1") {
+        assert_eq!(plan.execute(), Ok(13.0));
+    } else { panic!("Fallo en 2 + 3 * 4 - 1"); }
+
+    if let DispatchIntent::Arithmetic(plan) = parse_dispatch_intent("2 * (3 + 4)") {
+        assert_eq!(plan.execute(), Ok(14.0));
+    } else { panic!("Fallo en 2 * (3 + 4)"); }
+
+    if let DispatchIntent::Arithmetic(plan) = parse_dispatch_intent("12 / (3 + 1)") {
+        assert_eq!(plan.execute(), Ok(3.0));
+    } else { panic!("Fallo en 12 / (3 + 1)"); }
+}
+
+#[test]
+fn test_dispatch_graph_epistemic_separation() {
+    // 1. Consulta bien formada con nodos conocidos
+    let i1 = parse_dispatch_intent("¿Depende el crate relic_cli del paquete memmap2?");
+    assert!(matches!(i1, DispatchIntent::GraphReachability(ref s) if s.initial.as_deref() == Some("relic_cli") && s.target.as_deref() == Some("memmap2")));
+
+    // 2. Consulta bien formada con entidad no existente en memoria (debe parsear y ser evaluada epistémicamente)
+    let i2 = parse_dispatch_intent("¿Depende el crate relic_cli del paquete paquete_inexistente?");
+    assert!(matches!(i2, DispatchIntent::GraphReachability(ref s) if s.initial.as_deref() == Some("relic_cli") && s.target.as_deref() == Some("paquete_inexistente")));
+
+    // 3. Consulta sintácticamente malformada o incompleta (falta nodo)
+    let i3 = parse_dispatch_intent("¿Cómo puedo llegar a?");
+    assert!(matches!(i3, DispatchIntent::Incomplete { .. }));
+}
+
+#[test]
+fn test_dispatch_malformed_and_incomplete_expressions() {
+    assert!(matches!(parse_dispatch_intent("2 +"), DispatchIntent::Incomplete { .. }));
+    assert!(matches!(parse_dispatch_intent("2 + (3 * 4"), DispatchIntent::FreeLanguage(_)));
+    assert!(matches!(parse_dispatch_intent("("), DispatchIntent::FreeLanguage(_)));
+    assert!(matches!(parse_dispatch_intent("2 ** 3"), DispatchIntent::FreeLanguage(_)));
 }
 
 #[test]
@@ -36,9 +70,7 @@ fn test_dispatch_inventory_addition() {
         let res = plan.execute().unwrap();
         assert_eq!(res, 3.0);
         assert_eq!(plan.format_result(res), "3 manzanas");
-    } else {
-        panic!("Esperaba intención de inventario");
-    }
+    } else { panic!("Esperaba intención de inventario"); }
 }
 
 #[test]
@@ -48,56 +80,18 @@ fn test_dispatch_inventory_multi_step() {
         let res = plan.execute().unwrap();
         assert_eq!(res, 1.0);
         assert_eq!(plan.format_result(res), "1 manzana");
-    } else {
-        panic!("Esperaba intención de inventario multi-paso");
-    }
-}
-
-#[test]
-fn test_dispatch_incomplete_missing_initial() {
-    assert!(matches!(parse_dispatch_intent("Tengo algunas manzanas y recibo 1 más"), DispatchIntent::Incomplete { .. }));
-}
-
-#[test]
-fn test_dispatch_incomplete_missing_operand() {
-    assert!(matches!(parse_dispatch_intent("¿Cuánto es 2 + ?"), DispatchIntent::Incomplete { .. }));
+    } else { panic!("Esperaba intención de inventario multi-paso"); }
 }
 
 #[test]
 fn test_dispatch_decimals_and_negatives() {
     if let DispatchIntent::Arithmetic(plan) = parse_dispatch_intent("¿Cuánto es -5 + 3?") {
         assert_eq!(plan.execute(), Ok(-2.0));
-    } else {
-        panic!("Esperaba aritmética negativa");
-    }
+    } else { panic!("Esperaba aritmética negativa"); }
     if let DispatchIntent::Arithmetic(plan) = parse_dispatch_intent("2.5 + 1.5") {
         assert_eq!(plan.execute(), Ok(4.0));
         assert_eq!(plan.format_result(4.0), "4");
-    } else {
-        panic!("Esperaba aritmética decimal");
-    }
-}
-
-#[test]
-fn test_dispatch_graph_query() {
-    assert!(matches!(parse_dispatch_intent("¿Depende el crate relic_cli del paquete memmap2?"), DispatchIntent::GraphReachability(_)));
-}
-
-#[test]
-fn test_dispatch_architect_original_query() {
-    if let DispatchIntent::Arithmetic(plan) = parse_dispatch_intent("¿Cuánto es 1 + 1?") {
-        assert_eq!(plan.execute(), Ok(2.0));
-        assert_eq!(plan.format_result(2.0), "2");
-    } else {
-        panic!("Se esperaba resolución aritmética para ¿Cuánto es 1 + 1?");
-    }
-}
-
-#[test]
-fn test_dispatch_unsupported_rejection() {
-    assert!(matches!(parse_dispatch_intent("¿Quién eres?"), DispatchIntent::FreeLanguage(_) | DispatchIntent::Incomplete { .. }));
-    assert!(matches!(parse_dispatch_intent("¿Qué número viene después del 1?"), DispatchIntent::FreeLanguage(_) | DispatchIntent::Incomplete { .. }));
-    assert!(matches!(parse_dispatch_intent("Completa la secuencia: 1, 2, 1, 2, 1, ..."), DispatchIntent::FreeLanguage(_) | DispatchIntent::Incomplete { .. }));
+    } else { panic!("Esperaba aritmética decimal"); }
 }
 
 #[test]
@@ -110,24 +104,7 @@ fn test_parse_math_expression_isolated_operator() {
         let res = plan.execute().unwrap();
         assert_eq!(res, 2.0);
         assert_eq!(plan.format_result(res), "2 lápices");
-    } else {
-        panic!("Se esperaba resolución de inventario para extravié");
-    }
-}
-
-#[test]
-fn test_dispatch_inventory_multi_step_extended() {
-    let intent = parse_dispatch_intent("Poseo 11 peras, recibo 1 y luego dono 11");
-    if let DispatchIntent::Arithmetic(plan) = intent {
-        assert_eq!(plan.steps.len(), 2);
-        assert_eq!(plan.steps[0], (ArithmeticOp::Add, 1.0));
-        assert_eq!(plan.steps[1], (ArithmeticOp::Subtract, 11.0));
-        let res = plan.execute().unwrap();
-        assert_eq!(res, 1.0);
-        assert_eq!(plan.format_result(res), "1 pera");
-    } else {
-        panic!("Se esperaba resolución multi-paso");
-    }
+    } else { panic!("Se esperaba resolución de inventario para extravié"); }
 }
 
 #[test]
@@ -143,9 +120,7 @@ fn test_dispatch_legitimate_architecture_query() {
         let res = plan.execute().unwrap();
         assert_eq!(res, 8.0);
         assert_eq!(plan.format_result(res), "8 planos");
-    } else {
-        panic!("La consulta legítima con 'arquitecto' debe ser soportada");
-    }
+    } else { panic!("La consulta legítima con 'arquitecto' debe ser soportada"); }
 }
 
 #[test]

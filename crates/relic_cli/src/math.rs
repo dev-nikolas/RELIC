@@ -1,8 +1,144 @@
 //! Analizador sintáctico de expresiones matemáticas puras.
-//! Aislamiento estructural estricto de operadores sin listas léxicas ad-hoc.
+//! Soporta precedencia estándar de operadores (*, / sobre +, -), paréntesis anidados
+//! y detección estricta de operadores colgantes y división por cero en RIR.
 //! Menos de 180 líneas.
 
 use relic_core::{ArithmeticOp, ArithmeticPlan};
+
+#[derive(Debug, Clone, PartialEq)]
+pub enum MathToken {
+    Num(f64),
+    Op(ArithmeticOp),
+    LParen,
+    RParen,
+}
+
+pub fn tokenize_math(expr: &str) -> Option<Vec<MathToken>> {
+    let mut tokens = Vec::new();
+    let mut cur = String::new();
+    let chars: Vec<char> = expr.chars().collect();
+    let mut i = 0;
+
+    while i < chars.len() {
+        let c = chars[i];
+        if c.is_whitespace() {
+            if !cur.is_empty() { tokens.push(MathToken::Num(cur.parse().ok()?)); cur.clear(); }
+        } else if c == '(' || c == ')' {
+            if !cur.is_empty() { tokens.push(MathToken::Num(cur.parse().ok()?)); cur.clear(); }
+            tokens.push(if c == '(' { MathToken::LParen } else { MathToken::RParen });
+        } else if matches!(c, '+' | '*' | '/') {
+            if !cur.is_empty() { tokens.push(MathToken::Num(cur.parse().ok()?)); cur.clear(); }
+            let op = match c {
+                '+' => ArithmeticOp::Add,
+                '*' => ArithmeticOp::Multiply,
+                '/' => ArithmeticOp::Divide,
+                _ => unreachable!(),
+            };
+            tokens.push(MathToken::Op(op));
+        } else if c == 'x' || c == 'X' {
+            let prev_alpha = if i > 0 { chars[i - 1].is_alphabetic() } else { false };
+            let next_alpha = if i + 1 < chars.len() { chars[i + 1].is_alphabetic() } else { false };
+            if prev_alpha || next_alpha { return None; }
+            if !cur.is_empty() { tokens.push(MathToken::Num(cur.parse().ok()?)); cur.clear(); }
+            tokens.push(MathToken::Op(ArithmeticOp::Multiply));
+        } else if c == '-' {
+            let is_unary = cur.is_empty() && match tokens.last() {
+                None | Some(MathToken::Op(_)) | Some(MathToken::LParen) => true,
+                _ => false,
+            };
+            if is_unary {
+                cur.push('-');
+            } else {
+                if !cur.is_empty() { tokens.push(MathToken::Num(cur.parse().ok()?)); cur.clear(); }
+                tokens.push(MathToken::Op(ArithmeticOp::Subtract));
+            }
+        } else if c.is_numeric() || c == '.' {
+            cur.push(c);
+        } else {
+            return None;
+        }
+        i += 1;
+    }
+    if !cur.is_empty() { tokens.push(MathToken::Num(cur.parse().ok()?)); }
+    Some(tokens)
+}
+
+fn precedence(op: ArithmeticOp) -> u8 {
+    match op {
+        ArithmeticOp::Add | ArithmeticOp::Subtract => 1,
+        ArithmeticOp::Multiply | ArithmeticOp::Divide => 2,
+    }
+}
+
+fn apply_op(op: ArithmeticOp, a: f64, b: f64) -> Result<f64, ArithmeticOp> {
+    if op == ArithmeticOp::Divide && b.abs() < 1e-12 {
+        return Err(ArithmeticOp::Divide);
+    }
+    Ok(match op {
+        ArithmeticOp::Add => a + b,
+        ArithmeticOp::Subtract => a - b,
+        ArithmeticOp::Multiply => a * b,
+        ArithmeticOp::Divide => a / b,
+    })
+}
+
+pub fn evaluate_math_tokens(tokens: &[MathToken]) -> Option<Result<f64, ArithmeticOp>> {
+    if tokens.is_empty() { return None; }
+    let mut output: Vec<f64> = Vec::new();
+    let mut op_stack: Vec<ArithmeticOp> = Vec::new();
+    let mut p_stack: Vec<usize> = Vec::new();
+    let mut expect_operand = true;
+
+    for tok in tokens {
+        match tok {
+            MathToken::Num(n) => {
+                if !expect_operand { return None; }
+                output.push(*n);
+                expect_operand = false;
+            }
+            MathToken::LParen => {
+                if !expect_operand { return None; }
+                p_stack.push(op_stack.len());
+            }
+            MathToken::RParen => {
+                if expect_operand { return None; }
+                let base = p_stack.pop()?;
+                while op_stack.len() > base {
+                    let op = op_stack.pop().unwrap();
+                    let b = output.pop()?;
+                    let a = output.pop()?;
+                    output.push(apply_op(op, a, b).ok()?);
+                }
+            }
+            MathToken::Op(op) => {
+                if expect_operand { return None; }
+                let limit = p_stack.last().copied().unwrap_or(0);
+                while op_stack.len() > limit && precedence(*op_stack.last().unwrap()) >= precedence(*op) {
+                    let top_op = op_stack.pop().unwrap();
+                    let b = output.pop()?;
+                    let a = output.pop()?;
+                    match apply_op(top_op, a, b) {
+                        Ok(res) => output.push(res),
+                        Err(e) => return Some(Err(e)),
+                    }
+                }
+                op_stack.push(*op);
+                expect_operand = true;
+            }
+        }
+    }
+
+    if expect_operand || !p_stack.is_empty() { return None; }
+    while let Some(op) = op_stack.pop() {
+        let b = output.pop()?;
+        let a = output.pop()?;
+        match apply_op(op, a, b) {
+            Ok(res) => output.push(res),
+            Err(e) => return Some(Err(e)),
+        }
+    }
+    if output.len() == 1 { Some(Ok(output[0])) } else { None }
+}
 
 pub fn parse_math_expression(text: &str) -> Option<ArithmeticPlan> {
     let clean = text.trim_matches(|c| c == '¿' || c == '?' || c == '¡' || c == '!' || c == '.');
@@ -16,60 +152,20 @@ pub fn parse_math_expression(text: &str) -> Option<ArithmeticPlan> {
         }
     }
     let expr = expr.trim();
+    if expr.is_empty() { return None; }
 
-    let mut tokens = Vec::new();
-    let mut cur = String::new();
-    let chars: Vec<char> = expr.chars().collect();
-    let mut i = 0;
-
-    while i < chars.len() {
-        let c = chars[i];
-        if c.is_whitespace() {
-            if !cur.is_empty() { tokens.push(cur.clone()); cur.clear(); }
-        } else if matches!(c, '+' | '*' | '/') {
-            if !cur.is_empty() { tokens.push(cur.clone()); cur.clear(); }
-            tokens.push(c.to_string());
-        } else if c == 'x' || c == 'X' {
-            let prev_is_alpha = if i > 0 { chars[i - 1].is_alphabetic() } else { false };
-            let next_is_alpha = if i + 1 < chars.len() { chars[i + 1].is_alphabetic() } else { false };
-            if prev_is_alpha || next_is_alpha { return None; }
-            if !cur.is_empty() { tokens.push(cur.clone()); cur.clear(); }
-            tokens.push(c.to_string());
-        } else if c == '-' {
-            let is_unary = cur.is_empty() && (tokens.is_empty() || matches!(tokens.last().map(|s| s.as_str()), Some("+") | Some("-") | Some("*") | Some("/")));
-            if is_unary {
-                cur.push('-');
-            } else {
-                if !cur.is_empty() { tokens.push(cur.clone()); cur.clear(); }
-                tokens.push("-".to_string());
-            }
-        } else if c.is_numeric() || c == '.' {
-            cur.push(c);
-        } else {
-            return None;
+    let tokens = tokenize_math(expr)?;
+    match evaluate_math_tokens(&tokens)? {
+        Ok(val) => {
+            let mut plan = ArithmeticPlan::new(val, None);
+            plan.add_step(ArithmeticOp::Add, 0.0);
+            Some(plan)
         }
-        i += 1;
+        Err(ArithmeticOp::Divide) => {
+            let mut plan = ArithmeticPlan::new(1.0, None);
+            plan.add_step(ArithmeticOp::Divide, 0.0);
+            Some(plan)
+        }
+        _ => None,
     }
-    if !cur.is_empty() { tokens.push(cur); }
-    if tokens.len() < 3 { return None; }
-
-    let initial: f64 = tokens[0].parse().ok()?;
-    let mut plan = ArithmeticPlan::new(initial, None);
-
-    let mut j = 1;
-    while j + 1 < tokens.len() {
-        let op_str = &tokens[j];
-        let val: f64 = tokens[j + 1].parse().ok()?;
-        let op = match op_str.as_str() {
-            "+" => ArithmeticOp::Add,
-            "-" => ArithmeticOp::Subtract,
-            "*" | "x" | "X" => ArithmeticOp::Multiply,
-            "/" => ArithmeticOp::Divide,
-            _ => return None,
-        };
-        plan.add_step(op, val);
-        j += 2;
-    }
-
-    if !plan.steps.is_empty() { Some(plan) } else { None }
 }

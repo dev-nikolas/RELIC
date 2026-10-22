@@ -81,8 +81,10 @@ impl ArithmeticPlan {
     /// Formatea el resultado respetando enteros, decimales y concordancia de unidad.
     pub fn format_result(&self, val: f64) -> String {
         let is_integer = (val.fract()).abs() < 1e-6;
-        let num_str = if is_integer {
+        let num_str = if is_integer && val >= (i64::MIN as f64) && val <= (i64::MAX as f64) {
             format!("{}", val as i64)
+        } else if is_integer {
+            format!("{:.0}", val)
         } else {
             format!("{:.2}", val)
         };

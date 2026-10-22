@@ -4,11 +4,13 @@
 use relic_core::{ArithmeticOp, ArithmeticPlan};
 use crate::graph::parse_query_to_spec;
 use crate::math::parse_math_expression;
+use crate::relational::{parse_relational_query, RelationalQuerySpec};
 
 #[derive(Debug, PartialEq)]
 pub enum DispatchIntent {
     Arithmetic(ArithmeticPlan),
     GraphReachability(QuerySpec),
+    RelationalReasoning(RelationalQuerySpec),
     FreeLanguage(String),
     Incomplete { reason: String, missing: String },
 }
@@ -58,10 +60,17 @@ pub fn parse_inventory_problem(text: &str) -> Option<ArithmeticPlan> {
         let trimmed = clause.trim();
         if trimmed.is_empty() { continue; }
 
-        let is_add = ["recibo", "recibe", "me dan", "me da", "compro", "agrego", "más", "mas", "sumo", "adquirí", "adquiri", "recolecté", "recolecte", "incorporé", "incorpore"]
-            .iter().any(|&w| trimmed.contains(w));
-        let is_sub = ["regalo", "regala", "doy", "me quitan", "pierdo", "perdí", "perdi", "vendo", "como", "resto", "menos", "extravié", "extravie", "presté", "preste", "dono", "doné", "done"]
-            .iter().any(|&w| trimmed.contains(w));
+        let is_add = [
+            "recibo", "recibe", "me dan", "me da", "compro", "compré", "compre",
+            "agrego", "más", "mas", "sumo", "adquirí", "adquiri", "recolecté", "recolecte",
+            "incorporé", "incorpore", "encuentro", "encontré", "encontre"
+        ].iter().any(|&w| trimmed.contains(w));
+        let is_sub = [
+            "regalo", "regala", "doy", "di", "le di", "les di", "me quitan", "pierdo", "perdí", "perdi",
+            "vendo", "vendí", "vendi", "como", "comí", "comi", "me comí", "me comi", "zampé", "zampe",
+            "consumo", "consumí", "consumi", "gasto", "gasté", "gaste", "resto", "menos",
+            "extravié", "extravie", "presté", "preste", "dono", "doné", "done", "cedo", "cedí", "cedi"
+        ].iter().any(|&w| trimmed.contains(w));
 
         let mut found_num = None;
         for word in trimmed.split_whitespace() {
@@ -132,6 +141,10 @@ pub fn parse_dispatch_intent(text: &str) -> DispatchIntent {
             };
         }
         return DispatchIntent::GraphReachability(spec);
+    }
+
+    if let Some(rel_spec) = parse_relational_query(clean) {
+        return DispatchIntent::RelationalReasoning(rel_spec);
     }
 
     DispatchIntent::FreeLanguage(clean.to_string())

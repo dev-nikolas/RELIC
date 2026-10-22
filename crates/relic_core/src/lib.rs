@@ -21,8 +21,10 @@ pub mod reasoning_engine;
 pub mod rir;
 pub mod rotary;
 pub mod sampler;
+pub mod temporal_graph;
 
 pub use arithmetic::{ArithmeticError, ArithmeticOp, ArithmeticPlan};
+pub use temporal_graph::{TemporalEdge, TemporalGraph};
 pub use rir::{
     ArithmeticStep, DomainKind as RirDomainKind, IntentKind as RirIntentKind,
     RirArithmeticOp, RirDocumentV1, RirValidationError, UncertaintyReport as RirUncertaintyReport,
