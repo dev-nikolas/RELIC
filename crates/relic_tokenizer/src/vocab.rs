@@ -77,7 +77,9 @@ impl Vocab {
         }
 
         let bos_id = token_to_id.get("<|bos|>").copied();
-        let eos_id = token_to_id.get("<|eos|>").copied();
+        let eos_id = token_to_id.get("<|eos|>").copied()
+            .or_else(|| token_to_id.get("endoftext").copied())
+            .or_else(|| token_to_id.get("<|endoftext|>").copied());
         let pad_id = token_to_id.get("<|pad|>").copied();
 
         Ok(Self {

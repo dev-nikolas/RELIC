@@ -163,16 +163,106 @@ class ConstrainedGrammarInterpreter:
     def __init__(self):
         self.name = "ConstrainedGrammar (Slot-Filling RIR Estructurado)"
         # Léxico extendido compilado a partir de gramática de producción formal
-        self.add_markers = {"compro", "recibo", "dona", "agrego", "sumo", "añadidas", "adquirí", "suministraron", "incorporé", "ingresaron", "recolecté", "coseché"}
-        self.sub_markers = {"regalo", "vendo", "pierdo", "doy", "resto", "sustraídas", "consumidas", "extravié", "obsequié", "cedí", "hurtaron", "repartí", "traspasé"}
-        self.negation_markers = {"no", "nunca", "tampoco", "ninguna", "ninguno"}
-        self.indefinite_markers = {"algunas", "algunos", "ciertas", "ciertos", "varios", "varias", "desconozco", "indeterminada", "nadie"}
+        self.add_markers = {
+            "compro", "compre", "compré", "compró", "recibo", "recibe", "recibí", "recibió",
+            "dona", "donan", "agrego", "agrega", "agregó", "sumo", "suma", "sumó", "añadidas",
+            "adquirí", "adquirio", "adquirió", "suministraron", "suministradas", "incorporé",
+            "incorporó", "ingresaron", "recolecté", "recolectó", "coseché", "cosechó", "hallé",
+            "halle", "halló", "herencia", "heredé", "donadas", "añadidas"
+        }
+        self.sub_markers = {
+            "regalo", "regalé", "regala", "regaló", "vendo", "vendí", "vende", "vendió",
+            "pierdo", "perdí", "pierde", "perdió", "doy", "di", "dio", "resto", "resta", "restó",
+            "sustraídas", "sustraidas", "consumidas", "extravié", "extravie", "extravió", "extraviado",
+            "extraviadas", "obsequié", "obsequie", "obsequió", "obsequiado", "cedí", "cedio", "cedió",
+            "hurtaron", "repartí", "reparti", "repartió", "traspasé", "traspase", "traspasó",
+            "presté", "preste", "presto", "prestó", "destruidas", "entregadas"
+        }
+        self.negation_markers = {"no", "nunca", "tampoco", "ninguna", "ninguno", "ningún"}
+        self.indefinite_markers = {
+            "algunas", "algunos", "ciertas", "ciertos", "varios", "varias",
+            "desconozco", "indeterminada", "nadie", "no precisada", "no determinada",
+            "sin precisar", "sin determinar", "desconocida"
+        }
+        self.non_entity_words = {
+            "de", "del", "las", "los", "la", "el", "un", "una", "unos", "unas",
+            "nuevas", "nuevos", "adicionales", "existentes", "presentes", "y", "o",
+            "pero", "si", "a", "al", "en", "que", "para", "con", "sin", "mis", "sus",
+            "tus", "fueron", "habiendo", "contando", "tras", "haber", "más", "menos"
+        }
+
+    def _extract_entity(self, tokens: list[str], num_indices: list[tuple[int, float]]) -> str | None:
+        for idx, _ in num_indices:
+            for offset in [1, 2, 3]:
+                if idx + offset < len(tokens):
+                    cand = tokens[idx + offset].strip(".,;:?!¿¡")
+                    if (
+                        cand.isalpha()
+                        and cand.lower() not in self.non_entity_words
+                        and cand.lower() not in self.add_markers
+                        and cand.lower() not in self.sub_markers
+                    ):
+                        return cand
+        return None
 
     def parse(self, text: str) -> RirDocumentV1:
         clean = text.strip()
         lower = clean.lower()
 
-        # Invariante 1 de Gramática RIR: Verificación de Antecedente Indefinido
+        # Invariante 1: Consultas de grafos de dependencias
+        if "depende" in lower or "ruta" in lower or "camino" in lower or "conecta" in lower:
+            m = re.search(
+                r"(?:crate|componente|m[oó]dulo|nodo|servicio)?\s*([a-zA-Z0-9_]+)\s+del\s+(?:crate|componente|m[oó]dulo|nodo|servicio)?\s*([a-zA-Z0-9_]+)",
+                clean,
+                re.IGNORECASE,
+            )
+            if m:
+                start = m.group(1).strip()
+                target = m.group(2).strip()
+                return RirDocumentV1(
+                    schema_version=1,
+                    intent=IntentKind.GRAPH_QUERY,
+                    domain=DomainKind.SOFTWARE_DEPENDENCY,
+                    status=ValidityStatus.VALID,
+                    graph_spec=GraphQuerySpec(start_node=start, target_node=target, is_negated=False),
+                )
+            else:
+                return RirDocumentV1(
+                    schema_version=1,
+                    intent=IntentKind.GRAPH_QUERY,
+                    domain=DomainKind.SOFTWARE_DEPENDENCY,
+                    status=ValidityStatus.INCOMPLETE,
+                    uncertainty=UncertaintyReport(
+                        is_rejected=True,
+                        status=ValidityStatus.INCOMPLETE,
+                        missing_fields=["start_node", "target_node"],
+                        rejection_reason="Incomplete graph query",
+                    ),
+                )
+
+        # Invariante 2: Aritmética abstracta pura
+        math_match = re.search(r"(\d+(?:\.\d+)?)\s*([\+\-\*\/xX])\s*(\d+(?:\.\d+)?)", clean)
+        inventory_cues = ["tengo", "poseo", "habiendo", "contando", "manzanas", "peras", "lápices", "cuadernos", "fichas", "cajas", "billetes", "libros", "monedas"]
+        if math_match and not any(k in lower for k in inventory_cues):
+            val0 = float(math_match.group(1))
+            op_char = math_match.group(2).lower()
+            val1 = float(math_match.group(3))
+            op_enum = (
+                RirArithmeticOp.ADD if op_char == "+"
+                else (RirArithmeticOp.SUBTRACT if op_char == "-"
+                else (RirArithmeticOp.MULTIPLY if op_char in ["*", "x"]
+                else RirArithmeticOp.DIVIDE))
+            )
+            return RirDocumentV1(
+                schema_version=1,
+                intent=IntentKind.ARITHMETIC_QUERY,
+                domain=DomainKind.ABSTRACT_MATH,
+                status=ValidityStatus.VALID,
+                initial_quantity=val0,
+                operations=[ArithmeticStep(op_enum, val1)],
+            )
+
+        # Invariante 3: Verificación de Antecedente Indefinido
         if any(w in lower for w in self.indefinite_markers):
             return RirDocumentV1(
                 schema_version=1,
@@ -187,10 +277,9 @@ class ConstrainedGrammarInterpreter:
                 ),
             )
 
-        # Invariante 2: Extracción dirigida de entidades numéricas
         tokens = clean.split()
         words_lower = [w.strip(".,;:?!¿¡").lower() for w in tokens]
-        
+
         num_indices = []
         for i, w in enumerate(tokens):
             clean_word = w.strip(".,;:?!¿¡")
@@ -211,27 +300,21 @@ class ConstrainedGrammarInterpreter:
                 ),
             )
 
-        # Invariante 3: Inversión Sintáctica (ej. "Habiendo extraviado 2, y contando con 10...")
-        # Si hay cláusulas invertidas o subordinadas, el número mayor o el precedido por "de las / contaba con" es initial
-        init_val = None
-        entity = None
-        operations = []
-
-        # Detectar negación estricta
+        entity = self._extract_entity(tokens, num_indices)
         is_negated = any(w in words_lower for w in self.negation_markers)
 
-        # Asignación de slots según orden gramatical o marcas subordinadas
         if len(num_indices) == 1:
             init_val = num_indices[0][1]
-            # Determinar entidad
-            idx = num_indices[0][0]
-            if idx + 1 < len(tokens):
-                cand = tokens[idx + 1].strip(".,;:?!¿¡")
-                if cand.isalpha() and cand.lower() not in self.add_markers and cand.lower() not in self.sub_markers:
-                    entity = cand
-
             if is_negated:
-                operations.append(ArithmeticStep(RirArithmeticOp.SUBTRACT, 0.0))
+                return RirDocumentV1(
+                    schema_version=1,
+                    intent=IntentKind.INVENTORY_UPDATE,
+                    domain=DomainKind.INVENTORY,
+                    status=ValidityStatus.VALID,
+                    entity=entity,
+                    initial_quantity=init_val,
+                    operations=[ArithmeticStep(RirArithmeticOp.SUBTRACT, 0.0)],
+                )
             else:
                 return RirDocumentV1(
                     schema_version=1,
@@ -247,50 +330,60 @@ class ConstrainedGrammarInterpreter:
                         rejection_reason="Single numeric quantity without explicit delta",
                     ),
                 )
+
+        # Múltiples números
+        idx0, val0 = num_indices[0]
+        idx1, val1 = num_indices[1]
+        ctx1 = " ".join(words_lower[max(0, idx1-3):idx1])
+
+        inverted_cues = ["contando", "teniendo", "originalmente", "existentes", "lote inicial", "de las", "de los", "al principio", "presentes", "que poseía", "que poseia", "que compró", "que compro", "que compré", "que compre"]
+        is_inverted = any(k in ctx1 for k in inverted_cues)
+
+        if is_inverted and len(num_indices) == 2:
+            init_val = val1
+            delta_nums = [(idx0, val0)]
         else:
-            # Múltiples números: Determinar cuál es cantidad inicial y cuáles son deltas
-            # Heurística gramatical restringida:
-            # "de las 8 monedas, 2 regalé" -> 8 es inicial, 2 es delta
-            # "tenía 10 y perdí 4" -> 10 es inicial, 4 es delta
-            idx0, val0 = num_indices[0]
-            idx1, val1 = num_indices[1]
+            init_val = val0
+            delta_nums = num_indices[1:]
 
-            # Contexto previo a idx0 e idx1
-            ctx0 = " ".join(words_lower[max(0, idx0-3):idx0])
-            ctx1 = " ".join(words_lower[max(0, idx1-3):idx1])
+        if is_negated:
+            operations = [ArithmeticStep(RirArithmeticOp.SUBTRACT, 0.0)]
+        else:
+            operations = []
+            for d_idx, d_val in delta_nums:
+                local_window = words_lower[max(0, d_idx-4):min(len(words_lower), d_idx+4)]
+                local_sub = any(m in local_window for m in self.sub_markers)
+                local_add = any(m in local_window for m in self.add_markers)
 
-            if any(k in ctx1 for k in ["contando", "teniendo", "originalmente", "existentes", "lote inicial", "de las", "de los"]):
-                init_val = val1
-                delta_val = val0
-                delta_idx = idx0
-            else:
-                init_val = val0
-                delta_val = val1
-                delta_idx = idx1
-
-            # Entidad
-            for idx, _ in num_indices:
-                if idx + 1 < len(tokens):
-                    cand = tokens[idx + 1].strip(".,;:?!¿¡")
-                    if cand.isalpha() and cand.lower() not in self.add_markers and cand.lower() not in self.sub_markers:
-                        entity = cand
-                        break
-
-            # Operador
-            if is_negated:
-                operations.append(ArithmeticStep(RirArithmeticOp.SUBTRACT, 0.0))
-            else:
-                # Determinar si el contexto del delta es suma o resta
-                sub_hit = any(m in lower for m in self.sub_markers)
-                add_hit = any(m in lower for m in self.add_markers)
-                if sub_hit:
-                    operations.append(ArithmeticStep(RirArithmeticOp.SUBTRACT, delta_val))
-                elif add_hit:
-                    operations.append(ArithmeticStep(RirArithmeticOp.ADD, delta_val))
+                if local_sub and not local_add:
+                    operations.append(ArithmeticStep(RirArithmeticOp.SUBTRACT, d_val))
+                elif local_add and not local_sub:
+                    operations.append(ArithmeticStep(RirArithmeticOp.ADD, d_val))
                 else:
-                    operations.append(ArithmeticStep(RirArithmeticOp.SUBTRACT, delta_val))
+                    global_sub = any(m in lower for m in self.sub_markers)
+                    global_add = any(m in lower for m in self.add_markers)
+                    if global_sub and not global_add:
+                        operations.append(ArithmeticStep(RirArithmeticOp.SUBTRACT, d_val))
+                    elif global_add and not global_sub:
+                        operations.append(ArithmeticStep(RirArithmeticOp.ADD, d_val))
+                    else:
+                        # Ambiguo / desconocido: RECHAZO SEGURO
+                        return RirDocumentV1(
+                            schema_version=1,
+                            intent=IntentKind.INVENTORY_UPDATE,
+                            domain=DomainKind.INVENTORY,
+                            status=ValidityStatus.AMBIGUOUS,
+                            entity=entity,
+                            initial_quantity=init_val,
+                            uncertainty=UncertaintyReport(
+                                is_rejected=True,
+                                status=ValidityStatus.AMBIGUOUS,
+                                missing_fields=["operations"],
+                                rejection_reason="Unrecognized arithmetic operation",
+                            ),
+                        )
 
-        doc = RirDocumentV1(
+        return RirDocumentV1(
             schema_version=1,
             intent=IntentKind.INVENTORY_UPDATE,
             domain=DomainKind.INVENTORY,
@@ -299,7 +392,6 @@ class ConstrainedGrammarInterpreter:
             initial_quantity=init_val,
             operations=operations,
         )
-        return doc
 
 
 # ==============================================================================
@@ -568,6 +660,7 @@ def evaluate_dataset(interpreter, samples: list) -> dict:
         "count": total,
         "exact_match_pct": round(exact_matches / total * 100.0, 2),
         "critical_false_positives": critical_false_positives,
+        "safe_rejections": safe_rejections,
         "mean_latency_us": round(sum(latencies_us) / len(latencies_us), 1),
     }
 

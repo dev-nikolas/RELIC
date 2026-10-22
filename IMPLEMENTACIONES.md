@@ -1,189 +1,224 @@
-# RELIC — Arquitectura Cognitiva de Software y Programa de Investigación
+# RELIC — Hoja de ruta y programa de investigación
 
-> **Definición de un Relic Digital:** Unidad de software cognitiva portable, local, autónoma y persistente. Diseñada para procesar lenguaje humano, mantener representaciones estructuradas de problemas, razonar con procedimientos verificables y seleccionar acciones bajo incertidumbre, con una huella de memoria física mínima (< 50 MB en inferencia nativa en Rust).
-
----
-
-## 1. Fundamento Filosófico y Cognitivo
-
-La mayoría de los sistemas contemporáneos confunden **predecir la siguiente palabra** con **pensar**. Asumen que una red neuronal de miles de millones de parámetros que emite texto plausible debe ser el único sustrato de toda la inteligencia.
-
-RELIC parte de un principio alternativo derivado de la ciencia cognitiva y la neurobiología:
-
-1. **El lenguaje no es el sustrato único del pensamiento:**  
-   El lenguaje humano funciona como una interfaz de altísima expresividad para organizar, refinar y comunicar conceptos a otras mentes. Mucho procesamiento cognitivo esencial (espacial, motor, relacional y deductivo) opera sobre representaciones no verbales, geometrías y dinámicas de estados.
-2. **Separación de Niveles de Representación:**
-   - **Nivel 1 — RELIC Intermediate Representation (RIR):**  
-     Una representación formal, explícita, fuertemente tipada y verificable. Permite serializar problemas como grafos de estado, objetivos, restricciones y planes, garantizando ejecución matemática exacta, cero alucinaciones y transferencia de procedimientos entre dominios dispares.
-   - **Nivel 2 — Representación Cognitiva Aprendida (Línea Experimental H1):**  
-     Un espacio latente continuo y recurrente de estado compacto $O(1)$ para descubrir regularidades, absorber variaciones de entrada, mantener la memoria de trabajo secuencial y generar hipótesis ante problemas que no encajen en plantillas conocidas.
+> **Una nota de honestidad antes de empezar.** Este documento mezcla tres cosas, y las etiqueta para no confundirlas:
+> **[Hecho]** existe en el código y se puede ejecutar.
+> **[Plan]** está diseñado y es construible con los recursos actuales.
+> **[Hipótesis]** es una idea a probar; puede resultar falsa.
 
 ---
 
-## 2. Arquitectura de Cuatro Subsistemas Auditados
+## 1. Visión
 
-La arquitectura de RELIC desacopla deliberadamente las responsabilidades del sistema para que cada fallo sea localizable y no se atribuya a una misteriosa "caja negra":
+RELIC no busca competir con los LLM grandes en escala. Busca explorar otra pregunta:
 
-```mermaid
-graph TD
-    User([Entrada Humana en Español / Código]) --> SubA[A. Sistema Lingüístico<br/>Parser Sintáctico / H1]
-    SubA -->|Compila a RIR canónico| SubD[D. Sistema de Evaluación y Selección<br/>a* = argmin J(s, a)]
-    SubD -->|Consulta entidades y hechos| SubB[B. Sistema de Representación y Memoria<br/>EpisodicMemory indexada]
-    SubB -->|Hechos conocidos / Estado de certidumbre| SubD
-    SubD -->|Despacha tarea validada| SubC[C. Sistema de Razonamiento<br/>ReasoningEngine BFS / Reglas]
-    SubC -->|Plan y solución certificada| SubD
-    SubD -->|Resultado verificado| SubA
-    SubA --> Output([Respuesta Fiel en Lenguaje Natural])
-```
+> ¿Puede un sistema compacto volverse más capaz **acumulando experiencia** (memoria, decisiones, correcciones) en lugar de crecer en parámetros?
 
-### A. Sistema Lingüístico
-- **Entrada:** Lenguaje natural libre en español, preguntas modales, órdenes imperativas o código.
-- **Función:** Identificar la intención, extraer argumentos, detectar polaridad (afirmación / negación simple o doble) y emitir la especificación formal RIR.
-- **Estado Actual:** Parser sintáctico explícito validado con 100% de exactitud estricta en casos adversariales y latencia sub-milisegundo.
+Un LLM aprende a predecir la siguiente palabra y luego congela sus pesos. Eso le da fluidez, pero no memoria propia, no criterio estable y no adaptación posterior. RELIC parte de otra separación:
 
-### B. Sistema de Representación y Memoria Episódica
-- **Estructura:** Memoria indexada en tablas hash y conjuntos (`HashMap`, `HashSet`) en Rust puro.
-- **Función:** Registrar hechos relacionales explícitos, verificar la existencia de entidades y mantener el estado del mundo.
-- **Escalabilidad:** 14.5 KB para 10 nodos, 1.7 MB para 1,000 nodos ($O(V + E)$ estricto).
+- **El lenguaje es una interfaz**, no el sustrato del pensamiento.
+- **El conocimiento vive en una memoria**, y recordar es un proceso activo que ejecuta mientras avanza.
+- **El comportamiento tiene una orientación estable** (personalidad), formada por las primeras experiencias y acotada por un núcleo que no cambia.
+- **Los errores no se esconden ni se olvidan:** se registran, se corrigen y se vuelven pruebas permanentes.
 
-### C. Sistema de Razonamiento Determinista
-- **Algoritmos:** Búsqueda en anchura (BFS) sobre grafos dirigidos, catálogo de operadores discretos de reglas y composición de procedimientos.
-- **Garantía:** Exactitud matemática del 100% en grafos y reglas cuando el problema está formalizado, detección de ciclos y prevención de desbordamiento de profundidad.
-- **Latencia:** 26.27 µs por consulta completa en Rust nativo.
+### Lo que RELIC no pretende
 
-### D. Sistema de Evaluación, Incertidumbre y Selección de Acción
-- **Formulación:**
-  $$a^* = \arg\min_{a \in A(s)} J(s, a)$$
-- **Clasificación Tripartita del Estado:**
-  1. `VALID`: Entidades conocidas, campos presentes y restricciones solubles. Se ejecuta el procedimiento exacto.
-  2. `INCOMPLETE`: Información insuficiente. Se solicita aclaración específica sin inventar datos.
-  3. `INVALID`: Entidades inexistentes en la memoria episódica o contradicciones lógicas. Se emite un rechazo epistémico verificable.
+- Igualar a un LLM de frontera en conocimiento general.
+- Demostrar "conciencia" o "inteligencia general". Las analogías biológicas de este documento son **guías de diseño**, no afirmaciones sobre lo que el sistema es.
+- Ser un servidor de modelos como Ollama. Su nicho es ser un motor pequeño, local y verificable.
 
 ---
 
-## 3. Especificación Formal de RIR (RELIC Intermediate Representation)
-
-El DSL canónico para representar problemas y planes de manera desacoplada del idioma:
-
-```yaml
-DOMAIN: SpatialGraph | SoftwareDependency | AlgebraicRule
-GOAL:
-    reach(target_state)
-KNOWN:
-    initial_state = A
-    edges = [(A, B), (B, C)]
-CONSTRAINTS:
-    via(X)          # Restricción de paso obligatorio
-    avoid(Y)        # Restricción de exclusión estricta
-    max_cost(K)     # Límite de saltos o recursos
-PLAN:
-    A -> B -> C     # Cadena de transiciones propuesta
-VERIFY:
-    edges_valid = true
-    constraints_satisfied = true
-    cost_optimal = true
-```
-
----
-
-## 4. Resultados del Hito de Transferencia Isomórfica
-
-Evaluación experimental completada sobre 5 pares isomórficos (10 consultas cross-domain) entre navegación espacial y dependencias de compilación de software en Rust (`reports/cross_domain_transfer_report.json`):
-
-| Métrica Evaluada | Resultado Obtenido | Significado Científico |
-| :--- | :---: | :--- |
-| **Exactitud de Especificación RIR** | **100.0%** | Compilación exacta de la intención y slots en ambos dominios. |
-| **Calibración de Incertidumbre** | **100.0%** | Rechazo epistémico (`REJECT_UNKNOWN`) y solicitud de datos (`ASK_CLARIFICATION`) sin alucinaciones. |
-| **Tasa de Isomorfismo Procedural** | **100.0%** | La estructura abstracta del plan se conserva idéntica en grafos de ciudades y crates de Rust. |
-| **Latencia Promedio por Par** | **1.54 ms** | Validación y ejecución integral de extremo a extremo. |
-
----
-
-## 5. RELIC como una Familia de Especialistas Compactos
-
-RELIC no se concibe como un modelo monolítico gigante ni como un enjambre multiagente tradicional que intercambia párrafos de texto libre con contextos inflados. Se concibe como una **familia de especialistas compactos** que comparten un estado cognitivo tipado:
+## 2. Arquitectura conceptual: mente, cuerpo y núcleo
 
 ```text
-Entrada Lingüística (Español)
-          ↓
-[Compilador a RIR + Estado Cognitivo Compartido]
-          ↓
 ┌─────────────────────────────────────────────────────────────┐
-│              ESPECIALISTAS MODULARES COMPACTOS              │
-│                                                             │
-│  • Especialista Secuencial (H1: Memoria de trabajo y pila)  │
-│  • Especialista Relacional (Grafos, dependencias y caminos) │
-│  • Especialista Matemático (Patrones y transformaciones)    │
-│  • Especialista Lingüístico (Interpretación y expresión)    │
+│ NÚCLEO INMUTABLE  (no se auto-modifica)                     │
+│  pruebas de regresión · reglas base · evaluador · límites   │
+│  de la personalidad                                         │
+├─────────────────────────────────────────────────────────────┤
+│ MENTE   decide, razona, detecta, recuerda                   │
+│  RIR · evaluación VALID/INCOMPLETE/INVALID · memoria        │
+│  asociativa · función de puntaje (personalidad)             │
+├─────────────────────────────────────────────────────────────┤
+│ CUERPO  ejecuta y se repara solo                            │
+│  módulos, pesos, runtime · reparación y adaptación          │
+│  La mente solo recibe una señal resumida ("zona débil",     │
+│  "herida cerrada"), no los detalles de la reparación.       │
 └─────────────────────────────────────────────────────────────┘
-          ↓
-[Evaluador y Verificador RIR: Certifica validez y devuelve resultado]
 ```
 
-**Diferencia clave frente a multiagentes tradicionales:**
-- No intercambian lenguaje natural redundante.
-- Operan sobre estructuras comunes fuertemente tipadas (RIR).
-- Comparten representaciones y vocabularios, eliminando duplicación de memoria.
+Reparto de responsabilidades:
+
+| Capa | Qué hace | Ya existe en el código |
+| :--- | :--- | :--- |
+| Núcleo inmutable | Garantiza que el sistema no se degrade sin notarlo | Parcial: tests y conformidad RIR |
+| Mente | Interpreta, recuerda, decide, razona | RIR, `reasoning_engine`, `episodic_memory`, evaluador |
+| Cuerpo | Ejecuta y repara/adapta módulos | Runtime Rust y modelo; la auto-reparación es [Plan] |
+
+**Por qué un núcleo inmutable:** un sistema que puede reescribir todo, incluido su propio evaluador, puede degradarse sin darse cuenta. La parte fija es la que permite juzgar si un cambio mejoró o empeoró.
+
+**Metáfora guía:** la cicatrización, no el reinicio. La herida se cierra y el sistema queda más fuerte ahí; lo aprendido no se descarta.
 
 ---
 
-## 6. Decisiones de Diseño para un Consumo Mínimo de Memoria
+## 3. Estado actual
 
-1. **Compartir lo que no necesita duplicarse:**  
-   Mismo tokenizador Unicode, mismas estructuras de memoria episódica y embeddings compartidos.
-2. **Activación selectiva perezosa (*Lazy Activation*):**  
-   Una consulta relacional no activa los especialistas matemáticos ni lingüísticos pesados. Un enrutador ultraligero activa solo el componente necesario, manteniendo el resto descargado o inactivo.
-3. **Separación de algoritmos exactos vs aprendizaje:**  
-   Un algoritmo BFS en Rust resuelve grafos con 100% de fiabilidad en 26 microsegundos. No gastamos millones de parámetros neuronales en reaprender lo que un algoritmo exacto resuelve con coste cero. El presupuesto de parámetros se reserva para lo que verdaderamente requiere aprendizaje.
-4. **Distinción entre memoria persistente y memoria de trabajo:**  
-   La memoria episódica crece con los hechos almacenados ($O(V+E)$, lineal y predecible); la memoria de trabajo de inferencia se mantiene acotada ($O(1)$ con H1).
+Resumen (el detalle está en el [README](README.md)):
 
----
-
-## 7. Especialización y Auto-modificación Controlada
-
-Para investigar la capacidad de especialización sin caer en degradación catastrófica ni desestabilizar el sistema:
-
-1. **Adaptación de Conocimiento:** Añadir hechos, entidades y experiencias a la `EpisodicMemory` sin tocar los pesos neuronales.
-2. **Especialización Controlada:** Entrenar o ajustar un especialista para una tarea concreta (por ejemplo, dependencias de software), conservando siempre congelada la versión anterior.
-3. **Evolución Arquitectónica con Reversión Automática:**  
-   Cualquier cambio de pesos o módulos candidatos debe someterse a una **suite de pruebas de regresión**. Si la especialización degrada el rendimiento en tareas previas o introduce alucinaciones, el sistema revierte automáticamente al estado de referencia certificado.
+- **[Hecho]** Transformer 10M en Rust, tokenizador BPE, carga zero-copy de Safetensors.
+- **[Hecho]** Motor aritmético determinista y ruta directa desde el CLI.
+- **[Hecho]** RIR, motor de razonamiento (BFS, reglas), memoria episódica con hashes.
+- **[Hecho]** Prueba de concepto de transferencia entre dominios (10 consultas).
+- **[Hecho]** Front y back de demostración, aún sin conectar.
+- **[Experimental]** Núcleo recurrente H1, con resultados mixtos.
 
 ---
 
-## 8. RELIC como Coprocesador Cognitivo de LLMs Mayores
+## 4. Hoja de ruta por fases
 
-Oportunidad de despliegue industrial como *sidecar* o coprocesador cognitivo local:
+### Fase 0 — Cerrar la base
 
-```text
-Usuario / Aplicación
-       ↓
-[LLM Mayor: GPT-4 / Claude / Gemini]  ← Tareas lingüísticas difusas y creativas
-       ↓  (Emite o solicita tarea formal RIR)
-[RELIC Local: Core + EpisodicMemory + ReasoningEngine]  ← < 50 MB RAM, Privado, 26 µs
-       ↓  (Resuelve transitividad, verifica restricciones y valida hechos sin alucinar)
-Resultado Certificado y Verificado devuelto al LLM o al Usuario
-```
+Antes de añadir ideas nuevas, que lo que existe sea sólido y verificable.
+
+- [ ] Conectar el front con el back en un solo flujo de punta a punta (por ejemplo: "¿A llega a C evitando B?" → plan verificado).
+- [ ] **Router determinista:** toda consulta exacta (aritmética, grafos, reglas) va al motor; el Transformer solo atiende lenguaje.
+- [ ] **Archivo de fallos conocidos:** cada error observado (empezando por el caso de "1 + 1") se vuelve un test automático. Es la semilla de la Fase 2.
+- [ ] Publicar pesos y reportes (Releases u otro hosting) para que los benchmarks sean reproducibles.
+- [ ] Unificar la documentación (cifras, licencia) y alinear el código con `CONTRIBUTING.md`.
+
+**Criterio de éxito:** un demo reproducible de punta a punta y una suite de fallos conocidos en verde.
+
+### Fase 1 — Memoria asociativa activa
+
+**Idea [Hipótesis]:** el conocimiento no se "consulta", se **recorre**. Una pista activa nodos conectados, la activación se propaga por las aristas más fuertes, y cada eslabón que se visita puede ser un hecho (se lee) o un procedimiento (se ejecuta). No hay un paso de "primero busco todo, luego actúo".
+
+Diseño propuesto [Plan]:
+
+- **Grafo persistente en disco** (mapeado en memoria). En RAM solo viven el índice y el subgrafo activo de la tarea, de modo que guardar sea barato y el costo dependa de cuánto se recupera, no de cuánto se almacenó.
+- **Aristas ponderadas** que se refuerzan con el uso.
+- **Puntaje por salto:**
+  `puntaje = peso de la arista × encaje con el camino hasta aquí + utilidad pasada + novedad`
+  El contexto acumulado poda las ramas: de miles de salidas posibles solo unas pocas son compatibles con el camino recorrido.
+- **Beam acotado:** se conservan las k mejores ramas y las demás quedan como alternativas por si hay que retroceder.
+- **Normalización por número de salidas** para que los nodos muy conectados (hubs) no diluyan la activación (el llamado *fan effect*).
+- **Ejecución perezosa:** el `ReasoningEngine` como iterador que recorre la cadena y ejecuta mientras avanza.
+- **Protecciones al actuar con información incompleta:** modo ensayo (acciones simuladas o reversibles hasta confirmar el camino) y verificación en cada eslabón, con retroceso si algo no cuadra.
+- **Olvido y consolidación:** peso decreciente de lo no usado y compresión de recuerdos redundantes; la memoria perfecta no es el objetivo, sino recuperar lo relevante.
+
+**Experimento:** un grafo con hechos y 2-3 procedimientos; una consulta que recorra la cadena ejecutando mientras avanza.
+**Criterio de éxito:** respuestas correctas con latencia y RAM que no crezcan al aumentar el tamaño total de la memoria (solo con el tamaño del subgrafo activo).
+
+### Fase 2 — Cicatrización (rueda de Mahoraga)
+
+Ciclo: **falla → registra → corrige → verifica → inmuniza.**
+
+Niveles de adaptación, de más seguro a más arriesgado:
+
+1. **Memoria:** añadir hechos o experiencias sin tocar pesos (cicatrices blandas).
+2. **Reglas y router:** nuevas reglas en el motor determinista o en el enrutador.
+3. **Pesos:** ajuste fino del modelo, solo con la suite de regresión como guardián.
+
+Mecanismos:
+
+- **Banco de pruebas permanente:** cada fallo corregido queda como test que ningún cambio futuro puede romper (cicatrices duras).
+- **Rollback automático:** si un candidato degrada tareas previas o introduce alucinaciones, se revierte al último estado certificado.
+- **Pesos protegidos** (técnicas tipo EWC): los pesos importantes para lo ya aprendido se vuelven difíciles de cambiar.
+- **Crecimiento en lugar de sobrescritura:** módulos nuevos en vez de reescribir los existentes.
+- **Señal de "herida" hacia la mente:** el cuerpo repara y la mente solo recibe el estado resumido.
+- **Si el mismo fallo se repite:** se convierte en una regla o módulo nuevo; si es inevitable, se incorpora como parte normal de la operación.
+
+**Problemas abiertos:** cómo juzgar que algo "sanó bien" (un evaluador débil permite que el sistema se desvíe sin notarlo), y el dilema estabilidad-plasticidad (demasiadas cicatrices duras vuelven rígido al sistema; hará falta consolidar y comprimir de vez en cuando).
+
+**Criterio de éxito:** a lo largo de N ciclos de corrección, la tasa de regresiones sobre los tests anteriores se mantiene en cero.
+
+### Fase 3 — Personalidad y orientación
+
+**Idea [Hipótesis]:** la personalidad es el **sesgo permanente con el que se puntúa qué camino seguir**. Dos sistemas con la misma memoria y las mismas capacidades recorren cadenas distintas si pesan distinto. Tener capacidades no determina qué se hace con ellas.
+
+Diseño propuesto [Plan]:
+
+- **Núcleo de orientación inmutable:** valores base, qué cuenta como éxito o daño.
+- **Pesos de personalidad en la función de puntaje:** términos como afinidad, novedad, cautela y utilidad pasada. Cambiar sus pesos cambia el carácter sin tocar la memoria.
+- **Margen de evolución:** la experiencia puede desplazar los pesos poco a poco, siempre dentro de los límites fijados por el núcleo.
+- **Formación temprana (imprinting):** los primeros conocimientos siembran los pesos iniciales. El orden y el contenido de esa "infancia" son una decisión de diseño explícita y deben documentarse.
+
+Riesgos a vigilar:
+
+- **Deriva:** si la experiencia mueve demasiado la personalidad, el sistema termina siendo otro. El margen del núcleo lo limita.
+- **Sesgos que se refuerzan solos:** preferir cierto tipo de camino lleva a vivir solo esas experiencias. Se mitiga con exploración forzada.
+- **Una infancia sesgada se arrastra:** conviene que los primeros datos sean variados y que el margen permita corregir.
+
+**Experimentos:**
+1. *Misma memoria, dos personalidades* (cautelosa vs. curiosa) ante una tarea con varias soluciones válidas.
+2. *Mismas capacidades, dos "infancias"* (experiencias de cuidado vs. de exploración).
+
+**Criterio de éxito:** cada variante elige de forma consistente caminos distintos entre sí, y ambas llegan a respuestas correctas. Si no hay diferencia sistemática, la hipótesis se descarta.
+
+### Fase 4 — Mundo controlado y currículo
+
+**Idea [Hipótesis]:** el lenguaje se aprende mejor **anclado a acciones y consecuencias** que como texto suelto.
+
+- Un mundo mínimo (una cuadrícula con 5-10 palabras y 3 acciones) donde el agente asocia palabras con objetos y acciones por experiencia.
+- **Currículo por etapas**, del nivel de un niño pequeño hacia arriba.
+- **Variación y selección sobre piezas pequeñas** (reglas, parámetros del router, módulos concretos), conservando solo lo que mejora sin romper los tests. Evolucionar la red completa queda fuera de alcance con el cómputo disponible.
+
+**Punto crítico:** la función de evaluación. Evolucionar solo sirve si "mejoró" se mide con fiabilidad; con una medida débil, el sistema aprende a engañar la prueba.
+
+**Criterio de éxito:** el agente resuelve tareas del nivel N+1 reutilizando lo aprendido en el nivel N, con menos experiencia que partiendo desde cero.
+
+### Fase 5 — Integración y despliegue
+
+- **Sidecar de LLM:** un LLM mayor emite o solicita tareas en RIR; RELIC resuelve y devuelve un resultado verificado.
+- **Librería** con API sencilla, además del CLI.
+- **Portabilidad:** soporte de CPU sin AVX2 (detección en tiempo de ejecución con ruta de respaldo), ARM, y compilación a WASM.
+- **Cuantización int8** para reducir pesos (~19 MB → ~10 MB).
+- **Compilador lenguaje libre → RIR** aprendido, para reemplazar gradualmente el parser por reglas.
 
 ---
 
-## 9. Próximo Experimento: Comparación Cuádruple de Modularidad
+## 5. Hipótesis y cómo falsarlas
 
-Antes de construir especialistas múltiples, someteremos la hipótesis de modularidad a falsación empírica comparando cuatro variantes bajo el mismo presupuesto:
+| # | Hipótesis | Experimento | Se descarta si |
+| :-: | :--- | :--- | :--- |
+| H-A | Recorrer y ejecutar la memoria a la vez mantiene latencia y RAM acotadas al crecer el conocimiento | Fase 1 con memorias de 10², 10⁴ y 10⁶ nodos | La latencia o la RAM crecen con el total almacenado |
+| H-B | El ciclo de cicatrización evita regresiones | Fase 2 con N ciclos y banco de pruebas | Aparecen regresiones que el banco no detecta |
+| H-C | Un sesgo estable produce comportamiento distinto y consistente | Fase 3, misma memoria con dos personalidades | No hay diferencias sistemáticas entre variantes |
+| H-D | La infancia determina la orientación | Fase 3, dos currículos tempranos distintos | El orden inicial no altera el resultado final |
+| H-E | El lenguaje anclado transfiere mejor entre niveles | Fase 4 | Entrenar desde cero iguala o supera al currículo |
+| H-F | Modularidad: ¿compensan los especialistas pequeños frente a un modelo único? | Comparación A/B/C/D (H1 único, cabezas separadas, especialistas independientes, pesos compartidos con activación selectiva) | Un modelo único iguala la exactitud con menos RAM |
 
-| Variante | Arquitectura Evaluada | Pregunta Experimental a Falsar |
-| :---: | :--- | :--- |
-| **A** | **H1 Único Compartido** | ¿Cuál es la capacidad y el coste de referencia de un modelo único? |
-| **B** | **H1 con Cabezas Especializadas** | ¿Separar las cabezas de salida mejora el rendimiento sin duplicar el tronco? |
-| **C** | **Especialistas Pequeños Independientes** | ¿La especialización estricta compensa el coste de tener redes separadas? |
-| **D** | **Especialistas con Pesos Compartidos y Activación Selectiva** | ¿Es posible mantener capacidad especializada con activación perezosa de memoria? |
-
-**Métricas a medir:** Exactitud por tarea, generalización OOD, RAM máxima residente (RSS), latencia p50/p95, parámetros totales vs activados, y tasa de interferencia catastrófica.
+**Métricas comunes:** exactitud por tarea, generalización fuera de distribución, RSS máximo, latencia p50/p95, parámetros totales frente a activados, y tasa de interferencia catastrófica.
 
 ---
 
-## 10. Los Tres Pilares Estratégicos de RELIC
+## 6. Problemas abiertos
 
-1. **RELIC Core:** El runtime local de alto rendimiento en Rust puro, el DSL de especificación RIR, la memoria episódica indexada y los operadores deterministas exactos.
-2. **RELIC Cognitive:** Los modelos y núcleos recurrentes compactos (H1) entrenados para mantener estados de trabajo $O(1)$, generalizar secuencias y aprender representaciones.
-3. **RELIC Specialists:** Los componentes modulares especializados que se activan, ajustan o sustituyen de manera auditable y reversible.
+Se enuncian a propósito; resolverlos (o descubrir que no se pueden resolver a esta escala) es parte del proyecto.
+
+1. **Saber qué recordar:** elegir las pistas correctas y qué cadenas vale la pena seguir. Es lo que separa pensamiento de simple búsqueda.
+2. **Evaluar la propia mejora:** un evaluador débil permite que el sistema "sane" mal.
+3. **Estabilidad frente a plasticidad:** proteger lo aprendido sin volverse rígido.
+4. **Aprender el puntaje de los saltos:** al inicio se define a mano; luego, a partir de qué caminos terminaron en éxito (quizá con una red pequeña como "juez").
+5. **El puente lenguaje libre → RIR:** el cuello de botella actual de todo el sistema.
+6. **Escala:** casi todo esto se plantea a tamaño chico. Que funcione ahí no garantiza que escale.
+
+---
+
+## 7. Marco conceptual y trabajo relacionado
+
+Ideas con literatura previa en las que se apoya o con las que dialoga este diseño:
+
+- **Activación por propagación y arquitecturas cognitivas** (ACT-R, Soar): memoria declarativa y procedimental, *fan effect*.
+- **Aprendizaje continuo:** olvido catastrófico, dilema estabilidad-plasticidad, EWC, redes progresivas, pérdida de plasticidad.
+- **Currículo y lenguaje anclado:** BabyAI, comunicación emergente, reto BabyLM.
+- **Auto-mejora acotada por evaluación:** AlphaEvolve y la Darwin Gödel Machine (archivo de versiones y descarte de lo que no pasa las pruebas).
+- **Neuro-simbólico:** modelos compactos que delegan el razonamiento exacto a módulos verificables.
+- **Tolerancia a fallos:** supervisión y reinicio localizado (modelo de Erlang).
+
+---
+
+## 8. Los tres pilares
+
+1. **RELIC Core:** runtime local en Rust, RIR, memoria y operadores exactos.
+2. **RELIC Cognitive:** modelos compactos y recurrentes, memoria asociativa y puntaje de decisión.
+3. **RELIC Adaptive:** cicatrización, personalidad y currículo; lo que permite que el sistema cambie sin perder lo que ya sabe.
