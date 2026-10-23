@@ -100,8 +100,15 @@ cobertura de parafraseos (seccion 1, punto 2) y terceros lo mas pronto posible.
    (cuando parsea no falla ninguna ejecucion): falla por NO LLEGAR a construir el RIR.
    Anchura sintactica = literalmente numero de plantillas escritas a mano: lineal, no
    composicional. [MEDIDO, via dumps]
-2. NUMERALES EN PALABRAS: un vocabulario cerrado cubre solo hasta ~12 y desde decimos
-   las tablas manuales; respuestas failures 3/7 v1 [MEDIDO].
+2. NUMERALES EN PALABRAS: tabla original cubria solo 0-15 y "veinte". [MEDIDO, CAMBIO
+   APLICADO 2026-10-22]: extendida a 16-19 (con/sin tilde), serie veinti... (21-29) y
+   decadas simples (treinta...noventa); y el despacho de inventario reintenta sobre
+   texto normalizado cuando el crudo no parsea (dispatch.rs). Resultado en unseen_v1:
+   precision 42.9% -> 71.4%, extendida 57.1% -> 85.7% (correctos 3 -> 5). Falta 1 caso
+   v1 por verbo no lexico ("sumame") — pertenece a la reforma de patrones (punto 1 de
+   esta seccion). Las compuestas "treinta y cinco" quedan intencionalmente SIN mapear
+   a 35 porque en contexto "cuanto es treinta y cinco" la lectura real es suma: se
+   abstiene honestamente.
 3. CHECKPOINTS LANGUAGE: el 10M guardado no vale (seccion 2). Eligir drop/re-train; el
    potencial computacional del 10M no ha sido, en absoluto, demostrado localmente.
 4. EVIDENCIA EXTERNA FALTANTE: no hay ni un dato LLMexterno [PENDIENTE DE EJECUTAR].

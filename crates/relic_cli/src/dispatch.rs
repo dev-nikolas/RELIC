@@ -120,12 +120,18 @@ pub fn parse_dispatch_intent(text: &str) -> DispatchIntent {
     if inventory_keywords.iter().any(|k| lower.contains(k)) {
         if let Some(plan) = parse_inventory_problem(clean) {
             return DispatchIntent::Arithmetic(plan);
-        } else {
-            return DispatchIntent::Incomplete {
-                reason: "Problema de inventario no estructurado o con operaciones ambiguas/no reconocidas.".to_string(),
-                missing: "especificación clara de operaciones".to_string(),
-            };
         }
+        // Reintento sobre texto normalizado (numerales escritos: "veinte lápices" -> "20 lápices").
+        let norm_inventario = normalize_query(clean);
+        if norm_inventario != clean {
+            if let Some(plan) = parse_inventory_problem(&norm_inventario) {
+                return DispatchIntent::Arithmetic(plan);
+            }
+        }
+        return DispatchIntent::Incomplete {
+            reason: "Problema de inventario no estructurado o con operaciones ambiguas/no reconocidas.".to_string(),
+            missing: "especificación clara de operaciones".to_string(),
+        };
     }
 
     if let Some(plan) = parse_math_expression(clean) {
