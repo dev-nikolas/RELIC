@@ -1,0 +1,44 @@
+[
+  {
+    "input": "veintitrés más cuatro",
+    "expected_output": "27",
+    "expected_route": "deterministic_arithmetic",
+    "description": "Números compuestos en palabras fuera del rango 0-20 del normalizador inicial."
+  },
+  {
+    "input": "súmame 2 y 2",
+    "expected_output": "4",
+    "expected_route": "deterministic_arithmetic",
+    "description": "Verbo con clítico enclítico pronominal ('súmame')."
+  },
+  {
+    "input": "2 más 2 son?",
+    "expected_output": "4",
+    "expected_route": "deterministic_arithmetic",
+    "description": "Pregunta con verbo copulativo final ('son?')."
+  },
+  {
+    "input": "cuánto da 7 por 3",
+    "expected_output": "21",
+    "expected_route": "deterministic_arithmetic",
+    "description": "Multiplicación verbal con prefijo."
+  },
+  {
+    "input": "quítale 4 a 10",
+    "expected_output": "6",
+    "expected_route": "deterministic_arithmetic",
+    "description": "Resta imperativa con orden de operandos invertido (sustraendo antes que minuendo)."
+  },
+  {
+    "input": "si tengo diez y regalo tres cuántas me quedan",
+    "expected_output": "7",
+    "expected_route": "deterministic_arithmetic",
+    "description": "Pregunta condicional coloquial completa de inventario."
+  },
+  {
+    "input": "la tierra no puede volar",
+    "expected_output": "no puede verificar",
+    "expected_route": "unsupported",
+    "description": "Afirmación ontológica fuera del dominio acotado (debe abstenerse honestamente)."
+  }
+]

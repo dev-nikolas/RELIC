@@ -40,5 +40,61 @@
     "expected_route": "deterministic_graph",
     "date": "2026-10-21",
     "description": "Consulta espacial en memoria episódica con restricciones 'via' y 'avoid'."
+  },
+  {
+    "input": "dos más dos",
+    "expected_output": "4",
+    "expected_route": "deterministic_arithmetic",
+    "date": "2026-10-22",
+    "description": "Aritmética expresada enteramente en palabras; no debe caer en el Transformer ni alucinar ruido, debe resolver 4."
+  },
+  {
+    "input": "cuanto es 2 mas 2",
+    "expected_output": "4",
+    "expected_route": "deterministic_arithmetic",
+    "date": "2026-10-22",
+    "description": "Pregunta aritmética coloquial sin signos ni tildes; debe despacharse al motor aritmético determinista."
+  },
+  {
+    "input": "suma 2 y 2",
+    "expected_output": "4",
+    "expected_route": "deterministic_arithmetic",
+    "date": "2026-10-22",
+    "description": "Instrucción verbal imperativa ('suma X e Y'); debe mapearse a operación de adición exacta."
+  },
+  {
+    "input": "Hola",
+    "expected_output": "no puede verificar",
+    "expected_route": "unsupported",
+    "date": "2026-10-22",
+    "description": "Lenguaje libre fuera de dominio; debe abstenerse con estado UNSUPPORTED sin alucinar tokens no convergidos ni fingir estado VALID."
+  },
+  {
+    "input": "¿Depende el crate relic_cli del paquete tokio?",
+    "expected_output": "no existe en la memoria episódica",
+    "expected_route": "deterministic_graph",
+    "date": "2026-10-22",
+    "description": "Entidad de destino inexistente (tokio); debe rechazar como INVALID (entidad desconocida) en lugar de reportar falsamente 'no existe ruta'."
+  },
+  {
+    "input": "¿Depende el crate relic_clii del paquete memmap2?",
+    "expected_output": "no existe en la memoria episódica",
+    "expected_route": "deterministic_graph",
+    "date": "2026-10-22",
+    "description": "Typo en entidad de origen (relic_clii); debe abstenerse como INVALID."
+  },
+  {
+    "input": "¿Depende el crate Relic_Cli del paquete memmap2?",
+    "expected_output": "memmap2",
+    "expected_route": "deterministic_graph",
+    "date": "2026-10-22",
+    "description": "Variación de mayúsculas (Relic_Cli); debe resolverse canónicamente y encontrar la ruta válida de 2 saltos."
+  },
+  {
+    "input": "¿Depende el crate foo del paquete bar?",
+    "expected_output": "no existe en la memoria episódica",
+    "expected_route": "deterministic_graph",
+    "date": "2026-10-22",
+    "description": "Entidades inventadas (foo -> bar); debe rechazar epistémicamente como entidad desconocida."
   }
 ]

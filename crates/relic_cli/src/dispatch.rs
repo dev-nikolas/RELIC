@@ -4,6 +4,7 @@
 use relic_core::{ArithmeticOp, ArithmeticPlan};
 use crate::graph::parse_query_to_spec;
 use crate::math::parse_math_expression;
+use crate::normalize::normalize_query;
 use crate::relational::{parse_relational_query, RelationalQuerySpec};
 
 #[derive(Debug, PartialEq)]
@@ -129,6 +130,12 @@ pub fn parse_dispatch_intent(text: &str) -> DispatchIntent {
 
     if let Some(plan) = parse_math_expression(clean) {
         return DispatchIntent::Arithmetic(plan);
+    }
+    let norm = normalize_query(clean);
+    if norm != clean {
+        if let Some(plan) = parse_math_expression(&norm) {
+            return DispatchIntent::Arithmetic(plan);
+        }
     }
 
     let graph_keywords = ["depende", "llegar a", "alcanzar", "camino de", "ruta de", "ir de", "partiendo de"];

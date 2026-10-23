@@ -22,6 +22,7 @@ pub struct ReachabilityResult {
     pub path_length: usize,
     pub path: Vec<String>,
     pub queries_used: usize,
+    pub depth_exhausted: bool,
 }
 
 /// Motor de razonamiento determinista para consultas estructuradas.
@@ -48,41 +49,29 @@ impl ReasoningEngine {
         let avoid_set: HashSet<&str> = avoid_nodes.iter().copied().collect();
 
         if avoid_set.contains(start) || avoid_set.contains(target) {
-            return ReachabilityResult {
-                is_reachable: false,
-                path_length: 0,
-                path: Vec::new(),
-                queries_used: 0,
-            };
+            return ReachabilityResult { is_reachable: false, path_length: 0, path: Vec::new(), queries_used: 0, depth_exhausted: false };
         }
 
         if start == target {
-            return ReachabilityResult {
-                is_reachable: true,
-                path_length: 0,
-                path: vec![start.to_string()],
-                queries_used: 0,
-            };
+            return ReachabilityResult { is_reachable: true, path_length: 0, path: vec![start.to_string()], queries_used: 0, depth_exhausted: false };
         }
 
         let mut visited: HashSet<String> = HashSet::new();
         let mut queue: VecDeque<(String, Vec<String>)> = VecDeque::new();
+        let mut depth_hit = false;
 
         visited.insert(start.to_string());
         queue.push_back((start.to_string(), vec![start.to_string()]));
 
         while let Some((curr, path)) = queue.pop_front() {
             if path.len() > max_depth {
+                depth_hit = true;
                 continue;
             }
 
             let neighbors = memory.get_neighbors(&curr).to_vec();
-
             for neighbor in neighbors {
-                if avoid_set.contains(neighbor.as_str()) {
-                    continue;
-                }
-
+                if avoid_set.contains(neighbor.as_str()) { continue; }
                 if neighbor == target {
                     let mut full_path = path;
                     full_path.push(neighbor);
@@ -92,6 +81,7 @@ impl ReasoningEngine {
                         path_length: len,
                         path: full_path,
                         queries_used: memory.total_queries() - initial_queries,
+                        depth_exhausted: false,
                     };
                 }
 
@@ -109,6 +99,7 @@ impl ReasoningEngine {
             path_length: 0,
             path: Vec::new(),
             queries_used: memory.total_queries() - initial_queries,
+            depth_exhausted: depth_hit,
         }
     }
 }

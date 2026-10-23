@@ -49,10 +49,13 @@ fn test_execute_query_empty_rejection() {
 #[test]
 fn test_execute_query_free_language_degraded_or_neural() {
     let state = ServerState::new();
-    let res = execute_query("Explica brevemente la teoría del universo", &state);
+    let res_unsupported = execute_query("Explica brevemente la teoría del universo", &state);
+    assert_eq!(res_unsupported.status, "UNSUPPORTED");
+    assert_eq!(res_unsupported.route, "unsupported");
 
-    assert_eq!(res.status, "VALID");
-    assert!(res.route == "neural_model" || res.route == "degraded_mode");
+    let res_gen = execute_query("genera un cuento sobre estrellas", &state);
+    assert!(res_gen.status == "GENERATED" || res_gen.status == "UNVERIFIED");
+    assert!(res_gen.route == "neural_model" || res_gen.route == "degraded_mode");
 }
 
 #[test]

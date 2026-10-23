@@ -11,7 +11,18 @@ use std::collections::{HashMap, HashSet};
 pub struct EpisodicMemory {
     adj: HashMap<String, Vec<String>>,
     edges: HashSet<(String, String)>,
+    nodes: HashSet<String>,
+    canonical_map: HashMap<String, String>,
     query_counter: usize,
+}
+
+fn canonical_node_key(s: &str) -> String {
+    s.trim().to_lowercase()
+        .replace('á', "a")
+        .replace('é', "e")
+        .replace('í', "i")
+        .replace('ó', "o")
+        .replace('ú', "u")
 }
 
 impl EpisodicMemory {
@@ -20,6 +31,8 @@ impl EpisodicMemory {
         Self {
             adj: HashMap::new(),
             edges: HashSet::new(),
+            nodes: HashSet::new(),
+            canonical_map: HashMap::new(),
             query_counter: 0,
         }
     }
@@ -28,6 +41,8 @@ impl EpisodicMemory {
     pub fn clear(&mut self) {
         self.adj.clear();
         self.edges.clear();
+        self.nodes.clear();
+        self.canonical_map.clear();
         self.query_counter = 0;
     }
 
@@ -36,8 +51,12 @@ impl EpisodicMemory {
     pub fn insert_edge(&mut self, u: impl Into<String>, v: impl Into<String>) -> bool {
         let u_str = u.into();
         let v_str = v.into();
-        let pair = (u_str.clone(), v_str.clone());
+        self.nodes.insert(u_str.clone());
+        self.nodes.insert(v_str.clone());
+        self.canonical_map.insert(canonical_node_key(&u_str), u_str.clone());
+        self.canonical_map.insert(canonical_node_key(&v_str), v_str.clone());
 
+        let pair = (u_str.clone(), v_str.clone());
         if self.edges.insert(pair) {
             self.adj.entry(u_str).or_default().push(v_str);
             true
@@ -46,15 +65,24 @@ impl EpisodicMemory {
         }
     }
 
+    /// Resuelve un nodo por nombre exacto o forma canónica (sin tildes, minúsculas).
+    pub fn resolve_node(&self, node: &str) -> Option<&str> {
+        if let Some(orig) = self.nodes.get(node) {
+            return Some(orig.as_str());
+        }
+        let canon = canonical_node_key(node);
+        self.canonical_map.get(&canon).map(|s| s.as_str())
+    }
+
     /// Comprueba si existe un hecho relacional directo `u -> v`.
     pub fn has_edge(&mut self, u: &str, v: &str) -> bool {
         self.query_counter += 1;
         self.edges.contains(&(u.to_string(), v.to_string()))
     }
 
-    /// Comprueba si un nodo existe en la memoria (como origen o como destino de alguna arista).
+    /// Comprueba si un nodo existe en la memoria en O(1) vía HashSet / alias.
     pub fn contains_node(&self, node: &str) -> bool {
-        self.adj.contains_key(node) || self.edges.iter().any(|(u, v)| u == node || v == node)
+        self.resolve_node(node).is_some()
     }
 
     /// Consulta direccionable: devuelve la lista de vecinos alcanzables directamente desde `node`.
@@ -90,6 +118,11 @@ impl EpisodicMemory {
     /// Número total de nodos únicos de origen registrados.
     pub fn node_count(&self) -> usize {
         self.adj.len()
+    }
+
+    /// Número total de nodos únicos (origen y destino) registrados.
+    pub fn total_node_count(&self) -> usize {
+        self.nodes.len()
     }
 
     /// Número total de aristas dirigidas únicas registradas.
