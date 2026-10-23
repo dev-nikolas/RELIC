@@ -1,7 +1,5 @@
-//! Analizador sintáctico de expresiones matemáticas puras.
-//! Soporta precedencia estándar de operadores (*, / sobre +, -), paréntesis anidados
-//! y detección estricta de operadores colgantes y división por cero en RIR.
-//! Menos de 180 líneas.
+//! Analizador sintáctico de expresiones matemáticas puras, con precedencia y paréntesis anidados.
+//! Detección estricta de operadores colgantes y división por cero en RIR. Menos de 180 líneas.
 
 use relic_core::{ArithmeticOp, ArithmeticPlan};
 
@@ -140,32 +138,42 @@ pub fn evaluate_math_tokens(tokens: &[MathToken]) -> Option<Result<f64, Arithmet
     if output.len() == 1 { Some(Ok(output[0])) } else { None }
 }
 
+/// Plan estructural (transparencia "Entendí: 3 - 10 = -7"); devuelve None ante paréntesis o precedencia mezclada.
+fn plan_from_tokens(tokens: &[MathToken]) -> Option<ArithmeticPlan> {
+    let first = match tokens.first() { Some(MathToken::Num(n)) => *n, _ => return None };
+    let mut plan = ArithmeticPlan::new(first, None);
+    let mut first_class: Option<bool> = None;
+    for i in (1..tokens.len()).step_by(2) {
+        let op = match &tokens[i] { MathToken::Op(op) => *op, _ => return None };
+        let num = match tokens.get(i + 1) { Some(MathToken::Num(n)) => *n, _ => return None };
+        plan.add_step(op, num);
+        let cls = matches!(op, ArithmeticOp::Add | ArithmeticOp::Subtract);
+        if first_class.is_none() { first_class = Some(cls); }
+        if first_class != Some(cls) { return None; }
+    }
+    if plan.steps.is_empty() { return None; }
+    Some(plan)
+}
+
 pub fn parse_math_expression(text: &str) -> Option<ArithmeticPlan> {
     let clean = text.trim_matches(|c| c == '¿' || c == '?' || c == '¡' || c == '!' || c == '.');
     let lower = clean.to_lowercase();
-
     let mut expr = clean;
     for prefix in ["¿cuánto es ", "cuánto es ", "cuanto es ", "¿cuanto es ", "¿cuánto da ", "cuánto da ", "calcula ", "resultado de "] {
-        if let Some(idx) = lower.find(prefix) {
-            expr = &clean[idx + prefix.len()..];
-            break;
-        }
+        if let Some(idx) = lower.find(prefix) { expr = &clean[idx + prefix.len()..]; break; }
     }
-    let expr = expr.trim();
-    if expr.is_empty() { return None; }
-
-    let tokens = tokenize_math(expr)?;
+    if expr.trim().is_empty() { return None; }
+    let tokens = tokenize_math(expr.trim())?;
     match evaluate_math_tokens(&tokens)? {
         Ok(val) => {
+            if let Some(plan) = plan_from_tokens(&tokens) { if plan.execute().ok()? == val { return Some(plan); } }
             let mut plan = ArithmeticPlan::new(val, None);
             plan.add_step(ArithmeticOp::Add, 0.0);
             Some(plan)
         }
-        Err(ArithmeticOp::Divide) => {
-            let mut plan = ArithmeticPlan::new(1.0, None);
-            plan.add_step(ArithmeticOp::Divide, 0.0);
-            Some(plan)
-        }
+        Err(ArithmeticOp::Divide) => Some({
+            let mut plan = ArithmeticPlan::new(1.0, None); plan.add_step(ArithmeticOp::Divide, 0.0); plan
+        }),
         _ => None,
     }
 }

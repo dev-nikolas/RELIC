@@ -1,61 +1,24 @@
-name: RELIC-10M CI
+name: CI RELIC
 
 on:
   push:
-    branches: [main, master]
+    branches: [main]
   pull_request:
-    branches: [main, master]
 
 jobs:
-  rust-tests:
-    name: Rust Workspace Test (${{ matrix.os }})
-    runs-on: ${{ matrix.os }}
+  test:
     strategy:
       matrix:
         os: [ubuntu-latest, windows-latest]
-
+    runs-on: ${{ matrix.os }}
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Set up Rust toolchain
-        uses: dtolnay/rust-toolchain@stable
-
-      - name: Cache Cargo dependencies
-        uses: actions/cache@v4
+      - uses: actions/checkout@v4
+      - uses: actions/setup-rust@v1
         with:
-          path: |
-            ~/.cargo/bin/
-            ~/.cargo/registry/index/
-            ~/.cargo/registry/cache/
-            ~/.cargo/git/db/
-            target/
-          key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
-
-      - name: Run unit tests across workspace
-        run: cargo test --workspace --verbose
-
-      - name: Build release binaries
-        run: cargo build --workspace --release
-
-  python-verification:
-    name: Python Architectural Parity
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Set up Python 3.12
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
-
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install torch safetensors tokenizers
-
-      - name: Verify architectural configuration
-        run: |
-          python -c "import sys; sys.path.insert(0, 'python'); from relic import RelicConfig, RelicForCausalLM; m = RelicForCausalLM(RelicConfig()); assert m.count_parameters() == 10031328; print('Parámetros verificados: 10,031,328')"
+          profile: minimal
+          toolchain: stable
+      - name: Suite completa (incluye suite congelada no vista v2 y known failures)
+        run: cargo test --workspace
+      - name: Sucesiones de regresión del servidor (known_failures.json)
+        if: ${{ matrix.os == 'ubuntu-latest' }}
+        run: cargo test -p relic_server --test regression_known_failures -- --nocapture

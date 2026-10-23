@@ -102,6 +102,24 @@ impl ArithmeticPlan {
             num_str
         }
     }
+
+    /// Genera la representación textual de la fórmula interpretada para transparencia.
+    pub fn format_formula(&self) -> String {
+        let fmt_n = |n: f64| -> String {
+            if (n.fract()).abs() < 1e-6 { format!("{}", n as i64) } else { format!("{:.2}", n) }
+        };
+        let mut s = fmt_n(self.initial);
+        if let Some(ref u) = self.unit { s = format!("{} {}", s, u); }
+        for &(op, val) in &self.steps {
+            let sym = match op { ArithmeticOp::Add => "+", ArithmeticOp::Subtract => "-", ArithmeticOp::Multiply => "*", ArithmeticOp::Divide => "/" };
+            if let Some(ref u) = self.unit {
+                s.push_str(&format!(" {} {} {}", sym, fmt_n(val), u));
+            } else {
+                s.push_str(&format!(" {} {}", sym, fmt_n(val)));
+            }
+        }
+        s
+    }
 }
 
 #[cfg(test)]

@@ -33,7 +33,7 @@ pub use rir::{
 pub use attention::RelicAttention;
 pub use block::RelicBlock;
 pub use config::RelicConfig;
-pub use episodic_memory::EpisodicMemory;
+pub use episodic_memory::{EpisodicMemory, NodeResolution};
 pub use kv_cache::{KvCache, LayerKvCache};
 pub use loader::SafetensorsLoader;
 pub use mlp::SwiGluMlp;
@@ -164,5 +164,28 @@ mod tests {
         // Validación de profundidad máxima excedida
         let ops = vec![AtomicOperator::Reverse; 9];
         assert_eq!(catalog.compose("test", &ops), Err(RuleError::MaxDepthExceeded(9, 8)));
+    }
+
+    #[test]
+    fn test_alias_collision_is_ambiguous_not_silent_last_wins() {
+        let mut memory = EpisodicMemory::new();
+        memory.insert_edge("Bogotá", "Lima");
+        memory.insert_edge("Bogota", "Medellín");
+
+        // Canonicalmente colisionan: la resolución JAMÁS elige al último en silencio.
+        assert!(!memory.contains_node("bogota"), "Nombre ambiguo debe abstenerse, no resolverse al último");
+        match memory.resolve_node("bogota") {
+            NodeResolution::Ambiguous(candidates) => {
+                assert!(candidates.contains(&"Bogotá".to_string()));
+                assert!(candidates.contains(&"Bogota".to_string()));
+            }
+            _ => panic!("Nodo canónicamente colisionado debe reportarse como Ambiguous"),
+        }
+
+        // Coincidencia exacta prevalece sobre la lista de candidatos.
+        assert!(memory.contains_node("Bogotá"));
+        // Tildes también resuelven un único alias cuando nadie más colisiona.
+        memory.insert_edge("Toledo", "Madrid");
+        assert!(memory.contains_node("toledo"));
     }
 }

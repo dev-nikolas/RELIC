@@ -1,0 +1,103 @@
+{
+  "frozen": "2026-10-22",
+  "note": "Conjunto 'no visto' congelado v2 (reemplaza a unseen_independent_test.json, contaminado por iteración del agente). Números, entidades y giros no usados en ningún banco previo. La suite de regresión ejecuta TODO el pipeline (despacho -> RIR -> motor determinista) y exige precisión >= baseline_accuracy_pct; permitir DD nunca hacia atrás.",
+  "baseline_accuracy_pct": 100.0,
+  "cases": [
+    {
+      "input": "resta 3 y 10",
+      "expected_output": "3 - 10 = -7",
+      "expected_route": "deterministic_arithmetic",
+      "description": "Resta verbal ambigua: la respuesta debe declarar la lectura elegida (transparencia de interpretación)."
+    },
+    {
+      "input": "resta 12 y 5",
+      "expected_output": "12 - 5 = 7",
+      "expected_route": "deterministic_arithmetic",
+      "description": "Resta verbal con resultado positivo."
+    },
+    {
+      "input": "cuánto es 5 - 9",
+      "expected_output": "5 - 9 = -4",
+      "expected_route": "deterministic_arithmetic",
+      "description": "Resultado negativo en notación simbólica; la fórmula debe conservarse."
+    },
+    {
+      "input": "suma 8 e 11",
+      "expected_output": "8 + 11 = 19",
+      "expected_route": "deterministic_arithmetic",
+      "description": "Conjunción apocopada 'e' antes de vocal i-."
+    },
+    {
+      "input": "cuánto es 4 * 6",
+      "expected_output": "4 * 6 = 24",
+      "expected_route": "deterministic_arithmetic",
+      "description": "Multiplicación simbólica directa."
+    },
+    {
+      "input": "multiplica 6 por 7",
+      "expected_output": "6 * 7 = 42",
+      "expected_route": "deterministic_arithmetic",
+      "description": "Imperativo multiplicativo con preposición 'por'."
+    },
+    {
+      "input": "quítale 4 a 10",
+      "expected_output": "10 - 4 = 6",
+      "expected_route": "deterministic_arithmetic",
+      "description": "Imperativo con clítico; el minuendo aparece tras la preposición 'a'."
+    },
+    {
+      "input": "tengo 12 lápices y regalo 7",
+      "expected_output": "5 lápices",
+      "expected_route": "deterministic_arithmetic",
+      "description": "Inventario con unidad y concordancia cuantitativa."
+    },
+    {
+      "input": "2 más 2 son?",
+      "expected_output": "4",
+      "expected_route": "deterministic_arithmetic",
+      "description": "Copulativo final coloquial ('son')."
+    },
+    {
+      "input": "tengo algunas fichas y añado 6",
+      "expected_output": "cantidad inicial",
+      "expected_route": "epistemic_rejection",
+      "description": "Cantidad inicial desconocida: rechazo epistémico INCOMPLETE en lugar de inventar."
+    },
+    {
+      "input": "¿Es posible ir de Bogotá a Lima?",
+      "expected_output": "Ruta: Bogotá -> Lima",
+      "expected_route": "deterministic_graph",
+      "description": "Alcanzabilidad espacial de salto único."
+    },
+    {
+      "input": "¿Puedo alcanzar París desde Madrid pasando por Barcelona?",
+      "expected_output": "Madrid -> Barcelona -> París",
+      "expected_route": "deterministic_graph",
+      "description": "Alcanzabilidad con cláusula 'via' de 2 saltos, entidades con tilde."
+    },
+    {
+      "input": "¿Es posible ir de Lima a París pasando por Barcelona?",
+      "expected_output": "No, no existe ninguna ruta viable",
+      "expected_route": "deterministic_graph",
+      "description": "Componente desconectada: abstención determinista VALID, no abstracción neuronal."
+    },
+    {
+      "input": "¿Depende el crate Relic_Core del paquete memmap2?",
+      "expected_output": "memmap2",
+      "expected_route": "deterministic_graph",
+      "description": "Alias canónico por capitalización; grafo de dependencias real."
+    },
+    {
+      "input": "¿Depende el crate relic_cli del paquete kodex?",
+      "expected_output": "no existe en la memoria episódica",
+      "expected_route": "deterministic_graph",
+      "description": "Entidad destino inventada (kodex): INVALID, jamás falsa absencia de ruta."
+    },
+    {
+      "input": "la luna es de queso",
+      "expected_output": "no puede verificar",
+      "expected_route": "unsupported",
+      "description": "Afirmación ontológica fuera del dominio: abstención honesta UNSUPPORTED."
+    }
+  ]
+}

@@ -6,13 +6,21 @@
 
 use std::collections::{HashMap, HashSet};
 
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub enum NodeResolution<'a> {
+    Exact(&'a str),
+    SingleAlias(&'a str),
+    Ambiguous(Vec<String>),
+    NotFound,
+}
+
 /// Memoria episódica explícita para registrar y consultar hechos relacionales.
 #[derive(Debug, Clone, Default)]
 pub struct EpisodicMemory {
     adj: HashMap<String, Vec<String>>,
     edges: HashSet<(String, String)>,
     nodes: HashSet<String>,
-    canonical_map: HashMap<String, String>,
+    canonical_map: HashMap<String, Vec<String>>,
     query_counter: usize,
 }
 
@@ -53,8 +61,14 @@ impl EpisodicMemory {
         let v_str = v.into();
         self.nodes.insert(u_str.clone());
         self.nodes.insert(v_str.clone());
-        self.canonical_map.insert(canonical_node_key(&u_str), u_str.clone());
-        self.canonical_map.insert(canonical_node_key(&v_str), v_str.clone());
+
+        let cu = canonical_node_key(&u_str);
+        let lu = self.canonical_map.entry(cu).or_default();
+        if !lu.contains(&u_str) { lu.push(u_str.clone()); }
+
+        let cv = canonical_node_key(&v_str);
+        let lv = self.canonical_map.entry(cv).or_default();
+        if !lv.contains(&v_str) { lv.push(v_str.clone()); }
 
         let pair = (u_str.clone(), v_str.clone());
         if self.edges.insert(pair) {
@@ -65,13 +79,17 @@ impl EpisodicMemory {
         }
     }
 
-    /// Resuelve un nodo por nombre exacto o forma canónica (sin tildes, minúsculas).
-    pub fn resolve_node(&self, node: &str) -> Option<&str> {
+    /// Resuelve un nodo detectando coincidencia exacta, alias único o ambigüedad por colisión.
+    pub fn resolve_node(&self, node: &str) -> NodeResolution<'_> {
         if let Some(orig) = self.nodes.get(node) {
-            return Some(orig.as_str());
+            return NodeResolution::Exact(orig.as_str());
         }
         let canon = canonical_node_key(node);
-        self.canonical_map.get(&canon).map(|s| s.as_str())
+        match self.canonical_map.get(&canon) {
+            None => NodeResolution::NotFound,
+            Some(candidates) if candidates.len() == 1 => NodeResolution::SingleAlias(&candidates[0]),
+            Some(candidates) => NodeResolution::Ambiguous(candidates.clone()),
+        }
     }
 
     /// Comprueba si existe un hecho relacional directo `u -> v`.
@@ -80,9 +98,9 @@ impl EpisodicMemory {
         self.edges.contains(&(u.to_string(), v.to_string()))
     }
 
-    /// Comprueba si un nodo existe en la memoria en O(1) vía HashSet / alias.
+    /// Comprueba si un nodo existe unívocamente en la memoria.
     pub fn contains_node(&self, node: &str) -> bool {
-        self.resolve_node(node).is_some()
+        matches!(self.resolve_node(node), NodeResolution::Exact(_) | NodeResolution::SingleAlias(_))
     }
 
     /// Consulta direccionable: devuelve la lista de vecinos alcanzables directamente desde `node`.
