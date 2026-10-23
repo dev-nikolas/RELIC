@@ -1,0 +1,11 @@
+{"evento": "reconstruccion_h1", "epocas": 30, "ronda": 1, "loss_hist": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0], "dyck_val_id": 100.0, "dyck_ood": 100.0, "pt_sha256": "7448feabbb50d19d909798bdcd58abaa6deb6bc25bc8acf458bc7c37e84b0217", "etiqueta": "[RECONSTRUIDO] peso no citable como congelado", "arquitectura": 102720}
+{"evento": "candidato", "nombre": "A1_latent_H1", "semilla": 42, "latente": "[RECONSTRUIDO]", "accs": {"intent": 0.3053, "domain": 0.3053, "status": 0.9053}, "tupla_exacta_pct": 26.3, "hiperparams": {"hidden": 64, "lr": 0.05, "epochs": 80}, "extra": {}}
+{"evento": "candidato", "nombre": "A1_latent_H1", "semilla": 123, "latente": "[RECONSTRUIDO]", "accs": {"intent": 0.3368, "domain": 0.3368, "status": 0.9053}, "tupla_exacta_pct": 30.5, "hiperparams": {"hidden": 64, "lr": 0.05, "epochs": 80}, "extra": {}}
+{"evento": "candidato", "nombre": "A1_latent_H1", "semilla": 999, "latente": "[RECONSTRUIDO]", "accs": {"intent": 0.3474, "domain": 0.3368, "status": 0.8947}, "tupla_exacta_pct": 30.5, "hiperparams": {"hidden": 64, "lr": 0.05, "epochs": 80}, "extra": {}}
+{"evento": "candidato", "nombre": "A2_latent+charbigram", "semilla": 42, "latente": "[RECONSTRUIDO]", "accs": {"intent": 0.9684, "domain": 0.9368, "status": 0.6947}, "tupla_exacta_pct": 66.3, "hiperparams": {"hidden": 64, "lr": 0.05, "epochs": 80}, "extra": {}}
+{"evento": "candidato", "nombre": "A2_latent+charbigram", "semilla": 123, "latente": "[RECONSTRUIDO]", "accs": {"intent": 0.8737, "domain": 0.9053, "status": 0.8526}, "tupla_exacta_pct": 74.7, "hiperparams": {"hidden": 64, "lr": 0.05, "epochs": 80}, "extra": {}}
+{"evento": "candidato", "nombre": "A2_latent+charbigram", "semilla": 999, "latente": "[RECONSTRUIDO]", "accs": {"intent": 0.8526, "domain": 0.8737, "status": 0.8105}, "tupla_exacta_pct": 73.7, "hiperparams": {"hidden": 64, "lr": 0.05, "epochs": 80}, "extra": {}}
+{"evento": "baseline_charbigram_3semillas", "semilla": 42, "tupla_exacta_pct": 54.7}
+{"evento": "baseline_charbigram_3semillas", "semilla": 123, "tupla_exacta_pct": 18.9}
+{"evento": "baseline_charbigram_3semillas", "semilla": 999, "tupla_exacta_pct": 44.2}
+{"evento": "nota_metodo", "texto": "mediana baseline 3 semillas = 44.2; A2 mediana 73.7 = +29.5pp; todas las semillas A2 >= 66.3 (spread 7.4 vs spread baseline 35.8)"}

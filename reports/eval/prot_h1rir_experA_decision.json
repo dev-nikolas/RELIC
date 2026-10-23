@@ -1,0 +1,27 @@
+{
+ "protocolo": "docs/PROTOCOL_H1_RIR.md etapa 2",
+ "sha_split": "d60eb8bb39236698f00f5108fa37df2c4b9ca653f8e6cc2c246350024521a96d",
+ "decisiones": [
+  {
+   "candidato": "A1_latent_H1",
+   "tuplas": [
+    26.3,
+    30.5,
+    30.5
+   ],
+   "mediana": 30.5,
+   "zona": "RECHAZO"
+  },
+  {
+   "candidato": "A2_latent+charbigram",
+   "tuplas": [
+    66.3,
+    74.7,
+    73.7
+   ],
+   "mediana": 73.7,
+   "zona": "VIVA"
+  }
+ ],
+ "veredicto_global": "SIGUE"
+}
