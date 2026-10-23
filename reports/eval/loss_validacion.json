@@ -1,0 +1,16 @@
+{
+  "checkpoint": "artifacts/checkpoints/relic_10m_latest.pt",
+  "step": 10,
+  "val_loss_nats_token": 8.8962,
+  "val_ppl": 7304.45,
+  "tokens_evaluados": 63744,
+  "secuencia": 256,
+  "batch": 32,
+  "referencia_uniforme_tokenizer_ln(vocab)": 8.3575,
+  "referencia_uniforme_vocab_modelo_ln(8192)": 9.0109,
+  "referencia_bigram_val_loss": 1.4768,
+  "tokens_bigram_eval": 63986,
+  "vocab_tokenizer": 4262,
+  "vocab_modelo": 8192,
+  "notas": "[MEDIDO] GPU=none CPU. secuencia de evaluacion no superpuesta (chunking). bigram Laplace(+1) sobre train completo."
+}

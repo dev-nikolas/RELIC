@@ -1,6 +1,9 @@
 /target
 
-/reports
+/reports/*
+!/reports/*.json
+!/reports/eval/
+!/reports/eval/*.json
 *.bin
 *.pt
 *.safetensors

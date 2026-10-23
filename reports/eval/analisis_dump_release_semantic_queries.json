@@ -1,0 +1,74 @@
+{
+  "dump": "reports\\eval\\dump_release_semantic_queries.json",
+  "suite": "data\\benchmarks\\semantic_queries_es.json",
+  "total_casos": 14,
+  "precision_pct": 35.7,
+  "precision_extendida_pct": 35.7,
+  "por_label": {
+    "correcto": 5,
+    "v_abstencion_innecesaria": 9
+  },
+  "determinismo_pct": 100.0,
+  "latencia_us_p50_mediana": 47.2,
+  "latencia_us_p95_max_caso": 298.2,
+  "rss_kb_max": 3920,
+  "abstencion_pct": 0.0,
+  "detalle": [
+    {
+      "id": "query_direct_01",
+      "label": "correcto"
+    },
+    {
+      "id": "query_direct_02",
+      "label": "v_abstencion_innecesaria"
+    },
+    {
+      "id": "query_direct_03",
+      "label": "correcto"
+    },
+    {
+      "id": "query_direct_04",
+      "label": "v_abstencion_innecesaria"
+    },
+    {
+      "id": "query_direct_05",
+      "label": "v_abstencion_innecesaria"
+    },
+    {
+      "id": "query_via_01",
+      "label": "v_abstencion_innecesaria"
+    },
+    {
+      "id": "query_via_02",
+      "label": "v_abstencion_innecesaria"
+    },
+    {
+      "id": "query_neg_01",
+      "label": "correcto"
+    },
+    {
+      "id": "query_neg_02",
+      "label": "v_abstencion_innecesaria"
+    },
+    {
+      "id": "query_incomplete_01",
+      "label": "correcto"
+    },
+    {
+      "id": "query_incomplete_02",
+      "label": "correcto"
+    },
+    {
+      "id": "query_unknown_01",
+      "label": "v_abstencion_innecesaria"
+    },
+    {
+      "id": "query_rule_01",
+      "label": "v_abstencion_innecesaria"
+    },
+    {
+      "id": "query_rule_02",
+      "label": "v_abstencion_innecesaria"
+    }
+  ]
+}

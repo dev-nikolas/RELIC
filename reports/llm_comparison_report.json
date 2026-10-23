@@ -1,0 +1,169 @@
+{
+  "metadata": {
+    "vocab_size": 4262,
+    "steps_per_run": 20,
+    "batch_size": 8,
+    "seq_len": 128,
+    "tokens_per_run": 20480,
+    "seeds": [
+      42
+    ],
+    "device": "cpu"
+  },
+  "runs": [
+    {
+      "model_type": "relic_10m",
+      "name": "RELIC-10M (Transformer)",
+      "seed": 42,
+      "parameters": 7767648,
+      "train_time_sec": 16.51,
+      "total_tokens_trained": 20480,
+      "initial_loss": 8.5586,
+      "final_train_loss": 3.1716,
+      "val_loss": 2.957,
+      "val_ppl": 19.24,
+      "rss_mb": 520.0,
+      "loss_curve": [
+        8.5586,
+        7.964,
+        7.721,
+        7.2925,
+        6.1112,
+        5.762,
+        5.7028,
+        5.2747,
+        5.3592,
+        4.916,
+        4.5276,
+        3.4585,
+        4.2436,
+        3.8564,
+        4.1375,
+        3.5593,
+        3.0196,
+        2.9695,
+        2.5485,
+        3.1716
+      ]
+    },
+    {
+      "model_type": "relic_h1",
+      "name": "RELIC-H1-LM (Recurrente O(1))",
+      "seed": 42,
+      "parameters": 367296,
+      "train_time_sec": 5.01,
+      "total_tokens_trained": 20480,
+      "initial_loss": 61.6804,
+      "final_train_loss": 55.8499,
+      "val_loss": 54.4796,
+      "val_ppl": 485165195.41,
+      "rss_mb": 454.66,
+      "loss_curve": [
+        61.6804,
+        61.2928,
+        60.6451,
+        60.8651,
+        60.2062,
+        59.7514,
+        59.6847,
+        59.4115,
+        59.2814,
+        58.6853,
+        58.4449,
+        57.4382,
+        58.0865,
+        56.7613,
+        56.9966,
+        56.8327,
+        55.295,
+        55.6889,
+        55.1058,
+        55.8499
+      ]
+    }
+  ],
+  "summary": {
+    "relic_10m": {
+      "avg_val_loss": 2.957,
+      "avg_val_ppl": 19.24,
+      "avg_train_time": 16.51,
+      "parameters": 7767648,
+      "generation_us_per_token": 14946.0,
+      "generation_tok_per_sec": 66.9,
+      "rss_mb": 520.0,
+      "inference_state_bytes": 589824,
+      "avg_bigram_diversity": 1.0,
+      "distant_retention": {
+        "dist_32_prob": 0.000112,
+        "dist_32_rank": 3575,
+        "dist_64_prob": 6e-05,
+        "dist_64_rank": 4189,
+        "dist_128_prob": 0.000112,
+        "dist_128_rank": 3577,
+        "dist_256_prob": 6e-05,
+        "dist_256_rank": 4191
+      },
+      "generations": [
+        {
+          "prompt": "El pingüino encontró una señal en",
+          "continuation": " la implementación cumple los requisitos de exactitud y mantiene un consumo de memoria inferior a cincuenta",
+          "full_text": "El pingüino encontró una señal en la implementación cumple los requisitos de exactitud y mantiene un consumo de memoria inferior a cincuenta",
+          "bigram_diversity": 1.0
+        },
+        {
+          "prompt": "La memoria del sistema almacena hechos como",
+          "continuation": " String, se logró verificar que la implementación cumple los requisitos de exactitud y mantiene un",
+          "full_text": "La memoria del sistema almacena hechos como String, se logró verificar que la implementación cumple los requisitos de exactitud y mantiene un",
+          "bigram_diversity": 1.0
+        },
+        {
+          "prompt": "El resultado de la operación es",
+          "continuation": " de exactitud y mantiene un consumo de memoria inferior a cincuenta megabytes sin fugas.\n",
+          "full_text": "El resultado de la operación es de exactitud y mantiene un consumo de memoria inferior a cincuenta megabytes sin fugas.\n",
+          "bigram_diversity": 1.0
+        }
+      ]
+    },
+    "relic_h1": {
+      "avg_val_loss": 54.4796,
+      "avg_val_ppl": 485165195.41,
+      "avg_train_time": 5.01,
+      "parameters": 367296,
+      "generation_us_per_token": 4696.6,
+      "generation_tok_per_sec": 212.9,
+      "rss_mb": 454.66,
+      "inference_state_bytes": 512,
+      "avg_bigram_diversity": 0.07,
+      "distant_retention": {
+        "dist_32_prob": 0.0,
+        "dist_32_rank": 1753,
+        "dist_64_prob": 0.0,
+        "dist_64_rank": 179,
+        "dist_128_prob": 0.0,
+        "dist_128_rank": 1753,
+        "dist_256_prob": 0.0,
+        "dist_256_rank": 179
+      },
+      "generations": [
+        {
+          "prompt": "El pingüino encontró una señal en",
+          "continuation": " en en en en en en en en en en en en en en en en",
+          "full_text": "El pingüino encontró una señal en en en en en en en en en en en en en en en en en",
+          "bigram_diversity": 0.07
+        },
+        {
+          "prompt": "La memoria del sistema almacena hechos como",
+          "continuation": "momomomomomomomomomomomomomomomo",
+          "full_text": "La memoria del sistema almacena hechos comomomomomomomomomomomomomomomomomo",
+          "bigram_diversity": 0.07
+        },
+        {
+          "prompt": "El resultado de la operación es",
+          "continuation": " es es es es es es es es es es es es es es es es",
+          "full_text": "El resultado de la operación es es es es es es es es es es es es es es es es es",
+          "bigram_diversity": 0.07
+        }
+      ]
+    }
+  }
+}

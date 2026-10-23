@@ -1,0 +1,82 @@
+{
+  "dump": "reports\\eval\\dump_release_semantic_adversarial.json",
+  "suite": "data\\benchmarks\\semantic_adversarial_es.json",
+  "total_casos": 16,
+  "precision_pct": 25.0,
+  "precision_extendida_pct": 25.0,
+  "por_label": {
+    "correcto": 4,
+    "v_abstencion_innecesaria": 12
+  },
+  "determinismo_pct": 100.0,
+  "latencia_us_p50_mediana": 90,
+  "latencia_us_p95_max_caso": 1256.1,
+  "rss_kb_max": 3960,
+  "abstencion_pct": 0.0,
+  "detalle": [
+    {
+      "id": "adv_paraphrase_01",
+      "label": "correcto"
+    },
+    {
+      "id": "adv_paraphrase_02",
+      "label": "v_abstencion_innecesaria"
+    },
+    {
+      "id": "adv_paraphrase_03",
+      "label": "correcto"
+    },
+    {
+      "id": "adv_paraphrase_04",
+      "label": "v_abstencion_innecesaria"
+    },
+    {
+      "id": "adv_paraphrase_05",
+      "label": "v_abstencion_innecesaria"
+    },
+    {
+      "id": "adv_double_neg_01",
+      "label": "v_abstencion_innecesaria"
+    },
+    {
+      "id": "adv_simple_neg_01",
+      "label": "v_abstencion_innecesaria"
+    },
+    {
+      "id": "adv_simple_neg_02",
+      "label": "v_abstencion_innecesaria"
+    },
+    {
+      "id": "adv_waypoint_01",
+      "label": "v_abstencion_innecesaria"
+    },
+    {
+      "id": "adv_waypoint_02",
+      "label": "v_abstencion_innecesaria"
+    },
+    {
+      "id": "adv_avoid_01",
+      "label": "v_abstencion_innecesaria"
+    },
+    {
+      "id": "adv_unknown_via_01",
+      "label": "v_abstencion_innecesaria"
+    },
+    {
+      "id": "adv_unknown_entity_01",
+      "label": "v_abstencion_innecesaria"
+    },
+    {
+      "id": "adv_incomplete_01",
+      "label": "correcto"
+    },
+    {
+      "id": "adv_incomplete_02",
+      "label": "correcto"
+    },
+    {
+      "id": "adv_rule_01",
+      "label": "v_abstencion_innecesaria"
+    }
+  ]
+}

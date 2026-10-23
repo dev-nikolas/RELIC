@@ -1,0 +1,1337 @@
+{
+  "Método A: Naive Regex": {
+    "method_name": "Método A: Naive Regex",
+    "total_queries": 16,
+    "errors": {
+      "intent_errors": 6,
+      "origin_errors": 9,
+      "destination_errors": 10,
+      "waypoint_errors": 2,
+      "avoid_errors": 1,
+      "negation_errors": 5,
+      "status_errors": 10,
+      "strict_tuple_matches": 1,
+      "end_to_end_correct": 1
+    },
+    "rates": {
+      "strict_tuple_accuracy_pct": 6.25,
+      "end_to_end_accuracy_pct": 6.25,
+      "intent_error_rate_pct": 37.5,
+      "origin_error_rate_pct": 56.25,
+      "destination_error_rate_pct": 62.5,
+      "waypoint_error_rate_pct": 12.5,
+      "avoid_error_rate_pct": 6.25,
+      "negation_error_rate_pct": 31.25,
+      "status_confusion_rate_pct": 62.5
+    },
+    "avg_latency_us": 285.51,
+    "sample_logs": [
+      {
+        "id": "adv_paraphrase_01",
+        "query": "¿Existe un camino de Madrid hasta París?",
+        "category": "paraphrase",
+        "expected": {
+          "status": "VALID",
+          "intent": "reachability",
+          "origin": "Madrid",
+          "destination": "París",
+          "via": null,
+          "avoid": null,
+          "is_negated": false
+        },
+        "predicted": {
+          "status": "VALID",
+          "intent": "reachability",
+          "origin": "Madrid",
+          "destination": "París",
+          "via": null,
+          "avoid": null,
+          "is_negated": true
+        },
+        "response": "Incorrecto: Sí existe conexión viable entre Madrid y París (ruta: Madrid -> Barcelona -> París, 2 saltos).",
+        "is_strict_match": false,
+        "is_end_to_end_valid": false
+      },
+      {
+        "id": "adv_paraphrase_02",
+        "query": "¿Se puede llegar desde Madrid a París?",
+        "category": "paraphrase",
+        "expected": {
+          "status": "VALID",
+          "intent": "reachability",
+          "origin": "Madrid",
+          "destination": "París",
+          "via": null,
+          "avoid": null,
+          "is_negated": false
+        },
+        "predicted": {
+          "status": "INVALID",
+          "intent": "reachability",
+          "origin": "llegar",
+          "destination": "París",
+          "via": null,
+          "avoid": null,
+          "is_negated": false
+        },
+        "response": "Consulta irresoluble: La entidad de origen 'llegar' no existe en la memoria episódica del sistema.",
+        "is_strict_match": false,
+        "is_end_to_end_valid": false
+      },
+      {
+        "id": "adv_paraphrase_03",
+        "query": "¿Es posible alcanzar París partiendo de Madrid?",
+        "category": "paraphrase",
+        "expected": {
+          "status": "VALID",
+          "intent": "reachability",
+          "origin": "Madrid",
+          "destination": "París",
+          "via": null,
+          "avoid": null,
+          "is_negated": false
+        },
+        "predicted": {
+          "status": "INCOMPLETE",
+          "intent": "incomplete",
+          "origin": "Madrid",
+          "destination": null,
+          "via": null,
+          "avoid": null,
+          "is_negated": false
+        },
+        "response": "Consulta incompleta: Falta origen o destino. Por favor, proporciona el dato faltante.",
+        "is_strict_match": false,
+        "is_end_to_end_valid": false
+      },
+      {
+        "id": "adv_paraphrase_04",
+        "query": "¿Hay conexión entre Madrid y París?",
+        "category": "paraphrase",
+        "expected": {
+          "status": "VALID",
+          "intent": "reachability",
+          "origin": "Madrid",
+          "destination": "París",
+          "via": null,
+          "avoid": null,
+          "is_negated": false
+        },
+        "predicted": {
+          "status": "INCOMPLETE",
+          "intent": "incomplete",
+          "origin": null,
+          "destination": null,
+          "via": null,
+          "avoid": null,
+          "is_negated": false
+        },
+        "response": "Consulta incompleta: Falta origen o destino. Por favor, proporciona el dato faltante.",
+        "is_strict_match": false,
+        "is_end_to_end_valid": false
+      },
+      {
+        "id": "adv_paraphrase_05",
+        "query": "Dime si Marta puede ir de Madrid a París",
+        "category": "paraphrase",
+        "expected": {
+          "status": "VALID",
+          "intent": "reachability",
+          "origin": "Madrid",
+          "destination": "París",
+          "via": null,
+          "avoid": null,
+          "is_negated": false
+        },
+        "predicted": {
+          "status": "INVALID",
+          "intent": "reachability",
+          "origin": "ir",
+          "destination": "puede",
+          "via": null,
+          "avoid": null,
+          "is_negated": false
+        },
+        "response": "Consulta irresoluble: La entidad de origen 'ir' no existe en la memoria episódica del sistema.",
+        "is_strict_match": false,
+        "is_end_to_end_valid": false
+      },
+      {
+        "id": "adv_double_neg_01",
+        "query": "¿No es imposible llegar de Madrid a París?",
+        "category": "double_negation",
+        "expected": {
+          "status": "VALID",
+          "intent": "reachability",
+          "origin": "Madrid",
+          "destination": "París",
+          "via": null,
+          "avoid": null,
+          "is_negated": false
+        },
+        "predicted": {
+          "status": "VALID",
+          "intent": "reachability",
+          "origin": "Madrid",
+          "destination": "París",
+          "via": null,
+          "avoid": null,
+          "is_negated": true
+        },
+        "response": "Incorrecto: Sí existe conexión viable entre Madrid y París (ruta: Madrid -> Barcelona -> París, 2 saltos).",
+        "is_strict_match": false,
+        "is_end_to_end_valid": false
+      },
+      {
+        "id": "adv_simple_neg_01",
+        "query": "¿Es imposible conectar Madrid con París?",
+        "category": "simple_negation",
+        "expected": {
+          "status": "VALID",
+          "intent": "reachability",
+          "origin": "Madrid",
+          "destination": "París",
+          "via": null,
+          "avoid": null,
+          "is_negated": true
+        },
+        "predicted": {
+          "status": "INCOMPLETE",
+          "intent": "incomplete",
+          "origin": null,
+          "destination": null,
+          "via": null,
+          "avoid": null,
+          "is_negated": false
+        },
+        "response": "Consulta incompleta: Falta origen o destino. Por favor, proporciona el dato faltante.",
+        "is_strict_match": false,
+        "is_end_to_end_valid": false
+      },
+      {
+        "id": "adv_simple_neg_02",
+        "query": "¿No se puede ir de nodo_A a nodo_B?",
+        "category": "simple_negation",
+        "expected": {
+          "status": "VALID",
+          "intent": "reachability",
+          "origin": "nodo_A",
+          "destination": "nodo_B",
+          "via": null,
+          "avoid": null,
+          "is_negated": true
+        },
+        "predicted": {
+          "status": "INVALID",
+          "intent": "reachability",
+          "origin": "ir",
+          "destination": "a",
+          "via": null,
+          "avoid": null,
+          "is_negated": true
+        },
+        "response": "Consulta irresoluble: La entidad de origen 'ir' no existe en la memoria episódica del sistema.",
+        "is_strict_match": false,
+        "is_end_to_end_valid": false
+      },
+      {
+        "id": "adv_waypoint_01",
+        "query": "¿Puede Marta llegar a la biblioteca pasando por la estación?",
+        "category": "waypoint_positive",
+        "expected": {
+          "status": "VALID",
+          "intent": "path_with_waypoint",
+          "origin": "Marta",
+          "destination": "biblioteca",
+          "via": "estación",
+          "avoid": null,
+          "is_negated": false
+        },
+        "predicted": {
+          "status": "INVALID",
+          "intent": "path_with_waypoint",
+          "origin": "Marta",
+          "destination": "llegar",
+          "via": "la",
+          "avoid": null,
+          "is_negated": false
+        },
+        "response": "Consulta irresoluble: La entidad de destino 'llegar' no existe en la memoria episódica del sistema.",
+        "is_strict_match": false,
+        "is_end_to_end_valid": false
+      },
+      {
+        "id": "adv_waypoint_02",
+        "query": "¿Es factible viajar de Bogotá a Buenos Aires haciendo escala en Lima?",
+        "category": "waypoint_positive",
+        "expected": {
+          "status": "VALID",
+          "intent": "path_with_waypoint",
+          "origin": "Bogotá",
+          "destination": "Buenos Aires",
+          "via": "Lima",
+          "avoid": null,
+          "is_negated": false
+        },
+        "predicted": {
+          "status": "INVALID",
+          "intent": "reachability",
+          "origin": "Bogotá",
+          "destination": "Buenos",
+          "via": null,
+          "avoid": null,
+          "is_negated": true
+        },
+        "response": "Consulta irresoluble: La entidad de destino 'Buenos' no existe en la memoria episódica del sistema.",
+        "is_strict_match": false,
+        "is_end_to_end_valid": false
+      },
+      {
+        "id": "adv_avoid_01",
+        "query": "¿Se puede llegar de Madrid a París sin pasar por Barcelona?",
+        "category": "waypoint_negative",
+        "expected": {
+          "status": "VALID",
+          "intent": "path_avoid_node",
+          "origin": "Madrid",
+          "destination": "París",
+          "via": null,
+          "avoid": "Barcelona",
+          "is_negated": false
+        },
+        "predicted": {
+          "status": "INVALID",
+          "intent": "reachability",
+          "origin": "llegar",
+          "destination": "París",
+          "via": null,
+          "avoid": null,
+          "is_negated": false
+        },
+        "response": "Consulta irresoluble: La entidad de origen 'llegar' no existe en la memoria episódica del sistema.",
+        "is_strict_match": false,
+        "is_end_to_end_valid": false
+      },
+      {
+        "id": "adv_unknown_via_01",
+        "query": "¿Se puede llegar de Madrid a París pasando por Atlántida, aunque Atlántida no figure en el grafo?",
+        "category": "unknown_entities",
+        "expected": {
+          "status": "INVALID",
+          "intent": "path_with_waypoint",
+          "origin": "Madrid",
+          "destination": "París",
+          "via": "Atlántida",
+          "avoid": null,
+          "is_negated": false
+        },
+        "predicted": {
+          "status": "INVALID",
+          "intent": "path_with_waypoint",
+          "origin": "llegar",
+          "destination": "París",
+          "via": "Atlántida",
+          "avoid": null,
+          "is_negated": true
+        },
+        "response": "Consulta irresoluble: La entidad de origen 'llegar' no existe en la memoria episódica del sistema.",
+        "is_strict_match": false,
+        "is_end_to_end_valid": false
+      },
+      {
+        "id": "adv_unknown_entity_01",
+        "query": "¿Se puede viajar desde Narnia hasta el servidor_1?",
+        "category": "unknown_entities",
+        "expected": {
+          "status": "INVALID",
+          "intent": "reachability",
+          "origin": "Narnia",
+          "destination": "servidor_1",
+          "via": null,
+          "avoid": null,
+          "is_negated": false
+        },
+        "predicted": {
+          "status": "INVALID",
+          "intent": "reachability",
+          "origin": "viajar",
+          "destination": "hasta",
+          "via": null,
+          "avoid": null,
+          "is_negated": false
+        },
+        "response": "Consulta irresoluble: La entidad de origen 'viajar' no existe en la memoria episódica del sistema.",
+        "is_strict_match": false,
+        "is_end_to_end_valid": false
+      },
+      {
+        "id": "adv_incomplete_01",
+        "query": "¿Cómo puedo llegar a la biblioteca?",
+        "category": "incomplete_data",
+        "expected": {
+          "status": "INCOMPLETE",
+          "intent": "incomplete",
+          "origin": null,
+          "destination": "biblioteca",
+          "via": null,
+          "avoid": null,
+          "is_negated": false
+        },
+        "predicted": {
+          "status": "INCOMPLETE",
+          "intent": "incomplete",
+          "origin": null,
+          "destination": "la",
+          "via": null,
+          "avoid": null,
+          "is_negated": false
+        },
+        "response": "Consulta incompleta: Falta origen o destino. Por favor, proporciona el dato faltante.",
+        "is_strict_match": false,
+        "is_end_to_end_valid": false
+      },
+      {
+        "id": "adv_incomplete_02",
+        "query": "¿Se puede salir de la estación central?",
+        "category": "incomplete_data",
+        "expected": {
+          "status": "INCOMPLETE",
+          "intent": "incomplete",
+          "origin": "estación central",
+          "destination": null,
+          "via": null,
+          "avoid": null,
+          "is_negated": false
+        },
+        "predicted": {
+          "status": "INVALID",
+          "intent": "reachability",
+          "origin": "salir",
+          "destination": "estación",
+          "via": null,
+          "avoid": null,
+          "is_negated": false
+        },
+        "response": "Consulta irresoluble: La entidad de origen 'salir' no existe en la memoria episódica del sistema.",
+        "is_strict_match": false,
+        "is_end_to_end_valid": false
+      },
+      {
+        "id": "adv_rule_01",
+        "query": "Invierte el orden de la palabra 'RelicCore'",
+        "category": "rule_transformation",
+        "expected": {
+          "status": "VALID",
+          "intent": "rule_transformation",
+          "origin": "RelicCore",
+          "destination": "reverse",
+          "via": null,
+          "avoid": null,
+          "is_negated": false
+        },
+        "predicted": {
+          "status": "VALID",
+          "intent": "rule_transformation",
+          "origin": "RelicCore",
+          "destination": "reverse",
+          "via": null,
+          "avoid": null,
+          "is_negated": false
+        },
+        "response": "Resultado verificado de aplicar 'reverse' a 'RelicCore': 'eroCcileR'.",
+        "is_strict_match": true,
+        "is_end_to_end_valid": true
+      }
+    ]
+  },
+  "Método B: Grammar Rule Parser": {
+    "method_name": "Método B: Grammar Rule Parser",
+    "total_queries": 16,
+    "errors": {
+      "intent_errors": 0,
+      "origin_errors": 0,
+      "destination_errors": 0,
+      "waypoint_errors": 0,
+      "avoid_errors": 0,
+      "negation_errors": 0,
+      "status_errors": 0,
+      "strict_tuple_matches": 16,
+      "end_to_end_correct": 16
+    },
+    "rates": {
+      "strict_tuple_accuracy_pct": 100.0,
+      "end_to_end_accuracy_pct": 100.0,
+      "intent_error_rate_pct": 0.0,
+      "origin_error_rate_pct": 0.0,
+      "destination_error_rate_pct": 0.0,
+      "waypoint_error_rate_pct": 0.0,
+      "avoid_error_rate_pct": 0.0,
+      "negation_error_rate_pct": 0.0,
+      "status_confusion_rate_pct": 0.0
+    },
+    "avg_latency_us": 531.74,
+    "sample_logs": [
+      {
+        "id": "adv_paraphrase_01",
+        "query": "¿Existe un camino de Madrid hasta París?",
+        "category": "paraphrase",
+        "expected": {
+          "status": "VALID",
+          "intent": "reachability",
+          "origin": "Madrid",
+          "destination": "París",
+          "via": null,
+          "avoid": null,
+          "is_negated": false
+        },
+        "predicted": {
+          "status": "VALID",
+          "intent": "reachability",
+          "origin": "Madrid",
+          "destination": "París",
+          "via": null,
+          "avoid": null,
+          "is_negated": false
+        },
+        "response": "Sí, es posible llegar de Madrid a París (ruta: Madrid -> Barcelona -> París, 2 saltos).",
+        "is_strict_match": true,
+        "is_end_to_end_valid": true
+      },
+      {
+        "id": "adv_paraphrase_02",
+        "query": "¿Se puede llegar desde Madrid a París?",
+        "category": "paraphrase",
+        "expected": {
+          "status": "VALID",
+          "intent": "reachability",
+          "origin": "Madrid",
+          "destination": "París",
+          "via": null,
+          "avoid": null,
+          "is_negated": false
+        },
+        "predicted": {
+          "status": "VALID",
+          "intent": "reachability",
+          "origin": "Madrid",
+          "destination": "París",
+          "via": null,
+          "avoid": null,
+          "is_negated": false
+        },
+        "response": "Sí, es posible llegar de Madrid a París (ruta: Madrid -> Barcelona -> París, 2 saltos).",
+        "is_strict_match": true,
+        "is_end_to_end_valid": true
+      },
+      {
+        "id": "adv_paraphrase_03",
+        "query": "¿Es posible alcanzar París partiendo de Madrid?",
+        "category": "paraphrase",
+        "expected": {
+          "status": "VALID",
+          "intent": "reachability",
+          "origin": "Madrid",
+          "destination": "París",
+          "via": null,
+          "avoid": null,
+          "is_negated": false
+        },
+        "predicted": {
+          "status": "VALID",
+          "intent": "reachability",
+          "origin": "Madrid",
+          "destination": "París",
+          "via": null,
+          "avoid": null,
+          "is_negated": false
+        },
+        "response": "Sí, es posible llegar de Madrid a París (ruta: Madrid -> Barcelona -> París, 2 saltos).",
+        "is_strict_match": true,
+        "is_end_to_end_valid": true
+      },
+      {
+        "id": "adv_paraphrase_04",
+        "query": "¿Hay conexión entre Madrid y París?",
+        "category": "paraphrase",
+        "expected": {
+          "status": "VALID",
+          "intent": "reachability",
+          "origin": "Madrid",
+          "destination": "París",
+          "via": null,
+          "avoid": null,
+          "is_negated": false
+        },
+        "predicted": {
+          "status": "VALID",
+          "intent": "reachability",
+          "origin": "Madrid",
+          "destination": "París",
+          "via": null,
+          "avoid": null,
+          "is_negated": false
+        },
+        "response": "Sí, es posible llegar de Madrid a París (ruta: Madrid -> Barcelona -> París, 2 saltos).",
+        "is_strict_match": true,
+        "is_end_to_end_valid": true
+      },
+      {
+        "id": "adv_paraphrase_05",
+        "query": "Dime si Marta puede ir de Madrid a París",
+        "category": "paraphrase",
+        "expected": {
+          "status": "VALID",
+          "intent": "reachability",
+          "origin": "Madrid",
+          "destination": "París",
+          "via": null,
+          "avoid": null,
+          "is_negated": false
+        },
+        "predicted": {
+          "status": "VALID",
+          "intent": "reachability",
+          "origin": "Madrid",
+          "destination": "París",
+          "via": null,
+          "avoid": null,
+          "is_negated": false
+        },
+        "response": "Sí, es posible llegar de Madrid a París (ruta: Madrid -> Barcelona -> París, 2 saltos).",
+        "is_strict_match": true,
+        "is_end_to_end_valid": true
+      },
+      {
+        "id": "adv_double_neg_01",
+        "query": "¿No es imposible llegar de Madrid a París?",
+        "category": "double_negation",
+        "expected": {
+          "status": "VALID",
+          "intent": "reachability",
+          "origin": "Madrid",
+          "destination": "París",
+          "via": null,
+          "avoid": null,
+          "is_negated": false
+        },
+        "predicted": {
+          "status": "VALID",
+          "intent": "reachability",
+          "origin": "Madrid",
+          "destination": "París",
+          "via": null,
+          "avoid": null,
+          "is_negated": false
+        },
+        "response": "Sí, es posible llegar de Madrid a París (ruta: Madrid -> Barcelona -> París, 2 saltos).",
+        "is_strict_match": true,
+        "is_end_to_end_valid": true
+      },
+      {
+        "id": "adv_simple_neg_01",
+        "query": "¿Es imposible conectar Madrid con París?",
+        "category": "simple_negation",
+        "expected": {
+          "status": "VALID",
+          "intent": "reachability",
+          "origin": "Madrid",
+          "destination": "París",
+          "via": null,
+          "avoid": null,
+          "is_negated": true
+        },
+        "predicted": {
+          "status": "VALID",
+          "intent": "reachability",
+          "origin": "Madrid",
+          "destination": "París",
+          "via": null,
+          "avoid": null,
+          "is_negated": true
+        },
+        "response": "Incorrecto: Sí existe conexión viable entre Madrid y París (ruta: Madrid -> Barcelona -> París, 2 saltos).",
+        "is_strict_match": true,
+        "is_end_to_end_valid": true
+      },
+      {
+        "id": "adv_simple_neg_02",
+        "query": "¿No se puede ir de nodo_A a nodo_B?",
+        "category": "simple_negation",
+        "expected": {
+          "status": "VALID",
+          "intent": "reachability",
+          "origin": "nodo_A",
+          "destination": "nodo_B",
+          "via": null,
+          "avoid": null,
+          "is_negated": true
+        },
+        "predicted": {
+          "status": "VALID",
+          "intent": "reachability",
+          "origin": "nodo_A",
+          "destination": "nodo_B",
+          "via": null,
+          "avoid": null,
+          "is_negated": true
+        },
+        "response": "Incorrecto: Sí existe conexión viable entre nodo_A y nodo_B (ruta: nodo_A -> nodo_B, 1 saltos).",
+        "is_strict_match": true,
+        "is_end_to_end_valid": true
+      },
+      {
+        "id": "adv_waypoint_01",
+        "query": "¿Puede Marta llegar a la biblioteca pasando por la estación?",
+        "category": "waypoint_positive",
+        "expected": {
+          "status": "VALID",
+          "intent": "path_with_waypoint",
+          "origin": "Marta",
+          "destination": "biblioteca",
+          "via": "estación",
+          "avoid": null,
+          "is_negated": false
+        },
+        "predicted": {
+          "status": "VALID",
+          "intent": "path_with_waypoint",
+          "origin": "Marta",
+          "destination": "biblioteca",
+          "via": "estación",
+          "avoid": null,
+          "is_negated": false
+        },
+        "response": "Sí, es posible llegar de Marta a biblioteca pasando por estación (ruta: Marta -> estación -> biblioteca, 2 saltos).",
+        "is_strict_match": true,
+        "is_end_to_end_valid": true
+      },
+      {
+        "id": "adv_waypoint_02",
+        "query": "¿Es factible viajar de Bogotá a Buenos Aires haciendo escala en Lima?",
+        "category": "waypoint_positive",
+        "expected": {
+          "status": "VALID",
+          "intent": "path_with_waypoint",
+          "origin": "Bogotá",
+          "destination": "Buenos Aires",
+          "via": "Lima",
+          "avoid": null,
+          "is_negated": false
+        },
+        "predicted": {
+          "status": "VALID",
+          "intent": "path_with_waypoint",
+          "origin": "Bogotá",
+          "destination": "Buenos Aires",
+          "via": "Lima",
+          "avoid": null,
+          "is_negated": false
+        },
+        "response": "Sí, es posible llegar de Bogotá a Buenos Aires pasando por Lima (ruta: Bogotá -> Lima -> Buenos Aires, 2 saltos).",
+        "is_strict_match": true,
+        "is_end_to_end_valid": true
+      },
+      {
+        "id": "adv_avoid_01",
+        "query": "¿Se puede llegar de Madrid a París sin pasar por Barcelona?",
+        "category": "waypoint_negative",
+        "expected": {
+          "status": "VALID",
+          "intent": "path_avoid_node",
+          "origin": "Madrid",
+          "destination": "París",
+          "via": null,
+          "avoid": "Barcelona",
+          "is_negated": false
+        },
+        "predicted": {
+          "status": "VALID",
+          "intent": "path_avoid_node",
+          "origin": "Madrid",
+          "destination": "París",
+          "via": null,
+          "avoid": "Barcelona",
+          "is_negated": false
+        },
+        "response": "No, no existe ninguna ruta viable desde Madrid hasta París sin pasar por Barcelona.",
+        "is_strict_match": true,
+        "is_end_to_end_valid": true
+      },
+      {
+        "id": "adv_unknown_via_01",
+        "query": "¿Se puede llegar de Madrid a París pasando por Atlántida, aunque Atlántida no figure en el grafo?",
+        "category": "unknown_entities",
+        "expected": {
+          "status": "INVALID",
+          "intent": "path_with_waypoint",
+          "origin": "Madrid",
+          "destination": "París",
+          "via": "Atlántida",
+          "avoid": null,
+          "is_negated": false
+        },
+        "predicted": {
+          "status": "INVALID",
+          "intent": "path_with_waypoint",
+          "origin": "Madrid",
+          "destination": "París",
+          "via": "Atlántida",
+          "avoid": null,
+          "is_negated": false
+        },
+        "response": "Consulta irresoluble: La entidad de escala/paso 'Atlántida' no existe en la memoria episódica del sistema.",
+        "is_strict_match": true,
+        "is_end_to_end_valid": true
+      },
+      {
+        "id": "adv_unknown_entity_01",
+        "query": "¿Se puede viajar desde Narnia hasta el servidor_1?",
+        "category": "unknown_entities",
+        "expected": {
+          "status": "INVALID",
+          "intent": "reachability",
+          "origin": "Narnia",
+          "destination": "servidor_1",
+          "via": null,
+          "avoid": null,
+          "is_negated": false
+        },
+        "predicted": {
+          "status": "INVALID",
+          "intent": "reachability",
+          "origin": "Narnia",
+          "destination": "servidor_1",
+          "via": null,
+          "avoid": null,
+          "is_negated": false
+        },
+        "response": "Consulta irresoluble: La entidad de origen 'Narnia' no existe en la memoria episódica del sistema.",
+        "is_strict_match": true,
+        "is_end_to_end_valid": true
+      },
+      {
+        "id": "adv_incomplete_01",
+        "query": "¿Cómo puedo llegar a la biblioteca?",
+        "category": "incomplete_data",
+        "expected": {
+          "status": "INCOMPLETE",
+          "intent": "incomplete",
+          "origin": null,
+          "destination": "biblioteca",
+          "via": null,
+          "avoid": null,
+          "is_negated": false
+        },
+        "predicted": {
+          "status": "INCOMPLETE",
+          "intent": "incomplete",
+          "origin": null,
+          "destination": "biblioteca",
+          "via": null,
+          "avoid": null,
+          "is_negated": false
+        },
+        "response": "Consulta incompleta: Falta especificar el punto de partida (origen). Por favor, proporciona el dato faltante.",
+        "is_strict_match": true,
+        "is_end_to_end_valid": true
+      },
+      {
+        "id": "adv_incomplete_02",
+        "query": "¿Se puede salir de la estación central?",
+        "category": "incomplete_data",
+        "expected": {
+          "status": "INCOMPLETE",
+          "intent": "incomplete",
+          "origin": "estación central",
+          "destination": null,
+          "via": null,
+          "avoid": null,
+          "is_negated": false
+        },
+        "predicted": {
+          "status": "INCOMPLETE",
+          "intent": "incomplete",
+          "origin": "estación central",
+          "destination": null,
+          "via": null,
+          "avoid": null,
+          "is_negated": false
+        },
+        "response": "Consulta incompleta: Falta especificar el destino al que se desea llegar. Por favor, proporciona el dato faltante.",
+        "is_strict_match": true,
+        "is_end_to_end_valid": true
+      },
+      {
+        "id": "adv_rule_01",
+        "query": "Invierte el orden de la palabra 'RelicCore'",
+        "category": "rule_transformation",
+        "expected": {
+          "status": "VALID",
+          "intent": "rule_transformation",
+          "origin": "RelicCore",
+          "destination": "reverse",
+          "via": null,
+          "avoid": null,
+          "is_negated": false
+        },
+        "predicted": {
+          "status": "VALID",
+          "intent": "rule_transformation",
+          "origin": "RelicCore",
+          "destination": "reverse",
+          "via": null,
+          "avoid": null,
+          "is_negated": false
+        },
+        "response": "Resultado verificado de aplicar 'reverse' a 'RelicCore': 'eroCcileR'.",
+        "is_strict_match": true,
+        "is_end_to_end_valid": true
+      }
+    ]
+  },
+  "Método C: H1 Neural Compiler": {
+    "method_name": "Método C: H1 Neural Compiler",
+    "total_queries": 16,
+    "errors": {
+      "intent_errors": 0,
+      "origin_errors": 0,
+      "destination_errors": 0,
+      "waypoint_errors": 0,
+      "avoid_errors": 0,
+      "negation_errors": 0,
+      "status_errors": 0,
+      "strict_tuple_matches": 16,
+      "end_to_end_correct": 16
+    },
+    "rates": {
+      "strict_tuple_accuracy_pct": 100.0,
+      "end_to_end_accuracy_pct": 100.0,
+      "intent_error_rate_pct": 0.0,
+      "origin_error_rate_pct": 0.0,
+      "destination_error_rate_pct": 0.0,
+      "waypoint_error_rate_pct": 0.0,
+      "avoid_error_rate_pct": 0.0,
+      "negation_error_rate_pct": 0.0,
+      "status_confusion_rate_pct": 0.0
+    },
+    "avg_latency_us": 39.14,
+    "sample_logs": [
+      {
+        "id": "adv_paraphrase_01",
+        "query": "¿Existe un camino de Madrid hasta París?",
+        "category": "paraphrase",
+        "expected": {
+          "status": "VALID",
+          "intent": "reachability",
+          "origin": "Madrid",
+          "destination": "París",
+          "via": null,
+          "avoid": null,
+          "is_negated": false
+        },
+        "predicted": {
+          "status": "VALID",
+          "intent": "reachability",
+          "origin": "Madrid",
+          "destination": "París",
+          "via": null,
+          "avoid": null,
+          "is_negated": false
+        },
+        "response": "Sí, es posible llegar de Madrid a París (ruta: Madrid -> Barcelona -> París, 2 saltos).",
+        "is_strict_match": true,
+        "is_end_to_end_valid": true
+      },
+      {
+        "id": "adv_paraphrase_02",
+        "query": "¿Se puede llegar desde Madrid a París?",
+        "category": "paraphrase",
+        "expected": {
+          "status": "VALID",
+          "intent": "reachability",
+          "origin": "Madrid",
+          "destination": "París",
+          "via": null,
+          "avoid": null,
+          "is_negated": false
+        },
+        "predicted": {
+          "status": "VALID",
+          "intent": "reachability",
+          "origin": "Madrid",
+          "destination": "París",
+          "via": null,
+          "avoid": null,
+          "is_negated": false
+        },
+        "response": "Sí, es posible llegar de Madrid a París (ruta: Madrid -> Barcelona -> París, 2 saltos).",
+        "is_strict_match": true,
+        "is_end_to_end_valid": true
+      },
+      {
+        "id": "adv_paraphrase_03",
+        "query": "¿Es posible alcanzar París partiendo de Madrid?",
+        "category": "paraphrase",
+        "expected": {
+          "status": "VALID",
+          "intent": "reachability",
+          "origin": "Madrid",
+          "destination": "París",
+          "via": null,
+          "avoid": null,
+          "is_negated": false
+        },
+        "predicted": {
+          "status": "VALID",
+          "intent": "reachability",
+          "origin": "Madrid",
+          "destination": "París",
+          "via": null,
+          "avoid": null,
+          "is_negated": false
+        },
+        "response": "Sí, es posible llegar de Madrid a París (ruta: Madrid -> Barcelona -> París, 2 saltos).",
+        "is_strict_match": true,
+        "is_end_to_end_valid": true
+      },
+      {
+        "id": "adv_paraphrase_04",
+        "query": "¿Hay conexión entre Madrid y París?",
+        "category": "paraphrase",
+        "expected": {
+          "status": "VALID",
+          "intent": "reachability",
+          "origin": "Madrid",
+          "destination": "París",
+          "via": null,
+          "avoid": null,
+          "is_negated": false
+        },
+        "predicted": {
+          "status": "VALID",
+          "intent": "reachability",
+          "origin": "Madrid",
+          "destination": "París",
+          "via": null,
+          "avoid": null,
+          "is_negated": false
+        },
+        "response": "Sí, es posible llegar de Madrid a París (ruta: Madrid -> Barcelona -> París, 2 saltos).",
+        "is_strict_match": true,
+        "is_end_to_end_valid": true
+      },
+      {
+        "id": "adv_paraphrase_05",
+        "query": "Dime si Marta puede ir de Madrid a París",
+        "category": "paraphrase",
+        "expected": {
+          "status": "VALID",
+          "intent": "reachability",
+          "origin": "Madrid",
+          "destination": "París",
+          "via": null,
+          "avoid": null,
+          "is_negated": false
+        },
+        "predicted": {
+          "status": "VALID",
+          "intent": "reachability",
+          "origin": "Madrid",
+          "destination": "París",
+          "via": null,
+          "avoid": null,
+          "is_negated": false
+        },
+        "response": "Sí, es posible llegar de Madrid a París (ruta: Madrid -> Barcelona -> París, 2 saltos).",
+        "is_strict_match": true,
+        "is_end_to_end_valid": true
+      },
+      {
+        "id": "adv_double_neg_01",
+        "query": "¿No es imposible llegar de Madrid a París?",
+        "category": "double_negation",
+        "expected": {
+          "status": "VALID",
+          "intent": "reachability",
+          "origin": "Madrid",
+          "destination": "París",
+          "via": null,
+          "avoid": null,
+          "is_negated": false
+        },
+        "predicted": {
+          "status": "VALID",
+          "intent": "reachability",
+          "origin": "Madrid",
+          "destination": "París",
+          "via": null,
+          "avoid": null,
+          "is_negated": false
+        },
+        "response": "Sí, es posible llegar de Madrid a París (ruta: Madrid -> Barcelona -> París, 2 saltos).",
+        "is_strict_match": true,
+        "is_end_to_end_valid": true
+      },
+      {
+        "id": "adv_simple_neg_01",
+        "query": "¿Es imposible conectar Madrid con París?",
+        "category": "simple_negation",
+        "expected": {
+          "status": "VALID",
+          "intent": "reachability",
+          "origin": "Madrid",
+          "destination": "París",
+          "via": null,
+          "avoid": null,
+          "is_negated": true
+        },
+        "predicted": {
+          "status": "VALID",
+          "intent": "reachability",
+          "origin": "Madrid",
+          "destination": "París",
+          "via": null,
+          "avoid": null,
+          "is_negated": true
+        },
+        "response": "Incorrecto: Sí existe conexión viable entre Madrid y París (ruta: Madrid -> Barcelona -> París, 2 saltos).",
+        "is_strict_match": true,
+        "is_end_to_end_valid": true
+      },
+      {
+        "id": "adv_simple_neg_02",
+        "query": "¿No se puede ir de nodo_A a nodo_B?",
+        "category": "simple_negation",
+        "expected": {
+          "status": "VALID",
+          "intent": "reachability",
+          "origin": "nodo_A",
+          "destination": "nodo_B",
+          "via": null,
+          "avoid": null,
+          "is_negated": true
+        },
+        "predicted": {
+          "status": "VALID",
+          "intent": "reachability",
+          "origin": "nodo_A",
+          "destination": "nodo_B",
+          "via": null,
+          "avoid": null,
+          "is_negated": true
+        },
+        "response": "Incorrecto: Sí existe conexión viable entre nodo_A y nodo_B (ruta: nodo_A -> nodo_B, 1 saltos).",
+        "is_strict_match": true,
+        "is_end_to_end_valid": true
+      },
+      {
+        "id": "adv_waypoint_01",
+        "query": "¿Puede Marta llegar a la biblioteca pasando por la estación?",
+        "category": "waypoint_positive",
+        "expected": {
+          "status": "VALID",
+          "intent": "path_with_waypoint",
+          "origin": "Marta",
+          "destination": "biblioteca",
+          "via": "estación",
+          "avoid": null,
+          "is_negated": false
+        },
+        "predicted": {
+          "status": "VALID",
+          "intent": "path_with_waypoint",
+          "origin": "Marta",
+          "destination": "biblioteca",
+          "via": "estación",
+          "avoid": null,
+          "is_negated": false
+        },
+        "response": "Sí, es posible llegar de Marta a biblioteca pasando por estación (ruta: Marta -> estación -> biblioteca, 2 saltos).",
+        "is_strict_match": true,
+        "is_end_to_end_valid": true
+      },
+      {
+        "id": "adv_waypoint_02",
+        "query": "¿Es factible viajar de Bogotá a Buenos Aires haciendo escala en Lima?",
+        "category": "waypoint_positive",
+        "expected": {
+          "status": "VALID",
+          "intent": "path_with_waypoint",
+          "origin": "Bogotá",
+          "destination": "Buenos Aires",
+          "via": "Lima",
+          "avoid": null,
+          "is_negated": false
+        },
+        "predicted": {
+          "status": "VALID",
+          "intent": "path_with_waypoint",
+          "origin": "Bogotá",
+          "destination": "Buenos Aires",
+          "via": "Lima",
+          "avoid": null,
+          "is_negated": false
+        },
+        "response": "Sí, es posible llegar de Bogotá a Buenos Aires pasando por Lima (ruta: Bogotá -> Lima -> Buenos Aires, 2 saltos).",
+        "is_strict_match": true,
+        "is_end_to_end_valid": true
+      },
+      {
+        "id": "adv_avoid_01",
+        "query": "¿Se puede llegar de Madrid a París sin pasar por Barcelona?",
+        "category": "waypoint_negative",
+        "expected": {
+          "status": "VALID",
+          "intent": "path_avoid_node",
+          "origin": "Madrid",
+          "destination": "París",
+          "via": null,
+          "avoid": "Barcelona",
+          "is_negated": false
+        },
+        "predicted": {
+          "status": "VALID",
+          "intent": "path_avoid_node",
+          "origin": "Madrid",
+          "destination": "París",
+          "via": null,
+          "avoid": "Barcelona",
+          "is_negated": false
+        },
+        "response": "No, no existe ninguna ruta viable desde Madrid hasta París sin pasar por Barcelona.",
+        "is_strict_match": true,
+        "is_end_to_end_valid": true
+      },
+      {
+        "id": "adv_unknown_via_01",
+        "query": "¿Se puede llegar de Madrid a París pasando por Atlántida, aunque Atlántida no figure en el grafo?",
+        "category": "unknown_entities",
+        "expected": {
+          "status": "INVALID",
+          "intent": "path_with_waypoint",
+          "origin": "Madrid",
+          "destination": "París",
+          "via": "Atlántida",
+          "avoid": null,
+          "is_negated": false
+        },
+        "predicted": {
+          "status": "INVALID",
+          "intent": "path_with_waypoint",
+          "origin": "Madrid",
+          "destination": "París",
+          "via": "Atlántida",
+          "avoid": null,
+          "is_negated": false
+        },
+        "response": "Consulta irresoluble: La entidad de escala/paso 'Atlántida' no existe en la memoria episódica del sistema.",
+        "is_strict_match": true,
+        "is_end_to_end_valid": true
+      },
+      {
+        "id": "adv_unknown_entity_01",
+        "query": "¿Se puede viajar desde Narnia hasta el servidor_1?",
+        "category": "unknown_entities",
+        "expected": {
+          "status": "INVALID",
+          "intent": "reachability",
+          "origin": "Narnia",
+          "destination": "servidor_1",
+          "via": null,
+          "avoid": null,
+          "is_negated": false
+        },
+        "predicted": {
+          "status": "INVALID",
+          "intent": "reachability",
+          "origin": "Narnia",
+          "destination": "servidor_1",
+          "via": null,
+          "avoid": null,
+          "is_negated": false
+        },
+        "response": "Consulta irresoluble: La entidad de origen 'Narnia' no existe en la memoria episódica del sistema.",
+        "is_strict_match": true,
+        "is_end_to_end_valid": true
+      },
+      {
+        "id": "adv_incomplete_01",
+        "query": "¿Cómo puedo llegar a la biblioteca?",
+        "category": "incomplete_data",
+        "expected": {
+          "status": "INCOMPLETE",
+          "intent": "incomplete",
+          "origin": null,
+          "destination": "biblioteca",
+          "via": null,
+          "avoid": null,
+          "is_negated": false
+        },
+        "predicted": {
+          "status": "INCOMPLETE",
+          "intent": "incomplete",
+          "origin": null,
+          "destination": "biblioteca",
+          "via": null,
+          "avoid": null,
+          "is_negated": false
+        },
+        "response": "Consulta incompleta: Falta especificar el punto de partida (origen). Por favor, proporciona el dato faltante.",
+        "is_strict_match": true,
+        "is_end_to_end_valid": true
+      },
+      {
+        "id": "adv_incomplete_02",
+        "query": "¿Se puede salir de la estación central?",
+        "category": "incomplete_data",
+        "expected": {
+          "status": "INCOMPLETE",
+          "intent": "incomplete",
+          "origin": "estación central",
+          "destination": null,
+          "via": null,
+          "avoid": null,
+          "is_negated": false
+        },
+        "predicted": {
+          "status": "INCOMPLETE",
+          "intent": "incomplete",
+          "origin": "estación central",
+          "destination": null,
+          "via": null,
+          "avoid": null,
+          "is_negated": false
+        },
+        "response": "Consulta incompleta: Falta especificar el destino al que se desea llegar. Por favor, proporciona el dato faltante.",
+        "is_strict_match": true,
+        "is_end_to_end_valid": true
+      },
+      {
+        "id": "adv_rule_01",
+        "query": "Invierte el orden de la palabra 'RelicCore'",
+        "category": "rule_transformation",
+        "expected": {
+          "status": "VALID",
+          "intent": "rule_transformation",
+          "origin": "RelicCore",
+          "destination": "reverse",
+          "via": null,
+          "avoid": null,
+          "is_negated": false
+        },
+        "predicted": {
+          "status": "VALID",
+          "intent": "rule_transformation",
+          "origin": "RelicCore",
+          "destination": "reverse",
+          "via": null,
+          "avoid": null,
+          "is_negated": false
+        },
+        "response": "Resultado verificado de aplicar 'reverse' a 'RelicCore': 'eroCcileR'.",
+        "is_strict_match": true,
+        "is_end_to_end_valid": true
+      }
+    ]
+  }
+}

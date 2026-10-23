@@ -1,0 +1,75 @@
+{
+  "dump": "reports\\eval\\dump_release_known_failures.json",
+  "suite": "tests\\known_failures.json",
+  "total_casos": 14,
+  "precision_pct": 78.6,
+  "precision_extendida_pct": 92.9,
+  "por_label": {
+    "correcto": 11,
+    "iv_abstencion_correcta": 2,
+    "iii_salida_incorrecta_ruta_ok": 1
+  },
+  "determinismo_pct": 100.0,
+  "latencia_us_p50_mediana": 42.4,
+  "latencia_us_p95_max_caso": 233.5,
+  "rss_kb_max": 3924,
+  "abstencion_pct": 14.3,
+  "detalle": [
+    {
+      "id": "¿cuánto es 1 + 1?",
+      "label": "correcto"
+    },
+    {
+      "id": "1 + 1",
+      "label": "correcto"
+    },
+    {
+      "id": "tengo 10 gatos y recibo 5",
+      "label": "correcto"
+    },
+    {
+      "id": "tengo algunas manzanas y luego compro 5",
+      "label": "iv_abstencion_correcta"
+    },
+    {
+      "id": "¿Depende el crate relic_cli del paquete memmap2?",
+      "label": "correcto"
+    },
+    {
+      "id": "¿Es posible ir de Bogotá a Madrid pasando por París evitando Tokio?",
+      "label": "iii_salida_incorrecta_ruta_ok"
+    },
+    {
+      "id": "dos más dos",
+      "label": "correcto"
+    },
+    {
+      "id": "cuanto es 2 mas 2",
+      "label": "correcto"
+    },
+    {
+      "id": "suma 2 y 2",
+      "label": "correcto"
+    },
+    {
+      "id": "Hola",
+      "label": "iv_abstencion_correcta"
+    },
+    {
+      "id": "¿Depende el crate relic_cli del paquete tokio?",
+      "label": "correcto"
+    },
+    {
+      "id": "¿Depende el crate relic_clii del paquete memmap2?",
+      "label": "correcto"
+    },
+    {
+      "id": "¿Depende el crate Relic_Cli del paquete memmap2?",
+      "label": "correcto"
+    },
+    {
+      "id": "¿Depende el crate foo del paquete bar?",
+      "label": "correcto"
+    }
+  ]
+}

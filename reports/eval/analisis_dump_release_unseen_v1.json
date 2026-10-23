@@ -1,0 +1,47 @@
+{
+  "dump": "reports\\eval\\dump_release_unseen_v1.json",
+  "suite": "tests\\unseen_independent_test.json",
+  "total_casos": 7,
+  "precision_pct": 42.9,
+  "precision_extendida_pct": 57.1,
+  "por_label": {
+    "v_abstencion_innecesaria": 3,
+    "correcto": 3,
+    "iv_abstencion_correcta": 1
+  },
+  "determinismo_pct": 100.0,
+  "latencia_us_p50_mediana": 43.4,
+  "latencia_us_p95_max_caso": 180.6,
+  "rss_kb_max": 3852,
+  "abstencion_pct": 14.3,
+  "detalle": [
+    {
+      "id": "veintitrés más cuatro",
+      "label": "v_abstencion_innecesaria"
+    },
+    {
+      "id": "súmame 2 y 2",
+      "label": "v_abstencion_innecesaria"
+    },
+    {
+      "id": "2 más 2 son?",
+      "label": "correcto"
+    },
+    {
+      "id": "cuánto da 7 por 3",
+      "label": "correcto"
+    },
+    {
+      "id": "quítale 4 a 10",
+      "label": "correcto"
+    },
+    {
+      "id": "si tengo diez y regalo tres cuántas me quedan",
+      "label": "v_abstencion_innecesaria"
+    },
+    {
+      "id": "la tierra no puede volar",
+      "label": "iv_abstencion_correcta"
+    }
+  ]
+}

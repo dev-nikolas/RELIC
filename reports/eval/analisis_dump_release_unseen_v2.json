@@ -1,0 +1,82 @@
+{
+  "dump": "reports\\eval\\dump_release_unseen_v2.json",
+  "suite": "tests\\unseen_frozen_v2.json",
+  "total_casos": 16,
+  "precision_pct": 87.5,
+  "precision_extendida_pct": 100.0,
+  "por_label": {
+    "correcto": 14,
+    "iv_abstencion_correcta": 2
+  },
+  "determinismo_pct": 100.0,
+  "latencia_us_p50_mediana": 41.3,
+  "latencia_us_p95_max_caso": 949.1,
+  "rss_kb_max": 3956,
+  "abstencion_pct": 12.5,
+  "detalle": [
+    {
+      "id": "resta 3 y 10",
+      "label": "correcto"
+    },
+    {
+      "id": "resta 12 y 5",
+      "label": "correcto"
+    },
+    {
+      "id": "cuánto es 5 - 9",
+      "label": "correcto"
+    },
+    {
+      "id": "suma 8 e 11",
+      "label": "correcto"
+    },
+    {
+      "id": "cuánto es 4 * 6",
+      "label": "correcto"
+    },
+    {
+      "id": "multiplica 6 por 7",
+      "label": "correcto"
+    },
+    {
+      "id": "quítale 4 a 10",
+      "label": "correcto"
+    },
+    {
+      "id": "tengo 12 lápices y regalo 7",
+      "label": "correcto"
+    },
+    {
+      "id": "2 más 2 son?",
+      "label": "correcto"
+    },
+    {
+      "id": "tengo algunas fichas y añado 6",
+      "label": "iv_abstencion_correcta"
+    },
+    {
+      "id": "¿Es posible ir de Bogotá a Lima?",
+      "label": "correcto"
+    },
+    {
+      "id": "¿Puedo alcanzar París desde Madrid pasando por Barcelona?",
+      "label": "correcto"
+    },
+    {
+      "id": "¿Es posible ir de Lima a París pasando por Barcelona?",
+      "label": "correcto"
+    },
+    {
+      "id": "¿Depende el crate Relic_Core del paquete memmap2?",
+      "label": "correcto"
+    },
+    {
+      "id": "¿Depende el crate relic_cli del paquete kodex?",
+      "label": "correcto"
+    },
+    {
+      "id": "la luna es de queso",
+      "label": "iv_abstencion_correcta"
+    }
+  ]
+}
