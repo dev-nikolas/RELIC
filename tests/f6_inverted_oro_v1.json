@@ -1,0 +1,456 @@
+{
+ "meta": "ORO etapa 4 congelado ANTES de la implementacion. F6 = entradas/oro copiados del split firmado sha d60eb8bb (sin retoques). heldout = construcciones invertidas NUEVAS estructuralmente distintas, escritas antes del extractor, NUNCA derivadas de el. abstain: el extractor debe devolver None (no se inventan plan).",
+ "f6_frozen": [
+  {
+   "id": "h1rir_0",
+   "text": "De los 10 libros que había comprado, presté 2 a mi hermano.",
+   "expect": "VALID",
+   "initial": 10.0,
+   "entity": "libros",
+   "ops": [
+    {
+     "operator": "subtract",
+     "operand": 2.0
+    }
+   ]
+  },
+  {
+   "id": "h1rir_1",
+   "text": "De los 11 cuadernos que había comprado, presté 3 a mi hermano.",
+   "expect": "VALID",
+   "initial": 11.0,
+   "entity": "cuadernos",
+   "ops": [
+    {
+     "operator": "subtract",
+     "operand": 3.0
+    }
+   ]
+  },
+  {
+   "id": "h1rir_2",
+   "text": "De los 12 lápices que había comprado, presté 4 a mi hermano.",
+   "expect": "VALID",
+   "initial": 12.0,
+   "entity": "lápices",
+   "ops": [
+    {
+     "operator": "subtract",
+     "operand": 4.0
+    }
+   ]
+  },
+  {
+   "id": "h1rir_3",
+   "text": "De los 13 naranjas que había comprado, presté 5 a mi hermano.",
+   "expect": "VALID",
+   "initial": 13.0,
+   "entity": "naranjas",
+   "ops": [
+    {
+     "operator": "subtract",
+     "operand": 5.0
+    }
+   ]
+  },
+  {
+   "id": "h1rir_4",
+   "text": "De los 14 peras que había comprado, presté 2 a mi hermano.",
+   "expect": "VALID",
+   "initial": 14.0,
+   "entity": "peras",
+   "ops": [
+    {
+     "operator": "subtract",
+     "operand": 2.0
+    }
+   ]
+  },
+  {
+   "id": "h1rir_5",
+   "text": "De los 15 libros que había comprado, presté 3 a mi hermano.",
+   "expect": "VALID",
+   "initial": 15.0,
+   "entity": "libros",
+   "ops": [
+    {
+     "operator": "subtract",
+     "operand": 3.0
+    }
+   ]
+  },
+  {
+   "id": "h1rir_6",
+   "text": "De los 16 cuadernos que había comprado, presté 4 a mi hermano.",
+   "expect": "VALID",
+   "initial": 16.0,
+   "entity": "cuadernos",
+   "ops": [
+    {
+     "operator": "subtract",
+     "operand": 4.0
+    }
+   ]
+  },
+  {
+   "id": "h1rir_7",
+   "text": "De los 17 lápices que había comprado, presté 5 a mi hermano.",
+   "expect": "VALID",
+   "initial": 17.0,
+   "entity": "lápices",
+   "ops": [
+    {
+     "operator": "subtract",
+     "operand": 5.0
+    }
+   ]
+  },
+  {
+   "id": "h1rir_8",
+   "text": "De los 18 naranjas que había comprado, presté 2 a mi hermano.",
+   "expect": "VALID",
+   "initial": 18.0,
+   "entity": "naranjas",
+   "ops": [
+    {
+     "operator": "subtract",
+     "operand": 2.0
+    }
+   ]
+  },
+  {
+   "id": "h1rir_9",
+   "text": "De los 19 peras que había comprado, presté 3 a mi hermano.",
+   "expect": "VALID",
+   "initial": 19.0,
+   "entity": "peras",
+   "ops": [
+    {
+     "operator": "subtract",
+     "operand": 3.0
+    }
+   ]
+  },
+  {
+   "id": "h1rir_10",
+   "text": "De los 20 libros que había comprado, presté 4 a mi hermano.",
+   "expect": "VALID",
+   "initial": 20.0,
+   "entity": "libros",
+   "ops": [
+    {
+     "operator": "subtract",
+     "operand": 4.0
+    }
+   ]
+  },
+  {
+   "id": "h1rir_11",
+   "text": "De los 21 cuadernos que había comprado, presté 5 a mi hermano.",
+   "expect": "VALID",
+   "initial": 21.0,
+   "entity": "cuadernos",
+   "ops": [
+    {
+     "operator": "subtract",
+     "operand": 5.0
+    }
+   ]
+  },
+  {
+   "id": "h1rir_12",
+   "text": "De los 22 lápices que había comprado, presté 2 a mi hermano.",
+   "expect": "VALID",
+   "initial": 22.0,
+   "entity": "lápices",
+   "ops": [
+    {
+     "operator": "subtract",
+     "operand": 2.0
+    }
+   ]
+  },
+  {
+   "id": "h1rir_13",
+   "text": "De los 23 naranjas que había comprado, presté 3 a mi hermano.",
+   "expect": "VALID",
+   "initial": 23.0,
+   "entity": "naranjas",
+   "ops": [
+    {
+     "operator": "subtract",
+     "operand": 3.0
+    }
+   ]
+  },
+  {
+   "id": "h1rir_14",
+   "text": "De los 24 peras que había comprado, presté 4 a mi hermano.",
+   "expect": "VALID",
+   "initial": 24.0,
+   "entity": "peras",
+   "ops": [
+    {
+     "operator": "subtract",
+     "operand": 4.0
+    }
+   ]
+  },
+  {
+   "id": "h1rir_15",
+   "text": "De los 25 libros que había comprado, presté 5 a mi hermano.",
+   "expect": "VALID",
+   "initial": 25.0,
+   "entity": "libros",
+   "ops": [
+    {
+     "operator": "subtract",
+     "operand": 5.0
+    }
+   ]
+  },
+  {
+   "id": "h1rir_16",
+   "text": "De los 26 cuadernos que había comprado, presté 2 a mi hermano.",
+   "expect": "VALID",
+   "initial": 26.0,
+   "entity": "cuadernos",
+   "ops": [
+    {
+     "operator": "subtract",
+     "operand": 2.0
+    }
+   ]
+  },
+  {
+   "id": "h1rir_17",
+   "text": "De los 27 lápices que había comprado, presté 3 a mi hermano.",
+   "expect": "VALID",
+   "initial": 27.0,
+   "entity": "lápices",
+   "ops": [
+    {
+     "operator": "subtract",
+     "operand": 3.0
+    }
+   ]
+  },
+  {
+   "id": "h1rir_18",
+   "text": "De los 28 naranjas que había comprado, presté 4 a mi hermano.",
+   "expect": "VALID",
+   "initial": 28.0,
+   "entity": "naranjas",
+   "ops": [
+    {
+     "operator": "subtract",
+     "operand": 4.0
+    }
+   ]
+  },
+  {
+   "id": "h1rir_19",
+   "text": "De los 29 peras que había comprado, presté 5 a mi hermano.",
+   "expect": "VALID",
+   "initial": 29.0,
+   "entity": "peras",
+   "ops": [
+    {
+     "operator": "subtract",
+     "operand": 5.0
+    }
+   ]
+  },
+  {
+   "id": "h1rir_20",
+   "text": "De los 30 libros que había comprado, presté 2 a mi hermano.",
+   "expect": "VALID",
+   "initial": 30.0,
+   "entity": "libros",
+   "ops": [
+    {
+     "operator": "subtract",
+     "operand": 2.0
+    }
+   ]
+  },
+  {
+   "id": "h1rir_21",
+   "text": "De los 31 cuadernos que había comprado, presté 3 a mi hermano.",
+   "expect": "VALID",
+   "initial": 31.0,
+   "entity": "cuadernos",
+   "ops": [
+    {
+     "operator": "subtract",
+     "operand": 3.0
+    }
+   ]
+  },
+  {
+   "id": "h1rir_22",
+   "text": "De los 32 lápices que había comprado, presté 4 a mi hermano.",
+   "expect": "VALID",
+   "initial": 32.0,
+   "entity": "lápices",
+   "ops": [
+    {
+     "operator": "subtract",
+     "operand": 4.0
+    }
+   ]
+  },
+  {
+   "id": "h1rir_23",
+   "text": "De los 33 naranjas que había comprado, presté 5 a mi hermano.",
+   "expect": "VALID",
+   "initial": 33.0,
+   "entity": "naranjas",
+   "ops": [
+    {
+     "operator": "subtract",
+     "operand": 5.0
+    }
+   ]
+  },
+  {
+   "id": "h1rir_24",
+   "text": "De los 34 peras que había comprado, presté 2 a mi hermano.",
+   "expect": "VALID",
+   "initial": 34.0,
+   "entity": "peras",
+   "ops": [
+    {
+     "operator": "subtract",
+     "operand": 2.0
+    }
+   ]
+  }
+ ],
+ "heldout_invertidas": [
+  {
+   "id": "inv_h1",
+   "text": "Vendí 3 de los 8 pasteles que horneé ayer.",
+   "expect": "VALID",
+   "initial": 8.0,
+   "entity": "pasteles",
+   "ops": [
+    {
+     "operator": "subtract",
+     "operand": 3.0
+    }
+   ]
+  },
+  {
+   "id": "inv_h2",
+   "text": "De los 20 caramelos que compré en la tienda, vendí 5 y di 4.",
+   "expect": "VALID",
+   "initial": 20.0,
+   "entity": "caramelos",
+   "ops": [
+    {
+     "operator": "subtract",
+     "operand": 5.0
+    },
+    {
+     "operator": "subtract",
+     "operand": 4.0
+    }
+   ]
+  },
+  {
+   "id": "inv_h3",
+   "text": "De las 15 botellas que tenía, encontré 3 más.",
+   "expect": "VALID",
+   "initial": 15.0,
+   "entity": "botellas",
+   "ops": [
+    {
+     "operator": "add",
+     "operand": 3.0
+    }
+   ]
+  },
+  {
+   "id": "inv_h4",
+   "text": "De los veinte lápices que tenía, vendí dos.",
+   "expect": "VALID",
+   "initial": 20.0,
+   "entity": "lápices",
+   "ops": [
+    {
+     "operator": "subtract",
+     "operand": 2.0
+    }
+   ]
+  },
+  {
+   "id": "inv_h5",
+   "text": "Del paquete de 12 marcadores que compré, presté 4.",
+   "expect": "VALID",
+   "initial": 12.0,
+   "entity": "marcadores",
+   "ops": [
+    {
+     "operator": "subtract",
+     "operand": 4.0
+    }
+   ]
+  },
+  {
+   "id": "inv_h6",
+   "text": "De las 9 plantas que regaló mi tía, hay 2 más.",
+   "expect": "VALID",
+   "initial": 9.0,
+   "entity": "plantas",
+   "ops": [
+    {
+     "operator": "add",
+     "operand": 2.0
+    }
+   ]
+  },
+  {
+   "id": "inv_h7",
+   "text": "De los 16 juguetes que trajo mi abuelo, me dieron 3 más y vendí 2.",
+   "expect": "VALID",
+   "initial": 16.0,
+   "entity": "juguetes",
+   "ops": [
+    {
+     "operator": "add",
+     "operand": 3.0
+    },
+    {
+     "operator": "subtract",
+     "operand": 2.0
+    }
+   ]
+  },
+  {
+   "id": "inv_a1",
+   "text": "De los 12 lápices que tenía, los usé para el proyecto.",
+   "expect": "ABSTAIN"
+  },
+  {
+   "id": "inv_a2",
+   "text": "De varias cajas que tenía, vendí 3.",
+   "expect": "ABSTAIN"
+  },
+  {
+   "id": "inv_a3",
+   "text": "De los 30 sellos que compré, quedan menos.",
+   "expect": "ABSTAIN"
+  },
+  {
+   "id": "inv_a4",
+   "text": "Compré 5 y vendí 3.",
+   "expect": "ABSTAIN"
+  },
+  {
+   "id": "inv_a5",
+   "text": "De los 40 globos que compré, regalé unos cuantos.",
+   "expect": "ABSTAIN"
+  }
+ ]
+}

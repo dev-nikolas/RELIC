@@ -1,4 +1,4 @@
-# Protocolo del experimento Puente H1 → RIR (v1, 2026-10-22)
+﻿# Protocolo del experimento Puente H1 → RIR (v1, 2026-10-22)
 
 Estado: [DESIGN] — protocolo aprobado por el propietario ANTES de escribir la cabeza.
 La hipotesis falsable: una cabeza pequena entrenada sobre H1 congelado aprende
@@ -117,11 +117,44 @@ abstiene con-validation. El bloqueo [MEDIDO] esta en el decodificador
 sintactico: parse_inventory_problem NO extrae la clausula invertida F6
 ('De los N libros que habia comprado, presto M') de la que Test 30/95
 son duplicados del train; la cabeza clasifica VALID correctamente y el plan no
-se puede generar. Etapa 4 PROYECTADA (no ejecutada): extractor invertido
-de plan en el decodificador (mind NOT the head). Nunca, bajo este protocolo, se
-dira que la cabeca de 'mejora' solo por si sola - el puente sobrevive unicamente
-con una modificacion del decodificador, y esa requiere nueva congelacion.
+se puede generar. ABIERTO al final de la etapa 3 con nueva congelacion (abajo, ETAPA 4).
 
+## ETAPA 4 (autorizada 2026-10-22) — CONGELACION previa a la implementacion
+
+Alcance: UNICAMENTE extractor de clausula invertida (nuevo modulo) + su
+integracion como fallback de parse_inventory_problem. Prohibido tocar modelo,
+despacho de intents, ejecutor, suites congeladas previas ni el oro de etapa 3.
+Estado actual: commit cc08220 es la referencia cerrada; veredicto etapa 3 NO se
+reabre ni se re-mide con criterios retrospechos.
+
+ORO congelado ANTES del codigo (tests/f6_inverted_oro_v1.json): 25 casos F6
+copiados del split sha d60eb8bb SIN retoques + 12 held-out NUEVAS (7 VALID
+estructuralmente distintas de F6: operacion-primero, multi-op, numerales
+escritos, 'del paquete de N', comienzo posesivo + 5 ABSTAIN). Prueba Rust
+(inverted_extractor_frozen_suite): 3/3 ROJO antes de implementar (evidencia).
+
+Definicion operacional (fijada ANTES de medir):
+- El "3.3x" mencionado antes de esta seccion NO es meta de etapa 4: el techo
+  [MEDIDO] del solo-extractor es 52/95 = 54.7% e2e (19 ejecutables actuales
+  + F6 25 + F7_inverted_clauses 8), porque F9-lexicon (15 palabras fuera del
+  lexico actual) y F7_passive requieren lexicos adicionales FUERA DE ALCANCE.
+  Alcanzar 66% (3.3x) exigiria tocar el lexico: protocolo aparte si procede.
+- GANAR la etapa 4 (todos obligatorios):
+  G1 factor_e2e = exactitud QuerySpec e2e mediana con extractor / 20.0%
+     (mediana de etapa 3, MISMOS preds congelados) >= 2.0 (>= 40.0%).
+  G2 bloque F6: >= 23/25 exactos (QuerySpec completa).
+  G3 held-out: 7/7 VALID exactos y 5/5 abstenciones (extractor general,
+     no receta-only-F6).
+  G4 salvaguardas: 0 aceptaciones falsas e2e; validez RIR 100% de lo
+     ejecutado; abstencion correcta 8/8 del split; suites congeladas verdes.
+  G5 no-regresion: los 19 correctos de etapa 3 siguen correctos.
+- STOP (cualquiera): >= 1 aceptacion falsa; F6 mejora pero held-out no;
+  cualquier test congelado rojo; factor < 1.5.
+- Comparacion contra despacho: mismos preds, misma particion; reporte con
+  exactitud e2e, cobertura y desglose F6/no-F6 SEPARADOS. El exito en F6
+  NUNCA se presenta como generalizacion (por eso existe G3).
+
+Estado: PENDIENTE DE EJECUTAR.
 
 ## CONGELACION DE CRITERIOS (2026-10-22, ANTES de ejecutar la etapa 2)
 
@@ -147,5 +180,6 @@ Par de candidatos permitidos (sin expancion posterior):
   A2: latente H1 congelado (64-d) + char-bigram -> MLP -> intent/domain/status.
 Tangibles adicionales (informativos, no deciden): exactitud por campo, por
 familia, desglose congelados-limpios vs duplicados-eliminados.
+
 
 
