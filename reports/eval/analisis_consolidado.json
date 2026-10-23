@@ -1,5 +1,504 @@
 [
   {
+    "dump": "reports\\eval\\dump_release_known_failures.json",
+    "suite": "tests\\known_failures.json",
+    "total_casos": 14,
+    "precision_pct": 78.6,
+    "precision_extendida_pct": 92.9,
+    "por_label": {
+      "correcto": 11,
+      "iv_abstencion_correcta": 2,
+      "iii_salida_incorrecta_ruta_ok": 1
+    },
+    "determinismo_pct": 100.0,
+    "latencia_us_p50_mediana": 42.4,
+    "latencia_us_p95_max_caso": 233.5,
+    "rss_kb_max": 3924,
+    "abstencion_pct": 14.3,
+    "detalle": [
+      {
+        "id": "¿cuánto es 1 + 1?",
+        "label": "correcto"
+      },
+      {
+        "id": "1 + 1",
+        "label": "correcto"
+      },
+      {
+        "id": "tengo 10 gatos y recibo 5",
+        "label": "correcto"
+      },
+      {
+        "id": "tengo algunas manzanas y luego compro 5",
+        "label": "iv_abstencion_correcta"
+      },
+      {
+        "id": "¿Depende el crate relic_cli del paquete memmap2?",
+        "label": "correcto"
+      },
+      {
+        "id": "¿Es posible ir de Bogotá a Madrid pasando por París evitando Tokio?",
+        "label": "iii_salida_incorrecta_ruta_ok"
+      },
+      {
+        "id": "dos más dos",
+        "label": "correcto"
+      },
+      {
+        "id": "cuanto es 2 mas 2",
+        "label": "correcto"
+      },
+      {
+        "id": "suma 2 y 2",
+        "label": "correcto"
+      },
+      {
+        "id": "Hola",
+        "label": "iv_abstencion_correcta"
+      },
+      {
+        "id": "¿Depende el crate relic_cli del paquete tokio?",
+        "label": "correcto"
+      },
+      {
+        "id": "¿Depende el crate relic_clii del paquete memmap2?",
+        "label": "correcto"
+      },
+      {
+        "id": "¿Depende el crate Relic_Cli del paquete memmap2?",
+        "label": "correcto"
+      },
+      {
+        "id": "¿Depende el crate foo del paquete bar?",
+        "label": "correcto"
+      }
+    ]
+  },
+  {
+    "dump": "reports\\eval\\dump_release_unseen_v2.json",
+    "suite": "tests\\unseen_frozen_v2.json",
+    "total_casos": 16,
+    "precision_pct": 87.5,
+    "precision_extendida_pct": 100.0,
+    "por_label": {
+      "correcto": 14,
+      "iv_abstencion_correcta": 2
+    },
+    "determinismo_pct": 100.0,
+    "latencia_us_p50_mediana": 41.3,
+    "latencia_us_p95_max_caso": 949.1,
+    "rss_kb_max": 3956,
+    "abstencion_pct": 12.5,
+    "detalle": [
+      {
+        "id": "resta 3 y 10",
+        "label": "correcto"
+      },
+      {
+        "id": "resta 12 y 5",
+        "label": "correcto"
+      },
+      {
+        "id": "cuánto es 5 - 9",
+        "label": "correcto"
+      },
+      {
+        "id": "suma 8 e 11",
+        "label": "correcto"
+      },
+      {
+        "id": "cuánto es 4 * 6",
+        "label": "correcto"
+      },
+      {
+        "id": "multiplica 6 por 7",
+        "label": "correcto"
+      },
+      {
+        "id": "quítale 4 a 10",
+        "label": "correcto"
+      },
+      {
+        "id": "tengo 12 lápices y regalo 7",
+        "label": "correcto"
+      },
+      {
+        "id": "2 más 2 son?",
+        "label": "correcto"
+      },
+      {
+        "id": "tengo algunas fichas y añado 6",
+        "label": "iv_abstencion_correcta"
+      },
+      {
+        "id": "¿Es posible ir de Bogotá a Lima?",
+        "label": "correcto"
+      },
+      {
+        "id": "¿Puedo alcanzar París desde Madrid pasando por Barcelona?",
+        "label": "correcto"
+      },
+      {
+        "id": "¿Es posible ir de Lima a París pasando por Barcelona?",
+        "label": "correcto"
+      },
+      {
+        "id": "¿Depende el crate Relic_Core del paquete memmap2?",
+        "label": "correcto"
+      },
+      {
+        "id": "¿Depende el crate relic_cli del paquete kodex?",
+        "label": "correcto"
+      },
+      {
+        "id": "la luna es de queso",
+        "label": "iv_abstencion_correcta"
+      }
+    ]
+  },
+  {
+    "dump": "reports\\eval\\dump_release_unseen_v1.json",
+    "suite": "tests\\unseen_independent_test.json",
+    "total_casos": 7,
+    "precision_pct": 42.9,
+    "precision_extendida_pct": 57.1,
+    "por_label": {
+      "v_abstencion_innecesaria": 3,
+      "correcto": 3,
+      "iv_abstencion_correcta": 1
+    },
+    "determinismo_pct": 100.0,
+    "latencia_us_p50_mediana": 43.4,
+    "latencia_us_p95_max_caso": 180.6,
+    "rss_kb_max": 3852,
+    "abstencion_pct": 14.3,
+    "detalle": [
+      {
+        "id": "veintitrés más cuatro",
+        "label": "v_abstencion_innecesaria"
+      },
+      {
+        "id": "súmame 2 y 2",
+        "label": "v_abstencion_innecesaria"
+      },
+      {
+        "id": "2 más 2 son?",
+        "label": "correcto"
+      },
+      {
+        "id": "cuánto da 7 por 3",
+        "label": "correcto"
+      },
+      {
+        "id": "quítale 4 a 10",
+        "label": "correcto"
+      },
+      {
+        "id": "si tengo diez y regalo tres cuántas me quedan",
+        "label": "v_abstencion_innecesaria"
+      },
+      {
+        "id": "la tierra no puede volar",
+        "label": "iv_abstencion_correcta"
+      }
+    ]
+  },
+  {
+    "dump": "reports\\eval\\dump_release_semantic_queries.json",
+    "suite": "data\\benchmarks\\semantic_queries_es.json",
+    "total_casos": 14,
+    "precision_pct": 35.7,
+    "precision_extendida_pct": 35.7,
+    "por_label": {
+      "correcto": 5,
+      "v_abstencion_innecesaria": 9
+    },
+    "determinismo_pct": 100.0,
+    "latencia_us_p50_mediana": 47.2,
+    "latencia_us_p95_max_caso": 298.2,
+    "rss_kb_max": 3920,
+    "abstencion_pct": 0.0,
+    "detalle": [
+      {
+        "id": "query_direct_01",
+        "label": "correcto"
+      },
+      {
+        "id": "query_direct_02",
+        "label": "v_abstencion_innecesaria"
+      },
+      {
+        "id": "query_direct_03",
+        "label": "correcto"
+      },
+      {
+        "id": "query_direct_04",
+        "label": "v_abstencion_innecesaria"
+      },
+      {
+        "id": "query_direct_05",
+        "label": "v_abstencion_innecesaria"
+      },
+      {
+        "id": "query_via_01",
+        "label": "v_abstencion_innecesaria"
+      },
+      {
+        "id": "query_via_02",
+        "label": "v_abstencion_innecesaria"
+      },
+      {
+        "id": "query_neg_01",
+        "label": "correcto"
+      },
+      {
+        "id": "query_neg_02",
+        "label": "v_abstencion_innecesaria"
+      },
+      {
+        "id": "query_incomplete_01",
+        "label": "correcto"
+      },
+      {
+        "id": "query_incomplete_02",
+        "label": "correcto"
+      },
+      {
+        "id": "query_unknown_01",
+        "label": "v_abstencion_innecesaria"
+      },
+      {
+        "id": "query_rule_01",
+        "label": "v_abstencion_innecesaria"
+      },
+      {
+        "id": "query_rule_02",
+        "label": "v_abstencion_innecesaria"
+      }
+    ]
+  },
+  {
+    "dump": "reports\\eval\\dump_release_semantic_adversarial.json",
+    "suite": "data\\benchmarks\\semantic_adversarial_es.json",
+    "total_casos": 16,
+    "precision_pct": 25.0,
+    "precision_extendida_pct": 25.0,
+    "por_label": {
+      "correcto": 4,
+      "v_abstencion_innecesaria": 12
+    },
+    "determinismo_pct": 100.0,
+    "latencia_us_p50_mediana": 90,
+    "latencia_us_p95_max_caso": 1256.1,
+    "rss_kb_max": 3960,
+    "abstencion_pct": 0.0,
+    "detalle": [
+      {
+        "id": "adv_paraphrase_01",
+        "label": "correcto"
+      },
+      {
+        "id": "adv_paraphrase_02",
+        "label": "v_abstencion_innecesaria"
+      },
+      {
+        "id": "adv_paraphrase_03",
+        "label": "correcto"
+      },
+      {
+        "id": "adv_paraphrase_04",
+        "label": "v_abstencion_innecesaria"
+      },
+      {
+        "id": "adv_paraphrase_05",
+        "label": "v_abstencion_innecesaria"
+      },
+      {
+        "id": "adv_double_neg_01",
+        "label": "v_abstencion_innecesaria"
+      },
+      {
+        "id": "adv_simple_neg_01",
+        "label": "v_abstencion_innecesaria"
+      },
+      {
+        "id": "adv_simple_neg_02",
+        "label": "v_abstencion_innecesaria"
+      },
+      {
+        "id": "adv_waypoint_01",
+        "label": "v_abstencion_innecesaria"
+      },
+      {
+        "id": "adv_waypoint_02",
+        "label": "v_abstencion_innecesaria"
+      },
+      {
+        "id": "adv_avoid_01",
+        "label": "v_abstencion_innecesaria"
+      },
+      {
+        "id": "adv_unknown_via_01",
+        "label": "v_abstencion_innecesaria"
+      },
+      {
+        "id": "adv_unknown_entity_01",
+        "label": "v_abstencion_innecesaria"
+      },
+      {
+        "id": "adv_incomplete_01",
+        "label": "correcto"
+      },
+      {
+        "id": "adv_incomplete_02",
+        "label": "correcto"
+      },
+      {
+        "id": "adv_rule_01",
+        "label": "v_abstencion_innecesaria"
+      }
+    ]
+  },
+  {
+    "dump": "reports\\eval\\dump_release_probe_abstencion.json",
+    "suite": "tools\\eval\\probe_abstencion_interno.json",
+    "total_casos": 30,
+    "precision_pct": 6.7,
+    "precision_extendida_pct": 96.7,
+    "por_label": {
+      "iv_abstencion_correcta": 27,
+      "ii_rir_malo_aceptado": 1,
+      "correcto": 2
+    },
+    "determinismo_pct": 100.0,
+    "latencia_us_p50_mediana": 57.1,
+    "latencia_us_p95_max_caso": 2023.1,
+    "rss_kb_max": 4140,
+    "abstencion_pct": 90.0,
+    "detalle": [
+      {
+        "id": "desconocida_01",
+        "label": "iv_abstencion_correcta"
+      },
+      {
+        "id": "desconocida_02",
+        "label": "iv_abstencion_correcta"
+      },
+      {
+        "id": "desconocida_03",
+        "label": "iv_abstencion_correcta"
+      },
+      {
+        "id": "desconocida_04",
+        "label": "iv_abstencion_correcta"
+      },
+      {
+        "id": "desconocida_05",
+        "label": "iv_abstencion_correcta"
+      },
+      {
+        "id": "desconocida_06",
+        "label": "iv_abstencion_correcta"
+      },
+      {
+        "id": "desconocida_07",
+        "label": "iv_abstencion_correcta"
+      },
+      {
+        "id": "desconocida_08",
+        "label": "iv_abstencion_correcta"
+      },
+      {
+        "id": "desconocida_09",
+        "label": "iv_abstencion_correcta"
+      },
+      {
+        "id": "desconocida_10",
+        "label": "iv_abstencion_correcta"
+      },
+      {
+        "id": "ambigua_01",
+        "label": "ii_rir_malo_aceptado"
+      },
+      {
+        "id": "ambigua_02",
+        "label": "iv_abstencion_correcta"
+      },
+      {
+        "id": "ambigua_03",
+        "label": "iv_abstencion_correcta"
+      },
+      {
+        "id": "ambigua_04",
+        "label": "iv_abstencion_correcta"
+      },
+      {
+        "id": "ambigua_05",
+        "label": "iv_abstencion_correcta"
+      },
+      {
+        "id": "ambigua_06",
+        "label": "iv_abstencion_correcta"
+      },
+      {
+        "id": "ambigua_07",
+        "label": "iv_abstencion_correcta"
+      },
+      {
+        "id": "ambigua_08",
+        "label": "iv_abstencion_correcta"
+      },
+      {
+        "id": "fuera_dominio_01",
+        "label": "iv_abstencion_correcta"
+      },
+      {
+        "id": "fuera_dominio_02",
+        "label": "iv_abstencion_correcta"
+      },
+      {
+        "id": "fuera_dominio_03",
+        "label": "iv_abstencion_correcta"
+      },
+      {
+        "id": "fuera_dominio_04",
+        "label": "iv_abstencion_correcta"
+      },
+      {
+        "id": "fuera_dominio_05",
+        "label": "iv_abstencion_correcta"
+      },
+      {
+        "id": "fuera_dominio_06",
+        "label": "iv_abstencion_correcta"
+      },
+      {
+        "id": "fuera_dominio_07",
+        "label": "iv_abstencion_correcta"
+      },
+      {
+        "id": "bait_falso_acepte_01",
+        "label": "iv_abstencion_correcta"
+      },
+      {
+        "id": "bait_falso_acepte_02",
+        "label": "iv_abstencion_correcta"
+      },
+      {
+        "id": "bait_falso_acepte_03",
+        "label": "correcto"
+      },
+      {
+        "id": "bait_falso_acepte_04",
+        "label": "correcto"
+      },
+      {
+        "id": "bait_falso_acepte_05",
+        "label": "iv_abstencion_correcta"
+      }
+    ]
+  },
+  {
     "dump": "reports\\eval\\dump_release_unseen_v1_post_numerals.json",
     "suite": "tests\\unseen_independent_test.json",
     "total_casos": 7,

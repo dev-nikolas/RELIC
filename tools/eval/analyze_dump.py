@@ -248,9 +248,22 @@ def main() -> None:
         print(f"== {os.path.basename(dump)} -> {out}")
         print(f"   casos={r['total_casos']} precision={r['precision_pct']}% determinismo={r['determinismo_pct']}% abstencion={r['abstencion_pct']}% lat_p50={r['latencia_us_p50_mediana']:.0f}us lat_p95_max={r['latencia_us_p95_max_caso']:.0f}us rss_max={r['rss_kb_max']:.0f}kb")
         print(f"   labels: {json.dumps(r['por_label'], ensure_ascii=False)}")
-    with open("reports/eval/analisis_consolidado.json", "w", encoding="utf-8") as f:
-        json.dump(todo, f, ensure_ascii=False, indent=2)
-    print("consolidado: reports/eval/analisis_consolidado.json")
+    # Consolidado append-merge: preserva corridas previas (identificadas por dump+suite),
+    # solo sustituye entradas re-analizadas en esta invocacion.
+    consolidado_path = "reports/eval/analisis_consolidado.json"
+    historico = []
+    if os.path.exists(consolidado_path):
+        with open(consolidado_path, encoding="utf-8") as f:
+            try:
+                historico = json.load(f)
+            except json.JSONDecodeError:
+                historico = []
+    claves_ahora = {(d["dump"], d["suite"]) for d in todo}
+    fusion = [h for h in historico if (h.get("dump"), h.get("suite")) not in claves_ahora]
+    fusion.extend(todo)
+    with open(consolidado_path, "w", encoding="utf-8") as f:
+        json.dump(fusion, f, ensure_ascii=False, indent=2)
+    print(f"consolidado: {consolidado_path} ({len(fusion)} corridas)")
 
 
 if __name__ == "__main__":
