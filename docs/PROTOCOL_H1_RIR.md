@@ -119,6 +119,70 @@ sintactico: parse_inventory_problem NO extrae la clausula invertida F6
 son duplicados del train; la cabeza clasifica VALID correctamente y el plan no
 se puede generar. ABIERTO al final de la etapa 3 con nueva congelacion (abajo, ETAPA 4).
 
+## ETAPA 5 (autorizada 2026-10-22) — protocolo NUEVO, congelado ANTES de ejecutar
+
+Referencias preservadas: veredictos etapa 3 (cc08220) y etapa 4 (a9bbf8f)
+no se editan ni re-miden. El extractor queda integrado con el veredicto
+formal "NO GANA por G2" tal cual registrado.
+
+1. DEFINICION OPERACIONAL "desembragon consolidate/a" (ejecutor):
+   - Entrenamiento DETERMINISTA por semilla {42,123,999}: corrida unica,
+     epocas fijas (80), SIN early-stopping por validacion y SIN tuning
+     posterior a la primera metrica observada.
+   - Pesos circulados se firman sha256 en el registro; reentrenar significa
+     NUEVA entrada append-only en prot_h1rir_intentos.jsonl (prohibido
+     sobreescribir intentos: p-hacking).
+   - El split y los hiperparametros se congelan en commits ANTES de correr.
+   - "seal" = ningun cluster de la particion de prueba (los 95 congelados,
+     sha d60eb8bb) toca train/val; clausura POR CONSTRUCCION verificada por
+     hash y por inclusion-clave en el codigo del split.
+
+2. SPLIT POR CONSTRUCCION, no por frase:
+   - Claves de cluster = (family, structure): family del jsonl + estructura
+     textual con digitos -> "#" y todo token alfanumerico no-estructural
+     -> <w> (lista blanca estructural: de los las del que y pero luego
+     despues mas menos tengo hay poseo tenia). Parafasis casi identicas
+     caen en el MISMO cluster (los 25 F6 colapsan en 1).
+   - Todo cluster que contenga un texto del set congelado 95 (exacto) o cuyo
+     structure coincida con el de algo congelado -> cluster SEILLADO: excluido
+     de train/val.
+   - Train/val = reparto determinista de clustere libres (seed derivada del
+     id del cluster, sin mirar resultados): ~90/10 por clusters.
+   - Salida: reports/eval/prot_h1rir_etapa5_train.jsonl + _val.jsonl +
+     _sha256.json (huellas). Prohibido re-generar el split tras ver metricas.
+
+3. DATOS DE ENTRENAMIENTO especificados:
+   - Filas: TODAS las 453 del dataset semantic_compiler (train+val+test_id+
+     test_ood como fuente de CABEZA para el 75% no-sealed) - el conjunto
+     final de la evaluaecion es SIEMPRE el split congelado 95 (sha d60eb8bb).
+   - Etiquetas de cabeza: intent, domain, status presencia en rir (mismas
+     clases que etapa 3, sin clase nueva).
+   - Caracteristicas: mismas de etapa 3 (latente H1 [RECONSTRUIDO] de 64-d
+     + char-bigram). VOCABULARIO char-bigram construido SOLO de textos de
+     train/val sealed split (cambio documentado vs etapa 2, que usaba el
+     vocab de dev completo).
+   - Arquitectura: IDENTICA a A2 (cambiar algo mas introduciria cofundido:
+     la etapa 5 atribuye sus resultados a CLEAN-DATA, no a arquitectura;
+     documentado para el control comparable - requisito del protocolo).
+
+4. CRITERIOS FRENTE A LA(EJECUTAR) (95 congelados, mediana 3 semillas,
+   mismas metricas y casos para la cabeza ANTIGUA (preds congelados v1) y
+   la n v2; techo estructural [MEDIDO] = 52/95 = 54.7% + 8 abstenciones):
+   - CONTINUA: mediana e2e QuerySpec >= 45.0% (>= 47/95) Y F6 >= 23/25 Y
+     0 aceptaciones falsas Y validez RIR 100% Y abstencion >= 7/8 Y
+     no-regresion (todos los correctos de etapa 4 de la misma semilla) Y
+     suites congeladas verdes Y lat p50 <= 250 us.
+   - GRIS (investigar, no asignar victoria): 35.0% <= mediana < 45.0% con
+     TODAS las salvaguardas Y F6 >= 18/25.
+   - DETENER: mediana < 35.0% O aceptacion falsa >= 1 O test congelado rojo.
+   - Latencia y cobertura se reportan SIEMPRE (no son gate).
+   - Referencia control v1 (etapa 4, COMMITEADO): 40.0% e2e mediana.
+5. NO ACTIVACION: en NINGUN caso la etapa 5 integra el puente completo en
+   produccion; хотя siendo GANA, el despliegue requiere una autorizacion
+   separada del usuario.
+
+Estado: PENDIENTE DE EJECUTAR.
+
 ## ETAPA 4 (autorizada 2026-10-22) — CONGELACION previa a la implementacion
 
 Alcance: UNICAMENTE extractor de clausula invertida (nuevo modulo) + su
@@ -205,6 +269,7 @@ Par de candidatos permitidos (sin expancion posterior):
   A2: latente H1 congelado (64-d) + char-bigram -> MLP -> intent/domain/status.
 Tangibles adicionales (informativos, no deciden): exactitud por campo, por
 familia, desglose congelados-limpios vs duplicados-eliminados.
+
 
 
 
