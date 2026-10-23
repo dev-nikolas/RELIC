@@ -1,4 +1,4 @@
-# ESTADO Y ORIENTACION (2026-10-22)
+﻿# ESTADO Y ORIENTACION (2026-10-22)
 
 > Documento auto-exigido de analisis y medicion de RELIC. Cada cifra lleva etiqueta:
 > [MEDIDO] = corrida local verificable hoy; [HISTORICO] = cifras congeladas de checkpoints previos;
@@ -156,7 +156,56 @@ concreta guiada por evidencia:
   no parsear (0 ejecuciones con RIR malo en adversarial Rust).
 - El checkpoint 10M guardado es inutilizable como LM (peor que uniforme supuesto del vocab;
   un bigrama lo aplasta 8.90 vs 1.48 [MEDIDO]) y las suites del README citan agradecimiento
-  a nombres del mismo pipeline [HISTORICO] cuya amplificaron 40-90x no esta medida hoy.
-- Solicitud VERIFICABLE apuntada a terceros: los 4 bloques y las plantillas Colab queden
-  listos y marcados [PENDIENTE DE EJECUTAR] porque no hay hardware externo aqui.
+  a nombres del mismo pipeline [HISTORICO] cuya amplificacion 40-90x no esta medida hoy.
+- Solicitud VERIFICABLE apuntada a terceros: los 4 bloques y las plantillas Colab quedan
+  listos y marcados [PENDIENTE DE EJECUTAR] mientras no haya hardware externo aqui.
+
+## 10. CIERRE FORMAL DE LA LINEA H1->RIR (2026-10-22, decision del protocolo)
+
+Veredicto: la linea H1->RIR SE CIERRA con resultado NEGATIVO documentado.
+Protocolo completo: docs/PROTOCOL_H1_RIR.md (etapas 1-5, criterios congelados
+en cada etapa, decisiones append-only).
+
+Alcance EXACTO de la conclusion (sin sobregeneralizar):
+- REFUTADO: la suficiencia de (a) Esta configuracion de cabeza (A2:
+  latente H1 [RECONSTRUIDO] + char-bigram), (b) este dataset
+  (semantic_compiler 483 filas) y (c) este procedimiento de entrenamiento,
+  para lograr ruteo semantico generalizable del puente H1->RIR.
+- NO refutado: que exista alguna otra cabeza neuronal capaz, ni que la
+  arquitectura A2 sea intrinsecamente inutil.
+- Evidencia central [MEDIDO]: bajo split sellado por construccion (0 filas
+  de inventario VALID entrenables sin contaminar la evaluacion, 46 de 57
+  clusters sellados), la tupla exacta de la cabeza cae a 2.1% mediana y la
+  e2e de extremo a extremo a 1.1% => DETENER. Las cifras favorables previas
+  (tupla 73.7% etapa 2; e2e 40.0% etapa 4) quedan EN EL HISTORIAL
+  etiquetadas [CONTAMINADAS]: dependian de parafasis casi identicas
+  entre train y evaluacion (memorizacion, no generalizacion).
+
+Estado final de piezas:
+- Extractor invertido: SE PRESERVA integrado y con sus pruebas (25/25 F6 +
+  7/7 estructuras nuevas + 5/5 abstenciones, Rust 3/3); su alcance es el de
+  esas baterias, no cobertura general. TODO futuro uso del extractor se
+  firma contra el archivo tests/f6_inverted_oro_v1.json congelado.
+- Despacho Rust / ejecutor / suites congeladas (unseen_frozen_v2 16 casos,
+  known_failures_v2 14): INTACTOS y verdes.
+- Puente H1->RIR: NO activado en produccion. Prohibido tocar hasta nueva
+  evidencia (el protocolo una-seal STOP fue respetado tal cual).
+- Proximo experimento: AUTORIZADO SOLO CON DATOS NUEVOS de inventario con
+  separacion de construcciones disenada desde el principio (no se reabre
+  esta etapa ni se invalida su resultado; seria una hipotesis nueva).
+
+Lo que RELIC conserva de valor que NO depende de esta cabeza (no confundir
+un resultado negativo con un juicio sobre todo el proyecto):
+- Motor determinista Rust con abstencion honesta y determinismo 100%
+  [MEDIDO]; grafos temporales y RIR con validaciones existentes.
+- Numerales escritos (0-29 + decenas), extractor invertido y su bateria,
+  numerales-tests congelados.
+- Harness de medicion (eval_dump/bridges/consolidado) y la disciplina de
+  congelacion + huellas sha256 + messenger con etiquetas [MEDIDO]/[HISTORICO].
+- Pendiente externo: set de terceros (plantilla lista) y Colab/Kaggle para
+  el modelo de lenguaje grande [PENDIENTE DE EJECUTAR]; sin hardware externo
+  no hay mediciones nuevas: el checkpoint 10M sigue [MEDIDO] invalido como LM.
+
+
+
 
