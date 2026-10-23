@@ -1,0 +1,1504 @@
+{
+ "defs": "ver docstring",
+ "semillas": {
+  "42": {
+   "cobertura": 0.2,
+   "exactitud_queryspec_pct": 20.0,
+   "validez_rir_pct": 100.0,
+   "abstencion_correcta": 8,
+   "aceptacion_falsa": 0,
+   "falso_rechazo": 68,
+   "queryspec_incorrecto": 0,
+   "lat_us_p50_media": 50.2
+  },
+  "123": {
+   "cobertura": 0.2,
+   "exactitud_queryspec_pct": 20.0,
+   "validez_rir_pct": 100.0,
+   "abstencion_correcta": 8,
+   "aceptacion_falsa": 0,
+   "falso_rechazo": 68,
+   "queryspec_incorrecto": 0,
+   "lat_us_p50_media": 87.3
+  },
+  "999": {
+   "cobertura": 0.1789,
+   "exactitud_queryspec_pct": 17.9,
+   "validez_rir_pct": 100.0,
+   "abstencion_correcta": 8,
+   "aceptacion_falsa": 0,
+   "falso_rechazo": 70,
+   "queryspec_incorrecto": 0,
+   "lat_us_p50_media": 93.4
+  }
+ },
+ "fallos_completos": {
+  "42": [
+   {
+    "id": "h1rir_0",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_1",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_2",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_3",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "AMBIGUOUS"
+   },
+   {
+    "id": "h1rir_4",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_5",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_6",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_7",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "AMBIGUOUS"
+   },
+   {
+    "id": "h1rir_8",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "AMBIGUOUS"
+   },
+   {
+    "id": "h1rir_9",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "AMBIGUOUS"
+   },
+   {
+    "id": "h1rir_10",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_11",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "AMBIGUOUS"
+   },
+   {
+    "id": "h1rir_12",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "AMBIGUOUS"
+   },
+   {
+    "id": "h1rir_13",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "AMBIGUOUS"
+   },
+   {
+    "id": "h1rir_14",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "AMBIGUOUS"
+   },
+   {
+    "id": "h1rir_15",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_16",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "AMBIGUOUS"
+   },
+   {
+    "id": "h1rir_17",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "AMBIGUOUS"
+   },
+   {
+    "id": "h1rir_18",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "AMBIGUOUS"
+   },
+   {
+    "id": "h1rir_19",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "AMBIGUOUS"
+   },
+   {
+    "id": "h1rir_20",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_21",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "AMBIGUOUS"
+   },
+   {
+    "id": "h1rir_22",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "AMBIGUOUS"
+   },
+   {
+    "id": "h1rir_23",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "AMBIGUOUS"
+   },
+   {
+    "id": "h1rir_24",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "AMBIGUOUS"
+   },
+   {
+    "id": "h1rir_32",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_33",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_38",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_39",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_40",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_41",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_42",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_43",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_44",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_45",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_48",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_49",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_52",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_53",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_54",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_55",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_58",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_59",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_60",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_61",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_64",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_65",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_66",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_67",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_68",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_69",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_70",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "AMBIGUOUS"
+   },
+   {
+    "id": "h1rir_71",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "UNSUPPORTED"
+   },
+   {
+    "id": "h1rir_72",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_73",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_74",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_75",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "AMBIGUOUS"
+   },
+   {
+    "id": "h1rir_76",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "UNSUPPORTED"
+   },
+   {
+    "id": "h1rir_77",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_78",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_79",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_80",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_81",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_82",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "INCOMPLETE"
+   },
+   {
+    "id": "h1rir_83",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "AMBIGUOUS"
+   },
+   {
+    "id": "h1rir_84",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_85",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_86",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   }
+  ],
+  "123": [
+   {
+    "id": "h1rir_0",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_1",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_2",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_3",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_4",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_5",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_6",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_7",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_8",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_9",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_10",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_11",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_12",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_13",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_14",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_15",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_16",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_17",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_18",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_19",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_20",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_21",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_22",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_23",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_24",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_32",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_33",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_38",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_39",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "INCOMPLETE"
+   },
+   {
+    "id": "h1rir_40",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_41",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_42",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_43",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_44",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_45",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_48",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_49",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_52",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_53",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_54",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_55",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_58",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_59",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_60",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_61",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_64",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_65",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_66",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "INCOMPLETE"
+   },
+   {
+    "id": "h1rir_67",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_68",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_69",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_70",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_71",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_72",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_73",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_74",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "INCOMPLETE"
+   },
+   {
+    "id": "h1rir_75",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "INCOMPLETE"
+   },
+   {
+    "id": "h1rir_76",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "UNSUPPORTED"
+   },
+   {
+    "id": "h1rir_77",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_78",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_79",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_80",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_81",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_82",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "INCOMPLETE"
+   },
+   {
+    "id": "h1rir_83",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "INCOMPLETE"
+   },
+   {
+    "id": "h1rir_84",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_85",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_86",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   }
+  ],
+  "999": [
+   {
+    "id": "h1rir_0",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_1",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_2",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_3",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_4",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_5",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_6",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_7",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_8",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_9",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_10",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_11",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_12",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_13",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "INCOMPLETE"
+   },
+   {
+    "id": "h1rir_14",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_15",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_16",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_17",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_18",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_19",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_20",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_21",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_22",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_23",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "INCOMPLETE"
+   },
+   {
+    "id": "h1rir_24",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_32",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_33",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_38",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_39",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_40",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_41",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_42",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_43",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_44",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_45",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_48",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_49",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_50",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_52",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_53",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_54",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_55",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_56",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_58",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_59",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_60",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_61",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_64",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_65",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_66",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "INCOMPLETE"
+   },
+   {
+    "id": "h1rir_67",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_68",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_69",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_70",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_71",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "UNSUPPORTED"
+   },
+   {
+    "id": "h1rir_72",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_73",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_74",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_75",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "INCOMPLETE"
+   },
+   {
+    "id": "h1rir_76",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "UNSUPPORTED"
+   },
+   {
+    "id": "h1rir_77",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_78",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_79",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_80",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   },
+   {
+    "id": "h1rir_81",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "INCOMPLETE"
+   },
+   {
+    "id": "h1rir_82",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "INCOMPLETE"
+   },
+   {
+    "id": "h1rir_83",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "INCOMPLETE"
+   },
+   {
+    "id": "h1rir_84",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "INCOMPLETE"
+   },
+   {
+    "id": "h1rir_85",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "INCOMPLETE"
+   },
+   {
+    "id": "h1rir_86",
+    "gold_status": "VALID",
+    "ejecutado": false,
+    "motivo": "sin plan extraible por el parseador existente",
+    "pred_status": "VALID"
+   }
+  ]
+ },
+ "mediana_3_semillas": {
+  "cobertura": 0.2,
+  "exactitud_queryspec_pct": 20.0,
+  "abstencion_correcta": 8,
+  "aceptacion_falsa": 0
+ },
+ "referencia_despacho_rust": {
+  "cobertura_rir_pct": 48.4,
+  "concordancia_intencion_pct": 20.0,
+  "n": 95
+ },
+ "referencia_protocolo": {
+  "tupla_exacta_pct_despacho": 54.7,
+  "baseline_charbigram_acc": {
+   "intent": 0.7053,
+   "domain": 0.7789,
+   "status": 0.6211
+  }
+ }
+}

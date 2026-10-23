@@ -91,6 +91,37 @@ B2 - re-auditoria de suites congeladas con el binario post-numerales
 - probe de abstencion: 27/30 correctas + 2 VALID correctos, idem pre-cambio.
 Determinismo 100% en todas las corridas de B2.
 
+## ETAPA 3 (2026-10-22) — aislada en tools, despacho y ejecutor intactos
+
+Notas de definicion, fijadas ANTES de mirar resultados:
+- El "100% congelado" invocado en el repo tiempo atras es UNICAMENTE: suite no
+  congelada unseen_frozen_v2 de 16 casos = 14 correctos + 2 abstenciones de oro.
+  NO es una afirmacion global de precision del sistema y queda definido asi.
+- El puente NO modifica produccion: corre como ejemplo aislado
+  (crates/relic_cli/examples/bridge_dump.rs) que SOLO elige entre caminos
+  existentes; textos de abstencion tomados del engine (0 frases nuevas);
+  sin inventar estructuras (0 aceptaciones falsas exigible).
+- concurrentemente se documenta: la ventaja del puente en la MEDICION DE ANALIZA
+  no se evalua si no llega al flujo completo: se mide aqui exactamente eso.
+
+Resultados por semilla [MEDIDO], reports/eval/prot_h1rir_etapa3_resultados.json:
+- cobertura ejecutable: 20.0% (mediana; 17.9-20.0)
+- exactitud QuerySpec de lo ejecutado: 20.0% mediana; validez RIR 100%
+- abstencion correcta: 8/8 x3 semillas; aceptacion_falsa: 0/95 x3
+- falso_rechazo: 68-70 (oro VALID sin plan extraible por el parseador existente)
+- referencia despacho [MEDIDO]: cobertura_rir 48.4%, concordancia 20.0%
+VEREDICTO: la mejora de A2 (73.7% vs baseline 44.2% de mediana en la metrica
+de cabeza) NO llega al flujo completo: queda en 20.0% mediana, igual que el
+despacho, y por debajo de su cobertura ejecutando el plan - por defecto se
+abstiene con-validation. El bloqueo [MEDIDO] esta en el decodificador
+sintactico: parse_inventory_problem NO extrae la clausula invertida F6
+('De los N libros que habia comprado, presto M') de la que Test 30/95
+son duplicados del train; la cabeza clasifica VALID correctamente y el plan no
+se puede generar. Etapa 4 PROYECTADA (no ejecutada): extractor invertido
+de plan en el decodificador (mind NOT the head). Nunca, bajo este protocolo, se
+dira que la cabeca de 'mejora' solo por si sola - el puente sobrevive unicamente
+con una modificacion del decodificador, y esa requiere nueva congelacion.
+
 
 ## CONGELACION DE CRITERIOS (2026-10-22, ANTES de ejecutar la etapa 2)
 
