@@ -1,5 +1,5 @@
 {
- "meta": "ORO etapa 4 congelado ANTES de la implementacion. F6 = entradas/oro copiados del split firmado sha d60eb8bb (sin retoques). heldout = construcciones invertidas NUEVAS estructuralmente distintas, escritas antes del extractor, NUNCA derivadas de el. abstain: el extractor debe devolver None (no se inventan plan).",
+ "meta": "ORO etapa 4 congelado ANTES de la implementacion. F6 = entradas/oro copiados del split firmado sha d60eb8bb (sin retoques). heldout = construcciones invertidas NUEVAS estructuralmente distintas, escritas antes del extractor, NUNCA derivadas de el. abstain: el extractor debe devolver None (no se inventan plan). | ERRATUM pre-implementacion (ff64fc2->): h7 cambiado de me dieron 3 más a encontré 3 más por colision substring di del lexico original (dispatch.rs:73); nada medido aún.",
  "f6_frozen": [
   {
    "id": "h1rir_0",
@@ -412,7 +412,7 @@
   },
   {
    "id": "inv_h7",
-   "text": "De los 16 juguetes que trajo mi abuelo, me dieron 3 más y vendí 2.",
+   "text": "De los 16 juguetes que trajo mi abuelo, encontré 3 más y vendí 2.",
    "expect": "VALID",
    "initial": 16.0,
    "entity": "juguetes",

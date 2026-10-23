@@ -1,7 +1,7 @@
-﻿//! Suite congelada de etapa 4: extractor de clÃ¡usulas invertidas.
-//! Lea tests/f6_inverted_oro_v1.json (congelado ANTES de la implementaciÃ³n).
-//! ROJO antes del extractor, VERDE despuÃ©s SIN retroceso del resto.
-//! menos de 180 lÃ­neas.
+﻿//! Suite congelada de etapa 4: extractor de cláusulas invertidas.
+//! Lea tests/f6_inverted_oro_v1.json (congelado ANTES de la implementación).
+//! ROJO antes del extractor, VERDE después SIN retroceso del resto.
+//! menos de 180 líneas.
 
 use relic_cli::dispatch::parse_inventory_problem;
 use relic_cli::normalize::normalize_query;
@@ -30,11 +30,12 @@ fn verifica(caso: &Value, tag: &str) {
                 let signo = matches!(s.0, relic_core::ArithmeticOp::Add);
                 let g_add = g["operator"] == "add";
                 assert_eq!(signo, g_add, "[{}] signo {}", tag, texto);
-                assert!((s.1 - g["operand"].as_f64().unwrap()).abs() < 1e-9, "[{}] operando {}", tag, texto);
+                assert!((s.1 - g["operand"].as_f64().unwrap()).abs() < 1e-9,
+                    "[{}] operando {}", tag, texto);
             }
         }
-        "ABSTAIN" => assert!(plan.is_none(), "[{}] debe abstener: {} => {:?}", tag, texto, plan),
-        o => panic!("expect desconocido {}", o),
+        "ABSTAIN" => assert!(plan.is_none(), "[{}] debe abstener: {}", tag, texto),
+        o => panic!("expect desconocido {}: {}", tag, o),
     }
 }
 
@@ -50,13 +51,12 @@ fn etapa4_heldout_invertidas_genericas() {
 
 #[test]
 fn etapa4_casos_canonicos_estables() {
-    // casos canonico preexistente deben seguir leyÃ©ndose igual (sin regresion)
-    let p = parse_inventory_problem("Tengo 8 lÃ¡pices y prestÃ© 2.");
-    assert!(p.is_some(), "regresiÃ³n: caso canonico dejo de parsear");
+    // casos canonico preexistente deben seguir leyéndose igual (sin regresion)
+    let p = parse_inventory_problem("Tengo 8 lápices y presté 2.");
+    assert!(p.is_some(), "regresión: caso canonico dejo de parsear");
     let p = p.unwrap();
     assert_eq!(p.initial, 8.0);
-    assert_eq!(p.unit.as_deref(), Some("lÃ¡pices"));
+    assert_eq!(p.unit.as_deref(), Some("lápices"));
     assert_eq!(p.steps.len(), 1);
     assert!(!matches!(p.steps[0].0, relic_core::ArithmeticOp::Add), "deberia ser resta");
 }
-

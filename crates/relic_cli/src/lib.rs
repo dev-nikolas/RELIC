@@ -8,6 +8,7 @@ pub mod bench;
 pub mod demo;
 pub mod dispatch;
 pub mod graph;
+pub mod inverted;
 pub mod knowledge;
 pub mod math;
 pub mod monitor;

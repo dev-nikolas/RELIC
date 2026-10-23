@@ -25,7 +25,14 @@ pub struct QuerySpec {
     pub is_negated: bool,
 }
 
+/// Parse de inventario: camino estándar + extractor invertido como fallback.
+/// Solo contrato nuevo: el extractor es el único añadido (etapa 4).
 pub fn parse_inventory_problem(text: &str) -> Option<ArithmeticPlan> {
+    parse_inventory_problem_estandar(text)
+        .or_else(|| crate::inverted::parse_inverted_inventory(text))
+}
+
+fn parse_inventory_problem_estandar(text: &str) -> Option<ArithmeticPlan> {
     let lower = text.to_lowercase();
     let prefixes = ["tengo ", "hay ", "poseo ", "tenía ", "tenia ", "cuento con ", "contaba con "];
     let (idx_start, prefix_len) = prefixes.iter().find_map(|&p| {
