@@ -1,0 +1,10 @@
+{
+ "train_sha256": "229db6e1a92a617dddb68e94266f68c0f160c1be14b8236c7bc3087104b4140e",
+ "val_sha256": "5e1c846712b67cd4a6f4e52f69e438d84013e46530b32b2db2a45f264eb78325",
+ "n_train": 127,
+ "n_val": 1,
+ "n_clusters_libres": 11,
+ "n_clusters_sealed": 46,
+ "total_rows": 483,
+ "regla": "union-find family+Jaccard>=0.4 (sin numerales); text exacto elimina cluster"
+}
