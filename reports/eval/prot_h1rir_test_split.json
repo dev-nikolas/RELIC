@@ -1,0 +1,1602 @@
+{
+ "hiperparams_baseline": {
+  "hidden": 64,
+  "lr": 0.05,
+  "epochs": 80,
+  "seed": 42
+ },
+ "n_eval": 95,
+ "leaks_detectados": [
+  {
+   "frozen_idx": 0,
+   "dev_part": "val",
+   "dev_idx": 0,
+   "jaccard": 1.0,
+   "dev_text": "De los 10 libros que había comprado, presté 2 a mi hermano."
+  },
+  {
+   "frozen_idx": 1,
+   "dev_part": "val",
+   "dev_idx": 1,
+   "jaccard": 1.0,
+   "dev_text": "De los 11 cuadernos que había comprado, presté 3 a mi hermano."
+  },
+  {
+   "frozen_idx": 2,
+   "dev_part": "val",
+   "dev_idx": 2,
+   "jaccard": 1.0,
+   "dev_text": "De los 12 lápices que había comprado, presté 4 a mi hermano."
+  },
+  {
+   "frozen_idx": 3,
+   "dev_part": "val",
+   "dev_idx": 3,
+   "jaccard": 1.0,
+   "dev_text": "De los 13 naranjas que había comprado, presté 5 a mi hermano."
+  },
+  {
+   "frozen_idx": 4,
+   "dev_part": "val",
+   "dev_idx": 4,
+   "jaccard": 1.0,
+   "dev_text": "De los 14 peras que había comprado, presté 2 a mi hermano."
+  },
+  {
+   "frozen_idx": 5,
+   "dev_part": "val",
+   "dev_idx": 5,
+   "jaccard": 1.0,
+   "dev_text": "De los 15 libros que había comprado, presté 3 a mi hermano."
+  },
+  {
+   "frozen_idx": 6,
+   "dev_part": "val",
+   "dev_idx": 6,
+   "jaccard": 1.0,
+   "dev_text": "De los 16 cuadernos que había comprado, presté 4 a mi hermano."
+  },
+  {
+   "frozen_idx": 7,
+   "dev_part": "val",
+   "dev_idx": 7,
+   "jaccard": 1.0,
+   "dev_text": "De los 17 lápices que había comprado, presté 5 a mi hermano."
+  },
+  {
+   "frozen_idx": 8,
+   "dev_part": "val",
+   "dev_idx": 8,
+   "jaccard": 1.0,
+   "dev_text": "De los 18 naranjas que había comprado, presté 2 a mi hermano."
+  },
+  {
+   "frozen_idx": 9,
+   "dev_part": "val",
+   "dev_idx": 9,
+   "jaccard": 1.0,
+   "dev_text": "De los 19 peras que había comprado, presté 3 a mi hermano."
+  },
+  {
+   "frozen_idx": 10,
+   "dev_part": "val",
+   "dev_idx": 10,
+   "jaccard": 1.0,
+   "dev_text": "De los 20 libros que había comprado, presté 4 a mi hermano."
+  },
+  {
+   "frozen_idx": 11,
+   "dev_part": "val",
+   "dev_idx": 11,
+   "jaccard": 1.0,
+   "dev_text": "De los 21 cuadernos que había comprado, presté 5 a mi hermano."
+  },
+  {
+   "frozen_idx": 12,
+   "dev_part": "val",
+   "dev_idx": 12,
+   "jaccard": 1.0,
+   "dev_text": "De los 22 lápices que había comprado, presté 2 a mi hermano."
+  },
+  {
+   "frozen_idx": 13,
+   "dev_part": "val",
+   "dev_idx": 13,
+   "jaccard": 1.0,
+   "dev_text": "De los 23 naranjas que había comprado, presté 3 a mi hermano."
+  },
+  {
+   "frozen_idx": 14,
+   "dev_part": "val",
+   "dev_idx": 14,
+   "jaccard": 1.0,
+   "dev_text": "De los 24 peras que había comprado, presté 4 a mi hermano."
+  },
+  {
+   "frozen_idx": 15,
+   "dev_part": "val",
+   "dev_idx": 15,
+   "jaccard": 1.0,
+   "dev_text": "De los 25 libros que había comprado, presté 5 a mi hermano."
+  },
+  {
+   "frozen_idx": 16,
+   "dev_part": "val",
+   "dev_idx": 16,
+   "jaccard": 1.0,
+   "dev_text": "De los 26 cuadernos que había comprado, presté 2 a mi hermano."
+  },
+  {
+   "frozen_idx": 17,
+   "dev_part": "val",
+   "dev_idx": 17,
+   "jaccard": 1.0,
+   "dev_text": "De los 27 lápices que había comprado, presté 3 a mi hermano."
+  },
+  {
+   "frozen_idx": 18,
+   "dev_part": "val",
+   "dev_idx": 18,
+   "jaccard": 1.0,
+   "dev_text": "De los 28 naranjas que había comprado, presté 4 a mi hermano."
+  },
+  {
+   "frozen_idx": 19,
+   "dev_part": "val",
+   "dev_idx": 19,
+   "jaccard": 1.0,
+   "dev_text": "De los 29 peras que había comprado, presté 5 a mi hermano."
+  },
+  {
+   "frozen_idx": 20,
+   "dev_part": "val",
+   "dev_idx": 20,
+   "jaccard": 1.0,
+   "dev_text": "De los 30 libros que había comprado, presté 2 a mi hermano."
+  },
+  {
+   "frozen_idx": 21,
+   "dev_part": "val",
+   "dev_idx": 21,
+   "jaccard": 1.0,
+   "dev_text": "De los 31 cuadernos que había comprado, presté 3 a mi hermano."
+  },
+  {
+   "frozen_idx": 22,
+   "dev_part": "val",
+   "dev_idx": 22,
+   "jaccard": 1.0,
+   "dev_text": "De los 32 lápices que había comprado, presté 4 a mi hermano."
+  },
+  {
+   "frozen_idx": 23,
+   "dev_part": "val",
+   "dev_idx": 23,
+   "jaccard": 1.0,
+   "dev_text": "De los 33 naranjas que había comprado, presté 5 a mi hermano."
+  },
+  {
+   "frozen_idx": 24,
+   "dev_part": "val",
+   "dev_idx": 24,
+   "jaccard": 1.0,
+   "dev_text": "De los 34 peras que había comprado, presté 2 a mi hermano."
+  },
+  {
+   "frozen_idx": 25,
+   "dev_part": "val",
+   "dev_idx": 25,
+   "jaccard": 1.0,
+   "dev_text": "Poseo 11 peras, recibo 1 y luego dono 11."
+  },
+  {
+   "frozen_idx": 26,
+   "dev_part": "val",
+   "dev_idx": 26,
+   "jaccard": 1.0,
+   "dev_text": "Tengo 14 monedas y compro 6 más."
+  },
+  {
+   "frozen_idx": 27,
+   "dev_part": "val",
+   "dev_idx": 27,
+   "jaccard": 1.0,
+   "dev_text": "Cuento con 14 monedas y regalo 5."
+  },
+  {
+   "frozen_idx": 28,
+   "dev_part": "val",
+   "dev_idx": 28,
+   "jaccard": 1.0,
+   "dev_text": "Poseo 14 monedas, recibo 2 y luego dono 13."
+  },
+  {
+   "frozen_idx": 29,
+   "dev_part": "val",
+   "dev_idx": 29,
+   "jaccard": 1.0,
+   "dev_text": "Tengo 13 galletas y compro 9 más."
+  }
+ ],
+ "n_dev_sin_leaks": 358,
+ "casos": [
+  {
+   "text": "De los 10 libros que había comprado, presté 2 a mi hermano.",
+   "family": "F6_inverted_clause_val",
+   "intent": "inventory_update",
+   "domain": "inventory",
+   "status": "VALID",
+   "entity": "libros",
+   "initial_quantity": 10.0,
+   "operations": [
+    {
+     "operator": "subtract",
+     "operand": 2.0
+    }
+   ]
+  },
+  {
+   "text": "De los 11 cuadernos que había comprado, presté 3 a mi hermano.",
+   "family": "F6_inverted_clause_val",
+   "intent": "inventory_update",
+   "domain": "inventory",
+   "status": "VALID",
+   "entity": "cuadernos",
+   "initial_quantity": 11.0,
+   "operations": [
+    {
+     "operator": "subtract",
+     "operand": 3.0
+    }
+   ]
+  },
+  {
+   "text": "De los 12 lápices que había comprado, presté 4 a mi hermano.",
+   "family": "F6_inverted_clause_val",
+   "intent": "inventory_update",
+   "domain": "inventory",
+   "status": "VALID",
+   "entity": "lápices",
+   "initial_quantity": 12.0,
+   "operations": [
+    {
+     "operator": "subtract",
+     "operand": 4.0
+    }
+   ]
+  },
+  {
+   "text": "De los 13 naranjas que había comprado, presté 5 a mi hermano.",
+   "family": "F6_inverted_clause_val",
+   "intent": "inventory_update",
+   "domain": "inventory",
+   "status": "VALID",
+   "entity": "naranjas",
+   "initial_quantity": 13.0,
+   "operations": [
+    {
+     "operator": "subtract",
+     "operand": 5.0
+    }
+   ]
+  },
+  {
+   "text": "De los 14 peras que había comprado, presté 2 a mi hermano.",
+   "family": "F6_inverted_clause_val",
+   "intent": "inventory_update",
+   "domain": "inventory",
+   "status": "VALID",
+   "entity": "peras",
+   "initial_quantity": 14.0,
+   "operations": [
+    {
+     "operator": "subtract",
+     "operand": 2.0
+    }
+   ]
+  },
+  {
+   "text": "De los 15 libros que había comprado, presté 3 a mi hermano.",
+   "family": "F6_inverted_clause_val",
+   "intent": "inventory_update",
+   "domain": "inventory",
+   "status": "VALID",
+   "entity": "libros",
+   "initial_quantity": 15.0,
+   "operations": [
+    {
+     "operator": "subtract",
+     "operand": 3.0
+    }
+   ]
+  },
+  {
+   "text": "De los 16 cuadernos que había comprado, presté 4 a mi hermano.",
+   "family": "F6_inverted_clause_val",
+   "intent": "inventory_update",
+   "domain": "inventory",
+   "status": "VALID",
+   "entity": "cuadernos",
+   "initial_quantity": 16.0,
+   "operations": [
+    {
+     "operator": "subtract",
+     "operand": 4.0
+    }
+   ]
+  },
+  {
+   "text": "De los 17 lápices que había comprado, presté 5 a mi hermano.",
+   "family": "F6_inverted_clause_val",
+   "intent": "inventory_update",
+   "domain": "inventory",
+   "status": "VALID",
+   "entity": "lápices",
+   "initial_quantity": 17.0,
+   "operations": [
+    {
+     "operator": "subtract",
+     "operand": 5.0
+    }
+   ]
+  },
+  {
+   "text": "De los 18 naranjas que había comprado, presté 2 a mi hermano.",
+   "family": "F6_inverted_clause_val",
+   "intent": "inventory_update",
+   "domain": "inventory",
+   "status": "VALID",
+   "entity": "naranjas",
+   "initial_quantity": 18.0,
+   "operations": [
+    {
+     "operator": "subtract",
+     "operand": 2.0
+    }
+   ]
+  },
+  {
+   "text": "De los 19 peras que había comprado, presté 3 a mi hermano.",
+   "family": "F6_inverted_clause_val",
+   "intent": "inventory_update",
+   "domain": "inventory",
+   "status": "VALID",
+   "entity": "peras",
+   "initial_quantity": 19.0,
+   "operations": [
+    {
+     "operator": "subtract",
+     "operand": 3.0
+    }
+   ]
+  },
+  {
+   "text": "De los 20 libros que había comprado, presté 4 a mi hermano.",
+   "family": "F6_inverted_clause_val",
+   "intent": "inventory_update",
+   "domain": "inventory",
+   "status": "VALID",
+   "entity": "libros",
+   "initial_quantity": 20.0,
+   "operations": [
+    {
+     "operator": "subtract",
+     "operand": 4.0
+    }
+   ]
+  },
+  {
+   "text": "De los 21 cuadernos que había comprado, presté 5 a mi hermano.",
+   "family": "F6_inverted_clause_val",
+   "intent": "inventory_update",
+   "domain": "inventory",
+   "status": "VALID",
+   "entity": "cuadernos",
+   "initial_quantity": 21.0,
+   "operations": [
+    {
+     "operator": "subtract",
+     "operand": 5.0
+    }
+   ]
+  },
+  {
+   "text": "De los 22 lápices que había comprado, presté 2 a mi hermano.",
+   "family": "F6_inverted_clause_val",
+   "intent": "inventory_update",
+   "domain": "inventory",
+   "status": "VALID",
+   "entity": "lápices",
+   "initial_quantity": 22.0,
+   "operations": [
+    {
+     "operator": "subtract",
+     "operand": 2.0
+    }
+   ]
+  },
+  {
+   "text": "De los 23 naranjas que había comprado, presté 3 a mi hermano.",
+   "family": "F6_inverted_clause_val",
+   "intent": "inventory_update",
+   "domain": "inventory",
+   "status": "VALID",
+   "entity": "naranjas",
+   "initial_quantity": 23.0,
+   "operations": [
+    {
+     "operator": "subtract",
+     "operand": 3.0
+    }
+   ]
+  },
+  {
+   "text": "De los 24 peras que había comprado, presté 4 a mi hermano.",
+   "family": "F6_inverted_clause_val",
+   "intent": "inventory_update",
+   "domain": "inventory",
+   "status": "VALID",
+   "entity": "peras",
+   "initial_quantity": 24.0,
+   "operations": [
+    {
+     "operator": "subtract",
+     "operand": 4.0
+    }
+   ]
+  },
+  {
+   "text": "De los 25 libros que había comprado, presté 5 a mi hermano.",
+   "family": "F6_inverted_clause_val",
+   "intent": "inventory_update",
+   "domain": "inventory",
+   "status": "VALID",
+   "entity": "libros",
+   "initial_quantity": 25.0,
+   "operations": [
+    {
+     "operator": "subtract",
+     "operand": 5.0
+    }
+   ]
+  },
+  {
+   "text": "De los 26 cuadernos que había comprado, presté 2 a mi hermano.",
+   "family": "F6_inverted_clause_val",
+   "intent": "inventory_update",
+   "domain": "inventory",
+   "status": "VALID",
+   "entity": "cuadernos",
+   "initial_quantity": 26.0,
+   "operations": [
+    {
+     "operator": "subtract",
+     "operand": 2.0
+    }
+   ]
+  },
+  {
+   "text": "De los 27 lápices que había comprado, presté 3 a mi hermano.",
+   "family": "F6_inverted_clause_val",
+   "intent": "inventory_update",
+   "domain": "inventory",
+   "status": "VALID",
+   "entity": "lápices",
+   "initial_quantity": 27.0,
+   "operations": [
+    {
+     "operator": "subtract",
+     "operand": 3.0
+    }
+   ]
+  },
+  {
+   "text": "De los 28 naranjas que había comprado, presté 4 a mi hermano.",
+   "family": "F6_inverted_clause_val",
+   "intent": "inventory_update",
+   "domain": "inventory",
+   "status": "VALID",
+   "entity": "naranjas",
+   "initial_quantity": 28.0,
+   "operations": [
+    {
+     "operator": "subtract",
+     "operand": 4.0
+    }
+   ]
+  },
+  {
+   "text": "De los 29 peras que había comprado, presté 5 a mi hermano.",
+   "family": "F6_inverted_clause_val",
+   "intent": "inventory_update",
+   "domain": "inventory",
+   "status": "VALID",
+   "entity": "peras",
+   "initial_quantity": 29.0,
+   "operations": [
+    {
+     "operator": "subtract",
+     "operand": 5.0
+    }
+   ]
+  },
+  {
+   "text": "De los 30 libros que había comprado, presté 2 a mi hermano.",
+   "family": "F6_inverted_clause_val",
+   "intent": "inventory_update",
+   "domain": "inventory",
+   "status": "VALID",
+   "entity": "libros",
+   "initial_quantity": 30.0,
+   "operations": [
+    {
+     "operator": "subtract",
+     "operand": 2.0
+    }
+   ]
+  },
+  {
+   "text": "De los 31 cuadernos que había comprado, presté 3 a mi hermano.",
+   "family": "F6_inverted_clause_val",
+   "intent": "inventory_update",
+   "domain": "inventory",
+   "status": "VALID",
+   "entity": "cuadernos",
+   "initial_quantity": 31.0,
+   "operations": [
+    {
+     "operator": "subtract",
+     "operand": 3.0
+    }
+   ]
+  },
+  {
+   "text": "De los 32 lápices que había comprado, presté 4 a mi hermano.",
+   "family": "F6_inverted_clause_val",
+   "intent": "inventory_update",
+   "domain": "inventory",
+   "status": "VALID",
+   "entity": "lápices",
+   "initial_quantity": 32.0,
+   "operations": [
+    {
+     "operator": "subtract",
+     "operand": 4.0
+    }
+   ]
+  },
+  {
+   "text": "De los 33 naranjas que había comprado, presté 5 a mi hermano.",
+   "family": "F6_inverted_clause_val",
+   "intent": "inventory_update",
+   "domain": "inventory",
+   "status": "VALID",
+   "entity": "naranjas",
+   "initial_quantity": 33.0,
+   "operations": [
+    {
+     "operator": "subtract",
+     "operand": 5.0
+    }
+   ]
+  },
+  {
+   "text": "De los 34 peras que había comprado, presté 2 a mi hermano.",
+   "family": "F6_inverted_clause_val",
+   "intent": "inventory_update",
+   "domain": "inventory",
+   "status": "VALID",
+   "entity": "peras",
+   "initial_quantity": 34.0,
+   "operations": [
+    {
+     "operator": "subtract",
+     "operand": 2.0
+    }
+   ]
+  },
+  {
+   "text": "Poseo 11 peras, recibo 1 y luego dono 11.",
+   "family": "F1_direct_possession_multistep",
+   "intent": "inventory_update",
+   "domain": "inventory",
+   "status": "VALID",
+   "entity": "peras",
+   "initial_quantity": 11.0,
+   "operations": [
+    {
+     "operator": "add",
+     "operand": 1.0
+    },
+    {
+     "operator": "subtract",
+     "operand": 11.0
+    }
+   ]
+  },
+  {
+   "text": "Tengo 14 monedas y compro 6 más.",
+   "family": "F1_direct_possession_add",
+   "intent": "inventory_update",
+   "domain": "inventory",
+   "status": "VALID",
+   "entity": "monedas",
+   "initial_quantity": 14.0,
+   "operations": [
+    {
+     "operator": "add",
+     "operand": 6.0
+    }
+   ]
+  },
+  {
+   "text": "Cuento con 14 monedas y regalo 5.",
+   "family": "F1_direct_possession_sub",
+   "intent": "inventory_update",
+   "domain": "inventory",
+   "status": "VALID",
+   "entity": "monedas",
+   "initial_quantity": 14.0,
+   "operations": [
+    {
+     "operator": "subtract",
+     "operand": 5.0
+    }
+   ]
+  },
+  {
+   "text": "Poseo 14 monedas, recibo 2 y luego dono 13.",
+   "family": "F1_direct_possession_multistep",
+   "intent": "inventory_update",
+   "domain": "inventory",
+   "status": "VALID",
+   "entity": "monedas",
+   "initial_quantity": 14.0,
+   "operations": [
+    {
+     "operator": "add",
+     "operand": 2.0
+    },
+    {
+     "operator": "subtract",
+     "operand": 13.0
+    }
+   ]
+  },
+  {
+   "text": "Tengo 13 galletas y compro 9 más.",
+   "family": "F1_direct_possession_add",
+   "intent": "inventory_update",
+   "domain": "inventory",
+   "status": "VALID",
+   "entity": "galletas",
+   "initial_quantity": 13.0,
+   "operations": [
+    {
+     "operator": "add",
+     "operand": 9.0
+    }
+   ]
+  },
+  {
+   "text": "Contaba con 5 lápices, pero extravié 1.",
+   "family": "F9_unseen_lexicon_extraviar",
+   "intent": "inventory_update",
+   "domain": "inventory",
+   "status": "VALID",
+   "entity": "lápices",
+   "initial_quantity": 5.0,
+   "operations": [
+    {
+     "operator": "subtract",
+     "operand": 1.0
+    }
+   ]
+  },
+  {
+   "text": "Contaba con 8 libros, pero extravié 3.",
+   "family": "F9_unseen_lexicon_extraviar",
+   "intent": "inventory_update",
+   "domain": "inventory",
+   "status": "VALID",
+   "entity": "libros",
+   "initial_quantity": 8.0,
+   "operations": [
+    {
+     "operator": "subtract",
+     "operand": 3.0
+    }
+   ]
+  },
+  {
+   "text": "Contaba con 5 libros, pero obsequié 1.",
+   "family": "F9_unseen_lexicon_obsequiar",
+   "intent": "inventory_update",
+   "domain": "inventory",
+   "status": "VALID",
+   "entity": "libros",
+   "initial_quantity": 5.0,
+   "operations": [
+    {
+     "operator": "subtract",
+     "operand": 1.0
+    }
+   ]
+  },
+  {
+   "text": "Contaba con 8 peras, pero obsequié 3.",
+   "family": "F9_unseen_lexicon_obsequiar",
+   "intent": "inventory_update",
+   "domain": "inventory",
+   "status": "VALID",
+   "entity": "peras",
+   "initial_quantity": 8.0,
+   "operations": [
+    {
+     "operator": "subtract",
+     "operand": 3.0
+    }
+   ]
+  },
+  {
+   "text": "Contaba con 5 peras, pero cedí 1.",
+   "family": "F9_unseen_lexicon_ceder",
+   "intent": "inventory_update",
+   "domain": "inventory",
+   "status": "VALID",
+   "entity": "peras",
+   "initial_quantity": 5.0,
+   "operations": [
+    {
+     "operator": "subtract",
+     "operand": 1.0
+    }
+   ]
+  },
+  {
+   "text": "Contaba con 8 cuadernos, pero cedí 3.",
+   "family": "F9_unseen_lexicon_ceder",
+   "intent": "inventory_update",
+   "domain": "inventory",
+   "status": "VALID",
+   "entity": "cuadernos",
+   "initial_quantity": 8.0,
+   "operations": [
+    {
+     "operator": "subtract",
+     "operand": 3.0
+    }
+   ]
+  },
+  {
+   "text": "Contaba con 5 cuadernos, pero consumí 1.",
+   "family": "F9_unseen_lexicon_consumir",
+   "intent": "inventory_update",
+   "domain": "inventory",
+   "status": "VALID",
+   "entity": "cuadernos",
+   "initial_quantity": 5.0,
+   "operations": [
+    {
+     "operator": "subtract",
+     "operand": 1.0
+    }
+   ]
+  },
+  {
+   "text": "Contaba con 8 cajas, pero consumí 3.",
+   "family": "F9_unseen_lexicon_consumir",
+   "intent": "inventory_update",
+   "domain": "inventory",
+   "status": "VALID",
+   "entity": "cajas",
+   "initial_quantity": 8.0,
+   "operations": [
+    {
+     "operator": "subtract",
+     "operand": 3.0
+    }
+   ]
+  },
+  {
+   "text": "Contaba con 5 cajas, pero me hurtaron 1.",
+   "family": "F9_unseen_lexicon_hurtar",
+   "intent": "inventory_update",
+   "domain": "inventory",
+   "status": "VALID",
+   "entity": "cajas",
+   "initial_quantity": 5.0,
+   "operations": [
+    {
+     "operator": "subtract",
+     "operand": 1.0
+    }
+   ]
+  },
+  {
+   "text": "Contaba con 8 manzanas, pero me hurtaron 3.",
+   "family": "F9_unseen_lexicon_hurtar",
+   "intent": "inventory_update",
+   "domain": "inventory",
+   "status": "VALID",
+   "entity": "manzanas",
+   "initial_quantity": 8.0,
+   "operations": [
+    {
+     "operator": "subtract",
+     "operand": 3.0
+    }
+   ]
+  },
+  {
+   "text": "Contaba con 5 manzanas, pero repartí 1.",
+   "family": "F9_unseen_lexicon_repartir",
+   "intent": "inventory_update",
+   "domain": "inventory",
+   "status": "VALID",
+   "entity": "manzanas",
+   "initial_quantity": 5.0,
+   "operations": [
+    {
+     "operator": "subtract",
+     "operand": 1.0
+    }
+   ]
+  },
+  {
+   "text": "Contaba con 8 monedas, pero repartí 3.",
+   "family": "F9_unseen_lexicon_repartir",
+   "intent": "inventory_update",
+   "domain": "inventory",
+   "status": "VALID",
+   "entity": "monedas",
+   "initial_quantity": 8.0,
+   "operations": [
+    {
+     "operator": "subtract",
+     "operand": 3.0
+    }
+   ]
+  },
+  {
+   "text": "Contaba con 5 monedas, pero traspasé 1.",
+   "family": "F9_unseen_lexicon_traspasar",
+   "intent": "inventory_update",
+   "domain": "inventory",
+   "status": "VALID",
+   "entity": "monedas",
+   "initial_quantity": 5.0,
+   "operations": [
+    {
+     "operator": "subtract",
+     "operand": 1.0
+    }
+   ]
+  },
+  {
+   "text": "Contaba con 8 billetes, pero traspasé 3.",
+   "family": "F9_unseen_lexicon_traspasar",
+   "intent": "inventory_update",
+   "domain": "inventory",
+   "status": "VALID",
+   "entity": "billetes",
+   "initial_quantity": 8.0,
+   "operations": [
+    {
+     "operator": "subtract",
+     "operand": 3.0
+    }
+   ]
+  },
+  {
+   "text": "Contaba con 5 billetes, pero me descompuse de 1.",
+   "family": "F9_unseen_lexicon_descomponer",
+   "intent": "inventory_update",
+   "domain": "inventory",
+   "status": "VALID",
+   "entity": "billetes",
+   "initial_quantity": 5.0,
+   "operations": [
+    {
+     "operator": "subtract",
+     "operand": 1.0
+    }
+   ]
+  },
+  {
+   "text": "Contaba con 8 fichas, pero me descompuse de 3.",
+   "family": "F9_unseen_lexicon_descomponer",
+   "intent": "inventory_update",
+   "domain": "inventory",
+   "status": "VALID",
+   "entity": "fichas",
+   "initial_quantity": 8.0,
+   "operations": [
+    {
+     "operator": "subtract",
+     "operand": 3.0
+    }
+   ]
+  },
+  {
+   "text": "Contaba con 5 fichas, pero doné en caridad 1.",
+   "family": "F9_unseen_lexicon_donar_caridad",
+   "intent": "inventory_update",
+   "domain": "inventory",
+   "status": "VALID",
+   "entity": "fichas",
+   "initial_quantity": 5.0,
+   "operations": [
+    {
+     "operator": "subtract",
+     "operand": 1.0
+    }
+   ]
+  },
+  {
+   "text": "Contaba con 8 lápices, pero doné en caridad 3.",
+   "family": "F9_unseen_lexicon_donar_caridad",
+   "intent": "inventory_update",
+   "domain": "inventory",
+   "status": "VALID",
+   "entity": "lápices",
+   "initial_quantity": 8.0,
+   "operations": [
+    {
+     "operator": "subtract",
+     "operand": 3.0
+    }
+   ]
+  },
+  {
+   "text": "Contaba con 5 lápices, pero destiné a descarte 1.",
+   "family": "F9_unseen_lexicon_descarte",
+   "intent": "inventory_update",
+   "domain": "inventory",
+   "status": "VALID",
+   "entity": "lápices",
+   "initial_quantity": 5.0,
+   "operations": [
+    {
+     "operator": "subtract",
+     "operand": 1.0
+    }
+   ]
+  },
+  {
+   "text": "Contaba con 8 libros, pero destiné a descarte 3.",
+   "family": "F9_unseen_lexicon_descarte",
+   "intent": "inventory_update",
+   "domain": "inventory",
+   "status": "VALID",
+   "entity": "libros",
+   "initial_quantity": 8.0,
+   "operations": [
+    {
+     "operator": "subtract",
+     "operand": 3.0
+    }
+   ]
+  },
+  {
+   "text": "Tenía 4 libros y adquirí 2.",
+   "family": "F9_unseen_lexicon_adquirir",
+   "intent": "inventory_update",
+   "domain": "inventory",
+   "status": "VALID",
+   "entity": "libros",
+   "initial_quantity": 4.0,
+   "operations": [
+    {
+     "operator": "add",
+     "operand": 2.0
+    }
+   ]
+  },
+  {
+   "text": "Tenía 6 peras y adquirí 5.",
+   "family": "F9_unseen_lexicon_adquirir",
+   "intent": "inventory_update",
+   "domain": "inventory",
+   "status": "VALID",
+   "entity": "peras",
+   "initial_quantity": 6.0,
+   "operations": [
+    {
+     "operator": "add",
+     "operand": 5.0
+    }
+   ]
+  },
+  {
+   "text": "Tenía 4 peras y me suministraron 2.",
+   "family": "F9_unseen_lexicon_suministrar",
+   "intent": "inventory_update",
+   "domain": "inventory",
+   "status": "VALID",
+   "entity": "peras",
+   "initial_quantity": 4.0,
+   "operations": [
+    {
+     "operator": "add",
+     "operand": 2.0
+    }
+   ]
+  },
+  {
+   "text": "Tenía 6 cuadernos y me suministraron 5.",
+   "family": "F9_unseen_lexicon_suministrar",
+   "intent": "inventory_update",
+   "domain": "inventory",
+   "status": "VALID",
+   "entity": "cuadernos",
+   "initial_quantity": 6.0,
+   "operations": [
+    {
+     "operator": "add",
+     "operand": 5.0
+    }
+   ]
+  },
+  {
+   "text": "Tenía 4 cuadernos y ingresaron a mi haber 2.",
+   "family": "F9_unseen_lexicon_ingresar",
+   "intent": "inventory_update",
+   "domain": "inventory",
+   "status": "VALID",
+   "entity": "cuadernos",
+   "initial_quantity": 4.0,
+   "operations": [
+    {
+     "operator": "add",
+     "operand": 2.0
+    }
+   ]
+  },
+  {
+   "text": "Tenía 6 cajas y ingresaron a mi haber 5.",
+   "family": "F9_unseen_lexicon_ingresar",
+   "intent": "inventory_update",
+   "domain": "inventory",
+   "status": "VALID",
+   "entity": "cajas",
+   "initial_quantity": 6.0,
+   "operations": [
+    {
+     "operator": "add",
+     "operand": 5.0
+    }
+   ]
+  },
+  {
+   "text": "Tenía 4 cajas y recolecté 2.",
+   "family": "F9_unseen_lexicon_recolectar",
+   "intent": "inventory_update",
+   "domain": "inventory",
+   "status": "VALID",
+   "entity": "cajas",
+   "initial_quantity": 4.0,
+   "operations": [
+    {
+     "operator": "add",
+     "operand": 2.0
+    }
+   ]
+  },
+  {
+   "text": "Tenía 6 manzanas y recolecté 5.",
+   "family": "F9_unseen_lexicon_recolectar",
+   "intent": "inventory_update",
+   "domain": "inventory",
+   "status": "VALID",
+   "entity": "manzanas",
+   "initial_quantity": 6.0,
+   "operations": [
+    {
+     "operator": "add",
+     "operand": 5.0
+    }
+   ]
+  },
+  {
+   "text": "Tenía 4 manzanas y hallé en el almacén 2.",
+   "family": "F9_unseen_lexicon_hallar",
+   "intent": "inventory_update",
+   "domain": "inventory",
+   "status": "VALID",
+   "entity": "manzanas",
+   "initial_quantity": 4.0,
+   "operations": [
+    {
+     "operator": "add",
+     "operand": 2.0
+    }
+   ]
+  },
+  {
+   "text": "Tenía 6 monedas y hallé en el almacén 5.",
+   "family": "F9_unseen_lexicon_hallar",
+   "intent": "inventory_update",
+   "domain": "inventory",
+   "status": "VALID",
+   "entity": "monedas",
+   "initial_quantity": 6.0,
+   "operations": [
+    {
+     "operator": "add",
+     "operand": 5.0
+    }
+   ]
+  },
+  {
+   "text": "Tenía 4 monedas y recibí en herencia 2.",
+   "family": "F9_unseen_lexicon_heredar",
+   "intent": "inventory_update",
+   "domain": "inventory",
+   "status": "VALID",
+   "entity": "monedas",
+   "initial_quantity": 4.0,
+   "operations": [
+    {
+     "operator": "add",
+     "operand": 2.0
+    }
+   ]
+  },
+  {
+   "text": "Tenía 6 billetes y recibí en herencia 5.",
+   "family": "F9_unseen_lexicon_heredar",
+   "intent": "inventory_update",
+   "domain": "inventory",
+   "status": "VALID",
+   "entity": "billetes",
+   "initial_quantity": 6.0,
+   "operations": [
+    {
+     "operator": "add",
+     "operand": 5.0
+    }
+   ]
+  },
+  {
+   "text": "Tenía 4 billetes y incorporé 2.",
+   "family": "F9_unseen_lexicon_incorporar",
+   "intent": "inventory_update",
+   "domain": "inventory",
+   "status": "VALID",
+   "entity": "billetes",
+   "initial_quantity": 4.0,
+   "operations": [
+    {
+     "operator": "add",
+     "operand": 2.0
+    }
+   ]
+  },
+  {
+   "text": "Tenía 6 fichas y incorporé 5.",
+   "family": "F9_unseen_lexicon_incorporar",
+   "intent": "inventory_update",
+   "domain": "inventory",
+   "status": "VALID",
+   "entity": "fichas",
+   "initial_quantity": 6.0,
+   "operations": [
+    {
+     "operator": "add",
+     "operand": 5.0
+    }
+   ]
+  },
+  {
+   "text": "Tenía 4 fichas y coseché 2.",
+   "family": "F9_unseen_lexicon_cosechar",
+   "intent": "inventory_update",
+   "domain": "inventory",
+   "status": "VALID",
+   "entity": "fichas",
+   "initial_quantity": 4.0,
+   "operations": [
+    {
+     "operator": "add",
+     "operand": 2.0
+    }
+   ]
+  },
+  {
+   "text": "Tenía 6 lápices y coseché 5.",
+   "family": "F9_unseen_lexicon_cosechar",
+   "intent": "inventory_update",
+   "domain": "inventory",
+   "status": "VALID",
+   "entity": "lápices",
+   "initial_quantity": 6.0,
+   "operations": [
+    {
+     "operator": "add",
+     "operand": 5.0
+    }
+   ]
+  },
+  {
+   "text": "Fueron sustraídas 3 de las 8 lápices que estaban guardadas.",
+   "family": "F7_passive_voice",
+   "intent": "inventory_update",
+   "domain": "inventory",
+   "status": "VALID",
+   "entity": "lápices",
+   "initial_quantity": 8.0,
+   "operations": [
+    {
+     "operator": "subtract",
+     "operand": 3.0
+    }
+   ]
+  },
+  {
+   "text": "Fueron consumidas 3 de mis 8 manzanas.",
+   "family": "F7_passive_voice",
+   "intent": "inventory_update",
+   "domain": "inventory",
+   "status": "VALID",
+   "entity": "manzanas",
+   "initial_quantity": 8.0,
+   "operations": [
+    {
+     "operator": "subtract",
+     "operand": 3.0
+    }
+   ]
+  },
+  {
+   "text": "Fueron entregadas 3 de las 8 libros en el depósito.",
+   "family": "F7_passive_voice",
+   "intent": "inventory_update",
+   "domain": "inventory",
+   "status": "VALID",
+   "entity": "libros",
+   "initial_quantity": 8.0,
+   "operations": [
+    {
+     "operator": "subtract",
+     "operand": 3.0
+    }
+   ]
+  },
+  {
+   "text": "Me fueron suministradas 3 monedas adicionales, teniendo previamente 8.",
+   "family": "F7_passive_voice",
+   "intent": "inventory_update",
+   "domain": "inventory",
+   "status": "VALID",
+   "entity": "monedas",
+   "initial_quantity": 8.0,
+   "operations": [
+    {
+     "operator": "add",
+     "operand": 3.0
+    }
+   ]
+  },
+  {
+   "text": "Fueron añadidas 3 nuevas peras al lote inicial de 8.",
+   "family": "F7_passive_voice",
+   "intent": "inventory_update",
+   "domain": "inventory",
+   "status": "VALID",
+   "entity": "peras",
+   "initial_quantity": 8.0,
+   "operations": [
+    {
+     "operator": "add",
+     "operand": 3.0
+    }
+   ]
+  },
+  {
+   "text": "Fueron destruidas 3 de las 8 billetes del inventario.",
+   "family": "F7_passive_voice",
+   "intent": "inventory_update",
+   "domain": "inventory",
+   "status": "VALID",
+   "entity": "billetes",
+   "initial_quantity": 8.0,
+   "operations": [
+    {
+     "operator": "subtract",
+     "operand": 3.0
+    }
+   ]
+  },
+  {
+   "text": "Me fueron donadas 3 cuadernos cuando ya contaba con 8.",
+   "family": "F7_passive_voice",
+   "intent": "inventory_update",
+   "domain": "inventory",
+   "status": "VALID",
+   "entity": "cuadernos",
+   "initial_quantity": 8.0,
+   "operations": [
+    {
+     "operator": "add",
+     "operand": 3.0
+    }
+   ]
+  },
+  {
+   "text": "Fueron extraviadas 3 fichas de un conjunto de 8.",
+   "family": "F7_passive_voice",
+   "intent": "inventory_update",
+   "domain": "inventory",
+   "status": "VALID",
+   "entity": "fichas",
+   "initial_quantity": 8.0,
+   "operations": [
+    {
+     "operator": "subtract",
+     "operand": 3.0
+    }
+   ]
+  },
+  {
+   "text": "Habiendo extraviado 4, y contando originalmente con 10 cajas, ¿cuántas conservo?",
+   "family": "F7_inverted_clauses",
+   "intent": "inventory_update",
+   "domain": "inventory",
+   "status": "VALID",
+   "entity": "cajas",
+   "initial_quantity": 10.0,
+   "operations": [
+    {
+     "operator": "subtract",
+     "operand": 4.0
+    }
+   ]
+  },
+  {
+   "text": "De las 10 lápices que custodiaba, 4 regalé a mi socio.",
+   "family": "F7_inverted_clauses",
+   "intent": "inventory_update",
+   "domain": "inventory",
+   "status": "VALID",
+   "entity": "lápices",
+   "initial_quantity": 10.0,
+   "operations": [
+    {
+     "operator": "subtract",
+     "operand": 4.0
+    }
+   ]
+  },
+  {
+   "text": "Tras haber obsequiado 4, si al principio poseía 10 manzanas...",
+   "family": "F7_inverted_clauses",
+   "intent": "inventory_update",
+   "domain": "inventory",
+   "status": "VALID",
+   "entity": "manzanas",
+   "initial_quantity": 10.0,
+   "operations": [
+    {
+     "operator": "subtract",
+     "operand": 4.0
+    }
+   ]
+  },
+  {
+   "text": "Habiendo adquirido 4 libros, sumadas a las 10 existentes...",
+   "family": "F7_inverted_clauses",
+   "intent": "inventory_update",
+   "domain": "inventory",
+   "status": "VALID",
+   "entity": "libros",
+   "initial_quantity": 10.0,
+   "operations": [
+    {
+     "operator": "add",
+     "operand": 4.0
+    }
+   ]
+  },
+  {
+   "text": "De los 10 monedas guardados en el cajón, 4 se extraviaron.",
+   "family": "F7_inverted_clauses",
+   "intent": "inventory_update",
+   "domain": "inventory",
+   "status": "VALID",
+   "entity": "monedas",
+   "initial_quantity": 10.0,
+   "operations": [
+    {
+     "operator": "subtract",
+     "operand": 4.0
+    }
+   ]
+  },
+  {
+   "text": "A mi hermano le presté 4 de los 10 peras que compré.",
+   "family": "F7_inverted_clauses",
+   "intent": "inventory_update",
+   "domain": "inventory",
+   "status": "VALID",
+   "entity": "peras",
+   "initial_quantity": 10.0,
+   "operations": [
+    {
+     "operator": "subtract",
+     "operand": 4.0
+    }
+   ]
+  },
+  {
+   "text": "Habiendo incorporado 4 billetes a las 10 que poseía...",
+   "family": "F7_inverted_clauses",
+   "intent": "inventory_update",
+   "domain": "inventory",
+   "status": "VALID",
+   "entity": "billetes",
+   "initial_quantity": 10.0,
+   "operations": [
+    {
+     "operator": "add",
+     "operand": 4.0
+    }
+   ]
+  },
+  {
+   "text": "De un conjunto de 10 cuadernos, 4 fueron cedidas.",
+   "family": "F7_inverted_clauses",
+   "intent": "inventory_update",
+   "domain": "inventory",
+   "status": "VALID",
+   "entity": "cuadernos",
+   "initial_quantity": 10.0,
+   "operations": [
+    {
+     "operator": "subtract",
+     "operand": 4.0
+    }
+   ]
+  },
+  {
+   "text": "No regalé ninguna de las 7 manzanas que tenía.",
+   "family": "F8_strict_negation",
+   "intent": "inventory_update",
+   "domain": "inventory",
+   "status": "VALID",
+   "entity": "manzanas",
+   "initial_quantity": 7.0,
+   "operations": [
+    {
+     "operator": "subtract",
+     "operand": 0.0
+    }
+   ]
+  },
+  {
+   "text": "No es cierto que extravié 2 de mis 6 libros.",
+   "family": "F8_strict_negation",
+   "intent": "inventory_update",
+   "domain": "inventory",
+   "status": "VALID",
+   "entity": "libros",
+   "initial_quantity": 6.0,
+   "operations": [
+    {
+     "operator": "subtract",
+     "operand": 0.0
+    }
+   ]
+  },
+  {
+   "text": "Nunca cedí ninguna de las 12 monedas bajo mi custodia.",
+   "family": "F8_strict_negation",
+   "intent": "inventory_update",
+   "domain": "inventory",
+   "status": "VALID",
+   "entity": "monedas",
+   "initial_quantity": 12.0,
+   "operations": [
+    {
+     "operator": "subtract",
+     "operand": 0.0
+    }
+   ]
+  },
+  {
+   "text": "No incorporé ninguna fichas adicional a las 9 presentes.",
+   "family": "F8_strict_negation",
+   "intent": "inventory_update",
+   "domain": "inventory",
+   "status": "VALID",
+   "entity": "fichas",
+   "initial_quantity": 9.0,
+   "operations": [
+    {
+     "operator": "subtract",
+     "operand": 0.0
+    }
+   ]
+  },
+  {
+   "text": "No me fueron sustraídas ninguna de las 5 peras.",
+   "family": "F8_strict_negation",
+   "intent": "inventory_update",
+   "domain": "inventory",
+   "status": "VALID",
+   "entity": "peras",
+   "initial_quantity": 5.0,
+   "operations": [
+    {
+     "operator": "subtract",
+     "operand": 0.0
+    }
+   ]
+  },
+  {
+   "text": "Tengo algunas monedas y extravié 2.",
+   "family": "F4_incomplete_ambiguous",
+   "intent": "inventory_update",
+   "domain": "inventory",
+   "status": "INCOMPLETE",
+   "entity": "monedas"
+  },
+  {
+   "text": "Poseo varios peras y me obsequiaron 3 más.",
+   "family": "F4_incomplete_ambiguous",
+   "intent": "inventory_update",
+   "domain": "inventory",
+   "status": "INCOMPLETE",
+   "entity": "peras"
+  },
+  {
+   "text": "¿Cuánto me queda si extravié dos de las que tenía?",
+   "family": "F4_incomplete_ambiguous",
+   "intent": "inventory_update",
+   "domain": "inventory",
+   "status": "INCOMPLETE",
+   "entity": "billetes"
+  },
+  {
+   "text": "No regalé ninguna de las cuadernos.",
+   "family": "F4_incomplete_ambiguous",
+   "intent": "inventory_update",
+   "domain": "inventory",
+   "status": "INCOMPLETE",
+   "entity": "cuadernos"
+  },
+  {
+   "text": "Compré 3 fichas pero desconozco cuántas tenía previamente.",
+   "family": "F4_incomplete_ambiguous",
+   "intent": "inventory_update",
+   "domain": "inventory",
+   "status": "INCOMPLETE",
+   "entity": "fichas"
+  },
+  {
+   "text": "Fueron sustraídas 2 cajas pero nadie sabe cuántas había al inicio.",
+   "family": "F4_incomplete_ambiguous",
+   "intent": "inventory_update",
+   "domain": "inventory",
+   "status": "INCOMPLETE",
+   "entity": "cajas"
+  },
+  {
+   "text": "Doné 2 lápices de una cantidad no precisada.",
+   "family": "F4_incomplete_ambiguous",
+   "intent": "inventory_update",
+   "domain": "inventory",
+   "status": "INCOMPLETE",
+   "entity": "lápices"
+  },
+  {
+   "text": "Hay ciertas manzanas en el depósito y se retiraron 2.",
+   "family": "F4_incomplete_ambiguous",
+   "intent": "inventory_update",
+   "domain": "inventory",
+   "status": "INCOMPLETE",
+   "entity": "manzanas"
+  }
+ ],
+ "sha256": "d60eb8bb39236698f00f5108fa37df2c4b9ca653f8e6cc2c246350024521a96d"
+}

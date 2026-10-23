@@ -1,0 +1,24 @@
+{
+ "protocolo": "docs/PROTOCOL_H1_RIR.md",
+ "sha256_split": "d60eb8bb39236698f00f5108fa37df2c4b9ca653f8e6cc2c246350024521a96d",
+ "n_eval": 95,
+ "leaks": 30,
+ "n_dev_sin_leaks": 358,
+ "hiperparams": {
+  "hidden": 64,
+  "lr": 0.05,
+  "epochs": 80,
+  "seed": 42
+ },
+ "baseline_charbigram_acc": {
+  "intent": 0.7053,
+  "domain": 0.7789,
+  "status": 0.6211
+ },
+ "tupla_exacta_pct": 54.7,
+ "despacho_rust": {
+  "cobertura_rir_pct": 48.4,
+  "concordancia_intencion_pct": 20.0,
+  "n": 95
+ }
+}

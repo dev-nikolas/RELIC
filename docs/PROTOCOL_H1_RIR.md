@@ -38,3 +38,19 @@ Condiciones obligatorias (sin excepciones):
 Registro de resultados: reports/eval/prot_h1rir_resultados.json con etiqueta
 [MEDIDO]/[PENDIENTE DE EJECUTAR] y hardware especifico. Sin hardware, nada de
 cifras de GPU externes sin correr.
+
+## Resultados etapa 1 (2026-10-22, CPU local [MEDIDO])
+
+- Particion congelada: test_id + test_ood = 95 casos, sha256
+  d60eb8bb39236698f00f5108fa37df2c4b9ca653f8e6cc2c246350024521a96d.
+  HALLAZGO: 30/95 (31.6%) eran casi-duplicados de train/val (Jaccard>=0.6):
+  el dataset original estaba parcialmente contaminado; el congelado los Lista y
+  el entrenamiento de candidatos usa dev SIN leaks (358 muestras).
+- Baseline lexica (char-bigram + logistica, HP fijos [DESIGN]):
+  intent 70.5%, domain 77.9%, status 62.1%, tupla exacta 54.7%.
+- Baseline despacho Rust (mismo congelado): cobertura RIR 48.4% (de los cuales
+  solo 20.0% equivalen sematicamente a inventory_update con unidad),
+  concordancia de intencion 20.0%.
+- Criterio transición a etapa 2: el candidato H1->RIR debe lograr >= 59.7%
+  de tupla exacta (baseline + 5 pp) para NO ser rechazado.
+

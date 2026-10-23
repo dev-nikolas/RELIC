@@ -1,0 +1,477 @@
+[
+{
+"input": "De los 10 libros que había comprado, presté 2 a mi hermano.",
+"id": "h1rir_0",
+"category": "F6_inverted_clause_val"
+},
+{
+"input": "De los 11 cuadernos que había comprado, presté 3 a mi hermano.",
+"id": "h1rir_1",
+"category": "F6_inverted_clause_val"
+},
+{
+"input": "De los 12 lápices que había comprado, presté 4 a mi hermano.",
+"id": "h1rir_2",
+"category": "F6_inverted_clause_val"
+},
+{
+"input": "De los 13 naranjas que había comprado, presté 5 a mi hermano.",
+"id": "h1rir_3",
+"category": "F6_inverted_clause_val"
+},
+{
+"input": "De los 14 peras que había comprado, presté 2 a mi hermano.",
+"id": "h1rir_4",
+"category": "F6_inverted_clause_val"
+},
+{
+"input": "De los 15 libros que había comprado, presté 3 a mi hermano.",
+"id": "h1rir_5",
+"category": "F6_inverted_clause_val"
+},
+{
+"input": "De los 16 cuadernos que había comprado, presté 4 a mi hermano.",
+"id": "h1rir_6",
+"category": "F6_inverted_clause_val"
+},
+{
+"input": "De los 17 lápices que había comprado, presté 5 a mi hermano.",
+"id": "h1rir_7",
+"category": "F6_inverted_clause_val"
+},
+{
+"input": "De los 18 naranjas que había comprado, presté 2 a mi hermano.",
+"id": "h1rir_8",
+"category": "F6_inverted_clause_val"
+},
+{
+"input": "De los 19 peras que había comprado, presté 3 a mi hermano.",
+"id": "h1rir_9",
+"category": "F6_inverted_clause_val"
+},
+{
+"input": "De los 20 libros que había comprado, presté 4 a mi hermano.",
+"id": "h1rir_10",
+"category": "F6_inverted_clause_val"
+},
+{
+"input": "De los 21 cuadernos que había comprado, presté 5 a mi hermano.",
+"id": "h1rir_11",
+"category": "F6_inverted_clause_val"
+},
+{
+"input": "De los 22 lápices que había comprado, presté 2 a mi hermano.",
+"id": "h1rir_12",
+"category": "F6_inverted_clause_val"
+},
+{
+"input": "De los 23 naranjas que había comprado, presté 3 a mi hermano.",
+"id": "h1rir_13",
+"category": "F6_inverted_clause_val"
+},
+{
+"input": "De los 24 peras que había comprado, presté 4 a mi hermano.",
+"id": "h1rir_14",
+"category": "F6_inverted_clause_val"
+},
+{
+"input": "De los 25 libros que había comprado, presté 5 a mi hermano.",
+"id": "h1rir_15",
+"category": "F6_inverted_clause_val"
+},
+{
+"input": "De los 26 cuadernos que había comprado, presté 2 a mi hermano.",
+"id": "h1rir_16",
+"category": "F6_inverted_clause_val"
+},
+{
+"input": "De los 27 lápices que había comprado, presté 3 a mi hermano.",
+"id": "h1rir_17",
+"category": "F6_inverted_clause_val"
+},
+{
+"input": "De los 28 naranjas que había comprado, presté 4 a mi hermano.",
+"id": "h1rir_18",
+"category": "F6_inverted_clause_val"
+},
+{
+"input": "De los 29 peras que había comprado, presté 5 a mi hermano.",
+"id": "h1rir_19",
+"category": "F6_inverted_clause_val"
+},
+{
+"input": "De los 30 libros que había comprado, presté 2 a mi hermano.",
+"id": "h1rir_20",
+"category": "F6_inverted_clause_val"
+},
+{
+"input": "De los 31 cuadernos que había comprado, presté 3 a mi hermano.",
+"id": "h1rir_21",
+"category": "F6_inverted_clause_val"
+},
+{
+"input": "De los 32 lápices que había comprado, presté 4 a mi hermano.",
+"id": "h1rir_22",
+"category": "F6_inverted_clause_val"
+},
+{
+"input": "De los 33 naranjas que había comprado, presté 5 a mi hermano.",
+"id": "h1rir_23",
+"category": "F6_inverted_clause_val"
+},
+{
+"input": "De los 34 peras que había comprado, presté 2 a mi hermano.",
+"id": "h1rir_24",
+"category": "F6_inverted_clause_val"
+},
+{
+"input": "Poseo 11 peras, recibo 1 y luego dono 11.",
+"id": "h1rir_25",
+"category": "F1_direct_possession_multistep"
+},
+{
+"input": "Tengo 14 monedas y compro 6 más.",
+"id": "h1rir_26",
+"category": "F1_direct_possession_add"
+},
+{
+"input": "Cuento con 14 monedas y regalo 5.",
+"id": "h1rir_27",
+"category": "F1_direct_possession_sub"
+},
+{
+"input": "Poseo 14 monedas, recibo 2 y luego dono 13.",
+"id": "h1rir_28",
+"category": "F1_direct_possession_multistep"
+},
+{
+"input": "Tengo 13 galletas y compro 9 más.",
+"id": "h1rir_29",
+"category": "F1_direct_possession_add"
+},
+{
+"input": "Contaba con 5 lápices, pero extravié 1.",
+"id": "h1rir_30",
+"category": "F9_unseen_lexicon_extraviar"
+},
+{
+"input": "Contaba con 8 libros, pero extravié 3.",
+"id": "h1rir_31",
+"category": "F9_unseen_lexicon_extraviar"
+},
+{
+"input": "Contaba con 5 libros, pero obsequié 1.",
+"id": "h1rir_32",
+"category": "F9_unseen_lexicon_obsequiar"
+},
+{
+"input": "Contaba con 8 peras, pero obsequié 3.",
+"id": "h1rir_33",
+"category": "F9_unseen_lexicon_obsequiar"
+},
+{
+"input": "Contaba con 5 peras, pero cedí 1.",
+"id": "h1rir_34",
+"category": "F9_unseen_lexicon_ceder"
+},
+{
+"input": "Contaba con 8 cuadernos, pero cedí 3.",
+"id": "h1rir_35",
+"category": "F9_unseen_lexicon_ceder"
+},
+{
+"input": "Contaba con 5 cuadernos, pero consumí 1.",
+"id": "h1rir_36",
+"category": "F9_unseen_lexicon_consumir"
+},
+{
+"input": "Contaba con 8 cajas, pero consumí 3.",
+"id": "h1rir_37",
+"category": "F9_unseen_lexicon_consumir"
+},
+{
+"input": "Contaba con 5 cajas, pero me hurtaron 1.",
+"id": "h1rir_38",
+"category": "F9_unseen_lexicon_hurtar"
+},
+{
+"input": "Contaba con 8 manzanas, pero me hurtaron 3.",
+"id": "h1rir_39",
+"category": "F9_unseen_lexicon_hurtar"
+},
+{
+"input": "Contaba con 5 manzanas, pero repartí 1.",
+"id": "h1rir_40",
+"category": "F9_unseen_lexicon_repartir"
+},
+{
+"input": "Contaba con 8 monedas, pero repartí 3.",
+"id": "h1rir_41",
+"category": "F9_unseen_lexicon_repartir"
+},
+{
+"input": "Contaba con 5 monedas, pero traspasé 1.",
+"id": "h1rir_42",
+"category": "F9_unseen_lexicon_traspasar"
+},
+{
+"input": "Contaba con 8 billetes, pero traspasé 3.",
+"id": "h1rir_43",
+"category": "F9_unseen_lexicon_traspasar"
+},
+{
+"input": "Contaba con 5 billetes, pero me descompuse de 1.",
+"id": "h1rir_44",
+"category": "F9_unseen_lexicon_descomponer"
+},
+{
+"input": "Contaba con 8 fichas, pero me descompuse de 3.",
+"id": "h1rir_45",
+"category": "F9_unseen_lexicon_descomponer"
+},
+{
+"input": "Contaba con 5 fichas, pero doné en caridad 1.",
+"id": "h1rir_46",
+"category": "F9_unseen_lexicon_donar_caridad"
+},
+{
+"input": "Contaba con 8 lápices, pero doné en caridad 3.",
+"id": "h1rir_47",
+"category": "F9_unseen_lexicon_donar_caridad"
+},
+{
+"input": "Contaba con 5 lápices, pero destiné a descarte 1.",
+"id": "h1rir_48",
+"category": "F9_unseen_lexicon_descarte"
+},
+{
+"input": "Contaba con 8 libros, pero destiné a descarte 3.",
+"id": "h1rir_49",
+"category": "F9_unseen_lexicon_descarte"
+},
+{
+"input": "Tenía 4 libros y adquirí 2.",
+"id": "h1rir_50",
+"category": "F9_unseen_lexicon_adquirir"
+},
+{
+"input": "Tenía 6 peras y adquirí 5.",
+"id": "h1rir_51",
+"category": "F9_unseen_lexicon_adquirir"
+},
+{
+"input": "Tenía 4 peras y me suministraron 2.",
+"id": "h1rir_52",
+"category": "F9_unseen_lexicon_suministrar"
+},
+{
+"input": "Tenía 6 cuadernos y me suministraron 5.",
+"id": "h1rir_53",
+"category": "F9_unseen_lexicon_suministrar"
+},
+{
+"input": "Tenía 4 cuadernos y ingresaron a mi haber 2.",
+"id": "h1rir_54",
+"category": "F9_unseen_lexicon_ingresar"
+},
+{
+"input": "Tenía 6 cajas y ingresaron a mi haber 5.",
+"id": "h1rir_55",
+"category": "F9_unseen_lexicon_ingresar"
+},
+{
+"input": "Tenía 4 cajas y recolecté 2.",
+"id": "h1rir_56",
+"category": "F9_unseen_lexicon_recolectar"
+},
+{
+"input": "Tenía 6 manzanas y recolecté 5.",
+"id": "h1rir_57",
+"category": "F9_unseen_lexicon_recolectar"
+},
+{
+"input": "Tenía 4 manzanas y hallé en el almacén 2.",
+"id": "h1rir_58",
+"category": "F9_unseen_lexicon_hallar"
+},
+{
+"input": "Tenía 6 monedas y hallé en el almacén 5.",
+"id": "h1rir_59",
+"category": "F9_unseen_lexicon_hallar"
+},
+{
+"input": "Tenía 4 monedas y recibí en herencia 2.",
+"id": "h1rir_60",
+"category": "F9_unseen_lexicon_heredar"
+},
+{
+"input": "Tenía 6 billetes y recibí en herencia 5.",
+"id": "h1rir_61",
+"category": "F9_unseen_lexicon_heredar"
+},
+{
+"input": "Tenía 4 billetes y incorporé 2.",
+"id": "h1rir_62",
+"category": "F9_unseen_lexicon_incorporar"
+},
+{
+"input": "Tenía 6 fichas y incorporé 5.",
+"id": "h1rir_63",
+"category": "F9_unseen_lexicon_incorporar"
+},
+{
+"input": "Tenía 4 fichas y coseché 2.",
+"id": "h1rir_64",
+"category": "F9_unseen_lexicon_cosechar"
+},
+{
+"input": "Tenía 6 lápices y coseché 5.",
+"id": "h1rir_65",
+"category": "F9_unseen_lexicon_cosechar"
+},
+{
+"input": "Fueron sustraídas 3 de las 8 lápices que estaban guardadas.",
+"id": "h1rir_66",
+"category": "F7_passive_voice"
+},
+{
+"input": "Fueron consumidas 3 de mis 8 manzanas.",
+"id": "h1rir_67",
+"category": "F7_passive_voice"
+},
+{
+"input": "Fueron entregadas 3 de las 8 libros en el depósito.",
+"id": "h1rir_68",
+"category": "F7_passive_voice"
+},
+{
+"input": "Me fueron suministradas 3 monedas adicionales, teniendo previamente 8.",
+"id": "h1rir_69",
+"category": "F7_passive_voice"
+},
+{
+"input": "Fueron añadidas 3 nuevas peras al lote inicial de 8.",
+"id": "h1rir_70",
+"category": "F7_passive_voice"
+},
+{
+"input": "Fueron destruidas 3 de las 8 billetes del inventario.",
+"id": "h1rir_71",
+"category": "F7_passive_voice"
+},
+{
+"input": "Me fueron donadas 3 cuadernos cuando ya contaba con 8.",
+"id": "h1rir_72",
+"category": "F7_passive_voice"
+},
+{
+"input": "Fueron extraviadas 3 fichas de un conjunto de 8.",
+"id": "h1rir_73",
+"category": "F7_passive_voice"
+},
+{
+"input": "Habiendo extraviado 4, y contando originalmente con 10 cajas, ¿cuántas conservo?",
+"id": "h1rir_74",
+"category": "F7_inverted_clauses"
+},
+{
+"input": "De las 10 lápices que custodiaba, 4 regalé a mi socio.",
+"id": "h1rir_75",
+"category": "F7_inverted_clauses"
+},
+{
+"input": "Tras haber obsequiado 4, si al principio poseía 10 manzanas...",
+"id": "h1rir_76",
+"category": "F7_inverted_clauses"
+},
+{
+"input": "Habiendo adquirido 4 libros, sumadas a las 10 existentes...",
+"id": "h1rir_77",
+"category": "F7_inverted_clauses"
+},
+{
+"input": "De los 10 monedas guardados en el cajón, 4 se extraviaron.",
+"id": "h1rir_78",
+"category": "F7_inverted_clauses"
+},
+{
+"input": "A mi hermano le presté 4 de los 10 peras que compré.",
+"id": "h1rir_79",
+"category": "F7_inverted_clauses"
+},
+{
+"input": "Habiendo incorporado 4 billetes a las 10 que poseía...",
+"id": "h1rir_80",
+"category": "F7_inverted_clauses"
+},
+{
+"input": "De un conjunto de 10 cuadernos, 4 fueron cedidas.",
+"id": "h1rir_81",
+"category": "F7_inverted_clauses"
+},
+{
+"input": "No regalé ninguna de las 7 manzanas que tenía.",
+"id": "h1rir_82",
+"category": "F8_strict_negation"
+},
+{
+"input": "No es cierto que extravié 2 de mis 6 libros.",
+"id": "h1rir_83",
+"category": "F8_strict_negation"
+},
+{
+"input": "Nunca cedí ninguna de las 12 monedas bajo mi custodia.",
+"id": "h1rir_84",
+"category": "F8_strict_negation"
+},
+{
+"input": "No incorporé ninguna fichas adicional a las 9 presentes.",
+"id": "h1rir_85",
+"category": "F8_strict_negation"
+},
+{
+"input": "No me fueron sustraídas ninguna de las 5 peras.",
+"id": "h1rir_86",
+"category": "F8_strict_negation"
+},
+{
+"input": "Tengo algunas monedas y extravié 2.",
+"id": "h1rir_87",
+"category": "F4_incomplete_ambiguous"
+},
+{
+"input": "Poseo varios peras y me obsequiaron 3 más.",
+"id": "h1rir_88",
+"category": "F4_incomplete_ambiguous"
+},
+{
+"input": "¿Cuánto me queda si extravié dos de las que tenía?",
+"id": "h1rir_89",
+"category": "F4_incomplete_ambiguous"
+},
+{
+"input": "No regalé ninguna de las cuadernos.",
+"id": "h1rir_90",
+"category": "F4_incomplete_ambiguous"
+},
+{
+"input": "Compré 3 fichas pero desconozco cuántas tenía previamente.",
+"id": "h1rir_91",
+"category": "F4_incomplete_ambiguous"
+},
+{
+"input": "Fueron sustraídas 2 cajas pero nadie sabe cuántas había al inicio.",
+"id": "h1rir_92",
+"category": "F4_incomplete_ambiguous"
+},
+{
+"input": "Doné 2 lápices de una cantidad no precisada.",
+"id": "h1rir_93",
+"category": "F4_incomplete_ambiguous"
+},
+{
+"input": "Hay ciertas manzanas en el depósito y se retiraron 2.",
+"id": "h1rir_94",
+"category": "F4_incomplete_ambiguous"
+}
+]
