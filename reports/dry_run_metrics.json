@@ -1,0 +1,39 @@
+{
+  "total_steps": 5,
+  "total_time_seconds": 2.76,
+  "final_loss": 8.8083,
+  "initial_loss": 9.0702,
+  "avg_tok_sec": 1003.8,
+  "history": [
+    {
+      "step": 0,
+      "loss": 9.0702,
+      "tok_sec": 556.5,
+      "lr": 2.5e-05
+    },
+    {
+      "step": 1,
+      "loss": 9.0779,
+      "tok_sec": 1121.5,
+      "lr": 5e-05
+    },
+    {
+      "step": 2,
+      "loss": 9.0314,
+      "tok_sec": 1085.1,
+      "lr": 7.500000000000001e-05
+    },
+    {
+      "step": 3,
+      "loss": 8.8734,
+      "tok_sec": 1182.8,
+      "lr": 0.0001
+    },
+    {
+      "step": 4,
+      "loss": 8.8083,
+      "tok_sec": 1072.9,
+      "lr": 0.000125
+    }
+  ]
+}

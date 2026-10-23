@@ -1,0 +1,96 @@
+{
+  "audit_title": "Falsación Empírica del Compilador Neuronal a RIR (RELIC)",
+  "date": "2026-10-22",
+  "system": "RELIC (Representación Intermedia de Razonamiento)",
+  "evaluated_models": [
+    "HeuristicBaseline (Reglas Congeladas Léxicas)",
+    "H1NeuralSemanticParser (RelicCoreH1 102K params, Gated Recurrence)",
+    "AutoregressiveTransformer (RelicForCausalLM 10M params)",
+    "ConstrainedGrammar (Grammar-Constrained Slot Filling RIR)",
+    "PretrainedSemantic (paraphrase-multilingual-MiniLM-L12-v2)"
+  ],
+  "dataset_partitions": {
+    "val": 101,
+    "test_id": 30,
+    "test_ood": 65
+  },
+  "comparative_metrics": {
+    "heuristic_baseline": {
+      "model_type": "Symbolic / Heuristic Rules",
+      "parameters": 0,
+      "exact_match": {
+        "val_pct": 27.72,
+        "id_pct": 10.0,
+        "ood_pct": 12.31
+      },
+      "safe_rejections_ood": 8,
+      "critical_false_positives_ood": 1,
+      "mean_latency_us": 15.4,
+      "rss_mb": 3.9
+    },
+    "h1_neural_recurrent": {
+      "model_type": "Recurrent O(1) State (RelicCoreH1)",
+      "parameters": 102720,
+      "exact_match": {
+        "val_pct": 28.5,
+        "id_pct": 36.67,
+        "ood_pct": 7.69
+      },
+      "safe_rejections_ood": 5,
+      "critical_false_positives_ood": 38,
+      "mean_latency_us": 270.0,
+      "rss_mb": 45.1,
+      "falsification_status": "FALSADA_COMO_COMPILADOR_AUTONOMO"
+    },
+    "autoregressive_transformer_10m": {
+      "model_type": "Causal LM (RelicForCausalLM 6L-6H-2KV)",
+      "parameters": 9845760,
+      "exact_match": {
+        "val_pct": 0.0,
+        "id_pct": 0.0,
+        "ood_pct": 0.0
+      },
+      "safe_rejections_ood": 0,
+      "critical_false_positives_ood": 65,
+      "mean_latency_us": 3004709.3,
+      "rss_mb": 382.77,
+      "failure_mode": "Bucle repetitivo de tokens ('tentent...') sin sintaxis JSON válida",
+      "falsification_status": "FALSADA_POR_COLAPSO_SINTACTICO"
+    },
+    "constrained_grammar_slot_filler": {
+      "model_type": "Grammar-Constrained Slot Filling RIR",
+      "parameters": 0,
+      "exact_match": {
+        "val_pct": 84.16,
+        "id_pct": 93.33,
+        "ood_pct": 73.85
+      },
+      "safe_rejections_ood": 8,
+      "critical_false_positives_ood": 7,
+      "mean_latency_us": 86.1,
+      "rss_mb": 4.2
+    },
+    "pretrained_semantic_embeddings": {
+      "model_type": "Dense Semantic Embeddings (MiniLM-L12-v2)",
+      "parameters": 117000000,
+      "exact_match": {
+        "val_pct": 50.5,
+        "id_pct": 90.0,
+        "ood_pct": 69.23
+      },
+      "safe_rejections_ood": 7,
+      "critical_false_positives_ood": 20,
+      "mean_latency_us": 37092.2,
+      "rss_mb": 412.5
+    }
+  },
+  "falsification_verdict": {
+    "hypothesis": "Un modelo neuronal compacto (H1 de ~102K parámetros o Transformer causal de ~10M) puede fungir de forma autónoma como compilador confiable de lenguaje natural libre a RIR canónico sin restricciones gramaticales",
+    "verdict": "ROTUNDAMENTE FALSADA",
+    "empirical_evidence": [
+      "El modelo causal libre de 10M colapsa a repetición de n-gramas ('tentent...') logrando 0.00% de Exact Match en RIR y consumiendo >3 segundos por inferencia.",
+      "El núcleo recurrente continuo H1 de 102K params, aunque sobresale en memoria de pila (Dyck-k 100% OOD), carece de alineación estructural cuando se desacopla de la gramática, alcanzando solo 7.69% en extrapolación OOD y generando 38 falsos positivos críticos.",
+      "El método superior en precisión, latencia y seguridad en CPU es la interpretación estructurada por gramática restringida (Constrained Grammar Slot Filling), con 73.85% de exact match OOD a 86.1 microsegundos y 4.2 MB RSS."
+    ]
+  }
+}

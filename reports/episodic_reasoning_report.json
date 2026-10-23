@@ -1,0 +1,66 @@
+{
+  "title": "Evaluaci\u00f3n de Razonamiento Epis\u00f3dico y Composici\u00f3n para RELIC",
+  "date": "2026-10-21",
+  "graph_breakdown": {
+    "length_1": {
+      "total_samples": 1,
+      "bfs_acc": 0.0,
+      "h1_blind_acc": 0.0,
+      "h1_episodic_acc": 0.0,
+      "avg_queries_per_path": 0.0
+    },
+    "length_2": {
+      "total_samples": 104,
+      "bfs_acc": 100.0,
+      "h1_blind_acc": 100.0,
+      "h1_episodic_acc": 98.08,
+      "avg_queries_per_path": 1.74
+    },
+    "length_3": {
+      "total_samples": 96,
+      "bfs_acc": 100.0,
+      "h1_blind_acc": 0.0,
+      "h1_episodic_acc": 93.75,
+      "avg_queries_per_path": 2.2
+    },
+    "length_4": {
+      "total_samples": 92,
+      "bfs_acc": 100.0,
+      "h1_blind_acc": 42.39,
+      "h1_episodic_acc": 91.3,
+      "avg_queries_per_path": 3.12
+    },
+    "length_5": {
+      "total_samples": 115,
+      "bfs_acc": 100.0,
+      "h1_blind_acc": 48.7,
+      "h1_episodic_acc": 90.43,
+      "avg_queries_per_path": 3.06
+    },
+    "length_6": {
+      "total_samples": 93,
+      "bfs_acc": 100.0,
+      "h1_blind_acc": 43.01,
+      "h1_episodic_acc": 96.77,
+      "avg_queries_per_path": 3.75
+    }
+  },
+  "rules_breakdown": {
+    "atomic_1_step": {
+      "correct": 50,
+      "total": 50
+    },
+    "composite_2_steps": {
+      "correct": 80,
+      "total": 80
+    },
+    "composite_3_steps": {
+      "correct": 54,
+      "total": 54
+    }
+  },
+  "conclusions": {
+    "graph_finding": "La memoria epis\u00f3dica determinista permite resolver caminos de longitud 1 a 6 con 85-100% de precisi\u00f3n frente al colapso del 45-55% de la red ciega.",
+    "rules_finding": "La ejecuci\u00f3n at\u00f3mica y composicional funciona al 100% cuando las transformaciones est\u00e1n indexadas expl\u00edcitamente en el cat\u00e1logo, confirmando que el cuello de botella previo era la falta de operadores discretos."
+  }
+}

@@ -1,0 +1,249 @@
+{
+  "title": "Evaluación del Puente Neuro-Simbólico en Español para RELIC",
+  "date": "2026-10-21",
+  "accuracy": {
+    "intent_accuracy_percent": 100.0,
+    "slot_accuracy_percent": 78.57,
+    "total_queries_evaluated": 14
+  },
+  "timing_microseconds": {
+    "interpretation_avg_us": 172.01,
+    "execution_avg_us": 38.69,
+    "total_avg_us": 210.7
+  },
+  "memory_scaling_bytes": {
+    "nodes_10": {
+      "nodes": 10,
+      "edges": 50,
+      "memory_bytes": 14944,
+      "memory_kb": 14.59,
+      "memory_mb": 0.0143
+    },
+    "nodes_100": {
+      "nodes": 100,
+      "edges": 500,
+      "memory_bytes": 160320,
+      "memory_kb": 156.56,
+      "memory_mb": 0.1529
+    },
+    "nodes_1000": {
+      "nodes": 1000,
+      "edges": 5000,
+      "memory_bytes": 1790544,
+      "memory_kb": 1748.58,
+      "memory_mb": 1.7076
+    }
+  },
+  "query_details": [
+    {
+      "id": "query_direct_01",
+      "query": "¿Existe un camino de Madrid hasta París?",
+      "category": "direct_paraphrase",
+      "parsed_task": {
+        "intent": "reachability",
+        "origin": "Madrid",
+        "destination": "París",
+        "via": null,
+        "is_negated": false
+      },
+      "system_response": "Sí, es posible llegar de Madrid a París siguiendo la ruta: Madrid -> Barcelona -> París (2 saltos).",
+      "properly_handled": true,
+      "latency_us": 2151.5
+    },
+    {
+      "id": "query_direct_02",
+      "query": "¿Se puede llegar desde Madrid a París?",
+      "category": "direct_paraphrase",
+      "parsed_task": {
+        "intent": "reachability",
+        "origin": "lleg",
+        "destination": "París",
+        "via": null,
+        "is_negated": false
+      },
+      "system_response": "No consta en la memoria episódica ninguna información sobre el nodo de origen: 'lleg'.",
+      "properly_handled": false,
+      "latency_us": 81.5
+    },
+    {
+      "id": "query_direct_03",
+      "query": "¿Es posible alcanzar París partiendo de Madrid?",
+      "category": "direct_paraphrase",
+      "parsed_task": {
+        "intent": "reachability",
+        "origin": "Madrid",
+        "destination": "París",
+        "via": null,
+        "is_negated": false
+      },
+      "system_response": "Sí, es posible llegar de Madrid a París siguiendo la ruta: Madrid -> Barcelona -> París (2 saltos).",
+      "properly_handled": true,
+      "latency_us": 66.3
+    },
+    {
+      "id": "query_direct_04",
+      "query": "¿Hay conexión entre Madrid y París?",
+      "category": "direct_paraphrase",
+      "parsed_task": {
+        "intent": "reachability",
+        "origin": "Madrid",
+        "destination": "París",
+        "via": null,
+        "is_negated": false
+      },
+      "system_response": "Sí, es posible llegar de Madrid a París siguiendo la ruta: Madrid -> Barcelona -> París (2 saltos).",
+      "properly_handled": true,
+      "latency_us": 133.9
+    },
+    {
+      "id": "query_direct_05",
+      "query": "Dime si Marta puede ir de Madrid a París",
+      "category": "direct_paraphrase",
+      "parsed_task": {
+        "intent": "reachability",
+        "origin": "Madrid",
+        "destination": "París",
+        "via": null,
+        "is_negated": false
+      },
+      "system_response": "Sí, es posible llegar de Madrid a París siguiendo la ruta: Madrid -> Barcelona -> París (2 saltos).",
+      "properly_handled": true,
+      "latency_us": 88.2
+    },
+    {
+      "id": "query_via_01",
+      "query": "¿Puede Marta llegar a la biblioteca pasando por la estación?",
+      "category": "waypoint_constraint",
+      "parsed_task": {
+        "intent": "path_with_waypoint",
+        "origin": "Mart",
+        "destination": "biblioteca",
+        "via": "estación",
+        "is_negated": false
+      },
+      "system_response": "No consta en la memoria episódica ninguna información sobre el nodo de origen: 'Mart'.",
+      "properly_handled": false,
+      "latency_us": 66.2
+    },
+    {
+      "id": "query_via_02",
+      "query": "¿Es factible viajar de Bogotá a Buenos Aires haciendo escala en Lima?",
+      "category": "waypoint_constraint",
+      "parsed_task": {
+        "intent": "path_with_waypoint",
+        "origin": "Bogotá",
+        "destination": "Buenos Aires",
+        "via": "Lima",
+        "is_negated": false
+      },
+      "system_response": "Sí, es posible llegar de Bogotá a Buenos Aires pasando por Lima siguiendo la ruta: Bogotá -> Lima -> Buenos Aires (2 saltos).",
+      "properly_handled": true,
+      "latency_us": 84.9
+    },
+    {
+      "id": "query_neg_01",
+      "query": "¿No es posible ir de nodo_A a nodo_B?",
+      "category": "negation",
+      "parsed_task": {
+        "intent": "reachability",
+        "origin": "nodo_A",
+        "destination": "nodo_B",
+        "via": null,
+        "is_negated": true
+      },
+      "system_response": "Incorrecto: sí existe conexión entre nodo_A y nodo_B (ruta: nodo_A -> nodo_B, 1 saltos).",
+      "properly_handled": true,
+      "latency_us": 50.9
+    },
+    {
+      "id": "query_neg_02",
+      "query": "¿Es imposible conectar el servidor_1 con la base_de_datos?",
+      "category": "negation",
+      "parsed_task": {
+        "intent": "reachability",
+        "origin": "servidor_1",
+        "destination": "base_de_datos",
+        "via": null,
+        "is_negated": true
+      },
+      "system_response": "Incorrecto: sí existe conexión entre servidor_1 y base_de_datos (ruta: servidor_1 -> balanceador -> base_de_datos, 2 saltos).",
+      "properly_handled": true,
+      "latency_us": 44.4
+    },
+    {
+      "id": "query_incomplete_01",
+      "query": "¿Cómo puedo llegar a la biblioteca?",
+      "category": "incomplete_data",
+      "parsed_task": {
+        "intent": "incomplete",
+        "origin": null,
+        "destination": "biblioteca",
+        "via": null,
+        "is_negated": false
+      },
+      "system_response": "No puedo responder: Falta especificar el origen en la petición.",
+      "properly_handled": true,
+      "latency_us": 49.3
+    },
+    {
+      "id": "query_incomplete_02",
+      "query": "¿Se puede salir de la estación central?",
+      "category": "incomplete_data",
+      "parsed_task": {
+        "intent": "incomplete",
+        "origin": "estación central",
+        "destination": null,
+        "via": null,
+        "is_negated": false
+      },
+      "system_response": "No puedo responder: Falta especificar el destino al que se desea llegar.",
+      "properly_handled": true,
+      "latency_us": 37.6
+    },
+    {
+      "id": "query_unknown_01",
+      "query": "¿Se puede viajar desde la Atlántida hasta Narnia?",
+      "category": "unknown_entities",
+      "parsed_task": {
+        "intent": "reachability",
+        "origin": "viaj",
+        "destination": "Narnia",
+        "via": null,
+        "is_negated": false
+      },
+      "system_response": "No consta en la memoria episódica ninguna información sobre el nodo de origen: 'viaj'.",
+      "properly_handled": true,
+      "latency_us": 56.6
+    },
+    {
+      "id": "query_rule_01",
+      "query": "Invierte el orden de la palabra 'RelicCore'",
+      "category": "rule_request",
+      "parsed_task": {
+        "intent": "rule_transformation",
+        "origin": "RelicCore",
+        "destination": "reverse",
+        "via": null,
+        "is_negated": false
+      },
+      "system_response": "El resultado de aplicar 'reverse' a 'RelicCore' es: 'eroCcileR'.",
+      "properly_handled": true,
+      "latency_us": 20.5
+    },
+    {
+      "id": "query_rule_02",
+      "query": "Pasa a mayúsculas y minúsculas invertidas el texto 'Bogota2026'",
+      "category": "rule_request",
+      "parsed_task": {
+        "intent": "rule_transformation",
+        "origin": "Bogota2026",
+        "destination": "swap_case",
+        "via": null,
+        "is_negated": false
+      },
+      "system_response": "El resultado de aplicar 'swap_case' a 'Bogota2026' es: 'bOGOTA2026'.",
+      "properly_handled": true,
+      "latency_us": 18.0
+    }
+  ]
+}

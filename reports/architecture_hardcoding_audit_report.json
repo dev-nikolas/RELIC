@@ -1,0 +1,193 @@
+{
+  "audit_metadata": {
+    "title": "Auditoría Arquitectónica, Detección de Hardcoding y Comparación con LLM de Referencia",
+    "phase": "Fase 9 / Architectural Audit",
+    "date": "2026-10-22",
+    "git_commit": "4bfcd2e",
+    "working_tree_state": "Modified (crates/relic_cli, crates/relic_core)",
+    "environment": {
+      "os": "Windows 11 (x86_64-pc-windows-msvc)",
+      "rustc": "rustc 2026 stable",
+      "python": "Python 3.14 (CPU)"
+    }
+  },
+  "systems_identification": {
+    "system_a_relic": {
+      "name": "RELIC (Reasoning Intermediate Representation Engine)",
+      "version": "0.1.0",
+      "architecture": "Neuro-Simbólica Híbrida (Capa Determinista Rust + Causal LM 10M / Recurrent H1 102K)",
+      "components": {
+        "parser_dispatch": "crates/relic_cli/src/dispatch.rs, math.rs, graph.rs",
+        "rir_layer": "crates/relic_core/src/rir.rs, python/relic/rir_v1.py",
+        "symbolic_engines": "relic_core::ArithmeticPlan, relic_core::ReasoningEngine (BFS), relic_core::EpisodicMemory",
+        "neural_models": "relic_core Transformer (10M params, relic_10m_fp16.safetensors 20.07 MB), RelicCoreH1 (102,720 params)",
+        "server": "crates/relic_server (tiny_http, con fallo de exportación en router::handle_request)"
+      },
+      "rss_mb": {
+        "symbolic_cli": 3.95,
+        "neural_generation": 45.4
+      },
+      "latency_us": {
+        "arithmetic_parser": 155.4,
+        "arithmetic_engine": 0.4,
+        "graph_bfs": 33.7
+      }
+    },
+    "system_b_reference_llm": {
+      "name": "Qwen3-1.7B (Qwen3ForCausalLM)",
+      "creator": "Alibaba Cloud / Qwen Team",
+      "architecture": "Dense Transformer Causal LM (GQA 16Q/8KV, SwiGLU, RMSNorm, QK-Norm, RoPE theta 1,000,000)",
+      "parameters": 1720000000,
+      "layers": 28,
+      "hidden_size": 2048,
+      "vocab_size": 151936,
+      "expected_weights_size_bytes": 4063479808,
+      "status_in_environment": "CONFIGURED_BUT_WEIGHTS_NOT_DOWNLOADED",
+      "availability_reason": "Los archivos model-00001-of-00002.safetensors y model-00002-of-00002.safetensors (4.06 GB) no están descargados en model/ ni en caché local ~/.cache/huggingface. La auditoría documenta rigurosamente esta limitación sin simular outputs."
+    }
+  },
+  "hardcoding_findings_catalog": [
+    {
+      "id": "HC-001",
+      "file": "crates/relic_cli/src/dispatch.rs",
+      "lines": "27",
+      "category": "B",
+      "classification": "Regla léxica legítima pero limitada",
+      "description": "Lista cerrada de prefijos de inventario: ['tengo ', 'hay ', 'poseo ', 'tenía ', 'tenia ', 'cuento con ', 'contaba con ']. Rechaza frases válidas como 'Dispongo de 5 libros' o 'Mi inventario es de 10'.",
+      "severity": "Media"
+    },
+    {
+      "id": "HC-002",
+      "file": "crates/relic_cli/src/dispatch.rs",
+      "lines": "61-64",
+      "category": "C",
+      "classification": "Hardcoding específico con fragilidad de codificación",
+      "description": "Listas de verbos para suma y resta en español. Fallo severo de codificación: si la entrada proviene de PowerShell o consola no-UTF8, 'perdí' y 'recibí' se decodifican con caracteres de reemplazo y caen en rechazo epistémico falso.",
+      "severity": "Alta"
+    },
+    {
+      "id": "HC-003",
+      "file": "crates/relic_cli/src/graph.rs",
+      "lines": "32-55",
+      "category": "C",
+      "classification": "Hardcoding sintáctico posicional en dependencias",
+      "description": "Extracción posicional de 'crate' y 'paquete'. Si se usa un sinónimo legítimo como 'componente', el parser extrae erróneamente 'memmap2' como origen y 'componente' como destino, causando rechazo por entidad inexistente.",
+      "severity": "Alta"
+    },
+    {
+      "id": "HC-004",
+      "file": "crates/relic_cli/src/graph.rs",
+      "lines": "69-71",
+      "category": "C",
+      "classification": "Regla específica para un ejemplo de regresión",
+      "description": "Regla ad-hoc: `if initial.is_none() && lower.contains(\"marta\") && lower.contains(\"llegar a\") { initial = Some(\"Marta\".to_string()); }`. Resuelve únicamente el caso sintético de Marta.",
+      "severity": "Crítica"
+    },
+    {
+      "id": "HC-005",
+      "file": "crates/relic_cli/src/graph.rs",
+      "lines": "16-22",
+      "category": "E",
+      "classification": "Restricción parseada pero ignorada en ejecución (Pérdida silenciosa)",
+      "description": "La cláusula de exclusión ('sin pasar por X') se extrae en `spec.avoid`, pero en `query.rs:116-128` el motor BFS invoca `solve_reachability_bfs` sin filtrar el nodo evitado, respondiendo afirmativamente con rutas que violan la restricción.",
+      "severity": "Crítica"
+    },
+    {
+      "id": "HC-006",
+      "file": "crates/relic_cli/src/dispatch.rs",
+      "lines": "125-135",
+      "category": "D",
+      "classification": "Filtro previo excluyente con palabras clave",
+      "description": "Para activar consultas de grafos se exige una lista de palabras clave ('depende', 'llegar a', 'alcanzar', 'camino de', 'ruta de', 'ir de', 'partiendo de'). Preguntas como '¿Se puede viajar de Madrid a París?' caen directamente en FreeLanguage y se rechazan.",
+      "severity": "Alta"
+    },
+    {
+      "id": "HC-007",
+      "file": "crates/relic_cli/src/knowledge.rs",
+      "lines": "6-23",
+      "category": "A",
+      "classification": "Regla determinista de grafo base de prueba",
+      "description": "Grafo estático en memoria para pruebas de despacho (Madrid, Barcelona, París, Bogotá, Lima, Buenos Aires, crates de RELIC).",
+      "severity": "Baja"
+    }
+  ],
+  "controlled_experimental_evaluation": {
+    "total_cases_evaluated": 20,
+    "categories": {
+      "family_a_known_cases": {
+        "sample_query": "Calcula 8 - 3 * 2",
+        "expected_intent": "ARITHMETIC",
+        "expected_result": "2",
+        "relic_output": "VALID - 2 (Parser Shunting-Yard con precedencia)",
+        "relic_status": "PASS",
+        "reference_llm_status": "THEORETICALLY_CAPABLE_BUT_UNAVAILABLE_LOCALLY"
+      },
+      "family_b_linguistic_reformulations": {
+        "sample_query": "Fueron consumidas 3 de mis 8 manzanas",
+        "expected_intent": "INVENTORY_UPDATE",
+        "expected_result": "5 manzanas",
+        "relic_output": "UNSUPPORTED (Rechazo seguro por no empezar con prefijo)",
+        "relic_status": "FAIL_RIGIDITY",
+        "reference_llm_status": "THEORETICALLY_CAPABLE_BUT_UNAVAILABLE_LOCALLY"
+      },
+      "family_c_compositional_generalization": {
+        "sample_query": "Tenía 8 fichas, entregué 3 y recibí 2. ¿Cuántas tengo?",
+        "expected_intent": "INVENTORY_UPDATE",
+        "expected_result": "7 fichas",
+        "relic_output": "INCOMPLETE (Verbo 'entregué' no está en la lista hardcodeada)",
+        "relic_status": "FAIL_LEXICAL_GAP",
+        "reference_llm_status": "THEORETICALLY_CAPABLE_BUT_UNAVAILABLE_LOCALLY"
+      },
+      "family_d_adversarial_and_ood": {
+        "sample_query": "Calcula 12 / 0",
+        "expected_intent": "ARITHMETIC",
+        "expected_result": "REJECT_DIVISION_BY_ZERO",
+        "relic_output": "REJECTED (Fallo de Validación RIR: división por cero detectada)",
+        "relic_status": "PASS_SAFETY",
+        "reference_llm_status": "THEORETICALLY_CAPABLE_BUT_UNAVAILABLE_LOCALLY"
+      },
+      "family_e_regression_cases": {
+        "sample_query": "El arquitecto diseñó un plano",
+        "expected_intent": "FREE_LANGUAGE",
+        "expected_result": "REJECT_UNSUPPORTED",
+        "relic_output": "ValidityStatus::UNSUPPORTED (Sin alucinación 'arquitecto')",
+        "relic_status": "PASS",
+        "reference_llm_status": "THEORETICALLY_CAPABLE_BUT_UNAVAILABLE_LOCALLY"
+      }
+    }
+  },
+  "top_three_architectural_complexities": [
+    {
+      "rank": 1,
+      "source": "Despachador monolítico basado en coincidencia superficial de subcadenas",
+      "impact": "Las consultas legítimas en lenguaje natural son rechazadas si no contienen la palabra clave exacta en minúsculas ('viajar' vs 'ir de')."
+    },
+    {
+      "rank": 2,
+      "source": "Desconexión semántica entre el analizador de restricciones y el ejecutor determinista",
+      "impact": "El analizador extrae restricciones complejas (como 'avoid'), pero el motor de ejecución las ignora, produciendo respuestas verificadas que violan la restricción del usuario."
+    },
+    {
+      "rank": 3,
+      "source": "Aislamiento funcional del modelo neuronal frente a la tubería simbólica",
+      "impact": "El modelo autorregresivo de 10M no asiste en la extracción de ranuras ni en la resolución léxica; solo se invoca en un subcomando aislado ('demo')."
+    }
+  ],
+  "evolution_priorities": [
+    {
+      "priority": 1,
+      "title": "Unificar el Analizador Sintáctico en un Slot-Filler con Gramática Restringida",
+      "rationale": "Sustituir las cadenas `if lower.contains(...)` por una gramática formal en Rust que extraiga cantidades, entidades y operadores independientemente del orden o prefijo."
+    },
+    {
+      "priority": 2,
+      "title": "Conectar las Restricciones de RIR (avoid, via) con el Motor BFS de Grafos",
+      "rationale": "Garantizar que `spec.avoid` filtre los nodos prohibidos durante la búsqueda en anchura para evitar respuestas falsas afirmativas."
+    },
+    {
+      "priority": 3,
+      "title": "Reparar la Capa Servidor de RELIC y Mantener Separación Epistémica",
+      "rationale": "Corregir el crate `relic_server` para exponer la API HTTP unificada con rechazo determinista verificado."
+    }
+  ]
+}

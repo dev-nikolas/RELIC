@@ -1,0 +1,164 @@
+{
+  "phase": "Fase 1 — Integridad Aritmética y Precedencia Formal",
+  "commit_base": "4bfcd2ef3e03e0b92e6236a84057ef2b825aa421",
+  "timestamp_utc": "2026-10-22T20:03:00Z",
+  "environment": {
+    "os": "Windows (x86_64-pc-windows-msvc)",
+    "rust_version": "rustc 1.90+ (dev profile)",
+    "python_version": "3.14.3"
+  },
+  "summary_comparison": {
+    "critical_false_positives_before": 2,
+    "critical_false_positives_after": 0,
+    "arithmetic_precedence_accuracy_before": 0.0,
+    "arithmetic_precedence_accuracy_after": 1.0,
+    "parentheses_support_before": false,
+    "parentheses_support_after": true,
+    "integer_formatting_overflow_before": "Silencioso a i64::MAX (9223372036854775807)",
+    "integer_formatting_overflow_after": "Flotante exacto redondeado ({:.0}) sin saturación i64",
+    "rust_tests_passed": 48,
+    "python_tests_passed": 7,
+    "regressions_introduced": 0
+  },
+  "reproduced_cases_before": [
+    {
+      "input": "8 - 3 * 2",
+      "expected": 2.0,
+      "observed_before": 10.0,
+      "status_before": "FAIL_MATHEMATICAL_SEMANTICS"
+    },
+    {
+      "input": "(8 - 3) * 2",
+      "expected": 10.0,
+      "observed_before": "UNSUPPORTED",
+      "status_before": "FAIL_UNSUPPORTED_SYNTAX"
+    },
+    {
+      "input": "2 + 3 * 4 - 1",
+      "expected": 13.0,
+      "observed_before": 19.0,
+      "status_before": "FAIL_MATHEMATICAL_SEMANTICS"
+    },
+    {
+      "input": "2 * (3 + 4)",
+      "expected": 14.0,
+      "observed_before": "UNSUPPORTED",
+      "status_before": "FAIL_UNSUPPORTED_SYNTAX"
+    },
+    {
+      "input": "(2 + 3) * (4 - 1)",
+      "expected": 15.0,
+      "observed_before": "UNSUPPORTED",
+      "status_before": "FAIL_UNSUPPORTED_SYNTAX"
+    },
+    {
+      "input": "12 / 3 + 2",
+      "expected": 6.0,
+      "observed_before": 6.0,
+      "status_before": "PASS_BY_CHANCE (asociatividad casual)"
+    },
+    {
+      "input": "12 / (3 + 1)",
+      "expected": 3.0,
+      "observed_before": "UNSUPPORTED",
+      "status_before": "FAIL_UNSUPPORTED_SYNTAX"
+    },
+    {
+      "input": "Calcula 99999999999999999999 * 99999999999999999999",
+      "expected": "1e40",
+      "observed_before": "9223372036854775807 (Saturación en i64::MAX)",
+      "status_before": "FAIL_NUMERICAL_FORMATTING"
+    }
+  ],
+  "verified_cases_after": [
+    {
+      "input": "8 - 3 * 2",
+      "expected": 2.0,
+      "observed_after": 2.0,
+      "response": "El resultado es 2.",
+      "status_after": "PASS",
+      "classification": "verified_precedence_pemdas"
+    },
+    {
+      "input": "(8 - 3) * 2",
+      "expected": 10.0,
+      "observed_after": 10.0,
+      "response": "El resultado es 10.",
+      "status_after": "PASS",
+      "classification": "verified_parentheses"
+    },
+    {
+      "input": "2 + 3 * 4 - 1",
+      "expected": 13.0,
+      "observed_after": 13.0,
+      "response": "El resultado es 13.",
+      "status_after": "PASS",
+      "classification": "verified_precedence_pemdas"
+    },
+    {
+      "input": "2 * (3 + 4)",
+      "expected": 14.0,
+      "observed_after": 14.0,
+      "response": "El resultado es 14.",
+      "status_after": "PASS",
+      "classification": "verified_nested_parentheses"
+    },
+    {
+      "input": "(2 + 3) * (4 - 1)",
+      "expected": 15.0,
+      "observed_after": 15.0,
+      "response": "El resultado es 15.",
+      "status_after": "PASS",
+      "classification": "verified_nested_parentheses"
+    },
+    {
+      "input": "12 / 3 + 2",
+      "expected": 6.0,
+      "observed_after": 6.0,
+      "response": "El resultado es 6.",
+      "status_after": "PASS",
+      "classification": "verified_precedence_pemdas"
+    },
+    {
+      "input": "12 / (3 + 1)",
+      "expected": 3.0,
+      "observed_after": 3.0,
+      "response": "El resultado es 3.",
+      "status_after": "PASS",
+      "classification": "verified_parentheses"
+    },
+    {
+      "input": "Calcula 12 / 0",
+      "expected": "REJECTION_DIVISION_BY_ZERO",
+      "observed_after": "[2. ESTADO]: REJECTED (Fallo de Validación RIR: Operación no permitida: división por cero detectada) [RESULTADO]: ValidityStatus::INCOMPLETE",
+      "status_after": "PASS_SAFETY_VERIFIED",
+      "classification": "verified_semantic_safety_rir"
+    },
+    {
+      "input": "Calcula 2 +",
+      "expected": "EPISTEMIC_REJECTION",
+      "observed_after": "Consulta incompleta: Falta el segundo operando para completar la operación solicitada.",
+      "status_after": "PASS_EPISTEMIC_REJECTION",
+      "classification": "verified_epistemic_rejection"
+    },
+    {
+      "input": "Calcula 2 + (3 * 4",
+      "expected": "SAFE_REJECTION_UNCLOSED_PAREN",
+      "observed_after": "ValidityStatus::UNSUPPORTED",
+      "status_after": "PASS_SAFE_REJECTION",
+      "classification": "verified_syntax_rejection"
+    },
+    {
+      "input": "Calcula 99999999999999999999 * 99999999999999999999",
+      "expected": "10000000000000000303786028427003666890752",
+      "observed_after": "El resultado es 10000000000000000303786028427003666890752.",
+      "status_after": "PASS_NO_I64_SATURATION",
+      "classification": "verified_safe_float_formatting"
+    }
+  ],
+  "lines_of_code_audit": {
+    "crates/relic_cli/src/math.rs": 172,
+    "crates/relic_core/src/arithmetic.rs": 148,
+    "crates/relic_cli/tests/architect_regression_tests.rs": 183
+  }
+}

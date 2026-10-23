@@ -1,0 +1,11 @@
+{
+  "vocab_size": 4262,
+  "target_vocab_size": 8192,
+  "special_tokens": [
+    "<|bos|>",
+    "<|eos|>",
+    "<|pad|>"
+  ],
+  "bytes_per_token_val": 5.7149,
+  "dod_met": false
+}

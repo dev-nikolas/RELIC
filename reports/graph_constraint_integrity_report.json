@@ -1,0 +1,125 @@
+{
+  "module": "Integridad Semántica de Restricciones en Búsqueda BFS",
+  "status": "COMPLETED",
+  "audit_target": "Defecto confirmado en auditoría arquitectónica: spec.avoid extraído pero no aplicado en BFS",
+  "defect_analysis": {
+    "symptom": "Consulta '¿Se puede ir desde Madrid hasta París sin pasar por Barcelona?' devolvía la ruta Madrid -> Barcelona -> París",
+    "root_cause": "ReasoningEngine::solve_reachability_bfs no recibía el parámetro avoid y relic_cli::query::handle_query no reenviaba spec.avoid al motor de razonamiento",
+    "contract_preservation": "RIR v1 GraphSpec conservó su esquema; solve_reachability_bfs preserva retrocompatibilidad delegando a solve_reachability_bfs_constrained"
+  },
+  "implementation_details": {
+    "engine_function": "solve_reachability_bfs_constrained(memory, start, target, max_depth, avoid_nodes)",
+    "avoid_handling_policy": {
+      "origin_avoided": "Rechazo inmediato (is_reachable = false)",
+      "target_avoided": "Rechazo inmediato (is_reachable = false)",
+      "internal_node_avoided": "Filtro en frontera BFS (continue si avoid_set contiene el nodo)",
+      "unknown_avoid_entity": "Rechazo epistémico INVALID (Entidad Desconocida) en query dispatcher"
+    },
+    "file_line_counts": {
+      "crates/relic_core/src/reasoning_engine.rs": 175,
+      "crates/relic_cli/src/query.rs": 173
+    }
+  },
+  "regression_test_suite": {
+    "suite_name": "bfs_constraint_tests",
+    "total_cases": 10,
+    "passed": 10,
+    "failed": 0,
+    "cases": [
+      {
+        "id": 1,
+        "name": "Alternative route when primary avoided",
+        "scenario": "Madrid -> Paris con Barcelona prohibida; camino alternativo vía Valencia/Lyon",
+        "result": "PASSED (Ruta encontrada: Madrid -> Valencia -> Lyon -> Paris)"
+      },
+      {
+        "id": 2,
+        "name": "All routes blocked by avoid constraint",
+        "scenario": "Madrid -> Paris con Barcelona prohibida en grafo con paso único",
+        "result": "PASSED (is_reachable = false)"
+      },
+      {
+        "id": 3,
+        "name": "Origin node is avoided",
+        "scenario": "Madrid -> Paris con Madrid prohibido",
+        "result": "PASSED (is_reachable = false)"
+      },
+      {
+        "id": 4,
+        "name": "Destination node is avoided",
+        "scenario": "Madrid -> Paris con Paris prohibido",
+        "result": "PASSED (is_reachable = false)"
+      },
+      {
+        "id": 5,
+        "name": "Unconstrained query preserves shortest path",
+        "scenario": "Madrid -> Paris sin restricciones",
+        "result": "PASSED (Ruta: Madrid -> Barcelona -> Paris, 2 saltos)"
+      },
+      {
+        "id": 6,
+        "name": "Direct route not crossing avoided",
+        "scenario": "Madrid -> Toledo con Barcelona y Paris prohibidos",
+        "result": "PASSED (Ruta: Madrid -> Toledo)"
+      },
+      {
+        "id": 7,
+        "name": "Multiple avoided nodes",
+        "scenario": "Madrid -> Paris con Barcelona y Valencia prohibidos",
+        "result": "PASSED (is_reachable = false)"
+      },
+      {
+        "id": 8,
+        "name": "Avoid node not in graph",
+        "scenario": "Madrid -> Paris con Atlantida prohibida",
+        "result": "PASSED (is_reachable = true, ruta óptima preservada)"
+      },
+      {
+        "id": 9,
+        "name": "Disconnected nodes in graph",
+        "scenario": "Madrid -> Warsaw en grafo disconexo",
+        "result": "PASSED (is_reachable = false)"
+      },
+      {
+        "id": 10,
+        "name": "Cycle traversal with avoid",
+        "scenario": "Ciclo A-B con bifurcación C->D y C prohibido",
+        "result": "PASSED (is_reachable = false, sin loops infinitos)"
+      }
+    ]
+  },
+  "metrics_comparison": {
+    "before_fix": {
+      "query_madrid_paris_sin_barcelona": {
+        "status": "VALID",
+        "output": "Sí, es posible alcanzar París desde Madrid sin pasar por Barcelona (Ruta: Madrid -> Barcelona -> París, 2 saltos)",
+        "correctness": "FALSE_POSITIVE (Violación semántica flagrante)"
+      }
+    },
+    "after_fix": {
+      "query_madrid_paris_sin_barcelona": {
+        "status": "VALID",
+        "output": "No, no existe ninguna ruta admisible bajo esas restricciones entre Madrid y París.",
+        "correctness": "TRUE_NEGATIVE (Semánticamente íntegro)",
+        "parser_latency_us": 242.5,
+        "engine_latency_us": 33.4,
+        "total_latency_us": 549.6,
+        "memory_rss_mb": 3.98
+      },
+      "query_madrid_paris_unconstrained": {
+        "status": "VALID",
+        "output": "Sí, es posible alcanzar París desde Madrid (Ruta: Madrid -> Barcelona -> París, 2 saltos).",
+        "correctness": "TRUE_POSITIVE (Comportamiento preservado)",
+        "parser_latency_us": 309.2,
+        "engine_latency_us": 61.6,
+        "total_latency_us": 742.1,
+        "memory_rss_mb": 4.00
+      },
+      "query_madrid_paris_sin_atlantida": {
+        "status": "INVALID (Entidad Desconocida)",
+        "output": "Consulta irresoluble: La entidad restringida 'Atlántida' no existe en la memoria episódica.",
+        "correctness": "EPISTEMICALLY_SOUND (Diferenciación de entidad desconocida)"
+      }
+    }
+  }
+}

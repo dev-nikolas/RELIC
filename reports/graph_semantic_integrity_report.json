@@ -1,0 +1,80 @@
+{
+  "phase": "Fase 2 — Integridad Semántica del Grafo y Separación Epistémica",
+  "commit_base": "4bfcd2ef3e03e0b92e6236a84057ef2b825aa421",
+  "timestamp_utc": "2026-10-22T20:11:00Z",
+  "environment": {
+    "os": "Windows (x86_64-pc-windows-msvc)",
+    "rust_version": "rustc 1.90+ (dev profile)",
+    "python_version": "3.14.3"
+  },
+  "objectives_verified": [
+    "Separar completamente el reconocimiento sintáctico de la existencia fáctica del nodo en la memoria episódica",
+    "Distinguir formalmente entre: (1) Consulta malformada, (2) Entidad inexistente en memoria y (3) Ausencia real de camino entre entidades conocidas",
+    "Evitar falsos positivos y falsos rechazos en preguntas sobre dependencias de software o rutas espaciales",
+    "Garantizar que los archivos modificados cumplan el límite de 180 líneas de código"
+  ],
+  "epistemic_matrix": [
+    {
+      "category": "KNOWN_NODES_REACHABLE",
+      "query": "¿Depende el crate relic_cli del paquete memmap2?",
+      "syntax_valid": true,
+      "entities_known": true,
+      "graph_reachable": true,
+      "expected_status": "VALID",
+      "observed_status": "VALID",
+      "verified_response": "Sí, es posible alcanzar memmap2 desde relic_cli (Ruta: relic_cli -> relic_core -> memmap2, 2 saltos)."
+    },
+    {
+      "category": "KNOWN_NODES_UNREACHABLE",
+      "query": "¿Depende el crate memmap2 del paquete relic_cli?",
+      "syntax_valid": true,
+      "entities_known": true,
+      "graph_reachable": false,
+      "expected_status": "VALID",
+      "observed_status": "VALID",
+      "verified_response": "No, no existe ninguna ruta viable desde memmap2 hasta relic_cli."
+    },
+    {
+      "category": "UNKNOWN_ENTITY_DESTINATION",
+      "query": "¿Depende el crate relic_cli del paquete un_paquete_fantasma?",
+      "syntax_valid": true,
+      "entities_known": false,
+      "unknown_role": "destino",
+      "unknown_node": "un_paquete_fantasma",
+      "expected_status": "INVALID",
+      "observed_status": "INVALID",
+      "verified_response": "Consulta irresoluble: La entidad de destino 'un_paquete_fantasma' no existe en la memoria episódica."
+    },
+    {
+      "category": "UNKNOWN_ENTITY_ORIGIN",
+      "query": "partiendo de Atlantis hacia París",
+      "syntax_valid": true,
+      "entities_known": false,
+      "unknown_role": "origen",
+      "unknown_node": "Atlantis",
+      "expected_status": "INVALID",
+      "observed_status": "INVALID",
+      "verified_response": "Consulta irresoluble: La entidad de origen 'Atlantis' no existe en la memoria episódica."
+    },
+    {
+      "category": "SYNTACTICALLY_INCOMPLETE",
+      "query": "¿Cómo puedo llegar a?",
+      "syntax_valid": false,
+      "entities_known": null,
+      "expected_status": "INCOMPLETE",
+      "observed_status": "INCOMPLETE",
+      "verified_response": "Consulta incompleta: Consulta de ruta incompleta: falta especificar el origen o el destino requerido."
+    }
+  ],
+  "lines_of_code_audit": {
+    "crates/relic_core/src/episodic_memory.rs": 105,
+    "crates/relic_cli/src/graph.rs": 89,
+    "crates/relic_cli/src/query.rs": 172,
+    "crates/relic_cli/tests/architect_regression_tests.rs": 144
+  },
+  "test_results": {
+    "rust_tests_passed": 46,
+    "python_tests_passed": 7,
+    "regressions": 0
+  }
+}

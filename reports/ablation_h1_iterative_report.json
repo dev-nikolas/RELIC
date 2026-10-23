@@ -1,0 +1,99 @@
+{
+  "experiment": "H1 + C\u00f3mputo Iterativo en Espacio Latente",
+  "description": "Evaluaci\u00f3n del impacto del desacople de profundidad algor\u00edtmica sobre GRAPH y RULES",
+  "parameters": 102720,
+  "tasks": {
+    "graph": {
+      "steps_1": {
+        "task": "graph",
+        "steps": 1,
+        "acc_id": 53.5,
+        "acc_ood": 55.00000000000001,
+        "flops_per_forward": 20859328,
+        "inference_tokens_per_sec": 6941.3,
+        "peak_rss_mb": 331.28,
+        "train_time_sec": 108.73,
+        "final_loss": 0.101
+      },
+      "steps_2": {
+        "task": "graph",
+        "steps": 2,
+        "acc_id": 48.0,
+        "acc_ood": 46.0,
+        "flops_per_forward": 30451904,
+        "inference_tokens_per_sec": 4658.8,
+        "peak_rss_mb": 335.39,
+        "train_time_sec": 158.33,
+        "final_loss": 0.0999
+      },
+      "steps_4": {
+        "task": "graph",
+        "steps": 4,
+        "acc_id": 51.5,
+        "acc_ood": 49.666666666666664,
+        "flops_per_forward": 49637056,
+        "inference_tokens_per_sec": 2631.1,
+        "peak_rss_mb": 327.23,
+        "train_time_sec": 264.96,
+        "final_loss": 0.0985
+      },
+      "steps_8": {
+        "task": "graph",
+        "steps": 8,
+        "acc_id": 46.5,
+        "acc_ood": 45.0,
+        "flops_per_forward": 88007360,
+        "inference_tokens_per_sec": 1417.1,
+        "peak_rss_mb": 335.09,
+        "train_time_sec": 496.4,
+        "final_loss": 0.1008
+      }
+    },
+    "rules": {
+      "steps_1": {
+        "task": "rules",
+        "steps": 1,
+        "acc_id": 8.0,
+        "acc_ood": 0.0,
+        "flops_per_forward": 16315712,
+        "inference_tokens_per_sec": 6742.3,
+        "peak_rss_mb": 335.64,
+        "train_time_sec": 116.74,
+        "final_loss": 0.291
+      },
+      "steps_2": {
+        "task": "rules",
+        "steps": 2,
+        "acc_id": 9.5,
+        "acc_ood": 0.0,
+        "flops_per_forward": 23818816,
+        "inference_tokens_per_sec": 3734.6,
+        "peak_rss_mb": 325.99,
+        "train_time_sec": 212.47,
+        "final_loss": 0.278
+      },
+      "steps_4": {
+        "task": "rules",
+        "steps": 4,
+        "acc_id": 14.000000000000002,
+        "acc_ood": 0.0,
+        "flops_per_forward": 38825024,
+        "inference_tokens_per_sec": 2695.5,
+        "peak_rss_mb": 328.02,
+        "train_time_sec": 300.27,
+        "final_loss": 0.2799
+      },
+      "steps_8": {
+        "task": "rules",
+        "steps": 8,
+        "acc_id": 11.0,
+        "acc_ood": 0.0,
+        "flops_per_forward": 68837440,
+        "inference_tokens_per_sec": 1635.0,
+        "peak_rss_mb": 364.08,
+        "train_time_sec": 501.59,
+        "final_loss": 0.2603
+      }
+    }
+  }
+}

@@ -1,0 +1,73 @@
+{
+  "title": "Evaluación de Transferencia Isomórfica Cross-Domain para RELIC",
+  "date": "2026-10-21",
+  "metrics": {
+    "total_isomorphic_pairs": 5,
+    "rir_specification_accuracy_pct": 100.0,
+    "uncertainty_calibration_accuracy_pct": 100.0,
+    "procedural_isomorphism_transfer_rate_pct": 100.0,
+    "average_latency_per_pair_us": 1543.2
+  },
+  "pair_details": [
+    {
+      "pair_id": "isomorphic_pair_01",
+      "case_type": "reachability_simple",
+      "domain_a_query": "¿Se puede viajar desde Madrid hasta París?",
+      "domain_b_query": "¿Depende el crate relic_cli del paquete memmap2?",
+      "rir_canonical_spec_a": "DOMAIN: SpatialGraph\nGOAL: reach(París)\nKNOWN:\n    initial_state = Madrid\nCONSTRAINTS:\n    max_hops(10)",
+      "rir_canonical_spec_b": "DOMAIN: SoftwareDependency\nGOAL: reach(memmap2)\nKNOWN:\n    initial_state = relic_cli\nCONSTRAINTS:\n    max_hops(10)",
+      "plan_a": "PLAN:\n    Madrid -> Barcelona -> París\nVERIFY:\n    all_edges_exist = true\n    constraints_satisfied = true\n    is_successful = true",
+      "plan_b": "PLAN:\n    relic_cli -> relic_core -> memmap2\nVERIFY:\n    all_edges_exist = true\n    constraints_satisfied = true\n    is_successful = true",
+      "is_isomorphic": true,
+      "latency_us": 5876.6
+    },
+    {
+      "pair_id": "isomorphic_pair_02",
+      "case_type": "waypoint_constraint",
+      "domain_a_query": "¿Puede Marta llegar a la biblioteca pasando por la estación?",
+      "domain_b_query": "¿Puede compilarse app_service hacia database_connector pasando por auth_gateway?",
+      "rir_canonical_spec_a": "DOMAIN: SpatialGraph\nGOAL: reach(biblioteca)\nKNOWN:\n    initial_state = Marta\nCONSTRAINTS:\n    via(estación)\n    max_hops(10)",
+      "rir_canonical_spec_b": "DOMAIN: SoftwareDependency\nGOAL: reach(database_connector)\nKNOWN:\n    initial_state = app_service\nCONSTRAINTS:\n    via(auth_gateway)\n    max_hops(10)",
+      "plan_a": "PLAN:\n    Marta -> estación -> biblioteca\nVERIFY:\n    all_edges_exist = true\n    constraints_satisfied = true\n    is_successful = true",
+      "plan_b": "PLAN:\n    app_service -> auth_gateway -> database_connector\nVERIFY:\n    all_edges_exist = true\n    constraints_satisfied = true\n    is_successful = true",
+      "is_isomorphic": true,
+      "latency_us": 157.3
+    },
+    {
+      "pair_id": "isomorphic_pair_03",
+      "case_type": "avoid_constraint",
+      "domain_a_query": "¿Se puede llegar de Madrid a París sin pasar por Barcelona?",
+      "domain_b_query": "¿Se puede compilar relic_cli hacia memmap2 sin pasar por relic_core?",
+      "rir_canonical_spec_a": "DOMAIN: SpatialGraph\nGOAL: reach(París)\nKNOWN:\n    initial_state = Madrid\nCONSTRAINTS:\n    avoid(Barcelona)\n    max_hops(10)",
+      "rir_canonical_spec_b": "DOMAIN: SoftwareDependency\nGOAL: reach(memmap2)\nKNOWN:\n    initial_state = relic_cli\nCONSTRAINTS:\n    avoid(relic_core)\n    max_hops(10)",
+      "plan_a": "PLAN:\n    None\nVERIFY:\n    all_edges_exist = false\n    constraints_satisfied = false\n    is_successful = false\n    failure_reason = 'No viable path avoiding Barcelona'",
+      "plan_b": "PLAN:\n    None\nVERIFY:\n    all_edges_exist = false\n    constraints_satisfied = false\n    is_successful = false\n    failure_reason = 'No viable path avoiding relic_core'",
+      "is_isomorphic": true,
+      "latency_us": 815.0
+    },
+    {
+      "pair_id": "isomorphic_pair_04",
+      "case_type": "uncertainty_unknown_entity",
+      "domain_a_query": "¿Se puede viajar desde Atlántida hasta París?",
+      "domain_b_query": "¿Depende el componente crate_fantasma_xyz del paquete serde?",
+      "rir_canonical_spec_a": "DOMAIN: SpatialGraph\nGOAL: reach(París)\nKNOWN:\n    initial_state = Atlántida\nCONSTRAINTS:\n    max_hops(10)",
+      "rir_canonical_spec_b": "DOMAIN: SoftwareDependency\nGOAL: reach(serde)\nKNOWN:\n    initial_state = crate_fantasma_xyz\nCONSTRAINTS:\n    max_hops(10)",
+      "plan_a": "PLAN:\n    None\nVERIFY:\n    all_edges_exist = false\n    constraints_satisfied = false\n    is_successful = false\n    failure_reason = 'REJECT_UNKNOWN: ['Atlántida']'",
+      "plan_b": "PLAN:\n    None\nVERIFY:\n    all_edges_exist = false\n    constraints_satisfied = false\n    is_successful = false\n    failure_reason = 'REJECT_UNKNOWN: ['crate_fantasma_xyz']'",
+      "is_isomorphic": true,
+      "latency_us": 128.5
+    },
+    {
+      "pair_id": "isomorphic_pair_05",
+      "case_type": "incomplete_query",
+      "domain_a_query": "¿Cómo puedo llegar a la biblioteca?",
+      "domain_b_query": "¿Cómo se resuelve la dependencia hacia database_connector?",
+      "rir_canonical_spec_a": "DOMAIN: SpatialGraph\nGOAL: incomplete(biblioteca)\nKNOWN:\n    initial_state = ?\nCONSTRAINTS:\n    max_hops(10)",
+      "rir_canonical_spec_b": "DOMAIN: SoftwareDependency\nGOAL: incomplete(database_connector)\nKNOWN:\n    initial_state = ?\nCONSTRAINTS:\n    max_hops(10)",
+      "plan_a": "PLAN:\n    None\nVERIFY:\n    all_edges_exist = false\n    constraints_satisfied = false\n    is_successful = false\n    failure_reason = 'ASK_CLARIFICATION: ['initial_state']'",
+      "plan_b": "PLAN:\n    None\nVERIFY:\n    all_edges_exist = false\n    constraints_satisfied = false\n    is_successful = false\n    failure_reason = 'ASK_CLARIFICATION: ['initial_state']'",
+      "is_isomorphic": true,
+      "latency_us": 738.6
+    }
+  ]
+}

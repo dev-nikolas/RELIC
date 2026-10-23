@@ -1,0 +1,124 @@
+{
+  "system": "RELIC",
+  "audit": "architect_regression_verification",
+  "date": "2026-10-21",
+  "environment": {
+    "rust": "x86_64-pc-windows-msvc",
+    "python": "3.14.0",
+    "workspace_tests_passing": 50,
+    "python_tests_passing": 7,
+    "regression_tests_passing": 15
+  },
+  "cli_metrics_comparison": {
+    "query_arithmetic_simple": {
+      "prompt": "¿Cuánto es 1 + 1?",
+      "before": {
+        "status": "FREE_LANGUAGE_LEAK",
+        "result": "Emisión autorregresiva de prior sintético (<|endoftext|> El arquitecto...)"
+      },
+      "after": {
+        "status": "VALID",
+        "intent": "ARITHMETIC_OPERATION",
+        "result": "El resultado es 2.",
+        "parser_latency_us": 65.0,
+        "engine_latency_us": 0.2,
+        "total_latency_us": 175.3,
+        "rss_mb": 3.11
+      }
+    },
+    "query_inventory_x_isolation": {
+      "prompt": "Cuento con 3 lápices, pero extravié 1",
+      "before": {
+        "status": "VALID_PARSE_BUG",
+        "intent": "ARITHMETIC_OPERATION",
+        "result": "El resultado es 3 (falso Multiply por 'x' en extravié)"
+      },
+      "after": {
+        "status": "VALID",
+        "intent": "ARITHMETIC_OPERATION",
+        "result": "Ahora tienes 2 lápices.",
+        "parser_latency_us": 102.2,
+        "engine_latency_us": 0.1,
+        "total_latency_us": 196.4,
+        "rss_mb": 3.13
+      }
+    },
+    "query_unsupported_rejection": {
+      "prompt": "Completa la secuencia: 1, 2, 1, 2, 1, ...",
+      "before": {
+        "status": "FREE_LANGUAGE_LEAK",
+        "result": "Emisión autorregresiva de prior sintético (<|endoftext|> El arquitecto...)"
+      },
+      "after": {
+        "status": "UNSUPPORTED",
+        "intent": "FREE_LANGUAGE_REJECTION",
+        "result": "ValidityStatus::UNSUPPORTED",
+        "total_latency_us": 45.0,
+        "rss_mb": 3.05
+      }
+    },
+    "demo_legitimate_architecture_query": {
+      "prompt": "El arquitecto diseñó",
+      "before": {
+        "status": "GENERATION_UNCONTROLLED",
+        "result": "Generación autorregresiva de 16 tokens"
+      },
+      "after": {
+        "status": "GENERATION_PRESERVED",
+        "result": "Continúa generación contextual legítima sin bloqueo léxico",
+        "latency_ms": 166.94,
+        "throughput_tok_s": 95.8,
+        "rss_mb": 44.50
+      }
+    }
+  },
+  "semantic_interpreters_comparison": {
+    "ConstrainedGrammar": {
+      "validation": {
+        "count": 101,
+        "before": {
+          "exact_match_pct": 67.33,
+          "critical_false_positives": 30,
+          "safe_rejections": 0,
+          "mean_latency_us": 20.3
+        },
+        "after": {
+          "exact_match_pct": 84.16,
+          "critical_false_positives": 15,
+          "safe_rejections": 2,
+          "mean_latency_us": 82.6
+        }
+      },
+      "test_id": {
+        "count": 30,
+        "before": {
+          "exact_match_pct": 93.33,
+          "critical_false_positives": 2,
+          "safe_rejections": 0,
+          "mean_latency_us": 23.2
+        },
+        "after": {
+          "exact_match_pct": 93.33,
+          "critical_false_positives": 2,
+          "safe_rejections": 0,
+          "mean_latency_us": 79.2
+        }
+      },
+      "test_ood": {
+        "count": 65,
+        "before": {
+          "exact_match_pct": 69.23,
+          "critical_false_positives": 20,
+          "safe_rejections": 0,
+          "mean_latency_us": 18.8
+        },
+        "after": {
+          "exact_match_pct": 73.85,
+          "critical_false_positives": 7,
+          "safe_rejections": 8,
+          "mean_latency_us": 70.2
+        }
+      }
+    }
+  }
+}

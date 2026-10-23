@@ -1,0 +1,1942 @@
+{
+  "metadata": {
+    "epochs": 10,
+    "seeds": [
+      42,
+      123,
+      999
+    ],
+    "learning_rate": 0.0005,
+    "device": "cpu",
+    "peak_rss_mb": 382.77
+  },
+  "heuristic_baseline": {
+    "val": {
+      "total_samples": 101,
+      "exact_match_rate": 0.5248,
+      "intent_accuracy": 0.5644,
+      "slot_accuracy": 0.5842,
+      "execution_accuracy": 0.5248,
+      "rejection_accuracy": 0.25,
+      "false_positive_count": 0,
+      "avg_latency_us": 22.6,
+      "failures": [
+        {
+          "query": "De los 10 libros que había comprado, presté 2 a mi hermano.",
+          "family": "F6_inverted_clause_val",
+          "gold": {
+            "schema_version": 1,
+            "intent": "inventory_update",
+            "domain": "inventory",
+            "status": "VALID",
+            "uncertainty": {
+              "is_rejected": false,
+              "status": "VALID",
+              "missing_fields": [],
+              "rejection_reason": null
+            },
+            "entity": "libros",
+            "initial_quantity": 10.0,
+            "operations": [
+              {
+                "operator": "subtract",
+                "operand": 2.0
+              }
+            ]
+          },
+          "pred": {
+            "schema_version": 1,
+            "intent": "unknown",
+            "domain": "unsupported",
+            "status": "UNSUPPORTED",
+            "uncertainty": {
+              "is_rejected": false,
+              "status": "VALID",
+              "missing_fields": [],
+              "rejection_reason": null
+            }
+          },
+          "raw_output": "{\"schema_version\": 1, \"intent\": \"unknown\", \"domain\": \"unsupported\", \"status\": \"UNSUPPORTED\", \"uncertainty\": {\"is_rejected\": false, \"status\": \"VALID\", \"missing_fields\": [], \"rejection_reason\": null}}"
+        },
+        {
+          "query": "De los 11 cuadernos que había comprado, presté 3 a mi hermano.",
+          "family": "F6_inverted_clause_val",
+          "gold": {
+            "schema_version": 1,
+            "intent": "inventory_update",
+            "domain": "inventory",
+            "status": "VALID",
+            "uncertainty": {
+              "is_rejected": false,
+              "status": "VALID",
+              "missing_fields": [],
+              "rejection_reason": null
+            },
+            "entity": "cuadernos",
+            "initial_quantity": 11.0,
+            "operations": [
+              {
+                "operator": "subtract",
+                "operand": 3.0
+              }
+            ]
+          },
+          "pred": {
+            "schema_version": 1,
+            "intent": "unknown",
+            "domain": "unsupported",
+            "status": "UNSUPPORTED",
+            "uncertainty": {
+              "is_rejected": false,
+              "status": "VALID",
+              "missing_fields": [],
+              "rejection_reason": null
+            }
+          },
+          "raw_output": "{\"schema_version\": 1, \"intent\": \"unknown\", \"domain\": \"unsupported\", \"status\": \"UNSUPPORTED\", \"uncertainty\": {\"is_rejected\": false, \"status\": \"VALID\", \"missing_fields\": [], \"rejection_reason\": null}}"
+        },
+        {
+          "query": "De los 12 lápices que había comprado, presté 4 a mi hermano.",
+          "family": "F6_inverted_clause_val",
+          "gold": {
+            "schema_version": 1,
+            "intent": "inventory_update",
+            "domain": "inventory",
+            "status": "VALID",
+            "uncertainty": {
+              "is_rejected": false,
+              "status": "VALID",
+              "missing_fields": [],
+              "rejection_reason": null
+            },
+            "entity": "lápices",
+            "initial_quantity": 12.0,
+            "operations": [
+              {
+                "operator": "subtract",
+                "operand": 4.0
+              }
+            ]
+          },
+          "pred": {
+            "schema_version": 1,
+            "intent": "unknown",
+            "domain": "unsupported",
+            "status": "UNSUPPORTED",
+            "uncertainty": {
+              "is_rejected": false,
+              "status": "VALID",
+              "missing_fields": [],
+              "rejection_reason": null
+            }
+          },
+          "raw_output": "{\"schema_version\": 1, \"intent\": \"unknown\", \"domain\": \"unsupported\", \"status\": \"UNSUPPORTED\", \"uncertainty\": {\"is_rejected\": false, \"status\": \"VALID\", \"missing_fields\": [], \"rejection_reason\": null}}"
+        },
+        {
+          "query": "De los 13 naranjas que había comprado, presté 5 a mi hermano.",
+          "family": "F6_inverted_clause_val",
+          "gold": {
+            "schema_version": 1,
+            "intent": "inventory_update",
+            "domain": "inventory",
+            "status": "VALID",
+            "uncertainty": {
+              "is_rejected": false,
+              "status": "VALID",
+              "missing_fields": [],
+              "rejection_reason": null
+            },
+            "entity": "naranjas",
+            "initial_quantity": 13.0,
+            "operations": [
+              {
+                "operator": "subtract",
+                "operand": 5.0
+              }
+            ]
+          },
+          "pred": {
+            "schema_version": 1,
+            "intent": "unknown",
+            "domain": "unsupported",
+            "status": "UNSUPPORTED",
+            "uncertainty": {
+              "is_rejected": false,
+              "status": "VALID",
+              "missing_fields": [],
+              "rejection_reason": null
+            }
+          },
+          "raw_output": "{\"schema_version\": 1, \"intent\": \"unknown\", \"domain\": \"unsupported\", \"status\": \"UNSUPPORTED\", \"uncertainty\": {\"is_rejected\": false, \"status\": \"VALID\", \"missing_fields\": [], \"rejection_reason\": null}}"
+        },
+        {
+          "query": "De los 14 peras que había comprado, presté 2 a mi hermano.",
+          "family": "F6_inverted_clause_val",
+          "gold": {
+            "schema_version": 1,
+            "intent": "inventory_update",
+            "domain": "inventory",
+            "status": "VALID",
+            "uncertainty": {
+              "is_rejected": false,
+              "status": "VALID",
+              "missing_fields": [],
+              "rejection_reason": null
+            },
+            "entity": "peras",
+            "initial_quantity": 14.0,
+            "operations": [
+              {
+                "operator": "subtract",
+                "operand": 2.0
+              }
+            ]
+          },
+          "pred": {
+            "schema_version": 1,
+            "intent": "unknown",
+            "domain": "unsupported",
+            "status": "UNSUPPORTED",
+            "uncertainty": {
+              "is_rejected": false,
+              "status": "VALID",
+              "missing_fields": [],
+              "rejection_reason": null
+            }
+          },
+          "raw_output": "{\"schema_version\": 1, \"intent\": \"unknown\", \"domain\": \"unsupported\", \"status\": \"UNSUPPORTED\", \"uncertainty\": {\"is_rejected\": false, \"status\": \"VALID\", \"missing_fields\": [], \"rejection_reason\": null}}"
+        }
+      ]
+    },
+    "test_id": {
+      "total_samples": 30,
+      "exact_match_rate": 0.1,
+      "intent_accuracy": 0.1333,
+      "slot_accuracy": 0.1,
+      "execution_accuracy": 0.1,
+      "rejection_accuracy": 0.0,
+      "false_positive_count": 0,
+      "avg_latency_us": 10.0,
+      "failures": [
+        {
+          "query": "De los 10 libros que había comprado, presté 2 a mi hermano.",
+          "family": "F6_inverted_clause_val",
+          "gold": {
+            "schema_version": 1,
+            "intent": "inventory_update",
+            "domain": "inventory",
+            "status": "VALID",
+            "uncertainty": {
+              "is_rejected": false,
+              "status": "VALID",
+              "missing_fields": [],
+              "rejection_reason": null
+            },
+            "entity": "libros",
+            "initial_quantity": 10.0,
+            "operations": [
+              {
+                "operator": "subtract",
+                "operand": 2.0
+              }
+            ]
+          },
+          "pred": {
+            "schema_version": 1,
+            "intent": "unknown",
+            "domain": "unsupported",
+            "status": "UNSUPPORTED",
+            "uncertainty": {
+              "is_rejected": false,
+              "status": "VALID",
+              "missing_fields": [],
+              "rejection_reason": null
+            }
+          },
+          "raw_output": "{\"schema_version\": 1, \"intent\": \"unknown\", \"domain\": \"unsupported\", \"status\": \"UNSUPPORTED\", \"uncertainty\": {\"is_rejected\": false, \"status\": \"VALID\", \"missing_fields\": [], \"rejection_reason\": null}}"
+        },
+        {
+          "query": "De los 11 cuadernos que había comprado, presté 3 a mi hermano.",
+          "family": "F6_inverted_clause_val",
+          "gold": {
+            "schema_version": 1,
+            "intent": "inventory_update",
+            "domain": "inventory",
+            "status": "VALID",
+            "uncertainty": {
+              "is_rejected": false,
+              "status": "VALID",
+              "missing_fields": [],
+              "rejection_reason": null
+            },
+            "entity": "cuadernos",
+            "initial_quantity": 11.0,
+            "operations": [
+              {
+                "operator": "subtract",
+                "operand": 3.0
+              }
+            ]
+          },
+          "pred": {
+            "schema_version": 1,
+            "intent": "unknown",
+            "domain": "unsupported",
+            "status": "UNSUPPORTED",
+            "uncertainty": {
+              "is_rejected": false,
+              "status": "VALID",
+              "missing_fields": [],
+              "rejection_reason": null
+            }
+          },
+          "raw_output": "{\"schema_version\": 1, \"intent\": \"unknown\", \"domain\": \"unsupported\", \"status\": \"UNSUPPORTED\", \"uncertainty\": {\"is_rejected\": false, \"status\": \"VALID\", \"missing_fields\": [], \"rejection_reason\": null}}"
+        },
+        {
+          "query": "De los 12 lápices que había comprado, presté 4 a mi hermano.",
+          "family": "F6_inverted_clause_val",
+          "gold": {
+            "schema_version": 1,
+            "intent": "inventory_update",
+            "domain": "inventory",
+            "status": "VALID",
+            "uncertainty": {
+              "is_rejected": false,
+              "status": "VALID",
+              "missing_fields": [],
+              "rejection_reason": null
+            },
+            "entity": "lápices",
+            "initial_quantity": 12.0,
+            "operations": [
+              {
+                "operator": "subtract",
+                "operand": 4.0
+              }
+            ]
+          },
+          "pred": {
+            "schema_version": 1,
+            "intent": "unknown",
+            "domain": "unsupported",
+            "status": "UNSUPPORTED",
+            "uncertainty": {
+              "is_rejected": false,
+              "status": "VALID",
+              "missing_fields": [],
+              "rejection_reason": null
+            }
+          },
+          "raw_output": "{\"schema_version\": 1, \"intent\": \"unknown\", \"domain\": \"unsupported\", \"status\": \"UNSUPPORTED\", \"uncertainty\": {\"is_rejected\": false, \"status\": \"VALID\", \"missing_fields\": [], \"rejection_reason\": null}}"
+        },
+        {
+          "query": "De los 13 naranjas que había comprado, presté 5 a mi hermano.",
+          "family": "F6_inverted_clause_val",
+          "gold": {
+            "schema_version": 1,
+            "intent": "inventory_update",
+            "domain": "inventory",
+            "status": "VALID",
+            "uncertainty": {
+              "is_rejected": false,
+              "status": "VALID",
+              "missing_fields": [],
+              "rejection_reason": null
+            },
+            "entity": "naranjas",
+            "initial_quantity": 13.0,
+            "operations": [
+              {
+                "operator": "subtract",
+                "operand": 5.0
+              }
+            ]
+          },
+          "pred": {
+            "schema_version": 1,
+            "intent": "unknown",
+            "domain": "unsupported",
+            "status": "UNSUPPORTED",
+            "uncertainty": {
+              "is_rejected": false,
+              "status": "VALID",
+              "missing_fields": [],
+              "rejection_reason": null
+            }
+          },
+          "raw_output": "{\"schema_version\": 1, \"intent\": \"unknown\", \"domain\": \"unsupported\", \"status\": \"UNSUPPORTED\", \"uncertainty\": {\"is_rejected\": false, \"status\": \"VALID\", \"missing_fields\": [], \"rejection_reason\": null}}"
+        },
+        {
+          "query": "De los 14 peras que había comprado, presté 2 a mi hermano.",
+          "family": "F6_inverted_clause_val",
+          "gold": {
+            "schema_version": 1,
+            "intent": "inventory_update",
+            "domain": "inventory",
+            "status": "VALID",
+            "uncertainty": {
+              "is_rejected": false,
+              "status": "VALID",
+              "missing_fields": [],
+              "rejection_reason": null
+            },
+            "entity": "peras",
+            "initial_quantity": 14.0,
+            "operations": [
+              {
+                "operator": "subtract",
+                "operand": 2.0
+              }
+            ]
+          },
+          "pred": {
+            "schema_version": 1,
+            "intent": "unknown",
+            "domain": "unsupported",
+            "status": "UNSUPPORTED",
+            "uncertainty": {
+              "is_rejected": false,
+              "status": "VALID",
+              "missing_fields": [],
+              "rejection_reason": null
+            }
+          },
+          "raw_output": "{\"schema_version\": 1, \"intent\": \"unknown\", \"domain\": \"unsupported\", \"status\": \"UNSUPPORTED\", \"uncertainty\": {\"is_rejected\": false, \"status\": \"VALID\", \"missing_fields\": [], \"rejection_reason\": null}}"
+        }
+      ]
+    },
+    "test_ood": {
+      "total_samples": 8,
+      "exact_match_rate": 0.0,
+      "intent_accuracy": 0.125,
+      "slot_accuracy": 0.375,
+      "execution_accuracy": 0.0,
+      "rejection_accuracy": 0.3333,
+      "false_positive_count": 0,
+      "avg_latency_us": 8.6,
+      "failures": [
+        {
+          "query": "Cuento con 3 lápices, pero extravié 1.",
+          "family": "F9_unseen_lexicon_extraviar",
+          "gold": {
+            "schema_version": 1,
+            "intent": "inventory_update",
+            "domain": "inventory",
+            "status": "VALID",
+            "uncertainty": {
+              "is_rejected": false,
+              "status": "VALID",
+              "missing_fields": [],
+              "rejection_reason": null
+            },
+            "entity": "lápices",
+            "initial_quantity": 3.0,
+            "operations": [
+              {
+                "operator": "subtract",
+                "operand": 1.0
+              }
+            ]
+          },
+          "pred": {
+            "schema_version": 1,
+            "intent": "unknown",
+            "domain": "unsupported",
+            "status": "UNSUPPORTED",
+            "uncertainty": {
+              "is_rejected": false,
+              "status": "VALID",
+              "missing_fields": [],
+              "rejection_reason": null
+            }
+          },
+          "raw_output": "{\"schema_version\": 1, \"intent\": \"unknown\", \"domain\": \"unsupported\", \"status\": \"UNSUPPORTED\", \"uncertainty\": {\"is_rejected\": false, \"status\": \"VALID\", \"missing_fields\": [], \"rejection_reason\": null}}"
+        },
+        {
+          "query": "Adquirí 4 manzanas y obsequié 2.",
+          "family": "F9_unseen_lexicon_obsequiar",
+          "gold": {
+            "schema_version": 1,
+            "intent": "inventory_update",
+            "domain": "inventory",
+            "status": "VALID",
+            "uncertainty": {
+              "is_rejected": false,
+              "status": "VALID",
+              "missing_fields": [],
+              "rejection_reason": null
+            },
+            "entity": "manzanas",
+            "initial_quantity": 4.0,
+            "operations": [
+              {
+                "operator": "subtract",
+                "operand": 2.0
+              }
+            ]
+          },
+          "pred": {
+            "schema_version": 1,
+            "intent": "unknown",
+            "domain": "unsupported",
+            "status": "UNSUPPORTED",
+            "uncertainty": {
+              "is_rejected": false,
+              "status": "VALID",
+              "missing_fields": [],
+              "rejection_reason": null
+            }
+          },
+          "raw_output": "{\"schema_version\": 1, \"intent\": \"unknown\", \"domain\": \"unsupported\", \"status\": \"UNSUPPORTED\", \"uncertainty\": {\"is_rejected\": false, \"status\": \"VALID\", \"missing_fields\": [], \"rejection_reason\": null}}"
+        },
+        {
+          "query": "A mi hermano le presté dos de los cinco libros que compré.",
+          "family": "F7_inverted_proclitic",
+          "gold": {
+            "schema_version": 1,
+            "intent": "inventory_update",
+            "domain": "inventory",
+            "status": "VALID",
+            "uncertainty": {
+              "is_rejected": false,
+              "status": "VALID",
+              "missing_fields": [],
+              "rejection_reason": null
+            },
+            "entity": "libros",
+            "initial_quantity": 5.0,
+            "operations": [
+              {
+                "operator": "subtract",
+                "operand": 2.0
+              }
+            ]
+          },
+          "pred": {
+            "schema_version": 1,
+            "intent": "unknown",
+            "domain": "unsupported",
+            "status": "UNSUPPORTED",
+            "uncertainty": {
+              "is_rejected": false,
+              "status": "VALID",
+              "missing_fields": [],
+              "rejection_reason": null
+            }
+          },
+          "raw_output": "{\"schema_version\": 1, \"intent\": \"unknown\", \"domain\": \"unsupported\", \"status\": \"UNSUPPORTED\", \"uncertainty\": {\"is_rejected\": false, \"status\": \"VALID\", \"missing_fields\": [], \"rejection_reason\": null}}"
+        },
+        {
+          "query": "No regalé ninguna de las 7 manzanas que tenía.",
+          "family": "F8_strict_negation_zero",
+          "gold": {
+            "schema_version": 1,
+            "intent": "inventory_update",
+            "domain": "inventory",
+            "status": "VALID",
+            "uncertainty": {
+              "is_rejected": false,
+              "status": "VALID",
+              "missing_fields": [],
+              "rejection_reason": null
+            },
+            "entity": "manzanas",
+            "initial_quantity": 7.0,
+            "operations": [
+              {
+                "operator": "subtract",
+                "operand": 0.0
+              }
+            ]
+          },
+          "pred": {
+            "schema_version": 1,
+            "intent": "unknown",
+            "domain": "unsupported",
+            "status": "UNSUPPORTED",
+            "uncertainty": {
+              "is_rejected": false,
+              "status": "VALID",
+              "missing_fields": [],
+              "rejection_reason": null
+            }
+          },
+          "raw_output": "{\"schema_version\": 1, \"intent\": \"unknown\", \"domain\": \"unsupported\", \"status\": \"UNSUPPORTED\", \"uncertainty\": {\"is_rejected\": false, \"status\": \"VALID\", \"missing_fields\": [], \"rejection_reason\": null}}"
+        },
+        {
+          "query": "Fueron consumidas 2 de las 6 peras que estaban guardadas.",
+          "family": "F7_passive_voice",
+          "gold": {
+            "schema_version": 1,
+            "intent": "inventory_update",
+            "domain": "inventory",
+            "status": "VALID",
+            "uncertainty": {
+              "is_rejected": false,
+              "status": "VALID",
+              "missing_fields": [],
+              "rejection_reason": null
+            },
+            "entity": "peras",
+            "initial_quantity": 6.0,
+            "operations": [
+              {
+                "operator": "subtract",
+                "operand": 2.0
+              }
+            ]
+          },
+          "pred": {
+            "schema_version": 1,
+            "intent": "unknown",
+            "domain": "unsupported",
+            "status": "UNSUPPORTED",
+            "uncertainty": {
+              "is_rejected": false,
+              "status": "VALID",
+              "missing_fields": [],
+              "rejection_reason": null
+            }
+          },
+          "raw_output": "{\"schema_version\": 1, \"intent\": \"unknown\", \"domain\": \"unsupported\", \"status\": \"UNSUPPORTED\", \"uncertainty\": {\"is_rejected\": false, \"status\": \"VALID\", \"missing_fields\": [], \"rejection_reason\": null}}"
+        }
+      ]
+    }
+  },
+  "semantic_compiler": {
+    "runs": [
+      {
+        "seed": 42,
+        "loss_curve": [
+          1.2295,
+          0.024,
+          0.0091,
+          0.0045,
+          0.003,
+          0.0023,
+          0.0018,
+          0.0015,
+          0.0013,
+          0.0011
+        ],
+        "val": {
+          "total_samples": 101,
+          "exact_match_rate": 0.0,
+          "intent_accuracy": 0.0,
+          "slot_accuracy": 0.0594,
+          "execution_accuracy": 0.0396,
+          "rejection_accuracy": 1.0,
+          "false_positive_count": 0,
+          "avg_latency_us": 2935260.2,
+          "failures": [
+            {
+              "query": "De los 10 libros que había comprado, presté 2 a mi hermano.",
+              "family": "F6_inverted_clause_val",
+              "gold": {
+                "schema_version": 1,
+                "intent": "inventory_update",
+                "domain": "inventory",
+                "status": "VALID",
+                "uncertainty": {
+                  "is_rejected": false,
+                  "status": "VALID",
+                  "missing_fields": [],
+                  "rejection_reason": null
+                },
+                "entity": "libros",
+                "initial_quantity": 10.0,
+                "operations": [
+                  {
+                    "operator": "subtract",
+                    "operand": 2.0
+                  }
+                ]
+              },
+              "pred": null,
+              "raw_output": "tentententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententen"
+            },
+            {
+              "query": "De los 11 cuadernos que había comprado, presté 3 a mi hermano.",
+              "family": "F6_inverted_clause_val",
+              "gold": {
+                "schema_version": 1,
+                "intent": "inventory_update",
+                "domain": "inventory",
+                "status": "VALID",
+                "uncertainty": {
+                  "is_rejected": false,
+                  "status": "VALID",
+                  "missing_fields": [],
+                  "rejection_reason": null
+                },
+                "entity": "cuadernos",
+                "initial_quantity": 11.0,
+                "operations": [
+                  {
+                    "operator": "subtract",
+                    "operand": 3.0
+                  }
+                ]
+              },
+              "pred": null,
+              "raw_output": "tentententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententen"
+            },
+            {
+              "query": "De los 12 lápices que había comprado, presté 4 a mi hermano.",
+              "family": "F6_inverted_clause_val",
+              "gold": {
+                "schema_version": 1,
+                "intent": "inventory_update",
+                "domain": "inventory",
+                "status": "VALID",
+                "uncertainty": {
+                  "is_rejected": false,
+                  "status": "VALID",
+                  "missing_fields": [],
+                  "rejection_reason": null
+                },
+                "entity": "lápices",
+                "initial_quantity": 12.0,
+                "operations": [
+                  {
+                    "operator": "subtract",
+                    "operand": 4.0
+                  }
+                ]
+              },
+              "pred": null,
+              "raw_output": "tentententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententen"
+            },
+            {
+              "query": "De los 13 naranjas que había comprado, presté 5 a mi hermano.",
+              "family": "F6_inverted_clause_val",
+              "gold": {
+                "schema_version": 1,
+                "intent": "inventory_update",
+                "domain": "inventory",
+                "status": "VALID",
+                "uncertainty": {
+                  "is_rejected": false,
+                  "status": "VALID",
+                  "missing_fields": [],
+                  "rejection_reason": null
+                },
+                "entity": "naranjas",
+                "initial_quantity": 13.0,
+                "operations": [
+                  {
+                    "operator": "subtract",
+                    "operand": 5.0
+                  }
+                ]
+              },
+              "pred": null,
+              "raw_output": "tentententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententen"
+            },
+            {
+              "query": "De los 14 peras que había comprado, presté 2 a mi hermano.",
+              "family": "F6_inverted_clause_val",
+              "gold": {
+                "schema_version": 1,
+                "intent": "inventory_update",
+                "domain": "inventory",
+                "status": "VALID",
+                "uncertainty": {
+                  "is_rejected": false,
+                  "status": "VALID",
+                  "missing_fields": [],
+                  "rejection_reason": null
+                },
+                "entity": "peras",
+                "initial_quantity": 14.0,
+                "operations": [
+                  {
+                    "operator": "subtract",
+                    "operand": 2.0
+                  }
+                ]
+              },
+              "pred": null,
+              "raw_output": "tentententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententen"
+            }
+          ]
+        },
+        "test_id": {
+          "total_samples": 30,
+          "exact_match_rate": 0.0,
+          "intent_accuracy": 0.0,
+          "slot_accuracy": 0.0,
+          "execution_accuracy": 0.0,
+          "rejection_accuracy": 0.0,
+          "false_positive_count": 0,
+          "avg_latency_us": 3046270.2,
+          "failures": [
+            {
+              "query": "De los 10 libros que había comprado, presté 2 a mi hermano.",
+              "family": "F6_inverted_clause_val",
+              "gold": {
+                "schema_version": 1,
+                "intent": "inventory_update",
+                "domain": "inventory",
+                "status": "VALID",
+                "uncertainty": {
+                  "is_rejected": false,
+                  "status": "VALID",
+                  "missing_fields": [],
+                  "rejection_reason": null
+                },
+                "entity": "libros",
+                "initial_quantity": 10.0,
+                "operations": [
+                  {
+                    "operator": "subtract",
+                    "operand": 2.0
+                  }
+                ]
+              },
+              "pred": null,
+              "raw_output": "tentententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententen"
+            },
+            {
+              "query": "De los 11 cuadernos que había comprado, presté 3 a mi hermano.",
+              "family": "F6_inverted_clause_val",
+              "gold": {
+                "schema_version": 1,
+                "intent": "inventory_update",
+                "domain": "inventory",
+                "status": "VALID",
+                "uncertainty": {
+                  "is_rejected": false,
+                  "status": "VALID",
+                  "missing_fields": [],
+                  "rejection_reason": null
+                },
+                "entity": "cuadernos",
+                "initial_quantity": 11.0,
+                "operations": [
+                  {
+                    "operator": "subtract",
+                    "operand": 3.0
+                  }
+                ]
+              },
+              "pred": null,
+              "raw_output": "tentententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententen"
+            },
+            {
+              "query": "De los 12 lápices que había comprado, presté 4 a mi hermano.",
+              "family": "F6_inverted_clause_val",
+              "gold": {
+                "schema_version": 1,
+                "intent": "inventory_update",
+                "domain": "inventory",
+                "status": "VALID",
+                "uncertainty": {
+                  "is_rejected": false,
+                  "status": "VALID",
+                  "missing_fields": [],
+                  "rejection_reason": null
+                },
+                "entity": "lápices",
+                "initial_quantity": 12.0,
+                "operations": [
+                  {
+                    "operator": "subtract",
+                    "operand": 4.0
+                  }
+                ]
+              },
+              "pred": null,
+              "raw_output": "tentententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententen"
+            },
+            {
+              "query": "De los 13 naranjas que había comprado, presté 5 a mi hermano.",
+              "family": "F6_inverted_clause_val",
+              "gold": {
+                "schema_version": 1,
+                "intent": "inventory_update",
+                "domain": "inventory",
+                "status": "VALID",
+                "uncertainty": {
+                  "is_rejected": false,
+                  "status": "VALID",
+                  "missing_fields": [],
+                  "rejection_reason": null
+                },
+                "entity": "naranjas",
+                "initial_quantity": 13.0,
+                "operations": [
+                  {
+                    "operator": "subtract",
+                    "operand": 5.0
+                  }
+                ]
+              },
+              "pred": null,
+              "raw_output": "tentententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententen"
+            },
+            {
+              "query": "De los 14 peras que había comprado, presté 2 a mi hermano.",
+              "family": "F6_inverted_clause_val",
+              "gold": {
+                "schema_version": 1,
+                "intent": "inventory_update",
+                "domain": "inventory",
+                "status": "VALID",
+                "uncertainty": {
+                  "is_rejected": false,
+                  "status": "VALID",
+                  "missing_fields": [],
+                  "rejection_reason": null
+                },
+                "entity": "peras",
+                "initial_quantity": 14.0,
+                "operations": [
+                  {
+                    "operator": "subtract",
+                    "operand": 2.0
+                  }
+                ]
+              },
+              "pred": null,
+              "raw_output": "tentententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententen"
+            }
+          ]
+        },
+        "test_ood": {
+          "total_samples": 8,
+          "exact_match_rate": 0.0,
+          "intent_accuracy": 0.0,
+          "slot_accuracy": 0.375,
+          "execution_accuracy": 0.375,
+          "rejection_accuracy": 1.0,
+          "false_positive_count": 0,
+          "avg_latency_us": 2958797.6,
+          "failures": [
+            {
+              "query": "Cuento con 3 lápices, pero extravié 1.",
+              "family": "F9_unseen_lexicon_extraviar",
+              "gold": {
+                "schema_version": 1,
+                "intent": "inventory_update",
+                "domain": "inventory",
+                "status": "VALID",
+                "uncertainty": {
+                  "is_rejected": false,
+                  "status": "VALID",
+                  "missing_fields": [],
+                  "rejection_reason": null
+                },
+                "entity": "lápices",
+                "initial_quantity": 3.0,
+                "operations": [
+                  {
+                    "operator": "subtract",
+                    "operand": 1.0
+                  }
+                ]
+              },
+              "pred": null,
+              "raw_output": "tentententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententen"
+            },
+            {
+              "query": "Adquirí 4 manzanas y obsequié 2.",
+              "family": "F9_unseen_lexicon_obsequiar",
+              "gold": {
+                "schema_version": 1,
+                "intent": "inventory_update",
+                "domain": "inventory",
+                "status": "VALID",
+                "uncertainty": {
+                  "is_rejected": false,
+                  "status": "VALID",
+                  "missing_fields": [],
+                  "rejection_reason": null
+                },
+                "entity": "manzanas",
+                "initial_quantity": 4.0,
+                "operations": [
+                  {
+                    "operator": "subtract",
+                    "operand": 2.0
+                  }
+                ]
+              },
+              "pred": null,
+              "raw_output": "ritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritrit"
+            },
+            {
+              "query": "A mi hermano le presté dos de los cinco libros que compré.",
+              "family": "F7_inverted_proclitic",
+              "gold": {
+                "schema_version": 1,
+                "intent": "inventory_update",
+                "domain": "inventory",
+                "status": "VALID",
+                "uncertainty": {
+                  "is_rejected": false,
+                  "status": "VALID",
+                  "missing_fields": [],
+                  "rejection_reason": null
+                },
+                "entity": "libros",
+                "initial_quantity": 5.0,
+                "operations": [
+                  {
+                    "operator": "subtract",
+                    "operand": 2.0
+                  }
+                ]
+              },
+              "pred": null,
+              "raw_output": "tentententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententententen"
+            },
+            {
+              "query": "No regalé ninguna de las 7 manzanas que tenía.",
+              "family": "F8_strict_negation_zero",
+              "gold": {
+                "schema_version": 1,
+                "intent": "inventory_update",
+                "domain": "inventory",
+                "status": "VALID",
+                "uncertainty": {
+                  "is_rejected": false,
+                  "status": "VALID",
+                  "missing_fields": [],
+                  "rejection_reason": null
+                },
+                "entity": "manzanas",
+                "initial_quantity": 7.0,
+                "operations": [
+                  {
+                    "operator": "subtract",
+                    "operand": 0.0
+                  }
+                ]
+              },
+              "pred": null,
+              "raw_output": "ritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritritrit"
+            },
+            {
+              "query": "Fueron consumidas 2 de las 6 peras que estaban guardadas.",
+              "family": "F7_passive_voice",
+              "gold": {
+                "schema_version": 1,
+                "intent": "inventory_update",
+                "domain": "inventory",
+                "status": "VALID",
+                "uncertainty": {
+                  "is_rejected": false,
+                  "status": "VALID",
+                  "missing_fields": [],
+                  "rejection_reason": null
+                },
+                "entity": "peras",
+                "initial_quantity": 6.0,
+                "operations": [
+                  {
+                    "operator": "subtract",
+                    "operand": 2.0
+                  }
+                ]
+              },
+              "pred": null,
+              "raw_output": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+            }
+          ]
+        }
+      },
+      {
+        "seed": 123,
+        "loss_curve": [
+          1.2312,
+          0.0249,
+          0.0092,
+          0.0048,
+          0.0031,
+          0.0023,
+          0.0018,
+          0.0015,
+          0.0013,
+          0.0011
+        ],
+        "val": {
+          "total_samples": 101,
+          "exact_match_rate": 0.0,
+          "intent_accuracy": 0.0,
+          "slot_accuracy": 0.0594,
+          "execution_accuracy": 0.0396,
+          "rejection_accuracy": 1.0,
+          "false_positive_count": 0,
+          "avg_latency_us": 2947610.0,
+          "failures": [
+            {
+              "query": "De los 10 libros que había comprado, presté 2 a mi hermano.",
+              "family": "F6_inverted_clause_val",
+              "gold": {
+                "schema_version": 1,
+                "intent": "inventory_update",
+                "domain": "inventory",
+                "status": "VALID",
+                "uncertainty": {
+                  "is_rejected": false,
+                  "status": "VALID",
+                  "missing_fields": [],
+                  "rejection_reason": null
+                },
+                "entity": "libros",
+                "initial_quantity": 10.0,
+                "operations": [
+                  {
+                    "operator": "subtract",
+                    "operand": 2.0
+                  }
+                ]
+              },
+              "pred": null,
+              "raw_output": "\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\""
+            },
+            {
+              "query": "De los 11 cuadernos que había comprado, presté 3 a mi hermano.",
+              "family": "F6_inverted_clause_val",
+              "gold": {
+                "schema_version": 1,
+                "intent": "inventory_update",
+                "domain": "inventory",
+                "status": "VALID",
+                "uncertainty": {
+                  "is_rejected": false,
+                  "status": "VALID",
+                  "missing_fields": [],
+                  "rejection_reason": null
+                },
+                "entity": "cuadernos",
+                "initial_quantity": 11.0,
+                "operations": [
+                  {
+                    "operator": "subtract",
+                    "operand": 3.0
+                  }
+                ]
+              },
+              "pred": null,
+              "raw_output": "\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\""
+            },
+            {
+              "query": "De los 12 lápices que había comprado, presté 4 a mi hermano.",
+              "family": "F6_inverted_clause_val",
+              "gold": {
+                "schema_version": 1,
+                "intent": "inventory_update",
+                "domain": "inventory",
+                "status": "VALID",
+                "uncertainty": {
+                  "is_rejected": false,
+                  "status": "VALID",
+                  "missing_fields": [],
+                  "rejection_reason": null
+                },
+                "entity": "lápices",
+                "initial_quantity": 12.0,
+                "operations": [
+                  {
+                    "operator": "subtract",
+                    "operand": 4.0
+                  }
+                ]
+              },
+              "pred": null,
+              "raw_output": "\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\""
+            },
+            {
+              "query": "De los 13 naranjas que había comprado, presté 5 a mi hermano.",
+              "family": "F6_inverted_clause_val",
+              "gold": {
+                "schema_version": 1,
+                "intent": "inventory_update",
+                "domain": "inventory",
+                "status": "VALID",
+                "uncertainty": {
+                  "is_rejected": false,
+                  "status": "VALID",
+                  "missing_fields": [],
+                  "rejection_reason": null
+                },
+                "entity": "naranjas",
+                "initial_quantity": 13.0,
+                "operations": [
+                  {
+                    "operator": "subtract",
+                    "operand": 5.0
+                  }
+                ]
+              },
+              "pred": null,
+              "raw_output": "\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\""
+            },
+            {
+              "query": "De los 14 peras que había comprado, presté 2 a mi hermano.",
+              "family": "F6_inverted_clause_val",
+              "gold": {
+                "schema_version": 1,
+                "intent": "inventory_update",
+                "domain": "inventory",
+                "status": "VALID",
+                "uncertainty": {
+                  "is_rejected": false,
+                  "status": "VALID",
+                  "missing_fields": [],
+                  "rejection_reason": null
+                },
+                "entity": "peras",
+                "initial_quantity": 14.0,
+                "operations": [
+                  {
+                    "operator": "subtract",
+                    "operand": 2.0
+                  }
+                ]
+              },
+              "pred": null,
+              "raw_output": "\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\""
+            }
+          ]
+        },
+        "test_id": {
+          "total_samples": 30,
+          "exact_match_rate": 0.0,
+          "intent_accuracy": 0.0,
+          "slot_accuracy": 0.0,
+          "execution_accuracy": 0.0,
+          "rejection_accuracy": 0.0,
+          "false_positive_count": 0,
+          "avg_latency_us": 3020231.6,
+          "failures": [
+            {
+              "query": "De los 10 libros que había comprado, presté 2 a mi hermano.",
+              "family": "F6_inverted_clause_val",
+              "gold": {
+                "schema_version": 1,
+                "intent": "inventory_update",
+                "domain": "inventory",
+                "status": "VALID",
+                "uncertainty": {
+                  "is_rejected": false,
+                  "status": "VALID",
+                  "missing_fields": [],
+                  "rejection_reason": null
+                },
+                "entity": "libros",
+                "initial_quantity": 10.0,
+                "operations": [
+                  {
+                    "operator": "subtract",
+                    "operand": 2.0
+                  }
+                ]
+              },
+              "pred": null,
+              "raw_output": "\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\""
+            },
+            {
+              "query": "De los 11 cuadernos que había comprado, presté 3 a mi hermano.",
+              "family": "F6_inverted_clause_val",
+              "gold": {
+                "schema_version": 1,
+                "intent": "inventory_update",
+                "domain": "inventory",
+                "status": "VALID",
+                "uncertainty": {
+                  "is_rejected": false,
+                  "status": "VALID",
+                  "missing_fields": [],
+                  "rejection_reason": null
+                },
+                "entity": "cuadernos",
+                "initial_quantity": 11.0,
+                "operations": [
+                  {
+                    "operator": "subtract",
+                    "operand": 3.0
+                  }
+                ]
+              },
+              "pred": null,
+              "raw_output": "\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\""
+            },
+            {
+              "query": "De los 12 lápices que había comprado, presté 4 a mi hermano.",
+              "family": "F6_inverted_clause_val",
+              "gold": {
+                "schema_version": 1,
+                "intent": "inventory_update",
+                "domain": "inventory",
+                "status": "VALID",
+                "uncertainty": {
+                  "is_rejected": false,
+                  "status": "VALID",
+                  "missing_fields": [],
+                  "rejection_reason": null
+                },
+                "entity": "lápices",
+                "initial_quantity": 12.0,
+                "operations": [
+                  {
+                    "operator": "subtract",
+                    "operand": 4.0
+                  }
+                ]
+              },
+              "pred": null,
+              "raw_output": "\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\""
+            },
+            {
+              "query": "De los 13 naranjas que había comprado, presté 5 a mi hermano.",
+              "family": "F6_inverted_clause_val",
+              "gold": {
+                "schema_version": 1,
+                "intent": "inventory_update",
+                "domain": "inventory",
+                "status": "VALID",
+                "uncertainty": {
+                  "is_rejected": false,
+                  "status": "VALID",
+                  "missing_fields": [],
+                  "rejection_reason": null
+                },
+                "entity": "naranjas",
+                "initial_quantity": 13.0,
+                "operations": [
+                  {
+                    "operator": "subtract",
+                    "operand": 5.0
+                  }
+                ]
+              },
+              "pred": null,
+              "raw_output": "\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\""
+            },
+            {
+              "query": "De los 14 peras que había comprado, presté 2 a mi hermano.",
+              "family": "F6_inverted_clause_val",
+              "gold": {
+                "schema_version": 1,
+                "intent": "inventory_update",
+                "domain": "inventory",
+                "status": "VALID",
+                "uncertainty": {
+                  "is_rejected": false,
+                  "status": "VALID",
+                  "missing_fields": [],
+                  "rejection_reason": null
+                },
+                "entity": "peras",
+                "initial_quantity": 14.0,
+                "operations": [
+                  {
+                    "operator": "subtract",
+                    "operand": 2.0
+                  }
+                ]
+              },
+              "pred": null,
+              "raw_output": "\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\""
+            }
+          ]
+        },
+        "test_ood": {
+          "total_samples": 8,
+          "exact_match_rate": 0.0,
+          "intent_accuracy": 0.0,
+          "slot_accuracy": 0.375,
+          "execution_accuracy": 0.375,
+          "rejection_accuracy": 1.0,
+          "false_positive_count": 0,
+          "avg_latency_us": 2952729.2,
+          "failures": [
+            {
+              "query": "Cuento con 3 lápices, pero extravié 1.",
+              "family": "F9_unseen_lexicon_extraviar",
+              "gold": {
+                "schema_version": 1,
+                "intent": "inventory_update",
+                "domain": "inventory",
+                "status": "VALID",
+                "uncertainty": {
+                  "is_rejected": false,
+                  "status": "VALID",
+                  "missing_fields": [],
+                  "rejection_reason": null
+                },
+                "entity": "lápices",
+                "initial_quantity": 3.0,
+                "operations": [
+                  {
+                    "operator": "subtract",
+                    "operand": 1.0
+                  }
+                ]
+              },
+              "pred": null,
+              "raw_output": "\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\""
+            },
+            {
+              "query": "Adquirí 4 manzanas y obsequié 2.",
+              "family": "F9_unseen_lexicon_obsequiar",
+              "gold": {
+                "schema_version": 1,
+                "intent": "inventory_update",
+                "domain": "inventory",
+                "status": "VALID",
+                "uncertainty": {
+                  "is_rejected": false,
+                  "status": "VALID",
+                  "missing_fields": [],
+                  "rejection_reason": null
+                },
+                "entity": "manzanas",
+                "initial_quantity": 4.0,
+                "operations": [
+                  {
+                    "operator": "subtract",
+                    "operand": 2.0
+                  }
+                ]
+              },
+              "pred": null,
+              "raw_output": "\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\""
+            },
+            {
+              "query": "A mi hermano le presté dos de los cinco libros que compré.",
+              "family": "F7_inverted_proclitic",
+              "gold": {
+                "schema_version": 1,
+                "intent": "inventory_update",
+                "domain": "inventory",
+                "status": "VALID",
+                "uncertainty": {
+                  "is_rejected": false,
+                  "status": "VALID",
+                  "missing_fields": [],
+                  "rejection_reason": null
+                },
+                "entity": "libros",
+                "initial_quantity": 5.0,
+                "operations": [
+                  {
+                    "operator": "subtract",
+                    "operand": 2.0
+                  }
+                ]
+              },
+              "pred": null,
+              "raw_output": "\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\""
+            },
+            {
+              "query": "No regalé ninguna de las 7 manzanas que tenía.",
+              "family": "F8_strict_negation_zero",
+              "gold": {
+                "schema_version": 1,
+                "intent": "inventory_update",
+                "domain": "inventory",
+                "status": "VALID",
+                "uncertainty": {
+                  "is_rejected": false,
+                  "status": "VALID",
+                  "missing_fields": [],
+                  "rejection_reason": null
+                },
+                "entity": "manzanas",
+                "initial_quantity": 7.0,
+                "operations": [
+                  {
+                    "operator": "subtract",
+                    "operand": 0.0
+                  }
+                ]
+              },
+              "pred": null,
+              "raw_output": "\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\""
+            },
+            {
+              "query": "Fueron consumidas 2 de las 6 peras que estaban guardadas.",
+              "family": "F7_passive_voice",
+              "gold": {
+                "schema_version": 1,
+                "intent": "inventory_update",
+                "domain": "inventory",
+                "status": "VALID",
+                "uncertainty": {
+                  "is_rejected": false,
+                  "status": "VALID",
+                  "missing_fields": [],
+                  "rejection_reason": null
+                },
+                "entity": "peras",
+                "initial_quantity": 6.0,
+                "operations": [
+                  {
+                    "operator": "subtract",
+                    "operand": 2.0
+                  }
+                ]
+              },
+              "pred": null,
+              "raw_output": "\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\""
+            }
+          ]
+        }
+      },
+      {
+        "seed": 999,
+        "loss_curve": [
+          1.192,
+          0.0247,
+          0.009,
+          0.0045,
+          0.003,
+          0.0022,
+          0.0018,
+          0.0015,
+          0.0012,
+          0.0011
+        ],
+        "val": {
+          "total_samples": 101,
+          "exact_match_rate": 0.0,
+          "intent_accuracy": 0.0,
+          "slot_accuracy": 0.0594,
+          "execution_accuracy": 0.0396,
+          "rejection_accuracy": 1.0,
+          "false_positive_count": 0,
+          "avg_latency_us": 3131257.8,
+          "failures": [
+            {
+              "query": "De los 10 libros que había comprado, presté 2 a mi hermano.",
+              "family": "F6_inverted_clause_val",
+              "gold": {
+                "schema_version": 1,
+                "intent": "inventory_update",
+                "domain": "inventory",
+                "status": "VALID",
+                "uncertainty": {
+                  "is_rejected": false,
+                  "status": "VALID",
+                  "missing_fields": [],
+                  "rejection_reason": null
+                },
+                "entity": "libros",
+                "initial_quantity": 10.0,
+                "operations": [
+                  {
+                    "operator": "subtract",
+                    "operand": 2.0
+                  }
+                ]
+              },
+              "pred": null,
+              "raw_output": "\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\""
+            },
+            {
+              "query": "De los 11 cuadernos que había comprado, presté 3 a mi hermano.",
+              "family": "F6_inverted_clause_val",
+              "gold": {
+                "schema_version": 1,
+                "intent": "inventory_update",
+                "domain": "inventory",
+                "status": "VALID",
+                "uncertainty": {
+                  "is_rejected": false,
+                  "status": "VALID",
+                  "missing_fields": [],
+                  "rejection_reason": null
+                },
+                "entity": "cuadernos",
+                "initial_quantity": 11.0,
+                "operations": [
+                  {
+                    "operator": "subtract",
+                    "operand": 3.0
+                  }
+                ]
+              },
+              "pred": null,
+              "raw_output": "\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\""
+            },
+            {
+              "query": "De los 12 lápices que había comprado, presté 4 a mi hermano.",
+              "family": "F6_inverted_clause_val",
+              "gold": {
+                "schema_version": 1,
+                "intent": "inventory_update",
+                "domain": "inventory",
+                "status": "VALID",
+                "uncertainty": {
+                  "is_rejected": false,
+                  "status": "VALID",
+                  "missing_fields": [],
+                  "rejection_reason": null
+                },
+                "entity": "lápices",
+                "initial_quantity": 12.0,
+                "operations": [
+                  {
+                    "operator": "subtract",
+                    "operand": 4.0
+                  }
+                ]
+              },
+              "pred": null,
+              "raw_output": "\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\""
+            },
+            {
+              "query": "De los 13 naranjas que había comprado, presté 5 a mi hermano.",
+              "family": "F6_inverted_clause_val",
+              "gold": {
+                "schema_version": 1,
+                "intent": "inventory_update",
+                "domain": "inventory",
+                "status": "VALID",
+                "uncertainty": {
+                  "is_rejected": false,
+                  "status": "VALID",
+                  "missing_fields": [],
+                  "rejection_reason": null
+                },
+                "entity": "naranjas",
+                "initial_quantity": 13.0,
+                "operations": [
+                  {
+                    "operator": "subtract",
+                    "operand": 5.0
+                  }
+                ]
+              },
+              "pred": null,
+              "raw_output": "\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\""
+            },
+            {
+              "query": "De los 14 peras que había comprado, presté 2 a mi hermano.",
+              "family": "F6_inverted_clause_val",
+              "gold": {
+                "schema_version": 1,
+                "intent": "inventory_update",
+                "domain": "inventory",
+                "status": "VALID",
+                "uncertainty": {
+                  "is_rejected": false,
+                  "status": "VALID",
+                  "missing_fields": [],
+                  "rejection_reason": null
+                },
+                "entity": "peras",
+                "initial_quantity": 14.0,
+                "operations": [
+                  {
+                    "operator": "subtract",
+                    "operand": 2.0
+                  }
+                ]
+              },
+              "pred": null,
+              "raw_output": "\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\""
+            }
+          ]
+        },
+        "test_id": {
+          "total_samples": 30,
+          "exact_match_rate": 0.0,
+          "intent_accuracy": 0.0,
+          "slot_accuracy": 0.0,
+          "execution_accuracy": 0.0,
+          "rejection_accuracy": 0.0,
+          "false_positive_count": 0,
+          "avg_latency_us": 3406953.3,
+          "failures": [
+            {
+              "query": "De los 10 libros que había comprado, presté 2 a mi hermano.",
+              "family": "F6_inverted_clause_val",
+              "gold": {
+                "schema_version": 1,
+                "intent": "inventory_update",
+                "domain": "inventory",
+                "status": "VALID",
+                "uncertainty": {
+                  "is_rejected": false,
+                  "status": "VALID",
+                  "missing_fields": [],
+                  "rejection_reason": null
+                },
+                "entity": "libros",
+                "initial_quantity": 10.0,
+                "operations": [
+                  {
+                    "operator": "subtract",
+                    "operand": 2.0
+                  }
+                ]
+              },
+              "pred": null,
+              "raw_output": "\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\""
+            },
+            {
+              "query": "De los 11 cuadernos que había comprado, presté 3 a mi hermano.",
+              "family": "F6_inverted_clause_val",
+              "gold": {
+                "schema_version": 1,
+                "intent": "inventory_update",
+                "domain": "inventory",
+                "status": "VALID",
+                "uncertainty": {
+                  "is_rejected": false,
+                  "status": "VALID",
+                  "missing_fields": [],
+                  "rejection_reason": null
+                },
+                "entity": "cuadernos",
+                "initial_quantity": 11.0,
+                "operations": [
+                  {
+                    "operator": "subtract",
+                    "operand": 3.0
+                  }
+                ]
+              },
+              "pred": null,
+              "raw_output": "\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\""
+            },
+            {
+              "query": "De los 12 lápices que había comprado, presté 4 a mi hermano.",
+              "family": "F6_inverted_clause_val",
+              "gold": {
+                "schema_version": 1,
+                "intent": "inventory_update",
+                "domain": "inventory",
+                "status": "VALID",
+                "uncertainty": {
+                  "is_rejected": false,
+                  "status": "VALID",
+                  "missing_fields": [],
+                  "rejection_reason": null
+                },
+                "entity": "lápices",
+                "initial_quantity": 12.0,
+                "operations": [
+                  {
+                    "operator": "subtract",
+                    "operand": 4.0
+                  }
+                ]
+              },
+              "pred": null,
+              "raw_output": "\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\""
+            },
+            {
+              "query": "De los 13 naranjas que había comprado, presté 5 a mi hermano.",
+              "family": "F6_inverted_clause_val",
+              "gold": {
+                "schema_version": 1,
+                "intent": "inventory_update",
+                "domain": "inventory",
+                "status": "VALID",
+                "uncertainty": {
+                  "is_rejected": false,
+                  "status": "VALID",
+                  "missing_fields": [],
+                  "rejection_reason": null
+                },
+                "entity": "naranjas",
+                "initial_quantity": 13.0,
+                "operations": [
+                  {
+                    "operator": "subtract",
+                    "operand": 5.0
+                  }
+                ]
+              },
+              "pred": null,
+              "raw_output": "\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\""
+            },
+            {
+              "query": "De los 14 peras que había comprado, presté 2 a mi hermano.",
+              "family": "F6_inverted_clause_val",
+              "gold": {
+                "schema_version": 1,
+                "intent": "inventory_update",
+                "domain": "inventory",
+                "status": "VALID",
+                "uncertainty": {
+                  "is_rejected": false,
+                  "status": "VALID",
+                  "missing_fields": [],
+                  "rejection_reason": null
+                },
+                "entity": "peras",
+                "initial_quantity": 14.0,
+                "operations": [
+                  {
+                    "operator": "subtract",
+                    "operand": 2.0
+                  }
+                ]
+              },
+              "pred": null,
+              "raw_output": "\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\""
+            }
+          ]
+        },
+        "test_ood": {
+          "total_samples": 8,
+          "exact_match_rate": 0.0,
+          "intent_accuracy": 0.0,
+          "slot_accuracy": 0.375,
+          "execution_accuracy": 0.375,
+          "rejection_accuracy": 1.0,
+          "false_positive_count": 0,
+          "avg_latency_us": 3379270.7,
+          "failures": [
+            {
+              "query": "Cuento con 3 lápices, pero extravié 1.",
+              "family": "F9_unseen_lexicon_extraviar",
+              "gold": {
+                "schema_version": 1,
+                "intent": "inventory_update",
+                "domain": "inventory",
+                "status": "VALID",
+                "uncertainty": {
+                  "is_rejected": false,
+                  "status": "VALID",
+                  "missing_fields": [],
+                  "rejection_reason": null
+                },
+                "entity": "lápices",
+                "initial_quantity": 3.0,
+                "operations": [
+                  {
+                    "operator": "subtract",
+                    "operand": 1.0
+                  }
+                ]
+              },
+              "pred": null,
+              "raw_output": "\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\""
+            },
+            {
+              "query": "Adquirí 4 manzanas y obsequié 2.",
+              "family": "F9_unseen_lexicon_obsequiar",
+              "gold": {
+                "schema_version": 1,
+                "intent": "inventory_update",
+                "domain": "inventory",
+                "status": "VALID",
+                "uncertainty": {
+                  "is_rejected": false,
+                  "status": "VALID",
+                  "missing_fields": [],
+                  "rejection_reason": null
+                },
+                "entity": "manzanas",
+                "initial_quantity": 4.0,
+                "operations": [
+                  {
+                    "operator": "subtract",
+                    "operand": 2.0
+                  }
+                ]
+              },
+              "pred": null,
+              "raw_output": "\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\""
+            },
+            {
+              "query": "A mi hermano le presté dos de los cinco libros que compré.",
+              "family": "F7_inverted_proclitic",
+              "gold": {
+                "schema_version": 1,
+                "intent": "inventory_update",
+                "domain": "inventory",
+                "status": "VALID",
+                "uncertainty": {
+                  "is_rejected": false,
+                  "status": "VALID",
+                  "missing_fields": [],
+                  "rejection_reason": null
+                },
+                "entity": "libros",
+                "initial_quantity": 5.0,
+                "operations": [
+                  {
+                    "operator": "subtract",
+                    "operand": 2.0
+                  }
+                ]
+              },
+              "pred": null,
+              "raw_output": "\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\""
+            },
+            {
+              "query": "No regalé ninguna de las 7 manzanas que tenía.",
+              "family": "F8_strict_negation_zero",
+              "gold": {
+                "schema_version": 1,
+                "intent": "inventory_update",
+                "domain": "inventory",
+                "status": "VALID",
+                "uncertainty": {
+                  "is_rejected": false,
+                  "status": "VALID",
+                  "missing_fields": [],
+                  "rejection_reason": null
+                },
+                "entity": "manzanas",
+                "initial_quantity": 7.0,
+                "operations": [
+                  {
+                    "operator": "subtract",
+                    "operand": 0.0
+                  }
+                ]
+              },
+              "pred": null,
+              "raw_output": "\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\""
+            },
+            {
+              "query": "Fueron consumidas 2 de las 6 peras que estaban guardadas.",
+              "family": "F7_passive_voice",
+              "gold": {
+                "schema_version": 1,
+                "intent": "inventory_update",
+                "domain": "inventory",
+                "status": "VALID",
+                "uncertainty": {
+                  "is_rejected": false,
+                  "status": "VALID",
+                  "missing_fields": [],
+                  "rejection_reason": null
+                },
+                "entity": "peras",
+                "initial_quantity": 6.0,
+                "operations": [
+                  {
+                    "operator": "subtract",
+                    "operand": 2.0
+                  }
+                ]
+              },
+              "pred": null,
+              "raw_output": "\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\""
+            }
+          ]
+        }
+      }
+    ],
+    "averages": {
+      "val_exact_match": 0.0,
+      "val_exec_accuracy": 0.0396,
+      "id_exact_match": 0.0,
+      "id_exec_accuracy": 0.0,
+      "ood_exact_match": 0.0,
+      "ood_exec_accuracy": 0.375,
+      "avg_latency_us": 3004709.3
+    }
+  }
+}
