@@ -1,0 +1,100 @@
+[
+  {
+    "input": "¿cuánto es 1 + 1?",
+    "expected_output": "2",
+    "expected_route": "deterministic_arithmetic",
+    "date": "2026-10-21",
+    "description": "Fallo historico: antes respondia 'arquitecto' en checkpoints tempranos; debe despacharse siempre por el motor aritmetico determinista."
+  },
+  {
+    "input": "1 + 1",
+    "expected_output": "2",
+    "expected_route": "deterministic_arithmetic",
+    "date": "2026-10-21",
+    "description": "Expresion matematica elemental directa; validacion de despacho exacto."
+  },
+  {
+    "input": "tengo 10 gatos y recibo 5",
+    "expected_output": "15",
+    "expected_route": "deterministic_arithmetic",
+    "date": "2026-10-21",
+    "description": "Problema de inventario multi-palabra con entidad; debe preservar entidad y sumar correctamente."
+  },
+  {
+    "input": "tengo algunas manzanas y luego compro 5",
+    "expected_output": "cantidad inicial",
+    "expected_route": "epistemic_rejection",
+    "date": "2026-10-21",
+    "description": "Falta de cantidad inicial; el sistema debe emitir rechazo epistemico (INCOMPLETE) en lugar de inventar un numero."
+  },
+  {
+    "input": "¿Depende el crate relic_cli del paquete memmap2?",
+    "expected_output": "relic_cli",
+    "expected_route": "deterministic_graph",
+    "date": "2026-10-21",
+    "description": "Consulta de alcanzabilidad en grafo de dependencias de Rust; debe resolver camino BFS determinista."
+  },
+  {
+    "input": "¿Es posible ir de Bogotá a Madrid pasando por París evitando Tokio?",
+    "expected_output": "no existe en la memoria episódica",
+    "expected_route": "deterministic_graph",
+    "date": "2026-10-22",
+    "description": "ORO CORREGIDO v2 (cambio de criterio, commit A de medición): 'Tokio' no existe en la memoria; la abstención epistémica (INVALID, entidad restringida desconocida) es el comportamiento CORRECTO. El oro v1 exigia aguja 'Bogota' y penalizaba honestidad."
+  },
+  {
+    "input": "dos más dos",
+    "expected_output": "4",
+    "expected_route": "deterministic_arithmetic",
+    "date": "2026-10-22",
+    "description": "Aritmetica expresada enteramente en palabras; debe resolver 4."
+  },
+  {
+    "input": "cuanto es 2 mas 2",
+    "expected_output": "4",
+    "expected_route": "deterministic_arithmetic",
+    "date": "2026-10-22",
+    "description": "Pregunta aritmetica coloquial sin signos ni tildes."
+  },
+  {
+    "input": "suma 2 y 2",
+    "expected_output": "4",
+    "expected_route": "deterministic_arithmetic",
+    "date": "2026-10-22",
+    "description": "Instruccion verbal imperativa ('suma X e Y'); adicion exacta."
+  },
+  {
+    "input": "Hola",
+    "expected_output": "no puede verificar",
+    "expected_route": "unsupported",
+    "date": "2026-10-22",
+    "description": "Lenguaje libre fuera de dominio; abstenerse con UNSUPPORTED sin alucinar."
+  },
+  {
+    "input": "¿Depende el crate relic_cli del paquete tokio?",
+    "expected_output": "no existe en la memoria episódica",
+    "expected_route": "deterministic_graph",
+    "date": "2026-10-22",
+    "description": "Entidad de destino inexistente (tokio); rechazo INVALID (entidad desconocida)."
+  },
+  {
+    "input": "¿Depende el crate relic_clii del paquete memmap2?",
+    "expected_output": "no existe en la memoria episódica",
+    "expected_route": "deterministic_graph",
+    "date": "2026-10-22",
+    "description": "Typo en entidad de origen (relic_clii); abstenerse como INVALID."
+  },
+  {
+    "input": "¿Depende el crate Relic_Cli del paquete memmap2?",
+    "expected_output": "memmap2",
+    "expected_route": "deterministic_graph",
+    "date": "2026-10-22",
+    "description": "Variacion de mayusculas (Relic_Cli); resolucion canonica y ruta valida de 2 saltos."
+  },
+  {
+    "input": "¿Depende el crate foo del paquete bar?",
+    "expected_output": "no existe en la memoria episódica",
+    "expected_route": "deterministic_graph",
+    "date": "2026-10-22",
+    "description": "Entidades inventadas (foo -> bar); rechazo epistemico como entidad desconocida."
+  }
+]
