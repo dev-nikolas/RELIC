@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+﻿#!/usr/bin/env python3
 """ETAPA 5 entrenador de cabeza v2 (protocolo congelado e4d06d7).
 Arquitectura IDENTICA a A2 (etapa 3): latente H1 [RECONSTRUIDO, sha
 7448feab] + char-bigram. Cambios SOLO-DATA respecto de etapa 2/3 (limpio
@@ -54,10 +54,11 @@ def main() -> None:
             pd = CLASES["domain"][pr["domain"][i].argmax().item()]
             ps = CLASES["status"][pr["status"][i].argmax().item()]
             casos.append({"id": f"h1rir_{i}", "pred_intent": pi, "pred_status": ps})
-            aciertos["intent"] += pi == g["intent"]
-            aciertos["domain"] += pd == g["domain"]
-            aciertos["status"] += ps == g["status"]
-            aciertos["tupla"] += (pi == g["intent"] and pd == g["domain"] and ps == g["status"])
+            aciertos["intent"] += pi == g["rir"]["intent"]
+            aciertos["domain"] += pd == g["rir"]["domain"]
+            aciertos["status"] += ps == g["rir"]["status"]
+            aciertos["tupla"] += (pi == g["rir"]["intent"] and pd == g["rir"]["domain"] and ps == g["rir"]["status"])
+# frozen guarda campos DIRECTOS (sin nest rir) — separado del nested de train jsonl
         preds[str(s)] = casos
         metricas[str(s)] = {k: round(100 * v / len(frozen), 1) for k, v in aciertos.items()}
         from collections import Counter
@@ -75,3 +76,4 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
+

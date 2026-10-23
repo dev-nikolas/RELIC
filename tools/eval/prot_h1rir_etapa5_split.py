@@ -63,8 +63,10 @@ def main() -> None:
             col.append(rows[i])
     assert not frozen_texts & {r["text"].strip() for r in train + val}, "seal roto (texto exacto)"
     # verificacion de estructura: ningun cluster sealed a medias
-    json.dump(train, open(OUTDIR / "prot_h1rir_etapa5_train.jsonl", "w", encoding="utf-8"), ensure_ascii=False)
-    json.dump(val, open(OUTDIR / "prot_h1rir_etapa5_val.jsonl", "w", encoding="utf-8"), ensure_ascii=False)
+    with open(OUTDIR / "prot_h1rir_etapa5_train.jsonl", "w", encoding="utf-8") as f:
+        f.write('\n'.join(json.dumps(r, ensure_ascii=False) for r in train) + '\n')
+    with open(OUTDIR / "prot_h1rir_etapa5_val.jsonl", "w", encoding="utf-8") as f:
+        f.write('\n'.join(json.dumps(r, ensure_ascii=False) for r in val) + '\n')
     sha = {"train_sha256": hashlib.sha256(''.join(r["text"] for r in train).encode()).hexdigest(),
            "val_sha256": hashlib.sha256(''.join(r["text"] for r in val).encode()).hexdigest(),
            "n_train": len(train), "n_val": len(val), "n_clusters_libres": len(libres),
