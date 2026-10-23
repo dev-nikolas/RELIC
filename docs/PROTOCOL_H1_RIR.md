@@ -54,6 +54,44 @@ cifras de GPU externes sin correr.
 - Criterio transición a etapa 2: el candidato H1->RIR debe lograr >= 59.7%
   de tupla exacta (baseline + 5 pp) para NO ser rechazado.
 
+## ETAPA 2 EJECUTADA (2026-10-22) — veredicto con criterios de la congelación
+
+Pesos del H1 congelado NO existen en el repo [MEDIDO]: se RECONSTRUYO la misma
+arquitectura (102,720 params) con la receta certificada en dyck: 100%/100% a 30
+epocas, sha256 de pesos 7448feabbb50d19d909798bdcd58abaa6deb6bc25bc8acf458bc7c37e84b0217
+[RECONSTRUIDO, no citable como congelado]. Resultados (tupla exacta intent+
+domain+status sobre 95 congelados, mediana de 3 semillas [MEDIDO]):
+- A1 solo-latente-H1: 26.3/30.5/30.5 -> mediana 30.5% => RECHAZO.
+  El estado interno del core ( entrenado en dyck) NO posee semantica de
+  lenguaje natural utilizable por si solo (acuerdo con la advertencia previa:
+  Dyck no garantiza semantica NL).
+- A2 latent-H1 + char-bigrams: 66.3/74.7/73.7 -> mediana 73.7% => ZONA VIVA
+  (>= 59.7% por congelacion). Comparacion justa: baseline char-bigram puro
+  3 semillas 54.7/18.9/44.2, mediana 44.2% y TODAS las semillas de A2 >= 66.3
+  => el aporte del latente H1 es real y estable (+29.5 pp de mediana).
+VEREDICTO: el puente H1->RIR SOBREVIVE solo en su version HIBRIDA (A2).
+La etapa 3 (integrar cabeza en el despacho Rust, ejecutar y comprobar que no
+regresa unseen_frozen_v2 y known_failures_v2) queda definida con este cerco.
+
+## CAMINO B (auditoria de robustez, paralelo e independiente)
+
+B1 - los 30 casos 'leaks' [MEDIDO, caracterizacion]: son DUPLICADOS IDENTICOS
+(Jaccard = 1.0, texto exacto), 25/30 de la familia F6_inverted_clause_val.
+Implicacion dura: el dataset semantic_compiler original tenia copias literales
+del train dentro de test_id/test_ood; CUALQUIER metrica [HISTORICA] del
+compilador semantico producida con ese dataset esta inflada por memorizacion
+literal, no por generalizacion. Quedan en reports/eval/
+prot_h1rir_leaks_analisis.json y en el sha congelado; se reportan como
+desglose, nunca se silencian.
+
+B2 - re-auditoria de suites congeladas con el binario post-numerales
+[medicion append-only en analisis_consolidado.json, 9 corridas]:
+- unseen_frozen_v2: 14 correcto + 2 abstenciones = 100% extendida, SIN retardos;
+  los dos cambios (oro v2 corregido y numerales) NO degradan el congelado.
+- probe de abstencion: 27/30 correctas + 2 VALID correctos, idem pre-cambio.
+Determinismo 100% en todas las corridas de B2.
+
+
 ## CONGELACION DE CRITERIOS (2026-10-22, ANTES de ejecutar la etapa 2)
 
 Huella del repo en el momento de congelar: commit 1133540 (etapa 1), sha del

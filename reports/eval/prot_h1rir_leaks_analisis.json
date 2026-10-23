@@ -1,0 +1,25 @@
+{
+ "n_leaks": 30,
+ "jaccard_min": 1.0,
+ "jaccard_mediana": 1.0,
+ "jaccard_max": 1.0,
+ "familias_orden": [
+  [
+   "F6_inverted_clause_val",
+   25
+  ],
+  [
+   "F1_direct_possession_multistep",
+   2
+  ],
+  [
+   "F1_direct_possession_add",
+   2
+  ],
+  [
+   "F1_direct_possession_sub",
+   1
+  ]
+ ],
+ "consecuencia": "31.6% del test oficial del dataset original coloca ejemplos casi-copias en test tras train; cualquier metrica historic del compilador semantico producto con estos datos [HISTORICO] esta inflada por memorizacion no generalizacion. El split congelado los detecta, los lista, y de ellos solo depende el desglose por subgrupo; NO se usan para juzgar mas alla."
+}

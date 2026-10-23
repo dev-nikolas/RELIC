@@ -1,0 +1,139 @@
+{
+  "dump": "reports\\eval\\dump_release_probe_post_numerals.json",
+  "suite": "tools\\eval\\probe_abstencion_interno.json",
+  "total_casos": 30,
+  "precision_pct": 6.7,
+  "precision_extendida_pct": 96.7,
+  "por_label": {
+    "iv_abstencion_correcta": 27,
+    "ii_rir_malo_aceptado": 1,
+    "correcto": 2
+  },
+  "determinismo_pct": 100.0,
+  "latencia_us_p50_mediana": 45.5,
+  "latencia_us_p95_max_caso": 195.8,
+  "rss_kb_max": 4096,
+  "abstencion_pct": 90.0,
+  "detalle": [
+    {
+      "id": "desconocida_01",
+      "label": "iv_abstencion_correcta"
+    },
+    {
+      "id": "desconocida_02",
+      "label": "iv_abstencion_correcta"
+    },
+    {
+      "id": "desconocida_03",
+      "label": "iv_abstencion_correcta"
+    },
+    {
+      "id": "desconocida_04",
+      "label": "iv_abstencion_correcta"
+    },
+    {
+      "id": "desconocida_05",
+      "label": "iv_abstencion_correcta"
+    },
+    {
+      "id": "desconocida_06",
+      "label": "iv_abstencion_correcta"
+    },
+    {
+      "id": "desconocida_07",
+      "label": "iv_abstencion_correcta"
+    },
+    {
+      "id": "desconocida_08",
+      "label": "iv_abstencion_correcta"
+    },
+    {
+      "id": "desconocida_09",
+      "label": "iv_abstencion_correcta"
+    },
+    {
+      "id": "desconocida_10",
+      "label": "iv_abstencion_correcta"
+    },
+    {
+      "id": "ambigua_01",
+      "label": "ii_rir_malo_aceptado"
+    },
+    {
+      "id": "ambigua_02",
+      "label": "iv_abstencion_correcta"
+    },
+    {
+      "id": "ambigua_03",
+      "label": "iv_abstencion_correcta"
+    },
+    {
+      "id": "ambigua_04",
+      "label": "iv_abstencion_correcta"
+    },
+    {
+      "id": "ambigua_05",
+      "label": "iv_abstencion_correcta"
+    },
+    {
+      "id": "ambigua_06",
+      "label": "iv_abstencion_correcta"
+    },
+    {
+      "id": "ambigua_07",
+      "label": "iv_abstencion_correcta"
+    },
+    {
+      "id": "ambigua_08",
+      "label": "iv_abstencion_correcta"
+    },
+    {
+      "id": "fuera_dominio_01",
+      "label": "iv_abstencion_correcta"
+    },
+    {
+      "id": "fuera_dominio_02",
+      "label": "iv_abstencion_correcta"
+    },
+    {
+      "id": "fuera_dominio_03",
+      "label": "iv_abstencion_correcta"
+    },
+    {
+      "id": "fuera_dominio_04",
+      "label": "iv_abstencion_correcta"
+    },
+    {
+      "id": "fuera_dominio_05",
+      "label": "iv_abstencion_correcta"
+    },
+    {
+      "id": "fuera_dominio_06",
+      "label": "iv_abstencion_correcta"
+    },
+    {
+      "id": "fuera_dominio_07",
+      "label": "iv_abstencion_correcta"
+    },
+    {
+      "id": "bait_falso_acepte_01",
+      "label": "iv_abstencion_correcta"
+    },
+    {
+      "id": "bait_falso_acepte_02",
+      "label": "iv_abstencion_correcta"
+    },
+    {
+      "id": "bait_falso_acepte_03",
+      "label": "correcto"
+    },
+    {
+      "id": "bait_falso_acepte_04",
+      "label": "correcto"
+    },
+    {
+      "id": "bait_falso_acepte_05",
+      "label": "iv_abstencion_correcta"
+    }
+  ]
+}
