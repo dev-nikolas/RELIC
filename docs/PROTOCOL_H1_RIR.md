@@ -181,9 +181,28 @@ formal "NO GANA por G2" tal cual registrado.
    produccion; хотя siendo GANA, el despliegue requiere una autorizacion
    separada del usuario.
 
-Estado: PENDIENTE DE EJECUTAR.
+Estado: EJECUTADA (2026-10-22). Resultados [MEDIDO],
+reports/eval/prot_h1rir_etapa5_resultados.json:
+- Cabeza v2 (split sellado 127 train / 1 val; arquitectura A2 IDENTICA;
+  pesos con sha 529e6f7f / 3c71ba45 / 7372da70): tupla exacta mediana
+  2.1% (1.1/3.2/2.1). SIN senal de inventario: el seal elimina las familias
+  de inventario del train (46/57 clusteres sellados; 0 filas de inventario
+  VALID entrenables) por diseño del criterio de no-parafraisis.
+- e2e con extractor: exactitud 0.0/1.1/1.1 -> mediana 1.1% -> mediana e2e
+  1.1% < 35.0% => DETENER (criterios congelados). 0 aceptaciones falsas,
+  abstencion correcta 8/8, validez RIR 100% de lo ejecutado.
+VEREDICTO FORMAL: DETENER en etapa 5. La condicion de limpieza rompe la
+senal: los 40% e2e de etapa 4 y la tupla 73.7% de etapa 2 dependen de
+entrenamiento con parafasis proximas a la evaluaacion defectiva (memorizaa
+sib no generaliza). El defecto del artifact (datos) es estructural: el
+dataset semantic_compiler noprovee supervision de inventario apartada del
+set congelado. El puente H1->RIR NO se activa en produccion (criterio 5
+congelado). Proxima hiptesis (fuera de proyecto): requiere dataset con
+construcciones de inventario DIVIDIDAS en train por diseni (no derivar del
+1152 congelado): datos nuevos ANTES de reconsiderar la cabeza.
 
-## ETAPA 4 (autorizada 2026-10-22) — CONGELACION previa a la implementacion
+## ETAPA 4 (autorizada 2026-10-22) - CONGELACION previa a la implementacion
+ (autorizada 2026-10-22) — CONGELACION previa a la implementacion
 
 Alcance: UNICAMENTE extractor de clausula invertida (nuevo modulo) + su
 integracion como fallback de parse_inventory_problem. Prohibido tocar modelo,

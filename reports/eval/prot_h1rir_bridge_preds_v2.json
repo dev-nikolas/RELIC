@@ -1,0 +1,1433 @@
+{
+ "42": [
+  {
+   "id": "h1rir_0",
+   "pred_intent": "unknown",
+   "pred_status": "UNSUPPORTED"
+  },
+  {
+   "id": "h1rir_1",
+   "pred_intent": "unknown",
+   "pred_status": "UNSUPPORTED"
+  },
+  {
+   "id": "h1rir_2",
+   "pred_intent": "unknown",
+   "pred_status": "UNSUPPORTED"
+  },
+  {
+   "id": "h1rir_3",
+   "pred_intent": "unknown",
+   "pred_status": "UNSUPPORTED"
+  },
+  {
+   "id": "h1rir_4",
+   "pred_intent": "unknown",
+   "pred_status": "UNSUPPORTED"
+  },
+  {
+   "id": "h1rir_5",
+   "pred_intent": "unknown",
+   "pred_status": "UNSUPPORTED"
+  },
+  {
+   "id": "h1rir_6",
+   "pred_intent": "unknown",
+   "pred_status": "UNSUPPORTED"
+  },
+  {
+   "id": "h1rir_7",
+   "pred_intent": "unknown",
+   "pred_status": "UNSUPPORTED"
+  },
+  {
+   "id": "h1rir_8",
+   "pred_intent": "unknown",
+   "pred_status": "UNSUPPORTED"
+  },
+  {
+   "id": "h1rir_9",
+   "pred_intent": "unknown",
+   "pred_status": "UNSUPPORTED"
+  },
+  {
+   "id": "h1rir_10",
+   "pred_intent": "unknown",
+   "pred_status": "UNSUPPORTED"
+  },
+  {
+   "id": "h1rir_11",
+   "pred_intent": "unknown",
+   "pred_status": "UNSUPPORTED"
+  },
+  {
+   "id": "h1rir_12",
+   "pred_intent": "unknown",
+   "pred_status": "UNSUPPORTED"
+  },
+  {
+   "id": "h1rir_13",
+   "pred_intent": "unknown",
+   "pred_status": "UNSUPPORTED"
+  },
+  {
+   "id": "h1rir_14",
+   "pred_intent": "unknown",
+   "pred_status": "UNSUPPORTED"
+  },
+  {
+   "id": "h1rir_15",
+   "pred_intent": "unknown",
+   "pred_status": "UNSUPPORTED"
+  },
+  {
+   "id": "h1rir_16",
+   "pred_intent": "unknown",
+   "pred_status": "UNSUPPORTED"
+  },
+  {
+   "id": "h1rir_17",
+   "pred_intent": "unknown",
+   "pred_status": "UNSUPPORTED"
+  },
+  {
+   "id": "h1rir_18",
+   "pred_intent": "unknown",
+   "pred_status": "UNSUPPORTED"
+  },
+  {
+   "id": "h1rir_19",
+   "pred_intent": "unknown",
+   "pred_status": "UNSUPPORTED"
+  },
+  {
+   "id": "h1rir_20",
+   "pred_intent": "unknown",
+   "pred_status": "UNSUPPORTED"
+  },
+  {
+   "id": "h1rir_21",
+   "pred_intent": "unknown",
+   "pred_status": "UNSUPPORTED"
+  },
+  {
+   "id": "h1rir_22",
+   "pred_intent": "unknown",
+   "pred_status": "UNSUPPORTED"
+  },
+  {
+   "id": "h1rir_23",
+   "pred_intent": "unknown",
+   "pred_status": "UNSUPPORTED"
+  },
+  {
+   "id": "h1rir_24",
+   "pred_intent": "unknown",
+   "pred_status": "UNSUPPORTED"
+  },
+  {
+   "id": "h1rir_25",
+   "pred_intent": "arithmetic_query",
+   "pred_status": "VALID"
+  },
+  {
+   "id": "h1rir_26",
+   "pred_intent": "graph_query",
+   "pred_status": "INCOMPLETE"
+  },
+  {
+   "id": "h1rir_27",
+   "pred_intent": "arithmetic_query",
+   "pred_status": "VALID"
+  },
+  {
+   "id": "h1rir_28",
+   "pred_intent": "inventory_update",
+   "pred_status": "AMBIGUOUS"
+  },
+  {
+   "id": "h1rir_29",
+   "pred_intent": "graph_query",
+   "pred_status": "INCOMPLETE"
+  },
+  {
+   "id": "h1rir_30",
+   "pred_intent": "arithmetic_query",
+   "pred_status": "VALID"
+  },
+  {
+   "id": "h1rir_31",
+   "pred_intent": "arithmetic_query",
+   "pred_status": "VALID"
+  },
+  {
+   "id": "h1rir_32",
+   "pred_intent": "arithmetic_query",
+   "pred_status": "VALID"
+  },
+  {
+   "id": "h1rir_33",
+   "pred_intent": "arithmetic_query",
+   "pred_status": "VALID"
+  },
+  {
+   "id": "h1rir_34",
+   "pred_intent": "arithmetic_query",
+   "pred_status": "VALID"
+  },
+  {
+   "id": "h1rir_35",
+   "pred_intent": "arithmetic_query",
+   "pred_status": "VALID"
+  },
+  {
+   "id": "h1rir_36",
+   "pred_intent": "arithmetic_query",
+   "pred_status": "VALID"
+  },
+  {
+   "id": "h1rir_37",
+   "pred_intent": "arithmetic_query",
+   "pred_status": "VALID"
+  },
+  {
+   "id": "h1rir_38",
+   "pred_intent": "arithmetic_query",
+   "pred_status": "VALID"
+  },
+  {
+   "id": "h1rir_39",
+   "pred_intent": "arithmetic_query",
+   "pred_status": "VALID"
+  },
+  {
+   "id": "h1rir_40",
+   "pred_intent": "arithmetic_query",
+   "pred_status": "VALID"
+  },
+  {
+   "id": "h1rir_41",
+   "pred_intent": "graph_query",
+   "pred_status": "VALID"
+  },
+  {
+   "id": "h1rir_42",
+   "pred_intent": "arithmetic_query",
+   "pred_status": "VALID"
+  },
+  {
+   "id": "h1rir_43",
+   "pred_intent": "graph_query",
+   "pred_status": "VALID"
+  },
+  {
+   "id": "h1rir_44",
+   "pred_intent": "graph_query",
+   "pred_status": "VALID"
+  },
+  {
+   "id": "h1rir_45",
+   "pred_intent": "graph_query",
+   "pred_status": "VALID"
+  },
+  {
+   "id": "h1rir_46",
+   "pred_intent": "arithmetic_query",
+   "pred_status": "VALID"
+  },
+  {
+   "id": "h1rir_47",
+   "pred_intent": "graph_query",
+   "pred_status": "VALID"
+  },
+  {
+   "id": "h1rir_48",
+   "pred_intent": "graph_query",
+   "pred_status": "VALID"
+  },
+  {
+   "id": "h1rir_49",
+   "pred_intent": "graph_query",
+   "pred_status": "VALID"
+  },
+  {
+   "id": "h1rir_50",
+   "pred_intent": "inventory_update",
+   "pred_status": "AMBIGUOUS"
+  },
+  {
+   "id": "h1rir_51",
+   "pred_intent": "unknown",
+   "pred_status": "UNSUPPORTED"
+  },
+  {
+   "id": "h1rir_52",
+   "pred_intent": "inventory_update",
+   "pred_status": "AMBIGUOUS"
+  },
+  {
+   "id": "h1rir_53",
+   "pred_intent": "unknown",
+   "pred_status": "UNSUPPORTED"
+  },
+  {
+   "id": "h1rir_54",
+   "pred_intent": "inventory_update",
+   "pred_status": "AMBIGUOUS"
+  },
+  {
+   "id": "h1rir_55",
+   "pred_intent": "unknown",
+   "pred_status": "UNSUPPORTED"
+  },
+  {
+   "id": "h1rir_56",
+   "pred_intent": "inventory_update",
+   "pred_status": "AMBIGUOUS"
+  },
+  {
+   "id": "h1rir_57",
+   "pred_intent": "unknown",
+   "pred_status": "UNSUPPORTED"
+  },
+  {
+   "id": "h1rir_58",
+   "pred_intent": "inventory_update",
+   "pred_status": "AMBIGUOUS"
+  },
+  {
+   "id": "h1rir_59",
+   "pred_intent": "graph_query",
+   "pred_status": "VALID"
+  },
+  {
+   "id": "h1rir_60",
+   "pred_intent": "inventory_update",
+   "pred_status": "AMBIGUOUS"
+  },
+  {
+   "id": "h1rir_61",
+   "pred_intent": "unknown",
+   "pred_status": "UNSUPPORTED"
+  },
+  {
+   "id": "h1rir_62",
+   "pred_intent": "inventory_update",
+   "pred_status": "AMBIGUOUS"
+  },
+  {
+   "id": "h1rir_63",
+   "pred_intent": "unknown",
+   "pred_status": "UNSUPPORTED"
+  },
+  {
+   "id": "h1rir_64",
+   "pred_intent": "inventory_update",
+   "pred_status": "AMBIGUOUS"
+  },
+  {
+   "id": "h1rir_65",
+   "pred_intent": "unknown",
+   "pred_status": "UNSUPPORTED"
+  },
+  {
+   "id": "h1rir_66",
+   "pred_intent": "unknown",
+   "pred_status": "UNSUPPORTED"
+  },
+  {
+   "id": "h1rir_67",
+   "pred_intent": "unknown",
+   "pred_status": "UNSUPPORTED"
+  },
+  {
+   "id": "h1rir_68",
+   "pred_intent": "graph_query",
+   "pred_status": "VALID"
+  },
+  {
+   "id": "h1rir_69",
+   "pred_intent": "graph_query",
+   "pred_status": "INCOMPLETE"
+  },
+  {
+   "id": "h1rir_70",
+   "pred_intent": "graph_query",
+   "pred_status": "VALID"
+  },
+  {
+   "id": "h1rir_71",
+   "pred_intent": "unknown",
+   "pred_status": "UNSUPPORTED"
+  },
+  {
+   "id": "h1rir_72",
+   "pred_intent": "graph_query",
+   "pred_status": "INCOMPLETE"
+  },
+  {
+   "id": "h1rir_73",
+   "pred_intent": "unknown",
+   "pred_status": "UNSUPPORTED"
+  },
+  {
+   "id": "h1rir_74",
+   "pred_intent": "unknown",
+   "pred_status": "UNSUPPORTED"
+  },
+  {
+   "id": "h1rir_75",
+   "pred_intent": "unknown",
+   "pred_status": "INCOMPLETE"
+  },
+  {
+   "id": "h1rir_76",
+   "pred_intent": "unknown",
+   "pred_status": "UNSUPPORTED"
+  },
+  {
+   "id": "h1rir_77",
+   "pred_intent": "arithmetic_query",
+   "pred_status": "VALID"
+  },
+  {
+   "id": "h1rir_78",
+   "pred_intent": "graph_query",
+   "pred_status": "VALID"
+  },
+  {
+   "id": "h1rir_79",
+   "pred_intent": "graph_query",
+   "pred_status": "VALID"
+  },
+  {
+   "id": "h1rir_80",
+   "pred_intent": "unknown",
+   "pred_status": "UNSUPPORTED"
+  },
+  {
+   "id": "h1rir_81",
+   "pred_intent": "unknown",
+   "pred_status": "UNSUPPORTED"
+  },
+  {
+   "id": "h1rir_82",
+   "pred_intent": "graph_query",
+   "pred_status": "INCOMPLETE"
+  },
+  {
+   "id": "h1rir_83",
+   "pred_intent": "unknown",
+   "pred_status": "UNSUPPORTED"
+  },
+  {
+   "id": "h1rir_84",
+   "pred_intent": "graph_query",
+   "pred_status": "INCOMPLETE"
+  },
+  {
+   "id": "h1rir_85",
+   "pred_intent": "graph_query",
+   "pred_status": "VALID"
+  },
+  {
+   "id": "h1rir_86",
+   "pred_intent": "unknown",
+   "pred_status": "VALID"
+  },
+  {
+   "id": "h1rir_87",
+   "pred_intent": "inventory_update",
+   "pred_status": "AMBIGUOUS"
+  },
+  {
+   "id": "h1rir_88",
+   "pred_intent": "inventory_update",
+   "pred_status": "INCOMPLETE"
+  },
+  {
+   "id": "h1rir_89",
+   "pred_intent": "unknown",
+   "pred_status": "UNSUPPORTED"
+  },
+  {
+   "id": "h1rir_90",
+   "pred_intent": "arithmetic_query",
+   "pred_status": "VALID"
+  },
+  {
+   "id": "h1rir_91",
+   "pred_intent": "unknown",
+   "pred_status": "UNSUPPORTED"
+  },
+  {
+   "id": "h1rir_92",
+   "pred_intent": "unknown",
+   "pred_status": "UNSUPPORTED"
+  },
+  {
+   "id": "h1rir_93",
+   "pred_intent": "arithmetic_query",
+   "pred_status": "VALID"
+  },
+  {
+   "id": "h1rir_94",
+   "pred_intent": "inventory_update",
+   "pred_status": "AMBIGUOUS"
+  }
+ ],
+ "123": [
+  {
+   "id": "h1rir_0",
+   "pred_intent": "unknown",
+   "pred_status": "UNSUPPORTED"
+  },
+  {
+   "id": "h1rir_1",
+   "pred_intent": "unknown",
+   "pred_status": "UNSUPPORTED"
+  },
+  {
+   "id": "h1rir_2",
+   "pred_intent": "unknown",
+   "pred_status": "UNSUPPORTED"
+  },
+  {
+   "id": "h1rir_3",
+   "pred_intent": "unknown",
+   "pred_status": "UNSUPPORTED"
+  },
+  {
+   "id": "h1rir_4",
+   "pred_intent": "unknown",
+   "pred_status": "UNSUPPORTED"
+  },
+  {
+   "id": "h1rir_5",
+   "pred_intent": "unknown",
+   "pred_status": "UNSUPPORTED"
+  },
+  {
+   "id": "h1rir_6",
+   "pred_intent": "unknown",
+   "pred_status": "UNSUPPORTED"
+  },
+  {
+   "id": "h1rir_7",
+   "pred_intent": "unknown",
+   "pred_status": "UNSUPPORTED"
+  },
+  {
+   "id": "h1rir_8",
+   "pred_intent": "unknown",
+   "pred_status": "UNSUPPORTED"
+  },
+  {
+   "id": "h1rir_9",
+   "pred_intent": "unknown",
+   "pred_status": "UNSUPPORTED"
+  },
+  {
+   "id": "h1rir_10",
+   "pred_intent": "unknown",
+   "pred_status": "UNSUPPORTED"
+  },
+  {
+   "id": "h1rir_11",
+   "pred_intent": "unknown",
+   "pred_status": "UNSUPPORTED"
+  },
+  {
+   "id": "h1rir_12",
+   "pred_intent": "unknown",
+   "pred_status": "UNSUPPORTED"
+  },
+  {
+   "id": "h1rir_13",
+   "pred_intent": "unknown",
+   "pred_status": "UNSUPPORTED"
+  },
+  {
+   "id": "h1rir_14",
+   "pred_intent": "unknown",
+   "pred_status": "UNSUPPORTED"
+  },
+  {
+   "id": "h1rir_15",
+   "pred_intent": "unknown",
+   "pred_status": "UNSUPPORTED"
+  },
+  {
+   "id": "h1rir_16",
+   "pred_intent": "unknown",
+   "pred_status": "UNSUPPORTED"
+  },
+  {
+   "id": "h1rir_17",
+   "pred_intent": "unknown",
+   "pred_status": "UNSUPPORTED"
+  },
+  {
+   "id": "h1rir_18",
+   "pred_intent": "unknown",
+   "pred_status": "UNSUPPORTED"
+  },
+  {
+   "id": "h1rir_19",
+   "pred_intent": "unknown",
+   "pred_status": "UNSUPPORTED"
+  },
+  {
+   "id": "h1rir_20",
+   "pred_intent": "unknown",
+   "pred_status": "UNSUPPORTED"
+  },
+  {
+   "id": "h1rir_21",
+   "pred_intent": "unknown",
+   "pred_status": "UNSUPPORTED"
+  },
+  {
+   "id": "h1rir_22",
+   "pred_intent": "unknown",
+   "pred_status": "UNSUPPORTED"
+  },
+  {
+   "id": "h1rir_23",
+   "pred_intent": "unknown",
+   "pred_status": "UNSUPPORTED"
+  },
+  {
+   "id": "h1rir_24",
+   "pred_intent": "unknown",
+   "pred_status": "UNSUPPORTED"
+  },
+  {
+   "id": "h1rir_25",
+   "pred_intent": "arithmetic_query",
+   "pred_status": "VALID"
+  },
+  {
+   "id": "h1rir_26",
+   "pred_intent": "inventory_update",
+   "pred_status": "INCOMPLETE"
+  },
+  {
+   "id": "h1rir_27",
+   "pred_intent": "inventory_update",
+   "pred_status": "INCOMPLETE"
+  },
+  {
+   "id": "h1rir_28",
+   "pred_intent": "inventory_update",
+   "pred_status": "AMBIGUOUS"
+  },
+  {
+   "id": "h1rir_29",
+   "pred_intent": "inventory_update",
+   "pred_status": "INCOMPLETE"
+  },
+  {
+   "id": "h1rir_30",
+   "pred_intent": "arithmetic_query",
+   "pred_status": "VALID"
+  },
+  {
+   "id": "h1rir_31",
+   "pred_intent": "graph_query",
+   "pred_status": "INCOMPLETE"
+  },
+  {
+   "id": "h1rir_32",
+   "pred_intent": "inventory_update",
+   "pred_status": "VALID"
+  },
+  {
+   "id": "h1rir_33",
+   "pred_intent": "graph_query",
+   "pred_status": "INCOMPLETE"
+  },
+  {
+   "id": "h1rir_34",
+   "pred_intent": "arithmetic_query",
+   "pred_status": "VALID"
+  },
+  {
+   "id": "h1rir_35",
+   "pred_intent": "graph_query",
+   "pred_status": "INCOMPLETE"
+  },
+  {
+   "id": "h1rir_36",
+   "pred_intent": "arithmetic_query",
+   "pred_status": "VALID"
+  },
+  {
+   "id": "h1rir_37",
+   "pred_intent": "graph_query",
+   "pred_status": "INCOMPLETE"
+  },
+  {
+   "id": "h1rir_38",
+   "pred_intent": "arithmetic_query",
+   "pred_status": "VALID"
+  },
+  {
+   "id": "h1rir_39",
+   "pred_intent": "inventory_update",
+   "pred_status": "INCOMPLETE"
+  },
+  {
+   "id": "h1rir_40",
+   "pred_intent": "inventory_update",
+   "pred_status": "VALID"
+  },
+  {
+   "id": "h1rir_41",
+   "pred_intent": "graph_query",
+   "pred_status": "VALID"
+  },
+  {
+   "id": "h1rir_42",
+   "pred_intent": "arithmetic_query",
+   "pred_status": "VALID"
+  },
+  {
+   "id": "h1rir_43",
+   "pred_intent": "graph_query",
+   "pred_status": "VALID"
+  },
+  {
+   "id": "h1rir_44",
+   "pred_intent": "inventory_update",
+   "pred_status": "VALID"
+  },
+  {
+   "id": "h1rir_45",
+   "pred_intent": "graph_query",
+   "pred_status": "INCOMPLETE"
+  },
+  {
+   "id": "h1rir_46",
+   "pred_intent": "inventory_update",
+   "pred_status": "VALID"
+  },
+  {
+   "id": "h1rir_47",
+   "pred_intent": "graph_query",
+   "pred_status": "INCOMPLETE"
+  },
+  {
+   "id": "h1rir_48",
+   "pred_intent": "arithmetic_query",
+   "pred_status": "VALID"
+  },
+  {
+   "id": "h1rir_49",
+   "pred_intent": "graph_query",
+   "pred_status": "INCOMPLETE"
+  },
+  {
+   "id": "h1rir_50",
+   "pred_intent": "inventory_update",
+   "pred_status": "AMBIGUOUS"
+  },
+  {
+   "id": "h1rir_51",
+   "pred_intent": "inventory_update",
+   "pred_status": "INCOMPLETE"
+  },
+  {
+   "id": "h1rir_52",
+   "pred_intent": "inventory_update",
+   "pred_status": "AMBIGUOUS"
+  },
+  {
+   "id": "h1rir_53",
+   "pred_intent": "inventory_update",
+   "pred_status": "INCOMPLETE"
+  },
+  {
+   "id": "h1rir_54",
+   "pred_intent": "inventory_update",
+   "pred_status": "AMBIGUOUS"
+  },
+  {
+   "id": "h1rir_55",
+   "pred_intent": "inventory_update",
+   "pred_status": "INCOMPLETE"
+  },
+  {
+   "id": "h1rir_56",
+   "pred_intent": "inventory_update",
+   "pred_status": "AMBIGUOUS"
+  },
+  {
+   "id": "h1rir_57",
+   "pred_intent": "inventory_update",
+   "pred_status": "INCOMPLETE"
+  },
+  {
+   "id": "h1rir_58",
+   "pred_intent": "inventory_update",
+   "pred_status": "AMBIGUOUS"
+  },
+  {
+   "id": "h1rir_59",
+   "pred_intent": "inventory_update",
+   "pred_status": "INCOMPLETE"
+  },
+  {
+   "id": "h1rir_60",
+   "pred_intent": "inventory_update",
+   "pred_status": "AMBIGUOUS"
+  },
+  {
+   "id": "h1rir_61",
+   "pred_intent": "inventory_update",
+   "pred_status": "INCOMPLETE"
+  },
+  {
+   "id": "h1rir_62",
+   "pred_intent": "inventory_update",
+   "pred_status": "AMBIGUOUS"
+  },
+  {
+   "id": "h1rir_63",
+   "pred_intent": "inventory_update",
+   "pred_status": "INCOMPLETE"
+  },
+  {
+   "id": "h1rir_64",
+   "pred_intent": "inventory_update",
+   "pred_status": "AMBIGUOUS"
+  },
+  {
+   "id": "h1rir_65",
+   "pred_intent": "inventory_update",
+   "pred_status": "INCOMPLETE"
+  },
+  {
+   "id": "h1rir_66",
+   "pred_intent": "unknown",
+   "pred_status": "INCOMPLETE"
+  },
+  {
+   "id": "h1rir_67",
+   "pred_intent": "unknown",
+   "pred_status": "UNSUPPORTED"
+  },
+  {
+   "id": "h1rir_68",
+   "pred_intent": "unknown",
+   "pred_status": "UNSUPPORTED"
+  },
+  {
+   "id": "h1rir_69",
+   "pred_intent": "inventory_update",
+   "pred_status": "INCOMPLETE"
+  },
+  {
+   "id": "h1rir_70",
+   "pred_intent": "unknown",
+   "pred_status": "UNSUPPORTED"
+  },
+  {
+   "id": "h1rir_71",
+   "pred_intent": "unknown",
+   "pred_status": "UNSUPPORTED"
+  },
+  {
+   "id": "h1rir_72",
+   "pred_intent": "inventory_update",
+   "pred_status": "INCOMPLETE"
+  },
+  {
+   "id": "h1rir_73",
+   "pred_intent": "unknown",
+   "pred_status": "UNSUPPORTED"
+  },
+  {
+   "id": "h1rir_74",
+   "pred_intent": "inventory_update",
+   "pred_status": "INCOMPLETE"
+  },
+  {
+   "id": "h1rir_75",
+   "pred_intent": "graph_query",
+   "pred_status": "INCOMPLETE"
+  },
+  {
+   "id": "h1rir_76",
+   "pred_intent": "unknown",
+   "pred_status": "UNSUPPORTED"
+  },
+  {
+   "id": "h1rir_77",
+   "pred_intent": "inventory_update",
+   "pred_status": "INCOMPLETE"
+  },
+  {
+   "id": "h1rir_78",
+   "pred_intent": "unknown",
+   "pred_status": "UNSUPPORTED"
+  },
+  {
+   "id": "h1rir_79",
+   "pred_intent": "unknown",
+   "pred_status": "UNSUPPORTED"
+  },
+  {
+   "id": "h1rir_80",
+   "pred_intent": "graph_query",
+   "pred_status": "INCOMPLETE"
+  },
+  {
+   "id": "h1rir_81",
+   "pred_intent": "inventory_update",
+   "pred_status": "INCOMPLETE"
+  },
+  {
+   "id": "h1rir_82",
+   "pred_intent": "inventory_update",
+   "pred_status": "INCOMPLETE"
+  },
+  {
+   "id": "h1rir_83",
+   "pred_intent": "inventory_update",
+   "pred_status": "INCOMPLETE"
+  },
+  {
+   "id": "h1rir_84",
+   "pred_intent": "inventory_update",
+   "pred_status": "INCOMPLETE"
+  },
+  {
+   "id": "h1rir_85",
+   "pred_intent": "graph_query",
+   "pred_status": "VALID"
+  },
+  {
+   "id": "h1rir_86",
+   "pred_intent": "unknown",
+   "pred_status": "UNSUPPORTED"
+  },
+  {
+   "id": "h1rir_87",
+   "pred_intent": "inventory_update",
+   "pred_status": "AMBIGUOUS"
+  },
+  {
+   "id": "h1rir_88",
+   "pred_intent": "inventory_update",
+   "pred_status": "INCOMPLETE"
+  },
+  {
+   "id": "h1rir_89",
+   "pred_intent": "inventory_update",
+   "pred_status": "INCOMPLETE"
+  },
+  {
+   "id": "h1rir_90",
+   "pred_intent": "arithmetic_query",
+   "pred_status": "INCOMPLETE"
+  },
+  {
+   "id": "h1rir_91",
+   "pred_intent": "unknown",
+   "pred_status": "UNSUPPORTED"
+  },
+  {
+   "id": "h1rir_92",
+   "pred_intent": "unknown",
+   "pred_status": "UNSUPPORTED"
+  },
+  {
+   "id": "h1rir_93",
+   "pred_intent": "arithmetic_query",
+   "pred_status": "VALID"
+  },
+  {
+   "id": "h1rir_94",
+   "pred_intent": "inventory_update",
+   "pred_status": "AMBIGUOUS"
+  }
+ ],
+ "999": [
+  {
+   "id": "h1rir_0",
+   "pred_intent": "unknown",
+   "pred_status": "UNSUPPORTED"
+  },
+  {
+   "id": "h1rir_1",
+   "pred_intent": "unknown",
+   "pred_status": "UNSUPPORTED"
+  },
+  {
+   "id": "h1rir_2",
+   "pred_intent": "unknown",
+   "pred_status": "UNSUPPORTED"
+  },
+  {
+   "id": "h1rir_3",
+   "pred_intent": "unknown",
+   "pred_status": "UNSUPPORTED"
+  },
+  {
+   "id": "h1rir_4",
+   "pred_intent": "unknown",
+   "pred_status": "UNSUPPORTED"
+  },
+  {
+   "id": "h1rir_5",
+   "pred_intent": "unknown",
+   "pred_status": "UNSUPPORTED"
+  },
+  {
+   "id": "h1rir_6",
+   "pred_intent": "unknown",
+   "pred_status": "UNSUPPORTED"
+  },
+  {
+   "id": "h1rir_7",
+   "pred_intent": "unknown",
+   "pred_status": "UNSUPPORTED"
+  },
+  {
+   "id": "h1rir_8",
+   "pred_intent": "unknown",
+   "pred_status": "UNSUPPORTED"
+  },
+  {
+   "id": "h1rir_9",
+   "pred_intent": "unknown",
+   "pred_status": "UNSUPPORTED"
+  },
+  {
+   "id": "h1rir_10",
+   "pred_intent": "unknown",
+   "pred_status": "UNSUPPORTED"
+  },
+  {
+   "id": "h1rir_11",
+   "pred_intent": "unknown",
+   "pred_status": "UNSUPPORTED"
+  },
+  {
+   "id": "h1rir_12",
+   "pred_intent": "unknown",
+   "pred_status": "UNSUPPORTED"
+  },
+  {
+   "id": "h1rir_13",
+   "pred_intent": "unknown",
+   "pred_status": "UNSUPPORTED"
+  },
+  {
+   "id": "h1rir_14",
+   "pred_intent": "unknown",
+   "pred_status": "UNSUPPORTED"
+  },
+  {
+   "id": "h1rir_15",
+   "pred_intent": "unknown",
+   "pred_status": "UNSUPPORTED"
+  },
+  {
+   "id": "h1rir_16",
+   "pred_intent": "unknown",
+   "pred_status": "UNSUPPORTED"
+  },
+  {
+   "id": "h1rir_17",
+   "pred_intent": "unknown",
+   "pred_status": "UNSUPPORTED"
+  },
+  {
+   "id": "h1rir_18",
+   "pred_intent": "unknown",
+   "pred_status": "UNSUPPORTED"
+  },
+  {
+   "id": "h1rir_19",
+   "pred_intent": "unknown",
+   "pred_status": "UNSUPPORTED"
+  },
+  {
+   "id": "h1rir_20",
+   "pred_intent": "unknown",
+   "pred_status": "UNSUPPORTED"
+  },
+  {
+   "id": "h1rir_21",
+   "pred_intent": "unknown",
+   "pred_status": "UNSUPPORTED"
+  },
+  {
+   "id": "h1rir_22",
+   "pred_intent": "unknown",
+   "pred_status": "UNSUPPORTED"
+  },
+  {
+   "id": "h1rir_23",
+   "pred_intent": "unknown",
+   "pred_status": "UNSUPPORTED"
+  },
+  {
+   "id": "h1rir_24",
+   "pred_intent": "unknown",
+   "pred_status": "UNSUPPORTED"
+  },
+  {
+   "id": "h1rir_25",
+   "pred_intent": "arithmetic_query",
+   "pred_status": "VALID"
+  },
+  {
+   "id": "h1rir_26",
+   "pred_intent": "graph_query",
+   "pred_status": "INCOMPLETE"
+  },
+  {
+   "id": "h1rir_27",
+   "pred_intent": "graph_query",
+   "pred_status": "UNSUPPORTED"
+  },
+  {
+   "id": "h1rir_28",
+   "pred_intent": "inventory_update",
+   "pred_status": "AMBIGUOUS"
+  },
+  {
+   "id": "h1rir_29",
+   "pred_intent": "graph_query",
+   "pred_status": "INCOMPLETE"
+  },
+  {
+   "id": "h1rir_30",
+   "pred_intent": "arithmetic_query",
+   "pred_status": "VALID"
+  },
+  {
+   "id": "h1rir_31",
+   "pred_intent": "arithmetic_query",
+   "pred_status": "INCOMPLETE"
+  },
+  {
+   "id": "h1rir_32",
+   "pred_intent": "inventory_update",
+   "pred_status": "VALID"
+  },
+  {
+   "id": "h1rir_33",
+   "pred_intent": "arithmetic_query",
+   "pred_status": "INCOMPLETE"
+  },
+  {
+   "id": "h1rir_34",
+   "pred_intent": "arithmetic_query",
+   "pred_status": "VALID"
+  },
+  {
+   "id": "h1rir_35",
+   "pred_intent": "arithmetic_query",
+   "pred_status": "INCOMPLETE"
+  },
+  {
+   "id": "h1rir_36",
+   "pred_intent": "arithmetic_query",
+   "pred_status": "VALID"
+  },
+  {
+   "id": "h1rir_37",
+   "pred_intent": "arithmetic_query",
+   "pred_status": "INCOMPLETE"
+  },
+  {
+   "id": "h1rir_38",
+   "pred_intent": "arithmetic_query",
+   "pred_status": "VALID"
+  },
+  {
+   "id": "h1rir_39",
+   "pred_intent": "arithmetic_query",
+   "pred_status": "INCOMPLETE"
+  },
+  {
+   "id": "h1rir_40",
+   "pred_intent": "inventory_update",
+   "pred_status": "VALID"
+  },
+  {
+   "id": "h1rir_41",
+   "pred_intent": "arithmetic_query",
+   "pred_status": "VALID"
+  },
+  {
+   "id": "h1rir_42",
+   "pred_intent": "arithmetic_query",
+   "pred_status": "VALID"
+  },
+  {
+   "id": "h1rir_43",
+   "pred_intent": "arithmetic_query",
+   "pred_status": "VALID"
+  },
+  {
+   "id": "h1rir_44",
+   "pred_intent": "graph_query",
+   "pred_status": "VALID"
+  },
+  {
+   "id": "h1rir_45",
+   "pred_intent": "graph_query",
+   "pred_status": "INCOMPLETE"
+  },
+  {
+   "id": "h1rir_46",
+   "pred_intent": "inventory_update",
+   "pred_status": "VALID"
+  },
+  {
+   "id": "h1rir_47",
+   "pred_intent": "arithmetic_query",
+   "pred_status": "INCOMPLETE"
+  },
+  {
+   "id": "h1rir_48",
+   "pred_intent": "inventory_update",
+   "pred_status": "VALID"
+  },
+  {
+   "id": "h1rir_49",
+   "pred_intent": "graph_query",
+   "pred_status": "INCOMPLETE"
+  },
+  {
+   "id": "h1rir_50",
+   "pred_intent": "inventory_update",
+   "pred_status": "AMBIGUOUS"
+  },
+  {
+   "id": "h1rir_51",
+   "pred_intent": "unknown",
+   "pred_status": "INCOMPLETE"
+  },
+  {
+   "id": "h1rir_52",
+   "pred_intent": "inventory_update",
+   "pred_status": "AMBIGUOUS"
+  },
+  {
+   "id": "h1rir_53",
+   "pred_intent": "unknown",
+   "pred_status": "UNSUPPORTED"
+  },
+  {
+   "id": "h1rir_54",
+   "pred_intent": "inventory_update",
+   "pred_status": "AMBIGUOUS"
+  },
+  {
+   "id": "h1rir_55",
+   "pred_intent": "unknown",
+   "pred_status": "UNSUPPORTED"
+  },
+  {
+   "id": "h1rir_56",
+   "pred_intent": "inventory_update",
+   "pred_status": "AMBIGUOUS"
+  },
+  {
+   "id": "h1rir_57",
+   "pred_intent": "unknown",
+   "pred_status": "UNSUPPORTED"
+  },
+  {
+   "id": "h1rir_58",
+   "pred_intent": "inventory_update",
+   "pred_status": "AMBIGUOUS"
+  },
+  {
+   "id": "h1rir_59",
+   "pred_intent": "unknown",
+   "pred_status": "UNSUPPORTED"
+  },
+  {
+   "id": "h1rir_60",
+   "pred_intent": "inventory_update",
+   "pred_status": "AMBIGUOUS"
+  },
+  {
+   "id": "h1rir_61",
+   "pred_intent": "unknown",
+   "pred_status": "UNSUPPORTED"
+  },
+  {
+   "id": "h1rir_62",
+   "pred_intent": "inventory_update",
+   "pred_status": "AMBIGUOUS"
+  },
+  {
+   "id": "h1rir_63",
+   "pred_intent": "unknown",
+   "pred_status": "UNSUPPORTED"
+  },
+  {
+   "id": "h1rir_64",
+   "pred_intent": "inventory_update",
+   "pred_status": "AMBIGUOUS"
+  },
+  {
+   "id": "h1rir_65",
+   "pred_intent": "unknown",
+   "pred_status": "UNSUPPORTED"
+  },
+  {
+   "id": "h1rir_66",
+   "pred_intent": "unknown",
+   "pred_status": "UNSUPPORTED"
+  },
+  {
+   "id": "h1rir_67",
+   "pred_intent": "unknown",
+   "pred_status": "UNSUPPORTED"
+  },
+  {
+   "id": "h1rir_68",
+   "pred_intent": "graph_query",
+   "pred_status": "VALID"
+  },
+  {
+   "id": "h1rir_69",
+   "pred_intent": "graph_query",
+   "pred_status": "INCOMPLETE"
+  },
+  {
+   "id": "h1rir_70",
+   "pred_intent": "unknown",
+   "pred_status": "UNSUPPORTED"
+  },
+  {
+   "id": "h1rir_71",
+   "pred_intent": "unknown",
+   "pred_status": "UNSUPPORTED"
+  },
+  {
+   "id": "h1rir_72",
+   "pred_intent": "unknown",
+   "pred_status": "UNSUPPORTED"
+  },
+  {
+   "id": "h1rir_73",
+   "pred_intent": "unknown",
+   "pred_status": "UNSUPPORTED"
+  },
+  {
+   "id": "h1rir_74",
+   "pred_intent": "graph_query",
+   "pred_status": "INCOMPLETE"
+  },
+  {
+   "id": "h1rir_75",
+   "pred_intent": "graph_query",
+   "pred_status": "INCOMPLETE"
+  },
+  {
+   "id": "h1rir_76",
+   "pred_intent": "unknown",
+   "pred_status": "UNSUPPORTED"
+  },
+  {
+   "id": "h1rir_77",
+   "pred_intent": "unknown",
+   "pred_status": "UNSUPPORTED"
+  },
+  {
+   "id": "h1rir_78",
+   "pred_intent": "graph_query",
+   "pred_status": "VALID"
+  },
+  {
+   "id": "h1rir_79",
+   "pred_intent": "graph_query",
+   "pred_status": "VALID"
+  },
+  {
+   "id": "h1rir_80",
+   "pred_intent": "arithmetic_query",
+   "pred_status": "INCOMPLETE"
+  },
+  {
+   "id": "h1rir_81",
+   "pred_intent": "unknown",
+   "pred_status": "INCOMPLETE"
+  },
+  {
+   "id": "h1rir_82",
+   "pred_intent": "inventory_update",
+   "pred_status": "INCOMPLETE"
+  },
+  {
+   "id": "h1rir_83",
+   "pred_intent": "unknown",
+   "pred_status": "INCOMPLETE"
+  },
+  {
+   "id": "h1rir_84",
+   "pred_intent": "unknown",
+   "pred_status": "INCOMPLETE"
+  },
+  {
+   "id": "h1rir_85",
+   "pred_intent": "graph_query",
+   "pred_status": "INCOMPLETE"
+  },
+  {
+   "id": "h1rir_86",
+   "pred_intent": "unknown",
+   "pred_status": "UNSUPPORTED"
+  },
+  {
+   "id": "h1rir_87",
+   "pred_intent": "inventory_update",
+   "pred_status": "AMBIGUOUS"
+  },
+  {
+   "id": "h1rir_88",
+   "pred_intent": "graph_query",
+   "pred_status": "INCOMPLETE"
+  },
+  {
+   "id": "h1rir_89",
+   "pred_intent": "unknown",
+   "pred_status": "UNSUPPORTED"
+  },
+  {
+   "id": "h1rir_90",
+   "pred_intent": "unknown",
+   "pred_status": "UNSUPPORTED"
+  },
+  {
+   "id": "h1rir_91",
+   "pred_intent": "unknown",
+   "pred_status": "UNSUPPORTED"
+  },
+  {
+   "id": "h1rir_92",
+   "pred_intent": "unknown",
+   "pred_status": "UNSUPPORTED"
+  },
+  {
+   "id": "h1rir_93",
+   "pred_intent": "arithmetic_query",
+   "pred_status": "VALID"
+  },
+  {
+   "id": "h1rir_94",
+   "pred_intent": "inventory_update",
+   "pred_status": "AMBIGUOUS"
+  }
+ ]
+}

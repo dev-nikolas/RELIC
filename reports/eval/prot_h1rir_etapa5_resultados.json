@@ -1,0 +1,49 @@
+{
+ "semillas": {
+  "42": {
+   "exactitud_e2e_pct": 0.0,
+   "cobertura_e2e_pct": 0.0,
+   "f6_ok": 0,
+   "f6_tot": 25,
+   "aceptacion_falsa": 0,
+   "abstencion_correcta": 8,
+   "falso_rechazo": 87,
+   "queryspec_incorrecto": 0,
+   "validez_rir_pct": 100.0,
+   "lat_us_p50_media": 52.3
+  },
+  "123": {
+   "exactitud_e2e_pct": 1.1,
+   "cobertura_e2e_pct": 1.1,
+   "f6_ok": 0,
+   "f6_tot": 25,
+   "aceptacion_falsa": 0,
+   "abstencion_correcta": 8,
+   "falso_rechazo": 86,
+   "queryspec_incorrecto": 0,
+   "validez_rir_pct": 100.0,
+   "lat_us_p50_media": 48.4
+  },
+  "999": {
+   "exactitud_e2e_pct": 1.1,
+   "cobertura_e2e_pct": 1.1,
+   "f6_ok": 0,
+   "f6_tot": 25,
+   "aceptacion_falsa": 0,
+   "abstencion_correcta": 8,
+   "falso_rechazo": 86,
+   "queryspec_incorrecto": 0,
+   "validez_rir_pct": 100.0,
+   "lat_us_p50_media": 51.3
+  }
+ },
+ "mediana_e2e_pct": 1.1,
+ "veredicto_criterios_congelados": "DETENER",
+ "fallos_completos": {
+  "42": [],
+  "123": [],
+  "999": []
+ },
+ "ref_control_v1_etapa4_pct": 40.0,
+ "techo_estructural_pct": 54.7
+}

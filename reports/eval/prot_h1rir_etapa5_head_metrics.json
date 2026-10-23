@@ -1,0 +1,40 @@
+{
+ "metricas": {
+  "42": {
+   "intent": 12.6,
+   "domain": 12.6,
+   "status": 32.6,
+   "tupla": 1.1
+  },
+  "123": {
+   "intent": 38.9,
+   "domain": 40.0,
+   "status": 17.9,
+   "tupla": 3.2
+  },
+  "999": {
+   "intent": 16.8,
+   "domain": 13.7,
+   "status": 17.9,
+   "tupla": 2.1
+  }
+ },
+ "pesos_sha256": {
+  "42": "529e6f7f1a75af2bd3a624390600766d9407046d6bdb24ea9bc447183cc31a8f",
+  "123": "3c71ba45b851e0519c648191e58e4c851d6cb34e932e564ebda9c4230b36a912",
+  "999": "7372da702e0c294a608bb263bc56caf917d8060a8663d27db200a63b50bf7474"
+ },
+ "hiperparams": {
+  "hidden": 64,
+  "lr": 0.05,
+  "epochs": 80,
+  "seeds": [
+   42,
+   123,
+   999
+  ]
+ },
+ "n_train": 128,
+ "vocab_excluido": "clusters sealed",
+ "arquitectura": "A2 identica"
+}
