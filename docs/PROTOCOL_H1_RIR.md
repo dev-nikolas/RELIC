@@ -54,3 +54,29 @@ cifras de GPU externes sin correr.
 - Criterio transición a etapa 2: el candidato H1->RIR debe lograr >= 59.7%
   de tupla exacta (baseline + 5 pp) para NO ser rechazado.
 
+## CONGELACION DE CRITERIOS (2026-10-22, ANTES de ejecutar la etapa 2)
+
+Huella del repo en el momento de congelar: commit 1133540 (etapa 1), sha del
+split congelado d60eb8bb39236698f00f5108fa37df2c4b9ca653f8e6cc2c246350024521a96d,
+baseline char-bigram tupla 54.7% [MEDIDO]. Este texto no se edita mas sin commit
+separado documentado.
+
+Zonas de decision, DEFINIDAS EXACTAMENTE (tuple exacta sobre los 95 congelados):
+  - ZONA VIVA: >= 59.7% -> el puente continua a etapa 3 (integracion).
+  - ZONA GRIS (54.7%..59.7%): ES RECHAZO. Supera la baseline numerica pero el
+    margen (<=5 pp) no es distinguible de ruido con n=95 (1 caso = 1.05 pp;
+    IC95 binomial ~+/-10 pp). No se declara victoria intermedia. Registro
+    conservador: "no supera el criterio".
+  - ZONA DE RECHAZO: <= 54.7% -> rechazo inmediato del puente.
+Regla operativa: la decision se toma con la MEDIANA de exactitud de tupla entre
+3 semillas (42, 123, 999). TODOS los intentos (por semilla, por arquitectura
+candidata) quedan en reports/eval/prot_h1rir_intentos.jsonl; prohibido eliminar
+registros o correr semillas extra hasta una "que toque mejor" (p-hacking).
+
+Par de candidatos permitidos (sin expancion posterior):
+  A1: solo latente H1 congelado (64-d) -> MLP -> intent/domain/status.
+  A2: latente H1 congelado (64-d) + char-bigram -> MLP -> intent/domain/status.
+Tangibles adicionales (informativos, no deciden): exactitud por campo, por
+familia, desglose congelados-limpios vs duplicados-eliminados.
+
+
