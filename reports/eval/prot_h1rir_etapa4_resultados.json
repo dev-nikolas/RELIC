@@ -1,0 +1,1139 @@
+{
+ "semillas": {
+  "42": {
+   "factor_e2e": 1.52,
+   "exactitud_e2e_pct": 30.5,
+   "cobertura_e2e_pct": 30.5,
+   "f6_ok": 9,
+   "f6_tot": 25,
+   "g5_correctos": 19,
+   "aceptacion_falsa": 0,
+   "queryspec_incorrecto": 0,
+   "falso_rechazo": 58,
+   "abstencion_correcta": 8,
+   "validez_rir_pct": 100.0,
+   "lat_us_p50_media": 69.4
+  },
+  "123": {
+   "factor_e2e": 2.21,
+   "exactitud_e2e_pct": 44.2,
+   "cobertura_e2e_pct": 44.2,
+   "f6_ok": 22,
+   "f6_tot": 25,
+   "g5_correctos": 19,
+   "aceptacion_falsa": 0,
+   "queryspec_incorrecto": 0,
+   "falso_rechazo": 45,
+   "abstencion_correcta": 8,
+   "validez_rir_pct": 100.0,
+   "lat_us_p50_media": 70.2
+  },
+  "999": {
+   "factor_e2e": 2.0,
+   "exactitud_e2e_pct": 40.0,
+   "cobertura_e2e_pct": 40.0,
+   "f6_ok": 20,
+   "f6_tot": 25,
+   "g5_correctos": 17,
+   "aceptacion_falsa": 0,
+   "queryspec_incorrecto": 0,
+   "falso_rechazo": 49,
+   "abstencion_correcta": 8,
+   "validez_rir_pct": 100.0,
+   "lat_us_p50_media": 48.5
+  }
+ },
+ "mediana": {
+  "factor_e2e": 2.0,
+  "exactitud_e2e_pct": 40.0,
+  "cobertura_e2e_pct": 40.0,
+  "f6_ok": 20,
+  "g5_correctos": 19,
+  "aceptacion_falsa": 0,
+  "falso_rechazo": 49
+ },
+ "fallos_completos": {
+  "42": [
+   {
+    "id": "h1rir_3",
+    "fam": "F6_inverted_clause_val",
+    "gold_status": "VALID",
+    "plan": null,
+    "motivo": "sin plan (pred abstiene o parser no extrae)"
+   },
+   {
+    "id": "h1rir_7",
+    "fam": "F6_inverted_clause_val",
+    "gold_status": "VALID",
+    "plan": null,
+    "motivo": "sin plan (pred abstiene o parser no extrae)"
+   },
+   {
+    "id": "h1rir_8",
+    "fam": "F6_inverted_clause_val",
+    "gold_status": "VALID",
+    "plan": null,
+    "motivo": "sin plan (pred abstiene o parser no extrae)"
+   },
+   {
+    "id": "h1rir_9",
+    "fam": "F6_inverted_clause_val",
+    "gold_status": "VALID",
+    "plan": null,
+    "motivo": "sin plan (pred abstiene o parser no extrae)"
+   },
+   {
+    "id": "h1rir_11",
+    "fam": "F6_inverted_clause_val",
+    "gold_status": "VALID",
+    "plan": null,
+    "motivo": "sin plan (pred abstiene o parser no extrae)"
+   },
+   {
+    "id": "h1rir_12",
+    "fam": "F6_inverted_clause_val",
+    "gold_status": "VALID",
+    "plan": null,
+    "motivo": "sin plan (pred abstiene o parser no extrae)"
+   },
+   {
+    "id": "h1rir_13",
+    "fam": "F6_inverted_clause_val",
+    "gold_status": "VALID",
+    "plan": null,
+    "motivo": "sin plan (pred abstiene o parser no extrae)"
+   },
+   {
+    "id": "h1rir_14",
+    "fam": "F6_inverted_clause_val",
+    "gold_status": "VALID",
+    "plan": null,
+    "motivo": "sin plan (pred abstiene o parser no extrae)"
+   },
+   {
+    "id": "h1rir_16",
+    "fam": "F6_inverted_clause_val",
+    "gold_status": "VALID",
+    "plan": null,
+    "motivo": "sin plan (pred abstiene o parser no extrae)"
+   },
+   {
+    "id": "h1rir_17",
+    "fam": "F6_inverted_clause_val",
+    "gold_status": "VALID",
+    "plan": null,
+    "motivo": "sin plan (pred abstiene o parser no extrae)"
+   },
+   {
+    "id": "h1rir_18",
+    "fam": "F6_inverted_clause_val",
+    "gold_status": "VALID",
+    "plan": null,
+    "motivo": "sin plan (pred abstiene o parser no extrae)"
+   },
+   {
+    "id": "h1rir_19",
+    "fam": "F6_inverted_clause_val",
+    "gold_status": "VALID",
+    "plan": null,
+    "motivo": "sin plan (pred abstiene o parser no extrae)"
+   },
+   {
+    "id": "h1rir_21",
+    "fam": "F6_inverted_clause_val",
+    "gold_status": "VALID",
+    "plan": null,
+    "motivo": "sin plan (pred abstiene o parser no extrae)"
+   },
+   {
+    "id": "h1rir_22",
+    "fam": "F6_inverted_clause_val",
+    "gold_status": "VALID",
+    "plan": null,
+    "motivo": "sin plan (pred abstiene o parser no extrae)"
+   },
+   {
+    "id": "h1rir_23",
+    "fam": "F6_inverted_clause_val",
+    "gold_status": "VALID",
+    "plan": null,
+    "motivo": "sin plan (pred abstiene o parser no extrae)"
+   },
+   {
+    "id": "h1rir_24",
+    "fam": "F6_inverted_clause_val",
+    "gold_status": "VALID",
+    "plan": null,
+    "motivo": "sin plan (pred abstiene o parser no extrae)"
+   },
+   {
+    "id": "h1rir_32",
+    "fam": "F9_unseen_lexicon_obsequiar",
+    "gold_status": "VALID",
+    "plan": null,
+    "motivo": "sin plan (pred abstiene o parser no extrae)"
+   },
+   {
+    "id": "h1rir_33",
+    "fam": "F9_unseen_lexicon_obsequiar",
+    "gold_status": "VALID",
+    "plan": null,
+    "motivo": "sin plan (pred abstiene o parser no extrae)"
+   },
+   {
+    "id": "h1rir_38",
+    "fam": "F9_unseen_lexicon_hurtar",
+    "gold_status": "VALID",
+    "plan": null,
+    "motivo": "sin plan (pred abstiene o parser no extrae)"
+   },
+   {
+    "id": "h1rir_39",
+    "fam": "F9_unseen_lexicon_hurtar",
+    "gold_status": "VALID",
+    "plan": null,
+    "motivo": "sin plan (pred abstiene o parser no extrae)"
+   },
+   {
+    "id": "h1rir_40",
+    "fam": "F9_unseen_lexicon_repartir",
+    "gold_status": "VALID",
+    "plan": null,
+    "motivo": "sin plan (pred abstiene o parser no extrae)"
+   },
+   {
+    "id": "h1rir_41",
+    "fam": "F9_unseen_lexicon_repartir",
+    "gold_status": "VALID",
+    "plan": null,
+    "motivo": "sin plan (pred abstiene o parser no extrae)"
+   },
+   {
+    "id": "h1rir_42",
+    "fam": "F9_unseen_lexicon_traspasar",
+    "gold_status": "VALID",
+    "plan": null,
+    "motivo": "sin plan (pred abstiene o parser no extrae)"
+   },
+   {
+    "id": "h1rir_43",
+    "fam": "F9_unseen_lexicon_traspasar",
+    "gold_status": "VALID",
+    "plan": null,
+    "motivo": "sin plan (pred abstiene o parser no extrae)"
+   },
+   {
+    "id": "h1rir_44",
+    "fam": "F9_unseen_lexicon_descomponer",
+    "gold_status": "VALID",
+    "plan": null,
+    "motivo": "sin plan (pred abstiene o parser no extrae)"
+   },
+   {
+    "id": "h1rir_45",
+    "fam": "F9_unseen_lexicon_descomponer",
+    "gold_status": "VALID",
+    "plan": null,
+    "motivo": "sin plan (pred abstiene o parser no extrae)"
+   },
+   {
+    "id": "h1rir_48",
+    "fam": "F9_unseen_lexicon_descarte",
+    "gold_status": "VALID",
+    "plan": null,
+    "motivo": "sin plan (pred abstiene o parser no extrae)"
+   },
+   {
+    "id": "h1rir_49",
+    "fam": "F9_unseen_lexicon_descarte",
+    "gold_status": "VALID",
+    "plan": null,
+    "motivo": "sin plan (pred abstiene o parser no extrae)"
+   },
+   {
+    "id": "h1rir_52",
+    "fam": "F9_unseen_lexicon_suministrar",
+    "gold_status": "VALID",
+    "plan": null,
+    "motivo": "sin plan (pred abstiene o parser no extrae)"
+   },
+   {
+    "id": "h1rir_53",
+    "fam": "F9_unseen_lexicon_suministrar",
+    "gold_status": "VALID",
+    "plan": null,
+    "motivo": "sin plan (pred abstiene o parser no extrae)"
+   },
+   {
+    "id": "h1rir_54",
+    "fam": "F9_unseen_lexicon_ingresar",
+    "gold_status": "VALID",
+    "plan": null,
+    "motivo": "sin plan (pred abstiene o parser no extrae)"
+   },
+   {
+    "id": "h1rir_55",
+    "fam": "F9_unseen_lexicon_ingresar",
+    "gold_status": "VALID",
+    "plan": null,
+    "motivo": "sin plan (pred abstiene o parser no extrae)"
+   },
+   {
+    "id": "h1rir_58",
+    "fam": "F9_unseen_lexicon_hallar",
+    "gold_status": "VALID",
+    "plan": null,
+    "motivo": "sin plan (pred abstiene o parser no extrae)"
+   },
+   {
+    "id": "h1rir_59",
+    "fam": "F9_unseen_lexicon_hallar",
+    "gold_status": "VALID",
+    "plan": null,
+    "motivo": "sin plan (pred abstiene o parser no extrae)"
+   },
+   {
+    "id": "h1rir_60",
+    "fam": "F9_unseen_lexicon_heredar",
+    "gold_status": "VALID",
+    "plan": null,
+    "motivo": "sin plan (pred abstiene o parser no extrae)"
+   },
+   {
+    "id": "h1rir_61",
+    "fam": "F9_unseen_lexicon_heredar",
+    "gold_status": "VALID",
+    "plan": null,
+    "motivo": "sin plan (pred abstiene o parser no extrae)"
+   },
+   {
+    "id": "h1rir_64",
+    "fam": "F9_unseen_lexicon_cosechar",
+    "gold_status": "VALID",
+    "plan": null,
+    "motivo": "sin plan (pred abstiene o parser no extrae)"
+   },
+   {
+    "id": "h1rir_65",
+    "fam": "F9_unseen_lexicon_cosechar",
+    "gold_status": "VALID",
+    "plan": null,
+    "motivo": "sin plan (pred abstiene o parser no extrae)"
+   },
+   {
+    "id": "h1rir_66",
+    "fam": "F7_passive_voice",
+    "gold_status": "VALID",
+    "plan": null,
+    "motivo": "sin plan (pred abstiene o parser no extrae)"
+   },
+   {
+    "id": "h1rir_67",
+    "fam": "F7_passive_voice",
+    "gold_status": "VALID",
+    "plan": null,
+    "motivo": "sin plan (pred abstiene o parser no extrae)"
+   },
+   {
+    "id": "h1rir_68",
+    "fam": "F7_passive_voice",
+    "gold_status": "VALID",
+    "plan": null,
+    "motivo": "sin plan (pred abstiene o parser no extrae)"
+   },
+   {
+    "id": "h1rir_69",
+    "fam": "F7_passive_voice",
+    "gold_status": "VALID",
+    "plan": null,
+    "motivo": "sin plan (pred abstiene o parser no extrae)"
+   },
+   {
+    "id": "h1rir_70",
+    "fam": "F7_passive_voice",
+    "gold_status": "VALID",
+    "plan": null,
+    "motivo": "sin plan (pred abstiene o parser no extrae)"
+   },
+   {
+    "id": "h1rir_71",
+    "fam": "F7_passive_voice",
+    "gold_status": "VALID",
+    "plan": null,
+    "motivo": "sin plan (pred abstiene o parser no extrae)"
+   },
+   {
+    "id": "h1rir_72",
+    "fam": "F7_passive_voice",
+    "gold_status": "VALID",
+    "plan": null,
+    "motivo": "sin plan (pred abstiene o parser no extrae)"
+   },
+   {
+    "id": "h1rir_73",
+    "fam": "F7_passive_voice",
+    "gold_status": "VALID",
+    "plan": null,
+    "motivo": "sin plan (pred abstiene o parser no extrae)"
+   },
+   {
+    "id": "h1rir_74",
+    "fam": "F7_inverted_clauses",
+    "gold_status": "VALID",
+    "plan": null,
+    "motivo": "sin plan (pred abstiene o parser no extrae)"
+   },
+   {
+    "id": "h1rir_75",
+    "fam": "F7_inverted_clauses",
+    "gold_status": "VALID",
+    "plan": null,
+    "motivo": "sin plan (pred abstiene o parser no extrae)"
+   },
+   {
+    "id": "h1rir_76",
+    "fam": "F7_inverted_clauses",
+    "gold_status": "VALID",
+    "plan": null,
+    "motivo": "sin plan (pred abstiene o parser no extrae)"
+   },
+   {
+    "id": "h1rir_77",
+    "fam": "F7_inverted_clauses",
+    "gold_status": "VALID",
+    "plan": null,
+    "motivo": "sin plan (pred abstiene o parser no extrae)"
+   },
+   {
+    "id": "h1rir_78",
+    "fam": "F7_inverted_clauses",
+    "gold_status": "VALID",
+    "plan": null,
+    "motivo": "sin plan (pred abstiene o parser no extrae)"
+   },
+   {
+    "id": "h1rir_80",
+    "fam": "F7_inverted_clauses",
+    "gold_status": "VALID",
+    "plan": null,
+    "motivo": "sin plan (pred abstiene o parser no extrae)"
+   },
+   {
+    "id": "h1rir_81",
+    "fam": "F7_inverted_clauses",
+    "gold_status": "VALID",
+    "plan": null,
+    "motivo": "sin plan (pred abstiene o parser no extrae)"
+   },
+   {
+    "id": "h1rir_82",
+    "fam": "F8_strict_negation",
+    "gold_status": "VALID",
+    "plan": null,
+    "motivo": "sin plan (pred abstiene o parser no extrae)"
+   },
+   {
+    "id": "h1rir_83",
+    "fam": "F8_strict_negation",
+    "gold_status": "VALID",
+    "plan": null,
+    "motivo": "sin plan (pred abstiene o parser no extrae)"
+   },
+   {
+    "id": "h1rir_84",
+    "fam": "F8_strict_negation",
+    "gold_status": "VALID",
+    "plan": null,
+    "motivo": "sin plan (pred abstiene o parser no extrae)"
+   },
+   {
+    "id": "h1rir_85",
+    "fam": "F8_strict_negation",
+    "gold_status": "VALID",
+    "plan": null,
+    "motivo": "sin plan (pred abstiene o parser no extrae)"
+   },
+   {
+    "id": "h1rir_86",
+    "fam": "F8_strict_negation",
+    "gold_status": "VALID",
+    "plan": null,
+    "motivo": "sin plan (pred abstiene o parser no extrae)"
+   }
+  ],
+  "123": [
+   {
+    "id": "h1rir_12",
+    "fam": "F6_inverted_clause_val",
+    "gold_status": "VALID",
+    "plan": null,
+    "motivo": "sin plan (pred abstiene o parser no extrae)"
+   },
+   {
+    "id": "h1rir_17",
+    "fam": "F6_inverted_clause_val",
+    "gold_status": "VALID",
+    "plan": null,
+    "motivo": "sin plan (pred abstiene o parser no extrae)"
+   },
+   {
+    "id": "h1rir_22",
+    "fam": "F6_inverted_clause_val",
+    "gold_status": "VALID",
+    "plan": null,
+    "motivo": "sin plan (pred abstiene o parser no extrae)"
+   },
+   {
+    "id": "h1rir_32",
+    "fam": "F9_unseen_lexicon_obsequiar",
+    "gold_status": "VALID",
+    "plan": null,
+    "motivo": "sin plan (pred abstiene o parser no extrae)"
+   },
+   {
+    "id": "h1rir_33",
+    "fam": "F9_unseen_lexicon_obsequiar",
+    "gold_status": "VALID",
+    "plan": null,
+    "motivo": "sin plan (pred abstiene o parser no extrae)"
+   },
+   {
+    "id": "h1rir_38",
+    "fam": "F9_unseen_lexicon_hurtar",
+    "gold_status": "VALID",
+    "plan": null,
+    "motivo": "sin plan (pred abstiene o parser no extrae)"
+   },
+   {
+    "id": "h1rir_39",
+    "fam": "F9_unseen_lexicon_hurtar",
+    "gold_status": "VALID",
+    "plan": null,
+    "motivo": "sin plan (pred abstiene o parser no extrae)"
+   },
+   {
+    "id": "h1rir_40",
+    "fam": "F9_unseen_lexicon_repartir",
+    "gold_status": "VALID",
+    "plan": null,
+    "motivo": "sin plan (pred abstiene o parser no extrae)"
+   },
+   {
+    "id": "h1rir_41",
+    "fam": "F9_unseen_lexicon_repartir",
+    "gold_status": "VALID",
+    "plan": null,
+    "motivo": "sin plan (pred abstiene o parser no extrae)"
+   },
+   {
+    "id": "h1rir_42",
+    "fam": "F9_unseen_lexicon_traspasar",
+    "gold_status": "VALID",
+    "plan": null,
+    "motivo": "sin plan (pred abstiene o parser no extrae)"
+   },
+   {
+    "id": "h1rir_43",
+    "fam": "F9_unseen_lexicon_traspasar",
+    "gold_status": "VALID",
+    "plan": null,
+    "motivo": "sin plan (pred abstiene o parser no extrae)"
+   },
+   {
+    "id": "h1rir_44",
+    "fam": "F9_unseen_lexicon_descomponer",
+    "gold_status": "VALID",
+    "plan": null,
+    "motivo": "sin plan (pred abstiene o parser no extrae)"
+   },
+   {
+    "id": "h1rir_45",
+    "fam": "F9_unseen_lexicon_descomponer",
+    "gold_status": "VALID",
+    "plan": null,
+    "motivo": "sin plan (pred abstiene o parser no extrae)"
+   },
+   {
+    "id": "h1rir_48",
+    "fam": "F9_unseen_lexicon_descarte",
+    "gold_status": "VALID",
+    "plan": null,
+    "motivo": "sin plan (pred abstiene o parser no extrae)"
+   },
+   {
+    "id": "h1rir_49",
+    "fam": "F9_unseen_lexicon_descarte",
+    "gold_status": "VALID",
+    "plan": null,
+    "motivo": "sin plan (pred abstiene o parser no extrae)"
+   },
+   {
+    "id": "h1rir_52",
+    "fam": "F9_unseen_lexicon_suministrar",
+    "gold_status": "VALID",
+    "plan": null,
+    "motivo": "sin plan (pred abstiene o parser no extrae)"
+   },
+   {
+    "id": "h1rir_53",
+    "fam": "F9_unseen_lexicon_suministrar",
+    "gold_status": "VALID",
+    "plan": null,
+    "motivo": "sin plan (pred abstiene o parser no extrae)"
+   },
+   {
+    "id": "h1rir_54",
+    "fam": "F9_unseen_lexicon_ingresar",
+    "gold_status": "VALID",
+    "plan": null,
+    "motivo": "sin plan (pred abstiene o parser no extrae)"
+   },
+   {
+    "id": "h1rir_55",
+    "fam": "F9_unseen_lexicon_ingresar",
+    "gold_status": "VALID",
+    "plan": null,
+    "motivo": "sin plan (pred abstiene o parser no extrae)"
+   },
+   {
+    "id": "h1rir_58",
+    "fam": "F9_unseen_lexicon_hallar",
+    "gold_status": "VALID",
+    "plan": null,
+    "motivo": "sin plan (pred abstiene o parser no extrae)"
+   },
+   {
+    "id": "h1rir_59",
+    "fam": "F9_unseen_lexicon_hallar",
+    "gold_status": "VALID",
+    "plan": null,
+    "motivo": "sin plan (pred abstiene o parser no extrae)"
+   },
+   {
+    "id": "h1rir_60",
+    "fam": "F9_unseen_lexicon_heredar",
+    "gold_status": "VALID",
+    "plan": null,
+    "motivo": "sin plan (pred abstiene o parser no extrae)"
+   },
+   {
+    "id": "h1rir_61",
+    "fam": "F9_unseen_lexicon_heredar",
+    "gold_status": "VALID",
+    "plan": null,
+    "motivo": "sin plan (pred abstiene o parser no extrae)"
+   },
+   {
+    "id": "h1rir_64",
+    "fam": "F9_unseen_lexicon_cosechar",
+    "gold_status": "VALID",
+    "plan": null,
+    "motivo": "sin plan (pred abstiene o parser no extrae)"
+   },
+   {
+    "id": "h1rir_65",
+    "fam": "F9_unseen_lexicon_cosechar",
+    "gold_status": "VALID",
+    "plan": null,
+    "motivo": "sin plan (pred abstiene o parser no extrae)"
+   },
+   {
+    "id": "h1rir_66",
+    "fam": "F7_passive_voice",
+    "gold_status": "VALID",
+    "plan": null,
+    "motivo": "sin plan (pred abstiene o parser no extrae)"
+   },
+   {
+    "id": "h1rir_67",
+    "fam": "F7_passive_voice",
+    "gold_status": "VALID",
+    "plan": null,
+    "motivo": "sin plan (pred abstiene o parser no extrae)"
+   },
+   {
+    "id": "h1rir_68",
+    "fam": "F7_passive_voice",
+    "gold_status": "VALID",
+    "plan": null,
+    "motivo": "sin plan (pred abstiene o parser no extrae)"
+   },
+   {
+    "id": "h1rir_69",
+    "fam": "F7_passive_voice",
+    "gold_status": "VALID",
+    "plan": null,
+    "motivo": "sin plan (pred abstiene o parser no extrae)"
+   },
+   {
+    "id": "h1rir_70",
+    "fam": "F7_passive_voice",
+    "gold_status": "VALID",
+    "plan": null,
+    "motivo": "sin plan (pred abstiene o parser no extrae)"
+   },
+   {
+    "id": "h1rir_71",
+    "fam": "F7_passive_voice",
+    "gold_status": "VALID",
+    "plan": null,
+    "motivo": "sin plan (pred abstiene o parser no extrae)"
+   },
+   {
+    "id": "h1rir_72",
+    "fam": "F7_passive_voice",
+    "gold_status": "VALID",
+    "plan": null,
+    "motivo": "sin plan (pred abstiene o parser no extrae)"
+   },
+   {
+    "id": "h1rir_73",
+    "fam": "F7_passive_voice",
+    "gold_status": "VALID",
+    "plan": null,
+    "motivo": "sin plan (pred abstiene o parser no extrae)"
+   },
+   {
+    "id": "h1rir_74",
+    "fam": "F7_inverted_clauses",
+    "gold_status": "VALID",
+    "plan": null,
+    "motivo": "sin plan (pred abstiene o parser no extrae)"
+   },
+   {
+    "id": "h1rir_75",
+    "fam": "F7_inverted_clauses",
+    "gold_status": "VALID",
+    "plan": null,
+    "motivo": "sin plan (pred abstiene o parser no extrae)"
+   },
+   {
+    "id": "h1rir_76",
+    "fam": "F7_inverted_clauses",
+    "gold_status": "VALID",
+    "plan": null,
+    "motivo": "sin plan (pred abstiene o parser no extrae)"
+   },
+   {
+    "id": "h1rir_77",
+    "fam": "F7_inverted_clauses",
+    "gold_status": "VALID",
+    "plan": null,
+    "motivo": "sin plan (pred abstiene o parser no extrae)"
+   },
+   {
+    "id": "h1rir_78",
+    "fam": "F7_inverted_clauses",
+    "gold_status": "VALID",
+    "plan": null,
+    "motivo": "sin plan (pred abstiene o parser no extrae)"
+   },
+   {
+    "id": "h1rir_80",
+    "fam": "F7_inverted_clauses",
+    "gold_status": "VALID",
+    "plan": null,
+    "motivo": "sin plan (pred abstiene o parser no extrae)"
+   },
+   {
+    "id": "h1rir_81",
+    "fam": "F7_inverted_clauses",
+    "gold_status": "VALID",
+    "plan": null,
+    "motivo": "sin plan (pred abstiene o parser no extrae)"
+   },
+   {
+    "id": "h1rir_82",
+    "fam": "F8_strict_negation",
+    "gold_status": "VALID",
+    "plan": null,
+    "motivo": "sin plan (pred abstiene o parser no extrae)"
+   },
+   {
+    "id": "h1rir_83",
+    "fam": "F8_strict_negation",
+    "gold_status": "VALID",
+    "plan": null,
+    "motivo": "sin plan (pred abstiene o parser no extrae)"
+   },
+   {
+    "id": "h1rir_84",
+    "fam": "F8_strict_negation",
+    "gold_status": "VALID",
+    "plan": null,
+    "motivo": "sin plan (pred abstiene o parser no extrae)"
+   },
+   {
+    "id": "h1rir_85",
+    "fam": "F8_strict_negation",
+    "gold_status": "VALID",
+    "plan": null,
+    "motivo": "sin plan (pred abstiene o parser no extrae)"
+   },
+   {
+    "id": "h1rir_86",
+    "fam": "F8_strict_negation",
+    "gold_status": "VALID",
+    "plan": null,
+    "motivo": "sin plan (pred abstiene o parser no extrae)"
+   }
+  ],
+  "999": [
+   {
+    "id": "h1rir_12",
+    "fam": "F6_inverted_clause_val",
+    "gold_status": "VALID",
+    "plan": null,
+    "motivo": "sin plan (pred abstiene o parser no extrae)"
+   },
+   {
+    "id": "h1rir_13",
+    "fam": "F6_inverted_clause_val",
+    "gold_status": "VALID",
+    "plan": null,
+    "motivo": "sin plan (pred abstiene o parser no extrae)"
+   },
+   {
+    "id": "h1rir_17",
+    "fam": "F6_inverted_clause_val",
+    "gold_status": "VALID",
+    "plan": null,
+    "motivo": "sin plan (pred abstiene o parser no extrae)"
+   },
+   {
+    "id": "h1rir_22",
+    "fam": "F6_inverted_clause_val",
+    "gold_status": "VALID",
+    "plan": null,
+    "motivo": "sin plan (pred abstiene o parser no extrae)"
+   },
+   {
+    "id": "h1rir_23",
+    "fam": "F6_inverted_clause_val",
+    "gold_status": "VALID",
+    "plan": null,
+    "motivo": "sin plan (pred abstiene o parser no extrae)"
+   },
+   {
+    "id": "h1rir_32",
+    "fam": "F9_unseen_lexicon_obsequiar",
+    "gold_status": "VALID",
+    "plan": null,
+    "motivo": "sin plan (pred abstiene o parser no extrae)"
+   },
+   {
+    "id": "h1rir_33",
+    "fam": "F9_unseen_lexicon_obsequiar",
+    "gold_status": "VALID",
+    "plan": null,
+    "motivo": "sin plan (pred abstiene o parser no extrae)"
+   },
+   {
+    "id": "h1rir_38",
+    "fam": "F9_unseen_lexicon_hurtar",
+    "gold_status": "VALID",
+    "plan": null,
+    "motivo": "sin plan (pred abstiene o parser no extrae)"
+   },
+   {
+    "id": "h1rir_39",
+    "fam": "F9_unseen_lexicon_hurtar",
+    "gold_status": "VALID",
+    "plan": null,
+    "motivo": "sin plan (pred abstiene o parser no extrae)"
+   },
+   {
+    "id": "h1rir_40",
+    "fam": "F9_unseen_lexicon_repartir",
+    "gold_status": "VALID",
+    "plan": null,
+    "motivo": "sin plan (pred abstiene o parser no extrae)"
+   },
+   {
+    "id": "h1rir_41",
+    "fam": "F9_unseen_lexicon_repartir",
+    "gold_status": "VALID",
+    "plan": null,
+    "motivo": "sin plan (pred abstiene o parser no extrae)"
+   },
+   {
+    "id": "h1rir_42",
+    "fam": "F9_unseen_lexicon_traspasar",
+    "gold_status": "VALID",
+    "plan": null,
+    "motivo": "sin plan (pred abstiene o parser no extrae)"
+   },
+   {
+    "id": "h1rir_43",
+    "fam": "F9_unseen_lexicon_traspasar",
+    "gold_status": "VALID",
+    "plan": null,
+    "motivo": "sin plan (pred abstiene o parser no extrae)"
+   },
+   {
+    "id": "h1rir_44",
+    "fam": "F9_unseen_lexicon_descomponer",
+    "gold_status": "VALID",
+    "plan": null,
+    "motivo": "sin plan (pred abstiene o parser no extrae)"
+   },
+   {
+    "id": "h1rir_45",
+    "fam": "F9_unseen_lexicon_descomponer",
+    "gold_status": "VALID",
+    "plan": null,
+    "motivo": "sin plan (pred abstiene o parser no extrae)"
+   },
+   {
+    "id": "h1rir_48",
+    "fam": "F9_unseen_lexicon_descarte",
+    "gold_status": "VALID",
+    "plan": null,
+    "motivo": "sin plan (pred abstiene o parser no extrae)"
+   },
+   {
+    "id": "h1rir_49",
+    "fam": "F9_unseen_lexicon_descarte",
+    "gold_status": "VALID",
+    "plan": null,
+    "motivo": "sin plan (pred abstiene o parser no extrae)"
+   },
+   {
+    "id": "h1rir_50",
+    "fam": "F9_unseen_lexicon_adquirir",
+    "gold_status": "VALID",
+    "plan": null,
+    "motivo": "sin plan (pred abstiene o parser no extrae)"
+   },
+   {
+    "id": "h1rir_52",
+    "fam": "F9_unseen_lexicon_suministrar",
+    "gold_status": "VALID",
+    "plan": null,
+    "motivo": "sin plan (pred abstiene o parser no extrae)"
+   },
+   {
+    "id": "h1rir_53",
+    "fam": "F9_unseen_lexicon_suministrar",
+    "gold_status": "VALID",
+    "plan": null,
+    "motivo": "sin plan (pred abstiene o parser no extrae)"
+   },
+   {
+    "id": "h1rir_54",
+    "fam": "F9_unseen_lexicon_ingresar",
+    "gold_status": "VALID",
+    "plan": null,
+    "motivo": "sin plan (pred abstiene o parser no extrae)"
+   },
+   {
+    "id": "h1rir_55",
+    "fam": "F9_unseen_lexicon_ingresar",
+    "gold_status": "VALID",
+    "plan": null,
+    "motivo": "sin plan (pred abstiene o parser no extrae)"
+   },
+   {
+    "id": "h1rir_56",
+    "fam": "F9_unseen_lexicon_recolectar",
+    "gold_status": "VALID",
+    "plan": null,
+    "motivo": "sin plan (pred abstiene o parser no extrae)"
+   },
+   {
+    "id": "h1rir_58",
+    "fam": "F9_unseen_lexicon_hallar",
+    "gold_status": "VALID",
+    "plan": null,
+    "motivo": "sin plan (pred abstiene o parser no extrae)"
+   },
+   {
+    "id": "h1rir_59",
+    "fam": "F9_unseen_lexicon_hallar",
+    "gold_status": "VALID",
+    "plan": null,
+    "motivo": "sin plan (pred abstiene o parser no extrae)"
+   },
+   {
+    "id": "h1rir_60",
+    "fam": "F9_unseen_lexicon_heredar",
+    "gold_status": "VALID",
+    "plan": null,
+    "motivo": "sin plan (pred abstiene o parser no extrae)"
+   },
+   {
+    "id": "h1rir_61",
+    "fam": "F9_unseen_lexicon_heredar",
+    "gold_status": "VALID",
+    "plan": null,
+    "motivo": "sin plan (pred abstiene o parser no extrae)"
+   },
+   {
+    "id": "h1rir_64",
+    "fam": "F9_unseen_lexicon_cosechar",
+    "gold_status": "VALID",
+    "plan": null,
+    "motivo": "sin plan (pred abstiene o parser no extrae)"
+   },
+   {
+    "id": "h1rir_65",
+    "fam": "F9_unseen_lexicon_cosechar",
+    "gold_status": "VALID",
+    "plan": null,
+    "motivo": "sin plan (pred abstiene o parser no extrae)"
+   },
+   {
+    "id": "h1rir_66",
+    "fam": "F7_passive_voice",
+    "gold_status": "VALID",
+    "plan": null,
+    "motivo": "sin plan (pred abstiene o parser no extrae)"
+   },
+   {
+    "id": "h1rir_67",
+    "fam": "F7_passive_voice",
+    "gold_status": "VALID",
+    "plan": null,
+    "motivo": "sin plan (pred abstiene o parser no extrae)"
+   },
+   {
+    "id": "h1rir_68",
+    "fam": "F7_passive_voice",
+    "gold_status": "VALID",
+    "plan": null,
+    "motivo": "sin plan (pred abstiene o parser no extrae)"
+   },
+   {
+    "id": "h1rir_69",
+    "fam": "F7_passive_voice",
+    "gold_status": "VALID",
+    "plan": null,
+    "motivo": "sin plan (pred abstiene o parser no extrae)"
+   },
+   {
+    "id": "h1rir_70",
+    "fam": "F7_passive_voice",
+    "gold_status": "VALID",
+    "plan": null,
+    "motivo": "sin plan (pred abstiene o parser no extrae)"
+   },
+   {
+    "id": "h1rir_71",
+    "fam": "F7_passive_voice",
+    "gold_status": "VALID",
+    "plan": null,
+    "motivo": "sin plan (pred abstiene o parser no extrae)"
+   },
+   {
+    "id": "h1rir_72",
+    "fam": "F7_passive_voice",
+    "gold_status": "VALID",
+    "plan": null,
+    "motivo": "sin plan (pred abstiene o parser no extrae)"
+   },
+   {
+    "id": "h1rir_73",
+    "fam": "F7_passive_voice",
+    "gold_status": "VALID",
+    "plan": null,
+    "motivo": "sin plan (pred abstiene o parser no extrae)"
+   },
+   {
+    "id": "h1rir_74",
+    "fam": "F7_inverted_clauses",
+    "gold_status": "VALID",
+    "plan": null,
+    "motivo": "sin plan (pred abstiene o parser no extrae)"
+   },
+   {
+    "id": "h1rir_75",
+    "fam": "F7_inverted_clauses",
+    "gold_status": "VALID",
+    "plan": null,
+    "motivo": "sin plan (pred abstiene o parser no extrae)"
+   },
+   {
+    "id": "h1rir_76",
+    "fam": "F7_inverted_clauses",
+    "gold_status": "VALID",
+    "plan": null,
+    "motivo": "sin plan (pred abstiene o parser no extrae)"
+   },
+   {
+    "id": "h1rir_77",
+    "fam": "F7_inverted_clauses",
+    "gold_status": "VALID",
+    "plan": null,
+    "motivo": "sin plan (pred abstiene o parser no extrae)"
+   },
+   {
+    "id": "h1rir_78",
+    "fam": "F7_inverted_clauses",
+    "gold_status": "VALID",
+    "plan": null,
+    "motivo": "sin plan (pred abstiene o parser no extrae)"
+   },
+   {
+    "id": "h1rir_80",
+    "fam": "F7_inverted_clauses",
+    "gold_status": "VALID",
+    "plan": null,
+    "motivo": "sin plan (pred abstiene o parser no extrae)"
+   },
+   {
+    "id": "h1rir_81",
+    "fam": "F7_inverted_clauses",
+    "gold_status": "VALID",
+    "plan": null,
+    "motivo": "sin plan (pred abstiene o parser no extrae)"
+   },
+   {
+    "id": "h1rir_82",
+    "fam": "F8_strict_negation",
+    "gold_status": "VALID",
+    "plan": null,
+    "motivo": "sin plan (pred abstiene o parser no extrae)"
+   },
+   {
+    "id": "h1rir_83",
+    "fam": "F8_strict_negation",
+    "gold_status": "VALID",
+    "plan": null,
+    "motivo": "sin plan (pred abstiene o parser no extrae)"
+   },
+   {
+    "id": "h1rir_84",
+    "fam": "F8_strict_negation",
+    "gold_status": "VALID",
+    "plan": null,
+    "motivo": "sin plan (pred abstiene o parser no extrae)"
+   },
+   {
+    "id": "h1rir_85",
+    "fam": "F8_strict_negation",
+    "gold_status": "VALID",
+    "plan": null,
+    "motivo": "sin plan (pred abstiene o parser no extrae)"
+   },
+   {
+    "id": "h1rir_86",
+    "fam": "F8_strict_negation",
+    "gold_status": "VALID",
+    "plan": null,
+    "motivo": "sin plan (pred abstiene o parser no extrae)"
+   }
+  ]
+ },
+ "criterios": {
+  "G1_factor>=2.0": true,
+  "G2_F6>=23/25": false,
+  "G3_heldout": "ver test Rust inverted_extractor_frozen_suite 3/3 (7/7 VALID + 5/5 abstain)",
+  "G4_salvaguardas": true,
+  "G5_no_regresion>=19": true
+ },
+ "referencia": {
+  "despacho_concordancia_pct": 20.0,
+  "despacho_cobertura_rir_pct": 48.4,
+  "etapa3_queryspec_mediana_pct": 20.0
+ }
+}

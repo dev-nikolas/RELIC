@@ -154,7 +154,32 @@ Definicion operacional (fijada ANTES de medir):
   exactitud e2e, cobertura y desglose F6/no-F6 SEPARADOS. El exito en F6
   NUNCA se presenta como generalizacion (por eso existe G3).
 
-Estado: PENDIENTE DE EJECUTAR.
+Estado: EJECUTADA (2026-10-22). Resultados con desglose separado F6/no-F6
+(reports/eval/prot_h1rir_etapa4_resultados.json, mediana de 3 semillas,
+mismos preds congelados de etapa 3 [MEDIDO]):
+- exactitud QuerySpec e2e: 40.0% mediana (30.5/44.2/40.0); cobertura = 40.0%.
+- factor_e2e: 2.0 mediana (1.52/2.21/2.0) vs etapa 3 (20.0%).
+- F6: ok 9/25 (42), 22/25 (123), 20/25 (999) -> mediana 20/25.
+- DESCOMPOSICION [MEDIDO] de los F6 sin plan (16/3/5 por semilla): TODOS
+  son ajenos al extractor: 16 (seed42) por ABSTENCION de la CABEZA (pred
+  status != VALID) y 3 (123)/5 (999) por pred graph_query|VALID que enruta
+  a unsupported/parse_dispatch_intent. Nivel PARSEADOR: extractor 25/25 F6
+  y 7/7 held-out VALID + 5/5 abstain (prueba Rust 3/3 verde).
+- salvaguardas: 0 aceptaciones falsas x3; validez RIR 100%; abstencion
+  correcta 8/8 x3; falso rechazo total 58/45/49; suites congeladas verdes.
+- no-regresion: 19/19 (42,123) y 17/17 (999) del set de la misma semilla.
+VEREDICTO FORMAL SEGUN CRITERIOS CONGELADOS: NO GANA (G2 = 20/25 mediana
+< 23/25 exigido). STOP no se activa (0 aceptaciones falsas, factor 2.0 >= 1.5,
+tests verdes). Resultado honesto: el EXTRACTOR mismo SÍ soporta el criterio
+de generalizacion (G3 al nivel parseador) y NO introduce regresion (G5),
+pero el criterio G2 mide el PUENTE COMPLETO y la cabeza congelada lo acota
+(abstiene F6 correctos). La parte del bloqueo diagnosticada en etapa 3 queda
+RESUELTA y CUBIERTA; el bloque restante es la CAMARA de decision de la cabeza
+congelada de etapa 2, que NO se re-entrena ni re-congela aqui (eso requeriria
+nueva congelacion segun este protocolo).
+Decision de produccion del extractor: se MANTIENE integrado (dominante
+debil: soborno 0 falsas, 0 regresion, factor 2.0 e2e) PERO su activacion
+completa depende de re-trenar/re-frenar la cabeza: PENDIENTE DE AUTH.
 
 ## CONGELACION DE CRITERIOS (2026-10-22, ANTES de ejecutar la etapa 2)
 
