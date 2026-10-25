@@ -77,6 +77,7 @@ version = "0.1.0"
 dependencies = [
  "relic_core",
  "relic_tokenizer",
+ "serde",
  "serde_json",
 ]
 
@@ -88,6 +89,16 @@ dependencies = [
  "serde",
  "serde_json",
  "thiserror",
+]
+
+[[package]]
+name = "relic_mcp"
+version = "0.1.0"
+dependencies = [
+ "relic_cli",
+ "relic_core",
+ "serde",
+ "serde_json",
 ]
 
 [[package]]

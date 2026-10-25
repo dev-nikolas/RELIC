@@ -1,0 +1,123 @@
+{
+  "unseen_frozen_v2": {
+    "name": "unseen_frozen_v2",
+    "status": "EVALUADO",
+    "total": 16,
+    "exact_acc": {
+      "count": 15,
+      "rate": 0.9375,
+      "wilson_ci": [
+        0.7167073163197013,
+        0.9888809426916687
+      ]
+    },
+    "false_acceptance": {
+      "count": 0,
+      "rate": 0.0,
+      "wilson_ci": [
+        0.0,
+        0.19361341827271994
+      ]
+    },
+    "correct_abstention": {
+      "count": 1,
+      "rate": 0.0625,
+      "wilson_ci": [
+        0.01111905730833121,
+        0.2832926836802987
+      ]
+    },
+    "unnecessary_abstention": {
+      "count": 1,
+      "rate": 0.0625,
+      "wilson_ci": [
+        0.01111905730833121,
+        0.2832926836802987
+      ]
+    }
+  },
+  "known_failures_v2": {
+    "name": "known_failures_v2",
+    "status": "EVALUADO",
+    "total": 14,
+    "exact_acc": {
+      "count": 13,
+      "rate": 0.9285714285714286,
+      "wilson_ci": [
+        0.6853073044604219,
+        0.9872781138877085
+      ]
+    },
+    "false_acceptance": {
+      "count": 0,
+      "rate": 0.0,
+      "wilson_ci": [
+        0.0,
+        0.21531701192718142
+      ]
+    },
+    "correct_abstention": {
+      "count": 1,
+      "rate": 0.07142857142857142,
+      "wilson_ci": [
+        0.012721886112291636,
+        0.3146926955395781
+      ]
+    },
+    "unnecessary_abstention": {
+      "count": 1,
+      "rate": 0.07142857142857142,
+      "wilson_ci": [
+        0.012721886112291636,
+        0.3146926955395781
+      ]
+    }
+  },
+  "f6_frozen_25": {
+    "name": "f6_frozen_25",
+    "status": "PENDIENTE_DE_DATOS",
+    "total": 25
+  },
+  "dev_suite_v1": {
+    "name": "dev_suite_v1",
+    "status": "EVALUADO",
+    "total": 30,
+    "exact_acc": {
+      "count": 26,
+      "rate": 0.8666666666666667,
+      "wilson_ci": [
+        0.7031831605558306,
+        0.9469043057578189
+      ]
+    },
+    "false_acceptance": {
+      "count": 1,
+      "rate": 0.03333333333333333,
+      "wilson_ci": [
+        0.0059084379948573795,
+        0.16670751396958874
+      ]
+    },
+    "correct_abstention": {
+      "count": 10,
+      "rate": 0.3333333333333333,
+      "wilson_ci": [
+        0.19230295526846194,
+        0.5122027418616973
+      ]
+    },
+    "unnecessary_abstention": {
+      "count": 3,
+      "rate": 0.1,
+      "wilson_ci": [
+        0.03459925995971615,
+        0.25621441315266624
+      ]
+    }
+  },
+  "external_human_gold_v1": {
+    "name": "external_human_gold_v1",
+    "status": "PENDIENTE_DE_DATOS",
+    "total": 100
+  }
+}

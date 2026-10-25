@@ -1,0 +1,54 @@
+{
+  "report_title": "Cierre Formal de Fase A: Comparativa Modelo vs Baselines",
+  "date": "2026-10-25",
+  "verdict": "NEGATIVO_PARA_MODELO_AUTONOMO",
+  "acceptance_criteria_met": false,
+  "weights_sha256": "2f8485429c7e2ecf349336a0054ae49b64f940be8aa34d1d60d15daa987a5f5b",
+  "external_human_bank_status": "PENDIENTE_DE_DATOS",
+  "metrics_summary_holdout_75_cases": {
+    "baseline_rules": {
+      "exact_match_rate": 0.4133,
+      "exact_match_wilson_95": [0.3088, 0.5263],
+      "false_acceptance_rate": 0.0267,
+      "false_acceptance_wilson_95": [0.0073, 0.0921],
+      "correct_abstention_rate": 0.3333,
+      "unnecessary_abstention_rate": 0.5600
+    },
+    "baseline_slot_filler_ood": {
+      "exact_match_rate": 0.7385,
+      "exact_match_wilson_95": [0.6203, 0.8300],
+      "critical_false_positives_rate": 0.1077,
+      "critical_false_positives_wilson_95": [0.0533, 0.2032]
+    },
+    "relic_10m_model_standalone_unconstrained": {
+      "exact_match_rate": 0.0,
+      "exact_match_wilson_95": [0.0, 0.0487],
+      "false_acceptance_rate": 0.6667,
+      "false_acceptance_wilson_95": [0.5542, 0.7629],
+      "correct_abstention_rate": 0.3333,
+      "unnecessary_abstention_rate": 0.0
+    },
+    "relic_hybrid_system_with_fallback": {
+      "exact_match_rate": 0.4133,
+      "exact_match_wilson_95": [0.3088, 0.5263],
+      "false_acceptance_rate": 0.0267,
+      "false_acceptance_wilson_95": [0.0073, 0.0921]
+    }
+  },
+  "hypothesis_tests": {
+    "mcnemar_model_vs_rules": {
+      "chi2_edwards": 29.0323,
+      "p_value": 7.12e-8,
+      "discordant_b_rules_correct_model_incorrect": 31,
+      "discordant_c_rules_incorrect_model_correct": 0,
+      "conclusion": "Modelo estadísticamente inferior a reglas simbólicas (p < 0.05)"
+    },
+    "mcnemar_model_vs_slot_filler": {
+      "chi2_edwards": 53.0182,
+      "p_value": 3.30e-13,
+      "discordant_b_slot_correct_model_incorrect": 55,
+      "discordant_c_slot_incorrect_model_correct": 0,
+      "conclusion": "Modelo estadísticamente inferior a slot-filler restringido (p < 0.05)"
+    }
+  }
+}

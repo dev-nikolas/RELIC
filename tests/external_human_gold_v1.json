@@ -1,0 +1,907 @@
+{
+  "manifest_version": 1,
+  "description": "Plantilla de 100 casos independientes para evaluación externa humana (modismos colombianos y lenguaje natural)",
+  "status": "PENDIENTE_DE_RELLENAR_POR_TERCEROS",
+  "cases": [
+    {
+      "id": "EXT_HUMAN_001",
+      "category": "L01_ARITHMETIC_BASIC",
+      "input": "",
+      "gold_rir": null,
+      "expected_status": "VALID",
+      "target_answer": "",
+      "notes": "Caso 1/25 de L01_ARITHMETIC_BASIC: Aritmética directa con modismos colombianos (e.g., regálame la cuenta de X más Y, cuánto da si le pongo Z a W)"
+    },
+    {
+      "id": "EXT_HUMAN_002",
+      "category": "L01_ARITHMETIC_BASIC",
+      "input": "",
+      "gold_rir": null,
+      "expected_status": "VALID",
+      "target_answer": "",
+      "notes": "Caso 2/25 de L01_ARITHMETIC_BASIC: Aritmética directa con modismos colombianos (e.g., regálame la cuenta de X más Y, cuánto da si le pongo Z a W)"
+    },
+    {
+      "id": "EXT_HUMAN_003",
+      "category": "L01_ARITHMETIC_BASIC",
+      "input": "",
+      "gold_rir": null,
+      "expected_status": "VALID",
+      "target_answer": "",
+      "notes": "Caso 3/25 de L01_ARITHMETIC_BASIC: Aritmética directa con modismos colombianos (e.g., regálame la cuenta de X más Y, cuánto da si le pongo Z a W)"
+    },
+    {
+      "id": "EXT_HUMAN_004",
+      "category": "L01_ARITHMETIC_BASIC",
+      "input": "",
+      "gold_rir": null,
+      "expected_status": "VALID",
+      "target_answer": "",
+      "notes": "Caso 4/25 de L01_ARITHMETIC_BASIC: Aritmética directa con modismos colombianos (e.g., regálame la cuenta de X más Y, cuánto da si le pongo Z a W)"
+    },
+    {
+      "id": "EXT_HUMAN_005",
+      "category": "L01_ARITHMETIC_BASIC",
+      "input": "",
+      "gold_rir": null,
+      "expected_status": "VALID",
+      "target_answer": "",
+      "notes": "Caso 5/25 de L01_ARITHMETIC_BASIC: Aritmética directa con modismos colombianos (e.g., regálame la cuenta de X más Y, cuánto da si le pongo Z a W)"
+    },
+    {
+      "id": "EXT_HUMAN_006",
+      "category": "L01_ARITHMETIC_BASIC",
+      "input": "",
+      "gold_rir": null,
+      "expected_status": "VALID",
+      "target_answer": "",
+      "notes": "Caso 6/25 de L01_ARITHMETIC_BASIC: Aritmética directa con modismos colombianos (e.g., regálame la cuenta de X más Y, cuánto da si le pongo Z a W)"
+    },
+    {
+      "id": "EXT_HUMAN_007",
+      "category": "L01_ARITHMETIC_BASIC",
+      "input": "",
+      "gold_rir": null,
+      "expected_status": "VALID",
+      "target_answer": "",
+      "notes": "Caso 7/25 de L01_ARITHMETIC_BASIC: Aritmética directa con modismos colombianos (e.g., regálame la cuenta de X más Y, cuánto da si le pongo Z a W)"
+    },
+    {
+      "id": "EXT_HUMAN_008",
+      "category": "L01_ARITHMETIC_BASIC",
+      "input": "",
+      "gold_rir": null,
+      "expected_status": "VALID",
+      "target_answer": "",
+      "notes": "Caso 8/25 de L01_ARITHMETIC_BASIC: Aritmética directa con modismos colombianos (e.g., regálame la cuenta de X más Y, cuánto da si le pongo Z a W)"
+    },
+    {
+      "id": "EXT_HUMAN_009",
+      "category": "L01_ARITHMETIC_BASIC",
+      "input": "",
+      "gold_rir": null,
+      "expected_status": "VALID",
+      "target_answer": "",
+      "notes": "Caso 9/25 de L01_ARITHMETIC_BASIC: Aritmética directa con modismos colombianos (e.g., regálame la cuenta de X más Y, cuánto da si le pongo Z a W)"
+    },
+    {
+      "id": "EXT_HUMAN_010",
+      "category": "L01_ARITHMETIC_BASIC",
+      "input": "",
+      "gold_rir": null,
+      "expected_status": "VALID",
+      "target_answer": "",
+      "notes": "Caso 10/25 de L01_ARITHMETIC_BASIC: Aritmética directa con modismos colombianos (e.g., regálame la cuenta de X más Y, cuánto da si le pongo Z a W)"
+    },
+    {
+      "id": "EXT_HUMAN_011",
+      "category": "L01_ARITHMETIC_BASIC",
+      "input": "",
+      "gold_rir": null,
+      "expected_status": "VALID",
+      "target_answer": "",
+      "notes": "Caso 11/25 de L01_ARITHMETIC_BASIC: Aritmética directa con modismos colombianos (e.g., regálame la cuenta de X más Y, cuánto da si le pongo Z a W)"
+    },
+    {
+      "id": "EXT_HUMAN_012",
+      "category": "L01_ARITHMETIC_BASIC",
+      "input": "",
+      "gold_rir": null,
+      "expected_status": "VALID",
+      "target_answer": "",
+      "notes": "Caso 12/25 de L01_ARITHMETIC_BASIC: Aritmética directa con modismos colombianos (e.g., regálame la cuenta de X más Y, cuánto da si le pongo Z a W)"
+    },
+    {
+      "id": "EXT_HUMAN_013",
+      "category": "L01_ARITHMETIC_BASIC",
+      "input": "",
+      "gold_rir": null,
+      "expected_status": "VALID",
+      "target_answer": "",
+      "notes": "Caso 13/25 de L01_ARITHMETIC_BASIC: Aritmética directa con modismos colombianos (e.g., regálame la cuenta de X más Y, cuánto da si le pongo Z a W)"
+    },
+    {
+      "id": "EXT_HUMAN_014",
+      "category": "L01_ARITHMETIC_BASIC",
+      "input": "",
+      "gold_rir": null,
+      "expected_status": "VALID",
+      "target_answer": "",
+      "notes": "Caso 14/25 de L01_ARITHMETIC_BASIC: Aritmética directa con modismos colombianos (e.g., regálame la cuenta de X más Y, cuánto da si le pongo Z a W)"
+    },
+    {
+      "id": "EXT_HUMAN_015",
+      "category": "L01_ARITHMETIC_BASIC",
+      "input": "",
+      "gold_rir": null,
+      "expected_status": "VALID",
+      "target_answer": "",
+      "notes": "Caso 15/25 de L01_ARITHMETIC_BASIC: Aritmética directa con modismos colombianos (e.g., regálame la cuenta de X más Y, cuánto da si le pongo Z a W)"
+    },
+    {
+      "id": "EXT_HUMAN_016",
+      "category": "L01_ARITHMETIC_BASIC",
+      "input": "",
+      "gold_rir": null,
+      "expected_status": "VALID",
+      "target_answer": "",
+      "notes": "Caso 16/25 de L01_ARITHMETIC_BASIC: Aritmética directa con modismos colombianos (e.g., regálame la cuenta de X más Y, cuánto da si le pongo Z a W)"
+    },
+    {
+      "id": "EXT_HUMAN_017",
+      "category": "L01_ARITHMETIC_BASIC",
+      "input": "",
+      "gold_rir": null,
+      "expected_status": "VALID",
+      "target_answer": "",
+      "notes": "Caso 17/25 de L01_ARITHMETIC_BASIC: Aritmética directa con modismos colombianos (e.g., regálame la cuenta de X más Y, cuánto da si le pongo Z a W)"
+    },
+    {
+      "id": "EXT_HUMAN_018",
+      "category": "L01_ARITHMETIC_BASIC",
+      "input": "",
+      "gold_rir": null,
+      "expected_status": "VALID",
+      "target_answer": "",
+      "notes": "Caso 18/25 de L01_ARITHMETIC_BASIC: Aritmética directa con modismos colombianos (e.g., regálame la cuenta de X más Y, cuánto da si le pongo Z a W)"
+    },
+    {
+      "id": "EXT_HUMAN_019",
+      "category": "L01_ARITHMETIC_BASIC",
+      "input": "",
+      "gold_rir": null,
+      "expected_status": "VALID",
+      "target_answer": "",
+      "notes": "Caso 19/25 de L01_ARITHMETIC_BASIC: Aritmética directa con modismos colombianos (e.g., regálame la cuenta de X más Y, cuánto da si le pongo Z a W)"
+    },
+    {
+      "id": "EXT_HUMAN_020",
+      "category": "L01_ARITHMETIC_BASIC",
+      "input": "",
+      "gold_rir": null,
+      "expected_status": "VALID",
+      "target_answer": "",
+      "notes": "Caso 20/25 de L01_ARITHMETIC_BASIC: Aritmética directa con modismos colombianos (e.g., regálame la cuenta de X más Y, cuánto da si le pongo Z a W)"
+    },
+    {
+      "id": "EXT_HUMAN_021",
+      "category": "L01_ARITHMETIC_BASIC",
+      "input": "",
+      "gold_rir": null,
+      "expected_status": "VALID",
+      "target_answer": "",
+      "notes": "Caso 21/25 de L01_ARITHMETIC_BASIC: Aritmética directa con modismos colombianos (e.g., regálame la cuenta de X más Y, cuánto da si le pongo Z a W)"
+    },
+    {
+      "id": "EXT_HUMAN_022",
+      "category": "L01_ARITHMETIC_BASIC",
+      "input": "",
+      "gold_rir": null,
+      "expected_status": "VALID",
+      "target_answer": "",
+      "notes": "Caso 22/25 de L01_ARITHMETIC_BASIC: Aritmética directa con modismos colombianos (e.g., regálame la cuenta de X más Y, cuánto da si le pongo Z a W)"
+    },
+    {
+      "id": "EXT_HUMAN_023",
+      "category": "L01_ARITHMETIC_BASIC",
+      "input": "",
+      "gold_rir": null,
+      "expected_status": "VALID",
+      "target_answer": "",
+      "notes": "Caso 23/25 de L01_ARITHMETIC_BASIC: Aritmética directa con modismos colombianos (e.g., regálame la cuenta de X más Y, cuánto da si le pongo Z a W)"
+    },
+    {
+      "id": "EXT_HUMAN_024",
+      "category": "L01_ARITHMETIC_BASIC",
+      "input": "",
+      "gold_rir": null,
+      "expected_status": "VALID",
+      "target_answer": "",
+      "notes": "Caso 24/25 de L01_ARITHMETIC_BASIC: Aritmética directa con modismos colombianos (e.g., regálame la cuenta de X más Y, cuánto da si le pongo Z a W)"
+    },
+    {
+      "id": "EXT_HUMAN_025",
+      "category": "L01_ARITHMETIC_BASIC",
+      "input": "",
+      "gold_rir": null,
+      "expected_status": "VALID",
+      "target_answer": "",
+      "notes": "Caso 25/25 de L01_ARITHMETIC_BASIC: Aritmética directa con modismos colombianos (e.g., regálame la cuenta de X más Y, cuánto da si le pongo Z a W)"
+    },
+    {
+      "id": "EXT_HUMAN_026",
+      "category": "L01_ARITHMETIC_INVERTED_WORDS",
+      "input": "",
+      "gold_rir": null,
+      "expected_status": "VALID",
+      "target_answer": "",
+      "notes": "Caso 1/15 de L01_ARITHMETIC_INVERTED_WORDS: Aritmética con orden invertido y numerales coloquiales (e.g., a X sáquele Y, póngale Z a W)"
+    },
+    {
+      "id": "EXT_HUMAN_027",
+      "category": "L01_ARITHMETIC_INVERTED_WORDS",
+      "input": "",
+      "gold_rir": null,
+      "expected_status": "VALID",
+      "target_answer": "",
+      "notes": "Caso 2/15 de L01_ARITHMETIC_INVERTED_WORDS: Aritmética con orden invertido y numerales coloquiales (e.g., a X sáquele Y, póngale Z a W)"
+    },
+    {
+      "id": "EXT_HUMAN_028",
+      "category": "L01_ARITHMETIC_INVERTED_WORDS",
+      "input": "",
+      "gold_rir": null,
+      "expected_status": "VALID",
+      "target_answer": "",
+      "notes": "Caso 3/15 de L01_ARITHMETIC_INVERTED_WORDS: Aritmética con orden invertido y numerales coloquiales (e.g., a X sáquele Y, póngale Z a W)"
+    },
+    {
+      "id": "EXT_HUMAN_029",
+      "category": "L01_ARITHMETIC_INVERTED_WORDS",
+      "input": "",
+      "gold_rir": null,
+      "expected_status": "VALID",
+      "target_answer": "",
+      "notes": "Caso 4/15 de L01_ARITHMETIC_INVERTED_WORDS: Aritmética con orden invertido y numerales coloquiales (e.g., a X sáquele Y, póngale Z a W)"
+    },
+    {
+      "id": "EXT_HUMAN_030",
+      "category": "L01_ARITHMETIC_INVERTED_WORDS",
+      "input": "",
+      "gold_rir": null,
+      "expected_status": "VALID",
+      "target_answer": "",
+      "notes": "Caso 5/15 de L01_ARITHMETIC_INVERTED_WORDS: Aritmética con orden invertido y numerales coloquiales (e.g., a X sáquele Y, póngale Z a W)"
+    },
+    {
+      "id": "EXT_HUMAN_031",
+      "category": "L01_ARITHMETIC_INVERTED_WORDS",
+      "input": "",
+      "gold_rir": null,
+      "expected_status": "VALID",
+      "target_answer": "",
+      "notes": "Caso 6/15 de L01_ARITHMETIC_INVERTED_WORDS: Aritmética con orden invertido y numerales coloquiales (e.g., a X sáquele Y, póngale Z a W)"
+    },
+    {
+      "id": "EXT_HUMAN_032",
+      "category": "L01_ARITHMETIC_INVERTED_WORDS",
+      "input": "",
+      "gold_rir": null,
+      "expected_status": "VALID",
+      "target_answer": "",
+      "notes": "Caso 7/15 de L01_ARITHMETIC_INVERTED_WORDS: Aritmética con orden invertido y numerales coloquiales (e.g., a X sáquele Y, póngale Z a W)"
+    },
+    {
+      "id": "EXT_HUMAN_033",
+      "category": "L01_ARITHMETIC_INVERTED_WORDS",
+      "input": "",
+      "gold_rir": null,
+      "expected_status": "VALID",
+      "target_answer": "",
+      "notes": "Caso 8/15 de L01_ARITHMETIC_INVERTED_WORDS: Aritmética con orden invertido y numerales coloquiales (e.g., a X sáquele Y, póngale Z a W)"
+    },
+    {
+      "id": "EXT_HUMAN_034",
+      "category": "L01_ARITHMETIC_INVERTED_WORDS",
+      "input": "",
+      "gold_rir": null,
+      "expected_status": "VALID",
+      "target_answer": "",
+      "notes": "Caso 9/15 de L01_ARITHMETIC_INVERTED_WORDS: Aritmética con orden invertido y numerales coloquiales (e.g., a X sáquele Y, póngale Z a W)"
+    },
+    {
+      "id": "EXT_HUMAN_035",
+      "category": "L01_ARITHMETIC_INVERTED_WORDS",
+      "input": "",
+      "gold_rir": null,
+      "expected_status": "VALID",
+      "target_answer": "",
+      "notes": "Caso 10/15 de L01_ARITHMETIC_INVERTED_WORDS: Aritmética con orden invertido y numerales coloquiales (e.g., a X sáquele Y, póngale Z a W)"
+    },
+    {
+      "id": "EXT_HUMAN_036",
+      "category": "L01_ARITHMETIC_INVERTED_WORDS",
+      "input": "",
+      "gold_rir": null,
+      "expected_status": "VALID",
+      "target_answer": "",
+      "notes": "Caso 11/15 de L01_ARITHMETIC_INVERTED_WORDS: Aritmética con orden invertido y numerales coloquiales (e.g., a X sáquele Y, póngale Z a W)"
+    },
+    {
+      "id": "EXT_HUMAN_037",
+      "category": "L01_ARITHMETIC_INVERTED_WORDS",
+      "input": "",
+      "gold_rir": null,
+      "expected_status": "VALID",
+      "target_answer": "",
+      "notes": "Caso 12/15 de L01_ARITHMETIC_INVERTED_WORDS: Aritmética con orden invertido y numerales coloquiales (e.g., a X sáquele Y, póngale Z a W)"
+    },
+    {
+      "id": "EXT_HUMAN_038",
+      "category": "L01_ARITHMETIC_INVERTED_WORDS",
+      "input": "",
+      "gold_rir": null,
+      "expected_status": "VALID",
+      "target_answer": "",
+      "notes": "Caso 13/15 de L01_ARITHMETIC_INVERTED_WORDS: Aritmética con orden invertido y numerales coloquiales (e.g., a X sáquele Y, póngale Z a W)"
+    },
+    {
+      "id": "EXT_HUMAN_039",
+      "category": "L01_ARITHMETIC_INVERTED_WORDS",
+      "input": "",
+      "gold_rir": null,
+      "expected_status": "VALID",
+      "target_answer": "",
+      "notes": "Caso 14/15 de L01_ARITHMETIC_INVERTED_WORDS: Aritmética con orden invertido y numerales coloquiales (e.g., a X sáquele Y, póngale Z a W)"
+    },
+    {
+      "id": "EXT_HUMAN_040",
+      "category": "L01_ARITHMETIC_INVERTED_WORDS",
+      "input": "",
+      "gold_rir": null,
+      "expected_status": "VALID",
+      "target_answer": "",
+      "notes": "Caso 15/15 de L01_ARITHMETIC_INVERTED_WORDS: Aritmética con orden invertido y numerales coloquiales (e.g., a X sáquele Y, póngale Z a W)"
+    },
+    {
+      "id": "EXT_HUMAN_041",
+      "category": "L02_INVENTORY_UNITS",
+      "input": "",
+      "gold_rir": null,
+      "expected_status": "VALID",
+      "target_answer": "",
+      "notes": "Caso 1/25 de L02_INVENTORY_UNITS: Inventarios con sustantivos locales y unidades cotidianas (e.g., lucas, empanadas, plátanos, canicas, bolsas, viajes)"
+    },
+    {
+      "id": "EXT_HUMAN_042",
+      "category": "L02_INVENTORY_UNITS",
+      "input": "",
+      "gold_rir": null,
+      "expected_status": "VALID",
+      "target_answer": "",
+      "notes": "Caso 2/25 de L02_INVENTORY_UNITS: Inventarios con sustantivos locales y unidades cotidianas (e.g., lucas, empanadas, plátanos, canicas, bolsas, viajes)"
+    },
+    {
+      "id": "EXT_HUMAN_043",
+      "category": "L02_INVENTORY_UNITS",
+      "input": "",
+      "gold_rir": null,
+      "expected_status": "VALID",
+      "target_answer": "",
+      "notes": "Caso 3/25 de L02_INVENTORY_UNITS: Inventarios con sustantivos locales y unidades cotidianas (e.g., lucas, empanadas, plátanos, canicas, bolsas, viajes)"
+    },
+    {
+      "id": "EXT_HUMAN_044",
+      "category": "L02_INVENTORY_UNITS",
+      "input": "",
+      "gold_rir": null,
+      "expected_status": "VALID",
+      "target_answer": "",
+      "notes": "Caso 4/25 de L02_INVENTORY_UNITS: Inventarios con sustantivos locales y unidades cotidianas (e.g., lucas, empanadas, plátanos, canicas, bolsas, viajes)"
+    },
+    {
+      "id": "EXT_HUMAN_045",
+      "category": "L02_INVENTORY_UNITS",
+      "input": "",
+      "gold_rir": null,
+      "expected_status": "VALID",
+      "target_answer": "",
+      "notes": "Caso 5/25 de L02_INVENTORY_UNITS: Inventarios con sustantivos locales y unidades cotidianas (e.g., lucas, empanadas, plátanos, canicas, bolsas, viajes)"
+    },
+    {
+      "id": "EXT_HUMAN_046",
+      "category": "L02_INVENTORY_UNITS",
+      "input": "",
+      "gold_rir": null,
+      "expected_status": "VALID",
+      "target_answer": "",
+      "notes": "Caso 6/25 de L02_INVENTORY_UNITS: Inventarios con sustantivos locales y unidades cotidianas (e.g., lucas, empanadas, plátanos, canicas, bolsas, viajes)"
+    },
+    {
+      "id": "EXT_HUMAN_047",
+      "category": "L02_INVENTORY_UNITS",
+      "input": "",
+      "gold_rir": null,
+      "expected_status": "VALID",
+      "target_answer": "",
+      "notes": "Caso 7/25 de L02_INVENTORY_UNITS: Inventarios con sustantivos locales y unidades cotidianas (e.g., lucas, empanadas, plátanos, canicas, bolsas, viajes)"
+    },
+    {
+      "id": "EXT_HUMAN_048",
+      "category": "L02_INVENTORY_UNITS",
+      "input": "",
+      "gold_rir": null,
+      "expected_status": "VALID",
+      "target_answer": "",
+      "notes": "Caso 8/25 de L02_INVENTORY_UNITS: Inventarios con sustantivos locales y unidades cotidianas (e.g., lucas, empanadas, plátanos, canicas, bolsas, viajes)"
+    },
+    {
+      "id": "EXT_HUMAN_049",
+      "category": "L02_INVENTORY_UNITS",
+      "input": "",
+      "gold_rir": null,
+      "expected_status": "VALID",
+      "target_answer": "",
+      "notes": "Caso 9/25 de L02_INVENTORY_UNITS: Inventarios con sustantivos locales y unidades cotidianas (e.g., lucas, empanadas, plátanos, canicas, bolsas, viajes)"
+    },
+    {
+      "id": "EXT_HUMAN_050",
+      "category": "L02_INVENTORY_UNITS",
+      "input": "",
+      "gold_rir": null,
+      "expected_status": "VALID",
+      "target_answer": "",
+      "notes": "Caso 10/25 de L02_INVENTORY_UNITS: Inventarios con sustantivos locales y unidades cotidianas (e.g., lucas, empanadas, plátanos, canicas, bolsas, viajes)"
+    },
+    {
+      "id": "EXT_HUMAN_051",
+      "category": "L02_INVENTORY_UNITS",
+      "input": "",
+      "gold_rir": null,
+      "expected_status": "VALID",
+      "target_answer": "",
+      "notes": "Caso 11/25 de L02_INVENTORY_UNITS: Inventarios con sustantivos locales y unidades cotidianas (e.g., lucas, empanadas, plátanos, canicas, bolsas, viajes)"
+    },
+    {
+      "id": "EXT_HUMAN_052",
+      "category": "L02_INVENTORY_UNITS",
+      "input": "",
+      "gold_rir": null,
+      "expected_status": "VALID",
+      "target_answer": "",
+      "notes": "Caso 12/25 de L02_INVENTORY_UNITS: Inventarios con sustantivos locales y unidades cotidianas (e.g., lucas, empanadas, plátanos, canicas, bolsas, viajes)"
+    },
+    {
+      "id": "EXT_HUMAN_053",
+      "category": "L02_INVENTORY_UNITS",
+      "input": "",
+      "gold_rir": null,
+      "expected_status": "VALID",
+      "target_answer": "",
+      "notes": "Caso 13/25 de L02_INVENTORY_UNITS: Inventarios con sustantivos locales y unidades cotidianas (e.g., lucas, empanadas, plátanos, canicas, bolsas, viajes)"
+    },
+    {
+      "id": "EXT_HUMAN_054",
+      "category": "L02_INVENTORY_UNITS",
+      "input": "",
+      "gold_rir": null,
+      "expected_status": "VALID",
+      "target_answer": "",
+      "notes": "Caso 14/25 de L02_INVENTORY_UNITS: Inventarios con sustantivos locales y unidades cotidianas (e.g., lucas, empanadas, plátanos, canicas, bolsas, viajes)"
+    },
+    {
+      "id": "EXT_HUMAN_055",
+      "category": "L02_INVENTORY_UNITS",
+      "input": "",
+      "gold_rir": null,
+      "expected_status": "VALID",
+      "target_answer": "",
+      "notes": "Caso 15/25 de L02_INVENTORY_UNITS: Inventarios con sustantivos locales y unidades cotidianas (e.g., lucas, empanadas, plátanos, canicas, bolsas, viajes)"
+    },
+    {
+      "id": "EXT_HUMAN_056",
+      "category": "L02_INVENTORY_UNITS",
+      "input": "",
+      "gold_rir": null,
+      "expected_status": "VALID",
+      "target_answer": "",
+      "notes": "Caso 16/25 de L02_INVENTORY_UNITS: Inventarios con sustantivos locales y unidades cotidianas (e.g., lucas, empanadas, plátanos, canicas, bolsas, viajes)"
+    },
+    {
+      "id": "EXT_HUMAN_057",
+      "category": "L02_INVENTORY_UNITS",
+      "input": "",
+      "gold_rir": null,
+      "expected_status": "VALID",
+      "target_answer": "",
+      "notes": "Caso 17/25 de L02_INVENTORY_UNITS: Inventarios con sustantivos locales y unidades cotidianas (e.g., lucas, empanadas, plátanos, canicas, bolsas, viajes)"
+    },
+    {
+      "id": "EXT_HUMAN_058",
+      "category": "L02_INVENTORY_UNITS",
+      "input": "",
+      "gold_rir": null,
+      "expected_status": "VALID",
+      "target_answer": "",
+      "notes": "Caso 18/25 de L02_INVENTORY_UNITS: Inventarios con sustantivos locales y unidades cotidianas (e.g., lucas, empanadas, plátanos, canicas, bolsas, viajes)"
+    },
+    {
+      "id": "EXT_HUMAN_059",
+      "category": "L02_INVENTORY_UNITS",
+      "input": "",
+      "gold_rir": null,
+      "expected_status": "VALID",
+      "target_answer": "",
+      "notes": "Caso 19/25 de L02_INVENTORY_UNITS: Inventarios con sustantivos locales y unidades cotidianas (e.g., lucas, empanadas, plátanos, canicas, bolsas, viajes)"
+    },
+    {
+      "id": "EXT_HUMAN_060",
+      "category": "L02_INVENTORY_UNITS",
+      "input": "",
+      "gold_rir": null,
+      "expected_status": "VALID",
+      "target_answer": "",
+      "notes": "Caso 20/25 de L02_INVENTORY_UNITS: Inventarios con sustantivos locales y unidades cotidianas (e.g., lucas, empanadas, plátanos, canicas, bolsas, viajes)"
+    },
+    {
+      "id": "EXT_HUMAN_061",
+      "category": "L02_INVENTORY_UNITS",
+      "input": "",
+      "gold_rir": null,
+      "expected_status": "VALID",
+      "target_answer": "",
+      "notes": "Caso 21/25 de L02_INVENTORY_UNITS: Inventarios con sustantivos locales y unidades cotidianas (e.g., lucas, empanadas, plátanos, canicas, bolsas, viajes)"
+    },
+    {
+      "id": "EXT_HUMAN_062",
+      "category": "L02_INVENTORY_UNITS",
+      "input": "",
+      "gold_rir": null,
+      "expected_status": "VALID",
+      "target_answer": "",
+      "notes": "Caso 22/25 de L02_INVENTORY_UNITS: Inventarios con sustantivos locales y unidades cotidianas (e.g., lucas, empanadas, plátanos, canicas, bolsas, viajes)"
+    },
+    {
+      "id": "EXT_HUMAN_063",
+      "category": "L02_INVENTORY_UNITS",
+      "input": "",
+      "gold_rir": null,
+      "expected_status": "VALID",
+      "target_answer": "",
+      "notes": "Caso 23/25 de L02_INVENTORY_UNITS: Inventarios con sustantivos locales y unidades cotidianas (e.g., lucas, empanadas, plátanos, canicas, bolsas, viajes)"
+    },
+    {
+      "id": "EXT_HUMAN_064",
+      "category": "L02_INVENTORY_UNITS",
+      "input": "",
+      "gold_rir": null,
+      "expected_status": "VALID",
+      "target_answer": "",
+      "notes": "Caso 24/25 de L02_INVENTORY_UNITS: Inventarios con sustantivos locales y unidades cotidianas (e.g., lucas, empanadas, plátanos, canicas, bolsas, viajes)"
+    },
+    {
+      "id": "EXT_HUMAN_065",
+      "category": "L02_INVENTORY_UNITS",
+      "input": "",
+      "gold_rir": null,
+      "expected_status": "VALID",
+      "target_answer": "",
+      "notes": "Caso 25/25 de L02_INVENTORY_UNITS: Inventarios con sustantivos locales y unidades cotidianas (e.g., lucas, empanadas, plátanos, canicas, bolsas, viajes)"
+    },
+    {
+      "id": "EXT_HUMAN_066",
+      "category": "L02_INVENTORY_TRANSFERS",
+      "input": "",
+      "gold_rir": null,
+      "expected_status": "VALID",
+      "target_answer": "",
+      "notes": "Caso 1/15 de L02_INVENTORY_TRANSFERS: Inventarios con transferencias multi-palabra (e.g., tenía X, me tumbaron Y, me regalaron Z)"
+    },
+    {
+      "id": "EXT_HUMAN_067",
+      "category": "L02_INVENTORY_TRANSFERS",
+      "input": "",
+      "gold_rir": null,
+      "expected_status": "VALID",
+      "target_answer": "",
+      "notes": "Caso 2/15 de L02_INVENTORY_TRANSFERS: Inventarios con transferencias multi-palabra (e.g., tenía X, me tumbaron Y, me regalaron Z)"
+    },
+    {
+      "id": "EXT_HUMAN_068",
+      "category": "L02_INVENTORY_TRANSFERS",
+      "input": "",
+      "gold_rir": null,
+      "expected_status": "VALID",
+      "target_answer": "",
+      "notes": "Caso 3/15 de L02_INVENTORY_TRANSFERS: Inventarios con transferencias multi-palabra (e.g., tenía X, me tumbaron Y, me regalaron Z)"
+    },
+    {
+      "id": "EXT_HUMAN_069",
+      "category": "L02_INVENTORY_TRANSFERS",
+      "input": "",
+      "gold_rir": null,
+      "expected_status": "VALID",
+      "target_answer": "",
+      "notes": "Caso 4/15 de L02_INVENTORY_TRANSFERS: Inventarios con transferencias multi-palabra (e.g., tenía X, me tumbaron Y, me regalaron Z)"
+    },
+    {
+      "id": "EXT_HUMAN_070",
+      "category": "L02_INVENTORY_TRANSFERS",
+      "input": "",
+      "gold_rir": null,
+      "expected_status": "VALID",
+      "target_answer": "",
+      "notes": "Caso 5/15 de L02_INVENTORY_TRANSFERS: Inventarios con transferencias multi-palabra (e.g., tenía X, me tumbaron Y, me regalaron Z)"
+    },
+    {
+      "id": "EXT_HUMAN_071",
+      "category": "L02_INVENTORY_TRANSFERS",
+      "input": "",
+      "gold_rir": null,
+      "expected_status": "VALID",
+      "target_answer": "",
+      "notes": "Caso 6/15 de L02_INVENTORY_TRANSFERS: Inventarios con transferencias multi-palabra (e.g., tenía X, me tumbaron Y, me regalaron Z)"
+    },
+    {
+      "id": "EXT_HUMAN_072",
+      "category": "L02_INVENTORY_TRANSFERS",
+      "input": "",
+      "gold_rir": null,
+      "expected_status": "VALID",
+      "target_answer": "",
+      "notes": "Caso 7/15 de L02_INVENTORY_TRANSFERS: Inventarios con transferencias multi-palabra (e.g., tenía X, me tumbaron Y, me regalaron Z)"
+    },
+    {
+      "id": "EXT_HUMAN_073",
+      "category": "L02_INVENTORY_TRANSFERS",
+      "input": "",
+      "gold_rir": null,
+      "expected_status": "VALID",
+      "target_answer": "",
+      "notes": "Caso 8/15 de L02_INVENTORY_TRANSFERS: Inventarios con transferencias multi-palabra (e.g., tenía X, me tumbaron Y, me regalaron Z)"
+    },
+    {
+      "id": "EXT_HUMAN_074",
+      "category": "L02_INVENTORY_TRANSFERS",
+      "input": "",
+      "gold_rir": null,
+      "expected_status": "VALID",
+      "target_answer": "",
+      "notes": "Caso 9/15 de L02_INVENTORY_TRANSFERS: Inventarios con transferencias multi-palabra (e.g., tenía X, me tumbaron Y, me regalaron Z)"
+    },
+    {
+      "id": "EXT_HUMAN_075",
+      "category": "L02_INVENTORY_TRANSFERS",
+      "input": "",
+      "gold_rir": null,
+      "expected_status": "VALID",
+      "target_answer": "",
+      "notes": "Caso 10/15 de L02_INVENTORY_TRANSFERS: Inventarios con transferencias multi-palabra (e.g., tenía X, me tumbaron Y, me regalaron Z)"
+    },
+    {
+      "id": "EXT_HUMAN_076",
+      "category": "L02_INVENTORY_TRANSFERS",
+      "input": "",
+      "gold_rir": null,
+      "expected_status": "VALID",
+      "target_answer": "",
+      "notes": "Caso 11/15 de L02_INVENTORY_TRANSFERS: Inventarios con transferencias multi-palabra (e.g., tenía X, me tumbaron Y, me regalaron Z)"
+    },
+    {
+      "id": "EXT_HUMAN_077",
+      "category": "L02_INVENTORY_TRANSFERS",
+      "input": "",
+      "gold_rir": null,
+      "expected_status": "VALID",
+      "target_answer": "",
+      "notes": "Caso 12/15 de L02_INVENTORY_TRANSFERS: Inventarios con transferencias multi-palabra (e.g., tenía X, me tumbaron Y, me regalaron Z)"
+    },
+    {
+      "id": "EXT_HUMAN_078",
+      "category": "L02_INVENTORY_TRANSFERS",
+      "input": "",
+      "gold_rir": null,
+      "expected_status": "VALID",
+      "target_answer": "",
+      "notes": "Caso 13/15 de L02_INVENTORY_TRANSFERS: Inventarios con transferencias multi-palabra (e.g., tenía X, me tumbaron Y, me regalaron Z)"
+    },
+    {
+      "id": "EXT_HUMAN_079",
+      "category": "L02_INVENTORY_TRANSFERS",
+      "input": "",
+      "gold_rir": null,
+      "expected_status": "VALID",
+      "target_answer": "",
+      "notes": "Caso 14/15 de L02_INVENTORY_TRANSFERS: Inventarios con transferencias multi-palabra (e.g., tenía X, me tumbaron Y, me regalaron Z)"
+    },
+    {
+      "id": "EXT_HUMAN_080",
+      "category": "L02_INVENTORY_TRANSFERS",
+      "input": "",
+      "gold_rir": null,
+      "expected_status": "VALID",
+      "target_answer": "",
+      "notes": "Caso 15/15 de L02_INVENTORY_TRANSFERS: Inventarios con transferencias multi-palabra (e.g., tenía X, me tumbaron Y, me regalaron Z)"
+    },
+    {
+      "id": "EXT_HUMAN_081",
+      "category": "L03_EPISTEMIC_INCOMPLETE",
+      "input": "",
+      "gold_rir": null,
+      "expected_status": "INCOMPLETE",
+      "target_answer": "",
+      "notes": "Caso 1/10 de L03_EPISTEMIC_INCOMPLETE: Preguntas con datos faltantes que exigen abstención (e.g., me gasté 5 lucas, cuánto me queda; tengo unas frutas)"
+    },
+    {
+      "id": "EXT_HUMAN_082",
+      "category": "L03_EPISTEMIC_INCOMPLETE",
+      "input": "",
+      "gold_rir": null,
+      "expected_status": "INCOMPLETE",
+      "target_answer": "",
+      "notes": "Caso 2/10 de L03_EPISTEMIC_INCOMPLETE: Preguntas con datos faltantes que exigen abstención (e.g., me gasté 5 lucas, cuánto me queda; tengo unas frutas)"
+    },
+    {
+      "id": "EXT_HUMAN_083",
+      "category": "L03_EPISTEMIC_INCOMPLETE",
+      "input": "",
+      "gold_rir": null,
+      "expected_status": "INCOMPLETE",
+      "target_answer": "",
+      "notes": "Caso 3/10 de L03_EPISTEMIC_INCOMPLETE: Preguntas con datos faltantes que exigen abstención (e.g., me gasté 5 lucas, cuánto me queda; tengo unas frutas)"
+    },
+    {
+      "id": "EXT_HUMAN_084",
+      "category": "L03_EPISTEMIC_INCOMPLETE",
+      "input": "",
+      "gold_rir": null,
+      "expected_status": "INCOMPLETE",
+      "target_answer": "",
+      "notes": "Caso 4/10 de L03_EPISTEMIC_INCOMPLETE: Preguntas con datos faltantes que exigen abstención (e.g., me gasté 5 lucas, cuánto me queda; tengo unas frutas)"
+    },
+    {
+      "id": "EXT_HUMAN_085",
+      "category": "L03_EPISTEMIC_INCOMPLETE",
+      "input": "",
+      "gold_rir": null,
+      "expected_status": "INCOMPLETE",
+      "target_answer": "",
+      "notes": "Caso 5/10 de L03_EPISTEMIC_INCOMPLETE: Preguntas con datos faltantes que exigen abstención (e.g., me gasté 5 lucas, cuánto me queda; tengo unas frutas)"
+    },
+    {
+      "id": "EXT_HUMAN_086",
+      "category": "L03_EPISTEMIC_INCOMPLETE",
+      "input": "",
+      "gold_rir": null,
+      "expected_status": "INCOMPLETE",
+      "target_answer": "",
+      "notes": "Caso 6/10 de L03_EPISTEMIC_INCOMPLETE: Preguntas con datos faltantes que exigen abstención (e.g., me gasté 5 lucas, cuánto me queda; tengo unas frutas)"
+    },
+    {
+      "id": "EXT_HUMAN_087",
+      "category": "L03_EPISTEMIC_INCOMPLETE",
+      "input": "",
+      "gold_rir": null,
+      "expected_status": "INCOMPLETE",
+      "target_answer": "",
+      "notes": "Caso 7/10 de L03_EPISTEMIC_INCOMPLETE: Preguntas con datos faltantes que exigen abstención (e.g., me gasté 5 lucas, cuánto me queda; tengo unas frutas)"
+    },
+    {
+      "id": "EXT_HUMAN_088",
+      "category": "L03_EPISTEMIC_INCOMPLETE",
+      "input": "",
+      "gold_rir": null,
+      "expected_status": "INCOMPLETE",
+      "target_answer": "",
+      "notes": "Caso 8/10 de L03_EPISTEMIC_INCOMPLETE: Preguntas con datos faltantes que exigen abstención (e.g., me gasté 5 lucas, cuánto me queda; tengo unas frutas)"
+    },
+    {
+      "id": "EXT_HUMAN_089",
+      "category": "L03_EPISTEMIC_INCOMPLETE",
+      "input": "",
+      "gold_rir": null,
+      "expected_status": "INCOMPLETE",
+      "target_answer": "",
+      "notes": "Caso 9/10 de L03_EPISTEMIC_INCOMPLETE: Preguntas con datos faltantes que exigen abstención (e.g., me gasté 5 lucas, cuánto me queda; tengo unas frutas)"
+    },
+    {
+      "id": "EXT_HUMAN_090",
+      "category": "L03_EPISTEMIC_INCOMPLETE",
+      "input": "",
+      "gold_rir": null,
+      "expected_status": "INCOMPLETE",
+      "target_answer": "",
+      "notes": "Caso 10/10 de L03_EPISTEMIC_INCOMPLETE: Preguntas con datos faltantes que exigen abstención (e.g., me gasté 5 lucas, cuánto me queda; tengo unas frutas)"
+    },
+    {
+      "id": "EXT_HUMAN_091",
+      "category": "L03_OUT_OF_DOMAIN",
+      "input": "",
+      "gold_rir": null,
+      "expected_status": "UNSUPPORTED",
+      "target_answer": "",
+      "notes": "Caso 1/10 de L03_OUT_OF_DOMAIN: Preguntas ontológicas o de cultura general que exigen abstención honesta (UNSUPPORTED)"
+    },
+    {
+      "id": "EXT_HUMAN_092",
+      "category": "L03_OUT_OF_DOMAIN",
+      "input": "",
+      "gold_rir": null,
+      "expected_status": "UNSUPPORTED",
+      "target_answer": "",
+      "notes": "Caso 2/10 de L03_OUT_OF_DOMAIN: Preguntas ontológicas o de cultura general que exigen abstención honesta (UNSUPPORTED)"
+    },
+    {
+      "id": "EXT_HUMAN_093",
+      "category": "L03_OUT_OF_DOMAIN",
+      "input": "",
+      "gold_rir": null,
+      "expected_status": "UNSUPPORTED",
+      "target_answer": "",
+      "notes": "Caso 3/10 de L03_OUT_OF_DOMAIN: Preguntas ontológicas o de cultura general que exigen abstención honesta (UNSUPPORTED)"
+    },
+    {
+      "id": "EXT_HUMAN_094",
+      "category": "L03_OUT_OF_DOMAIN",
+      "input": "",
+      "gold_rir": null,
+      "expected_status": "UNSUPPORTED",
+      "target_answer": "",
+      "notes": "Caso 4/10 de L03_OUT_OF_DOMAIN: Preguntas ontológicas o de cultura general que exigen abstención honesta (UNSUPPORTED)"
+    },
+    {
+      "id": "EXT_HUMAN_095",
+      "category": "L03_OUT_OF_DOMAIN",
+      "input": "",
+      "gold_rir": null,
+      "expected_status": "UNSUPPORTED",
+      "target_answer": "",
+      "notes": "Caso 5/10 de L03_OUT_OF_DOMAIN: Preguntas ontológicas o de cultura general que exigen abstención honesta (UNSUPPORTED)"
+    },
+    {
+      "id": "EXT_HUMAN_096",
+      "category": "L03_OUT_OF_DOMAIN",
+      "input": "",
+      "gold_rir": null,
+      "expected_status": "UNSUPPORTED",
+      "target_answer": "",
+      "notes": "Caso 6/10 de L03_OUT_OF_DOMAIN: Preguntas ontológicas o de cultura general que exigen abstención honesta (UNSUPPORTED)"
+    },
+    {
+      "id": "EXT_HUMAN_097",
+      "category": "L03_OUT_OF_DOMAIN",
+      "input": "",
+      "gold_rir": null,
+      "expected_status": "UNSUPPORTED",
+      "target_answer": "",
+      "notes": "Caso 7/10 de L03_OUT_OF_DOMAIN: Preguntas ontológicas o de cultura general que exigen abstención honesta (UNSUPPORTED)"
+    },
+    {
+      "id": "EXT_HUMAN_098",
+      "category": "L03_OUT_OF_DOMAIN",
+      "input": "",
+      "gold_rir": null,
+      "expected_status": "UNSUPPORTED",
+      "target_answer": "",
+      "notes": "Caso 8/10 de L03_OUT_OF_DOMAIN: Preguntas ontológicas o de cultura general que exigen abstención honesta (UNSUPPORTED)"
+    },
+    {
+      "id": "EXT_HUMAN_099",
+      "category": "L03_OUT_OF_DOMAIN",
+      "input": "",
+      "gold_rir": null,
+      "expected_status": "UNSUPPORTED",
+      "target_answer": "",
+      "notes": "Caso 9/10 de L03_OUT_OF_DOMAIN: Preguntas ontológicas o de cultura general que exigen abstención honesta (UNSUPPORTED)"
+    },
+    {
+      "id": "EXT_HUMAN_100",
+      "category": "L03_OUT_OF_DOMAIN",
+      "input": "",
+      "gold_rir": null,
+      "expected_status": "UNSUPPORTED",
+      "target_answer": "",
+      "notes": "Caso 10/10 de L03_OUT_OF_DOMAIN: Preguntas ontológicas o de cultura general que exigen abstención honesta (UNSUPPORTED)"
+    }
+  ]
+}

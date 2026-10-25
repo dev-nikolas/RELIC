@@ -32,9 +32,19 @@ fn main() {
                 };
                 handle_demo(&prompt);
             }
+            "generate" => {
+                let seed = args.get(2).and_then(|s| s.parse().ok()).unwrap_or(42);
+                let count_train = args.get(3).and_then(|s| s.parse().ok()).unwrap_or(100);
+                let count_holdout = args.get(4).and_then(|s| s.parse().ok()).unwrap_or(25);
+                let out_path = args.get(5).cloned().unwrap_or_else(|| "../../data/curriculum_dataset_v1.jsonl".to_string());
+                match relic_cli::generator::generate_and_export_curriculum(seed, count_train, count_holdout, &out_path) {
+                    Ok(hash) => println!("[OK] Dataset generado con éxito. Hash: {}", hash),
+                    Err(e) => eprintln!("[ERROR] Falló generación de dataset: {}", e),
+                }
+            }
             _ => {
                 eprintln!("Subcomando desconocido: {}", args[1]);
-                eprintln!("Uso: relic_cli [query <texto> | bench | demo <prompt>]");
+                eprintln!("Uso: relic_cli [query <texto> | bench | demo <prompt> | generate <seed> <n_train> <n_holdout> <out>]");
             }
         }
     } else {

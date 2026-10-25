@@ -1,0 +1,272 @@
+[
+  {
+    "id": "DEV_L01_01",
+    "level": "L01",
+    "input": "cuánto es 15 + 27",
+    "expected_status": "VALID",
+    "expected_route": "deterministic_arithmetic",
+    "expected_result": "42",
+    "notes": "Adición directa de dos dígitos"
+  },
+  {
+    "id": "DEV_L01_02",
+    "level": "L01",
+    "input": "resta 45 y 18",
+    "expected_status": "VALID",
+    "expected_route": "deterministic_arithmetic",
+    "expected_result": "45 - 18 = 27",
+    "notes": "Resta verbal imperativa"
+  },
+  {
+    "id": "DEV_L01_03",
+    "level": "L01",
+    "input": "multiplica doce por cinco",
+    "expected_status": "VALID",
+    "expected_route": "deterministic_arithmetic",
+    "expected_result": "12 * 5 = 60",
+    "notes": "Multiplicación con numerales escritos"
+  },
+  {
+    "id": "DEV_L01_04",
+    "level": "L01",
+    "input": "cuánto da 100 dividido entre 4",
+    "expected_status": "VALID",
+    "expected_route": "deterministic_arithmetic",
+    "expected_result": "100 / 4 = 25",
+    "notes": "División exacta verbal"
+  },
+  {
+    "id": "DEV_L01_05",
+    "level": "L01",
+    "input": "quítale 15 a 40",
+    "expected_status": "VALID",
+    "expected_route": "deterministic_arithmetic",
+    "expected_result": "40 - 15 = 25",
+    "notes": "Minuendo invertido tras preposición 'a'"
+  },
+  {
+    "id": "DEV_L01_06",
+    "level": "L01",
+    "input": "calcula 7 * 8",
+    "expected_status": "VALID",
+    "expected_route": "deterministic_arithmetic",
+    "expected_result": "7 * 8 = 56",
+    "notes": "Multiplicación con prefijo calcula"
+  },
+  {
+    "id": "DEV_L01_07",
+    "level": "L01",
+    "input": "veinte menos ocho",
+    "expected_status": "VALID",
+    "expected_route": "deterministic_arithmetic",
+    "expected_result": "12",
+    "notes": "Resta puramente en palabras"
+  },
+  {
+    "id": "DEV_L01_08",
+    "level": "L01",
+    "input": "dieciséis más tres",
+    "expected_status": "VALID",
+    "expected_route": "deterministic_arithmetic",
+    "expected_result": "19",
+    "notes": "Numeral compuesto dieciséis"
+  },
+  {
+    "id": "DEV_L01_09",
+    "level": "L01",
+    "input": "cuánto es 5 / 0",
+    "expected_status": "INVALID",
+    "expected_route": "deterministic_arithmetic",
+    "expected_result": "División por cero",
+    "notes": "División por cero determinista"
+  },
+  {
+    "id": "DEV_L01_10",
+    "level": "L01",
+    "input": "suma 0 y 0",
+    "expected_status": "VALID",
+    "expected_route": "deterministic_arithmetic",
+    "expected_result": "0",
+    "notes": "Identidad aditiva del cero"
+  },
+  {
+    "id": "DEV_L02_01",
+    "level": "L02",
+    "input": "tengo 20 panes y vendo 8",
+    "expected_status": "VALID",
+    "expected_route": "deterministic_arithmetic",
+    "expected_result": "12 panes",
+    "notes": "Inventario sustractivo con sustantivo plural"
+  },
+  {
+    "id": "DEV_L02_02",
+    "level": "L02",
+    "input": "tengo 5 monedas y recibo 7",
+    "expected_status": "VALID",
+    "expected_route": "deterministic_arithmetic",
+    "expected_result": "12 monedas",
+    "notes": "Inventario aditivo con entidad monetaria"
+  },
+  {
+    "id": "DEV_L02_03",
+    "level": "L02",
+    "input": "tengo 2 manzanas y me como 1",
+    "expected_status": "VALID",
+    "expected_route": "deterministic_arithmetic",
+    "expected_result": "1 manzana",
+    "notes": "Concordancia singular: 1 manzana (no 1 manzanas)"
+  },
+  {
+    "id": "DEV_L02_04",
+    "level": "L02",
+    "input": "tengo 14 cajas y compro 6",
+    "expected_status": "VALID",
+    "expected_route": "deterministic_arithmetic",
+    "expected_result": "20 cajas",
+    "notes": "Inventario aditivo con verbo comprar"
+  },
+  {
+    "id": "DEV_L02_05",
+    "level": "L02",
+    "input": "tengo 30 pesos y regalo 12",
+    "expected_status": "VALID",
+    "expected_route": "deterministic_arithmetic",
+    "expected_result": "18 pesos",
+    "notes": "Inventario con verbo regalar"
+  },
+  {
+    "id": "DEV_L02_06",
+    "level": "L02",
+    "input": "tengo 8 cuadernos y pierdo 3",
+    "expected_status": "VALID",
+    "expected_route": "deterministic_arithmetic",
+    "expected_result": "5 cuadernos",
+    "notes": "Inventario con verbo perder"
+  },
+  {
+    "id": "DEV_L02_07",
+    "level": "L02",
+    "input": "tengo diez perros y adopto dos",
+    "expected_status": "VALID",
+    "expected_route": "deterministic_arithmetic",
+    "expected_result": "12 perros",
+    "notes": "Inventario aditivo con numerales en texto"
+  },
+  {
+    "id": "DEV_L02_08",
+    "level": "L02",
+    "input": "tengo 15 camisas y me regalan 5",
+    "expected_status": "VALID",
+    "expected_route": "deterministic_arithmetic",
+    "expected_result": "20 camisas",
+    "notes": "Verbo transitivo me regalan"
+  },
+  {
+    "id": "DEV_L02_09",
+    "level": "L02",
+    "input": "tengo 3 gatos y regalo 2",
+    "expected_status": "VALID",
+    "expected_route": "deterministic_arithmetic",
+    "expected_result": "1 gato",
+    "notes": "Concordancia singular con masculino (1 gato)"
+  },
+  {
+    "id": "DEV_L02_10",
+    "level": "L02",
+    "input": "tengo 50 sillas y quito 20",
+    "expected_status": "VALID",
+    "expected_route": "deterministic_arithmetic",
+    "expected_result": "30 sillas",
+    "notes": "Inventario con verbo quitar"
+  },
+  {
+    "id": "DEV_L03_01",
+    "level": "L03",
+    "input": "tengo varias naranjas y compro 4",
+    "expected_status": "INCOMPLETE",
+    "expected_route": "epistemic_rejection",
+    "expected_result": "cantidad inicial",
+    "notes": "Cantidad inicial indefinida ('varias')"
+  },
+  {
+    "id": "DEV_L03_02",
+    "level": "L03",
+    "input": "tengo algunos libros y presto dos",
+    "expected_status": "INCOMPLETE",
+    "expected_route": "epistemic_rejection",
+    "expected_result": "cantidad inicial",
+    "notes": "Cantidad inicial indefinida ('algunos')"
+  },
+  {
+    "id": "DEV_L03_03",
+    "level": "L03",
+    "input": "cuántas manzanas me quedan si como tres",
+    "expected_status": "INCOMPLETE",
+    "expected_route": "epistemic_rejection",
+    "expected_result": "cantidad inicial",
+    "notes": "Ausencia absoluta de estado inicial"
+  },
+  {
+    "id": "DEV_L03_04",
+    "level": "L03",
+    "input": "el cielo es azul",
+    "expected_status": "UNSUPPORTED",
+    "expected_route": "unsupported",
+    "expected_result": "no puede verificar",
+    "notes": "Afirmación ontológica fuera del dominio formal"
+  },
+  {
+    "id": "DEV_L03_05",
+    "level": "L03",
+    "input": "quién descubrió América",
+    "expected_status": "UNSUPPORTED",
+    "expected_route": "unsupported",
+    "expected_result": "no puede verificar",
+    "notes": "Pregunta histórica fuera de dominio"
+  },
+  {
+    "id": "DEV_L03_06",
+    "level": "L03",
+    "input": "cuánto cuesta la vida",
+    "expected_status": "UNSUPPORTED",
+    "expected_route": "unsupported",
+    "expected_result": "no puede verificar",
+    "notes": "Pregunta metafórica fuera de dominio"
+  },
+  {
+    "id": "DEV_L03_07",
+    "level": "L03",
+    "input": "tengo unos zapatos y compro 3",
+    "expected_status": "INCOMPLETE",
+    "expected_route": "epistemic_rejection",
+    "expected_result": "cantidad inicial",
+    "notes": "Determinante indefinido 'unos'"
+  },
+  {
+    "id": "DEV_L03_08",
+    "level": "L03",
+    "input": "recibo 5 dólares",
+    "expected_status": "INCOMPLETE",
+    "expected_route": "epistemic_rejection",
+    "expected_result": "cantidad inicial",
+    "notes": "Operación sin inventario inicial conocido"
+  },
+  {
+    "id": "DEV_L03_09",
+    "level": "L03",
+    "input": "qué hora es",
+    "expected_status": "UNSUPPORTED",
+    "expected_route": "unsupported",
+    "expected_result": "no puede verificar",
+    "notes": "Consulta temporal fuera de dominio"
+  },
+  {
+    "id": "DEV_L03_10",
+    "level": "L03",
+    "input": "tengo manzanas",
+    "expected_status": "INCOMPLETE",
+    "expected_route": "epistemic_rejection",
+    "expected_result": "incompleta",
+    "notes": "Premisa sin cantidad ni pregunta"
+  }
+]

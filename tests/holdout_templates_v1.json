@@ -1,0 +1,1757 @@
+[
+  {
+    "id": "H_L01_05_HoldoutTemplate_0000",
+    "input": "sáquele cuatro a diez",
+    "expected_status": "VALID",
+    "expected_output": "6",
+    "gold_rir": {
+      "schema_version": 1,
+      "intent": "inventory_update",
+      "domain": "inventory",
+      "status": "VALID",
+      "initial_quantity": 10.0,
+      "operations": [
+        {
+          "operator": "subtract",
+          "operand": 4.0
+        }
+      ],
+      "uncertainty": {
+        "is_rejected": false,
+        "status": "VALID",
+        "missing_fields": [],
+        "rejection_reason": null
+      }
+    }
+  },
+  {
+    "id": "H_L01_01_HoldoutTemplate_0001",
+    "input": "a tres quítale 10",
+    "expected_status": "VALID",
+    "expected_output": "-19",
+    "gold_rir": {
+      "schema_version": 1,
+      "intent": "inventory_update",
+      "domain": "inventory",
+      "status": "VALID",
+      "initial_quantity": 3.0,
+      "operations": [
+        {
+          "operator": "subtract",
+          "operand": 22.0
+        }
+      ],
+      "uncertainty": {
+        "is_rejected": false,
+        "status": "VALID",
+        "missing_fields": [],
+        "rejection_reason": null
+      }
+    }
+  },
+  {
+    "id": "H_L01_01_HoldoutTemplate_0002",
+    "input": "a 3 quítale 12",
+    "expected_status": "VALID",
+    "expected_output": "-9",
+    "gold_rir": {
+      "schema_version": 1,
+      "intent": "inventory_update",
+      "domain": "inventory",
+      "status": "VALID",
+      "initial_quantity": 3.0,
+      "operations": [
+        {
+          "operator": "subtract",
+          "operand": 12.0
+        }
+      ],
+      "uncertainty": {
+        "is_rejected": false,
+        "status": "VALID",
+        "missing_fields": [],
+        "rejection_reason": null
+      }
+    }
+  },
+  {
+    "id": "H_L01_02_HoldoutTemplate_0003",
+    "input": "resultado de sumar dos e tres",
+    "expected_status": "VALID",
+    "expected_output": "5",
+    "gold_rir": {
+      "schema_version": 1,
+      "intent": "inventory_update",
+      "domain": "inventory",
+      "status": "VALID",
+      "initial_quantity": 2.0,
+      "operations": [
+        {
+          "operator": "add",
+          "operand": 3.0
+        }
+      ],
+      "uncertainty": {
+        "is_rejected": false,
+        "status": "VALID",
+        "missing_fields": [],
+        "rejection_reason": null
+      }
+    }
+  },
+  {
+    "id": "H_L01_04_HoldoutTemplate_0004",
+    "input": "póngale 14 a 13",
+    "expected_status": "VALID",
+    "expected_output": "27",
+    "gold_rir": {
+      "schema_version": 1,
+      "intent": "inventory_update",
+      "domain": "inventory",
+      "status": "VALID",
+      "initial_quantity": 14.0,
+      "operations": [
+        {
+          "operator": "add",
+          "operand": 13.0
+        }
+      ],
+      "uncertainty": {
+        "is_rejected": false,
+        "status": "VALID",
+        "missing_fields": [],
+        "rejection_reason": null
+      }
+    }
+  },
+  {
+    "id": "H_L01_05_HoldoutTemplate_0005",
+    "input": "sáquele 24 a catorce",
+    "expected_status": "VALID",
+    "expected_output": "-10",
+    "gold_rir": {
+      "schema_version": 1,
+      "intent": "inventory_update",
+      "domain": "inventory",
+      "status": "VALID",
+      "initial_quantity": 14.0,
+      "operations": [
+        {
+          "operator": "subtract",
+          "operand": 24.0
+        }
+      ],
+      "uncertainty": {
+        "is_rejected": false,
+        "status": "VALID",
+        "missing_fields": [],
+        "rejection_reason": null
+      }
+    }
+  },
+  {
+    "id": "H_L01_01_HoldoutTemplate_0006",
+    "input": "a siete quítale 5",
+    "expected_status": "VALID",
+    "expected_output": "2",
+    "gold_rir": {
+      "schema_version": 1,
+      "intent": "inventory_update",
+      "domain": "inventory",
+      "status": "VALID",
+      "initial_quantity": 7.0,
+      "operations": [
+        {
+          "operator": "subtract",
+          "operand": 5.0
+        }
+      ],
+      "uncertainty": {
+        "is_rejected": false,
+        "status": "VALID",
+        "missing_fields": [],
+        "rejection_reason": null
+      }
+    }
+  },
+  {
+    "id": "H_L01_01_HoldoutTemplate_0007",
+    "input": "a 7 quítale trece",
+    "expected_status": "VALID",
+    "expected_output": "-6",
+    "gold_rir": {
+      "schema_version": 1,
+      "intent": "inventory_update",
+      "domain": "inventory",
+      "status": "VALID",
+      "initial_quantity": 7.0,
+      "operations": [
+        {
+          "operator": "subtract",
+          "operand": 13.0
+        }
+      ],
+      "uncertainty": {
+        "is_rejected": false,
+        "status": "VALID",
+        "missing_fields": [],
+        "rejection_reason": null
+      }
+    }
+  },
+  {
+    "id": "H_L01_03_HoldoutTemplate_0008",
+    "input": "10 menos 11 son?",
+    "expected_status": "VALID",
+    "expected_output": "15",
+    "gold_rir": {
+      "schema_version": 1,
+      "intent": "inventory_update",
+      "domain": "inventory",
+      "status": "VALID",
+      "initial_quantity": 26.0,
+      "operations": [
+        {
+          "operator": "subtract",
+          "operand": 11.0
+        }
+      ],
+      "uncertainty": {
+        "is_rejected": false,
+        "status": "VALID",
+        "missing_fields": [],
+        "rejection_reason": null
+      }
+    }
+  },
+  {
+    "id": "H_L01_01_HoldoutTemplate_0009",
+    "input": "a 15 quítale 23",
+    "expected_status": "VALID",
+    "expected_output": "-8",
+    "gold_rir": {
+      "schema_version": 1,
+      "intent": "inventory_update",
+      "domain": "inventory",
+      "status": "VALID",
+      "initial_quantity": 15.0,
+      "operations": [
+        {
+          "operator": "subtract",
+          "operand": 23.0
+        }
+      ],
+      "uncertainty": {
+        "is_rejected": false,
+        "status": "VALID",
+        "missing_fields": [],
+        "rejection_reason": null
+      }
+    }
+  },
+  {
+    "id": "H_L01_04_HoldoutTemplate_0010",
+    "input": "póngale 27 a 14",
+    "expected_status": "VALID",
+    "expected_output": "41",
+    "gold_rir": {
+      "schema_version": 1,
+      "intent": "inventory_update",
+      "domain": "inventory",
+      "status": "VALID",
+      "initial_quantity": 27.0,
+      "operations": [
+        {
+          "operator": "add",
+          "operand": 14.0
+        }
+      ],
+      "uncertainty": {
+        "is_rejected": false,
+        "status": "VALID",
+        "missing_fields": [],
+        "rejection_reason": null
+      }
+    }
+  },
+  {
+    "id": "H_L01_01_HoldoutTemplate_0011",
+    "input": "a tres quítale 19",
+    "expected_status": "VALID",
+    "expected_output": "-16",
+    "gold_rir": {
+      "schema_version": 1,
+      "intent": "inventory_update",
+      "domain": "inventory",
+      "status": "VALID",
+      "initial_quantity": 3.0,
+      "operations": [
+        {
+          "operator": "subtract",
+          "operand": 19.0
+        }
+      ],
+      "uncertainty": {
+        "is_rejected": false,
+        "status": "VALID",
+        "missing_fields": [],
+        "rejection_reason": null
+      }
+    }
+  },
+  {
+    "id": "H_L01_01_HoldoutTemplate_0012",
+    "input": "a 5 quítale 13",
+    "expected_status": "VALID",
+    "expected_output": "-8",
+    "gold_rir": {
+      "schema_version": 1,
+      "intent": "inventory_update",
+      "domain": "inventory",
+      "status": "VALID",
+      "initial_quantity": 5.0,
+      "operations": [
+        {
+          "operator": "subtract",
+          "operand": 13.0
+        }
+      ],
+      "uncertainty": {
+        "is_rejected": false,
+        "status": "VALID",
+        "missing_fields": [],
+        "rejection_reason": null
+      }
+    }
+  },
+  {
+    "id": "H_L01_04_HoldoutTemplate_0013",
+    "input": "póngale 4 a 15",
+    "expected_status": "VALID",
+    "expected_output": "19",
+    "gold_rir": {
+      "schema_version": 1,
+      "intent": "inventory_update",
+      "domain": "inventory",
+      "status": "VALID",
+      "initial_quantity": 4.0,
+      "operations": [
+        {
+          "operator": "add",
+          "operand": 15.0
+        }
+      ],
+      "uncertainty": {
+        "is_rejected": false,
+        "status": "VALID",
+        "missing_fields": [],
+        "rejection_reason": null
+      }
+    }
+  },
+  {
+    "id": "H_L01_05_HoldoutTemplate_0014",
+    "input": "sáquele ocho a 2",
+    "expected_status": "VALID",
+    "expected_output": "-6",
+    "gold_rir": {
+      "schema_version": 1,
+      "intent": "inventory_update",
+      "domain": "inventory",
+      "status": "VALID",
+      "initial_quantity": 2.0,
+      "operations": [
+        {
+          "operator": "subtract",
+          "operand": 8.0
+        }
+      ],
+      "uncertainty": {
+        "is_rejected": false,
+        "status": "VALID",
+        "missing_fields": [],
+        "rejection_reason": null
+      }
+    }
+  },
+  {
+    "id": "H_L01_03_HoldoutTemplate_0015",
+    "input": "23 menos siete son?",
+    "expected_status": "VALID",
+    "expected_output": "16",
+    "gold_rir": {
+      "schema_version": 1,
+      "intent": "inventory_update",
+      "domain": "inventory",
+      "status": "VALID",
+      "initial_quantity": 23.0,
+      "operations": [
+        {
+          "operator": "subtract",
+          "operand": 7.0
+        }
+      ],
+      "uncertainty": {
+        "is_rejected": false,
+        "status": "VALID",
+        "missing_fields": [],
+        "rejection_reason": null
+      }
+    }
+  },
+  {
+    "id": "H_L01_05_HoldoutTemplate_0016",
+    "input": "sáquele 12 a cinco",
+    "expected_status": "VALID",
+    "expected_output": "-7",
+    "gold_rir": {
+      "schema_version": 1,
+      "intent": "inventory_update",
+      "domain": "inventory",
+      "status": "VALID",
+      "initial_quantity": 5.0,
+      "operations": [
+        {
+          "operator": "subtract",
+          "operand": 12.0
+        }
+      ],
+      "uncertainty": {
+        "is_rejected": false,
+        "status": "VALID",
+        "missing_fields": [],
+        "rejection_reason": null
+      }
+    }
+  },
+  {
+    "id": "H_L01_01_HoldoutTemplate_0017",
+    "input": "a 12 quítale 27",
+    "expected_status": "VALID",
+    "expected_output": "-15",
+    "gold_rir": {
+      "schema_version": 1,
+      "intent": "inventory_update",
+      "domain": "inventory",
+      "status": "VALID",
+      "initial_quantity": 12.0,
+      "operations": [
+        {
+          "operator": "subtract",
+          "operand": 27.0
+        }
+      ],
+      "uncertainty": {
+        "is_rejected": false,
+        "status": "VALID",
+        "missing_fields": [],
+        "rejection_reason": null
+      }
+    }
+  },
+  {
+    "id": "H_L01_03_HoldoutTemplate_0018",
+    "input": "10 menos 7 son?",
+    "expected_status": "VALID",
+    "expected_output": "3",
+    "gold_rir": {
+      "schema_version": 1,
+      "intent": "inventory_update",
+      "domain": "inventory",
+      "status": "VALID",
+      "initial_quantity": 10.0,
+      "operations": [
+        {
+          "operator": "subtract",
+          "operand": 7.0
+        }
+      ],
+      "uncertainty": {
+        "is_rejected": false,
+        "status": "VALID",
+        "missing_fields": [],
+        "rejection_reason": null
+      }
+    }
+  },
+  {
+    "id": "H_L01_03_HoldoutTemplate_0019",
+    "input": "21 menos nueve son?",
+    "expected_status": "VALID",
+    "expected_output": "12",
+    "gold_rir": {
+      "schema_version": 1,
+      "intent": "inventory_update",
+      "domain": "inventory",
+      "status": "VALID",
+      "initial_quantity": 21.0,
+      "operations": [
+        {
+          "operator": "subtract",
+          "operand": 9.0
+        }
+      ],
+      "uncertainty": {
+        "is_rejected": false,
+        "status": "VALID",
+        "missing_fields": [],
+        "rejection_reason": null
+      }
+    }
+  },
+  {
+    "id": "H_L01_01_HoldoutTemplate_0020",
+    "input": "a 12 quítale 14",
+    "expected_status": "VALID",
+    "expected_output": "-2",
+    "gold_rir": {
+      "schema_version": 1,
+      "intent": "inventory_update",
+      "domain": "inventory",
+      "status": "VALID",
+      "initial_quantity": 12.0,
+      "operations": [
+        {
+          "operator": "subtract",
+          "operand": 14.0
+        }
+      ],
+      "uncertainty": {
+        "is_rejected": false,
+        "status": "VALID",
+        "missing_fields": [],
+        "rejection_reason": null
+      }
+    }
+  },
+  {
+    "id": "H_L01_02_HoldoutTemplate_0021",
+    "input": "resultado de sumar 20 e doce",
+    "expected_status": "VALID",
+    "expected_output": "32",
+    "gold_rir": {
+      "schema_version": 1,
+      "intent": "inventory_update",
+      "domain": "inventory",
+      "status": "VALID",
+      "initial_quantity": 20.0,
+      "operations": [
+        {
+          "operator": "add",
+          "operand": 12.0
+        }
+      ],
+      "uncertainty": {
+        "is_rejected": false,
+        "status": "VALID",
+        "missing_fields": [],
+        "rejection_reason": null
+      }
+    }
+  },
+  {
+    "id": "H_L01_04_HoldoutTemplate_0022",
+    "input": "póngale 12 a trece",
+    "expected_status": "VALID",
+    "expected_output": "25",
+    "gold_rir": {
+      "schema_version": 1,
+      "intent": "inventory_update",
+      "domain": "inventory",
+      "status": "VALID",
+      "initial_quantity": 12.0,
+      "operations": [
+        {
+          "operator": "add",
+          "operand": 13.0
+        }
+      ],
+      "uncertainty": {
+        "is_rejected": false,
+        "status": "VALID",
+        "missing_fields": [],
+        "rejection_reason": null
+      }
+    }
+  },
+  {
+    "id": "H_L01_03_HoldoutTemplate_0023",
+    "input": "trece menos ocho son?",
+    "expected_status": "VALID",
+    "expected_output": "5",
+    "gold_rir": {
+      "schema_version": 1,
+      "intent": "inventory_update",
+      "domain": "inventory",
+      "status": "VALID",
+      "initial_quantity": 13.0,
+      "operations": [
+        {
+          "operator": "subtract",
+          "operand": 8.0
+        }
+      ],
+      "uncertainty": {
+        "is_rejected": false,
+        "status": "VALID",
+        "missing_fields": [],
+        "rejection_reason": null
+      }
+    }
+  },
+  {
+    "id": "H_L01_03_HoldoutTemplate_0024",
+    "input": "10 menos 2 son?",
+    "expected_status": "VALID",
+    "expected_output": "21",
+    "gold_rir": {
+      "schema_version": 1,
+      "intent": "inventory_update",
+      "domain": "inventory",
+      "status": "VALID",
+      "initial_quantity": 23.0,
+      "operations": [
+        {
+          "operator": "subtract",
+          "operand": 2.0
+        }
+      ],
+      "uncertainty": {
+        "is_rejected": false,
+        "status": "VALID",
+        "missing_fields": [],
+        "rejection_reason": null
+      }
+    }
+  },
+  {
+    "id": "H_L02_03_HoldoutTemplate_0000",
+    "input": "tenía cuatro libros pero me tumbaron diez",
+    "expected_status": "VALID",
+    "expected_output": "-6 libros",
+    "gold_rir": {
+      "schema_version": 1,
+      "intent": "inventory_update",
+      "domain": "inventory",
+      "status": "VALID",
+      "entity": "libros",
+      "initial_quantity": 4.0,
+      "operations": [
+        {
+          "operator": "subtract",
+          "operand": 10.0
+        }
+      ],
+      "uncertainty": {
+        "is_rejected": false,
+        "status": "VALID",
+        "missing_fields": [],
+        "rejection_reason": null
+      }
+    }
+  },
+  {
+    "id": "H_L02_02_HoldoutTemplate_0001",
+    "input": "me gasté tres de las 10 árboles que tenía",
+    "expected_status": "VALID",
+    "expected_output": "19 árboles",
+    "gold_rir": {
+      "schema_version": 1,
+      "intent": "inventory_update",
+      "domain": "inventory",
+      "status": "VALID",
+      "entity": "árboles",
+      "initial_quantity": 22.0,
+      "operations": [
+        {
+          "operator": "subtract",
+          "operand": 3.0
+        }
+      ],
+      "uncertainty": {
+        "is_rejected": false,
+        "status": "VALID",
+        "missing_fields": [],
+        "rejection_reason": null
+      }
+    }
+  },
+  {
+    "id": "H_L02_01_HoldoutTemplate_0002",
+    "input": "de los 12 gatos que tenía, presté 3",
+    "expected_status": "VALID",
+    "expected_output": "9 gatos",
+    "gold_rir": {
+      "schema_version": 1,
+      "intent": "inventory_update",
+      "domain": "inventory",
+      "status": "VALID",
+      "entity": "gatos",
+      "initial_quantity": 12.0,
+      "operations": [
+        {
+          "operator": "subtract",
+          "operand": 3.0
+        }
+      ],
+      "uncertainty": {
+        "is_rejected": false,
+        "status": "VALID",
+        "missing_fields": [],
+        "rejection_reason": null
+      }
+    }
+  },
+  {
+    "id": "H_L02_04_HoldoutTemplate_0003",
+    "input": "llegaron tres cuadernos a las dos que ya tenía guardadas",
+    "expected_status": "VALID",
+    "expected_output": "5 cuadernos",
+    "gold_rir": {
+      "schema_version": 1,
+      "intent": "inventory_update",
+      "domain": "inventory",
+      "status": "VALID",
+      "entity": "cuadernos",
+      "initial_quantity": 2.0,
+      "operations": [
+        {
+          "operator": "add",
+          "operand": 3.0
+        }
+      ],
+      "uncertainty": {
+        "is_rejected": false,
+        "status": "VALID",
+        "missing_fields": [],
+        "rejection_reason": null
+      }
+    }
+  },
+  {
+    "id": "H_L02_04_HoldoutTemplate_0004",
+    "input": "llegaron 13 perros a las 14 que ya tenía guardadas",
+    "expected_status": "VALID",
+    "expected_output": "27 perros",
+    "gold_rir": {
+      "schema_version": 1,
+      "intent": "inventory_update",
+      "domain": "inventory",
+      "status": "VALID",
+      "entity": "perros",
+      "initial_quantity": 14.0,
+      "operations": [
+        {
+          "operator": "add",
+          "operand": 13.0
+        }
+      ],
+      "uncertainty": {
+        "is_rejected": false,
+        "status": "VALID",
+        "missing_fields": [],
+        "rejection_reason": null
+      }
+    }
+  },
+  {
+    "id": "H_L02_01_HoldoutTemplate_0005",
+    "input": "de los 24 gatos que tenía, presté catorce",
+    "expected_status": "VALID",
+    "expected_output": "10 gatos",
+    "gold_rir": {
+      "schema_version": 1,
+      "intent": "inventory_update",
+      "domain": "inventory",
+      "status": "VALID",
+      "entity": "gatos",
+      "initial_quantity": 24.0,
+      "operations": [
+        {
+          "operator": "subtract",
+          "operand": 14.0
+        }
+      ],
+      "uncertainty": {
+        "is_rejected": false,
+        "status": "VALID",
+        "missing_fields": [],
+        "rejection_reason": null
+      }
+    }
+  },
+  {
+    "id": "H_L02_02_HoldoutTemplate_0006",
+    "input": "me gasté siete de las 5 camisas que tenía",
+    "expected_status": "VALID",
+    "expected_output": "-2 camisas",
+    "gold_rir": {
+      "schema_version": 1,
+      "intent": "inventory_update",
+      "domain": "inventory",
+      "status": "VALID",
+      "entity": "camisas",
+      "initial_quantity": 5.0,
+      "operations": [
+        {
+          "operator": "subtract",
+          "operand": 7.0
+        }
+      ],
+      "uncertainty": {
+        "is_rejected": false,
+        "status": "VALID",
+        "missing_fields": [],
+        "rejection_reason": null
+      }
+    }
+  },
+  {
+    "id": "H_L02_03_HoldoutTemplate_0007",
+    "input": "tenía trece monedas pero me tumbaron 7",
+    "expected_status": "VALID",
+    "expected_output": "6 monedas",
+    "gold_rir": {
+      "schema_version": 1,
+      "intent": "inventory_update",
+      "domain": "inventory",
+      "status": "VALID",
+      "entity": "monedas",
+      "initial_quantity": 13.0,
+      "operations": [
+        {
+          "operator": "subtract",
+          "operand": 7.0
+        }
+      ],
+      "uncertainty": {
+        "is_rejected": false,
+        "status": "VALID",
+        "missing_fields": [],
+        "rejection_reason": null
+      }
+    }
+  },
+  {
+    "id": "H_L02_04_HoldoutTemplate_0008",
+    "input": "llegaron 11 gatos a las 10 que ya tenía guardadas",
+    "expected_status": "VALID",
+    "expected_output": "37 gatos",
+    "gold_rir": {
+      "schema_version": 1,
+      "intent": "inventory_update",
+      "domain": "inventory",
+      "status": "VALID",
+      "entity": "gatos",
+      "initial_quantity": 26.0,
+      "operations": [
+        {
+          "operator": "add",
+          "operand": 11.0
+        }
+      ],
+      "uncertainty": {
+        "is_rejected": false,
+        "status": "VALID",
+        "missing_fields": [],
+        "rejection_reason": null
+      }
+    }
+  },
+  {
+    "id": "H_L02_04_HoldoutTemplate_0009",
+    "input": "llegaron 15 monedas a las 23 que ya tenía guardadas",
+    "expected_status": "VALID",
+    "expected_output": "38 monedas",
+    "gold_rir": {
+      "schema_version": 1,
+      "intent": "inventory_update",
+      "domain": "inventory",
+      "status": "VALID",
+      "entity": "monedas",
+      "initial_quantity": 23.0,
+      "operations": [
+        {
+          "operator": "add",
+          "operand": 15.0
+        }
+      ],
+      "uncertainty": {
+        "is_rejected": false,
+        "status": "VALID",
+        "missing_fields": [],
+        "rejection_reason": null
+      }
+    }
+  },
+  {
+    "id": "H_L02_03_HoldoutTemplate_0010",
+    "input": "tenía 27 cuadernos pero me tumbaron 14",
+    "expected_status": "VALID",
+    "expected_output": "13 cuadernos",
+    "gold_rir": {
+      "schema_version": 1,
+      "intent": "inventory_update",
+      "domain": "inventory",
+      "status": "VALID",
+      "entity": "cuadernos",
+      "initial_quantity": 27.0,
+      "operations": [
+        {
+          "operator": "subtract",
+          "operand": 14.0
+        }
+      ],
+      "uncertainty": {
+        "is_rejected": false,
+        "status": "VALID",
+        "missing_fields": [],
+        "rejection_reason": null
+      }
+    }
+  },
+  {
+    "id": "H_L02_02_HoldoutTemplate_0011",
+    "input": "me gasté tres de las 19 monedas que tenía",
+    "expected_status": "VALID",
+    "expected_output": "16 monedas",
+    "gold_rir": {
+      "schema_version": 1,
+      "intent": "inventory_update",
+      "domain": "inventory",
+      "status": "VALID",
+      "entity": "monedas",
+      "initial_quantity": 19.0,
+      "operations": [
+        {
+          "operator": "subtract",
+          "operand": 3.0
+        }
+      ],
+      "uncertainty": {
+        "is_rejected": false,
+        "status": "VALID",
+        "missing_fields": [],
+        "rejection_reason": null
+      }
+    }
+  },
+  {
+    "id": "H_L02_01_HoldoutTemplate_0012",
+    "input": "de los 13 libros que tenía, presté 5",
+    "expected_status": "VALID",
+    "expected_output": "8 libros",
+    "gold_rir": {
+      "schema_version": 1,
+      "intent": "inventory_update",
+      "domain": "inventory",
+      "status": "VALID",
+      "entity": "libros",
+      "initial_quantity": 13.0,
+      "operations": [
+        {
+          "operator": "subtract",
+          "operand": 5.0
+        }
+      ],
+      "uncertainty": {
+        "is_rejected": false,
+        "status": "VALID",
+        "missing_fields": [],
+        "rejection_reason": null
+      }
+    }
+  },
+  {
+    "id": "H_L02_04_HoldoutTemplate_0013",
+    "input": "llegaron 15 sillas a las 4 que ya tenía guardadas",
+    "expected_status": "VALID",
+    "expected_output": "19 sillas",
+    "gold_rir": {
+      "schema_version": 1,
+      "intent": "inventory_update",
+      "domain": "inventory",
+      "status": "VALID",
+      "entity": "sillas",
+      "initial_quantity": 4.0,
+      "operations": [
+        {
+          "operator": "add",
+          "operand": 15.0
+        }
+      ],
+      "uncertainty": {
+        "is_rejected": false,
+        "status": "VALID",
+        "missing_fields": [],
+        "rejection_reason": null
+      }
+    }
+  },
+  {
+    "id": "H_L02_04_HoldoutTemplate_0014",
+    "input": "llegaron 2 monedas a las ocho que ya tenía guardadas",
+    "expected_status": "VALID",
+    "expected_output": "10 monedas",
+    "gold_rir": {
+      "schema_version": 1,
+      "intent": "inventory_update",
+      "domain": "inventory",
+      "status": "VALID",
+      "entity": "monedas",
+      "initial_quantity": 8.0,
+      "operations": [
+        {
+          "operator": "add",
+          "operand": 2.0
+        }
+      ],
+      "uncertainty": {
+        "is_rejected": false,
+        "status": "VALID",
+        "missing_fields": [],
+        "rejection_reason": null
+      }
+    }
+  },
+  {
+    "id": "H_L02_01_HoldoutTemplate_0015",
+    "input": "de los 23 monedas que tenía, presté siete",
+    "expected_status": "VALID",
+    "expected_output": "16 monedas",
+    "gold_rir": {
+      "schema_version": 1,
+      "intent": "inventory_update",
+      "domain": "inventory",
+      "status": "VALID",
+      "entity": "monedas",
+      "initial_quantity": 23.0,
+      "operations": [
+        {
+          "operator": "subtract",
+          "operand": 7.0
+        }
+      ],
+      "uncertainty": {
+        "is_rejected": false,
+        "status": "VALID",
+        "missing_fields": [],
+        "rejection_reason": null
+      }
+    }
+  },
+  {
+    "id": "H_L02_02_HoldoutTemplate_0016",
+    "input": "me gasté cinco de las 12 sillas que tenía",
+    "expected_status": "VALID",
+    "expected_output": "7 sillas",
+    "gold_rir": {
+      "schema_version": 1,
+      "intent": "inventory_update",
+      "domain": "inventory",
+      "status": "VALID",
+      "entity": "sillas",
+      "initial_quantity": 12.0,
+      "operations": [
+        {
+          "operator": "subtract",
+          "operand": 5.0
+        }
+      ],
+      "uncertainty": {
+        "is_rejected": false,
+        "status": "VALID",
+        "missing_fields": [],
+        "rejection_reason": null
+      }
+    }
+  },
+  {
+    "id": "H_L02_03_HoldoutTemplate_0017",
+    "input": "tenía 27 gatos pero me tumbaron 12",
+    "expected_status": "VALID",
+    "expected_output": "15 gatos",
+    "gold_rir": {
+      "schema_version": 1,
+      "intent": "inventory_update",
+      "domain": "inventory",
+      "status": "VALID",
+      "entity": "gatos",
+      "initial_quantity": 27.0,
+      "operations": [
+        {
+          "operator": "subtract",
+          "operand": 12.0
+        }
+      ],
+      "uncertainty": {
+        "is_rejected": false,
+        "status": "VALID",
+        "missing_fields": [],
+        "rejection_reason": null
+      }
+    }
+  },
+  {
+    "id": "H_L02_04_HoldoutTemplate_0018",
+    "input": "llegaron 7 cajas a las 10 que ya tenía guardadas",
+    "expected_status": "VALID",
+    "expected_output": "17 cajas",
+    "gold_rir": {
+      "schema_version": 1,
+      "intent": "inventory_update",
+      "domain": "inventory",
+      "status": "VALID",
+      "entity": "cajas",
+      "initial_quantity": 10.0,
+      "operations": [
+        {
+          "operator": "add",
+          "operand": 7.0
+        }
+      ],
+      "uncertainty": {
+        "is_rejected": false,
+        "status": "VALID",
+        "missing_fields": [],
+        "rejection_reason": null
+      }
+    }
+  },
+  {
+    "id": "H_L02_04_HoldoutTemplate_0019",
+    "input": "llegaron nueve panes a las 21 que ya tenía guardadas",
+    "expected_status": "VALID",
+    "expected_output": "30 panes",
+    "gold_rir": {
+      "schema_version": 1,
+      "intent": "inventory_update",
+      "domain": "inventory",
+      "status": "VALID",
+      "entity": "panes",
+      "initial_quantity": 21.0,
+      "operations": [
+        {
+          "operator": "add",
+          "operand": 9.0
+        }
+      ],
+      "uncertainty": {
+        "is_rejected": false,
+        "status": "VALID",
+        "missing_fields": [],
+        "rejection_reason": null
+      }
+    }
+  },
+  {
+    "id": "H_L02_03_HoldoutTemplate_0020",
+    "input": "tenía 14 panes pero me tumbaron 12",
+    "expected_status": "VALID",
+    "expected_output": "2 panes",
+    "gold_rir": {
+      "schema_version": 1,
+      "intent": "inventory_update",
+      "domain": "inventory",
+      "status": "VALID",
+      "entity": "panes",
+      "initial_quantity": 14.0,
+      "operations": [
+        {
+          "operator": "subtract",
+          "operand": 12.0
+        }
+      ],
+      "uncertainty": {
+        "is_rejected": false,
+        "status": "VALID",
+        "missing_fields": [],
+        "rejection_reason": null
+      }
+    }
+  },
+  {
+    "id": "H_L02_02_HoldoutTemplate_0021",
+    "input": "me gasté doce de las 20 panes que tenía",
+    "expected_status": "VALID",
+    "expected_output": "8 panes",
+    "gold_rir": {
+      "schema_version": 1,
+      "intent": "inventory_update",
+      "domain": "inventory",
+      "status": "VALID",
+      "entity": "panes",
+      "initial_quantity": 20.0,
+      "operations": [
+        {
+          "operator": "subtract",
+          "operand": 12.0
+        }
+      ],
+      "uncertainty": {
+        "is_rejected": false,
+        "status": "VALID",
+        "missing_fields": [],
+        "rejection_reason": null
+      }
+    }
+  },
+  {
+    "id": "H_L02_01_HoldoutTemplate_0022",
+    "input": "de los 12 panes que tenía, presté trece",
+    "expected_status": "VALID",
+    "expected_output": "-1 panes",
+    "gold_rir": {
+      "schema_version": 1,
+      "intent": "inventory_update",
+      "domain": "inventory",
+      "status": "VALID",
+      "entity": "panes",
+      "initial_quantity": 12.0,
+      "operations": [
+        {
+          "operator": "subtract",
+          "operand": 13.0
+        }
+      ],
+      "uncertainty": {
+        "is_rejected": false,
+        "status": "VALID",
+        "missing_fields": [],
+        "rejection_reason": null
+      }
+    }
+  },
+  {
+    "id": "H_L02_04_HoldoutTemplate_0023",
+    "input": "llegaron ocho panes a las trece que ya tenía guardadas",
+    "expected_status": "VALID",
+    "expected_output": "21 panes",
+    "gold_rir": {
+      "schema_version": 1,
+      "intent": "inventory_update",
+      "domain": "inventory",
+      "status": "VALID",
+      "entity": "panes",
+      "initial_quantity": 13.0,
+      "operations": [
+        {
+          "operator": "add",
+          "operand": 8.0
+        }
+      ],
+      "uncertainty": {
+        "is_rejected": false,
+        "status": "VALID",
+        "missing_fields": [],
+        "rejection_reason": null
+      }
+    }
+  },
+  {
+    "id": "H_L02_04_HoldoutTemplate_0024",
+    "input": "llegaron 2 gatos a las 10 que ya tenía guardadas",
+    "expected_status": "VALID",
+    "expected_output": "25 gatos",
+    "gold_rir": {
+      "schema_version": 1,
+      "intent": "inventory_update",
+      "domain": "inventory",
+      "status": "VALID",
+      "entity": "gatos",
+      "initial_quantity": 23.0,
+      "operations": [
+        {
+          "operator": "add",
+          "operand": 2.0
+        }
+      ],
+      "uncertainty": {
+        "is_rejected": false,
+        "status": "VALID",
+        "missing_fields": [],
+        "rejection_reason": null
+      }
+    }
+  },
+  {
+    "id": "H_L03_03_HoldoutTemplate_0000",
+    "input": "la luna llena está hecha de queso",
+    "expected_status": "UNSUPPORTED",
+    "expected_output": "Rechazo epistémico: Fuera de dominio formal",
+    "gold_rir": {
+      "schema_version": 1,
+      "intent": "unknown",
+      "domain": "unsupported",
+      "status": "UNSUPPORTED",
+      "uncertainty": {
+        "is_rejected": true,
+        "status": "UNSUPPORTED",
+        "missing_fields": [],
+        "rejection_reason": "Fuera de dominio formal"
+      }
+    }
+  },
+  {
+    "id": "H_L03_02_HoldoutTemplate_0001",
+    "input": "a cuántos grados centígrados hierve el agua",
+    "expected_status": "UNSUPPORTED",
+    "expected_output": "Rechazo epistémico: Fuera de dominio formal",
+    "gold_rir": {
+      "schema_version": 1,
+      "intent": "unknown",
+      "domain": "unsupported",
+      "status": "UNSUPPORTED",
+      "uncertainty": {
+        "is_rejected": true,
+        "status": "UNSUPPORTED",
+        "missing_fields": [],
+        "rejection_reason": "Fuera de dominio formal"
+      }
+    }
+  },
+  {
+    "id": "H_L03_01_HoldoutTemplate_0002",
+    "input": "un poco de gatos más 3",
+    "expected_status": "INCOMPLETE",
+    "expected_output": "Rechazo epistémico: Falta cantidad inicial",
+    "gold_rir": {
+      "schema_version": 1,
+      "intent": "unknown",
+      "domain": "unsupported",
+      "status": "INCOMPLETE",
+      "uncertainty": {
+        "is_rejected": true,
+        "status": "INCOMPLETE",
+        "missing_fields": [
+          "initial_quantity"
+        ],
+        "rejection_reason": "Falta cantidad inicial"
+      }
+    }
+  },
+  {
+    "id": "H_L03_04_HoldoutTemplate_0003",
+    "input": "me dieron plata pero no me acuerdo cuánta y gasté tres",
+    "expected_status": "INCOMPLETE",
+    "expected_output": "Rechazo epistémico: Falta cantidad inicial",
+    "gold_rir": {
+      "schema_version": 1,
+      "intent": "unknown",
+      "domain": "unsupported",
+      "status": "INCOMPLETE",
+      "uncertainty": {
+        "is_rejected": true,
+        "status": "INCOMPLETE",
+        "missing_fields": [
+          "initial_quantity"
+        ],
+        "rejection_reason": "Falta cantidad inicial"
+      }
+    }
+  },
+  {
+    "id": "H_L03_04_HoldoutTemplate_0004",
+    "input": "me dieron plata pero no me acuerdo cuánta y gasté 13",
+    "expected_status": "INCOMPLETE",
+    "expected_output": "Rechazo epistémico: Falta cantidad inicial",
+    "gold_rir": {
+      "schema_version": 1,
+      "intent": "unknown",
+      "domain": "unsupported",
+      "status": "INCOMPLETE",
+      "uncertainty": {
+        "is_rejected": true,
+        "status": "INCOMPLETE",
+        "missing_fields": [
+          "initial_quantity"
+        ],
+        "rejection_reason": "Falta cantidad inicial"
+      }
+    }
+  },
+  {
+    "id": "H_L03_01_HoldoutTemplate_0005",
+    "input": "un poco de gatos más catorce",
+    "expected_status": "INCOMPLETE",
+    "expected_output": "Rechazo epistémico: Falta cantidad inicial",
+    "gold_rir": {
+      "schema_version": 1,
+      "intent": "unknown",
+      "domain": "unsupported",
+      "status": "INCOMPLETE",
+      "uncertainty": {
+        "is_rejected": true,
+        "status": "INCOMPLETE",
+        "missing_fields": [
+          "initial_quantity"
+        ],
+        "rejection_reason": "Falta cantidad inicial"
+      }
+    }
+  },
+  {
+    "id": "H_L03_02_HoldoutTemplate_0006",
+    "input": "a cuántos grados centígrados hierve el agua",
+    "expected_status": "UNSUPPORTED",
+    "expected_output": "Rechazo epistémico: Fuera de dominio formal",
+    "gold_rir": {
+      "schema_version": 1,
+      "intent": "unknown",
+      "domain": "unsupported",
+      "status": "UNSUPPORTED",
+      "uncertainty": {
+        "is_rejected": true,
+        "status": "UNSUPPORTED",
+        "missing_fields": [],
+        "rejection_reason": "Fuera de dominio formal"
+      }
+    }
+  },
+  {
+    "id": "H_L03_03_HoldoutTemplate_0007",
+    "input": "la luna llena está hecha de queso",
+    "expected_status": "UNSUPPORTED",
+    "expected_output": "Rechazo epistémico: Fuera de dominio formal",
+    "gold_rir": {
+      "schema_version": 1,
+      "intent": "unknown",
+      "domain": "unsupported",
+      "status": "UNSUPPORTED",
+      "uncertainty": {
+        "is_rejected": true,
+        "status": "UNSUPPORTED",
+        "missing_fields": [],
+        "rejection_reason": "Fuera de dominio formal"
+      }
+    }
+  },
+  {
+    "id": "H_L03_04_HoldoutTemplate_0008",
+    "input": "me dieron plata pero no me acuerdo cuánta y gasté 11",
+    "expected_status": "INCOMPLETE",
+    "expected_output": "Rechazo epistémico: Falta cantidad inicial",
+    "gold_rir": {
+      "schema_version": 1,
+      "intent": "unknown",
+      "domain": "unsupported",
+      "status": "INCOMPLETE",
+      "uncertainty": {
+        "is_rejected": true,
+        "status": "INCOMPLETE",
+        "missing_fields": [
+          "initial_quantity"
+        ],
+        "rejection_reason": "Falta cantidad inicial"
+      }
+    }
+  },
+  {
+    "id": "H_L03_04_HoldoutTemplate_0009",
+    "input": "me dieron plata pero no me acuerdo cuánta y gasté 15",
+    "expected_status": "INCOMPLETE",
+    "expected_output": "Rechazo epistémico: Falta cantidad inicial",
+    "gold_rir": {
+      "schema_version": 1,
+      "intent": "unknown",
+      "domain": "unsupported",
+      "status": "INCOMPLETE",
+      "uncertainty": {
+        "is_rejected": true,
+        "status": "INCOMPLETE",
+        "missing_fields": [
+          "initial_quantity"
+        ],
+        "rejection_reason": "Falta cantidad inicial"
+      }
+    }
+  },
+  {
+    "id": "H_L03_03_HoldoutTemplate_0010",
+    "input": "la luna llena está hecha de queso",
+    "expected_status": "UNSUPPORTED",
+    "expected_output": "Rechazo epistémico: Fuera de dominio formal",
+    "gold_rir": {
+      "schema_version": 1,
+      "intent": "unknown",
+      "domain": "unsupported",
+      "status": "UNSUPPORTED",
+      "uncertainty": {
+        "is_rejected": true,
+        "status": "UNSUPPORTED",
+        "missing_fields": [],
+        "rejection_reason": "Fuera de dominio formal"
+      }
+    }
+  },
+  {
+    "id": "H_L03_02_HoldoutTemplate_0011",
+    "input": "a cuántos grados centígrados hierve el agua",
+    "expected_status": "UNSUPPORTED",
+    "expected_output": "Rechazo epistémico: Fuera de dominio formal",
+    "gold_rir": {
+      "schema_version": 1,
+      "intent": "unknown",
+      "domain": "unsupported",
+      "status": "UNSUPPORTED",
+      "uncertainty": {
+        "is_rejected": true,
+        "status": "UNSUPPORTED",
+        "missing_fields": [],
+        "rejection_reason": "Fuera de dominio formal"
+      }
+    }
+  },
+  {
+    "id": "H_L03_01_HoldoutTemplate_0012",
+    "input": "un poco de libros más 5",
+    "expected_status": "INCOMPLETE",
+    "expected_output": "Rechazo epistémico: Falta cantidad inicial",
+    "gold_rir": {
+      "schema_version": 1,
+      "intent": "unknown",
+      "domain": "unsupported",
+      "status": "INCOMPLETE",
+      "uncertainty": {
+        "is_rejected": true,
+        "status": "INCOMPLETE",
+        "missing_fields": [
+          "initial_quantity"
+        ],
+        "rejection_reason": "Falta cantidad inicial"
+      }
+    }
+  },
+  {
+    "id": "H_L03_04_HoldoutTemplate_0013",
+    "input": "me dieron plata pero no me acuerdo cuánta y gasté 15",
+    "expected_status": "INCOMPLETE",
+    "expected_output": "Rechazo epistémico: Falta cantidad inicial",
+    "gold_rir": {
+      "schema_version": 1,
+      "intent": "unknown",
+      "domain": "unsupported",
+      "status": "INCOMPLETE",
+      "uncertainty": {
+        "is_rejected": true,
+        "status": "INCOMPLETE",
+        "missing_fields": [
+          "initial_quantity"
+        ],
+        "rejection_reason": "Falta cantidad inicial"
+      }
+    }
+  },
+  {
+    "id": "H_L03_04_HoldoutTemplate_0014",
+    "input": "me dieron plata pero no me acuerdo cuánta y gasté 2",
+    "expected_status": "INCOMPLETE",
+    "expected_output": "Rechazo epistémico: Falta cantidad inicial",
+    "gold_rir": {
+      "schema_version": 1,
+      "intent": "unknown",
+      "domain": "unsupported",
+      "status": "INCOMPLETE",
+      "uncertainty": {
+        "is_rejected": true,
+        "status": "INCOMPLETE",
+        "missing_fields": [
+          "initial_quantity"
+        ],
+        "rejection_reason": "Falta cantidad inicial"
+      }
+    }
+  },
+  {
+    "id": "H_L03_01_HoldoutTemplate_0015",
+    "input": "un poco de monedas más siete",
+    "expected_status": "INCOMPLETE",
+    "expected_output": "Rechazo epistémico: Falta cantidad inicial",
+    "gold_rir": {
+      "schema_version": 1,
+      "intent": "unknown",
+      "domain": "unsupported",
+      "status": "INCOMPLETE",
+      "uncertainty": {
+        "is_rejected": true,
+        "status": "INCOMPLETE",
+        "missing_fields": [
+          "initial_quantity"
+        ],
+        "rejection_reason": "Falta cantidad inicial"
+      }
+    }
+  },
+  {
+    "id": "H_L03_02_HoldoutTemplate_0016",
+    "input": "a cuántos grados centígrados hierve el agua",
+    "expected_status": "UNSUPPORTED",
+    "expected_output": "Rechazo epistémico: Fuera de dominio formal",
+    "gold_rir": {
+      "schema_version": 1,
+      "intent": "unknown",
+      "domain": "unsupported",
+      "status": "UNSUPPORTED",
+      "uncertainty": {
+        "is_rejected": true,
+        "status": "UNSUPPORTED",
+        "missing_fields": [],
+        "rejection_reason": "Fuera de dominio formal"
+      }
+    }
+  },
+  {
+    "id": "H_L03_03_HoldoutTemplate_0017",
+    "input": "la luna llena está hecha de queso",
+    "expected_status": "UNSUPPORTED",
+    "expected_output": "Rechazo epistémico: Fuera de dominio formal",
+    "gold_rir": {
+      "schema_version": 1,
+      "intent": "unknown",
+      "domain": "unsupported",
+      "status": "UNSUPPORTED",
+      "uncertainty": {
+        "is_rejected": true,
+        "status": "UNSUPPORTED",
+        "missing_fields": [],
+        "rejection_reason": "Fuera de dominio formal"
+      }
+    }
+  },
+  {
+    "id": "H_L03_04_HoldoutTemplate_0018",
+    "input": "me dieron plata pero no me acuerdo cuánta y gasté 7",
+    "expected_status": "INCOMPLETE",
+    "expected_output": "Rechazo epistémico: Falta cantidad inicial",
+    "gold_rir": {
+      "schema_version": 1,
+      "intent": "unknown",
+      "domain": "unsupported",
+      "status": "INCOMPLETE",
+      "uncertainty": {
+        "is_rejected": true,
+        "status": "INCOMPLETE",
+        "missing_fields": [
+          "initial_quantity"
+        ],
+        "rejection_reason": "Falta cantidad inicial"
+      }
+    }
+  },
+  {
+    "id": "H_L03_04_HoldoutTemplate_0019",
+    "input": "me dieron plata pero no me acuerdo cuánta y gasté nueve",
+    "expected_status": "INCOMPLETE",
+    "expected_output": "Rechazo epistémico: Falta cantidad inicial",
+    "gold_rir": {
+      "schema_version": 1,
+      "intent": "unknown",
+      "domain": "unsupported",
+      "status": "INCOMPLETE",
+      "uncertainty": {
+        "is_rejected": true,
+        "status": "INCOMPLETE",
+        "missing_fields": [
+          "initial_quantity"
+        ],
+        "rejection_reason": "Falta cantidad inicial"
+      }
+    }
+  },
+  {
+    "id": "H_L03_03_HoldoutTemplate_0020",
+    "input": "la luna llena está hecha de queso",
+    "expected_status": "UNSUPPORTED",
+    "expected_output": "Rechazo epistémico: Fuera de dominio formal",
+    "gold_rir": {
+      "schema_version": 1,
+      "intent": "unknown",
+      "domain": "unsupported",
+      "status": "UNSUPPORTED",
+      "uncertainty": {
+        "is_rejected": true,
+        "status": "UNSUPPORTED",
+        "missing_fields": [],
+        "rejection_reason": "Fuera de dominio formal"
+      }
+    }
+  },
+  {
+    "id": "H_L03_02_HoldoutTemplate_0021",
+    "input": "a cuántos grados centígrados hierve el agua",
+    "expected_status": "UNSUPPORTED",
+    "expected_output": "Rechazo epistémico: Fuera de dominio formal",
+    "gold_rir": {
+      "schema_version": 1,
+      "intent": "unknown",
+      "domain": "unsupported",
+      "status": "UNSUPPORTED",
+      "uncertainty": {
+        "is_rejected": true,
+        "status": "UNSUPPORTED",
+        "missing_fields": [],
+        "rejection_reason": "Fuera de dominio formal"
+      }
+    }
+  },
+  {
+    "id": "H_L03_01_HoldoutTemplate_0022",
+    "input": "un poco de panes más trece",
+    "expected_status": "INCOMPLETE",
+    "expected_output": "Rechazo epistémico: Falta cantidad inicial",
+    "gold_rir": {
+      "schema_version": 1,
+      "intent": "unknown",
+      "domain": "unsupported",
+      "status": "INCOMPLETE",
+      "uncertainty": {
+        "is_rejected": true,
+        "status": "INCOMPLETE",
+        "missing_fields": [
+          "initial_quantity"
+        ],
+        "rejection_reason": "Falta cantidad inicial"
+      }
+    }
+  },
+  {
+    "id": "H_L03_04_HoldoutTemplate_0023",
+    "input": "me dieron plata pero no me acuerdo cuánta y gasté ocho",
+    "expected_status": "INCOMPLETE",
+    "expected_output": "Rechazo epistémico: Falta cantidad inicial",
+    "gold_rir": {
+      "schema_version": 1,
+      "intent": "unknown",
+      "domain": "unsupported",
+      "status": "INCOMPLETE",
+      "uncertainty": {
+        "is_rejected": true,
+        "status": "INCOMPLETE",
+        "missing_fields": [
+          "initial_quantity"
+        ],
+        "rejection_reason": "Falta cantidad inicial"
+      }
+    }
+  },
+  {
+    "id": "H_L03_04_HoldoutTemplate_0024",
+    "input": "me dieron plata pero no me acuerdo cuánta y gasté 2",
+    "expected_status": "INCOMPLETE",
+    "expected_output": "Rechazo epistémico: Falta cantidad inicial",
+    "gold_rir": {
+      "schema_version": 1,
+      "intent": "unknown",
+      "domain": "unsupported",
+      "status": "INCOMPLETE",
+      "uncertainty": {
+        "is_rejected": true,
+        "status": "INCOMPLETE",
+        "missing_fields": [
+          "initial_quantity"
+        ],
+        "rejection_reason": "Falta cantidad inicial"
+      }
+    }
+  }
+]

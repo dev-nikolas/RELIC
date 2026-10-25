@@ -4,6 +4,7 @@ members = [
     "crates/relic_tokenizer",
     "crates/relic_cli",
     "crates/relic_server",
+    "crates/relic_mcp",
 ]
 resolver = "2"
 

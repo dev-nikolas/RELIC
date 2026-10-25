@@ -16,6 +16,7 @@ pub mod normalize;
 pub mod parity;
 pub mod query;
 pub mod relational;
+pub mod generator;
 
 pub use answer::{answer_intent, is_generation_request, Answer};
 pub use dispatch::{parse_dispatch_intent, parse_inventory_problem, DispatchIntent, QuerySpec};
@@ -23,3 +24,4 @@ pub use graph::parse_query_to_spec;
 pub use math::parse_math_expression;
 pub use normalize::normalize_query;
 pub use relational::{parse_relational_query, RelationalQuerySpec, RelationalQuestionType};
+pub use generator::{generate_sample, generate_and_export_curriculum, CurriculumLevel, DatasetSplit};
