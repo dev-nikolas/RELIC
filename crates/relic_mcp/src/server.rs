@@ -52,7 +52,7 @@ impl McpServer {
                     other => {
                         return Some(JsonRpcResponse::error(
                             id,
-                            METHOD_NOT_FOUND,
+                            INVALID_PARAMS,
                             format!("Herramienta no encontrada: '{other}'"),
                         ))
                     }

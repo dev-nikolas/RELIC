@@ -13,7 +13,10 @@ def get_ngrams(text: str, n: int) -> Set[str]:
     return {" ".join(toks[i:i+n]) for i in range(len(toks) - n + 1)}
 
 def main():
-    ds_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "data", "curriculum_dataset_v1.jsonl"))
+    default_ds = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "data", "curriculum_dataset_v1.jsonl"))
+    ds_path = sys.argv[1] if len(sys.argv) > 1 and not sys.argv[1].startswith("-") else default_ds
+    for i, a in enumerate(sys.argv):
+        if a == "--dataset" and i + 1 < len(sys.argv): ds_path = sys.argv[i+1]
     dev_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "tests", "dev_suite_v1.json"))
     ext_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "tests", "external_human_gold_v1.json"))
 

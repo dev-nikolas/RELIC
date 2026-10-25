@@ -116,8 +116,13 @@ fn test_mcp_tool_retrieve_and_errors() {
     let resp_parse: Value = serde_json::from_str(&server.handle_line("invalid json { {").unwrap()).unwrap();
     assert_eq!(resp_parse["error"]["code"], -32700);
 
-    // Error 3: Parámetros inválidos (-32602)
+    // Error 3: Parámetros inválidos (-32602) por falta de name
     let req_inv_params = r#"{"jsonrpc":"2.0","id":9,"method":"tools/call","params":{}}"#;
     let resp_inv: Value = serde_json::from_str(&server.handle_line(req_inv_params).unwrap()).unwrap();
     assert_eq!(resp_inv["error"]["code"], -32602);
+
+    // Error 4: Herramienta desconocida (-32602 según spec de MCP tools/call)
+    let req_unk_tool = r#"{"jsonrpc":"2.0","id":10,"method":"tools/call","params":{"name":"non_existent_tool"}}"#;
+    let resp_tool: Value = serde_json::from_str(&server.handle_line(req_unk_tool).unwrap()).unwrap();
+    assert_eq!(resp_tool["error"]["code"], -32602);
 }

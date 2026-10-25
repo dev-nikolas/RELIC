@@ -1,0 +1,1652 @@
+[
+  {
+    "id": "H_L01_05_HoldoutTemplate_0000",
+    "input": "sáquele cuatro a diez",
+    "expected_status": "VALID",
+    "expected_output": "6",
+    "rules": {
+      "ok": false,
+      "fa": false,
+      "pred": "Consulta fuera del dominio estructurado soportado. RELIC no puede verificar esta afirmación todavía.",
+      "status": "UNSUPPORTED"
+    },
+    "slot_filler": {
+      "ok": true,
+      "fa": false,
+      "pred": "6"
+    },
+    "model": {
+      "ok": false,
+      "fa": true,
+      "raw_output": "Z"
+    }
+  },
+  {
+    "id": "H_L01_01_HoldoutTemplate_0001",
+    "input": "a tres quítale 10",
+    "expected_status": "VALID",
+    "expected_output": "-19",
+    "rules": {
+      "ok": false,
+      "fa": false,
+      "pred": "Consulta fuera del dominio estructurado soportado. RELIC no puede verificar esta afirmación todavía.",
+      "status": "UNSUPPORTED"
+    },
+    "slot_filler": {
+      "ok": false,
+      "fa": true,
+      "pred": "-7"
+    },
+    "model": {
+      "ok": false,
+      "fa": true,
+      "raw_output": "\\�"
+    }
+  },
+  {
+    "id": "H_L01_01_HoldoutTemplate_0002",
+    "input": "a 3 quítale 12",
+    "expected_status": "VALID",
+    "expected_output": "-9",
+    "rules": {
+      "ok": false,
+      "fa": false,
+      "pred": "Consulta fuera del dominio estructurado soportado. RELIC no puede verificar esta afirmación todavía.",
+      "status": "UNSUPPORTED"
+    },
+    "slot_filler": {
+      "ok": true,
+      "fa": false,
+      "pred": "-9"
+    },
+    "model": {
+      "ok": false,
+      "fa": true,
+      "raw_output": "��"
+    }
+  },
+  {
+    "id": "H_L01_02_HoldoutTemplate_0003",
+    "input": "resultado de sumar dos e tres",
+    "expected_status": "VALID",
+    "expected_output": "5",
+    "rules": {
+      "ok": true,
+      "fa": false,
+      "pred": "Entendí: 2 + 3 = 5. El resultado es 5.",
+      "status": "VALID"
+    },
+    "slot_filler": {
+      "ok": true,
+      "fa": false,
+      "pred": "5"
+    },
+    "model": {
+      "ok": false,
+      "fa": true,
+      "raw_output": ""
+    }
+  },
+  {
+    "id": "H_L01_04_HoldoutTemplate_0004",
+    "input": "póngale 14 a 13",
+    "expected_status": "VALID",
+    "expected_output": "27",
+    "rules": {
+      "ok": false,
+      "fa": false,
+      "pred": "Consulta fuera del dominio estructurado soportado. RELIC no puede verificar esta afirmación todavía.",
+      "status": "UNSUPPORTED"
+    },
+    "slot_filler": {
+      "ok": false,
+      "fa": false,
+      "pred": "NO_SLOT_MATCH"
+    },
+    "model": {
+      "ok": false,
+      "fa": true,
+      "raw_output": ""
+    }
+  },
+  {
+    "id": "H_L01_05_HoldoutTemplate_0005",
+    "input": "sáquele 24 a catorce",
+    "expected_status": "VALID",
+    "expected_output": "-10",
+    "rules": {
+      "ok": false,
+      "fa": false,
+      "pred": "Consulta fuera del dominio estructurado soportado. RELIC no puede verificar esta afirmación todavía.",
+      "status": "UNSUPPORTED"
+    },
+    "slot_filler": {
+      "ok": true,
+      "fa": false,
+      "pred": "-10"
+    },
+    "model": {
+      "ok": false,
+      "fa": true,
+      "raw_output": "�\u0016"
+    }
+  },
+  {
+    "id": "H_L01_01_HoldoutTemplate_0006",
+    "input": "a siete quítale 5",
+    "expected_status": "VALID",
+    "expected_output": "2",
+    "rules": {
+      "ok": false,
+      "fa": false,
+      "pred": "Consulta fuera del dominio estructurado soportado. RELIC no puede verificar esta afirmación todavía.",
+      "status": "UNSUPPORTED"
+    },
+    "slot_filler": {
+      "ok": true,
+      "fa": false,
+      "pred": "2"
+    },
+    "model": {
+      "ok": false,
+      "fa": true,
+      "raw_output": "��"
+    }
+  },
+  {
+    "id": "H_L01_01_HoldoutTemplate_0007",
+    "input": "a 7 quítale trece",
+    "expected_status": "VALID",
+    "expected_output": "-6",
+    "rules": {
+      "ok": false,
+      "fa": false,
+      "pred": "Consulta fuera del dominio estructurado soportado. RELIC no puede verificar esta afirmación todavía.",
+      "status": "UNSUPPORTED"
+    },
+    "slot_filler": {
+      "ok": true,
+      "fa": false,
+      "pred": "-6"
+    },
+    "model": {
+      "ok": false,
+      "fa": true,
+      "raw_output": ""
+    }
+  },
+  {
+    "id": "H_L01_03_HoldoutTemplate_0008",
+    "input": "10 menos 11 son?",
+    "expected_status": "VALID",
+    "expected_output": "15",
+    "rules": {
+      "ok": false,
+      "fa": false,
+      "pred": "Entendí: 10 - 11 = -1. El resultado es -1.",
+      "status": "VALID"
+    },
+    "slot_filler": {
+      "ok": false,
+      "fa": true,
+      "pred": "-1"
+    },
+    "model": {
+      "ok": false,
+      "fa": true,
+      "raw_output": ""
+    }
+  },
+  {
+    "id": "H_L01_01_HoldoutTemplate_0009",
+    "input": "a 15 quítale 23",
+    "expected_status": "VALID",
+    "expected_output": "-8",
+    "rules": {
+      "ok": false,
+      "fa": false,
+      "pred": "Consulta fuera del dominio estructurado soportado. RELIC no puede verificar esta afirmación todavía.",
+      "status": "UNSUPPORTED"
+    },
+    "slot_filler": {
+      "ok": true,
+      "fa": false,
+      "pred": "-8"
+    },
+    "model": {
+      "ok": false,
+      "fa": true,
+      "raw_output": "�"
+    }
+  },
+  {
+    "id": "H_L01_04_HoldoutTemplate_0010",
+    "input": "póngale 27 a 14",
+    "expected_status": "VALID",
+    "expected_output": "41",
+    "rules": {
+      "ok": false,
+      "fa": false,
+      "pred": "Consulta fuera del dominio estructurado soportado. RELIC no puede verificar esta afirmación todavía.",
+      "status": "UNSUPPORTED"
+    },
+    "slot_filler": {
+      "ok": false,
+      "fa": false,
+      "pred": "NO_SLOT_MATCH"
+    },
+    "model": {
+      "ok": false,
+      "fa": true,
+      "raw_output": ""
+    }
+  },
+  {
+    "id": "H_L01_01_HoldoutTemplate_0011",
+    "input": "a tres quítale 19",
+    "expected_status": "VALID",
+    "expected_output": "-16",
+    "rules": {
+      "ok": false,
+      "fa": false,
+      "pred": "Consulta fuera del dominio estructurado soportado. RELIC no puede verificar esta afirmación todavía.",
+      "status": "UNSUPPORTED"
+    },
+    "slot_filler": {
+      "ok": true,
+      "fa": false,
+      "pred": "-16"
+    },
+    "model": {
+      "ok": false,
+      "fa": true,
+      "raw_output": "w�"
+    }
+  },
+  {
+    "id": "H_L01_01_HoldoutTemplate_0012",
+    "input": "a 5 quítale 13",
+    "expected_status": "VALID",
+    "expected_output": "-8",
+    "rules": {
+      "ok": false,
+      "fa": false,
+      "pred": "Consulta fuera del dominio estructurado soportado. RELIC no puede verificar esta afirmación todavía.",
+      "status": "UNSUPPORTED"
+    },
+    "slot_filler": {
+      "ok": true,
+      "fa": false,
+      "pred": "-8"
+    },
+    "model": {
+      "ok": false,
+      "fa": true,
+      "raw_output": "�"
+    }
+  },
+  {
+    "id": "H_L01_04_HoldoutTemplate_0013",
+    "input": "póngale 4 a 15",
+    "expected_status": "VALID",
+    "expected_output": "19",
+    "rules": {
+      "ok": false,
+      "fa": false,
+      "pred": "Consulta fuera del dominio estructurado soportado. RELIC no puede verificar esta afirmación todavía.",
+      "status": "UNSUPPORTED"
+    },
+    "slot_filler": {
+      "ok": false,
+      "fa": false,
+      "pred": "NO_SLOT_MATCH"
+    },
+    "model": {
+      "ok": false,
+      "fa": true,
+      "raw_output": "�"
+    }
+  },
+  {
+    "id": "H_L01_05_HoldoutTemplate_0014",
+    "input": "sáquele ocho a 2",
+    "expected_status": "VALID",
+    "expected_output": "-6",
+    "rules": {
+      "ok": false,
+      "fa": false,
+      "pred": "Consulta fuera del dominio estructurado soportado. RELIC no puede verificar esta afirmación todavía.",
+      "status": "UNSUPPORTED"
+    },
+    "slot_filler": {
+      "ok": true,
+      "fa": false,
+      "pred": "-6"
+    },
+    "model": {
+      "ok": false,
+      "fa": true,
+      "raw_output": "��\n"
+    }
+  },
+  {
+    "id": "H_L01_03_HoldoutTemplate_0015",
+    "input": "23 menos siete son?",
+    "expected_status": "VALID",
+    "expected_output": "16",
+    "rules": {
+      "ok": true,
+      "fa": false,
+      "pred": "Entendí: 23 - 7 = 16. El resultado es 16.",
+      "status": "VALID"
+    },
+    "slot_filler": {
+      "ok": true,
+      "fa": false,
+      "pred": "16"
+    },
+    "model": {
+      "ok": false,
+      "fa": true,
+      "raw_output": "-�"
+    }
+  },
+  {
+    "id": "H_L01_05_HoldoutTemplate_0016",
+    "input": "sáquele 12 a cinco",
+    "expected_status": "VALID",
+    "expected_output": "-7",
+    "rules": {
+      "ok": false,
+      "fa": false,
+      "pred": "Consulta fuera del dominio estructurado soportado. RELIC no puede verificar esta afirmación todavía.",
+      "status": "UNSUPPORTED"
+    },
+    "slot_filler": {
+      "ok": true,
+      "fa": false,
+      "pred": "-7"
+    },
+    "model": {
+      "ok": false,
+      "fa": true,
+      "raw_output": ""
+    }
+  },
+  {
+    "id": "H_L01_01_HoldoutTemplate_0017",
+    "input": "a 12 quítale 27",
+    "expected_status": "VALID",
+    "expected_output": "-15",
+    "rules": {
+      "ok": false,
+      "fa": false,
+      "pred": "Consulta fuera del dominio estructurado soportado. RELIC no puede verificar esta afirmación todavía.",
+      "status": "UNSUPPORTED"
+    },
+    "slot_filler": {
+      "ok": true,
+      "fa": false,
+      "pred": "-15"
+    },
+    "model": {
+      "ok": false,
+      "fa": true,
+      "raw_output": "-"
+    }
+  },
+  {
+    "id": "H_L01_03_HoldoutTemplate_0018",
+    "input": "10 menos 7 son?",
+    "expected_status": "VALID",
+    "expected_output": "3",
+    "rules": {
+      "ok": true,
+      "fa": false,
+      "pred": "Entendí: 10 - 7 = 3. El resultado es 3.",
+      "status": "VALID"
+    },
+    "slot_filler": {
+      "ok": true,
+      "fa": false,
+      "pred": "3"
+    },
+    "model": {
+      "ok": false,
+      "fa": true,
+      "raw_output": "2"
+    }
+  },
+  {
+    "id": "H_L01_03_HoldoutTemplate_0019",
+    "input": "21 menos nueve son?",
+    "expected_status": "VALID",
+    "expected_output": "12",
+    "rules": {
+      "ok": true,
+      "fa": false,
+      "pred": "Entendí: 21 - 9 = 12. El resultado es 12.",
+      "status": "VALID"
+    },
+    "slot_filler": {
+      "ok": true,
+      "fa": false,
+      "pred": "12"
+    },
+    "model": {
+      "ok": false,
+      "fa": true,
+      "raw_output": "-��r-"
+    }
+  },
+  {
+    "id": "H_L01_01_HoldoutTemplate_0020",
+    "input": "a 12 quítale 14",
+    "expected_status": "VALID",
+    "expected_output": "-2",
+    "rules": {
+      "ok": false,
+      "fa": false,
+      "pred": "Consulta fuera del dominio estructurado soportado. RELIC no puede verificar esta afirmación todavía.",
+      "status": "UNSUPPORTED"
+    },
+    "slot_filler": {
+      "ok": true,
+      "fa": false,
+      "pred": "-2"
+    },
+    "model": {
+      "ok": false,
+      "fa": true,
+      "raw_output": "�\u001c"
+    }
+  },
+  {
+    "id": "H_L01_02_HoldoutTemplate_0021",
+    "input": "resultado de sumar 20 e doce",
+    "expected_status": "VALID",
+    "expected_output": "32",
+    "rules": {
+      "ok": true,
+      "fa": false,
+      "pred": "Entendí: 20 + 12 = 32. El resultado es 32.",
+      "status": "VALID"
+    },
+    "slot_filler": {
+      "ok": true,
+      "fa": false,
+      "pred": "32"
+    },
+    "model": {
+      "ok": false,
+      "fa": true,
+      "raw_output": "\u0005"
+    }
+  },
+  {
+    "id": "H_L01_04_HoldoutTemplate_0022",
+    "input": "póngale 12 a trece",
+    "expected_status": "VALID",
+    "expected_output": "25",
+    "rules": {
+      "ok": false,
+      "fa": false,
+      "pred": "Consulta fuera del dominio estructurado soportado. RELIC no puede verificar esta afirmación todavía.",
+      "status": "UNSUPPORTED"
+    },
+    "slot_filler": {
+      "ok": false,
+      "fa": false,
+      "pred": "NO_SLOT_MATCH"
+    },
+    "model": {
+      "ok": false,
+      "fa": true,
+      "raw_output": ""
+    }
+  },
+  {
+    "id": "H_L01_03_HoldoutTemplate_0023",
+    "input": "trece menos ocho son?",
+    "expected_status": "VALID",
+    "expected_output": "5",
+    "rules": {
+      "ok": true,
+      "fa": false,
+      "pred": "Entendí: 13 - 8 = 5. El resultado es 5.",
+      "status": "VALID"
+    },
+    "slot_filler": {
+      "ok": true,
+      "fa": false,
+      "pred": "5"
+    },
+    "model": {
+      "ok": false,
+      "fa": true,
+      "raw_output": ""
+    }
+  },
+  {
+    "id": "H_L01_03_HoldoutTemplate_0024",
+    "input": "10 menos 2 son?",
+    "expected_status": "VALID",
+    "expected_output": "21",
+    "rules": {
+      "ok": false,
+      "fa": false,
+      "pred": "Entendí: 10 - 2 = 8. El resultado es 8.",
+      "status": "VALID"
+    },
+    "slot_filler": {
+      "ok": false,
+      "fa": true,
+      "pred": "8"
+    },
+    "model": {
+      "ok": false,
+      "fa": true,
+      "raw_output": "�"
+    }
+  },
+  {
+    "id": "H_L02_03_HoldoutTemplate_0000",
+    "input": "tenía cuatro libros pero me tumbaron diez",
+    "expected_status": "VALID",
+    "expected_output": "-6 libros",
+    "rules": {
+      "ok": false,
+      "fa": false,
+      "pred": "Consulta incompleta: Problema de inventario no estructurado o con operaciones ambiguas/no reconocidas.",
+      "status": "INCOMPLETE"
+    },
+    "slot_filler": {
+      "ok": false,
+      "fa": false,
+      "pred": "NO_SLOT_MATCH"
+    },
+    "model": {
+      "ok": false,
+      "fa": true,
+      "raw_output": "���"
+    }
+  },
+  {
+    "id": "H_L02_02_HoldoutTemplate_0001",
+    "input": "me gasté tres de las 10 árboles que tenía",
+    "expected_status": "VALID",
+    "expected_output": "19 árboles",
+    "rules": {
+      "ok": false,
+      "fa": false,
+      "pred": "Consulta fuera del dominio estructurado soportado. RELIC no puede verificar esta afirmación todavía.",
+      "status": "UNSUPPORTED"
+    },
+    "slot_filler": {
+      "ok": false,
+      "fa": false,
+      "pred": "NO_SLOT_MATCH"
+    },
+    "model": {
+      "ok": false,
+      "fa": true,
+      "raw_output": "�2"
+    }
+  },
+  {
+    "id": "H_L02_01_HoldoutTemplate_0002",
+    "input": "de los 12 gatos que tenía, presté 3",
+    "expected_status": "VALID",
+    "expected_output": "9 gatos",
+    "rules": {
+      "ok": false,
+      "fa": false,
+      "pred": "Consulta fuera del dominio estructurado soportado. RELIC no puede verificar esta afirmación todavía.",
+      "status": "UNSUPPORTED"
+    },
+    "slot_filler": {
+      "ok": false,
+      "fa": false,
+      "pred": "NO_SLOT_MATCH"
+    },
+    "model": {
+      "ok": false,
+      "fa": true,
+      "raw_output": ""
+    }
+  },
+  {
+    "id": "H_L02_04_HoldoutTemplate_0003",
+    "input": "llegaron tres cuadernos a las dos que ya tenía guardadas",
+    "expected_status": "VALID",
+    "expected_output": "5 cuadernos",
+    "rules": {
+      "ok": false,
+      "fa": false,
+      "pred": "Consulta incompleta: Problema de inventario no estructurado o con operaciones ambiguas/no reconocidas.",
+      "status": "INCOMPLETE"
+    },
+    "slot_filler": {
+      "ok": false,
+      "fa": false,
+      "pred": "NO_SLOT_MATCH"
+    },
+    "model": {
+      "ok": false,
+      "fa": true,
+      "raw_output": "A\u0000"
+    }
+  },
+  {
+    "id": "H_L02_04_HoldoutTemplate_0004",
+    "input": "llegaron 13 perros a las 14 que ya tenía guardadas",
+    "expected_status": "VALID",
+    "expected_output": "27 perros",
+    "rules": {
+      "ok": false,
+      "fa": false,
+      "pred": "Consulta incompleta: Problema de inventario no estructurado o con operaciones ambiguas/no reconocidas.",
+      "status": "INCOMPLETE"
+    },
+    "slot_filler": {
+      "ok": false,
+      "fa": false,
+      "pred": "NO_SLOT_MATCH"
+    },
+    "model": {
+      "ok": false,
+      "fa": true,
+      "raw_output": "2"
+    }
+  },
+  {
+    "id": "H_L02_01_HoldoutTemplate_0005",
+    "input": "de los 24 gatos que tenía, presté catorce",
+    "expected_status": "VALID",
+    "expected_output": "10 gatos",
+    "rules": {
+      "ok": false,
+      "fa": false,
+      "pred": "Consulta fuera del dominio estructurado soportado. RELIC no puede verificar esta afirmación todavía.",
+      "status": "UNSUPPORTED"
+    },
+    "slot_filler": {
+      "ok": false,
+      "fa": false,
+      "pred": "NO_SLOT_MATCH"
+    },
+    "model": {
+      "ok": false,
+      "fa": true,
+      "raw_output": ""
+    }
+  },
+  {
+    "id": "H_L02_02_HoldoutTemplate_0006",
+    "input": "me gasté siete de las 5 camisas que tenía",
+    "expected_status": "VALID",
+    "expected_output": "-2 camisas",
+    "rules": {
+      "ok": false,
+      "fa": false,
+      "pred": "Consulta fuera del dominio estructurado soportado. RELIC no puede verificar esta afirmación todavía.",
+      "status": "UNSUPPORTED"
+    },
+    "slot_filler": {
+      "ok": false,
+      "fa": false,
+      "pred": "NO_SLOT_MATCH"
+    },
+    "model": {
+      "ok": false,
+      "fa": true,
+      "raw_output": "2��"
+    }
+  },
+  {
+    "id": "H_L02_03_HoldoutTemplate_0007",
+    "input": "tenía trece monedas pero me tumbaron 7",
+    "expected_status": "VALID",
+    "expected_output": "6 monedas",
+    "rules": {
+      "ok": false,
+      "fa": false,
+      "pred": "Consulta incompleta: Problema de inventario no estructurado o con operaciones ambiguas/no reconocidas.",
+      "status": "INCOMPLETE"
+    },
+    "slot_filler": {
+      "ok": false,
+      "fa": false,
+      "pred": "NO_SLOT_MATCH"
+    },
+    "model": {
+      "ok": false,
+      "fa": true,
+      "raw_output": "�\u0000�"
+    }
+  },
+  {
+    "id": "H_L02_04_HoldoutTemplate_0008",
+    "input": "llegaron 11 gatos a las 10 que ya tenía guardadas",
+    "expected_status": "VALID",
+    "expected_output": "37 gatos",
+    "rules": {
+      "ok": false,
+      "fa": false,
+      "pred": "Consulta incompleta: Problema de inventario no estructurado o con operaciones ambiguas/no reconocidas.",
+      "status": "INCOMPLETE"
+    },
+    "slot_filler": {
+      "ok": false,
+      "fa": false,
+      "pred": "NO_SLOT_MATCH"
+    },
+    "model": {
+      "ok": false,
+      "fa": true,
+      "raw_output": "3�"
+    }
+  },
+  {
+    "id": "H_L02_04_HoldoutTemplate_0009",
+    "input": "llegaron 15 monedas a las 23 que ya tenía guardadas",
+    "expected_status": "VALID",
+    "expected_output": "38 monedas",
+    "rules": {
+      "ok": false,
+      "fa": false,
+      "pred": "Consulta incompleta: Problema de inventario no estructurado o con operaciones ambiguas/no reconocidas.",
+      "status": "INCOMPLETE"
+    },
+    "slot_filler": {
+      "ok": false,
+      "fa": false,
+      "pred": "NO_SLOT_MATCH"
+    },
+    "model": {
+      "ok": false,
+      "fa": true,
+      "raw_output": ""
+    }
+  },
+  {
+    "id": "H_L02_03_HoldoutTemplate_0010",
+    "input": "tenía 27 cuadernos pero me tumbaron 14",
+    "expected_status": "VALID",
+    "expected_output": "13 cuadernos",
+    "rules": {
+      "ok": false,
+      "fa": false,
+      "pred": "Consulta incompleta: Problema de inventario no estructurado o con operaciones ambiguas/no reconocidas.",
+      "status": "INCOMPLETE"
+    },
+    "slot_filler": {
+      "ok": false,
+      "fa": false,
+      "pred": "NO_SLOT_MATCH"
+    },
+    "model": {
+      "ok": false,
+      "fa": true,
+      "raw_output": "�|"
+    }
+  },
+  {
+    "id": "H_L02_02_HoldoutTemplate_0011",
+    "input": "me gasté tres de las 19 monedas que tenía",
+    "expected_status": "VALID",
+    "expected_output": "16 monedas",
+    "rules": {
+      "ok": false,
+      "fa": false,
+      "pred": "Consulta fuera del dominio estructurado soportado. RELIC no puede verificar esta afirmación todavía.",
+      "status": "UNSUPPORTED"
+    },
+    "slot_filler": {
+      "ok": false,
+      "fa": false,
+      "pred": "NO_SLOT_MATCH"
+    },
+    "model": {
+      "ok": false,
+      "fa": true,
+      "raw_output": "�"
+    }
+  },
+  {
+    "id": "H_L02_01_HoldoutTemplate_0012",
+    "input": "de los 13 libros que tenía, presté 5",
+    "expected_status": "VALID",
+    "expected_output": "8 libros",
+    "rules": {
+      "ok": false,
+      "fa": false,
+      "pred": "Consulta fuera del dominio estructurado soportado. RELIC no puede verificar esta afirmación todavía.",
+      "status": "UNSUPPORTED"
+    },
+    "slot_filler": {
+      "ok": false,
+      "fa": false,
+      "pred": "NO_SLOT_MATCH"
+    },
+    "model": {
+      "ok": false,
+      "fa": true,
+      "raw_output": ""
+    }
+  },
+  {
+    "id": "H_L02_04_HoldoutTemplate_0013",
+    "input": "llegaron 15 sillas a las 4 que ya tenía guardadas",
+    "expected_status": "VALID",
+    "expected_output": "19 sillas",
+    "rules": {
+      "ok": false,
+      "fa": false,
+      "pred": "Consulta incompleta: Problema de inventario no estructurado o con operaciones ambiguas/no reconocidas.",
+      "status": "INCOMPLETE"
+    },
+    "slot_filler": {
+      "ok": false,
+      "fa": false,
+      "pred": "NO_SLOT_MATCH"
+    },
+    "model": {
+      "ok": false,
+      "fa": true,
+      "raw_output": "�\u0013�"
+    }
+  },
+  {
+    "id": "H_L02_04_HoldoutTemplate_0014",
+    "input": "llegaron 2 monedas a las ocho que ya tenía guardadas",
+    "expected_status": "VALID",
+    "expected_output": "10 monedas",
+    "rules": {
+      "ok": false,
+      "fa": false,
+      "pred": "Consulta incompleta: Problema de inventario no estructurado o con operaciones ambiguas/no reconocidas.",
+      "status": "INCOMPLETE"
+    },
+    "slot_filler": {
+      "ok": false,
+      "fa": false,
+      "pred": "NO_SLOT_MATCH"
+    },
+    "model": {
+      "ok": false,
+      "fa": true,
+      "raw_output": ""
+    }
+  },
+  {
+    "id": "H_L02_01_HoldoutTemplate_0015",
+    "input": "de los 23 monedas que tenía, presté siete",
+    "expected_status": "VALID",
+    "expected_output": "16 monedas",
+    "rules": {
+      "ok": false,
+      "fa": false,
+      "pred": "Consulta fuera del dominio estructurado soportado. RELIC no puede verificar esta afirmación todavía.",
+      "status": "UNSUPPORTED"
+    },
+    "slot_filler": {
+      "ok": false,
+      "fa": false,
+      "pred": "NO_SLOT_MATCH"
+    },
+    "model": {
+      "ok": false,
+      "fa": true,
+      "raw_output": "-W"
+    }
+  },
+  {
+    "id": "H_L02_02_HoldoutTemplate_0016",
+    "input": "me gasté cinco de las 12 sillas que tenía",
+    "expected_status": "VALID",
+    "expected_output": "7 sillas",
+    "rules": {
+      "ok": false,
+      "fa": false,
+      "pred": "Consulta fuera del dominio estructurado soportado. RELIC no puede verificar esta afirmación todavía.",
+      "status": "UNSUPPORTED"
+    },
+    "slot_filler": {
+      "ok": false,
+      "fa": false,
+      "pred": "NO_SLOT_MATCH"
+    },
+    "model": {
+      "ok": false,
+      "fa": true,
+      "raw_output": "�"
+    }
+  },
+  {
+    "id": "H_L02_03_HoldoutTemplate_0017",
+    "input": "tenía 27 gatos pero me tumbaron 12",
+    "expected_status": "VALID",
+    "expected_output": "15 gatos",
+    "rules": {
+      "ok": false,
+      "fa": false,
+      "pred": "Consulta incompleta: Problema de inventario no estructurado o con operaciones ambiguas/no reconocidas.",
+      "status": "INCOMPLETE"
+    },
+    "slot_filler": {
+      "ok": false,
+      "fa": false,
+      "pred": "NO_SLOT_MATCH"
+    },
+    "model": {
+      "ok": false,
+      "fa": true,
+      "raw_output": "N9"
+    }
+  },
+  {
+    "id": "H_L02_04_HoldoutTemplate_0018",
+    "input": "llegaron 7 cajas a las 10 que ya tenía guardadas",
+    "expected_status": "VALID",
+    "expected_output": "17 cajas",
+    "rules": {
+      "ok": false,
+      "fa": false,
+      "pred": "Consulta incompleta: Problema de inventario no estructurado o con operaciones ambiguas/no reconocidas.",
+      "status": "INCOMPLETE"
+    },
+    "slot_filler": {
+      "ok": false,
+      "fa": false,
+      "pred": "NO_SLOT_MATCH"
+    },
+    "model": {
+      "ok": false,
+      "fa": true,
+      "raw_output": "�Q"
+    }
+  },
+  {
+    "id": "H_L02_04_HoldoutTemplate_0019",
+    "input": "llegaron nueve panes a las 21 que ya tenía guardadas",
+    "expected_status": "VALID",
+    "expected_output": "30 panes",
+    "rules": {
+      "ok": false,
+      "fa": false,
+      "pred": "Consulta incompleta: Problema de inventario no estructurado o con operaciones ambiguas/no reconocidas.",
+      "status": "INCOMPLETE"
+    },
+    "slot_filler": {
+      "ok": false,
+      "fa": false,
+      "pred": "NO_SLOT_MATCH"
+    },
+    "model": {
+      "ok": false,
+      "fa": true,
+      "raw_output": "�"
+    }
+  },
+  {
+    "id": "H_L02_03_HoldoutTemplate_0020",
+    "input": "tenía 14 panes pero me tumbaron 12",
+    "expected_status": "VALID",
+    "expected_output": "2 panes",
+    "rules": {
+      "ok": false,
+      "fa": false,
+      "pred": "Consulta incompleta: Problema de inventario no estructurado o con operaciones ambiguas/no reconocidas.",
+      "status": "INCOMPLETE"
+    },
+    "slot_filler": {
+      "ok": false,
+      "fa": false,
+      "pred": "NO_SLOT_MATCH"
+    },
+    "model": {
+      "ok": false,
+      "fa": true,
+      "raw_output": "�2��"
+    }
+  },
+  {
+    "id": "H_L02_02_HoldoutTemplate_0021",
+    "input": "me gasté doce de las 20 panes que tenía",
+    "expected_status": "VALID",
+    "expected_output": "8 panes",
+    "rules": {
+      "ok": false,
+      "fa": false,
+      "pred": "Consulta fuera del dominio estructurado soportado. RELIC no puede verificar esta afirmación todavía.",
+      "status": "UNSUPPORTED"
+    },
+    "slot_filler": {
+      "ok": false,
+      "fa": false,
+      "pred": "NO_SLOT_MATCH"
+    },
+    "model": {
+      "ok": false,
+      "fa": true,
+      "raw_output": "�"
+    }
+  },
+  {
+    "id": "H_L02_01_HoldoutTemplate_0022",
+    "input": "de los 12 panes que tenía, presté trece",
+    "expected_status": "VALID",
+    "expected_output": "-1 panes",
+    "rules": {
+      "ok": false,
+      "fa": false,
+      "pred": "Consulta fuera del dominio estructurado soportado. RELIC no puede verificar esta afirmación todavía.",
+      "status": "UNSUPPORTED"
+    },
+    "slot_filler": {
+      "ok": false,
+      "fa": false,
+      "pred": "NO_SLOT_MATCH"
+    },
+    "model": {
+      "ok": false,
+      "fa": true,
+      "raw_output": "&"
+    }
+  },
+  {
+    "id": "H_L02_04_HoldoutTemplate_0023",
+    "input": "llegaron ocho panes a las trece que ya tenía guardadas",
+    "expected_status": "VALID",
+    "expected_output": "21 panes",
+    "rules": {
+      "ok": false,
+      "fa": false,
+      "pred": "Consulta incompleta: Problema de inventario no estructurado o con operaciones ambiguas/no reconocidas.",
+      "status": "INCOMPLETE"
+    },
+    "slot_filler": {
+      "ok": false,
+      "fa": false,
+      "pred": "NO_SLOT_MATCH"
+    },
+    "model": {
+      "ok": false,
+      "fa": true,
+      "raw_output": "X"
+    }
+  },
+  {
+    "id": "H_L02_04_HoldoutTemplate_0024",
+    "input": "llegaron 2 gatos a las 10 que ya tenía guardadas",
+    "expected_status": "VALID",
+    "expected_output": "25 gatos",
+    "rules": {
+      "ok": false,
+      "fa": false,
+      "pred": "Consulta incompleta: Problema de inventario no estructurado o con operaciones ambiguas/no reconocidas.",
+      "status": "INCOMPLETE"
+    },
+    "slot_filler": {
+      "ok": false,
+      "fa": false,
+      "pred": "NO_SLOT_MATCH"
+    },
+    "model": {
+      "ok": false,
+      "fa": true,
+      "raw_output": "�"
+    }
+  },
+  {
+    "id": "H_L03_03_HoldoutTemplate_0000",
+    "input": "la luna llena está hecha de queso",
+    "expected_status": "UNSUPPORTED",
+    "expected_output": "rechazo epistémico: fuera de dominio formal",
+    "rules": {
+      "ok": true,
+      "fa": false,
+      "pred": "Consulta fuera del dominio estructurado soportado. RELIC no puede verificar esta afirmación todavía.",
+      "status": "UNSUPPORTED"
+    },
+    "slot_filler": {
+      "ok": true,
+      "fa": false,
+      "pred": "ABSTAIN"
+    },
+    "model": {
+      "ok": false,
+      "fa": false,
+      "raw_output": ""
+    }
+  },
+  {
+    "id": "H_L03_02_HoldoutTemplate_0001",
+    "input": "a cuántos grados centígrados hierve el agua",
+    "expected_status": "UNSUPPORTED",
+    "expected_output": "rechazo epistémico: fuera de dominio formal",
+    "rules": {
+      "ok": true,
+      "fa": false,
+      "pred": "Consulta fuera del dominio estructurado soportado. RELIC no puede verificar esta afirmación todavía.",
+      "status": "UNSUPPORTED"
+    },
+    "slot_filler": {
+      "ok": true,
+      "fa": false,
+      "pred": "ABSTAIN"
+    },
+    "model": {
+      "ok": false,
+      "fa": false,
+      "raw_output": "�"
+    }
+  },
+  {
+    "id": "H_L03_01_HoldoutTemplate_0002",
+    "input": "un poco de gatos más 3",
+    "expected_status": "INCOMPLETE",
+    "expected_output": "rechazo epistémico: falta cantidad inicial",
+    "rules": {
+      "ok": true,
+      "fa": false,
+      "pred": "Consulta fuera del dominio estructurado soportado. RELIC no puede verificar esta afirmación todavía.",
+      "status": "UNSUPPORTED"
+    },
+    "slot_filler": {
+      "ok": true,
+      "fa": false,
+      "pred": "ABSTAIN"
+    },
+    "model": {
+      "ok": false,
+      "fa": false,
+      "raw_output": "�G�"
+    }
+  },
+  {
+    "id": "H_L03_04_HoldoutTemplate_0003",
+    "input": "me dieron plata pero no me acuerdo cuánta y gasté tres",
+    "expected_status": "INCOMPLETE",
+    "expected_output": "rechazo epistémico: falta cantidad inicial",
+    "rules": {
+      "ok": true,
+      "fa": false,
+      "pred": "Consulta fuera del dominio estructurado soportado. RELIC no puede verificar esta afirmación todavía.",
+      "status": "UNSUPPORTED"
+    },
+    "slot_filler": {
+      "ok": true,
+      "fa": false,
+      "pred": "ABSTAIN"
+    },
+    "model": {
+      "ok": false,
+      "fa": false,
+      "raw_output": "����"
+    }
+  },
+  {
+    "id": "H_L03_04_HoldoutTemplate_0004",
+    "input": "me dieron plata pero no me acuerdo cuánta y gasté 13",
+    "expected_status": "INCOMPLETE",
+    "expected_output": "rechazo epistémico: falta cantidad inicial",
+    "rules": {
+      "ok": true,
+      "fa": false,
+      "pred": "Consulta fuera del dominio estructurado soportado. RELIC no puede verificar esta afirmación todavía.",
+      "status": "UNSUPPORTED"
+    },
+    "slot_filler": {
+      "ok": true,
+      "fa": false,
+      "pred": "ABSTAIN"
+    },
+    "model": {
+      "ok": false,
+      "fa": false,
+      "raw_output": ""
+    }
+  },
+  {
+    "id": "H_L03_01_HoldoutTemplate_0005",
+    "input": "un poco de gatos más catorce",
+    "expected_status": "INCOMPLETE",
+    "expected_output": "rechazo epistémico: falta cantidad inicial",
+    "rules": {
+      "ok": true,
+      "fa": false,
+      "pred": "Consulta fuera del dominio estructurado soportado. RELIC no puede verificar esta afirmación todavía.",
+      "status": "UNSUPPORTED"
+    },
+    "slot_filler": {
+      "ok": true,
+      "fa": false,
+      "pred": "ABSTAIN"
+    },
+    "model": {
+      "ok": false,
+      "fa": false,
+      "raw_output": "Ҍ"
+    }
+  },
+  {
+    "id": "H_L03_02_HoldoutTemplate_0006",
+    "input": "a cuántos grados centígrados hierve el agua",
+    "expected_status": "UNSUPPORTED",
+    "expected_output": "rechazo epistémico: fuera de dominio formal",
+    "rules": {
+      "ok": true,
+      "fa": false,
+      "pred": "Consulta fuera del dominio estructurado soportado. RELIC no puede verificar esta afirmación todavía.",
+      "status": "UNSUPPORTED"
+    },
+    "slot_filler": {
+      "ok": true,
+      "fa": false,
+      "pred": "ABSTAIN"
+    },
+    "model": {
+      "ok": false,
+      "fa": false,
+      "raw_output": "�"
+    }
+  },
+  {
+    "id": "H_L03_03_HoldoutTemplate_0007",
+    "input": "la luna llena está hecha de queso",
+    "expected_status": "UNSUPPORTED",
+    "expected_output": "rechazo epistémico: fuera de dominio formal",
+    "rules": {
+      "ok": true,
+      "fa": false,
+      "pred": "Consulta fuera del dominio estructurado soportado. RELIC no puede verificar esta afirmación todavía.",
+      "status": "UNSUPPORTED"
+    },
+    "slot_filler": {
+      "ok": true,
+      "fa": false,
+      "pred": "ABSTAIN"
+    },
+    "model": {
+      "ok": false,
+      "fa": false,
+      "raw_output": ""
+    }
+  },
+  {
+    "id": "H_L03_04_HoldoutTemplate_0008",
+    "input": "me dieron plata pero no me acuerdo cuánta y gasté 11",
+    "expected_status": "INCOMPLETE",
+    "expected_output": "rechazo epistémico: falta cantidad inicial",
+    "rules": {
+      "ok": true,
+      "fa": false,
+      "pred": "Consulta fuera del dominio estructurado soportado. RELIC no puede verificar esta afirmación todavía.",
+      "status": "UNSUPPORTED"
+    },
+    "slot_filler": {
+      "ok": true,
+      "fa": false,
+      "pred": "ABSTAIN"
+    },
+    "model": {
+      "ok": false,
+      "fa": false,
+      "raw_output": ""
+    }
+  },
+  {
+    "id": "H_L03_04_HoldoutTemplate_0009",
+    "input": "me dieron plata pero no me acuerdo cuánta y gasté 15",
+    "expected_status": "INCOMPLETE",
+    "expected_output": "rechazo epistémico: falta cantidad inicial",
+    "rules": {
+      "ok": true,
+      "fa": false,
+      "pred": "Consulta fuera del dominio estructurado soportado. RELIC no puede verificar esta afirmación todavía.",
+      "status": "UNSUPPORTED"
+    },
+    "slot_filler": {
+      "ok": true,
+      "fa": false,
+      "pred": "ABSTAIN"
+    },
+    "model": {
+      "ok": false,
+      "fa": false,
+      "raw_output": ""
+    }
+  },
+  {
+    "id": "H_L03_03_HoldoutTemplate_0010",
+    "input": "la luna llena está hecha de queso",
+    "expected_status": "UNSUPPORTED",
+    "expected_output": "rechazo epistémico: fuera de dominio formal",
+    "rules": {
+      "ok": true,
+      "fa": false,
+      "pred": "Consulta fuera del dominio estructurado soportado. RELIC no puede verificar esta afirmación todavía.",
+      "status": "UNSUPPORTED"
+    },
+    "slot_filler": {
+      "ok": true,
+      "fa": false,
+      "pred": "ABSTAIN"
+    },
+    "model": {
+      "ok": false,
+      "fa": false,
+      "raw_output": ""
+    }
+  },
+  {
+    "id": "H_L03_02_HoldoutTemplate_0011",
+    "input": "a cuántos grados centígrados hierve el agua",
+    "expected_status": "UNSUPPORTED",
+    "expected_output": "rechazo epistémico: fuera de dominio formal",
+    "rules": {
+      "ok": true,
+      "fa": false,
+      "pred": "Consulta fuera del dominio estructurado soportado. RELIC no puede verificar esta afirmación todavía.",
+      "status": "UNSUPPORTED"
+    },
+    "slot_filler": {
+      "ok": true,
+      "fa": false,
+      "pred": "ABSTAIN"
+    },
+    "model": {
+      "ok": false,
+      "fa": false,
+      "raw_output": "�"
+    }
+  },
+  {
+    "id": "H_L03_01_HoldoutTemplate_0012",
+    "input": "un poco de libros más 5",
+    "expected_status": "INCOMPLETE",
+    "expected_output": "rechazo epistémico: falta cantidad inicial",
+    "rules": {
+      "ok": true,
+      "fa": false,
+      "pred": "Consulta fuera del dominio estructurado soportado. RELIC no puede verificar esta afirmación todavía.",
+      "status": "UNSUPPORTED"
+    },
+    "slot_filler": {
+      "ok": true,
+      "fa": false,
+      "pred": "ABSTAIN"
+    },
+    "model": {
+      "ok": false,
+      "fa": false,
+      "raw_output": ""
+    }
+  },
+  {
+    "id": "H_L03_04_HoldoutTemplate_0013",
+    "input": "me dieron plata pero no me acuerdo cuánta y gasté 15",
+    "expected_status": "INCOMPLETE",
+    "expected_output": "rechazo epistémico: falta cantidad inicial",
+    "rules": {
+      "ok": true,
+      "fa": false,
+      "pred": "Consulta fuera del dominio estructurado soportado. RELIC no puede verificar esta afirmación todavía.",
+      "status": "UNSUPPORTED"
+    },
+    "slot_filler": {
+      "ok": true,
+      "fa": false,
+      "pred": "ABSTAIN"
+    },
+    "model": {
+      "ok": false,
+      "fa": false,
+      "raw_output": ""
+    }
+  },
+  {
+    "id": "H_L03_04_HoldoutTemplate_0014",
+    "input": "me dieron plata pero no me acuerdo cuánta y gasté 2",
+    "expected_status": "INCOMPLETE",
+    "expected_output": "rechazo epistémico: falta cantidad inicial",
+    "rules": {
+      "ok": true,
+      "fa": false,
+      "pred": "Consulta fuera del dominio estructurado soportado. RELIC no puede verificar esta afirmación todavía.",
+      "status": "UNSUPPORTED"
+    },
+    "slot_filler": {
+      "ok": true,
+      "fa": false,
+      "pred": "ABSTAIN"
+    },
+    "model": {
+      "ok": false,
+      "fa": false,
+      "raw_output": "\u001f"
+    }
+  },
+  {
+    "id": "H_L03_01_HoldoutTemplate_0015",
+    "input": "un poco de monedas más siete",
+    "expected_status": "INCOMPLETE",
+    "expected_output": "rechazo epistémico: falta cantidad inicial",
+    "rules": {
+      "ok": true,
+      "fa": false,
+      "pred": "Consulta fuera del dominio estructurado soportado. RELIC no puede verificar esta afirmación todavía.",
+      "status": "UNSUPPORTED"
+    },
+    "slot_filler": {
+      "ok": true,
+      "fa": false,
+      "pred": "ABSTAIN"
+    },
+    "model": {
+      "ok": false,
+      "fa": false,
+      "raw_output": "-J"
+    }
+  },
+  {
+    "id": "H_L03_02_HoldoutTemplate_0016",
+    "input": "a cuántos grados centígrados hierve el agua",
+    "expected_status": "UNSUPPORTED",
+    "expected_output": "rechazo epistémico: fuera de dominio formal",
+    "rules": {
+      "ok": true,
+      "fa": false,
+      "pred": "Consulta fuera del dominio estructurado soportado. RELIC no puede verificar esta afirmación todavía.",
+      "status": "UNSUPPORTED"
+    },
+    "slot_filler": {
+      "ok": true,
+      "fa": false,
+      "pred": "ABSTAIN"
+    },
+    "model": {
+      "ok": false,
+      "fa": false,
+      "raw_output": "�"
+    }
+  },
+  {
+    "id": "H_L03_03_HoldoutTemplate_0017",
+    "input": "la luna llena está hecha de queso",
+    "expected_status": "UNSUPPORTED",
+    "expected_output": "rechazo epistémico: fuera de dominio formal",
+    "rules": {
+      "ok": true,
+      "fa": false,
+      "pred": "Consulta fuera del dominio estructurado soportado. RELIC no puede verificar esta afirmación todavía.",
+      "status": "UNSUPPORTED"
+    },
+    "slot_filler": {
+      "ok": true,
+      "fa": false,
+      "pred": "ABSTAIN"
+    },
+    "model": {
+      "ok": false,
+      "fa": false,
+      "raw_output": ""
+    }
+  },
+  {
+    "id": "H_L03_04_HoldoutTemplate_0018",
+    "input": "me dieron plata pero no me acuerdo cuánta y gasté 7",
+    "expected_status": "INCOMPLETE",
+    "expected_output": "rechazo epistémico: falta cantidad inicial",
+    "rules": {
+      "ok": true,
+      "fa": false,
+      "pred": "Consulta fuera del dominio estructurado soportado. RELIC no puede verificar esta afirmación todavía.",
+      "status": "UNSUPPORTED"
+    },
+    "slot_filler": {
+      "ok": true,
+      "fa": false,
+      "pred": "ABSTAIN"
+    },
+    "model": {
+      "ok": false,
+      "fa": false,
+      "raw_output": "J"
+    }
+  },
+  {
+    "id": "H_L03_04_HoldoutTemplate_0019",
+    "input": "me dieron plata pero no me acuerdo cuánta y gasté nueve",
+    "expected_status": "INCOMPLETE",
+    "expected_output": "rechazo epistémico: falta cantidad inicial",
+    "rules": {
+      "ok": true,
+      "fa": false,
+      "pred": "Consulta fuera del dominio estructurado soportado. RELIC no puede verificar esta afirmación todavía.",
+      "status": "UNSUPPORTED"
+    },
+    "slot_filler": {
+      "ok": true,
+      "fa": false,
+      "pred": "ABSTAIN"
+    },
+    "model": {
+      "ok": false,
+      "fa": false,
+      "raw_output": "���"
+    }
+  },
+  {
+    "id": "H_L03_03_HoldoutTemplate_0020",
+    "input": "la luna llena está hecha de queso",
+    "expected_status": "UNSUPPORTED",
+    "expected_output": "rechazo epistémico: fuera de dominio formal",
+    "rules": {
+      "ok": true,
+      "fa": false,
+      "pred": "Consulta fuera del dominio estructurado soportado. RELIC no puede verificar esta afirmación todavía.",
+      "status": "UNSUPPORTED"
+    },
+    "slot_filler": {
+      "ok": true,
+      "fa": false,
+      "pred": "ABSTAIN"
+    },
+    "model": {
+      "ok": false,
+      "fa": false,
+      "raw_output": ""
+    }
+  },
+  {
+    "id": "H_L03_02_HoldoutTemplate_0021",
+    "input": "a cuántos grados centígrados hierve el agua",
+    "expected_status": "UNSUPPORTED",
+    "expected_output": "rechazo epistémico: fuera de dominio formal",
+    "rules": {
+      "ok": true,
+      "fa": false,
+      "pred": "Consulta fuera del dominio estructurado soportado. RELIC no puede verificar esta afirmación todavía.",
+      "status": "UNSUPPORTED"
+    },
+    "slot_filler": {
+      "ok": true,
+      "fa": false,
+      "pred": "ABSTAIN"
+    },
+    "model": {
+      "ok": false,
+      "fa": false,
+      "raw_output": "�"
+    }
+  },
+  {
+    "id": "H_L03_01_HoldoutTemplate_0022",
+    "input": "un poco de panes más trece",
+    "expected_status": "INCOMPLETE",
+    "expected_output": "rechazo epistémico: falta cantidad inicial",
+    "rules": {
+      "ok": true,
+      "fa": false,
+      "pred": "Consulta fuera del dominio estructurado soportado. RELIC no puede verificar esta afirmación todavía.",
+      "status": "UNSUPPORTED"
+    },
+    "slot_filler": {
+      "ok": true,
+      "fa": false,
+      "pred": "ABSTAIN"
+    },
+    "model": {
+      "ok": false,
+      "fa": false,
+      "raw_output": "�"
+    }
+  },
+  {
+    "id": "H_L03_04_HoldoutTemplate_0023",
+    "input": "me dieron plata pero no me acuerdo cuánta y gasté ocho",
+    "expected_status": "INCOMPLETE",
+    "expected_output": "rechazo epistémico: falta cantidad inicial",
+    "rules": {
+      "ok": true,
+      "fa": false,
+      "pred": "Consulta fuera del dominio estructurado soportado. RELIC no puede verificar esta afirmación todavía.",
+      "status": "UNSUPPORTED"
+    },
+    "slot_filler": {
+      "ok": true,
+      "fa": false,
+      "pred": "ABSTAIN"
+    },
+    "model": {
+      "ok": false,
+      "fa": false,
+      "raw_output": ""
+    }
+  },
+  {
+    "id": "H_L03_04_HoldoutTemplate_0024",
+    "input": "me dieron plata pero no me acuerdo cuánta y gasté 2",
+    "expected_status": "INCOMPLETE",
+    "expected_output": "rechazo epistémico: falta cantidad inicial",
+    "rules": {
+      "ok": true,
+      "fa": false,
+      "pred": "Consulta fuera del dominio estructurado soportado. RELIC no puede verificar esta afirmación todavía.",
+      "status": "UNSUPPORTED"
+    },
+    "slot_filler": {
+      "ok": true,
+      "fa": false,
+      "pred": "ABSTAIN"
+    },
+    "model": {
+      "ok": false,
+      "fa": false,
+      "raw_output": "\u001f"
+    }
+  }
+]
