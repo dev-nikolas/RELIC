@@ -56,7 +56,7 @@ def main():
     print("================================================================================")
     print("  RELIC — REPORTE DE CONTROL DE FUGAS Y SOLAPAMIENTO DE N-GRAMAS")
     print("================================================================================")
-    print(f"Dataset: curriculum_dataset_v1.jsonl")
+    print(f"Dataset: {os.path.basename(ds_path)}")
     print(f"  Total Train Prompts:   {len(train_prompts)} | 3-gramas únicos: {len(train_3g)} | 2-gramas: {len(train_2g)}")
     print(f"  Total Holdout Prompts: {len(holdout_prompts)} | 3-gramas únicos: {len(holdout_3g)}")
     print(f"  Solapamiento Train vs Holdout (3-gramas): {len(h_overlap)}/{len(holdout_3g)} ({len(h_overlap)/max(1, len(holdout_3g))*100:.2f}%)")

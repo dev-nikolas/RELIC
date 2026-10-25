@@ -1,0 +1,57 @@
+//! Plantillas para Nivel 3: Fronteras epistémicas (consultas incompletas y dominios no soportados).
+//! Menos de 180 líneas.
+
+use super::types::DatasetSplit;
+use super::templates_l01::TemplateDef;
+
+pub const L03_TEMPLATES: &[TemplateDef] = &[
+    // --- ENTRENAMIENTO (L03 Train: 32 plantillas) ---
+    TemplateDef { id: "T_L03_01", split: DatasetSplit::Train, pattern: "tengo algunas {units} y compro {b}", op_kind: "incomplete" },
+    TemplateDef { id: "T_L03_02", split: DatasetSplit::Train, pattern: "tengo varios {units} y vendo {b}", op_kind: "incomplete" },
+    TemplateDef { id: "T_L03_03", split: DatasetSplit::Train, pattern: "el cielo es de color azul", op_kind: "unsupported" },
+    TemplateDef { id: "T_L03_04", split: DatasetSplit::Train, pattern: "quién descubrió el continente de América", op_kind: "unsupported" },
+    TemplateDef { id: "T_L03_05", split: DatasetSplit::Train, pattern: "recibo {b} {units}", op_kind: "incomplete" },
+    TemplateDef { id: "T_L03_06", split: DatasetSplit::Train, pattern: "cuántas {units} me quedan si regalo {b}", op_kind: "incomplete" },
+    TemplateDef { id: "T_L03_07", split: DatasetSplit::Train, pattern: "había muchas {units} y se perdieron {b}", op_kind: "incomplete" },
+    TemplateDef { id: "T_L03_08", split: DatasetSplit::Train, pattern: "cuál es la capital de Francia", op_kind: "unsupported" },
+    TemplateDef { id: "T_L03_09", split: DatasetSplit::Train, pattern: "compré {units} pero no sé cuántas y gasté {b}", op_kind: "incomplete" },
+    TemplateDef { id: "T_L03_10", split: DatasetSplit::Train, pattern: "cuánto pesa la atmósfera terrestre", op_kind: "unsupported" },
+    TemplateDef { id: "T_L03_11", split: DatasetSplit::Train, pattern: "añade {b} a mi cuenta", op_kind: "incomplete" },
+    TemplateDef { id: "T_L03_12", split: DatasetSplit::Train, pattern: "cuántos huesos tiene el cuerpo humano", op_kind: "unsupported" },
+    TemplateDef { id: "T_L03_13", split: DatasetSplit::Train, pattern: "resta {b} {units} del total", op_kind: "incomplete" },
+    TemplateDef { id: "T_L03_14", split: DatasetSplit::Train, pattern: "escribe un poema sobre la primavera", op_kind: "unsupported" },
+    TemplateDef { id: "T_L03_15", split: DatasetSplit::Train, pattern: "tengo {a} {units} y gasté bastante", op_kind: "incomplete" },
+    TemplateDef { id: "T_L03_16", split: DatasetSplit::Train, pattern: "dime la fórmula de la relatividad", op_kind: "unsupported" },
+    TemplateDef { id: "T_L03_17", split: DatasetSplit::Train, pattern: "había {a} {units} y regalé unas cuantas", op_kind: "incomplete" },
+    TemplateDef { id: "T_L03_18", split: DatasetSplit::Train, pattern: "cuál es la distancia al sol", op_kind: "unsupported" },
+    TemplateDef { id: "T_L03_19", split: DatasetSplit::Train, pattern: "se añadieron varias {units}", op_kind: "incomplete" },
+    TemplateDef { id: "T_L03_20", split: DatasetSplit::Train, pattern: "resumen del libro Don Quijote", op_kind: "unsupported" },
+    TemplateDef { id: "T_L03_21", split: DatasetSplit::Train, pattern: "perdí {b} de las cosas que tenía", op_kind: "incomplete" },
+    TemplateDef { id: "T_L03_22", split: DatasetSplit::Train, pattern: "cómo se cocina un arroz con pollo", op_kind: "unsupported" },
+    TemplateDef { id: "T_L03_23", split: DatasetSplit::Train, pattern: "tengo {a} pero no sé de qué", op_kind: "incomplete" },
+    TemplateDef { id: "T_L03_24", split: DatasetSplit::Train, pattern: "quién pintó la capilla sixtina", op_kind: "unsupported" },
+    TemplateDef { id: "T_L03_25", split: DatasetSplit::Train, pattern: "suma algo a {a}", op_kind: "incomplete" },
+    TemplateDef { id: "T_L03_26", split: DatasetSplit::Train, pattern: "cuál es el río más largo del mundo", op_kind: "unsupported" },
+    TemplateDef { id: "T_L03_27", split: DatasetSplit::Train, pattern: "disminuye en {b} sin decir inicial", op_kind: "incomplete" },
+    TemplateDef { id: "T_L03_28", split: DatasetSplit::Train, pattern: "qué significa la palabra ontología", op_kind: "unsupported" },
+    TemplateDef { id: "T_L03_29", split: DatasetSplit::Train, pattern: "tengo {a} {units} y regalé X", op_kind: "incomplete" },
+    TemplateDef { id: "T_L03_30", split: DatasetSplit::Train, pattern: "a qué velocidad viaja el sonido", op_kind: "unsupported" },
+    TemplateDef { id: "T_L03_31", split: DatasetSplit::Train, pattern: "cuánto da sumar nada con {b}", op_kind: "incomplete" },
+    TemplateDef { id: "T_L03_32", split: DatasetSplit::Train, pattern: "traduce perro al idioma alemán", op_kind: "unsupported" },
+    // --- HOLDOUT POR PLANTILLA (L03 Holdout: 15 plantillas exclusivas) ---
+    TemplateDef { id: "H_L03_01", split: DatasetSplit::HoldoutTemplate, pattern: "un poco de {units} más {b}", op_kind: "incomplete" },
+    TemplateDef { id: "H_L03_02", split: DatasetSplit::HoldoutTemplate, pattern: "a cuántos grados centígrados hierve el agua", op_kind: "unsupported" },
+    TemplateDef { id: "H_L03_03", split: DatasetSplit::HoldoutTemplate, pattern: "la luna llena está hecha de queso", op_kind: "unsupported" },
+    TemplateDef { id: "H_L03_04", split: DatasetSplit::HoldoutTemplate, pattern: "me dieron plata pero no me acuerdo cuánta y gasté {b}", op_kind: "incomplete" },
+    TemplateDef { id: "H_L03_05", split: DatasetSplit::HoldoutTemplate, pattern: "cuánto calza el presidente de Francia", op_kind: "unsupported" },
+    TemplateDef { id: "H_L03_06", split: DatasetSplit::HoldoutTemplate, pattern: "había un montón de {units} y se dañaron {b}", op_kind: "incomplete" },
+    TemplateDef { id: "H_L03_07", split: DatasetSplit::HoldoutTemplate, pattern: "por qué los gatos ronronean cuando duermen", op_kind: "unsupported" },
+    TemplateDef { id: "H_L03_08", split: DatasetSplit::HoldoutTemplate, pattern: "tenía {a} {units} y me gasté una millonada", op_kind: "incomplete" },
+    TemplateDef { id: "H_L03_09", split: DatasetSplit::HoldoutTemplate, pattern: "cuál es el animal más veloz del planeta tierra", op_kind: "unsupported" },
+    TemplateDef { id: "H_L03_10", split: DatasetSplit::HoldoutTemplate, pattern: "me quedaron {units} luego de vender {b} pero no sé cuántas había", op_kind: "incomplete" },
+    TemplateDef { id: "H_L03_11", split: DatasetSplit::HoldoutTemplate, pattern: "cuántas estrellas brillan en la vía láctea", op_kind: "unsupported" },
+    TemplateDef { id: "H_L03_12", split: DatasetSplit::HoldoutTemplate, pattern: "le metí {b} al costal pero venía medio vacío", op_kind: "incomplete" },
+    TemplateDef { id: "H_L03_13", split: DatasetSplit::HoldoutTemplate, pattern: "quién inventó la máquina de vapor en Inglaterra", op_kind: "unsupported" },
+    TemplateDef { id: "H_L03_14", split: DatasetSplit::HoldoutTemplate, pattern: "saqué {b} {units} de una caja misteriosa", op_kind: "incomplete" },
+    TemplateDef { id: "H_L03_15", split: DatasetSplit::HoldoutTemplate, pattern: "cuántos litros de agua caben en el océano atlántico", op_kind: "unsupported" },
+];

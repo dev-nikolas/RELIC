@@ -2,6 +2,9 @@
 //! Menos de 180 líneas.
 
 pub mod types;
+pub mod templates_l01;
+pub mod templates_l02;
+pub mod templates_l03;
 pub mod templates;
 pub mod engine;
 pub mod sha256;
@@ -45,5 +48,41 @@ mod tests {
         let sample = generate_sample(300, CurriculumLevel::L02InventoryUnits, DatasetSplit::Train, 1);
         assert_eq!(sample.expected_status, "VALID");
         assert!(sample.gold_rir.entity.is_some());
+    }
+
+    #[test]
+    fn test_permanent_gold_operands_strictly_match_prompt_numbers() {
+        // Prueba permanente obligatoria: los números de la frase deben ser exactamente los operandos del gold
+        for seed in [42, 999, 2026] {
+            for level in [CurriculumLevel::L01DirectArithmetic, CurriculumLevel::L02InventoryUnits] {
+                for split in [DatasetSplit::Train, DatasetSplit::HoldoutTemplate] {
+                    for idx in 0..50 {
+                        let s = generate_sample(seed, level, split, idx);
+                        if s.expected_status != "VALID" { continue; }
+                        let initial = s.gold_rir.initial_quantity.expect("Debe tener cantidad inicial");
+                        let op_val = s.gold_rir.operations[0].operand;
+                        let prompt_lower = s.prompt.to_lowercase();
+
+                        // Verificar que 'initial' está en la frase (en dígitos o en palabras)
+                        let init_dig = format!("{}", initial as i64);
+                        let init_word = templates::num_to_text(initial as i64).unwrap_or_default();
+                        assert!(
+                            prompt_lower.contains(&init_dig) || (!init_word.is_empty() && prompt_lower.contains(&init_word)),
+                            "Falla de concordancia en sample '{}': initial {} no encontrado en prompt '{}'",
+                            s.id, initial, s.prompt
+                        );
+
+                        // Verificar que 'op_val' está en la frase (en dígitos o en palabras)
+                        let op_dig = format!("{}", op_val as i64);
+                        let op_word = templates::num_to_text(op_val as i64).unwrap_or_default();
+                        assert!(
+                            prompt_lower.contains(&op_dig) || (!op_word.is_empty() && prompt_lower.contains(&op_word)),
+                            "Falla de concordancia en sample '{}': operand {} no encontrado en prompt '{}'",
+                            s.id, op_val, s.prompt
+                        );
+                    }
+                }
+            }
+        }
     }
 }

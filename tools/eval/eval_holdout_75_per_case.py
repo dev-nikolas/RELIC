@@ -115,23 +115,32 @@ def main():
 
         # 3. Modelo 10M libre
         raw_m = generate_rir(model, tok, inp, max_new_tokens=40)
-        # Parseo JSON
-        m_ok, m_fa = False, False
+        # Parseo JSON con métrica estricta:
+        # Falsa aceptación = salida con RIR válido y distinto del gold.
+        # Salida inválida (vacía o no parseable) = "rechazo", no falsa aceptación.
+        m_ok, m_fa, m_rej = False, False, False
         try:
             p_json = json.loads(raw_m)
             m_st = p_json.get("status", "VALID")
             m_abst = m_st in ["INCOMPLETE", "UNSUPPORTED", "AMBIGUOUS"]
             m_match = exp_out in raw_m.lower() if exp_out else True
-            if is_abst and m_abst: m_ok, m_fa = True, False
-            elif not is_abst and not m_abst and m_match: m_ok, m_fa = True, False
-            elif is_abst and not m_abst: m_ok, m_fa = False, True
-            else: m_ok, m_fa = False, True
+            if is_abst and m_abst:
+                m_ok, m_fa = True, False
+            elif not is_abst and not m_abst and m_match:
+                m_ok, m_fa = True, False
+            elif is_abst and not m_abst:
+                m_ok, m_fa = False, True
+            else:
+                m_ok, m_fa = False, True
         except Exception:
-            m_ok, m_fa = False, True if not is_abst else False
+            # Salida no parseable o malformada = Rechazo sintáctico
+            m_ok, m_fa, m_rej = False, False, True
         if m_ok: em_m += 1
         if m_fa: fa_m += 1
 
         # Concordancias McNemar
+        # b = baseline acierta (ok) y modelo falla (not ok)
+        # c = baseline falla (not ok) y modelo acierta (ok)
         if r_ok and not m_ok: b_mr += 1
         elif not r_ok and m_ok: c_mr += 1
 
@@ -142,7 +151,7 @@ def main():
             "id": cid, "input": inp, "expected_status": exp_st, "expected_output": exp_out,
             "rules": {"ok": r_ok, "fa": r_fa, "pred": cli_res["ans"], "status": cli_res["status"]},
             "slot_filler": {"ok": s_ok, "fa": s_fa, "pred": s_val},
-            "model": {"ok": m_ok, "fa": m_fa, "raw_output": raw_m}
+            "model": {"ok": m_ok, "fa": m_fa, "syntax_rejected": m_rej, "raw_output": raw_m}
         })
 
     out_file = ROOT_DIR / "reports" / "eval" / "holdout_75_per_case.json"

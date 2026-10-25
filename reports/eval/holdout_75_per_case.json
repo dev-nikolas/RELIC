@@ -17,7 +17,8 @@
     },
     "model": {
       "ok": false,
-      "fa": true,
+      "fa": false,
+      "syntax_rejected": true,
       "raw_output": "Z"
     }
   },
@@ -25,7 +26,7 @@
     "id": "H_L01_01_HoldoutTemplate_0001",
     "input": "a tres quítale 10",
     "expected_status": "VALID",
-    "expected_output": "-19",
+    "expected_output": "-7",
     "rules": {
       "ok": false,
       "fa": false,
@@ -33,13 +34,14 @@
       "status": "UNSUPPORTED"
     },
     "slot_filler": {
-      "ok": false,
-      "fa": true,
+      "ok": true,
+      "fa": false,
       "pred": "-7"
     },
     "model": {
       "ok": false,
-      "fa": true,
+      "fa": false,
+      "syntax_rejected": true,
       "raw_output": "\\�"
     }
   },
@@ -61,7 +63,8 @@
     },
     "model": {
       "ok": false,
-      "fa": true,
+      "fa": false,
+      "syntax_rejected": true,
       "raw_output": "��"
     }
   },
@@ -83,7 +86,8 @@
     },
     "model": {
       "ok": false,
-      "fa": true,
+      "fa": false,
+      "syntax_rejected": true,
       "raw_output": ""
     }
   },
@@ -105,7 +109,8 @@
     },
     "model": {
       "ok": false,
-      "fa": true,
+      "fa": false,
+      "syntax_rejected": true,
       "raw_output": ""
     }
   },
@@ -127,7 +132,8 @@
     },
     "model": {
       "ok": false,
-      "fa": true,
+      "fa": false,
+      "syntax_rejected": true,
       "raw_output": "�\u0016"
     }
   },
@@ -149,7 +155,8 @@
     },
     "model": {
       "ok": false,
-      "fa": true,
+      "fa": false,
+      "syntax_rejected": true,
       "raw_output": "��"
     }
   },
@@ -171,7 +178,8 @@
     },
     "model": {
       "ok": false,
-      "fa": true,
+      "fa": false,
+      "syntax_rejected": true,
       "raw_output": ""
     }
   },
@@ -179,21 +187,22 @@
     "id": "H_L01_03_HoldoutTemplate_0008",
     "input": "10 menos 11 son?",
     "expected_status": "VALID",
-    "expected_output": "15",
+    "expected_output": "-1",
     "rules": {
-      "ok": false,
+      "ok": true,
       "fa": false,
       "pred": "Entendí: 10 - 11 = -1. El resultado es -1.",
       "status": "VALID"
     },
     "slot_filler": {
-      "ok": false,
-      "fa": true,
+      "ok": true,
+      "fa": false,
       "pred": "-1"
     },
     "model": {
       "ok": false,
-      "fa": true,
+      "fa": false,
+      "syntax_rejected": true,
       "raw_output": ""
     }
   },
@@ -215,7 +224,8 @@
     },
     "model": {
       "ok": false,
-      "fa": true,
+      "fa": false,
+      "syntax_rejected": true,
       "raw_output": "�"
     }
   },
@@ -237,7 +247,8 @@
     },
     "model": {
       "ok": false,
-      "fa": true,
+      "fa": false,
+      "syntax_rejected": true,
       "raw_output": ""
     }
   },
@@ -259,7 +270,8 @@
     },
     "model": {
       "ok": false,
-      "fa": true,
+      "fa": false,
+      "syntax_rejected": true,
       "raw_output": "w�"
     }
   },
@@ -281,7 +293,8 @@
     },
     "model": {
       "ok": false,
-      "fa": true,
+      "fa": false,
+      "syntax_rejected": true,
       "raw_output": "�"
     }
   },
@@ -303,7 +316,8 @@
     },
     "model": {
       "ok": false,
-      "fa": true,
+      "fa": false,
+      "syntax_rejected": true,
       "raw_output": "�"
     }
   },
@@ -325,7 +339,8 @@
     },
     "model": {
       "ok": false,
-      "fa": true,
+      "fa": false,
+      "syntax_rejected": true,
       "raw_output": "��\n"
     }
   },
@@ -347,7 +362,8 @@
     },
     "model": {
       "ok": false,
-      "fa": true,
+      "fa": false,
+      "syntax_rejected": true,
       "raw_output": "-�"
     }
   },
@@ -369,7 +385,8 @@
     },
     "model": {
       "ok": false,
-      "fa": true,
+      "fa": false,
+      "syntax_rejected": true,
       "raw_output": ""
     }
   },
@@ -391,7 +408,8 @@
     },
     "model": {
       "ok": false,
-      "fa": true,
+      "fa": false,
+      "syntax_rejected": true,
       "raw_output": "-"
     }
   },
@@ -413,7 +431,8 @@
     },
     "model": {
       "ok": false,
-      "fa": true,
+      "fa": false,
+      "syntax_rejected": true,
       "raw_output": "2"
     }
   },
@@ -435,7 +454,8 @@
     },
     "model": {
       "ok": false,
-      "fa": true,
+      "fa": false,
+      "syntax_rejected": true,
       "raw_output": "-��r-"
     }
   },
@@ -457,7 +477,8 @@
     },
     "model": {
       "ok": false,
-      "fa": true,
+      "fa": false,
+      "syntax_rejected": true,
       "raw_output": "�\u001c"
     }
   },
@@ -479,7 +500,8 @@
     },
     "model": {
       "ok": false,
-      "fa": true,
+      "fa": false,
+      "syntax_rejected": true,
       "raw_output": "\u0005"
     }
   },
@@ -501,7 +523,8 @@
     },
     "model": {
       "ok": false,
-      "fa": true,
+      "fa": false,
+      "syntax_rejected": true,
       "raw_output": ""
     }
   },
@@ -523,7 +546,8 @@
     },
     "model": {
       "ok": false,
-      "fa": true,
+      "fa": false,
+      "syntax_rejected": true,
       "raw_output": ""
     }
   },
@@ -531,21 +555,22 @@
     "id": "H_L01_03_HoldoutTemplate_0024",
     "input": "10 menos 2 son?",
     "expected_status": "VALID",
-    "expected_output": "21",
+    "expected_output": "8",
     "rules": {
-      "ok": false,
+      "ok": true,
       "fa": false,
       "pred": "Entendí: 10 - 2 = 8. El resultado es 8.",
       "status": "VALID"
     },
     "slot_filler": {
-      "ok": false,
-      "fa": true,
+      "ok": true,
+      "fa": false,
       "pred": "8"
     },
     "model": {
       "ok": false,
-      "fa": true,
+      "fa": false,
+      "syntax_rejected": true,
       "raw_output": "�"
     }
   },
@@ -553,7 +578,7 @@
     "id": "H_L02_03_HoldoutTemplate_0000",
     "input": "tenía cuatro libros pero me tumbaron diez",
     "expected_status": "VALID",
-    "expected_output": "-6 libros",
+    "expected_output": "-6",
     "rules": {
       "ok": false,
       "fa": false,
@@ -567,7 +592,8 @@
     },
     "model": {
       "ok": false,
-      "fa": true,
+      "fa": false,
+      "syntax_rejected": true,
       "raw_output": "���"
     }
   },
@@ -575,7 +601,7 @@
     "id": "H_L02_02_HoldoutTemplate_0001",
     "input": "me gasté tres de las 10 árboles que tenía",
     "expected_status": "VALID",
-    "expected_output": "19 árboles",
+    "expected_output": "7 árboles",
     "rules": {
       "ok": false,
       "fa": false,
@@ -589,7 +615,8 @@
     },
     "model": {
       "ok": false,
-      "fa": true,
+      "fa": false,
+      "syntax_rejected": true,
       "raw_output": "�2"
     }
   },
@@ -611,7 +638,8 @@
     },
     "model": {
       "ok": false,
-      "fa": true,
+      "fa": false,
+      "syntax_rejected": true,
       "raw_output": ""
     }
   },
@@ -633,7 +661,8 @@
     },
     "model": {
       "ok": false,
-      "fa": true,
+      "fa": false,
+      "syntax_rejected": true,
       "raw_output": "A\u0000"
     }
   },
@@ -655,7 +684,8 @@
     },
     "model": {
       "ok": false,
-      "fa": true,
+      "fa": false,
+      "syntax_rejected": true,
       "raw_output": "2"
     }
   },
@@ -677,7 +707,8 @@
     },
     "model": {
       "ok": false,
-      "fa": true,
+      "fa": false,
+      "syntax_rejected": true,
       "raw_output": ""
     }
   },
@@ -699,7 +730,8 @@
     },
     "model": {
       "ok": false,
-      "fa": true,
+      "fa": false,
+      "syntax_rejected": true,
       "raw_output": "2��"
     }
   },
@@ -707,7 +739,7 @@
     "id": "H_L02_03_HoldoutTemplate_0007",
     "input": "tenía trece monedas pero me tumbaron 7",
     "expected_status": "VALID",
-    "expected_output": "6 monedas",
+    "expected_output": "6",
     "rules": {
       "ok": false,
       "fa": false,
@@ -721,7 +753,8 @@
     },
     "model": {
       "ok": false,
-      "fa": true,
+      "fa": false,
+      "syntax_rejected": true,
       "raw_output": "�\u0000�"
     }
   },
@@ -729,7 +762,7 @@
     "id": "H_L02_04_HoldoutTemplate_0008",
     "input": "llegaron 11 gatos a las 10 que ya tenía guardadas",
     "expected_status": "VALID",
-    "expected_output": "37 gatos",
+    "expected_output": "21 gatos",
     "rules": {
       "ok": false,
       "fa": false,
@@ -743,7 +776,8 @@
     },
     "model": {
       "ok": false,
-      "fa": true,
+      "fa": false,
+      "syntax_rejected": true,
       "raw_output": "3�"
     }
   },
@@ -765,7 +799,8 @@
     },
     "model": {
       "ok": false,
-      "fa": true,
+      "fa": false,
+      "syntax_rejected": true,
       "raw_output": ""
     }
   },
@@ -773,7 +808,7 @@
     "id": "H_L02_03_HoldoutTemplate_0010",
     "input": "tenía 27 cuadernos pero me tumbaron 14",
     "expected_status": "VALID",
-    "expected_output": "13 cuadernos",
+    "expected_output": "13",
     "rules": {
       "ok": false,
       "fa": false,
@@ -787,7 +822,8 @@
     },
     "model": {
       "ok": false,
-      "fa": true,
+      "fa": false,
+      "syntax_rejected": true,
       "raw_output": "�|"
     }
   },
@@ -809,7 +845,8 @@
     },
     "model": {
       "ok": false,
-      "fa": true,
+      "fa": false,
+      "syntax_rejected": true,
       "raw_output": "�"
     }
   },
@@ -831,7 +868,8 @@
     },
     "model": {
       "ok": false,
-      "fa": true,
+      "fa": false,
+      "syntax_rejected": true,
       "raw_output": ""
     }
   },
@@ -853,7 +891,8 @@
     },
     "model": {
       "ok": false,
-      "fa": true,
+      "fa": false,
+      "syntax_rejected": true,
       "raw_output": "�\u0013�"
     }
   },
@@ -875,7 +914,8 @@
     },
     "model": {
       "ok": false,
-      "fa": true,
+      "fa": false,
+      "syntax_rejected": true,
       "raw_output": ""
     }
   },
@@ -897,7 +937,8 @@
     },
     "model": {
       "ok": false,
-      "fa": true,
+      "fa": false,
+      "syntax_rejected": true,
       "raw_output": "-W"
     }
   },
@@ -919,7 +960,8 @@
     },
     "model": {
       "ok": false,
-      "fa": true,
+      "fa": false,
+      "syntax_rejected": true,
       "raw_output": "�"
     }
   },
@@ -927,7 +969,7 @@
     "id": "H_L02_03_HoldoutTemplate_0017",
     "input": "tenía 27 gatos pero me tumbaron 12",
     "expected_status": "VALID",
-    "expected_output": "15 gatos",
+    "expected_output": "15",
     "rules": {
       "ok": false,
       "fa": false,
@@ -941,7 +983,8 @@
     },
     "model": {
       "ok": false,
-      "fa": true,
+      "fa": false,
+      "syntax_rejected": true,
       "raw_output": "N9"
     }
   },
@@ -963,7 +1006,8 @@
     },
     "model": {
       "ok": false,
-      "fa": true,
+      "fa": false,
+      "syntax_rejected": true,
       "raw_output": "�Q"
     }
   },
@@ -985,7 +1029,8 @@
     },
     "model": {
       "ok": false,
-      "fa": true,
+      "fa": false,
+      "syntax_rejected": true,
       "raw_output": "�"
     }
   },
@@ -993,7 +1038,7 @@
     "id": "H_L02_03_HoldoutTemplate_0020",
     "input": "tenía 14 panes pero me tumbaron 12",
     "expected_status": "VALID",
-    "expected_output": "2 panes",
+    "expected_output": "2",
     "rules": {
       "ok": false,
       "fa": false,
@@ -1007,7 +1052,8 @@
     },
     "model": {
       "ok": false,
-      "fa": true,
+      "fa": false,
+      "syntax_rejected": true,
       "raw_output": "�2��"
     }
   },
@@ -1029,7 +1075,8 @@
     },
     "model": {
       "ok": false,
-      "fa": true,
+      "fa": false,
+      "syntax_rejected": true,
       "raw_output": "�"
     }
   },
@@ -1051,7 +1098,8 @@
     },
     "model": {
       "ok": false,
-      "fa": true,
+      "fa": false,
+      "syntax_rejected": true,
       "raw_output": "&"
     }
   },
@@ -1073,7 +1121,8 @@
     },
     "model": {
       "ok": false,
-      "fa": true,
+      "fa": false,
+      "syntax_rejected": true,
       "raw_output": "X"
     }
   },
@@ -1081,7 +1130,7 @@
     "id": "H_L02_04_HoldoutTemplate_0024",
     "input": "llegaron 2 gatos a las 10 que ya tenía guardadas",
     "expected_status": "VALID",
-    "expected_output": "25 gatos",
+    "expected_output": "12 gatos",
     "rules": {
       "ok": false,
       "fa": false,
@@ -1095,7 +1144,8 @@
     },
     "model": {
       "ok": false,
-      "fa": true,
+      "fa": false,
+      "syntax_rejected": true,
       "raw_output": "�"
     }
   },
@@ -1118,6 +1168,7 @@
     "model": {
       "ok": false,
       "fa": false,
+      "syntax_rejected": true,
       "raw_output": ""
     }
   },
@@ -1140,6 +1191,7 @@
     "model": {
       "ok": false,
       "fa": false,
+      "syntax_rejected": true,
       "raw_output": "�"
     }
   },
@@ -1162,6 +1214,7 @@
     "model": {
       "ok": false,
       "fa": false,
+      "syntax_rejected": true,
       "raw_output": "�G�"
     }
   },
@@ -1184,6 +1237,7 @@
     "model": {
       "ok": false,
       "fa": false,
+      "syntax_rejected": true,
       "raw_output": "����"
     }
   },
@@ -1206,6 +1260,7 @@
     "model": {
       "ok": false,
       "fa": false,
+      "syntax_rejected": true,
       "raw_output": ""
     }
   },
@@ -1228,6 +1283,7 @@
     "model": {
       "ok": false,
       "fa": false,
+      "syntax_rejected": true,
       "raw_output": "Ҍ"
     }
   },
@@ -1250,6 +1306,7 @@
     "model": {
       "ok": false,
       "fa": false,
+      "syntax_rejected": true,
       "raw_output": "�"
     }
   },
@@ -1272,6 +1329,7 @@
     "model": {
       "ok": false,
       "fa": false,
+      "syntax_rejected": true,
       "raw_output": ""
     }
   },
@@ -1294,6 +1352,7 @@
     "model": {
       "ok": false,
       "fa": false,
+      "syntax_rejected": true,
       "raw_output": ""
     }
   },
@@ -1316,6 +1375,7 @@
     "model": {
       "ok": false,
       "fa": false,
+      "syntax_rejected": true,
       "raw_output": ""
     }
   },
@@ -1338,6 +1398,7 @@
     "model": {
       "ok": false,
       "fa": false,
+      "syntax_rejected": true,
       "raw_output": ""
     }
   },
@@ -1360,6 +1421,7 @@
     "model": {
       "ok": false,
       "fa": false,
+      "syntax_rejected": true,
       "raw_output": "�"
     }
   },
@@ -1382,6 +1444,7 @@
     "model": {
       "ok": false,
       "fa": false,
+      "syntax_rejected": true,
       "raw_output": ""
     }
   },
@@ -1404,6 +1467,7 @@
     "model": {
       "ok": false,
       "fa": false,
+      "syntax_rejected": true,
       "raw_output": ""
     }
   },
@@ -1426,6 +1490,7 @@
     "model": {
       "ok": false,
       "fa": false,
+      "syntax_rejected": true,
       "raw_output": "\u001f"
     }
   },
@@ -1448,6 +1513,7 @@
     "model": {
       "ok": false,
       "fa": false,
+      "syntax_rejected": true,
       "raw_output": "-J"
     }
   },
@@ -1470,6 +1536,7 @@
     "model": {
       "ok": false,
       "fa": false,
+      "syntax_rejected": true,
       "raw_output": "�"
     }
   },
@@ -1492,6 +1559,7 @@
     "model": {
       "ok": false,
       "fa": false,
+      "syntax_rejected": true,
       "raw_output": ""
     }
   },
@@ -1514,6 +1582,7 @@
     "model": {
       "ok": false,
       "fa": false,
+      "syntax_rejected": true,
       "raw_output": "J"
     }
   },
@@ -1536,6 +1605,7 @@
     "model": {
       "ok": false,
       "fa": false,
+      "syntax_rejected": true,
       "raw_output": "���"
     }
   },
@@ -1558,6 +1628,7 @@
     "model": {
       "ok": false,
       "fa": false,
+      "syntax_rejected": true,
       "raw_output": ""
     }
   },
@@ -1580,6 +1651,7 @@
     "model": {
       "ok": false,
       "fa": false,
+      "syntax_rejected": true,
       "raw_output": "�"
     }
   },
@@ -1602,6 +1674,7 @@
     "model": {
       "ok": false,
       "fa": false,
+      "syntax_rejected": true,
       "raw_output": "�"
     }
   },
@@ -1624,6 +1697,7 @@
     "model": {
       "ok": false,
       "fa": false,
+      "syntax_rejected": true,
       "raw_output": ""
     }
   },
@@ -1646,6 +1720,7 @@
     "model": {
       "ok": false,
       "fa": false,
+      "syntax_rejected": true,
       "raw_output": "\u001f"
     }
   }

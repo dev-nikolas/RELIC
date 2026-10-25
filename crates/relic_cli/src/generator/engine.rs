@@ -37,8 +37,16 @@ pub fn generate_sample(seed: u64, level: CurriculumLevel, split: DatasetSplit, i
     let use_word_a = (rng.next_u64() % 3) == 0;
     let use_word_b = (rng.next_u64() % 3) == 0;
 
-    let a_str = if use_word_a { num_to_text(a_num).unwrap_or("10").to_string() } else { a_num.to_string() };
-    let b_str = if use_word_b { num_to_text(b_num).unwrap_or("5").to_string() } else { b_num.to_string() };
+    let a_str = if use_word_a {
+        num_to_text(a_num).unwrap_or_else(|| a_num.to_string())
+    } else {
+        a_num.to_string()
+    };
+    let b_str = if use_word_b {
+        num_to_text(b_num).unwrap_or_else(|| b_num.to_string())
+    } else {
+        b_num.to_string()
+    };
 
     let prompt = tmpl.pattern.replace("{a}", &a_str).replace("{b}", &b_str).replace("{units}", noun.1);
 

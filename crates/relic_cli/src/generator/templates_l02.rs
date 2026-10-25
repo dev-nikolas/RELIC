@@ -1,0 +1,66 @@
+//! Plantillas para Nivel 2: Inventario con unidades, modismos y sintaxis invertida.
+//! Menos de 180 líneas.
+
+use super::types::DatasetSplit;
+use super::templates_l01::TemplateDef;
+
+pub const L02_TEMPLATES: &[TemplateDef] = &[
+    // --- ENTRENAMIENTO (L02 Train: 38 plantillas) ---
+    TemplateDef { id: "T_L02_01", split: DatasetSplit::Train, pattern: "tengo {a} {units} y compro {b}", op_kind: "add" },
+    TemplateDef { id: "T_L02_02", split: DatasetSplit::Train, pattern: "tengo {a} {units} y vendo {b}", op_kind: "sub" },
+    TemplateDef { id: "T_L02_03", split: DatasetSplit::Train, pattern: "tengo {a} {units} y recibo {b}", op_kind: "add" },
+    TemplateDef { id: "T_L02_04", split: DatasetSplit::Train, pattern: "tengo {a} {units} y regalo {b}", op_kind: "sub" },
+    TemplateDef { id: "T_L02_05", split: DatasetSplit::Train, pattern: "había {a} {units} y añadieron {b}", op_kind: "add" },
+    TemplateDef { id: "T_L02_06", split: DatasetSplit::Train, pattern: "había {a} {units} y quitaron {b}", op_kind: "sub" },
+    TemplateDef { id: "T_L02_07", split: DatasetSplit::Train, pattern: "poseo {a} {units} y adquiero {b}", op_kind: "add" },
+    TemplateDef { id: "T_L02_08", split: DatasetSplit::Train, pattern: "poseo {a} {units} y pierdo {b}", op_kind: "sub" },
+    TemplateDef { id: "T_L02_09", split: DatasetSplit::Train, pattern: "en la bodega hay {a} {units} y llegan {b}", op_kind: "add" },
+    TemplateDef { id: "T_L02_10", split: DatasetSplit::Train, pattern: "en la bodega hay {a} {units} y salen {b}", op_kind: "sub" },
+    TemplateDef { id: "T_L02_11", split: DatasetSplit::Train, pattern: "contaba con {a} {units} y me dieron {b}", op_kind: "add" },
+    TemplateDef { id: "T_L02_12", split: DatasetSplit::Train, pattern: "contaba con {a} {units} y cedí {b}", op_kind: "sub" },
+    TemplateDef { id: "T_L02_13", split: DatasetSplit::Train, pattern: "tenía {a} {units} y doné {b}", op_kind: "sub" },
+    TemplateDef { id: "T_L02_14", split: DatasetSplit::Train, pattern: "tenía {a} {units} y recolecté {b}", op_kind: "add" },
+    TemplateDef { id: "T_L02_15", split: DatasetSplit::Train, pattern: "inicio con {a} {units} y agrego {b}", op_kind: "add" },
+    TemplateDef { id: "T_L02_16", split: DatasetSplit::Train, pattern: "inicio con {a} {units} y consumo {b}", op_kind: "sub" },
+    TemplateDef { id: "T_L02_17", split: DatasetSplit::Train, pattern: "guardé {a} {units} y gasté {b}", op_kind: "sub" },
+    TemplateDef { id: "T_L02_18", split: DatasetSplit::Train, pattern: "guardé {a} {units} e incorporé {b}", op_kind: "add" },
+    TemplateDef { id: "T_L02_19", split: DatasetSplit::Train, pattern: "existían {a} {units} pero extravié {b}", op_kind: "sub" },
+    TemplateDef { id: "T_L02_20", split: DatasetSplit::Train, pattern: "existían {a} {units} y encontré {b}", op_kind: "add" },
+    TemplateDef { id: "T_L02_21", split: DatasetSplit::Train, pattern: "quedan {a} {units} luego de sumar {b}", op_kind: "add" },
+    TemplateDef { id: "T_L02_22", split: DatasetSplit::Train, pattern: "tengo {a} {units} mas {b}", op_kind: "add" }, // ruido
+    TemplateDef { id: "T_L02_23", split: DatasetSplit::Train, pattern: "tengo {a} {units} menos {b}", op_kind: "sub" },
+    TemplateDef { id: "T_L02_24", split: DatasetSplit::Train, pattern: "se registran {a} {units} y entran {b}", op_kind: "add" },
+    TemplateDef { id: "T_L02_25", split: DatasetSplit::Train, pattern: "se registran {a} {units} y despachan {b}", op_kind: "sub" },
+    TemplateDef { id: "T_L02_26", split: DatasetSplit::Train, pattern: "almacén con {a} {units} recibe {b}", op_kind: "add" },
+    TemplateDef { id: "T_L02_27", split: DatasetSplit::Train, pattern: "almacén con {a} {units} entrega {b}", op_kind: "sub" },
+    TemplateDef { id: "T_L02_28", split: DatasetSplit::Train, pattern: "total de {a} {units} y restamos {b}", op_kind: "sub" },
+    TemplateDef { id: "T_L02_29", split: DatasetSplit::Train, pattern: "total de {a} {units} y adicionamos {b}", op_kind: "add" },
+    TemplateDef { id: "T_L02_30", split: DatasetSplit::Train, pattern: "acumulado de {a} {units} más {b}", op_kind: "add" },
+    TemplateDef { id: "T_L02_31", split: DatasetSplit::Train, pattern: "partiendo de {a} {units} vendo {b}", op_kind: "sub" },
+    TemplateDef { id: "T_L02_32", split: DatasetSplit::Train, pattern: "partiendo de {a} {units} compro {b}", op_kind: "add" },
+    TemplateDef { id: "T_L02_33", split: DatasetSplit::Train, pattern: "registro inicial {a} {units} menos {b}", op_kind: "sub" },
+    TemplateDef { id: "T_L02_34", split: DatasetSplit::Train, pattern: "registro inicial {a} {units} más {b}", op_kind: "add" },
+    TemplateDef { id: "T_L02_35", split: DatasetSplit::Train, pattern: "caja con {a} {units} pierde {b}", op_kind: "sub" },
+    TemplateDef { id: "T_L02_36", split: DatasetSplit::Train, pattern: "caja con {a} {units} gana {b}", op_kind: "add" },
+    TemplateDef { id: "T_L02_37", split: DatasetSplit::Train, pattern: "saldo de {a} {units} tras retirar {b}", op_kind: "sub" },
+    TemplateDef { id: "T_L02_38", split: DatasetSplit::Train, pattern: "saldo de {a} {units} tras depositar {b}", op_kind: "add" },
+    // --- HOLDOUT POR PLANTILLA (L02 Holdout: 18 plantillas exclusivas) ---
+    TemplateDef { id: "H_L02_01", split: DatasetSplit::HoldoutTemplate, pattern: "de los {a} {units} que tenía, presté {b}", op_kind: "sub" },
+    TemplateDef { id: "H_L02_02", split: DatasetSplit::HoldoutTemplate, pattern: "me gasté {b} de las {a} {units} que tenía", op_kind: "sub" },
+    TemplateDef { id: "H_L02_03", split: DatasetSplit::HoldoutTemplate, pattern: "tenía {a} {units} pero me tumbaron {b}", op_kind: "sub" }, // modismo
+    TemplateDef { id: "H_L02_04", split: DatasetSplit::HoldoutTemplate, pattern: "llegaron {b} {units} a las {a} que ya tenía guardadas", op_kind: "add" },
+    TemplateDef { id: "H_L02_05", split: DatasetSplit::HoldoutTemplate, pattern: "se me embolataron {b} {units} de las {a} del cajón", op_kind: "sub" }, // modismo
+    TemplateDef { id: "H_L02_06", split: DatasetSplit::HoldoutTemplate, pattern: "le gasté {b} {units} a mi hermano de las {a} que cargaba", op_kind: "sub" },
+    TemplateDef { id: "H_L02_07", split: DatasetSplit::HoldoutTemplate, pattern: "a los {a} {units} del depósito les cayó plaga y dañó {b}", op_kind: "sub" },
+    TemplateDef { id: "H_L02_08", split: DatasetSplit::HoldoutTemplate, pattern: "aparecieron {b} {units} más entre las {a} viejas", op_kind: "add" },
+    TemplateDef { id: "H_L02_09", split: DatasetSplit::HoldoutTemplate, pattern: "repartí {b} entre los vecinos de las {a} {units}", op_kind: "sub" },
+    TemplateDef { id: "H_L02_10", split: DatasetSplit::HoldoutTemplate, pattern: "me fiaron {b} {units} que sumé a las {a}", op_kind: "add" },
+    TemplateDef { id: "H_L02_11", split: DatasetSplit::HoldoutTemplate, pattern: "de una remesa de {a} {units} se pudrieron {b}", op_kind: "sub" },
+    TemplateDef { id: "H_L02_12", split: DatasetSplit::HoldoutTemplate, pattern: "recuperé {b} {units} para completar con las {a}", op_kind: "add" },
+    TemplateDef { id: "H_L02_13", split: DatasetSplit::HoldoutTemplate, pattern: "se me perdieron {b} de las {a} {units} en el trancón", op_kind: "sub" },
+    TemplateDef { id: "H_L02_14", split: DatasetSplit::HoldoutTemplate, pattern: "me regalaron {b} {units} adicionales a mis {a}", op_kind: "add" },
+    TemplateDef { id: "H_L02_15", split: DatasetSplit::HoldoutTemplate, pattern: "de las {a} {units} iniciales ya no encuentro {b}", op_kind: "sub" },
+    TemplateDef { id: "H_L02_16", split: DatasetSplit::HoldoutTemplate, pattern: "embolaté {b} {units} de un total de {a}", op_kind: "sub" },
+    TemplateDef { id: "H_L02_17", split: DatasetSplit::HoldoutTemplate, pattern: "conseguí {b} {units} para meterle a las {a}", op_kind: "add" },
+    TemplateDef { id: "H_L02_18", split: DatasetSplit::HoldoutTemplate, pattern: "raspé {b} {units} de las {a} del fondo", op_kind: "sub" },
+];

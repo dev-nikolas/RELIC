@@ -28,7 +28,7 @@
     "id": "H_L01_01_HoldoutTemplate_0001",
     "input": "a tres quítale 10",
     "expected_status": "VALID",
-    "expected_output": "-19",
+    "expected_output": "-7",
     "gold_rir": {
       "schema_version": 1,
       "intent": "inventory_update",
@@ -38,7 +38,7 @@
       "operations": [
         {
           "operator": "subtract",
-          "operand": 22.0
+          "operand": 10.0
         }
       ],
       "uncertainty": {
@@ -203,13 +203,13 @@
     "id": "H_L01_03_HoldoutTemplate_0008",
     "input": "10 menos 11 son?",
     "expected_status": "VALID",
-    "expected_output": "15",
+    "expected_output": "-1",
     "gold_rir": {
       "schema_version": 1,
       "intent": "inventory_update",
       "domain": "inventory",
       "status": "VALID",
-      "initial_quantity": 26.0,
+      "initial_quantity": 10.0,
       "operations": [
         {
           "operator": "subtract",
@@ -603,13 +603,13 @@
     "id": "H_L01_03_HoldoutTemplate_0024",
     "input": "10 menos 2 son?",
     "expected_status": "VALID",
-    "expected_output": "21",
+    "expected_output": "8",
     "gold_rir": {
       "schema_version": 1,
       "intent": "inventory_update",
       "domain": "inventory",
       "status": "VALID",
-      "initial_quantity": 23.0,
+      "initial_quantity": 10.0,
       "operations": [
         {
           "operator": "subtract",
@@ -628,7 +628,7 @@
     "id": "H_L02_03_HoldoutTemplate_0000",
     "input": "tenía cuatro libros pero me tumbaron diez",
     "expected_status": "VALID",
-    "expected_output": "-6 libros",
+    "expected_output": "-6",
     "gold_rir": {
       "schema_version": 1,
       "intent": "inventory_update",
@@ -654,14 +654,14 @@
     "id": "H_L02_02_HoldoutTemplate_0001",
     "input": "me gasté tres de las 10 árboles que tenía",
     "expected_status": "VALID",
-    "expected_output": "19 árboles",
+    "expected_output": "7 árboles",
     "gold_rir": {
       "schema_version": 1,
       "intent": "inventory_update",
       "domain": "inventory",
       "status": "VALID",
       "entity": "árboles",
-      "initial_quantity": 22.0,
+      "initial_quantity": 10.0,
       "operations": [
         {
           "operator": "subtract",
@@ -810,7 +810,7 @@
     "id": "H_L02_03_HoldoutTemplate_0007",
     "input": "tenía trece monedas pero me tumbaron 7",
     "expected_status": "VALID",
-    "expected_output": "6 monedas",
+    "expected_output": "6",
     "gold_rir": {
       "schema_version": 1,
       "intent": "inventory_update",
@@ -836,14 +836,14 @@
     "id": "H_L02_04_HoldoutTemplate_0008",
     "input": "llegaron 11 gatos a las 10 que ya tenía guardadas",
     "expected_status": "VALID",
-    "expected_output": "37 gatos",
+    "expected_output": "21 gatos",
     "gold_rir": {
       "schema_version": 1,
       "intent": "inventory_update",
       "domain": "inventory",
       "status": "VALID",
       "entity": "gatos",
-      "initial_quantity": 26.0,
+      "initial_quantity": 10.0,
       "operations": [
         {
           "operator": "add",
@@ -888,7 +888,7 @@
     "id": "H_L02_03_HoldoutTemplate_0010",
     "input": "tenía 27 cuadernos pero me tumbaron 14",
     "expected_status": "VALID",
-    "expected_output": "13 cuadernos",
+    "expected_output": "13",
     "gold_rir": {
       "schema_version": 1,
       "intent": "inventory_update",
@@ -1070,7 +1070,7 @@
     "id": "H_L02_03_HoldoutTemplate_0017",
     "input": "tenía 27 gatos pero me tumbaron 12",
     "expected_status": "VALID",
-    "expected_output": "15 gatos",
+    "expected_output": "15",
     "gold_rir": {
       "schema_version": 1,
       "intent": "inventory_update",
@@ -1148,7 +1148,7 @@
     "id": "H_L02_03_HoldoutTemplate_0020",
     "input": "tenía 14 panes pero me tumbaron 12",
     "expected_status": "VALID",
-    "expected_output": "2 panes",
+    "expected_output": "2",
     "gold_rir": {
       "schema_version": 1,
       "intent": "inventory_update",
@@ -1252,14 +1252,14 @@
     "id": "H_L02_04_HoldoutTemplate_0024",
     "input": "llegaron 2 gatos a las 10 que ya tenía guardadas",
     "expected_status": "VALID",
-    "expected_output": "25 gatos",
+    "expected_output": "12 gatos",
     "gold_rir": {
       "schema_version": 1,
       "intent": "inventory_update",
       "domain": "inventory",
       "status": "VALID",
       "entity": "gatos",
-      "initial_quantity": 23.0,
+      "initial_quantity": 10.0,
       "operations": [
         {
           "operator": "add",
