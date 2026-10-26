@@ -126,3 +126,24 @@ fn test_mcp_tool_retrieve_and_errors() {
     let resp_tool: Value = serde_json::from_str(&server.handle_line(req_unk_tool).unwrap()).unwrap();
     assert_eq!(resp_tool["error"]["code"], -32602);
 }
+
+#[test]
+fn test_mcp_giant_input_rejected() {
+    let mut server = McpServer::new();
+    let giant_payload = "a".repeat(20_000); // 20 KB > 16 KB
+    let resp_str = server.handle_line(&giant_payload).expect("Debe retornar respuesta de error");
+    let resp: Value = serde_json::from_str(&resp_str).unwrap();
+    assert_eq!(resp["error"]["code"], -32600);
+    assert!(resp["error"]["message"].as_str().unwrap().contains("16 KB"));
+}
+
+#[test]
+fn test_mcp_query_timeout_rejected() {
+    let mut server = McpServer::with_timeout(std::time::Duration::from_millis(100));
+    let req = r#"{"jsonrpc":"2.0","id":99,"method":"tools/call","params":{"name":"relic_interpret","arguments":{"text":"__TEST_SLOW_QUERY__ suma 2 y 2"}}}"#;
+    let resp_str = server.handle_line(req).expect("Debe retornar error de timeout");
+    let resp: Value = serde_json::from_str(&resp_str).unwrap();
+    assert_eq!(resp["error"]["code"], -32000);
+    assert!(resp["error"]["message"].as_str().unwrap().contains("timeout"));
+}
+

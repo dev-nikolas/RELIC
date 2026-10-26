@@ -4,6 +4,7 @@
 //! Menos de 180 líneas.
 
 use serde::{Deserialize, Serialize};
+use serde_json::Value;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct HealthResponse {
@@ -13,10 +14,20 @@ pub struct HealthResponse {
     pub message: String,
 }
 
-#[derive(Debug, Clone, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct TraceStage {
+    pub stage: String,
+    pub latency_ms: f64,
+    pub status: String,
+    pub output: Value,
+}
+
+#[derive(Debug, Clone, Deserialize, Default)]
 pub struct QueryRequest {
     #[serde(alias = "text")]
     pub query: String,
+    #[serde(default)]
+    pub enable_trace: bool,
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -26,6 +37,8 @@ pub struct QueryResponse {
     pub status: String,
     pub latency_ms: f64,
     pub rss_mb: f64,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub trace: Option<Vec<TraceStage>>,
 }
 
 #[derive(Debug, Clone, Serialize)]

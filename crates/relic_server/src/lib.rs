@@ -10,5 +10,5 @@ pub mod state;
 pub mod types;
 
 pub use engine::execute_query;
-pub use router::handle_request;
+pub use router::{handle_request, process_query_in_process};
 pub use state::ServerState;

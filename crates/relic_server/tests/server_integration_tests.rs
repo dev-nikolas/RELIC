@@ -67,3 +67,43 @@ fn test_handle_generate_sse_output() {
     assert!(sse_str.contains("data: "));
     assert!(sse_str.contains("\"finished\":true"));
 }
+
+#[test]
+fn test_server_giant_input_rejected() {
+    let state = ServerState::new();
+    let giant_query = "x".repeat(20_000); // 20 KB > 16 KB
+    let payload = format!(r#"{{"query":"{}"}}"#, giant_query);
+    let (code, val) = relic_server::process_query_in_process(&payload, &state, 1000);
+
+    assert_eq!(code, 413);
+    assert_eq!(val["status"], "PAYLOAD_TOO_LARGE");
+    assert!(val["detail"].as_str().unwrap().contains("16 KB"));
+}
+
+#[test]
+fn test_server_query_timeout_rejected() {
+    let state = ServerState::new();
+    let payload = r#"{"query":"__TEST_SLOW_QUERY__ 1 + 1"}"#;
+    // Timeout estricto de 100 ms contra consulta que simula 1500 ms
+    let (code, val) = relic_server::process_query_in_process(payload, &state, 100);
+
+    assert_eq!(code, 504);
+    assert_eq!(val["status"], "TIMEOUT");
+    assert!(val["detail"].as_str().unwrap().contains("timeout"));
+}
+
+#[test]
+fn test_server_query_with_trace() {
+    let state = ServerState::new();
+    let payload = r#"{"query":"10 más 5","enable_trace":true}"#;
+    let (code, val) = relic_server::process_query_in_process(payload, &state, 1000);
+
+    assert_eq!(code, 200);
+    assert_eq!(val["status"], "VALID");
+    let trace = val["trace"].as_array().expect("Debe retornar lista de etapas de traza");
+    assert_eq!(trace.len(), 5);
+    let stage_names: Vec<&str> = trace.iter().map(|s| s["stage"].as_str().unwrap()).collect();
+    assert_eq!(stage_names, vec!["normalizacion", "intencion", "rir", "validacion", "ejecucion"]);
+}
+
+

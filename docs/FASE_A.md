@@ -190,3 +190,21 @@ El script `tools/evaluate_harness.py` implementa el protocolo de decisión para 
 10. [relic_colab_train_fase_a.ipynb](file:///c:/Users/Nicolas%20Pachon/Desktop/Seis%20Ojos/RELIC/notebooks/relic_colab_train_fase_a.ipynb): Notebook de entrenamiento multi-semilla para Google Colab / Kaggle.
 11. [evaluate_harness.py](file:///c:/Users/Nicolas%20Pachon/Desktop/Seis%20Ojos/RELIC/tools/evaluate_harness.py): Arnés de evaluación comparativa Reglas vs Modelo con prueba de McNemar.
 12. [crates/relic_cli/src/generator/](file:///c:/Users/Nicolas%20Pachon/Desktop/Seis%20Ojos/RELIC/crates/relic_cli/src/generator): Código fuente del generador curricular modular en Rust (todas las partes $\le 180$ líneas).
+
+---
+
+## 10. Cierre Experimental de Fase A: Evaluación Comparativa Per-Caso (N=75 Holdout)
+
+Tras re-entrenar el modelo neuronal en GPU sobre el currículo corregido (`data/relic_10m_trained.safetensors`, SHA-256 `328d5e70a41c...`), se ejecutó la evaluación comparativa caso a caso sobre los 75 ejemplos de holdout (`tests/holdout_templates_v1.json`) registrando cada predicción en [reports/eval/holdout_75_per_case.json](file:///c:/Users/Nicolas%20Pachon/Desktop/Seis%20Ojos/RELIC/reports/eval/holdout_75_per_case.json):
+
+| Sistema | Exact Match (EM) | Falsa Aceptación (FA)* | Rechazo Sintaxis | McNemar vs Modelo ($b, c$) | $\chi^2$ (Edwards) | $p$-value |
+| :--- | :---: | :---: | :---: | :---: | :---: | :---: |
+| **Reglas Simbólicas (`relic_cli`)** | **33 / 75 (44.0%)** [MEDIDO] | 0 / 75 (0.0%) [MEDIDO] | 0 / 75 | $b=33, c=0$ | 31.0303 | $2.54 \times 10^{-8}$ |
+| **Slot-Filler Gramatical** | **46 / 75 (61.3%)** [MEDIDO] | 0 / 75 (0.0%) [MEDIDO] | 0 / 75 | $b=46, c=0$ | 44.0217 | $3.25 \times 10^{-11}$ |
+| **Modelo 10M Causal Autónomo** | **0 / 75 (0.0%)** [MEDIDO] | 0 / 75 (0.0%) [MEDIDO] | 75 / 75 (100.0%) | — | — | — |
+
+*\*Definición estricta:* Falsa Aceptación = salida con RIR válido y ejecutable pero semánticamente distinto del gold. Las salidas con sintaxis JSON rota o truncada se contabilizan como Rechazo Sintáctico, no como Falsa Aceptación.
+
+### Veredicto Técnico:
+El modelo causal libre de 10M sin decodificación restringida genera salidas malformadas y no supera a los baselines deterministas ($p < 10^{-7}$). Se ratifica la decisión arquitectural de transicionar hacia una **cabeza Pointer/Slot-Classifier** (o decodificación guiada por DFA) y delegar la ejecución en el motor determinista de Rust.
+

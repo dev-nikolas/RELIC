@@ -42,9 +42,13 @@ fn main() {
                     Err(e) => eprintln!("[ERROR] Falló generación de dataset: {}", e),
                 }
             }
+            "eval-holdout" => {
+                let p = args.get(2).cloned().unwrap_or_else(|| "data/curriculum_dataset_v2_20k.jsonl".to_string());
+                relic_cli::eval_holdout::handle_eval_holdout(&p);
+            }
             _ => {
                 eprintln!("Subcomando desconocido: {}", args[1]);
-                eprintln!("Uso: relic_cli [query <texto> | bench | demo <prompt> | generate <seed> <n_train> <n_holdout> <out>]");
+                eprintln!("Uso: relic_cli [query <texto> | bench | demo <prompt> | generate <seed> <n_train> <n_holdout> <out> | eval-holdout <path>]");
             }
         }
     } else {

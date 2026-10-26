@@ -1,0 +1,371 @@
+{
+  "dataset": "curriculum_dataset_v2_20k.jsonl",
+  "total_holdout": 4500,
+  "resolubles_n": 3000,
+  "abstenciones_n": 1500,
+  "metrics_resolubles": {
+    "rules": {
+      "em": 116,
+      "em_rate": 0.03866666666666667,
+      "wilson_em": [
+        0.03233664667379235,
+        0.046176681059600794
+      ],
+      "fa": 0,
+      "wilson_fa": [
+        1.0842021724855044e-19,
+        0.0012788956648046956
+      ]
+    },
+    "slot_filler": {
+      "em": 375,
+      "em_rate": 0.125,
+      "wilson_em": [
+        0.11364281199165777,
+        0.13731635975694578
+      ],
+      "fa": 0,
+      "wilson_fa": [
+        1.0842021724855044e-19,
+        0.0012788956648046956
+      ]
+    },
+    "mcnemar_slot_vs_rules": {
+      "b": 259,
+      "c": 0,
+      "chi2": 257.003861003861,
+      "p_value": 7.719998235050634e-58
+    }
+  },
+  "metrics_abstenciones": {
+    "rules": {
+      "correct_abstention": 1500,
+      "rate": 1.0,
+      "fa": 0
+    },
+    "slot_filler": {
+      "correct_abstention": 1500,
+      "rate": 1.0,
+      "fa": 0
+    }
+  },
+  "by_level": {
+    "l01_direct_arithmetic": {
+      "total": 1500,
+      "r_ok": 82,
+      "r_fa": 0,
+      "s_ok": 305,
+      "s_fa": 0
+    },
+    "l02_inventory_units": {
+      "total": 1500,
+      "r_ok": 34,
+      "r_fa": 0,
+      "s_ok": 70,
+      "s_fa": 0
+    },
+    "l03_epistemic_rejection": {
+      "total": 1500,
+      "r_ok": 1500,
+      "r_fa": 0,
+      "s_ok": 1500,
+      "s_fa": 0
+    }
+  },
+  "by_template": {
+    "H_L01_11": {
+      "total": 90,
+      "r_ok": 0,
+      "s_ok": 0,
+      "level": "l01_direct_arithmetic"
+    },
+    "H_L01_02": {
+      "total": 93,
+      "r_ok": 36,
+      "s_ok": 77,
+      "level": "l01_direct_arithmetic"
+    },
+    "H_L01_09": {
+      "total": 92,
+      "r_ok": 0,
+      "s_ok": 0,
+      "level": "l01_direct_arithmetic"
+    },
+    "H_L01_04": {
+      "total": 98,
+      "r_ok": 0,
+      "s_ok": 0,
+      "level": "l01_direct_arithmetic"
+    },
+    "H_L01_08": {
+      "total": 89,
+      "r_ok": 0,
+      "s_ok": 0,
+      "level": "l01_direct_arithmetic"
+    },
+    "H_L01_13": {
+      "total": 103,
+      "r_ok": 0,
+      "s_ok": 0,
+      "level": "l01_direct_arithmetic"
+    },
+    "H_L01_14": {
+      "total": 94,
+      "r_ok": 0,
+      "s_ok": 0,
+      "level": "l01_direct_arithmetic"
+    },
+    "H_L01_07": {
+      "total": 109,
+      "r_ok": 0,
+      "s_ok": 0,
+      "level": "l01_direct_arithmetic"
+    },
+    "H_L01_16": {
+      "total": 87,
+      "r_ok": 0,
+      "s_ok": 0,
+      "level": "l01_direct_arithmetic"
+    },
+    "H_L01_03": {
+      "total": 90,
+      "r_ok": 46,
+      "s_ok": 79,
+      "level": "l01_direct_arithmetic"
+    },
+    "H_L01_06": {
+      "total": 95,
+      "r_ok": 0,
+      "s_ok": 0,
+      "level": "l01_direct_arithmetic"
+    },
+    "H_L01_01": {
+      "total": 96,
+      "r_ok": 0,
+      "s_ok": 80,
+      "level": "l01_direct_arithmetic"
+    },
+    "H_L01_10": {
+      "total": 95,
+      "r_ok": 0,
+      "s_ok": 0,
+      "level": "l01_direct_arithmetic"
+    },
+    "H_L01_12": {
+      "total": 99,
+      "r_ok": 0,
+      "s_ok": 0,
+      "level": "l01_direct_arithmetic"
+    },
+    "H_L01_05": {
+      "total": 84,
+      "r_ok": 0,
+      "s_ok": 69,
+      "level": "l01_direct_arithmetic"
+    },
+    "H_L01_15": {
+      "total": 86,
+      "r_ok": 0,
+      "s_ok": 0,
+      "level": "l01_direct_arithmetic"
+    },
+    "H_L02_17": {
+      "total": 74,
+      "r_ok": 0,
+      "s_ok": 0,
+      "level": "l02_inventory_units"
+    },
+    "H_L02_06": {
+      "total": 79,
+      "r_ok": 0,
+      "s_ok": 0,
+      "level": "l02_inventory_units"
+    },
+    "H_L02_11": {
+      "total": 100,
+      "r_ok": 0,
+      "s_ok": 0,
+      "level": "l02_inventory_units"
+    },
+    "H_L02_02": {
+      "total": 92,
+      "r_ok": 0,
+      "s_ok": 0,
+      "level": "l02_inventory_units"
+    },
+    "H_L02_14": {
+      "total": 75,
+      "r_ok": 0,
+      "s_ok": 0,
+      "level": "l02_inventory_units"
+    },
+    "H_L02_09": {
+      "total": 82,
+      "r_ok": 0,
+      "s_ok": 0,
+      "level": "l02_inventory_units"
+    },
+    "H_L02_18": {
+      "total": 80,
+      "r_ok": 0,
+      "s_ok": 0,
+      "level": "l02_inventory_units"
+    },
+    "H_L02_16": {
+      "total": 96,
+      "r_ok": 0,
+      "s_ok": 0,
+      "level": "l02_inventory_units"
+    },
+    "H_L02_15": {
+      "total": 97,
+      "r_ok": 0,
+      "s_ok": 0,
+      "level": "l02_inventory_units"
+    },
+    "H_L02_05": {
+      "total": 86,
+      "r_ok": 0,
+      "s_ok": 0,
+      "level": "l02_inventory_units"
+    },
+    "H_L02_04": {
+      "total": 86,
+      "r_ok": 0,
+      "s_ok": 0,
+      "level": "l02_inventory_units"
+    },
+    "H_L02_08": {
+      "total": 84,
+      "r_ok": 34,
+      "s_ok": 70,
+      "level": "l02_inventory_units"
+    },
+    "H_L02_10": {
+      "total": 70,
+      "r_ok": 0,
+      "s_ok": 0,
+      "level": "l02_inventory_units"
+    },
+    "H_L02_03": {
+      "total": 66,
+      "r_ok": 0,
+      "s_ok": 0,
+      "level": "l02_inventory_units"
+    },
+    "H_L02_13": {
+      "total": 90,
+      "r_ok": 0,
+      "s_ok": 0,
+      "level": "l02_inventory_units"
+    },
+    "H_L02_01": {
+      "total": 82,
+      "r_ok": 0,
+      "s_ok": 0,
+      "level": "l02_inventory_units"
+    },
+    "H_L02_12": {
+      "total": 88,
+      "r_ok": 0,
+      "s_ok": 0,
+      "level": "l02_inventory_units"
+    },
+    "H_L02_07": {
+      "total": 73,
+      "r_ok": 0,
+      "s_ok": 0,
+      "level": "l02_inventory_units"
+    },
+    "H_L03_05": {
+      "total": 117,
+      "r_ok": 117,
+      "s_ok": 117,
+      "level": "l03_epistemic_rejection"
+    },
+    "H_L03_06": {
+      "total": 104,
+      "r_ok": 104,
+      "s_ok": 104,
+      "level": "l03_epistemic_rejection"
+    },
+    "H_L03_11": {
+      "total": 100,
+      "r_ok": 100,
+      "s_ok": 100,
+      "level": "l03_epistemic_rejection"
+    },
+    "H_L03_02": {
+      "total": 98,
+      "r_ok": 98,
+      "s_ok": 98,
+      "level": "l03_epistemic_rejection"
+    },
+    "H_L03_14": {
+      "total": 88,
+      "r_ok": 88,
+      "s_ok": 88,
+      "level": "l03_epistemic_rejection"
+    },
+    "H_L03_15": {
+      "total": 109,
+      "r_ok": 109,
+      "s_ok": 109,
+      "level": "l03_epistemic_rejection"
+    },
+    "H_L03_13": {
+      "total": 107,
+      "r_ok": 107,
+      "s_ok": 107,
+      "level": "l03_epistemic_rejection"
+    },
+    "H_L03_09": {
+      "total": 107,
+      "r_ok": 107,
+      "s_ok": 107,
+      "level": "l03_epistemic_rejection"
+    },
+    "H_L03_04": {
+      "total": 90,
+      "r_ok": 90,
+      "s_ok": 90,
+      "level": "l03_epistemic_rejection"
+    },
+    "H_L03_08": {
+      "total": 108,
+      "r_ok": 108,
+      "s_ok": 108,
+      "level": "l03_epistemic_rejection"
+    },
+    "H_L03_07": {
+      "total": 103,
+      "r_ok": 103,
+      "s_ok": 103,
+      "level": "l03_epistemic_rejection"
+    },
+    "H_L03_01": {
+      "total": 101,
+      "r_ok": 101,
+      "s_ok": 101,
+      "level": "l03_epistemic_rejection"
+    },
+    "H_L03_03": {
+      "total": 87,
+      "r_ok": 87,
+      "s_ok": 87,
+      "level": "l03_epistemic_rejection"
+    },
+    "H_L03_10": {
+      "total": 96,
+      "r_ok": 96,
+      "s_ok": 96,
+      "level": "l03_epistemic_rejection"
+    },
+    "H_L03_12": {
+      "total": 85,
+      "r_ok": 85,
+      "s_ok": 85,
+      "level": "l03_epistemic_rejection"
+    }
+  }
+}

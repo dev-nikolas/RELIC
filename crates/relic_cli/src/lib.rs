@@ -17,6 +17,7 @@ pub mod parity;
 pub mod query;
 pub mod relational;
 pub mod generator;
+pub mod eval_holdout;
 
 pub use answer::{answer_intent, is_generation_request, Answer};
 pub use dispatch::{parse_dispatch_intent, parse_inventory_problem, DispatchIntent, QuerySpec};

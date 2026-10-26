@@ -10,6 +10,10 @@ pub const INVALID_REQUEST: i64 = -32600;
 pub const METHOD_NOT_FOUND: i64 = -32601;
 pub const INVALID_PARAMS: i64 = -32602;
 pub const INTERNAL_ERROR: i64 = -32603;
+pub const SERVER_TIMEOUT: i64 = -32000;
+
+pub const MAX_LINE_BYTES: usize = 16 * 1024; // 16 KB
+pub const DEFAULT_TIMEOUT_MS: u64 = 1000;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct JsonRpcRequest {
