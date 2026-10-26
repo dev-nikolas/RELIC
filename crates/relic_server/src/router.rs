@@ -48,6 +48,7 @@ pub fn process_query_in_process(body_str: &str, state: &ServerState, timeout_ms:
         return (413, json!({ "detail": "Error 413: El tamaño de la petición excede el límite de 16 KB.", "status": "PAYLOAD_TOO_LARGE" }));
     }
     let req: QueryRequest = serde_json::from_str(body_str).unwrap_or_default();
+    println!("[RELIC QUERY] Entrada: \"{}\" (Trace: {})", req.query.trim(), req.enable_trace);
     let (tx, rx) = mpsc::channel();
     let q_clone = req.query.clone();
     let state_clone = state.clone();
@@ -57,6 +58,7 @@ pub fn process_query_in_process(body_str: &str, state: &ServerState, timeout_ms:
             thread::sleep(Duration::from_millis(1500));
         }
         let res = execute_query_with_trace(&q_clone, &state_clone, req.enable_trace);
+        println!("[RELIC DISPATCH] Ruta: {} | Validez: {} | Latencia: {:.2}ms | RAM: {:.1}MB", res.route, res.status, res.latency_ms, res.rss_mb);
         let _ = tx.send(res);
     });
 
@@ -76,6 +78,9 @@ pub fn handle_request(mut request: Request, state: &ServerState) {
     let url = request.url().to_string();
     let path = url.split('?').next().unwrap_or("/");
     let method = request.method().as_str().to_string();
+    if method != "OPTIONS" {
+        println!("[RELIC HTTP] {:<4} {}", method, path);
+    }
 
     match (method.as_str(), path) {
         ("GET", "/health") => {

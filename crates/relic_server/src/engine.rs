@@ -47,7 +47,7 @@ pub fn execute_query_with_trace(query: &str, state: &ServerState, enable_trace: 
 
     // 2. Etapa Intención
     let t_intent = Instant::now();
-    let intent = parse_dispatch_intent(&normalized);
+    let intent = parse_dispatch_intent(trimmed);
     if enable_trace {
         stages.push(TraceStage {
             stage: "intencion".to_string(),
