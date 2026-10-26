@@ -53,7 +53,7 @@ pub fn parse_query_to_spec(text: &str) -> QuerySpec {
     }
 
     let mut initial = None;
-    for prefix in ["partiendo de ", "desde ", "salir de ", "de "] {
+    for prefix in ["partiendo de ", "desde ", "salir de ", "ir de ", " de "] {
         if let Some(idx) = lower.find(prefix) {
             let rest = &clean[idx + prefix.len()..];
             let token = rest.split_whitespace().next().unwrap_or("").trim_matches(|c| c == '?' || c == '.' || c == ',');
@@ -61,6 +61,13 @@ pub fn parse_query_to_spec(text: &str) -> QuerySpec {
                 initial = Some(token.to_string());
                 break;
             }
+        }
+    }
+    if initial.is_none() && lower.starts_with("de ") {
+        let rest = &clean[3..];
+        let token = rest.split_whitespace().next().unwrap_or("").trim_matches(|c| c == '?' || c == '.' || c == ',');
+        if !["la", "el", "los", "las", "un", "una", "ir", "salir", "llegar"].contains(&token.to_lowercase().as_str()) {
+            initial = Some(token.to_string());
         }
     }
 

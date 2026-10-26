@@ -156,8 +156,8 @@ pub fn parse_dispatch_intent(text: &str) -> DispatchIntent {
         let spec = parse_query_to_spec(clean);
         if spec.initial.is_none() || spec.target.is_none() {
             return DispatchIntent::Incomplete {
-                reason: "Consulta de ruta incompleta: falta especificar el origen o el destino requerido.".to_string(),
-                missing: "extremo de ruta".to_string(),
+                reason: "Consulta de ruta con redacción no reconocida: no se identificó el origen o destino requerido. Ejemplo válido: '¿Se puede ir de Bogotá a Lima?' o '¿Existe un camino de Madrid hasta París?'.".to_string(),
+                missing: "extremo de ruta reconocido".to_string(),
             };
         }
         return DispatchIntent::GraphReachability(spec);
