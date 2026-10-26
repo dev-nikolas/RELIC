@@ -20,6 +20,8 @@ pub struct TraceStage {
     pub latency_ms: f64,
     pub status: String,
     pub output: Value,
+    #[serde(default, skip_serializing_if = "std::ops::Not::not")]
+    pub is_illustrative: bool,
 }
 
 #[derive(Debug, Clone, Deserialize, Default)]
