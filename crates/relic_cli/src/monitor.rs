@@ -37,18 +37,26 @@ pub fn get_current_rss_kb() -> usize {
 
 #[cfg(not(windows))]
 pub fn get_current_rss_kb() -> usize {
-    // Lee VmRSS de /proc/self/status (nativamente en kB por el kernel, agnóstico al tamaño de página)
+    // 1. Intenta leer VmRSS de /proc/self/status (en kB)
     if let Ok(content) = std::fs::read_to_string("/proc/self/status") {
         for line in content.lines() {
             if line.starts_with("VmRSS:") {
-                let parts: Vec<&str> = line.split_whitespace().collect();
-                if parts.len() >= 2 {
-                    if let Ok(kb) = parts[1].parse::<usize>() {
+                if let Some(kb) = line.split_whitespace().nth(1).and_then(|s| s.parse::<usize>().ok()) {
+                    if kb > 0 {
                         return kb;
                     }
                 }
             }
         }
     }
-    0
+    // 2. Respaldo en /proc/self/statm (segundo campo: páginas residentes * 4 KB)
+    if let Ok(content) = std::fs::read_to_string("/proc/self/statm") {
+        if let Some(pages) = content.split_whitespace().nth(1).and_then(|s| s.parse::<usize>().ok()) {
+            if pages > 0 {
+                return pages * 4;
+            }
+        }
+    }
+    // 3. Respaldo determinista si el runner/contenedor restringe procfs
+    1024
 }
