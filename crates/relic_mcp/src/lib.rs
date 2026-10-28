@@ -6,6 +6,7 @@
 
 pub mod server;
 pub mod tools;
+pub mod tools_blackwall;
 pub mod types;
 
 pub use server::McpServer;

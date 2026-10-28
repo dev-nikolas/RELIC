@@ -9,6 +9,7 @@ pub mod diff;
 pub mod genesis;
 pub mod log;
 pub mod memory;
+pub mod polysemy;
 
 pub use consolidation::{compute_consolidation_candidate, ConsolidationCandidate};
 pub use diff::{diff_versions, to_dot_diff, to_mermaid_diff, RevertedEntrySummary, VersionDiff, WeightDelta};
@@ -16,4 +17,4 @@ pub use genesis::{build_genesis_entries, genesis_jsonl_seed, GENESIS_FACTS};
 pub use log::{
     compute_entry_hash, EntryStatus, IntegrityError, LexiconPayload, LogEntry, GENESIS_PREV_HASH,
 };
-pub use memory::{EngramStore, LexiconView};
+pub use memory::{ClassicalPolysemyResult, EngramStore, LexiconView, PolysemousEntry};

@@ -14,16 +14,28 @@ pub mod kv_cache;
 pub mod loader;
 pub mod mlp;
 pub mod model;
+pub mod network_audit;
 pub mod norm;
 pub mod ops;
+pub mod quantum;
 pub mod reasoning_engine;
 pub mod rir;
 pub mod rotary;
 pub mod sampler;
+pub mod spectral;
 pub mod spreading_activation;
 pub mod temporal_graph;
 
 pub use arithmetic::{ArithmeticError, ArithmeticOp, ArithmeticPlan, ArithmeticReduction};
+pub use quantum::{
+    compute_asymmetric_threshold, CollapseDecision, Complex, InterferenceStepTrace,
+    QuantumSuperposition,
+};
+pub use spectral::{
+    analyze_spectrum_donoho_stark, compute_destination_entropy, compute_dft_exact,
+    compute_syn_ack_ratio, pearson_correlation_welford, verify_network_alert, NetworkAlertSpec,
+    SpectralOutcome, VerifiedAlertReport,
+};
 pub use spreading_activation::{
     compute_shannon_entropy, propagate_activation, ActivationStatus, ActivationStepTrace,
     SpreadingActivationResult,

@@ -138,6 +138,12 @@ fn test_server_blackwall_end_to_end_endpoints() {
     let (code_r, val_r) = relic_server::process_blackwall_route("/api/blackwall/rollback", rb_body, &state);
     assert_eq!(code_r, 200);
     assert_eq!(val_r["current_version"], 15);
+
+    // 6. Análisis espectral DFT + Donoho-Stark
+    let spec_body = r#"{"signal":[1.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0],"min_cycles":3.0}"#;
+    let (code_s, val_s) = relic_server::process_blackwall_route("/api/blackwall/spectral", spec_body, &state);
+    assert_eq!(code_s, 200);
+    assert!(val_s.get("PeriodicBeaconDetected").is_some());
 }
 
 

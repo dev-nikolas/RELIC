@@ -7,7 +7,7 @@ use relic_blackwall::BlackwallGate;
 use serde_json::{json, Value};
 use crate::tools::{
     handle_activate, handle_consolidate, handle_diff, handle_interpret, handle_propose,
-    handle_retrieve, handle_rollback, handle_verify, list_tools, VALID_MCP_TOOLS,
+    handle_retrieve, handle_rollback, handle_spectral, handle_verify, list_tools, VALID_MCP_TOOLS,
 };
 use crate::types::*;
 
@@ -87,6 +87,7 @@ impl McpServer {
                     "relic_consolidate" => handle_consolidate(&args, &mut self.blackwall),
                     "relic_activate" => handle_activate(&args, &self.blackwall),
                     "relic_diff" => handle_diff(&args, &self.blackwall),
+                    "relic_spectral" => handle_spectral(&args, &self.blackwall),
                     _ => unreachable!(),
                 };
 

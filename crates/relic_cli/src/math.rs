@@ -12,11 +12,8 @@ pub enum MathToken {
 }
 
 pub fn tokenize_math(expr: &str) -> Option<Vec<MathToken>> {
-    let mut tokens = Vec::new();
-    let mut cur = String::new();
+    let (mut tokens, mut cur, mut i) = (Vec::new(), String::new(), 0);
     let chars: Vec<char> = expr.chars().collect();
-    let mut i = 0;
-
     while i < chars.len() {
         let c = chars[i];
         if c.is_whitespace() {
@@ -26,22 +23,14 @@ pub fn tokenize_math(expr: &str) -> Option<Vec<MathToken>> {
             tokens.push(if c == '(' { MathToken::LParen } else { MathToken::RParen });
         } else if matches!(c, '+' | '*' | '/') {
             if !cur.is_empty() { tokens.push(MathToken::Num(cur.parse().ok()?)); cur.clear(); }
-            let op = match c {
-                '+' => ArithmeticOp::Add,
-                '*' => ArithmeticOp::Multiply,
-                '/' => ArithmeticOp::Divide,
-                _ => unreachable!(),
-            };
+            let op = match c { '+' => ArithmeticOp::Add, '*' => ArithmeticOp::Multiply, '/' => ArithmeticOp::Divide, _ => unreachable!() };
             tokens.push(MathToken::Op(op));
         } else if c == 'x' || c == 'X' {
-            let prev_alpha = if i > 0 { chars[i - 1].is_alphabetic() } else { false };
-            let next_alpha = if i + 1 < chars.len() { chars[i + 1].is_alphabetic() } else { false };
-            if prev_alpha || next_alpha { return None; }
+            if (i > 0 && chars[i - 1].is_alphabetic()) || (i + 1 < chars.len() && chars[i + 1].is_alphabetic()) { return None; }
             if !cur.is_empty() { tokens.push(MathToken::Num(cur.parse().ok()?)); cur.clear(); }
             tokens.push(MathToken::Op(ArithmeticOp::Multiply));
         } else if c == '-' {
-            let is_unary = cur.is_empty() && matches!(tokens.last(), None | Some(MathToken::Op(_)) | Some(MathToken::LParen));
-            if is_unary {
+            if cur.is_empty() && matches!(tokens.last(), None | Some(MathToken::Op(_)) | Some(MathToken::LParen)) {
                 cur.push('-');
             } else {
                 if !cur.is_empty() { tokens.push(MathToken::Num(cur.parse().ok()?)); cur.clear(); }
@@ -59,33 +48,36 @@ pub fn tokenize_math(expr: &str) -> Option<Vec<MathToken>> {
 }
 
 fn precedence(op: ArithmeticOp) -> u8 {
-    match op {
-        ArithmeticOp::Add | ArithmeticOp::Subtract => 1,
-        ArithmeticOp::Multiply | ArithmeticOp::Divide => 2,
-    }
+    match op { ArithmeticOp::Add | ArithmeticOp::Subtract => 1, ArithmeticOp::Multiply | ArithmeticOp::Divide => 2 }
 }
 
 fn apply_op(op: ArithmeticOp, a: f64, b: f64) -> Result<f64, ArithmeticOp> {
-    if op == ArithmeticOp::Divide && b.abs() < 1e-12 {
-        return Err(ArithmeticOp::Divide);
+    if op == ArithmeticOp::Divide && b.abs() < 1e-12 { return Err(ArithmeticOp::Divide); }
+    Ok(match op { ArithmeticOp::Add => a + b, ArithmeticOp::Subtract => a - b, ArithmeticOp::Multiply => a * b, ArithmeticOp::Divide => a / b })
+}
+
+fn pop_and_reduce(
+    op_stack: &mut Vec<ArithmeticOp>,
+    output: &mut Vec<f64>,
+    reductions: &mut Vec<ArithmeticReduction>,
+) -> Option<Result<(), ArithmeticOp>> {
+    let (op, b, a) = (op_stack.pop()?, output.pop()?, output.pop()?);
+    match apply_op(op, a, b) {
+        Ok(res) => {
+            reductions.push(ArithmeticReduction { step_index: reductions.len() + 1, left: a, op, right: b, result: res });
+            output.push(res);
+            Some(Ok(()))
+        }
+        Err(e) => Some(Err(e)),
     }
-    Ok(match op {
-        ArithmeticOp::Add => a + b,
-        ArithmeticOp::Subtract => a - b,
-        ArithmeticOp::Multiply => a * b,
-        ArithmeticOp::Divide => a / b,
-    })
 }
 
 pub fn evaluate_math_tokens_with_reductions(
     tokens: &[MathToken],
 ) -> Option<Result<(f64, Vec<ArithmeticReduction>), ArithmeticOp>> {
     if tokens.is_empty() { return None; }
-    let mut output: Vec<f64> = Vec::new();
-    let mut op_stack: Vec<ArithmeticOp> = Vec::new();
-    let mut p_stack: Vec<usize> = Vec::new();
+    let (mut output, mut op_stack, mut p_stack, mut reductions) = (Vec::new(), Vec::new(), Vec::new(), Vec::new());
     let mut expect_operand = true;
-    let mut reductions = Vec::new();
 
     for tok in tokens {
         match tok {
@@ -102,46 +94,14 @@ pub fn evaluate_math_tokens_with_reductions(
                 if expect_operand { return None; }
                 let base = p_stack.pop()?;
                 while op_stack.len() > base {
-                    let op = op_stack.pop().unwrap();
-                    let b = output.pop()?;
-                    let a = output.pop()?;
-                    match apply_op(op, a, b) {
-                        Ok(res) => {
-                            let step_index = reductions.len() + 1;
-                            reductions.push(ArithmeticReduction {
-                                step_index,
-                                left: a,
-                                op,
-                                right: b,
-                                result: res,
-                            });
-                            output.push(res);
-                        }
-                        Err(e) => return Some(Err(e)),
-                    }
+                    if let Err(e) = pop_and_reduce(&mut op_stack, &mut output, &mut reductions)? { return Some(Err(e)); }
                 }
             }
             MathToken::Op(op) => {
                 if expect_operand { return None; }
                 let limit = p_stack.last().copied().unwrap_or(0);
                 while op_stack.len() > limit && precedence(*op_stack.last().unwrap()) >= precedence(*op) {
-                    let top_op = op_stack.pop().unwrap();
-                    let b = output.pop()?;
-                    let a = output.pop()?;
-                    match apply_op(top_op, a, b) {
-                        Ok(res) => {
-                            let step_index = reductions.len() + 1;
-                            reductions.push(ArithmeticReduction {
-                                step_index,
-                                left: a,
-                                op: top_op,
-                                right: b,
-                                result: res,
-                            });
-                            output.push(res);
-                        }
-                        Err(e) => return Some(Err(e)),
-                    }
+                    if let Err(e) = pop_and_reduce(&mut op_stack, &mut output, &mut reductions)? { return Some(Err(e)); }
                 }
                 op_stack.push(*op);
                 expect_operand = true;
@@ -150,23 +110,8 @@ pub fn evaluate_math_tokens_with_reductions(
     }
 
     if expect_operand || !p_stack.is_empty() { return None; }
-    while let Some(op) = op_stack.pop() {
-        let b = output.pop()?;
-        let a = output.pop()?;
-        match apply_op(op, a, b) {
-            Ok(res) => {
-                let step_index = reductions.len() + 1;
-                reductions.push(ArithmeticReduction {
-                    step_index,
-                    left: a,
-                    op,
-                    right: b,
-                    result: res,
-                });
-                output.push(res);
-            }
-            Err(e) => return Some(Err(e)),
-        }
+    while !op_stack.is_empty() {
+        if let Err(e) = pop_and_reduce(&mut op_stack, &mut output, &mut reductions)? { return Some(Err(e)); }
     }
     if output.len() == 1 { Some(Ok((output[0], reductions))) } else { None }
 }
@@ -175,7 +120,6 @@ pub fn evaluate_math_tokens(tokens: &[MathToken]) -> Option<Result<f64, Arithmet
     evaluate_math_tokens_with_reductions(tokens).map(|res| res.map(|(val, _)| val))
 }
 
-/// Plan estructural (transparencia "Entendí: 3 - 10 = -7"); devuelve None ante paréntesis o precedencia mezclada.
 fn plan_from_tokens(tokens: &[MathToken]) -> Option<ArithmeticPlan> {
     let first = match tokens.first() { Some(MathToken::Num(n)) => *n, _ => return None };
     let mut plan = ArithmeticPlan::new(first, None);
@@ -185,15 +129,13 @@ fn plan_from_tokens(tokens: &[MathToken]) -> Option<ArithmeticPlan> {
         let num = match tokens.get(i + 1) { Some(MathToken::Num(n)) => *n, _ => return None };
         plan.add_step(op, num);
         let cls = matches!(op, ArithmeticOp::Add | ArithmeticOp::Subtract);
-        if first_class.is_none() { first_class = Some(cls); }
-        if first_class != Some(cls) { return None; }
+        if *first_class.get_or_insert(cls) != cls { return None; }
     }
-    if plan.steps.is_empty() { return None; }
-    Some(plan)
+    if plan.steps.is_empty() { None } else { Some(plan) }
 }
 
 pub fn parse_math_expression(text: &str) -> Option<ArithmeticPlan> {
-    let clean = text.trim_matches(|c| c == '¿' || c == '?' || c == '¡' || c == '!' || c == '.');
+    let clean = text.trim_matches(|c| matches!(c, '¿' | '?' | '¡' | '!' | '.'));
     let lower = clean.to_lowercase();
     let mut expr = clean;
     for prefix in ["¿cuánto es ", "cuánto es ", "cuanto es ", "¿cuanto es ", "¿cuánto da ", "cuánto da ", "calcula ", "resultado de "] {
@@ -205,26 +147,20 @@ pub fn parse_math_expression(text: &str) -> Option<ArithmeticPlan> {
         Ok((val, reductions)) => {
             if let Some(mut plan) = plan_from_tokens(&tokens) {
                 if plan.execute().ok()? == val {
-                    for r in &reductions {
-                        plan.add_reduction(r.left, r.op, r.right, r.result);
-                    }
+                    for r in &reductions { plan.add_reduction(r.left, r.op, r.right, r.result); }
                     return Some(plan);
                 }
             }
-            if reductions.is_empty() {
-                return None;
-            }
-            let initial = reductions[0].left;
-            let mut plan = ArithmeticPlan::new(initial, None);
-            for r in &reductions {
-                plan.add_reduction(r.left, r.op, r.right, r.result);
-                plan.add_step(r.op, r.right);
-            }
+            if reductions.is_empty() { return None; }
+            let mut plan = ArithmeticPlan::new(reductions[0].left, None);
+            for r in &reductions { plan.add_reduction(r.left, r.op, r.right, r.result); plan.add_step(r.op, r.right); }
             Some(plan)
         }
-        Err(ArithmeticOp::Divide) => Some({
-            let mut plan = ArithmeticPlan::new(1.0, None); plan.add_step(ArithmeticOp::Divide, 0.0); plan
-        }),
+        Err(ArithmeticOp::Divide) => {
+            let mut plan = ArithmeticPlan::new(1.0, None);
+            plan.add_step(ArithmeticOp::Divide, 0.0);
+            Some(plan)
+        }
         _ => None,
     }
 }

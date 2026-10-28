@@ -5,14 +5,19 @@
 
 pub mod answer;
 pub mod bench;
+pub mod bench_ablation;
+pub mod bench_epistemic;
+pub mod bench_telemetry;
 pub mod demo;
 pub mod dispatch;
 pub mod graph;
+pub mod inventory;
 pub mod inverted;
 pub mod knowledge;
 pub mod math;
 pub mod monitor;
 pub mod normalize;
+pub mod numerals;
 pub mod parity;
 pub mod query;
 pub mod relational;

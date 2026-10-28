@@ -1,8 +1,6 @@
 //! # relic_server::router
 //!
-//! Despacho central de rutas HTTP y endpoints transaccionales del Blackwall.
-//! Límites en proceso: tamaño máximo de cuerpo (16 KB) y timeout de consulta (1000 ms).
-//! Menos de 180 líneas.
+//! Despacho central de rutas HTTP y endpoints transaccionales del Blackwall. Menos de 180 líneas.
 
 use std::io::Read;
 use std::time::{Duration, Instant};
@@ -14,10 +12,10 @@ use crate::generate::handle_generate_sse;
 use crate::state::ServerState;
 use crate::types::{
     ActivateRequest, ConsolidateRequest, DiffRequest, HealthResponse, ProposeMutationRequest,
-    QueryRequest, RollbackRequest,
+    QueryRequest, RollbackRequest, SpectralRequest,
 };
 
-pub const MAX_REQUEST_BODY_BYTES: u64 = 16 * 1024; // 16 KB
+pub const MAX_REQUEST_BODY_BYTES: u64 = 16 * 1024;
 pub const DEFAULT_QUERY_TIMEOUT_MS: u64 = 1000;
 
 fn cors_headers() -> Vec<Header> {
@@ -32,8 +30,7 @@ fn send_json<T: serde::Serialize>(request: Request, status: u16, data: &T) {
     let body = serde_json::to_vec(data).unwrap_or_default();
     let mut headers = cors_headers();
     headers.push(Header::from_bytes(&b"Content-Type"[..], &b"application/json"[..]).unwrap());
-    let resp = Response::new(StatusCode(status), headers, std::io::Cursor::new(body), None, None);
-    let _ = request.respond(resp);
+    let _ = request.respond(Response::new(StatusCode(status), headers, std::io::Cursor::new(body), None, None));
 }
 
 fn read_body(request: &mut Request) -> Result<String, (u16, Value)> {
@@ -58,8 +55,7 @@ pub fn process_query_in_process(body_str: &str, state: &ServerState, timeout_ms:
     if t0.elapsed() > Duration::from_millis(timeout_ms) {
         return (504, json!({ "detail": "Error 504: Tiempo de ejecución excedido (timeout).", "status": "TIMEOUT" }));
     }
-    let val = serde_json::to_value(res).unwrap_or_else(|_| json!({ "status": "ERROR" }));
-    (200, val)
+    (200, serde_json::to_value(res).unwrap_or_else(|_| json!({ "status": "ERROR" })))
 }
 
 pub fn process_blackwall_route(path: &str, body_str: &str, state: &ServerState) -> (u16, Value) {
@@ -106,12 +102,20 @@ pub fn process_blackwall_route(path: &str, body_str: &str, state: &ServerState) 
             };
             let gate = state.blackwall.read().unwrap();
             match gate.diff_versions(req.v_from, req.v_to) {
-                Ok(diff) => {
-                    let mermaid = to_mermaid_diff(&diff);
-                    let dot = to_dot_diff(&diff);
-                    (200, json!({ "diff": diff, "mermaid": mermaid, "dot": dot }))
-                }
+                Ok(diff) => (200, json!({ "diff": diff, "mermaid": to_mermaid_diff(&diff), "dot": to_dot_diff(&diff) })),
                 Err(e) => (400, json!({ "detail": e.to_string(), "status": "INTEGRITY_ERROR" })),
+            }
+        }
+        "/api/blackwall/spectral" => {
+            let Ok(req) = serde_json::from_str::<SpectralRequest>(body_str) else {
+                return (400, json!({ "detail": "JSON inválido para SpectralRequest" }));
+            };
+            let gate = state.blackwall.read().unwrap();
+            if let Some(ref alert_spec) = req.network_alert {
+                (200, serde_json::to_value(gate.verify_network_alert(alert_spec)).unwrap_or_else(|_| json!({ "status": "ERROR" })))
+            } else {
+                let outcome = gate.analyze_spectrum(&req.signal, req.support_epsilon, req.min_cycles, req.expected_period_hint);
+                (200, serde_json::to_value(outcome).unwrap_or_else(|_| json!({ "status": "ERROR" })))
             }
         }
         _ => (404, json!({ "detail": "Ruta no encontrada" })),
@@ -120,11 +124,9 @@ pub fn process_blackwall_route(path: &str, body_str: &str, state: &ServerState) 
 
 pub fn handle_request(mut request: Request, state: &ServerState) {
     if request.method().as_str() == "OPTIONS" {
-        let resp = Response::new(StatusCode(204), cors_headers(), std::io::Cursor::new(Vec::new()), Some(0), None);
-        let _ = request.respond(resp);
+        let _ = request.respond(Response::new(StatusCode(204), cors_headers(), std::io::Cursor::new(Vec::new()), Some(0), None));
         return;
     }
-
     let url = request.url().to_string();
     let path = url.split('?').next().unwrap_or("/");
     let method = request.method().as_str().to_string();
@@ -143,37 +145,31 @@ pub fn handle_request(mut request: Request, state: &ServerState) {
             };
             send_json(request, 200, &res);
         }
-        ("POST", "/api/query") => {
-            let body = match read_body(&mut request) {
-                Ok(b) => b,
-                Err((code, val)) => { send_json(request, code, &val); return; }
-            };
-            let (status_code, val) = process_query_in_process(&body, state, DEFAULT_QUERY_TIMEOUT_MS);
-            send_json(request, status_code, &val);
-        }
-        ("POST", "/api/generate") => {
-            let body = match read_body(&mut request) {
-                Ok(b) => b,
-                Err((code, val)) => { send_json(request, code, &val); return; }
-            };
-            let req: QueryRequest = serde_json::from_str(&body).unwrap_or_default();
-            let sse_bytes = handle_generate_sse(&req.query, state);
-            let mut headers = cors_headers();
-            headers.push(Header::from_bytes(&b"Content-Type"[..], &b"text/event-stream"[..]).unwrap());
-            headers.push(Header::from_bytes(&b"Cache-Control"[..], &b"no-cache"[..]).unwrap());
-            let resp = Response::new(StatusCode(200), headers, std::io::Cursor::new(sse_bytes), None, None);
-            let _ = request.respond(resp);
-        }
-        ("POST", p) if p.starts_with("/api/blackwall/") => {
-            let body = match read_body(&mut request) {
-                Ok(b) => b,
-                Err((code, val)) => { send_json(request, code, &val); return; }
-            };
-            let (status_code, val) = process_blackwall_route(p, &body, state);
-            send_json(request, status_code, &val);
-        }
-        _ => {
-            send_json(request, 404, &json!({ "detail": "Ruta no encontrada" }));
-        }
+        ("POST", "/api/query") => match read_body(&mut request) {
+            Ok(body) => {
+                let (code, val) = process_query_in_process(&body, state, DEFAULT_QUERY_TIMEOUT_MS);
+                send_json(request, code, &val);
+            }
+            Err((code, val)) => send_json(request, code, &val),
+        },
+        ("POST", "/api/generate") => match read_body(&mut request) {
+            Ok(body) => {
+                let req: QueryRequest = serde_json::from_str(&body).unwrap_or_default();
+                let sse_bytes = handle_generate_sse(&req.query, state);
+                let mut headers = cors_headers();
+                headers.push(Header::from_bytes(&b"Content-Type"[..], &b"text/event-stream"[..]).unwrap());
+                headers.push(Header::from_bytes(&b"Cache-Control"[..], &b"no-cache"[..]).unwrap());
+                let _ = request.respond(Response::new(StatusCode(200), headers, std::io::Cursor::new(sse_bytes), None, None));
+            }
+            Err((code, val)) => send_json(request, code, &val),
+        },
+        ("POST", p) if p.starts_with("/api/blackwall/") => match read_body(&mut request) {
+            Ok(body) => {
+                let (code, val) = process_blackwall_route(p, &body, state);
+                send_json(request, code, &val);
+            }
+            Err((code, val)) => send_json(request, code, &val),
+        },
+        _ => send_json(request, 404, &json!({ "detail": "Ruta no encontrada" })),
     }
 }

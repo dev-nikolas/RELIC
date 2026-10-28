@@ -3,7 +3,7 @@
 
 use std::path::Path;
 use std::time::Instant;
-use relic_core::propagate_activation;
+use relic_core::{analyze_spectrum_donoho_stark, propagate_activation};
 use relic_lexicon::{to_dot_diff, to_mermaid_diff, EngramStore};
 use crate::answer::answer_intent;
 use crate::dispatch::{parse_dispatch_intent_with_lexicon, DispatchIntent};
@@ -92,6 +92,17 @@ pub fn handle_diff(v_from: u64, v_to: u64, format: &str, engram_path: Option<&st
         }
         Err(e) => eprintln!("[ERROR INTEGRIDAD DIFF]: {e}"),
     }
+}
+
+pub fn handle_spectral(csv_signal: &str, min_cycles: f64) {
+    let signal: Vec<f64> = csv_signal
+        .split(',')
+        .filter_map(|s| s.trim().parse::<f64>().ok())
+        .collect();
+    let outcome = analyze_spectrum_donoho_stark(&signal, 0.05, min_cycles, None);
+    println!("============================================================\n  RELIC — Verificador Espectral (DFT + Donoho-Stark)\n============================================================");
+    println!("{outcome:#?}");
+    println!("============================================================");
 }
 
 pub fn print_perf(

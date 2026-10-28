@@ -222,3 +222,45 @@ Ideas con literatura previa en las que se apoya o con las que dialoga este dise�
 1. **RELIC Core:** runtime local en Rust, RIR, memoria y operadores exactos.
 2. **RELIC Cognitive:** modelos compactos y recurrentes, memoria asociativa y puntaje de decisión.
 3. **RELIC Adaptive:** cicatrización, personalidad y currículo; lo que permite que el sistema cambie sin perder lo que ya sabe.
+
+---
+
+## 9. Fase 5 Experimental — Núcleo Cuántico-Inspirado, Verificador Espectral y Costo Asimétrico [Hecho / Experimental]
+
+Con el Baseline Clásico de las Fases 1–4 consolidado en los 7 crates (`relic_core`, `relic_lexicon`, `relic_blackwall`, `relic_tokenizer`, `relic_cli`, `relic_server`, `relic_mcp`), la Fase 5 introduce primitivas matemáticas exactas en Rust puro (`crates/relic_core/src/quantum.rs` y `crates/relic_core/src/spectral.rs`) sometidas a criterios estrictos de falsación científica.
+
+### 9.1 Formulación Matemática Implementada
+
+1. **Superposición, Regla de Born e Interferencia de Fase (`relic_core::quantum` y `relic_lexicon`):**
+   - Cada interpretación candidata $k$ de un término polisémico se modela mediante una amplitud compleja en stack $\alpha_k = r_k e^{i\theta_k} \in \mathbb{C}$, normalizada unitariamente ($\sum_k |\alpha_k|^2 = 1$).
+   - Cuando un término polisémico aparece acompañado de palabras de contexto, sus amplitudes se combinan coherentemente antes de medir:
+     $$\psi_k = \alpha_{k,\text{prior}} + \alpha_{k,\text{ctx}} = r_{k,1} e^{i\theta_1} + r_{k,2} e^{i\theta_2}$$
+     La probabilidad proyectiva viene dada por la **Regla de Born**:
+     $$p_k = |\psi_k|^2 = r_{k,1}^2 + r_{k,2}^2 + 2 r_{k,1} r_{k,2} \cos(\Delta\theta)$$
+     permitiendo **interferencia constructiva** ($\cos(\Delta\theta) > 0$) o **cancelación destructiva exacta** ($\Delta\theta = \pi \implies \cos(\pi) = -1$) que los pesos reales positivos del baseline clásico no pueden representar sin reglas ad-hoc.
+
+2. **Regla de Decisión Proyectiva bajo Costo Asimétrico:**
+   - Sea $\lambda > 0$ la penalización por emitir una respuesta errónea y $c \ge 0$ el costo de abstenerse. El umbral crítico de colapso verificado es:
+     $$p^* = \frac{\lambda - c}{\lambda + 1}$$
+   - El estado solo colapsa a `Collapsed { target, born_probability, von_neumann_shannon_entropy }` si $\max_k |\psi_k|^2 > p^*$ y no existe colisión de simetría/fase. En caso contrario, emite formalmente `Abstained { reason, max_prob, required_threshold, entropy }`.
+
+3. **Transformada Discreta de Fourier Exacta (DFT) y Principio de Incertidumbre de Donoho-Stark (`relic_core::spectral`):**
+   - Para una serie discreta $x \in \mathbb{R}^N$, se calcula exactamente:
+     $$X_k = \sum_{n=0}^{N-1} x_n e^{-2\pi i k n / N}, \quad k \in \{0, \dots, N-1\}$$
+   - Se verifica el **Teorema de Incertidumbre Discreto de Donoho-Stark** sobre el soporte temporal $|\text{sop}(x)|$ y el soporte espectral efectivo $|\text{sop}(\hat{x})|$:
+     $$|\text{sop}(x)| \cdot |\text{sop}(\hat{x})| \ge N, \quad D_{\text{DS}} = \frac{|\text{sop}(x)| \cdot |\text{sop}(\hat{x})|}{N} - 1.0$$
+     donde $D_{\text{DS}} = 0.0$ caracteriza un tren periódico de impulsos puro (peine de Dirac / *beacon* C2 sin jitter) y $D_{\text{DS}} \gg 0$ caracteriza tráfico disperso o con jitter humano.
+   - **Abstención por Ventana Insuficiente:** si $N < \text{min\_cycles} \cdot P$ o la resolución espectral $\Delta f = 1/N$ no separa el periodo candidato, el motor devuelve `SpectralOutcome::InsufficientWindow`.
+
+4. **Estadística Estable y Verificación Defensiva C2 + BFS:**
+   - Correlación de Pearson $r = \frac{\text{cov}(x,y)}{\sigma_x \sigma_y}$ mediante el algoritmo de una pasada de Welford, asimetría $R_{\text{syn}} = \text{SYN}/\max(\text{ACK}, 1)$, entropía de destinos $H = -\sum p_i \log_2 p_i$, y aislamiento de nodos puente con `ReasoningEngine::solve_reachability_bfs_constrained`.
+
+### 9.2 Tabla de Experimentos y Criterios de Descarte (Fase 5 vs. Baseline Clásico Fase 4)
+
+| # | Hipótesis / Componente Fase 5 | Experimento de Verificación (`phase5_quantum_and_spectral_tests.rs`) | Criterio de Adopción | Criterio de Descarte (Regresión al Baseline Fase 4) |
+| :-: | :--- | :--- | :--- | :--- |
+| **H-Q1** | **Interferencia de fase ($\Delta\theta \in [0, \pi]$) en léxico polisémico** (`QuantumPolysemousAlias`) | `test_1`: Desambiguar verbos polisémicos (ej. `"tumbar"`) donde el baseline de pesos positivos ($w > 0$) produce empate (`Ambiguous`), usando inversión de fase contextual ($\Delta\theta = \pi$). | Supera en F1 / precisión de desambiguación al baseline aditivo clásico sin degradar la suite de regresión del `BlackwallGate` y manteniendo latencia $< 50\,\mu\text{s}$. | Si en el corpus holdout de jerga/polisemia el F1 cuántico no supera estadísticamente al clasificador aditivo de la Fase 4, se descarta la fase $\theta$ y se conserva solo el peso escalar $w \in \mathbb{R}_{\ge 0}$. |
+| **H-Q2** | **Regla de costo asimétrico proyectivo** ($p^* = \frac{\lambda - c}{\lambda + 1}$) | `test_3`: Evaluar colapso bajo alta penalización de error ($\lambda = 9.0, c = 0.0 \implies p^* = 0.90$) frente a candidatos mayoritarios pero inciertos ($p = 0.80$). | Elimina falsos positivos críticos forzando `Abstained` determinista cuando $\max_k |\psi_k|^2 \le p^*$. | Si un umbral fijo de entropía de Shannon (Fase 3) logra la misma curva ROC de abstención sin parametrizar $(\lambda, c)$. |
+| **H-S1** | **DFT Exacta + Invariante de Donoho-Stark** ($D_{\text{DS}}$ y `InsufficientWindow`) | `test_2` y `test_3`: Tren de impulsos periódico ($P=4, N=16 \implies D_{\text{DS}} = 0.0$) vs. tráfico con jitter humano y ventana truncada ($N < \text{min\_cycles} \cdot P$). | Detecta periodicidad exacta y se abstiene honestamente ante ventanas truncadas con cero falsas alarmas. | Si el costo $O(N^2)$ de la DFT directa excede el presupuesto de latencia en ventanas grandes ($N > 4096$), sustituir por FFT radix-2 in-place o autocovarianza en dominio temporal. |
+| **H-S2** | **Verificación Híbrida C2 (Espectral + Entropía + BFS con `avoid_nodes`)** | `test_4`: Auditoría de alerta de red combinando $R_{\text{syn}}$, entropía de IPs, DFT y alcanzabilidad BFS antes/después de aislar `Firewall_Puente_DMZ`. | Identifica exactamente los activos protegidos tras aislar el nodo puente y los que permanecen expuestos por rutas laterales. | Nunca se descarta el verificador BFS; si los indicadores espectrales son ruidosos, el motor reporta `InsufficientWindow` / `DispersedOrAperiodic` y mantiene intacta la verificación topológica. |
+

@@ -5,7 +5,7 @@
 
 use relic_cli::bench::handle_bench;
 use relic_cli::demo::handle_demo;
-use relic_cli::query::{handle_activate, handle_diff, handle_query};
+use relic_cli::query::{handle_activate, handle_diff, handle_query, handle_spectral};
 
 fn main() {
     let args: Vec<String> = std::env::args().collect();
@@ -33,6 +33,14 @@ fn main() {
                 let fmt = args.get(4).map(|s| s.as_str()).unwrap_or("mermaid");
                 let path = args.get(5).map(|s| s.as_str());
                 handle_diff(v_from, v_to, fmt, path);
+            }
+            "spectral" => {
+                let sig = args
+                    .get(2)
+                    .map(|s| s.as_str())
+                    .unwrap_or("1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0");
+                let min_c = args.get(3).and_then(|s| s.parse().ok()).unwrap_or(3.0);
+                handle_spectral(sig, min_c);
             }
             "bench" => handle_bench(),
             "parity" => {

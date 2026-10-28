@@ -3,6 +3,7 @@
 //! Estructuras de datos serializables para el servicio HTTP y los endpoints transaccionales del Blackwall.
 //! Menos de 180 líneas.
 
+use relic_core::NetworkAlertSpec;
 use relic_lexicon::LexiconPayload;
 use serde::{Deserialize, Serialize};
 use serde_json::Value;
@@ -114,4 +115,26 @@ fn default_entropy_threshold() -> f64 {
 pub struct DiffRequest {
     pub v_from: u64,
     pub v_to: u64,
+}
+
+/// Petición para análisis espectral (DFT + Donoho-Stark) o verificación completa de alerta C2 + BFS.
+#[derive(Debug, Clone, Deserialize)]
+pub struct SpectralRequest {
+    #[serde(default)]
+    pub signal: Vec<f64>,
+    #[serde(default = "default_support_epsilon")]
+    pub support_epsilon: f64,
+    #[serde(default = "default_min_cycles")]
+    pub min_cycles: f64,
+    #[serde(default)]
+    pub expected_period_hint: Option<f64>,
+    #[serde(default)]
+    pub network_alert: Option<NetworkAlertSpec>,
+}
+
+fn default_support_epsilon() -> f64 {
+    0.05
+}
+fn default_min_cycles() -> f64 {
+    3.0
 }

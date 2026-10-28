@@ -97,6 +97,23 @@ pub fn parse_query_to_spec(text: &str) -> QuerySpec {
         }
     }
 
+    // Estructura gramatical 1b: "¿Se puede llegar a Y desde X?" -> cuando "llegar a " o "alcanzar " precede a "desde "
+    if initial.is_none() && target.is_none() {
+        for mv in ["llegar a ", "llegar hasta ", "alcanzar "] {
+            if let Some(mv_idx) = lower.find(mv) {
+                let after_mv = &clean[mv_idx + mv.len()..];
+                let after_mv_lower = after_mv.to_lowercase();
+                if let Some(d_idx) = after_mv_lower.find(" desde ") {
+                    let target_part = after_mv[..d_idx].trim();
+                    let orig_part = after_mv[d_idx + 7..].trim();
+                    target = extract_entity_token(target_part);
+                    initial = extract_entity_token(orig_part);
+                    break;
+                }
+            }
+        }
+    }
+
     // Estructura gramatical 2: Preposiciones estándar de origen ("desde X", "de X", "partiendo de X", "salir de X", "ir de X")
     if initial.is_none() {
         for prefix in ["partiendo de ", "desde ", "salir de ", "ir de ", " de "] {
