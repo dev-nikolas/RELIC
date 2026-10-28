@@ -6,8 +6,9 @@ use std::time::{Duration, Instant};
 use relic_blackwall::BlackwallGate;
 use serde_json::{json, Value};
 use crate::tools::{
-    handle_activate, handle_consolidate, handle_diff, handle_interpret, handle_propose,
-    handle_retrieve, handle_rollback, handle_spectral, handle_verify, list_tools, VALID_MCP_TOOLS,
+    handle_activate, handle_assimilate, handle_capsule, handle_consolidate, handle_diff,
+    handle_interpret, handle_propose, handle_retrieve, handle_rollback, handle_spectral,
+    handle_synchronize, handle_verify, list_tools, VALID_MCP_TOOLS,
 };
 use crate::types::*;
 
@@ -88,6 +89,9 @@ impl McpServer {
                     "relic_activate" => handle_activate(&args, &self.blackwall),
                     "relic_diff" => handle_diff(&args, &self.blackwall),
                     "relic_spectral" => handle_spectral(&args, &self.blackwall),
+                    "relic_synchronize" => handle_synchronize(&args, &self.blackwall),
+                    "relic_assimilate" => handle_assimilate(&args, &mut self.blackwall),
+                    "relic_capsule" => handle_capsule(&args, &mut self.blackwall),
                     _ => unreachable!(),
                 };
 

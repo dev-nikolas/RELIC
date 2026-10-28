@@ -46,28 +46,48 @@ impl BlackwallGate {
     pub fn add_regression_case(&mut self, case: RegressionCase) { self.custom_regression_cases.push(case); }
 
     pub fn propose_mutation(&mut self, payload: LexiconPayload, timestamp_ms: u64) -> TransactionOutcome {
-        if let Err(v) = validate_proposal_oracle(&payload, self.engram.active_view()) {
-            return TransactionOutcome::RejectedByOracle { reason: v.to_string() };
+        self.commit_batch_payloads(std::slice::from_ref(&payload), timestamp_ms)
+    }
+
+    pub fn commit_batch_payloads(&mut self, payloads: &[LexiconPayload], timestamp_ms: u64) -> TransactionOutcome {
+        if payloads.is_empty() {
+            return TransactionOutcome::RejectedByIntegrity { reason: "Lote de mutaciones vacío.".to_string() };
         }
-        let status = match &payload {
-            LexiconPayload::GraphFact { .. } | LexiconPayload::EdgeReinforcement { .. } => EntryStatus::ConfirmedFact,
-            LexiconPayload::OpAlias { .. } | LexiconPayload::QuantumPolysemousAlias { .. }
-            | LexiconPayload::PhraseMacro { .. } | LexiconPayload::EntityAlias { .. } => EntryStatus::LexicalAlias,
-            LexiconPayload::ConsolidationCheckpoint { .. } => EntryStatus::ConsolidatedCheckpoint,
-            LexiconPayload::Rollback { .. } => EntryStatus::Reverted,
-        };
         let mut sandbox = self.engram.clone();
         sandbox.detach_backing_file();
-        if let Err(err) = sandbox.append_entry(timestamp_ms, status, payload.clone()) {
-            return TransactionOutcome::RejectedByIntegrity { reason: err.to_string() };
+        for (i, payload) in payloads.iter().enumerate() {
+            if let Err(v) = validate_proposal_oracle(payload, sandbox.active_view()) {
+                return TransactionOutcome::RejectedByOracle { reason: v.to_string() };
+            }
+            let status = match payload {
+                LexiconPayload::GraphFact { .. } | LexiconPayload::EdgeReinforcement { .. } => EntryStatus::ConfirmedFact,
+                LexiconPayload::OpAlias { .. } | LexiconPayload::QuantumPolysemousAlias { .. }
+                | LexiconPayload::PhraseMacro { .. } | LexiconPayload::EntityAlias { .. } => EntryStatus::LexicalAlias,
+                LexiconPayload::ConsolidationCheckpoint { .. } => EntryStatus::ConsolidatedCheckpoint,
+                LexiconPayload::Rollback { .. } => EntryStatus::Reverted,
+            };
+            if let Err(err) = sandbox.append_entry(timestamp_ms + i as u64, status, payload.clone()) {
+                return TransactionOutcome::RejectedByIntegrity { reason: err.to_string() };
+            }
         }
         if let Err(reg) = run_regression_suite(sandbox.active_view_mut(), &self.custom_regression_cases) {
             return TransactionOutcome::RejectedByRegression { failed_case: reg.case_id, reason: reg.reason };
         }
-        match self.engram.append_entry(timestamp_ms, status, payload) {
-            Ok(e) => TransactionOutcome::Committed { version: e.version, entry_hash: e.entry_hash },
-            Err(err) => TransactionOutcome::RejectedByIntegrity { reason: err.to_string() },
+        let (mut last_v, mut last_h) = (self.engram.current_version(), self.engram.head_hash().to_string());
+        for (i, payload) in payloads.iter().enumerate() {
+            let status = match payload {
+                LexiconPayload::GraphFact { .. } | LexiconPayload::EdgeReinforcement { .. } => EntryStatus::ConfirmedFact,
+                LexiconPayload::OpAlias { .. } | LexiconPayload::QuantumPolysemousAlias { .. }
+                | LexiconPayload::PhraseMacro { .. } | LexiconPayload::EntityAlias { .. } => EntryStatus::LexicalAlias,
+                LexiconPayload::ConsolidationCheckpoint { .. } => EntryStatus::ConsolidatedCheckpoint,
+                LexiconPayload::Rollback { .. } => EntryStatus::Reverted,
+            };
+            match self.engram.append_entry(timestamp_ms + i as u64, status, payload.clone()) {
+                Ok(e) => { last_v = e.version; last_h = e.entry_hash; }
+                Err(err) => return TransactionOutcome::RejectedByIntegrity { reason: err.to_string() },
+            }
         }
+        TransactionOutcome::Committed { version: last_v, entry_hash: last_h }
     }
 
     pub fn reinforce_edge(&mut self, from: &str, to: &str, delta: f64, timestamp_ms: u64) -> TransactionOutcome {
@@ -147,6 +167,8 @@ impl BlackwallGate {
     }
 
     pub fn active_view(&self) -> &LexiconView { self.engram.active_view() }
+    pub fn engram_store(&self) -> &EngramStore { &self.engram }
+    pub fn custom_regression_cases(&self) -> &[RegressionCase] { &self.custom_regression_cases }
     pub fn retrieve_neighbors(&mut self, entity: &str) -> Vec<String> {
         self.engram.active_view_mut().episodic.get_neighbors(entity).to_vec()
     }

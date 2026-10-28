@@ -2,8 +2,8 @@
 //! Menos de 180 líneas.
 
 use relic_blackwall::BlackwallGate;
-use relic_core::NetworkAlertSpec;
-use relic_lexicon::{to_dot_diff, to_mermaid_diff, LexiconPayload};
+use relic_core::{ArithmeticOp, KuramotoNetworkSpec, NetworkAlertSpec};
+use relic_lexicon::{to_dot_diff, to_mermaid_diff, EngramCapsule, LexiconPayload};
 use serde_json::{json, Value};
 use crate::types::CallToolResult;
 
@@ -90,5 +90,56 @@ pub fn handle_spectral(args: &Value, blackwall: &BlackwallGate) -> CallToolResul
     let hint = args.get("expected_period_hint").and_then(|v| v.as_f64());
     let outcome = blackwall.analyze_spectrum(&signal, eps, min_c, hint);
     CallToolResult::ok(serde_json::to_string(&outcome).unwrap_or_default())
+}
+
+pub fn handle_synchronize(args: &Value, blackwall: &BlackwallGate) -> CallToolResult {
+    let Some(spec_val) = args.get("spec") else {
+        return CallToolResult::err("Error: Falta 'spec' (KuramotoNetworkSpec).");
+    };
+    let spec: KuramotoNetworkSpec = match serde_json::from_value(spec_val.clone()) {
+        Ok(s) => s,
+        Err(e) => return CallToolResult::err(format!("Error en 'spec': {e}")),
+    };
+    let outcome = blackwall.synchronize_kuramoto(&spec);
+    CallToolResult::ok(serde_json::to_string(&outcome).unwrap_or_default())
+}
+
+pub fn handle_assimilate(args: &Value, blackwall: &mut BlackwallGate) -> CallToolResult {
+    let Some(raw_query) = args.get("raw_query").and_then(|v| v.as_str()) else {
+        return CallToolResult::err("Error: Falta 'raw_query'.");
+    };
+    let Some(op_val) = args.get("verified_op") else {
+        return CallToolResult::err("Error: Falta 'verified_op'.");
+    };
+    let verified_op: ArithmeticOp = match serde_json::from_value(op_val.clone()) {
+        Ok(o) => o,
+        Err(e) => return CallToolResult::err(format!("Error en 'verified_op': {e}")),
+    };
+    let ts = args.get("timestamp_ms").and_then(|v| v.as_u64()).unwrap_or(0);
+    let rep = blackwall.assimilate_verified_example(raw_query, verified_op, ts);
+    CallToolResult::ok(serde_json::to_string(&rep).unwrap_or_default())
+}
+
+pub fn handle_capsule(args: &Value, blackwall: &mut BlackwallGate) -> CallToolResult {
+    let action = args.get("action").and_then(|v| v.as_str()).unwrap_or("export");
+    if action.eq_ignore_ascii_case("import") {
+        let Some(cap_val) = args.get("capsule") else {
+            return CallToolResult::err("Error: Falta 'capsule' para import.");
+        };
+        let cap: EngramCapsule = match serde_json::from_value(cap_val.clone()) {
+            Ok(c) => c,
+            Err(e) => return CallToolResult::err(format!("Error en 'capsule': {e}")),
+        };
+        let ts = args.get("timestamp_ms").and_then(|v| v.as_u64()).unwrap_or(0);
+        let outcome = blackwall.import_engram_capsule(&cap, ts);
+        return CallToolResult::ok(serde_json::to_string(&outcome).unwrap_or_default());
+    }
+    let domain = args.get("domain").and_then(|v| v.as_str()).unwrap_or("relic_mcp");
+    let v_from = args.get("v_from").and_then(|v| v.as_u64()).unwrap_or(1);
+    let v_to = args.get("v_to").and_then(|v| v.as_u64()).unwrap_or(blackwall.current_version());
+    match blackwall.export_engram_capsule(domain, v_from, v_to) {
+        Ok(cap) => CallToolResult::ok(serde_json::to_string(&cap).unwrap_or_default()),
+        Err(e) => CallToolResult::err(format!("Error exportando cápsula: {e}")),
+    }
 }
 

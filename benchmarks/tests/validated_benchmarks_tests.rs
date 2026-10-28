@@ -4,7 +4,7 @@
 //! 2. Razonamiento y Trampas Epistémicas: `assert_eq!(hallucination_rate, 0.0)` y `selective_accuracy_pct == 100.0`.
 //! 3. Telemetría y Ciberseguridad: `assert_eq!(false_positive_rate_network, 0.0)` y `beacon_detection_recall_pct == 100.0`.
 
-use relic_blackwall::{
+use relic_benchmarks::{
     run_all_validated_benchmarks, run_bench1_polysemy_ablation, run_bench2_reasoning_and_epistemic,
     run_bench3_network_telemetry,
 };
@@ -52,4 +52,9 @@ fn test_4_consolidated_benchmark_report_consistency() {
     assert_eq!(rep.bench1_polysemy_ablation.total_cases, 24);
     assert_eq!(rep.bench2_reasoning_epistemic.total_cases, 32);
     assert_eq!(rep.bench3_network_telemetry.total_traces, 14);
+    assert_eq!(rep.bench4_continual_learning.total_edits, 200);
+    assert!(rep.bench4_continual_learning.locality_retention_pct >= 99.9);
+    assert!(rep.bench5_kuramoto_transition.subcritical_abstention_pct >= 99.9);
+    assert!(rep.bench6_stochastic_jitter_roc.max_resilient_jitter_pct >= 10.0);
+    assert!(rep.rss_mb > 0.0);
 }

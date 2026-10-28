@@ -17,11 +17,12 @@ fn test_mcp_tools_list() {
     let mut server = McpServer::new();
     let resp: Value = serde_json::from_str(&server.handle_line(r#"{"jsonrpc":"2.0","id":2,"method":"tools/list"}"#).unwrap()).unwrap();
     let tools = resp["result"]["tools"].as_array().expect("Lista de herramientas");
-    assert_eq!(tools.len(), 9);
+    assert_eq!(tools.len(), 12);
     let names: Vec<&str> = tools.iter().map(|t| t["name"].as_str().unwrap()).collect();
     for expected in [
         "relic_interpret", "relic_verify", "relic_retrieve", "relic_propose", "relic_rollback",
         "relic_consolidate", "relic_activate", "relic_diff", "relic_spectral",
+        "relic_synchronize", "relic_assimilate", "relic_capsule",
     ] {
         assert!(names.contains(&expected));
     }

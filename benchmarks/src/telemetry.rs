@@ -5,7 +5,7 @@ use std::collections::HashMap;
 use std::time::Instant;
 use relic_core::{analyze_spectrum_donoho_stark, verify_network_alert, NetworkAlertSpec, SpectralOutcome};
 use serde::{Deserialize, Serialize};
-use crate::bench::compute_mean_and_p99;
+use crate::compute_mean_and_p99;
 
 /// Métricas del Benchmark 3 (Auditoría Espectral y Topológica de Red C2 / N-BaIoT / CTU-13).
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]

@@ -3,8 +3,13 @@
 
 use std::path::Path;
 use std::time::Instant;
-use relic_core::{analyze_spectrum_donoho_stark, propagate_activation};
-use relic_lexicon::{to_dot_diff, to_mermaid_diff, EngramStore};
+use relic_core::{
+    analyze_spectrum_donoho_stark, propagate_activation, simulate_kuramoto_synchronization,
+    ArithmeticOp, KuramotoNetworkSpec, KuramotoOscillator,
+};
+use relic_lexicon::{
+    to_dot_diff, to_mermaid_diff, EngramCapsule, EngramStore, EntryStatus, LexiconPayload,
+};
 use crate::answer::answer_intent;
 use crate::dispatch::{parse_dispatch_intent_with_lexicon, DispatchIntent};
 use crate::monitor::get_current_rss_kb;
@@ -95,14 +100,50 @@ pub fn handle_diff(v_from: u64, v_to: u64, format: &str, engram_path: Option<&st
 }
 
 pub fn handle_spectral(csv_signal: &str, min_cycles: f64) {
-    let signal: Vec<f64> = csv_signal
-        .split(',')
-        .filter_map(|s| s.trim().parse::<f64>().ok())
-        .collect();
+    let signal: Vec<f64> = csv_signal.split(',').filter_map(|s| s.trim().parse::<f64>().ok()).collect();
     let outcome = analyze_spectrum_donoho_stark(&signal, 0.05, min_cycles, None);
-    println!("============================================================\n  RELIC — Verificador Espectral (DFT + Donoho-Stark)\n============================================================");
-    println!("{outcome:#?}");
-    println!("============================================================");
+    println!("============================================================\n  RELIC — Verificador Espectral (DFT + Donoho-Stark)\n============================================================\n{outcome:#?}\n============================================================");
+}
+
+pub fn handle_synchronize(csv_phases: &str, coupling_k: f64, required_r: f64) {
+    let phases: Vec<f64> = csv_phases.split(',').filter_map(|s| s.trim().parse::<f64>().ok()).collect();
+    let n = phases.len();
+    let oscillators: Vec<KuramotoOscillator> = phases.iter().enumerate()
+        .map(|(i, &th)| KuramotoOscillator::new(format!("osc_{i}"), th, 0.0)).collect();
+    let coupling_matrix = vec![vec![coupling_k; n]; n];
+    let spec = KuramotoNetworkSpec { oscillators, coupling_matrix, steps: 120, dt: 0.05, required_r, alignment_cos_threshold: 0.7 };
+    let outcome = simulate_kuramoto_synchronization(&spec);
+    println!("============================================================\n  RELIC — Dinámica de Sincronización de Kuramoto\n============================================================\n{outcome:#?}\n============================================================");
+}
+
+pub fn handle_assimilate(word: &str, op_str: &str, engram_path: Option<&str>) {
+    let op = match op_str.to_lowercase().as_str() {
+        "add" | "+" => ArithmeticOp::Add,
+        "mul" | "multiply" | "*" => ArithmeticOp::Multiply,
+        "div" | "divide" | "/" => ArithmeticOp::Divide,
+        _ => ArithmeticOp::Subtract,
+    };
+    let mut store = load_engram_store(engram_path);
+    match store.append_entry(1000, EntryStatus::LexicalAlias, LexiconPayload::op_alias(word, op)) {
+        Ok(e) => println!("[ASSIMILATED] '{}' -> {:?} (v{}, hash={})", word, op, e.version, e.entry_hash),
+        Err(err) => eprintln!("[ERROR ASSIMILATE]: {err}"),
+    }
+}
+
+pub fn handle_capsule(action: &str, path: &str, engram_path: Option<&str>) {
+    let store = load_engram_store(engram_path);
+    if action.eq_ignore_ascii_case("export") {
+        if let Ok(cap) = store.export_capsule("relic_cli", 1, store.current_version()) {
+            if let Ok(json_s) = cap.to_json_string() {
+                let _ = std::fs::write(path, json_s);
+                println!("[CAPSULE EXPORTED] {} entradas -> {} (seal={})", cap.entries.len(), path, cap.merkle_seal_sha256);
+            }
+        }
+    } else if let Ok(raw) = std::fs::read_to_string(path) {
+        if let Ok(cap) = EngramCapsule::from_json_str(&raw) {
+            println!("[CAPSULE VERIFY] {:?} (entradas={})", cap.verify_cryptographic_integrity(), cap.entries.len());
+        }
+    }
 }
 
 pub fn print_perf(

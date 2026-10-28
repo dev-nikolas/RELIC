@@ -104,15 +104,15 @@ fn parse_inventory_problem_estandar(
                 .collect();
             let ctx_refs: Vec<&str> = clause_words.iter().map(|s| s.as_str()).collect();
             for clean_w in &clause_words {
-                if let Some(op) = view.resolve_op_alias(clean_w) {
-                    lexicon_op = Some(op);
-                    break;
-                }
                 if let Some(decision) = view.resolve_polysemous_quantum(clean_w, &ctx_refs, 3.0, 0.0) {
                     match decision {
                         CollapseDecision::Collapsed { target, .. } => { lexicon_op = Some(target); break; }
                         CollapseDecision::Abstained { .. } => return None,
                     }
+                }
+                if let Some(op) = view.resolve_op_alias(clean_w) {
+                    lexicon_op = Some(op);
+                    break;
                 }
             }
         }

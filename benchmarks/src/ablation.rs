@@ -6,7 +6,7 @@ use std::time::Instant;
 use relic_core::{ArithmeticOp, CollapseDecision};
 use relic_lexicon::{ClassicalPolysemyResult, EngramStore, EntryStatus, LexiconPayload};
 use serde::{Deserialize, Serialize};
-use crate::bench::compute_mean_and_p99;
+use crate::compute_mean_and_p99;
 
 /// Métricas comparativas del Benchmark 1 (Ablación Léxico Clásico vs. Interferencia de Fase Cuántica).
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]

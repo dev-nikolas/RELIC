@@ -4,6 +4,8 @@
 //! y proyección en RAM O(N) para aprendizaje léxico y relacional sin olvido catastrófico.
 //! Menos de 180 líneas.
 
+pub mod calibrator;
+pub mod capsule;
 pub mod consolidation;
 pub mod diff;
 pub mod genesis;
@@ -11,6 +13,8 @@ pub mod log;
 pub mod memory;
 pub mod polysemy;
 
+pub use calibrator::{auto_calibrate_phases, ContextObservation, PhaseCalibrationReport};
+pub use capsule::{CapsuleEntry, EngramCapsule, CAPSULE_GENESIS_HASH, CAPSULE_SCHEMA_VERSION};
 pub use consolidation::{compute_consolidation_candidate, ConsolidationCandidate};
 pub use diff::{diff_versions, to_dot_diff, to_mermaid_diff, RevertedEntrySummary, VersionDiff, WeightDelta};
 pub use genesis::{build_genesis_entries, genesis_jsonl_seed, GENESIS_FACTS};

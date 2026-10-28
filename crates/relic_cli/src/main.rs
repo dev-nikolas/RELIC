@@ -3,9 +3,11 @@
 //! Binario de ejecución local y CLI unificado para RELIC en Rust nativo.
 //! Menos de 180 líneas.
 
-use relic_cli::bench::handle_bench;
 use relic_cli::demo::handle_demo;
-use relic_cli::query::{handle_activate, handle_diff, handle_query, handle_spectral};
+use relic_cli::query::{
+    handle_activate, handle_assimilate, handle_capsule, handle_diff, handle_query,
+    handle_spectral, handle_synchronize,
+};
 
 fn main() {
     let args: Vec<String> = std::env::args().collect();
@@ -42,7 +44,28 @@ fn main() {
                 let min_c = args.get(3).and_then(|s| s.parse().ok()).unwrap_or(3.0);
                 handle_spectral(sig, min_c);
             }
-            "bench" => handle_bench(),
+            "synchronize" | "kuramoto" => {
+                let phases = args.get(2).map(|s| s.as_str()).unwrap_or("-0.8,0.1,0.7,-0.3");
+                let k = args.get(3).and_then(|s| s.parse().ok()).unwrap_or(2.0);
+                let req_r = args.get(4).and_then(|s| s.parse().ok()).unwrap_or(0.85);
+                handle_synchronize(phases, k, req_r);
+            }
+            "assimilate" => {
+                let word = args.get(2).map(|s| s.as_str()).unwrap_or("embolataron");
+                let op = args.get(3).map(|s| s.as_str()).unwrap_or("subtract");
+                let path = args.get(4).map(|s| s.as_str());
+                handle_assimilate(word, op, path);
+            }
+            "capsule" => {
+                let action = args.get(2).map(|s| s.as_str()).unwrap_or("export");
+                let path = args.get(3).map(|s| s.as_str()).unwrap_or("capsule.engram");
+                let engram = args.get(4).map(|s| s.as_str());
+                handle_capsule(action, path, engram);
+            }
+            "bench" => {
+                println!("La suite de benchmarks se encuentra centralizada en el crate 'benchmarks/'.");
+                println!("Ejecuta: cargo run -p relic_benchmarks");
+            }
             "parity" => {
                 let tokens = if args.len() > 2 { args[2].clone() } else { "12,45,99".to_string() };
                 relic_cli::parity::handle_parity(&tokens);

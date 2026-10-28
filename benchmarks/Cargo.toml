@@ -1,0 +1,19 @@
+[package]
+name = "relic_benchmarks"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+
+[[bin]]
+name = "relic_benchmarks"
+path = "src/main.rs"
+
+[dependencies]
+relic_core = { path = "../crates/relic_core" }
+relic_lexicon = { path = "../crates/relic_lexicon" }
+relic_blackwall = { path = "../crates/relic_blackwall" }
+relic_cli = { path = "../crates/relic_cli" }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+

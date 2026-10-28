@@ -3,8 +3,8 @@
 //! Estructuras de datos serializables para el servicio HTTP y los endpoints transaccionales del Blackwall.
 //! Menos de 180 líneas.
 
-use relic_core::NetworkAlertSpec;
-use relic_lexicon::LexiconPayload;
+use relic_core::{ArithmeticOp, KuramotoNetworkSpec, NetworkAlertSpec};
+use relic_lexicon::{EngramCapsule, LexiconPayload};
 use serde::{Deserialize, Serialize};
 use serde_json::Value;
 
@@ -137,4 +137,27 @@ fn default_support_epsilon() -> f64 {
 }
 fn default_min_cycles() -> f64 {
     3.0
+}
+
+/// Petición para asimilar autónomamente un ejemplo verificado (`assimilate_verified_example`).
+#[derive(Debug, Clone, Deserialize)]
+pub struct AssimilateRequest {
+    pub raw_query: String,
+    pub verified_op: ArithmeticOp,
+    #[serde(default)]
+    pub timestamp_ms: u64,
+}
+
+/// Petición para sincronización de Kuramoto (`synchronize_kuramoto`).
+#[derive(Debug, Clone, Deserialize)]
+pub struct SynchronizeRequest {
+    pub spec: KuramotoNetworkSpec,
+}
+
+/// Petición para importar una cápsula `.engram` verificada.
+#[derive(Debug, Clone, Deserialize)]
+pub struct ImportCapsuleRequest {
+    pub capsule: EngramCapsule,
+    #[serde(default)]
+    pub timestamp_ms: u64,
 }

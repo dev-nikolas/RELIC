@@ -33,14 +33,10 @@ impl Default for LexiconView {
 }
 
 impl LexiconView {
-    pub fn resolve_op_alias(&self, word: &str) -> Option<ArithmeticOp> {
-        self.op_aliases.get(&word.trim().to_lowercase()).copied()
-    }
+    pub fn resolve_op_alias(&self, word: &str) -> Option<ArithmeticOp> { self.op_aliases.get(&word.trim().to_lowercase()).copied() }
     pub fn apply_phrase_macros(&self, text: &str) -> String {
         let mut out = text.to_lowercase();
-        for (phrase, expansion) in &self.phrase_macros {
-            if out.contains(phrase.as_str()) { out = out.replace(phrase.as_str(), expansion.as_str()); }
-        }
+        for (p, e) in &self.phrase_macros { if out.contains(p.as_str()) { out = out.replace(p.as_str(), e.as_str()); } }
         out
     }
 }
@@ -128,9 +124,13 @@ impl EngramStore {
                 LexiconPayload::QuantumPolysemousAlias { alias_word, target_op, amplitude_r, phase_theta, context_word } => {
                     let k = alias_word.trim().to_lowercase();
                     let ctx = context_word.as_ref().map(|s| s.trim().to_lowercase()).filter(|s| !s.is_empty());
-                    view.quantum_polysemy.entry(k).or_default().push(PolysemousEntry {
-                        target_op: *target_op, amplitude: Complex::from_polar(*amplitude_r, *phase_theta), context_word: ctx,
-                    });
+                    let amp = Complex::from_polar(*amplitude_r, *phase_theta);
+                    let list = view.quantum_polysemy.entry(k).or_default();
+                    if let Some(ex) = list.iter_mut().find(|e| e.target_op == *target_op && e.context_word == ctx) {
+                        ex.amplitude = amp;
+                    } else {
+                        list.push(PolysemousEntry { target_op: *target_op, amplitude: amp, context_word: ctx });
+                    }
                 }
                 LexiconPayload::PhraseMacro { phrase, expansion, .. } => {
                     let (p, e) = (phrase.trim().to_lowercase(), expansion.trim().to_lowercase());

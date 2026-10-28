@@ -10,6 +10,7 @@ pub mod block;
 pub mod config;
 pub mod episodic_memory;
 pub mod hash;
+pub mod kuramoto;
 pub mod kv_cache;
 pub mod loader;
 pub mod mlp;
@@ -27,6 +28,10 @@ pub mod spreading_activation;
 pub mod temporal_graph;
 
 pub use arithmetic::{ArithmeticError, ArithmeticOp, ArithmeticPlan, ArithmeticReduction};
+pub use kuramoto::{
+    compute_kuramoto_order_parameter, simulate_kuramoto_synchronization, wrap_angle,
+    KuramotoNetworkSpec, KuramotoOscillator, KuramotoTrace, SynchronizationOutcome,
+};
 pub use quantum::{
     compute_asymmetric_threshold, CollapseDecision, Complex, InterferenceStepTrace,
     QuantumSuperposition,

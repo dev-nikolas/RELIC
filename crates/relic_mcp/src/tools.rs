@@ -6,8 +6,8 @@ use relic_cli::DispatchIntent;
 use relic_core::RirDocumentV1;
 use serde_json::{json, Value};
 pub use crate::tools_blackwall::{
-    handle_activate, handle_consolidate, handle_diff, handle_propose, handle_rollback,
-    handle_spectral,
+    handle_activate, handle_assimilate, handle_capsule, handle_consolidate, handle_diff,
+    handle_propose, handle_rollback, handle_spectral, handle_synchronize,
 };
 use crate::types::{CallToolResult, ToolDefinition};
 
@@ -21,6 +21,9 @@ pub const VALID_MCP_TOOLS: &[&str] = &[
     "relic_activate",
     "relic_diff",
     "relic_spectral",
+    "relic_synchronize",
+    "relic_assimilate",
+    "relic_capsule",
 ];
 
 fn tool_def(name: &str, description: &str, input_schema: Value) -> ToolDefinition {
@@ -73,6 +76,21 @@ pub fn list_tools() -> Vec<ToolDefinition> {
             "relic_spectral",
             "Ejecuta el verificador espectral (DFT exacta + Teorema de Donoho-Stark) o auditoría de alerta de red C2 + BFS.",
             json!({ "type": "object", "properties": { "signal": { "type": "array", "items": { "type": "number" } }, "support_epsilon": { "type": "number" }, "min_cycles": { "type": "number" }, "expected_period_hint": { "type": "number" }, "network_alert": { "type": "object" } } }),
+        ),
+        tool_def(
+            "relic_synchronize",
+            "Ejecuta dinámica de sincronización de osciladores acoplados de Kuramoto con abstención física si r < r*.",
+            json!({ "type": "object", "properties": { "spec": { "type": "object" } }, "required": ["spec"] }),
+        ),
+        tool_def(
+            "relic_assimilate",
+            "Destilación en la Sombra: extrae y asimila un término de una consulta incompleta, auto-calibra fase y registra regresión.",
+            json!({ "type": "object", "properties": { "raw_query": { "type": "string" }, "verified_op": { "type": "string" }, "timestamp_ms": { "type": "integer" } }, "required": ["raw_query", "verified_op"] }),
+        ),
+        tool_def(
+            "relic_capsule",
+            "Importa o exporta cápsulas portátiles .engram con verificación criptográfica SHA-256 y Sandbox de Regresión.",
+            json!({ "type": "object", "properties": { "action": { "type": "string" }, "domain": { "type": "string" }, "v_from": { "type": "integer" }, "v_to": { "type": "integer" }, "capsule": { "type": "object" } } }),
         ),
     ]
 }

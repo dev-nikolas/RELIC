@@ -7,6 +7,7 @@ members = [
     "crates/relic_cli",
     "crates/relic_server",
     "crates/relic_mcp",
+    "benchmarks",
 ]
 resolver = "2"
 

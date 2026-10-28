@@ -72,6 +72,18 @@ dependencies = [
 ]
 
 [[package]]
+name = "relic_benchmarks"
+version = "0.1.0"
+dependencies = [
+ "relic_blackwall",
+ "relic_cli",
+ "relic_core",
+ "relic_lexicon",
+ "serde",
+ "serde_json",
+]
+
+[[package]]
 name = "relic_blackwall"
 version = "0.1.0"
 dependencies = [

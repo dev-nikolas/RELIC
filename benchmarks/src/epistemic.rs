@@ -5,9 +5,9 @@ use std::time::Instant;
 use relic_core::{propagate_activation, ActivationStatus, ArithmeticOp};
 use relic_lexicon::{EngramStore, EntryStatus, LexiconPayload};
 use serde::{Deserialize, Serialize};
-use crate::answer::answer_intent;
-use crate::bench::compute_mean_and_p99;
-use crate::dispatch::{parse_dispatch_intent_with_lexicon, DispatchIntent};
+use relic_cli::answer::answer_intent;
+use crate::compute_mean_and_p99;
+use relic_cli::dispatch::{parse_dispatch_intent_with_lexicon, DispatchIntent};
 
 /// Métricas del Benchmark 2 (GSM8K-ES / SVAMP / bAbI + Trampas Epistémicas).
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]

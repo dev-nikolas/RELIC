@@ -11,8 +11,9 @@ use crate::engine::execute_query_with_trace;
 use crate::generate::handle_generate_sse;
 use crate::state::ServerState;
 use crate::types::{
-    ActivateRequest, ConsolidateRequest, DiffRequest, HealthResponse, ProposeMutationRequest,
-    QueryRequest, RollbackRequest, SpectralRequest,
+    ActivateRequest, AssimilateRequest, ConsolidateRequest, DiffRequest, HealthResponse,
+    ImportCapsuleRequest, ProposeMutationRequest, QueryRequest, RollbackRequest, SpectralRequest,
+    SynchronizeRequest,
 };
 
 pub const MAX_REQUEST_BODY_BYTES: u64 = 16 * 1024;
@@ -64,42 +65,32 @@ pub fn process_blackwall_route(path: &str, body_str: &str, state: &ServerState) 
     }
     match path {
         "/api/blackwall/propose" => {
-            let Ok(req) = serde_json::from_str::<ProposeMutationRequest>(body_str) else {
-                return (400, json!({ "detail": "JSON inválido para ProposeMutationRequest" }));
-            };
+            let Ok(req) = serde_json::from_str::<ProposeMutationRequest>(body_str) else { return (400, json!({ "detail": "JSON inválido para ProposeMutationRequest" })); };
             let mut gate = state.blackwall.write().unwrap();
             let outcome = gate.propose_mutation(req.payload, req.timestamp_ms);
             (200, json!({ "outcome": outcome, "current_version": gate.current_version(), "head_hash": gate.head_hash() }))
         }
         "/api/blackwall/rollback" => {
-            let Ok(req) = serde_json::from_str::<RollbackRequest>(body_str) else {
-                return (400, json!({ "detail": "JSON inválido para RollbackRequest" }));
-            };
+            let Ok(req) = serde_json::from_str::<RollbackRequest>(body_str) else { return (400, json!({ "detail": "JSON inválido para RollbackRequest" })); };
             let mut gate = state.blackwall.write().unwrap();
             let outcome = gate.rollback_to(req.target_version, req.reason, req.timestamp_ms);
             (200, json!({ "outcome": outcome, "current_version": gate.current_version(), "head_hash": gate.head_hash() }))
         }
         "/api/blackwall/consolidate" => {
-            let Ok(req) = serde_json::from_str::<ConsolidateRequest>(body_str) else {
-                return (400, json!({ "detail": "JSON inválido para ConsolidateRequest" }));
-            };
+            let Ok(req) = serde_json::from_str::<ConsolidateRequest>(body_str) else { return (400, json!({ "detail": "JSON inválido para ConsolidateRequest" })); };
             let mut gate = state.blackwall.write().unwrap();
             let outcome = gate.consolidate_memory(req.min_weight_threshold, req.min_fidelity, req.timestamp_ms);
             (200, json!({ "outcome": outcome, "current_version": gate.current_version(), "head_hash": gate.head_hash() }))
         }
         "/api/blackwall/activate" => {
-            let Ok(req) = serde_json::from_str::<ActivateRequest>(body_str) else {
-                return (400, json!({ "detail": "JSON inválido para ActivateRequest" }));
-            };
+            let Ok(req) = serde_json::from_str::<ActivateRequest>(body_str) else { return (400, json!({ "detail": "JSON inválido para ActivateRequest" })); };
             let seed_refs: Vec<&str> = req.seeds.iter().map(|s| s.as_str()).collect();
             let gate = state.blackwall.read().unwrap();
             let res = gate.propagate_activation(&seed_refs, req.gamma, req.steps, req.max_entropy_threshold);
             (200, serde_json::to_value(res).unwrap_or_else(|_| json!({ "status": "ERROR" })))
         }
         "/api/blackwall/diff" => {
-            let Ok(req) = serde_json::from_str::<DiffRequest>(body_str) else {
-                return (400, json!({ "detail": "JSON inválido para DiffRequest" }));
-            };
+            let Ok(req) = serde_json::from_str::<DiffRequest>(body_str) else { return (400, json!({ "detail": "JSON inválido para DiffRequest" })); };
             let gate = state.blackwall.read().unwrap();
             match gate.diff_versions(req.v_from, req.v_to) {
                 Ok(diff) => (200, json!({ "diff": diff, "mermaid": to_mermaid_diff(&diff), "dot": to_dot_diff(&diff) })),
@@ -107,9 +98,7 @@ pub fn process_blackwall_route(path: &str, body_str: &str, state: &ServerState) 
             }
         }
         "/api/blackwall/spectral" => {
-            let Ok(req) = serde_json::from_str::<SpectralRequest>(body_str) else {
-                return (400, json!({ "detail": "JSON inválido para SpectralRequest" }));
-            };
+            let Ok(req) = serde_json::from_str::<SpectralRequest>(body_str) else { return (400, json!({ "detail": "JSON inválido para SpectralRequest" })); };
             let gate = state.blackwall.read().unwrap();
             if let Some(ref alert_spec) = req.network_alert {
                 (200, serde_json::to_value(gate.verify_network_alert(alert_spec)).unwrap_or_else(|_| json!({ "status": "ERROR" })))
@@ -117,6 +106,23 @@ pub fn process_blackwall_route(path: &str, body_str: &str, state: &ServerState) 
                 let outcome = gate.analyze_spectrum(&req.signal, req.support_epsilon, req.min_cycles, req.expected_period_hint);
                 (200, serde_json::to_value(outcome).unwrap_or_else(|_| json!({ "status": "ERROR" })))
             }
+        }
+        "/api/blackwall/synchronize" => {
+            let Ok(req) = serde_json::from_str::<SynchronizeRequest>(body_str) else { return (400, json!({ "detail": "JSON inválido para SynchronizeRequest" })); };
+            let gate = state.blackwall.read().unwrap();
+            (200, serde_json::to_value(gate.synchronize_kuramoto(&req.spec)).unwrap_or_else(|_| json!({ "status": "ERROR" })))
+        }
+        "/api/blackwall/assimilate" => {
+            let Ok(req) = serde_json::from_str::<AssimilateRequest>(body_str) else { return (400, json!({ "detail": "JSON inválido para AssimilateRequest" })); };
+            let mut gate = state.blackwall.write().unwrap();
+            let rep = gate.assimilate_verified_example(&req.raw_query, req.verified_op, req.timestamp_ms);
+            (200, serde_json::to_value(rep).unwrap_or_else(|_| json!({ "status": "ERROR" })))
+        }
+        "/api/blackwall/capsule/import" => {
+            let Ok(req) = serde_json::from_str::<ImportCapsuleRequest>(body_str) else { return (400, json!({ "detail": "JSON inválido para ImportCapsuleRequest" })); };
+            let mut gate = state.blackwall.write().unwrap();
+            let outcome = gate.import_engram_capsule(&req.capsule, req.timestamp_ms);
+            (200, json!({ "outcome": outcome, "current_version": gate.current_version(), "head_hash": gate.head_hash() }))
         }
         _ => (404, json!({ "detail": "Ruta no encontrada" })),
     }
@@ -146,10 +152,7 @@ pub fn handle_request(mut request: Request, state: &ServerState) {
             send_json(request, 200, &res);
         }
         ("POST", "/api/query") => match read_body(&mut request) {
-            Ok(body) => {
-                let (code, val) = process_query_in_process(&body, state, DEFAULT_QUERY_TIMEOUT_MS);
-                send_json(request, code, &val);
-            }
+            Ok(body) => { let (code, val) = process_query_in_process(&body, state, DEFAULT_QUERY_TIMEOUT_MS); send_json(request, code, &val); }
             Err((code, val)) => send_json(request, code, &val),
         },
         ("POST", "/api/generate") => match read_body(&mut request) {
@@ -164,10 +167,7 @@ pub fn handle_request(mut request: Request, state: &ServerState) {
             Err((code, val)) => send_json(request, code, &val),
         },
         ("POST", p) if p.starts_with("/api/blackwall/") => match read_body(&mut request) {
-            Ok(body) => {
-                let (code, val) = process_blackwall_route(p, &body, state);
-                send_json(request, code, &val);
-            }
+            Ok(body) => { let (code, val) = process_blackwall_route(p, &body, state); send_json(request, code, &val); }
             Err((code, val)) => send_json(request, code, &val),
         },
         _ => send_json(request, 404, &json!({ "detail": "Ruta no encontrada" })),
