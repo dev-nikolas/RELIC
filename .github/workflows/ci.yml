@@ -2,7 +2,7 @@ name: CI RELIC
 
 on:
   push:
-    branches: [main]
+    branches: [main, master]
   pull_request:
 
 jobs:
@@ -13,12 +13,10 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-rust@v1
+      - uses: dtolnay/rust-toolchain@stable
         with:
-          profile: minimal
-          toolchain: stable
-      - name: Suite completa (incluye suite congelada no vista v2 y known failures)
+          components: clippy
+      - name: Clippy (cero warnings)
+        run: cargo clippy --workspace --all-targets -- -D warnings
+      - name: Suite completa (incluye bancos congelados y known failures)
         run: cargo test --workspace
-      - name: Sucesiones de regresión del servidor (known_failures.json)
-        if: ${{ matrix.os == 'ubuntu-latest' }}
-        run: cargo test -p relic_server --test regression_known_failures -- --nocapture
