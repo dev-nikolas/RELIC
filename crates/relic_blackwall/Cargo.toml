@@ -1,0 +1,15 @@
+[package]
+name = "relic_blackwall"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+
+[dependencies]
+relic_core = { path = "../relic_core" }
+relic_lexicon = { path = "../relic_lexicon" }
+relic_cli = { path = "../relic_cli", default-features = false }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+thiserror = "2.0"
+

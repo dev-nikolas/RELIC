@@ -1,7 +1,7 @@
 //! Analizador sintáctico de expresiones matemáticas puras, con precedencia y paréntesis anidados.
 //! Detección estricta de operadores colgantes y división por cero en RIR. Menos de 180 líneas.
 
-use relic_core::{ArithmeticOp, ArithmeticPlan};
+use relic_core::{ArithmeticOp, ArithmeticPlan, ArithmeticReduction};
 
 #[derive(Debug, Clone, PartialEq)]
 pub enum MathToken {
@@ -40,10 +40,7 @@ pub fn tokenize_math(expr: &str) -> Option<Vec<MathToken>> {
             if !cur.is_empty() { tokens.push(MathToken::Num(cur.parse().ok()?)); cur.clear(); }
             tokens.push(MathToken::Op(ArithmeticOp::Multiply));
         } else if c == '-' {
-            let is_unary = cur.is_empty() && match tokens.last() {
-                None | Some(MathToken::Op(_)) | Some(MathToken::LParen) => true,
-                _ => false,
-            };
+            let is_unary = cur.is_empty() && matches!(tokens.last(), None | Some(MathToken::Op(_)) | Some(MathToken::LParen));
             if is_unary {
                 cur.push('-');
             } else {
@@ -80,12 +77,15 @@ fn apply_op(op: ArithmeticOp, a: f64, b: f64) -> Result<f64, ArithmeticOp> {
     })
 }
 
-pub fn evaluate_math_tokens(tokens: &[MathToken]) -> Option<Result<f64, ArithmeticOp>> {
+pub fn evaluate_math_tokens_with_reductions(
+    tokens: &[MathToken],
+) -> Option<Result<(f64, Vec<ArithmeticReduction>), ArithmeticOp>> {
     if tokens.is_empty() { return None; }
     let mut output: Vec<f64> = Vec::new();
     let mut op_stack: Vec<ArithmeticOp> = Vec::new();
     let mut p_stack: Vec<usize> = Vec::new();
     let mut expect_operand = true;
+    let mut reductions = Vec::new();
 
     for tok in tokens {
         match tok {
@@ -105,7 +105,20 @@ pub fn evaluate_math_tokens(tokens: &[MathToken]) -> Option<Result<f64, Arithmet
                     let op = op_stack.pop().unwrap();
                     let b = output.pop()?;
                     let a = output.pop()?;
-                    output.push(apply_op(op, a, b).ok()?);
+                    match apply_op(op, a, b) {
+                        Ok(res) => {
+                            let step_index = reductions.len() + 1;
+                            reductions.push(ArithmeticReduction {
+                                step_index,
+                                left: a,
+                                op,
+                                right: b,
+                                result: res,
+                            });
+                            output.push(res);
+                        }
+                        Err(e) => return Some(Err(e)),
+                    }
                 }
             }
             MathToken::Op(op) => {
@@ -116,7 +129,17 @@ pub fn evaluate_math_tokens(tokens: &[MathToken]) -> Option<Result<f64, Arithmet
                     let b = output.pop()?;
                     let a = output.pop()?;
                     match apply_op(top_op, a, b) {
-                        Ok(res) => output.push(res),
+                        Ok(res) => {
+                            let step_index = reductions.len() + 1;
+                            reductions.push(ArithmeticReduction {
+                                step_index,
+                                left: a,
+                                op: top_op,
+                                right: b,
+                                result: res,
+                            });
+                            output.push(res);
+                        }
                         Err(e) => return Some(Err(e)),
                     }
                 }
@@ -131,11 +154,25 @@ pub fn evaluate_math_tokens(tokens: &[MathToken]) -> Option<Result<f64, Arithmet
         let b = output.pop()?;
         let a = output.pop()?;
         match apply_op(op, a, b) {
-            Ok(res) => output.push(res),
+            Ok(res) => {
+                let step_index = reductions.len() + 1;
+                reductions.push(ArithmeticReduction {
+                    step_index,
+                    left: a,
+                    op,
+                    right: b,
+                    result: res,
+                });
+                output.push(res);
+            }
             Err(e) => return Some(Err(e)),
         }
     }
-    if output.len() == 1 { Some(Ok(output[0])) } else { None }
+    if output.len() == 1 { Some(Ok((output[0], reductions))) } else { None }
+}
+
+pub fn evaluate_math_tokens(tokens: &[MathToken]) -> Option<Result<f64, ArithmeticOp>> {
+    evaluate_math_tokens_with_reductions(tokens).map(|res| res.map(|(val, _)| val))
 }
 
 /// Plan estructural (transparencia "Entendí: 3 - 10 = -7"); devuelve None ante paréntesis o precedencia mezclada.
@@ -164,11 +201,25 @@ pub fn parse_math_expression(text: &str) -> Option<ArithmeticPlan> {
     }
     if expr.trim().is_empty() { return None; }
     let tokens = tokenize_math(expr.trim())?;
-    match evaluate_math_tokens(&tokens)? {
-        Ok(val) => {
-            if let Some(plan) = plan_from_tokens(&tokens) { if plan.execute().ok()? == val { return Some(plan); } }
-            let mut plan = ArithmeticPlan::new(val, None);
-            plan.add_step(ArithmeticOp::Add, 0.0);
+    match evaluate_math_tokens_with_reductions(&tokens)? {
+        Ok((val, reductions)) => {
+            if let Some(mut plan) = plan_from_tokens(&tokens) {
+                if plan.execute().ok()? == val {
+                    for r in &reductions {
+                        plan.add_reduction(r.left, r.op, r.right, r.result);
+                    }
+                    return Some(plan);
+                }
+            }
+            if reductions.is_empty() {
+                return None;
+            }
+            let initial = reductions[0].left;
+            let mut plan = ArithmeticPlan::new(initial, None);
+            for r in &reductions {
+                plan.add_reduction(r.left, r.op, r.right, r.result);
+                plan.add_step(r.op, r.right);
+            }
             Some(plan)
         }
         Err(ArithmeticOp::Divide) => Some({

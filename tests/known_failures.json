@@ -36,10 +36,10 @@
   },
   {
     "input": "¿Es posible ir de Bogotá a Madrid pasando por París evitando Tokio?",
-    "expected_output": "Bogotá",
+    "expected_output": "no existe en la memoria episódica",
     "expected_route": "deterministic_graph",
     "date": "2026-10-21",
-    "description": "Consulta espacial en memoria episódica con restricciones 'via' y 'avoid'."
+    "description": "Consulta espacial en memoria episódica con restricciones 'via' y 'avoid'. Entidad Tokio desconocida produce abstención honesta."
   },
   {
     "input": "dos más dos",

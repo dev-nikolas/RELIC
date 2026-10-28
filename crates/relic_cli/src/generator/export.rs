@@ -4,7 +4,7 @@
 use std::collections::HashSet;
 use std::fs::File;
 use std::io::{BufWriter, Write};
-use super::sha256::Sha256;
+use relic_core::Sha256;
 use super::types::{CurriculumLevel, CurriculumSample, DatasetSplit};
 use super::engine::generate_sample;
 

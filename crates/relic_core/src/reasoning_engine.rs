@@ -1,19 +1,7 @@
-//! Motor de razonamiento algorítmico determinista (BFS sobre grafos y reglas). Menos de 180 líneas.
+//! Motor de razonamiento algorítmico determinista (BFS sobre grafos). Menos de 180 líneas.
 
 use std::collections::{HashSet, VecDeque};
-use thiserror::Error;
 use crate::episodic_memory::EpisodicMemory;
-
-/// Errores derivados de la ejecución y composición de reglas.
-#[derive(Debug, Error, PartialEq, Eq)]
-pub enum RuleError {
-    #[error("La cadena de entrada no puede estar vacía")]
-    EmptyInput,
-    #[error("La longitud de la cadena ({0}) supera el límite permitido ({1})")]
-    InputTooLong(usize, usize),
-    #[error("La profundidad de composición ({0}) supera el límite máximo permitido ({1})")]
-    MaxDepthExceeded(usize, usize),
-}
 
 /// Resultado de una consulta de alcanzabilidad en grafos.
 #[derive(Debug, Clone, PartialEq, Eq)]
@@ -104,63 +92,3 @@ impl ReasoningEngine {
     }
 }
 
-/// Operadores atómicos discretos para transformación de cadenas.
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-pub enum AtomicOperator { Reverse, ShiftLeft, SwapCase, DuplicateVowels, RemoveFirstLast }
-
-/// Catálogo de reglas y ejecutor composicional seguro.
-pub struct RuleCatalog { max_input_length: usize, max_composition_depth: usize }
-
-impl Default for RuleCatalog {
-    fn default() -> Self { Self { max_input_length: 1024, max_composition_depth: 8 } }
-}
-
-impl RuleCatalog {
-    pub fn new(max_input_length: usize, max_composition_depth: usize) -> Self {
-        Self { max_input_length, max_composition_depth }
-    }
-
-    /// Aplica un único operador atómico con validación estricta de entrada.
-    pub fn apply_operator(&self, input: &str, op: AtomicOperator) -> Result<String, RuleError> {
-        if input.is_empty() { return Err(RuleError::EmptyInput); }
-        if input.len() > self.max_input_length { return Err(RuleError::InputTooLong(input.len(), self.max_input_length)); }
-
-        let result = match op {
-            AtomicOperator::Reverse => input.chars().rev().collect(),
-            AtomicOperator::ShiftLeft => {
-                let mut chars = input.chars();
-                if let Some(first) = chars.next() {
-                    let mut s: String = chars.collect();
-                    s.push(first);
-                    s
-                } else { input.to_string() }
-            }
-            AtomicOperator::SwapCase => input.chars().map(|c| {
-                if c.is_lowercase() { c.to_uppercase().collect::<String>() } else { c.to_lowercase().collect::<String>() }
-            }).collect(),
-            AtomicOperator::DuplicateVowels => {
-                let mut s = String::with_capacity(input.len() * 2);
-                for c in input.chars() {
-                    s.push(c);
-                    if matches!(c.to_ascii_lowercase(), 'a' | 'e' | 'i' | 'o' | 'u') { s.push(c); }
-                }
-                s
-            }
-            AtomicOperator::RemoveFirstLast => {
-                let chars: Vec<char> = input.chars().collect();
-                if chars.len() <= 2 { String::new() } else { chars[1..chars.len() - 1].iter().collect() }
-            }
-        };
-        Ok(result)
-    }
-
-    /// Compone una secuencia de operadores atómicos con límite de profundidad.
-    pub fn compose(&self, input: &str, ops: &[AtomicOperator]) -> Result<String, RuleError> {
-        if ops.len() > self.max_composition_depth {
-            return Err(RuleError::MaxDepthExceeded(ops.len(), self.max_composition_depth));
-        }
-        let mut current = input.to_string();
-        for &op in ops { current = self.apply_operator(&current, op)?; }
-        Ok(current)
-    }
-}

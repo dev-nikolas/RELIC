@@ -137,7 +137,7 @@ fn main() {
         }
     }
     // una semilla por ejecucion (--seed), flows separados por semilla
-    let seed = args.iter().position(|a| a == "--seed").and_then(|p| args.get(p + 1).map(|s| s.clone()))
+    let seed = args.iter().position(|a| a == "--seed").and_then(|p| args.get(p + 1).cloned())
         .unwrap_or("42".into());
     let solo: HashMap<String, (String, String)> = mapa.iter()
         .filter_map(|(k, v)| k.rsplit_once("|s").and_then(|(id, s)| (s == seed).then(|| (id.to_string(), v.clone()))))

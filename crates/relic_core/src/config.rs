@@ -42,10 +42,10 @@ impl RelicConfig {
         if self.hidden_size != self.num_attention_heads * self.head_dim {
             return Err("hidden_size debe ser igual a num_attention_heads * head_dim");
         }
-        if self.num_attention_heads % self.num_key_value_heads != 0 {
+        if !self.num_attention_heads.is_multiple_of(self.num_key_value_heads) {
             return Err("num_attention_heads debe ser divisible por num_key_value_heads");
         }
-        if self.head_dim % 2 != 0 {
+        if !self.head_dim.is_multiple_of(2) {
             return Err("head_dim debe ser par para permitir RoPE");
         }
         Ok(())

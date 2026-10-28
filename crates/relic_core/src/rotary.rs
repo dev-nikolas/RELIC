@@ -11,7 +11,7 @@ pub struct RotaryEmbedding {
 
 impl RotaryEmbedding {
     pub fn new(head_dim: usize, max_seq_len: usize, theta: f32) -> Self {
-        assert!(head_dim % 2 == 0, "head_dim debe ser par");
+        assert!(head_dim.is_multiple_of(2), "head_dim debe ser par");
         let half = head_dim / 2;
 
         let mut inv_freq = Vec::with_capacity(half);

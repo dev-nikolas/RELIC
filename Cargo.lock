@@ -72,10 +72,23 @@ dependencies = [
 ]
 
 [[package]]
+name = "relic_blackwall"
+version = "0.1.0"
+dependencies = [
+ "relic_cli",
+ "relic_core",
+ "relic_lexicon",
+ "serde",
+ "serde_json",
+ "thiserror",
+]
+
+[[package]]
 name = "relic_cli"
 version = "0.1.0"
 dependencies = [
  "relic_core",
+ "relic_lexicon",
  "relic_tokenizer",
  "serde",
  "serde_json",
@@ -92,11 +105,23 @@ dependencies = [
 ]
 
 [[package]]
+name = "relic_lexicon"
+version = "0.1.0"
+dependencies = [
+ "relic_core",
+ "serde",
+ "serde_json",
+ "thiserror",
+]
+
+[[package]]
 name = "relic_mcp"
 version = "0.1.0"
 dependencies = [
+ "relic_blackwall",
  "relic_cli",
  "relic_core",
+ "relic_lexicon",
  "serde",
  "serde_json",
 ]
@@ -105,8 +130,10 @@ dependencies = [
 name = "relic_server"
 version = "0.1.0"
 dependencies = [
+ "relic_blackwall",
  "relic_cli",
  "relic_core",
+ "relic_lexicon",
  "relic_tokenizer",
  "serde",
  "serde_json",

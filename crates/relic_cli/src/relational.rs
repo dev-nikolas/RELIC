@@ -93,11 +93,10 @@ pub fn extract_semantic_role(clause: &str) -> Option<SemanticComparison> {
     } else if lower.starts_with("más alto que ") {
         // Orden inverso: "Más alto que Juan es Pedro"
         let rest = &clean[13..];
-        if let Some(es_idx) = rest.to_lowercase().find(" es ") {
-            let right_ent = rest[..es_idx].trim();
-            let left_ent = rest[es_idx + 4..].trim();
-            (left_ent, right_ent, Polarity::Greater)
-        } else { return None; }
+        let es_idx = rest.to_lowercase().find(" es ")?;
+        let right_ent = rest[..es_idx].trim();
+        let left_ent = rest[es_idx + 4..].trim();
+        (left_ent, right_ent, Polarity::Greater)
     } else {
         return None;
     };

@@ -1,12 +1,13 @@
 //! # relic_server::state
 //!
-//! Estado de inferencia compartido en memoria (modelo y grafo episódico). Sin estado conversacional.
+//! Estado de inferencia compartido en memoria protegido por `BlackwallGate`.
+//! Prohibida la mutación directa de memoria fuera del ciclo transaccional del Blackwall.
 //! Menos de 180 líneas.
 
 use std::path::Path;
 use std::sync::{Arc, RwLock};
-use relic_cli::knowledge::load_default_knowledge;
-use relic_core::{EpisodicMemory, RelicConfig, RelicModel, SafetensorsLoader};
+use relic_blackwall::BlackwallGate;
+use relic_core::{RelicConfig, RelicModel, SafetensorsLoader};
 use relic_tokenizer::{BpeTokenizer, Vocab};
 
 #[derive(Clone)]
@@ -14,15 +15,14 @@ pub struct ServerState {
     pub config: RelicConfig,
     pub model: Option<Arc<RelicModel>>,
     pub tokenizer: Option<Arc<BpeTokenizer>>,
-    pub memory: Arc<RwLock<EpisodicMemory>>,
+    pub blackwall: Arc<RwLock<BlackwallGate>>,
     pub weights_loaded: bool,
 }
 
 impl ServerState {
     pub fn new() -> Self {
         let config = RelicConfig::default();
-        let mut memory = EpisodicMemory::new();
-        load_default_knowledge(&mut memory);
+        let blackwall = BlackwallGate::with_genesis();
 
         let weights_path = Path::new("artifacts/weights/relic_10m_fp16.safetensors");
         let (model, weights_loaded) = if weights_path.exists() {
@@ -51,8 +51,14 @@ impl ServerState {
             config,
             model,
             tokenizer,
-            memory: Arc::new(RwLock::new(memory)),
+            blackwall: Arc::new(RwLock::new(blackwall)),
             weights_loaded,
         }
+    }
+}
+
+impl Default for ServerState {
+    fn default() -> Self {
+        Self::new()
     }
 }

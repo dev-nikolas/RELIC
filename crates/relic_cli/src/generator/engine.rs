@@ -34,8 +34,8 @@ pub fn generate_sample(seed: u64, level: CurriculumLevel, split: DatasetSplit, i
     let a_num = rng.gen_range(2, 30);
     let b_num = rng.gen_range(1, 15);
     let noun = NOUN_UNITS[(rng.next_u64() as usize) % NOUN_UNITS.len()];
-    let use_word_a = (rng.next_u64() % 3) == 0;
-    let use_word_b = (rng.next_u64() % 3) == 0;
+    let use_word_a = rng.next_u64().is_multiple_of(3);
+    let use_word_b = rng.next_u64().is_multiple_of(3);
 
     let a_str = if use_word_a {
         num_to_text(a_num).unwrap_or_else(|| a_num.to_string())

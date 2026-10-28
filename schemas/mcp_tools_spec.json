@@ -2,57 +2,35 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://relic.dev/schemas/mcp_tools_spec.json",
   "title": "RELIC_MCP_Tools_Specification",
-  "description": "Especificación de herramientas del Servidor MCP de RELIC conforme a la especificación Streamable HTTP y stdio (revisión stateless 2026-07-28 / Streamable HTTP superseding legacy HTTP+SSE).",
+  "description": "Especificación de las 8 herramientas expuestas por `relic_mcp` bajo custodia de `BlackwallGate` (JSON-RPC 2.0 sobre stdio, revisión 2025-03-26).",
   "type": "object",
-  "required": ["protocol_version", "supported_transports", "tools"],
+  "required": ["protocol_version", "tools"],
   "properties": {
     "protocol_version": {
       "type": "string",
-      "description": "Versión del protocolo MCP (e.g. '2026-07-28' o compatibilidad '2025-03-26')."
-    },
-    "supported_transports": {
-      "type": "array",
-      "items": {
-        "type": "string",
-        "enum": ["stdio", "streamable_http"]
-      }
+      "const": "2025-03-26"
     },
     "tools": {
       "type": "array",
       "items": {
-        "$ref": "#/$defs/ToolDefinition"
-      }
-    }
-  },
-  "$defs": {
-    "ToolDefinition": {
-      "type": "object",
-      "required": ["name", "description", "inputSchema", "outputSchema", "is_idempotent", "timeout_ms"],
-      "properties": {
-        "name": {
-          "type": "string",
-          "pattern": "^[a-z0-9_]{3,32}$"
-        },
-        "description": {
-          "type": "string"
-        },
-        "is_idempotent": {
-          "type": "boolean"
-        },
-        "timeout_ms": {
-          "type": "integer",
-          "minimum": 10,
-          "maximum": 30000
-        },
-        "permission_level": {
-          "type": "string",
-          "enum": ["READ_ONLY", "EPISODIC_WRITE", "SANDBOX_EXECUTE"]
-        },
-        "inputSchema": {
-          "type": "object"
-        },
-        "outputSchema": {
-          "type": "object"
+        "type": "object",
+        "required": ["name", "description", "inputSchema"],
+        "properties": {
+          "name": {
+            "type": "string",
+            "enum": [
+              "relic_interpret",
+              "relic_verify",
+              "relic_retrieve",
+              "relic_propose",
+              "relic_rollback",
+              "relic_consolidate",
+              "relic_activate",
+              "relic_diff"
+            ]
+          },
+          "description": { "type": "string" },
+          "inputSchema": { "type": "object" }
         }
       }
     }

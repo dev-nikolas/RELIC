@@ -26,11 +26,16 @@ fn test_mcp_tools_list() {
     let resp: Value = serde_json::from_str(&resp_str).unwrap();
 
     let tools = resp["result"]["tools"].as_array().expect("Lista de herramientas");
-    assert_eq!(tools.len(), 3);
+    assert_eq!(tools.len(), 8);
     let names: Vec<&str> = tools.iter().map(|t| t["name"].as_str().unwrap()).collect();
     assert!(names.contains(&"relic_interpret"));
     assert!(names.contains(&"relic_verify"));
     assert!(names.contains(&"relic_retrieve"));
+    assert!(names.contains(&"relic_propose"));
+    assert!(names.contains(&"relic_rollback"));
+    assert!(names.contains(&"relic_consolidate"));
+    assert!(names.contains(&"relic_activate"));
+    assert!(names.contains(&"relic_diff"));
 }
 
 #[test]
@@ -98,8 +103,12 @@ fn test_mcp_tool_verify_valid_and_invalid() {
 #[test]
 fn test_mcp_tool_retrieve_and_errors() {
     let mut server = McpServer::new();
-    // Insertar un hecho en memoria episódica
-    server.memory.insert_edge("Bogotá", "Colombia");
+    // Proponer un hecho verificable a través de la compuerta Blackwall
+    let outcome = server.blackwall.propose_mutation(
+        relic_lexicon::LexiconPayload::graph_fact("Bogotá", "ubicada_en", "Colombia"),
+        1000,
+    );
+    assert!(matches!(outcome, relic_blackwall::TransactionOutcome::Committed { .. }));
 
     let req_ret = r#"{"jsonrpc":"2.0","id":7,"method":"tools/call","params":{"name":"relic_retrieve","arguments":{"entity":"Bogotá"}}}"#;
     let resp_ret: Value = serde_json::from_str(&server.handle_line(req_ret).unwrap()).unwrap();
@@ -139,11 +148,54 @@ fn test_mcp_giant_input_rejected() {
 
 #[test]
 fn test_mcp_query_timeout_rejected() {
-    let mut server = McpServer::with_timeout(std::time::Duration::from_millis(100));
-    let req = r#"{"jsonrpc":"2.0","id":99,"method":"tools/call","params":{"name":"relic_interpret","arguments":{"text":"__TEST_SLOW_QUERY__ suma 2 y 2"}}}"#;
+    let mut server = McpServer::with_timeout(std::time::Duration::ZERO);
+    let req = r#"{"jsonrpc":"2.0","id":99,"method":"tools/call","params":{"name":"relic_interpret","arguments":{"text":"suma 2 y 2"}}}"#;
     let resp_str = server.handle_line(req).expect("Debe retornar error de timeout");
     let resp: Value = serde_json::from_str(&resp_str).unwrap();
     assert_eq!(resp["error"]["code"], -32000);
     assert!(resp["error"]["message"].as_str().unwrap().contains("timeout"));
+}
+
+#[test]
+fn test_mcp_blackwall_tools_end_to_end() {
+    let mut server = McpServer::new();
+
+    // 1. relic_propose
+    let req_prop = json!({
+        "jsonrpc": "2.0", "id": 20, "method": "tools/call",
+        "params": {
+            "name": "relic_propose",
+            "arguments": {
+                "payload": { "kind": "op_alias", "alias_word": "embolatan", "target_op": "Subtract" },
+                "timestamp_ms": 100
+            }
+        }
+    }).to_string();
+    let resp_prop: Value = serde_json::from_str(&server.handle_line(&req_prop).unwrap()).unwrap();
+    assert!(resp_prop["result"]["content"][0]["text"].as_str().unwrap().contains("Committed"));
+
+    // 2. relic_diff
+    let req_diff = json!({
+        "jsonrpc": "2.0", "id": 21, "method": "tools/call",
+        "params": { "name": "relic_diff", "arguments": { "v_from": 13, "v_to": 14 } }
+    }).to_string();
+    let resp_diff: Value = serde_json::from_str(&server.handle_line(&req_diff).unwrap()).unwrap();
+    assert!(resp_diff["result"]["content"][0]["text"].as_str().unwrap().contains("flowchart LR"));
+
+    // 3. relic_activate
+    let req_act = json!({
+        "jsonrpc": "2.0", "id": 22, "method": "tools/call",
+        "params": { "name": "relic_activate", "arguments": { "seeds": ["Madrid"], "gamma": 0.8, "steps": 1 } }
+    }).to_string();
+    let resp_act: Value = serde_json::from_str(&server.handle_line(&req_act).unwrap()).unwrap();
+    assert!(resp_act["result"]["content"][0]["text"].as_str().unwrap().contains("Ambiguous"));
+
+    // 4. relic_rollback
+    let req_rb = json!({
+        "jsonrpc": "2.0", "id": 23, "method": "tools/call",
+        "params": { "name": "relic_rollback", "arguments": { "target_version": 13, "reason": "test" } }
+    }).to_string();
+    let resp_rb: Value = serde_json::from_str(&server.handle_line(&req_rb).unwrap()).unwrap();
+    assert!(resp_rb["result"]["content"][0]["text"].as_str().unwrap().contains("RolledBack"));
 }
 

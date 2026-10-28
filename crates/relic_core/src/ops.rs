@@ -22,12 +22,10 @@ pub fn vec_dot(a: &[f32], b: &[f32]) -> f32 {
     let mut sum2 = 0.0f32;
     let mut sum3 = 0.0f32;
 
-    let chunks_a = a.chunks_exact(4);
-    let chunks_b = b.chunks_exact(4);
-    let rem_a = chunks_a.remainder();
-    let rem_b = chunks_b.remainder();
+    let (chunks_a, rem_a) = a.as_chunks::<4>();
+    let (chunks_b, rem_b) = b.as_chunks::<4>();
 
-    for (ca, cb) in chunks_a.zip(chunks_b) {
+    for (ca, cb) in chunks_a.iter().zip(chunks_b.iter()) {
         sum0 += ca[0] * cb[0];
         sum1 += ca[1] * cb[1];
         sum2 += ca[2] * cb[2];
@@ -48,10 +46,10 @@ pub fn linear_forward(out: &mut [f32], x: &[f32], weight: &[f32], in_dim: usize,
     debug_assert_eq!(out.len(), out_dim);
     debug_assert_eq!(weight.len(), out_dim * in_dim);
 
-    for o in 0..out_dim {
+    for (o, item) in out.iter_mut().enumerate().take(out_dim) {
         let row_start = o * in_dim;
         let row = &weight[row_start..row_start + in_dim];
-        out[o] = vec_dot(x, row);
+        *item = vec_dot(x, row);
     }
 }
 

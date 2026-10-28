@@ -53,4 +53,6 @@ fn test_regression_known_failures_dataset() {
     println!("Total evaluados: {} | Pasaron: {} | Fallos conocidos pendientes de generalización: {}",
         total, passed, total - passed);
     println!("============================================================\n");
+
+    assert_eq!(passed, total, "Casos fallidos en known_failures: {} de {}", total - passed, total);
 }

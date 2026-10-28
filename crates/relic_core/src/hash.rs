@@ -1,4 +1,5 @@
 //! SHA-256 estándar puro sin dependencias externas (FIPS 180-4).
+//! Compartido entre `relic_core`, `relic_lexicon`, `relic_blackwall` y `relic_cli`.
 //! Menos de 180 líneas.
 
 const K: [u32; 64] = [
@@ -12,6 +13,7 @@ const K: [u32; 64] = [
     0x748f82ee, 0x78a5636f, 0x84c87814, 0x8cc70208, 0x90befffa, 0xa4506ceb, 0xbef9a3f7, 0xc67178f2,
 ];
 
+#[derive(Debug, Clone)]
 pub struct Sha256 {
     h: [u32; 8],
     len: u64,
@@ -19,10 +21,19 @@ pub struct Sha256 {
     buf_len: usize,
 }
 
+impl Default for Sha256 {
+    fn default() -> Self {
+        Self::new()
+    }
+}
+
 impl Sha256 {
     pub fn new() -> Self {
         Self {
-            h: [0x6a09e667, 0xbb67ae85, 0x3c6ef372, 0xa54ff53a, 0x510e527f, 0x9b05688c, 0x1f83d9ab, 0x5be0cd19],
+            h: [
+                0x6a09e667, 0xbb67ae85, 0x3c6ef372, 0xa54ff53a,
+                0x510e527f, 0x9b05688c, 0x1f83d9ab, 0x5be0cd19,
+            ],
             len: 0,
             buf: [0; 64],
             buf_len: 0,
@@ -34,7 +45,8 @@ impl Sha256 {
         let mut offset = 0;
         while offset < data.len() {
             let to_copy = (64 - self.buf_len).min(data.len() - offset);
-            self.buf[self.buf_len..self.buf_len + to_copy].copy_from_slice(&data[offset..offset + to_copy]);
+            self.buf[self.buf_len..self.buf_len + to_copy]
+                .copy_from_slice(&data[offset..offset + to_copy]);
             self.buf_len += to_copy;
             offset += to_copy;
             if self.buf_len == 64 {
@@ -49,26 +61,30 @@ impl Sha256 {
         self.buf[self.buf_len] = 0x80;
         self.buf_len += 1;
         if self.buf_len > 56 {
-            for i in self.buf_len..64 { self.buf[i] = 0; }
+            for i in self.buf_len..64 {
+                self.buf[i] = 0;
+            }
             self.process_block();
             self.buf_len = 0;
         }
-        for i in self.buf_len..56 { self.buf[i] = 0; }
+        for i in self.buf_len..56 {
+            self.buf[i] = 0;
+        }
         self.buf[56..64].copy_from_slice(&bit_len.to_be_bytes());
         self.process_block();
 
         let mut out = String::with_capacity(64);
         for val in self.h {
-            out.push_str(&format!("{:08x}", val));
+            out.push_str(&format!("{val:08x}"));
         }
         out
     }
 
     fn process_block(&mut self) {
         let mut w = [0u32; 64];
-        for i in 0..16 {
+        for (i, item) in w.iter_mut().enumerate().take(16) {
             let chunk: [u8; 4] = self.buf[i * 4..i * 4 + 4].try_into().unwrap();
-            w[i] = u32::from_be_bytes(chunk);
+            *item = u32::from_be_bytes(chunk);
         }
         for i in 16..64 {
             let s0 = w[i - 15].rotate_right(7) ^ w[i - 15].rotate_right(18) ^ (w[i - 15] >> 3);
@@ -79,16 +95,35 @@ impl Sha256 {
         for i in 0..64 {
             let s1 = e.rotate_right(6) ^ e.rotate_right(11) ^ e.rotate_right(25);
             let ch = (e & f) ^ ((!e) & g);
-            let temp1 = h_val.wrapping_add(s1).wrapping_add(ch).wrapping_add(K[i]).wrapping_add(w[i]);
+            let temp1 = h_val
+                .wrapping_add(s1)
+                .wrapping_add(ch)
+                .wrapping_add(K[i])
+                .wrapping_add(w[i]);
             let s0 = a.rotate_right(2) ^ a.rotate_right(13) ^ a.rotate_right(22);
             let maj = (a & b) ^ (a & c) ^ (b & c);
             let temp2 = s0.wrapping_add(maj);
-            h_val = g; g = f; f = e; e = d.wrapping_add(temp1);
-            d = c; c = b; b = a; a = temp1.wrapping_add(temp2);
+
+            h_val = g;
+            g = f;
+            f = e;
+            e = d.wrapping_add(temp1);
+            d = c;
+            c = b;
+            b = a;
+            a = temp1.wrapping_add(temp2);
         }
-        self.h[0] = self.h[0].wrapping_add(a); self.h[1] = self.h[1].wrapping_add(b);
-        self.h[2] = self.h[2].wrapping_add(c); self.h[3] = self.h[3].wrapping_add(d);
-        self.h[4] = self.h[4].wrapping_add(e); self.h[5] = self.h[5].wrapping_add(f);
-        self.h[6] = self.h[6].wrapping_add(g); self.h[7] = self.h[7].wrapping_add(h_val);
+        let next = [a, b, c, d, e, f, g, h_val];
+        for (idx, val) in next.iter().enumerate() {
+            self.h[idx] = self.h[idx].wrapping_add(*val);
+        }
     }
 }
+
+/// Calcula el hash SHA-256 hexadecimal (64 caracteres en minúscula) de un slice de bytes.
+pub fn sha256_hex(data: &[u8]) -> String {
+    let mut hasher = Sha256::new();
+    hasher.update(data);
+    hasher.finalize_hex()
+}
+

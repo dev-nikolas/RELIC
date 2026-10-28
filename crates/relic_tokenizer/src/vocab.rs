@@ -101,4 +101,16 @@ impl Vocab {
     pub fn is_empty(&self) -> bool {
         self.token_to_id.is_empty()
     }
+
+    /// Comprueba si un token corresponde al delimitador de fin de secuencia (EOS).
+    pub fn is_eos(&self, token_id: u32) -> bool {
+        if self.eos_id == Some(token_id) {
+            return true;
+        }
+        if let Some(tok) = self.id_to_token.get(&token_id) {
+            tok == "<|eos|>" || tok == "<|endoftext|>" || tok == "endoftext"
+        } else {
+            false
+        }
+    }
 }

@@ -1,227 +1,118 @@
-# RELIC — Núcleo cognitivo local y verificable en Rust
+# RELIC — Motor Neuro-Simbólico Determinista y Verificable en Rust
 
 [![Rust 1.80+](https://img.shields.io/badge/Rust-1.80%2B-orange.svg?style=flat-square&logo=rust)](https://www.rust-lang.org/)
 [![License: AGPL v3](https://img.shields.io/badge/License-AGPL_v3-blue.svg?style=flat-square)](LICENSE)
 [![CI](https://img.shields.io/badge/CI-Windows%20%7C%20Linux-brightgreen.svg?style=flat-square&logo=githubactions)](.github/workflows/ci.yml)
 
-> Un runtime pequeño, local y sin Python que combina un modelo de lenguaje compacto con un motor de razonamiento **exacto y verificable**. Está pensado para correr en equipos modestos y como base de un experimento más grande: un sistema con memoria asociativa, personalidad estable y capacidad de adaptarse a sus propios errores.
+**RELIC** es un motor de inferencia cognitivo y neuro-simbólico en Rust nativo, diseñado para entornos **Edge / Offline-First**. Opera bajo el ciclo transaccional estricto:
 
-[Hoja de ruta e investigación](IMPLEMENTACIONES.md) · [Guía de contribución](CONTRIBUTING.md) · [Licencia](LICENSE)
+$$\text{Proponer (Sandbox)} \longrightarrow \text{Verificar (Oráculo + Regresión)} \longrightarrow \text{Adoptar (Commit SHA-256) o Revertir (Rollback)}$$
 
-<!-- TODO: agregar aquí un GIF o captura del front conectado al back -->
-
----
-
-## La idea
-
-Un LLM convencional aprende a **predecir la siguiente palabra**. Eso lo hace fluido, pero también aproximado: responde lo que *suena* bien, no necesariamente lo que *es* correcto (un modelo chico puede contestar "arquitecto" a "¿cuánto es 1+1?").
-
-RELIC separa dos cosas que normalmente van mezcladas:
-
-1. **Lenguaje:** un Transformer compacto (10M de parámetros) que interpreta y genera texto.
-2. **Razonamiento:** un motor determinista que resuelve grafos, reglas y aritmética de forma exacta, sobre una representación intermedia tipada llamada **RIR**.
-
-Cuando la consulta es exacta, la responde el motor, no la red neuronal. Cuando no hay información suficiente, el sistema lo dice en vez de inventar.
+[Hoja de ruta e investigación (`IMPLEMENTACIONES.md`)](IMPLEMENTACIONES.md) · [Arquitectura Técnica (`docs/ARCHITECTURE.md`)](docs/ARCHITECTURE.md) · [Guía de contribución](CONTRIBUTING.md) · [Licencia](LICENSE)
 
 ---
 
-## Hacia dónde va
+## 1. Propósito y Filosofía de Diseño
 
-RELIC es también un laboratorio para una hipótesis: **un sistema compacto puede volverse más capaz acumulando experiencia, no solo escalando parámetros.** Las líneas de trabajo (detalladas en [`IMPLEMENTACIONES.md`](IMPLEMENTACIONES.md)):
+Un LLM autorregresivo convencional aproxima la siguiente palabra por verosimilitud estadística: puede inventar rutas inexistentes, fallar en aritmética elemental o corromper su comportamiento previo al intentar aprender un término nuevo.
 
-- **Memoria asociativa activa:** el conocimiento vive en disco como un grafo de recuerdos; en RAM solo está la cadena que se está recorriendo. Recordar y ejecutar son el mismo movimiento.
-- **Cicatrización (rueda de Mahoraga):** cada fallo se registra, se corrige y se vuelve una prueba permanente. Si un cambio rompe algo anterior, se revierte.
-- **Personalidad como sesgo estable:** una orientación base que pondera qué camino seguir, formada por los primeros conocimientos y limitada por un núcleo inmutable.
-- **Mundo controlado:** aprender lenguaje anclado a acciones y objetos en un entorno pequeño, por etapas.
+**RELIC resuelve cuatro problemas críticos de ingeniería:**
 
-> Estas líneas son **hipótesis de diseño en desarrollo**, no resultados demostrados. El estado real de cada componente está en la tabla siguiente.
-
----
-
-## Estado actual
-
-| Componente | Estado | Notas |
-| :--- | :---: | :--- |
-| Transformer 10M en Rust (RMSNorm, RoPE, QK-Norm, GQA, SwiGLU, KV-cache) | Implementado | `relic_core` |
-| Tokenizador BPE (8.192 tokens) | Implementado | `relic_tokenizer` |
-| Carga de pesos Safetensors vía `memmap2` | Implementado | Pesos pendientes de publicar |
-| Motor aritmético determinista | Implementado | Ruta directa desde el CLI (`query`) |
-| RIR + motor de razonamiento (BFS / reglas) | Implementado | Pruebas de conformidad en Rust y Python |
-| Memoria episódica (grafo con hashes) | Implementado | Sin pesos en aristas ni persistencia aún |
-| Transferencia entre dominios (grafos de ciudades ↔ dependencias de crates) | Prueba de concepto | 5 pares, 10 consultas |
-| Núcleo recurrente H1 | Experimental | Resultados mixtos, ver [Limitaciones](#limitaciones-conocidas) |
-| Compilador lenguaje natural → RIR aprendido | En desarrollo | Hoy lo cubre un parser por reglas |
-| Memoria asociativa con activación propagada | Planificado | Fase 1 de la hoja de ruta |
-| Ciclo de cicatrización y rollback automático | Planificado | Fase 2 |
-| Personalidad y núcleo inmutable | Planificado | Fase 3 |
-| Front y back de demostración | Hecho, por conectar | <!-- TODO: enlace al repo --> |
+1. **Cero Alucinaciones Aritméticas y Relacionales:** Las operaciones numéricas (incluyendo fracciones verbales `"la mitad de"`, multiplicadores `"el triple de"`, porcentajes `"20% de 150"`, variaciones `"200 más el 15%"` y reparto con resto), las consultas de alcanzabilidad en grafos (`BFS` con restricciones `via`/`avoid`) y los órdenes transitivos (`Kahn` con detección de ciclos) son ejecutados por un **Núcleo Inmutable** determinista sobre una representación intermedia tipada (**RIR v1**).
+2. **Aprendizaje Instantáneo (*One-Shot*) sin Olvido Catastrófico:** A través de `relic_lexicon` y `relic_blackwall`, el sistema aprende jerga de usuario (`OpAlias`, `PhraseMacro`), alias de entidades (`EntityAlias`) y hechos relacionales (`GraphFact`) en tiempo real. Antes de adoptar cualquier cambio, `BlackwallGate` clona un Sandbox efímero en RAM y ejecuta toda la batería de regresión canónica y de usuario; si un solo caso falla, la mutación es rechazada.
+3. **Bitácora Append-Only con Hash-Chain SHA-256 y Rollback sin Destrucción:** Cada cambio adoptado se sella con SHA-256 (FIPS 180-4 puro en Rust) encadenado desde el bloque génesis (`0000...`). Los rollbacks no borran líneas del archivo `.jsonl`: añaden una cicatriz (`EntryStatus::Reverted`) que restaura la proyección en RAM a una versión anterior conservando la trazabilidad histórica e inspeccionable vía `diff_versions` (exportable a Mermaid y Graphviz DOT).
+4. **Abstención Matemática Honesta por Incertidumbre o Entropía:** Cuando falta un operando, una entidad no existe, dos alias colisionan o la distribución de **Activación Propagada (`propagate_activation`)** supera el umbral de entropía de Shannon $H = -\sum p_i \log_2 p_i$ (o presenta empate en el tope), RELIC emite una abstención formal (`INCOMPLETE`, `AMBIGUOUS` o `INVALID`) acompañada de la traza exacta.
 
 ---
 
-## Arquitectura
+## 2. Mapa Exacto del Workspace (Los 7 Crates)
 
+| Crate | Responsabilidad Exacta | Primitivas Clave |
+| :--- | :--- | :--- |
+| **`relic_core`** | Núcleo inmutable de cálculo, grafos, activación propagada, validación RIR v1, SHA-256 y Transformer 10M. | `ArithmeticPlan`, `ArithmeticReduction`, `EpisodicMemory`, `ReasoningEngine`, `propagate_activation`, `compute_shannon_entropy`, `RirDocumentV1`, `Sha256`, `RelicModel` |
+| **`relic_lexicon`** | Engrama versionado append-only en JSONL con Hash-Chain SHA-256, semilla génesis, consolidación ("Sueño") y motor de Diff entre versiones. | `LogEntry`, `LexiconPayload`, `EngramStore`, `LexiconView`, `compute_consolidation_candidate`, `diff_versions`, `to_mermaid_diff`, `to_dot_diff` |
+| **`relic_blackwall`** | Frontera transaccional Sandbox/Núcleo. Bloquea escrituras directas, valida el Oráculo de palabras reservadas y ejecuta la suite de regresión y fidelidad. | `BlackwallGate`, `TransactionOutcome`, `validate_proposal_oracle`, `RESERVED_CORE_TOKENS`, `run_regression_suite`, `compute_consolidation_fidelity` |
+| **`relic_tokenizer`** | Tokenizador BPE reversible a nivel de byte (vocabulario de 8.192 tokens) sin dependencias externas. | `BpeTokenizer`, `Vocab`, `ByteLevelEncoder` |
+| **`relic_cli`** | Despachador sintáctico-estructural sin mutación destructiva, evaluador Shunting-Yard con traza RPN y binario CLI. Herramientas offline aisladas bajo feature `offline-tools`. | `parse_dispatch_intent_with_lexicon`, `normalize_query_with_lexicon`, `evaluate_math_tokens_with_reductions`, `answer_intent` |
+| **`relic_server`** | Servidor HTTP/SSE ultraliviano en proceso (límite 16 KB, timeout configurable) con endpoints de consulta y compuerta Blackwall. | `ServerState`, `execute_query_with_trace`, `process_query_in_process`, `process_blackwall_route` |
+| **`relic_mcp`** | Servidor JSON-RPC 2.0 sobre `stdio` (especificación MCP `2025-03-26`) que expone 8 herramientas verificadas bajo `BlackwallGate`. | `McpServer`, `relic_interpret`, `relic_verify`, `relic_retrieve`, `relic_propose`, `relic_rollback`, `relic_consolidate`, `relic_activate`, `relic_diff` |
+
+---
+
+## 3. Arquitectura Interna
+
+### 3.1 Flujo de Evaluación de Consultas
 ```mermaid
-graph TD
-    U([Usuario]) --> L[Mente: lenguaje<br/>parser y modelo compacto]
-    L -->|compila a RIR| E[Mente: evaluación<br/>VALID / INCOMPLETE / INVALID]
-    E --> M[Memoria episódica<br/>hechos y entidades]
-    E --> R[Razonamiento exacto<br/>BFS, reglas, aritmética]
-    R --> E
-    E --> L
-    L --> O([Respuesta verificada])
+flowchart TD
+    Q["Consulta en Lenguaje Natural"] --> D["Despachador (relic_cli::dispatch)"]
+    D -->|"Sin mutar 'más' fuera de números"| L["Vista Activa (relic_lexicon::LexiconView)"]
+    L -->|"Aritmética / Inventario / Proporciones"| M["Shunting-Yard + Reducciones RPN (math.rs)"]
+    L -->|"Alcanzabilidad (via / avoid)"| G["BFS con Restricciones (ReasoningEngine)"]
+    L -->|"Comparación Transitiva"| K["Orden Topológico Kahn + Ciclos (TemporalGraph)"]
+    L -->|"Asociación Conceptual"| A["Spreading Activation + Entropía H"]
+    M & G & K --> R["Validación Semántica RIR v1 (relic_core::rir)"]
+    R -->|"VALID / INCOMPLETE / AMBIGUOUS / INVALID"| O["Respuesta Verificada + Traza Auditable"]
+    A --> O
 ```
 
-El diseño separa **quién decide** (la mente) de **quién ejecuta y se repara** (el cuerpo: módulos y runtime), con un **núcleo inmutable** que no se modifica a sí mismo (pruebas, reglas base, evaluador). Más detalle en [`IMPLEMENTACIONES.md`](IMPLEMENTACIONES.md).
-
-**Clasificación de cada consulta:**
-
-- `VALID`: entidades conocidas y restricciones resolubles. Se ejecuta el procedimiento exacto.
-- `INCOMPLETE`: falta información. Se pide aclaración sin inventar datos.
-- `INVALID`: entidad inexistente o contradicción. Se emite un rechazo explícito.
-
----
-
-## Especificaciones del modelo (RELIC-10M)
-
-| Parámetro | Valor |
-| :--- | :--- |
-| Parámetros | 10,031,328 (≈19 MB en fp16) |
-| Capas | 6 bloques decodificadores |
-| Dimensión oculta | 288 |
-| Atención | GQA 3:1 (6 Q / 2 KV, `d_k` = 48) con QK-RMSNorm |
-| Posiciones | RoPE (θ = 10.000, contexto máx. 512) |
-| MLP | SwiGLU (`d_ff` = 768) |
-| Vocabulario | BPE de 8.192 tokens |
-
----
-
-## Rendimiento
-
-Medido por el autor en una CPU Intel Core i5-9400F (referencia: PyTorch CPU en la misma máquina).
-
-| Motor | Decode | RAM (RSS) |
-| :--- | :---: | :---: |
-| PyTorch CPU | 125,9 tok/s | ~420 MB |
-| RELIC (Rust, KV-cache + FMA/AVX2) | 180,3 tok/s | < 50 MB |
-
-El CLI imprime el RSS al terminar cada ejecución, así que la cifra de memoria se puede comprobar localmente. <!-- TODO: publicar reports/benchmark_report.json y los pesos en Releases para que el benchmark sea reproducible -->
-
----
-
-## Inicio rápido
-
-### Arquitectura de Integración Gateway + Inferencia
-
-```text
-Frontend (React/Vite)  ──>  Backend Python (Gateway :4000)  ──>  relic_server (Inferencia Rust :5000)
-    [Sin cambios]                [Historial y Persistencia]            [Inferencia Sin Estado]
+### 3.2 Flujo Transaccional del Blackwall (`Propose -> Verify -> Commit / Rollback`)
+```mermaid
+flowchart LR
+    P["Propuesta (OpAlias / GraphFact /EntityAlias)"] --> OR["Paso 1: Oráculo Inmutable (oracle.rs)"]
+    OR -->|"Token reservado o auto-ciclo"| REJ1["RejectedByOracle"]
+    OR -->|"Invariantes OK"| SB["Paso 2: Clon Efímero en Sandbox RAM"]
+    SB --> REG["Suite de Regresión Canónica + Usuario"]
+    REG -->|"Falla >= 1 caso"| REJ2["RejectedByRegression"]
+    REG -->|"100% Verde"| COM["Paso 3: Sellado SHA-256 en JSONL + Actualización de Vista"]
 ```
 
-1. **Backend Python:** Actúa como gateway principal, administrando sesiones, historial de mensajes persistentes (`storage/conversations.json`) y coordinación modular.
-2. **relic_server (Rust):** Microservicio de inferencia sin estado. Expone `GET /health`, `POST /api/query` y `POST /api/generate` (SSE). Retorna `{ text, route, status, latency_ms, rss_mb }`.
-3. **Modo degradado automático:** `relic_server` arranca inmediatamente incluso si los pesos neuronales Safetensors no están presentes. En tal caso, `/health` reporta `mode: "degraded"` con `detector_ready: true`, respondiendo al 100% de efectividad por la ruta determinista para aritmética exacta, inventario y grafos de conocimiento.
+---
 
-### Ejecución Local y Prueba de Humo de Integración
+## 4. Guía Rápida de Uso y Verificación
 
+### 4.1 Compilación, Tests y Linter Estricto
 ```bash
-# 1. Compilar el servicio de inferencia nativo con un solo hilo
-cargo build --release -j 1 -p relic_server
-
-# 2. Ejecutar la prueba de humo completa (levanta ambos procesos y valida el ciclo completo)
-python tools/smoke_test_gateway.py
-
-# 3. O iniciar relic_server manualmente en el puerto 5000
-./target/release/relic_server 5000
-```
-
-> [!NOTE]
-> **Alcance del Servidor HTTP y Demostración Local:** Este servicio (`relic_server`) está diseñado estrictamente para **uso local, desarrollo y demostración interactiva**. Su justificación técnica se fundamenta en la **simplicidad de despliegue local** (un único binario autocontenido de cero dependencias externas de ejecución).
->
-> **Decisión Técnica (Servidor Síncrono vs. Axum/Tokio):** La inferencia local sobre CPU es una carga *CPU-bound monousuario*. Se seleccionó un servidor síncrono multi-hilo minimalista (`tiny_http` con pool de hilos) frente a un stack asíncrono como `axum` + `tokio` para minimizar el footprint de compilación (menos de 20 segundos de build y 4 dependencias frente a más de 80 crates transitivos pesados). Se compila localmente con `-j 1` para respetar equipos con RAM limitada y se delega la generación de binarios completos al pipeline de CI.
->
-> **Requerimientos para Producción:**
-> - **Autenticación y Autorización:** Tokens JWT / API Keys con control de acceso por usuario (RBAC).
-> - **Rate Limiting:** Control de concurrencia y estrangulamiento de peticiones por IP/cliente.
-> - **Seguridad en Transporte (TLS/HTTPS):** Terminación TLS nativa o delegada mediante reverse proxy (Nginx / Caddy).
-> - **Persistencia Transaccional:** Base de datos relacional (PostgreSQL / SQLite) con soporte ACID para conversaciones.
-> - **Colas y Timeouts Asíncronos:** Cola de trabajo (Redis / Celery) para inferencias largas con políticas de cancelación.
-> - **Observabilidad:** Métricas estructuradas en formato Prometheus / OpenTelemetry y logging centralizado.
-
-### CLI y Motor Local
-
-
-```bash
-# Pruebas del workspace
+# Ejecutar el 100% de las suites unitarias, de integración y bancos congelados
 cargo test --workspace
 
-# Aritmética y consultas exactas (no pasan por la red neuronal)
-cargo run -p relic_cli --release -- query "¿Cuánto es 1 + 1?"
-
-# Generación con el modelo (requiere los pesos .safetensors)
-cargo run -p relic_cli --release -- demo "El pingüino encontró una señal en Bogotá"
-
-# Benchmark
-cargo run -p relic_cli --release -- bench
+# Verificar cero warnings en todos los crates y targets
+cargo clippy --workspace --all-targets -- -D warnings
 ```
 
-### Entrenamiento y herramientas (Python 3.12)
-
+### 4.2 Uso desde el CLI (`relic_cli`)
 ```bash
-python tools/prepare_dataset.py                       # TinyStories, partición 95/5
-python tools/train_bpe.py                             # tokenizador BPE de 8.192 tokens
-python tools/train.py --dry-run --max-steps 100       # calibración de throughput
-python tools/export_safetensors.py                    # PyTorch -> Safetensors FP16
+# 1. Aritmética cotidiana y proporcional con traza RPN paso a paso
+cargo run -p relic_cli -- query "calcula el triple de (10 + 5)"
+# -> Entendí: 10 + 5 = 15; 15 * 3 = 45. El resultado es 45.
+
+cargo run -p relic_cli -- query "¿cuánto es 20% de 150?"
+# -> Entendí: 20 / 100 = 0.20; 0.20 * 150 = 30. El resultado es 30.
+
+# 2. Alcanzabilidad en grafos con restricciones
+cargo run -p relic_cli -- query "¿Puede Marta llegar a la biblioteca pasando por la estación?"
+# -> Sí, es posible alcanzar biblioteca desde Marta pasando por estación (Ruta: Marta -> estación -> biblioteca, 2 saltos).
+
+# 3. Activación propagada con entropía de Shannon
+cargo run -p relic_cli -- activate Madrid 0.8 1 1.5
+
+# 4. Exportar Diff de versiones del Engrama en formato Mermaid o DOT
+cargo run -p relic_cli -- diff 1 13 mermaid
 ```
 
-El entrenamiento pesado conviene hacerlo en una GPU externa (Colab o Kaggle) y traer solo los pesos finales.
+### 4.3 Endpoints HTTP (`relic_server`) y Herramientas MCP (`relic_mcp`)
+- **HTTP (`relic_server`):**
+  - `GET /health`: Estado del servidor y verificador determinista.
+  - `POST /api/query`: Ejecución de consulta con traza por etapas (`normalizacion`, `intencion`, `rir`, `validacion`, `ejecucion`).
+  - `POST /api/generate`: Flujo SSE de tokens.
+  - `POST /api/blackwall/propose`: Propone un `LexiconPayload` a través del `BlackwallGate`.
+  - `POST /api/blackwall/rollback`: Ejecuta `rollback_to(target_version)` con cicatriz append-only.
+  - `POST /api/blackwall/consolidate`: Ejecuta `consolidate_memory` validando la Fidelidad de Consolidación $F \in [0.0, 1.0]$.
+  - `POST /api/blackwall/activate`: Ejecuta `propagate_activation` devolviendo energías y entropía $H$.
+  - `POST /api/blackwall/diff`: Devuelve el `VersionDiff` estructurado junto con los grafos `mermaid` y `dot`.
+- **MCP (`relic_mcp` sobre `stdio`):**
+  - Herramientas registradas: `relic_interpret`, `relic_verify`, `relic_retrieve`, `relic_propose`, `relic_rollback`, `relic_consolidate`, `relic_activate`, `relic_diff`.
 
 ---
 
-## Estructura del repositorio
-
-```text
-RELIC/
-├── crates/
-│   ├── relic_core/        # Motor: modelo, operadores, RIR, razonamiento, memoria
-│   │   ├── src/model.rs, block.rs, attention.rs, mlp.rs, norm.rs, rotary.rs
-│   │   ├── src/ops.rs, kv_cache.rs, sampler.rs, loader.rs, config.rs
-│   │   ├── src/rir.rs               # Representación intermedia tipada
-│   │   ├── src/reasoning_engine.rs  # BFS y reglas
-│   │   ├── src/arithmetic.rs        # Aritmética determinista
-│   │   └── src/episodic_memory.rs   # Memoria de hechos y entidades
-│   ├── relic_tokenizer/   # BPE nativo
-│   └── relic_cli/         # CLI: query, demo, bench
-├── python/relic/          # Contrapartes en Python y pruebas de conformidad RIR
-├── tools/                 # Entrenamiento, datasets y benchmarks
-├── artifacts/             # Tokenizador y checkpoints de referencia
-├── IMPLEMENTACIONES.md    # Hoja de ruta y programa de investigación
-└── .github/workflows/     # CI Windows y Linux
-```
-
----
-
-## Limitaciones conocidas
-
-Se listan para que quien revise el proyecto sepa qué esperar:
-
-- **El modelo de lenguaje es muy pequeño.** Entrenado solo con TinyStories, no responde preguntas generales ni de aritmética: para eso existe el motor determinista.
-- **El puente lenguaje libre → RIR es el eslabón débil.** Hoy depende de un parser por reglas.
-- **El núcleo recurrente H1 no generaliza todavía de forma consistente.** En el checkpoint de referencia, la tarea de reglas queda en 10 % (en distribución) y 0 % (fuera de distribución); grafos, ~54 %.
-- **Los resultados de transferencia entre dominios provienen de 10 consultas.** Son una prueba de concepto, no evidencia estadística.
-- **Dependencias:** el motor no usa frameworks de ML ni Python, pero sí crates auxiliares (`memmap2`, `serde`, `thiserror`).
-
----
-
-## Contribuir
-
-Ver [`CONTRIBUTING.md`](CONTRIBUTING.md). Toda propuesta que cambie la arquitectura debe incluir pruebas que fallen antes y pasen después.
-
-## Licencia y Propiedad Intelectual
-
-Este proyecto, su arquitectura conceptual y su código fuente están protegidos y sujetos a términos estrictos de atribución y control de distribución:
-
-1. **Atribución Obligatoria del Mérito y la Idea:** Cualquier persona o entidad que use, investigue, cite o desarrolle obras basadas en RELIC **debe otorgar crédito directo, explícito e ineludible a Nicolás Pachón** sobre la idea original, la teoría de procedimiento, la arquitectura intermedia (RIR) y la implementación. Queda terminantemente prohibido atribuirse la autoría o mérito intelectual de estos conceptos o de su código.
-2. **Notificación Previa para Compartir o Distribuir:** No está permitido redistribuir, compartir públicamente, transferir a terceros ni desplegar en entornos externos este software o trabajos derivados **sin haber informado formalmente y por escrito con antelación al autor original (Nicolás Pachón)**.
-3. **Copyleft Fuerte (AGPLv3):** Complementariamente, se rige bajo la **GNU Affero General Public License v3.0 (AGPL-3.0)**, garantizando que el software permanezca libre de privatizaciones encubiertas en la nube o redes.
-
-Para consultar los términos legales detallados, ver [`LICENSE`](LICENSE).
+## 5. Licencia
+Distribuido bajo licencia **GNU Affero General Public License v3.0 (AGPL-3.0)**. Consulta [`LICENSE`](LICENSE) para el texto legal completo.

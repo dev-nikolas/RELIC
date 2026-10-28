@@ -7,7 +7,6 @@ pub mod templates_l02;
 pub mod templates_l03;
 pub mod templates;
 pub mod engine;
-pub mod sha256;
 pub mod export;
 
 pub use types::{CurriculumLevel, CurriculumSample, DatasetSplit};

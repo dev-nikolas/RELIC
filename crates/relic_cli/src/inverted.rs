@@ -1,10 +1,13 @@
 //! Extractor de clausulas invertidas para inventario (etapa 4).
+//!
 //! Patron general: cuantificacion inicial embebida en una NP precedida por
 //! preposicion ("de los/las/del ... N unidad(es) que <clausula relativa>")
 //! + operaciones en el segmento previo a la NP y/o posterior a la coma.
+//!
 //! Fallback de parse_inventory_problem: se invoca SOLO si el camino canónico
 //! fallo. No se inventan operaciones ni cantidades; lexicos ESPEJO del
 //! original (dispatch.rs:64-74, snapshot ff64fc2).
+//!
 //! Menos de 180 lineas.
 
 use relic_core::{ArithmeticOp, ArithmeticPlan};
@@ -36,7 +39,7 @@ struct Cuantifica {
 fn cuantificacion(texto_norm: &str, lower: &str) -> Option<Cuantifica> {
     for ancla in ["de los ", "de las ", "del "] {
         let Some(a) = lower.find(ancla) else { continue };
-        if a > 0 && !lower.as_bytes().get(a - 1).map_or(false, |c| *c == b' ') { continue; }
+        if a > 0 && !lower.as_bytes().get(a - 1).is_some_and(|c| *c == b' ') { continue; }
         let resto = &lower[a + ancla.len()..];
         let Some(q) = resto.find(" que ") else { continue };
         let np = &resto[..q];

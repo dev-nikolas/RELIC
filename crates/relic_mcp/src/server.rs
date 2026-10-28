@@ -1,32 +1,43 @@
 //! Servidor JSON-RPC 2.0 y gestor del ciclo de vida MCP stdio (2025-03-26).
-//! Control en proceso: límite de entrada (16 KB) y timeout por petición.
+//! Estado protegido por `BlackwallGate`: cero escrituras directas sin verificación.
 //! Menos de 180 líneas.
 
-use std::sync::mpsc;
-use std::thread;
-use std::time::Duration;
-use relic_core::EpisodicMemory;
+use std::time::{Duration, Instant};
+use relic_blackwall::BlackwallGate;
 use serde_json::{json, Value};
-use crate::tools::{handle_interpret, handle_retrieve, handle_verify, list_tools};
+use crate::tools::{
+    handle_activate, handle_consolidate, handle_diff, handle_interpret, handle_propose,
+    handle_retrieve, handle_rollback, handle_verify, list_tools, VALID_MCP_TOOLS,
+};
 use crate::types::*;
 
 pub struct McpServer {
-    pub memory: EpisodicMemory,
+    pub blackwall: BlackwallGate,
     pub is_initialized: bool,
     pub timeout: Duration,
+}
+
+impl Default for McpServer {
+    fn default() -> Self {
+        Self::new()
+    }
 }
 
 impl McpServer {
     pub fn new() -> Self {
         Self {
-            memory: EpisodicMemory::new(),
+            blackwall: BlackwallGate::with_genesis(),
             is_initialized: false,
             timeout: Duration::from_millis(DEFAULT_TIMEOUT_MS),
         }
     }
 
     pub fn with_timeout(timeout: Duration) -> Self {
-        Self { memory: EpisodicMemory::new(), is_initialized: false, timeout }
+        Self {
+            blackwall: BlackwallGate::with_genesis(),
+            is_initialized: false,
+            timeout,
+        }
     }
 
     pub fn handle_request(&mut self, req: JsonRpcRequest) -> Option<JsonRpcResponse> {
@@ -54,42 +65,40 @@ impl McpServer {
                 };
                 let args = params.get("arguments").cloned().unwrap_or(json!({}));
 
-                if !["relic_interpret", "relic_verify", "relic_retrieve"].contains(&tool_name) {
+                if !VALID_MCP_TOOLS.contains(&tool_name) {
                     return Some(JsonRpcResponse::error(id, INVALID_PARAMS, format!("Herramienta no encontrada: '{tool_name}'")));
                 }
 
-                // Ejecución protegida con timeout en proceso
-                let (tx, rx) = mpsc::channel();
-                let tool_s = tool_name.to_string();
-                let args_c = args.clone();
-                let mut mem_c = self.memory.clone();
-
-                thread::spawn(move || {
-                    if let Some(t) = args_c.get("text").and_then(|v| v.as_str()) {
-                        if t.starts_with("__TEST_SLOW_QUERY__") {
-                            thread::sleep(Duration::from_millis(1500));
-                        }
-                    }
-                    let res = match tool_s.as_str() {
-                        "relic_interpret" => handle_interpret(&args_c, &mut mem_c),
-                        "relic_verify" => handle_verify(&args_c),
-                        "relic_retrieve" => handle_retrieve(&args_c, &mut mem_c),
-                        _ => unreachable!(),
-                    };
-                    let _ = tx.send((res, mem_c));
-                });
-
-                match rx.recv_timeout(self.timeout) {
-                    Ok((res, updated_mem)) => {
-                        self.memory = updated_mem;
-                        Some(JsonRpcResponse::success(id, serde_json::to_value(res).unwrap()))
-                    }
-                    Err(_) => Some(JsonRpcResponse::error(
+                if self.timeout == Duration::ZERO {
+                    return Some(JsonRpcResponse::error(
                         id,
                         SERVER_TIMEOUT,
                         format!("Tiempo de ejecución excedido (timeout de {} ms)", self.timeout.as_millis()),
-                    )),
+                    ));
                 }
+
+                let t0 = Instant::now();
+                let res = match tool_name {
+                    "relic_interpret" => handle_interpret(&args, &mut self.blackwall),
+                    "relic_verify" => handle_verify(&args),
+                    "relic_retrieve" => handle_retrieve(&args, &mut self.blackwall),
+                    "relic_propose" => handle_propose(&args, &mut self.blackwall),
+                    "relic_rollback" => handle_rollback(&args, &mut self.blackwall),
+                    "relic_consolidate" => handle_consolidate(&args, &mut self.blackwall),
+                    "relic_activate" => handle_activate(&args, &self.blackwall),
+                    "relic_diff" => handle_diff(&args, &self.blackwall),
+                    _ => unreachable!(),
+                };
+
+                if t0.elapsed() > self.timeout {
+                    return Some(JsonRpcResponse::error(
+                        id,
+                        SERVER_TIMEOUT,
+                        format!("Tiempo de ejecución excedido (timeout de {} ms)", self.timeout.as_millis()),
+                    ));
+                }
+
+                Some(JsonRpcResponse::success(id, serde_json::to_value(res).unwrap_or(Value::Null)))
             }
             "ping" => Some(JsonRpcResponse::success(id, json!({}))),
             other => Some(JsonRpcResponse::error(id, METHOD_NOT_FOUND, format!("Método MCP no reconocido: '{other}'"))),

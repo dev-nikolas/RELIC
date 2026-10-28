@@ -17,7 +17,7 @@ pub const NOUN_UNITS: &[(&str, &str)] = &[
 /// Convierte enteros entre 0 y 99 a su representación textual exacta en español.
 /// No retorna None para ningún valor en el rango 0..=99.
 pub fn num_to_text(n: i64) -> Option<String> {
-    if n < 0 || n > 99 { return None; }
+    if !(0..=99).contains(&n) { return None; }
     let s = match n {
         0 => "cero", 1 => "uno", 2 => "dos", 3 => "tres", 4 => "cuatro",
         5 => "cinco", 6 => "seis", 7 => "siete", 8 => "ocho", 9 => "nueve",

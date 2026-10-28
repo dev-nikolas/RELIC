@@ -2,11 +2,12 @@
 //!
 //! Motor de razonamiento aritmético determinista y cuantitativo para RELIC.
 //! Ejecuta operaciones matemáticas con tipos nativos, comprobación de desbordamiento
-//! y soporte para inventarios de unidades (singular/plural).
+//! y soporte para inventarios de unidades (singular/plural) y trazas RPN exactas.
 
+use serde::{Deserialize, Serialize};
 use thiserror::Error;
 
-#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize)]
 pub enum ArithmeticOp {
     Add,
     Subtract,
@@ -26,11 +27,22 @@ pub enum ArithmeticError {
     InvalidNumber,
 }
 
+#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+pub struct ArithmeticReduction {
+    pub step_index: usize,
+    pub left: f64,
+    pub op: ArithmeticOp,
+    pub right: f64,
+    pub result: f64,
+}
+
 #[derive(Debug, Clone, PartialEq)]
 pub struct ArithmeticPlan {
     pub initial: f64,
     pub steps: Vec<(ArithmeticOp, f64)>,
     pub unit: Option<String>,
+    pub reductions: Vec<ArithmeticReduction>,
+    pub exact_division_note: Option<String>,
 }
 
 impl ArithmeticPlan {
@@ -39,6 +51,8 @@ impl ArithmeticPlan {
             initial,
             steps: Vec::new(),
             unit,
+            reductions: Vec::new(),
+            exact_division_note: None,
         }
     }
 
@@ -46,8 +60,27 @@ impl ArithmeticPlan {
         self.steps.push((op, val));
     }
 
+    pub fn add_reduction(&mut self, left: f64, op: ArithmeticOp, right: f64, result: f64) {
+        let step_index = self.reductions.len() + 1;
+        self.reductions.push(ArithmeticReduction {
+            step_index,
+            left,
+            op,
+            right,
+            result,
+        });
+    }
+
     /// Ejecuta el plan aritmético completo de forma determinista y segura.
     pub fn execute(&self) -> Result<f64, ArithmeticError> {
+        if !self.reductions.is_empty() {
+            let last = self.reductions.last().unwrap();
+            if last.result.is_nan() || last.result.is_infinite() {
+                return Err(ArithmeticError::InvalidNumber);
+            }
+            return Ok(last.result);
+        }
+
         let mut current = self.initial;
         if current.is_nan() || current.is_infinite() {
             return Err(ArithmeticError::InvalidNumber);
@@ -91,7 +124,6 @@ impl ArithmeticPlan {
 
         if let Some(ref u) = self.unit {
             let u_clean = u.trim();
-            // Concordancia singular/plural básica
             if (val - 1.0).abs() < 1e-6 && u_clean.ends_with('s') {
                 let singular = &u_clean[..u_clean.len() - 1];
                 format!("{} {}", num_str, singular)
@@ -106,17 +138,45 @@ impl ArithmeticPlan {
     /// Genera la representación textual de la fórmula interpretada para transparencia.
     pub fn format_formula(&self) -> String {
         let fmt_n = |n: f64| -> String {
-            if (n.fract()).abs() < 1e-6 { format!("{}", n as i64) } else { format!("{:.2}", n) }
+            if (n.fract()).abs() < 1e-6 {
+                format!("{}", n.round() as i64)
+            } else {
+                let s = format!("{:.2}", n);
+                s
+            }
         };
+        let op_sym = |op: ArithmeticOp| -> &'static str {
+            match op {
+                ArithmeticOp::Add => "+",
+                ArithmeticOp::Subtract => "-",
+                ArithmeticOp::Multiply => "*",
+                ArithmeticOp::Divide => "/",
+            }
+        };
+
+        if !self.reductions.is_empty() {
+            let parts: Vec<String> = self.reductions.iter().map(|r| {
+                format!("{} {} {} = {}", fmt_n(r.left), op_sym(r.op), fmt_n(r.right), fmt_n(r.result))
+            }).collect();
+            let base = parts.join("; ");
+            if let Some(ref note) = self.exact_division_note {
+                return format!("{base} ({note})");
+            }
+            return base;
+        }
+
         let mut s = fmt_n(self.initial);
         if let Some(ref u) = self.unit { s = format!("{} {}", s, u); }
         for &(op, val) in &self.steps {
-            let sym = match op { ArithmeticOp::Add => "+", ArithmeticOp::Subtract => "-", ArithmeticOp::Multiply => "*", ArithmeticOp::Divide => "/" };
+            let sym = op_sym(op);
             if let Some(ref u) = self.unit {
                 s.push_str(&format!(" {} {} {}", sym, fmt_n(val), u));
             } else {
                 s.push_str(&format!(" {} {}", sym, fmt_n(val)));
             }
+        }
+        if let Some(ref note) = self.exact_division_note {
+            s.push_str(&format!(" ({note})"));
         }
         s
     }

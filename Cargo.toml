@@ -1,6 +1,8 @@
 [workspace]
 members = [
     "crates/relic_core",
+    "crates/relic_lexicon",
+    "crates/relic_blackwall",
     "crates/relic_tokenizer",
     "crates/relic_cli",
     "crates/relic_server",

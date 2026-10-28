@@ -26,10 +26,9 @@ pub fn handle_generate_sse(prompt_text: &str, state: &ServerState) -> Vec<u8> {
             model.forward_decode_step(tid, pos, &mut kv_cache, &mut step_logits);
         }
 
-        let eos_id = tokenizer.vocab().eos_id;
         for _ in 0..48 {
             let next_token = Sampler::greedy(&step_logits);
-            if Some(next_token) == eos_id || next_token == 315 {
+            if tokenizer.vocab().is_eos(next_token) {
                 break;
             }
             let token_str = tokenizer.decode(&[next_token]).unwrap_or_default();

@@ -63,6 +63,8 @@ fn answer_arithmetic(plan: &ArithmeticPlan) -> Answer {
             let form = plan.format_formula();
             let msg = if plan.unit.is_some() {
                 format!("Entendí: {}. Ahora tienes {}.", form, fmt)
+            } else if form.contains('=') {
+                format!("Entendí: {}. El resultado es {}.", form, fmt)
             } else {
                 format!("Entendí: {} = {}. El resultado es {}.", form, fmt, fmt)
             };

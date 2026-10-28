@@ -48,11 +48,10 @@ pub fn handle_demo(prompt_text: &str) {
         model.forward_decode_step(tid, pos, &mut kv_cache, &mut step_logits);
     }
 
-    let eos_id = tokenizer.as_ref().and_then(|t| t.vocab().eos_id);
     let tokens_to_gen = 16;
     for _ in 0..tokens_to_gen {
         let next_token = Sampler::greedy(&step_logits);
-        if Some(next_token) == eos_id || next_token == 315 {
+        if tokenizer.as_ref().is_some_and(|tok| tok.vocab().is_eos(next_token)) {
             break;
         }
         token_ids.push(next_token);

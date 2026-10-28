@@ -1,90 +1,59 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://relic.dev/schemas/episodic_memory_log.json",
-  "title": "RELIC_Episodic_Memory_Entry_V2",
-  "description": "Formato de línea individual (JSONL) para la bitácora inmutable de sólo-añadir (Append-Only Log) con Hash-Chaining y autenticación HMAC-SHA256.",
+  "title": "RELIC_Engram_LogEntry_V1",
+  "description": "Esquema formal de cada línea en la bitácora append-only JSONL de `relic_lexicon` con encadenamiento SHA-256 (FIPS 180-4) desde GENESIS_PREV_HASH.",
   "type": "object",
   "required": [
-    "entry_id",
-    "timestamp_utc",
-    "prev_hash_sha256",
-    "fact_type",
-    "provenance",
-    "confidence",
-    "epistemic_status",
-    "entry_hash_sha256",
-    "hmac_sha256"
+    "version",
+    "timestamp_ms",
+    "prev_hash",
+    "entry_hash",
+    "status",
+    "payload"
   ],
   "properties": {
-    "entry_id": {
-      "type": "string",
-      "description": "Identificador único temporalmente ordenable (UUIDv7)."
+    "version": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Versión monotónica estrictamente secuencial (1..N)."
     },
-    "timestamp_utc": {
-      "type": "string",
-      "format": "date-time"
+    "timestamp_ms": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Marca temporal en milisegundos Unix (0 para la semilla génesis)."
     },
-    "prev_hash_sha256": {
+    "prev_hash": {
       "type": "string",
       "pattern": "^[a-f0-9]{64}$",
-      "description": "Hash SHA-256 de la línea anterior para garantizar inmutabilidad en cadena (hash-chaining). Para el bloque génesis, '0000...0000'."
+      "description": "Hash SHA-256 de la entrada anterior (64 ceros para v=1)."
     },
-    "fact_type": {
+    "entry_hash": {
       "type": "string",
-      "enum": ["DIRECTED_EDGE", "ATTRIBUTE_VALUE", "TEMPORAL_SEQUENCE", "INVALIDATION_MARKER"]
+      "pattern": "^[a-f0-9]{64}$",
+      "description": "Hash SHA-256 calculado sobre v|ts|prev|status|payload."
     },
-    "subject": {
-      "type": "string"
+    "status": {
+      "type": "string",
+      "enum": ["ConfirmedFact", "LexicalAlias", "Reverted", "ConsolidatedCheckpoint"]
     },
-    "predicate": {
-      "type": "string"
-    },
-    "object": {
-      "type": "string"
-    },
-    "metadata": {
+    "payload": {
       "type": "object",
+      "required": ["kind"],
       "properties": {
-        "unit": { "type": "string" },
-        "quantity": { "type": "number" },
-        "domain": { "type": "string" }
-      }
-    },
-    "provenance": {
-      "type": "object",
-      "required": ["source_kind", "source_ref"],
-      "properties": {
-        "source_kind": {
+        "kind": {
           "type": "string",
-          "enum": ["VERIFIED_ORACLE", "GROUND_TRUTH_DATASET", "AGENT_INFERENCE_UNCONFIRMED", "OPERATOR_OVERRIDE"]
-        },
-        "source_ref": { "type": "string" },
-        "episode_id": { "type": "string" },
-        "level_id": { "type": "string" }
+          "enum": [
+            "graph_fact",
+            "op_alias",
+            "phrase_macro",
+            "entity_alias",
+            "edge_reinforcement",
+            "consolidation_checkpoint",
+            "rollback"
+          ]
+        }
       }
-    },
-    "confidence": {
-      "type": "number",
-      "minimum": 0.0,
-      "maximum": 1.0
-    },
-    "epistemic_status": {
-      "type": "string",
-      "enum": ["CONFIRMED_FACT", "PROVISIONAL_HYPOTHESIS", "CONTRADICTED_ARCHIVED", "QUARANTINED"]
-    },
-    "supersedes_entry_id": {
-      "type": ["string", "null"],
-      "description": "Si este hecho invalida o actualiza uno anterior, ID del registro superado."
-    },
-    "entry_hash_sha256": {
-      "type": "string",
-      "pattern": "^[a-f0-9]{64}$",
-      "description": "Hash SHA-256 del contenido canónico de la entrada concatenado con prev_hash_sha256."
-    },
-    "hmac_sha256": {
-      "type": "string",
-      "pattern": "^[a-f0-9]{64}$",
-      "description": "Firma de autenticación HMAC-SHA256 computada con la clave privada simétrica del proceso confiable de RELIC."
     }
   }
 }

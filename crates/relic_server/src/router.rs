@@ -1,19 +1,21 @@
 //! # relic_server::router
 //!
-//! Despacho central de rutas HTTP y cabeceras CORS para RELIC.
+//! Despacho central de rutas HTTP y endpoints transaccionales del Blackwall.
 //! Límites en proceso: tamaño máximo de cuerpo (16 KB) y timeout de consulta (1000 ms).
 //! Menos de 180 líneas.
 
 use std::io::Read;
-use std::sync::mpsc;
-use std::thread;
-use std::time::Duration;
+use std::time::{Duration, Instant};
+use relic_lexicon::{to_dot_diff, to_mermaid_diff};
 use serde_json::{json, Value};
 use tiny_http::{Header, Request, Response, StatusCode};
 use crate::engine::execute_query_with_trace;
 use crate::generate::handle_generate_sse;
 use crate::state::ServerState;
-use crate::types::{HealthResponse, QueryRequest};
+use crate::types::{
+    ActivateRequest, ConsolidateRequest, DiffRequest, HealthResponse, ProposeMutationRequest,
+    QueryRequest, RollbackRequest,
+};
 
 pub const MAX_REQUEST_BODY_BYTES: u64 = 16 * 1024; // 16 KB
 pub const DEFAULT_QUERY_TIMEOUT_MS: u64 = 1000;
@@ -47,22 +49,72 @@ pub fn process_query_in_process(body_str: &str, state: &ServerState, timeout_ms:
     if body_str.len() as u64 > MAX_REQUEST_BODY_BYTES {
         return (413, json!({ "detail": "Error 413: El tamaño de la petición excede el límite de 16 KB.", "status": "PAYLOAD_TOO_LARGE" }));
     }
+    if timeout_ms == 0 {
+        return (504, json!({ "detail": "Error 504: Tiempo de ejecución excedido (timeout).", "status": "TIMEOUT" }));
+    }
     let req: QueryRequest = serde_json::from_str(body_str).unwrap_or_default();
-    let (tx, rx) = mpsc::channel();
-    let q_clone = req.query.clone();
-    let state_clone = state.clone();
+    let t0 = Instant::now();
+    let res = execute_query_with_trace(&req.query, state, req.enable_trace);
+    if t0.elapsed() > Duration::from_millis(timeout_ms) {
+        return (504, json!({ "detail": "Error 504: Tiempo de ejecución excedido (timeout).", "status": "TIMEOUT" }));
+    }
+    let val = serde_json::to_value(res).unwrap_or_else(|_| json!({ "status": "ERROR" }));
+    (200, val)
+}
 
-    thread::spawn(move || {
-        if q_clone.starts_with("__TEST_SLOW_QUERY__") {
-            thread::sleep(Duration::from_millis(1500));
+pub fn process_blackwall_route(path: &str, body_str: &str, state: &ServerState) -> (u16, Value) {
+    if body_str.len() as u64 > MAX_REQUEST_BODY_BYTES {
+        return (413, json!({ "detail": "Error 413: El tamaño de la petición excede el límite de 16 KB.", "status": "PAYLOAD_TOO_LARGE" }));
+    }
+    match path {
+        "/api/blackwall/propose" => {
+            let Ok(req) = serde_json::from_str::<ProposeMutationRequest>(body_str) else {
+                return (400, json!({ "detail": "JSON inválido para ProposeMutationRequest" }));
+            };
+            let mut gate = state.blackwall.write().unwrap();
+            let outcome = gate.propose_mutation(req.payload, req.timestamp_ms);
+            (200, json!({ "outcome": outcome, "current_version": gate.current_version(), "head_hash": gate.head_hash() }))
         }
-        let res = execute_query_with_trace(&q_clone, &state_clone, req.enable_trace);
-        let _ = tx.send(res);
-    });
-
-    match rx.recv_timeout(Duration::from_millis(timeout_ms)) {
-        Ok(res) => (200, serde_json::to_value(res).unwrap()),
-        Err(_) => (504, json!({ "detail": "Error 504: Tiempo de ejecución excedido (timeout).", "status": "TIMEOUT" })),
+        "/api/blackwall/rollback" => {
+            let Ok(req) = serde_json::from_str::<RollbackRequest>(body_str) else {
+                return (400, json!({ "detail": "JSON inválido para RollbackRequest" }));
+            };
+            let mut gate = state.blackwall.write().unwrap();
+            let outcome = gate.rollback_to(req.target_version, req.reason, req.timestamp_ms);
+            (200, json!({ "outcome": outcome, "current_version": gate.current_version(), "head_hash": gate.head_hash() }))
+        }
+        "/api/blackwall/consolidate" => {
+            let Ok(req) = serde_json::from_str::<ConsolidateRequest>(body_str) else {
+                return (400, json!({ "detail": "JSON inválido para ConsolidateRequest" }));
+            };
+            let mut gate = state.blackwall.write().unwrap();
+            let outcome = gate.consolidate_memory(req.min_weight_threshold, req.min_fidelity, req.timestamp_ms);
+            (200, json!({ "outcome": outcome, "current_version": gate.current_version(), "head_hash": gate.head_hash() }))
+        }
+        "/api/blackwall/activate" => {
+            let Ok(req) = serde_json::from_str::<ActivateRequest>(body_str) else {
+                return (400, json!({ "detail": "JSON inválido para ActivateRequest" }));
+            };
+            let seed_refs: Vec<&str> = req.seeds.iter().map(|s| s.as_str()).collect();
+            let gate = state.blackwall.read().unwrap();
+            let res = gate.propagate_activation(&seed_refs, req.gamma, req.steps, req.max_entropy_threshold);
+            (200, serde_json::to_value(res).unwrap_or_else(|_| json!({ "status": "ERROR" })))
+        }
+        "/api/blackwall/diff" => {
+            let Ok(req) = serde_json::from_str::<DiffRequest>(body_str) else {
+                return (400, json!({ "detail": "JSON inválido para DiffRequest" }));
+            };
+            let gate = state.blackwall.read().unwrap();
+            match gate.diff_versions(req.v_from, req.v_to) {
+                Ok(diff) => {
+                    let mermaid = to_mermaid_diff(&diff);
+                    let dot = to_dot_diff(&diff);
+                    (200, json!({ "diff": diff, "mermaid": mermaid, "dot": dot }))
+                }
+                Err(e) => (400, json!({ "detail": e.to_string(), "status": "INTEGRITY_ERROR" })),
+            }
+        }
+        _ => (404, json!({ "detail": "Ruta no encontrada" })),
     }
 }
 
@@ -91,7 +143,6 @@ pub fn handle_request(mut request: Request, state: &ServerState) {
             };
             send_json(request, 200, &res);
         }
-
         ("POST", "/api/query") => {
             let body = match read_body(&mut request) {
                 Ok(b) => b,
@@ -100,7 +151,6 @@ pub fn handle_request(mut request: Request, state: &ServerState) {
             let (status_code, val) = process_query_in_process(&body, state, DEFAULT_QUERY_TIMEOUT_MS);
             send_json(request, status_code, &val);
         }
-
         ("POST", "/api/generate") => {
             let body = match read_body(&mut request) {
                 Ok(b) => b,
@@ -114,7 +164,14 @@ pub fn handle_request(mut request: Request, state: &ServerState) {
             let resp = Response::new(StatusCode(200), headers, std::io::Cursor::new(sse_bytes), None, None);
             let _ = request.respond(resp);
         }
-
+        ("POST", p) if p.starts_with("/api/blackwall/") => {
+            let body = match read_body(&mut request) {
+                Ok(b) => b,
+                Err((code, val)) => { send_json(request, code, &val); return; }
+            };
+            let (status_code, val) = process_blackwall_route(p, &body, state);
+            send_json(request, status_code, &val);
+        }
         _ => {
             send_json(request, 404, &json!({ "detail": "Ruta no encontrada" }));
         }

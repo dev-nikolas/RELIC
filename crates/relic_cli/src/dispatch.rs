@@ -1,10 +1,11 @@
 //! Capa de despacho y análisis sintáctico-estructural de consultas.
-//! Menos de 180 líneas.
+//! Soporta problemas de inventario con expresiones anidadas, porcentajes, proporcionales y reparto.
 
-use relic_core::{ArithmeticOp, ArithmeticPlan};
+use relic_core::{ArithmeticOp, ArithmeticPlan, ArithmeticReduction};
+use relic_lexicon::LexiconView;
 use crate::graph::parse_query_to_spec;
-use crate::math::parse_math_expression;
-use crate::normalize::normalize_query;
+use crate::math::{evaluate_math_tokens_with_reductions, parse_math_expression, tokenize_math};
+use crate::normalize::normalize_query_with_lexicon;
 use crate::relational::{parse_relational_query, RelationalQuerySpec};
 
 #[derive(Debug, PartialEq)]
@@ -25,38 +26,69 @@ pub struct QuerySpec {
     pub is_negated: bool,
 }
 
+/// Evalúa un fragmento de cláusula (ej. `"el doble de 100"`, `"el 10% de 200"`, `"15"`)
+/// devolviendo `(valor, reducciones_internas)`.
+fn evaluate_clause_quantity(
+    clause_text: &str,
+    lexicon: Option<&LexiconView>,
+) -> Option<(f64, Vec<ArithmeticReduction>)> {
+    let norm = normalize_query_with_lexicon(clause_text, lexicon);
+    // Buscar la sub-expresión matemática contigua dentro del texto normalizado
+    let mut math_tokens_str = Vec::new();
+    for tok in norm.split_whitespace() {
+        let is_math_piece = tok.chars().all(|c| {
+            c.is_ascii_digit() || matches!(c, '.' | '+' | '-' | '*' | '/' | '(' | ')')
+        });
+        if is_math_piece {
+            math_tokens_str.push(tok);
+        } else if !math_tokens_str.is_empty() {
+            break;
+        }
+    }
+    if math_tokens_str.is_empty() {
+        return None;
+    }
+    let expr_str = math_tokens_str.join(" ");
+    let tokens = tokenize_math(&expr_str)?;
+    let (val, reductions) = evaluate_math_tokens_with_reductions(&tokens)?.ok()?;
+    Some((val, reductions))
+}
+
 /// Parse de inventario: camino estándar + extractor invertido como fallback.
-/// Solo contrato nuevo: el extractor es el único añadido (etapa 4).
 pub fn parse_inventory_problem(text: &str) -> Option<ArithmeticPlan> {
-    parse_inventory_problem_estandar(text)
+    parse_inventory_problem_with_lexicon(text, None)
+}
+
+pub fn parse_inventory_problem_with_lexicon(
+    text: &str,
+    lexicon: Option<&LexiconView>,
+) -> Option<ArithmeticPlan> {
+    parse_inventory_problem_estandar(text, lexicon)
         .or_else(|| crate::inverted::parse_inverted_inventory(text))
 }
 
-fn parse_inventory_problem_estandar(text: &str) -> Option<ArithmeticPlan> {
-    let lower = text.to_lowercase();
-    let prefixes = ["tengo ", "hay ", "poseo ", "tenía ", "tenia ", "cuento con ", "contaba con "];
-    let (idx_start, prefix_len) = prefixes.iter().find_map(|&p| {
-        lower.find(p).map(|idx| (idx, p.len()))
-    })?;
-    let after_start = lower[idx_start + prefix_len..].trim();
-
-    let parts: Vec<&str> = after_start.split_whitespace().collect();
-    if parts.is_empty() { return None; }
-
-    let initial_val: f64 = parts[0].parse().ok()?;
-    let unit = if parts.len() > 1 {
-        let u = parts[1].trim_matches(|c: char| !c.is_alphanumeric());
-        if !["y", "pero", "luego", "que", "de", "después", "despues"].contains(&u) {
-            Some(u.to_string())
-        } else {
-            None
-        }
+fn parse_inventory_problem_estandar(
+    text: &str,
+    lexicon: Option<&LexiconView>,
+) -> Option<ArithmeticPlan> {
+    let raw_lower = text.to_lowercase();
+    let lower = if let Some(view) = lexicon {
+        view.apply_phrase_macros(&raw_lower)
     } else {
-        None
+        raw_lower
     };
 
-    let mut plan = ArithmeticPlan::new(initial_val, unit);
-    let normalized = lower
+    let prefixes = [
+        "tengo ", "hay ", "poseo ", "tenía ", "tenia ",
+        "cuento con ", "contaba con ", "gano ", "gané ", "gane ", "recibo ",
+    ];
+    let (idx_start, prefix_len) = prefixes
+        .iter()
+        .filter_map(|&p| lower.find(p).map(|idx| (idx, p.len())))
+        .min_by_key(|&(idx, _)| idx)?;
+    let after_start = lower[idx_start + prefix_len..].trim();
+
+    let normalized = after_start
         .replace(',', " | ")
         .replace(" luego ", " | ")
         .replace(" después ", " | ")
@@ -64,46 +96,172 @@ fn parse_inventory_problem_estandar(text: &str) -> Option<ArithmeticPlan> {
         .replace(" pero ", " | ")
         .replace(" y ", " | ");
 
-    for clause in normalized.split('|').skip(1) {
+    let mut clauses = normalized.split('|');
+    let first_clause = clauses.next()?.trim();
+    if first_clause.is_empty() {
+        return None;
+    }
+
+    let first_parts: Vec<&str> = first_clause.split_whitespace().collect();
+    let (initial_val, initial_reductions, unit) = if let Ok(v) = first_parts[0].parse::<f64>() {
+        let u = if first_parts.len() > 1 {
+            let candidate = first_parts[1].trim_matches(|c: char| !c.is_alphanumeric());
+            if !["y", "pero", "luego", "que", "de", "después", "despues"].contains(&candidate) {
+                Some(candidate.to_string())
+            } else {
+                None
+            }
+        } else {
+            None
+        };
+        (v, Vec::new(), u)
+    } else {
+        let (v, reds) = evaluate_clause_quantity(first_clause, lexicon)?;
+        (v, reds, None)
+    };
+
+    let mut plan = ArithmeticPlan::new(initial_val, unit);
+    for r in initial_reductions {
+        plan.add_reduction(r.left, r.op, r.right, r.result);
+    }
+    let mut running = initial_val;
+
+    for clause in clauses {
         let trimmed = clause.trim();
-        if trimmed.is_empty() { continue; }
+        if trimmed.is_empty() {
+            continue;
+        }
+        // Ignorar cláusulas puramente interrogativas finales ("¿cuánto queda?")
+        let is_question_tail = ["cuánto", "cuanto", "qué queda", "que queda"]
+            .iter()
+            .any(|q| trimmed.contains(q))
+            && evaluate_clause_quantity(trimmed, lexicon).is_none();
+        if is_question_tail {
+            continue;
+        }
+
+        let mut lexicon_op = None;
+        if let Some(view) = lexicon {
+            for word in trimmed.split_whitespace() {
+                let clean_w = word.trim_matches(|c: char| !c.is_alphanumeric());
+                if let Some(op) = view.resolve_op_alias(clean_w) {
+                    lexicon_op = Some(op);
+                    break;
+                }
+            }
+        }
 
         let is_add = [
-            "recibo", "recibe", "me dan", "me da", "compro", "compré", "compre",
+            "recibo", "recibe", "recibió", "recibio", "me dan", "me da", "compro", "compré", "compre",
             "agrego", "más", "mas", "sumo", "adquirí", "adquiri", "recolecté", "recolecte",
-            "incorporé", "incorpore", "encuentro", "encontré", "encontre"
-        ].iter().any(|&w| trimmed.contains(w));
+            "incorporé", "incorpore", "encuentro", "encontré", "encontre", "gano", "gané", "gane",
+        ]
+        .iter()
+        .any(|&w| trimmed.contains(w));
         let is_sub = [
             "regalo", "regala", "doy", "di", "le di", "les di", "me quitan", "pierdo", "perdí", "perdi",
             "vendo", "vendí", "vendi", "como", "comí", "comi", "me comí", "me comi", "zampé", "zampe",
             "consumo", "consumí", "consumi", "gasto", "gasté", "gaste", "resto", "menos",
-            "extravié", "extravie", "presté", "preste", "dono", "doné", "done", "cedo", "cedí", "cedi"
-        ].iter().any(|&w| trimmed.contains(w));
+            "extravié", "extravie", "presté", "preste", "dono", "doné", "done", "cedo", "cedí", "cedi",
+        ]
+        .iter()
+        .any(|&w| trimmed.contains(w));
 
-        let mut found_num = None;
-        for word in trimmed.split_whitespace() {
-            let clean_word = word.trim_matches(|c: char| !c.is_numeric() && c != '.' && c != '-');
-            if let Ok(val) = clean_word.parse::<f64>() {
-                found_num = Some(val);
-                break;
-            }
-        }
+        let (val, sub_reductions) = evaluate_clause_quantity(trimmed, lexicon)?;
+        let resolved_op = if let Some(op) = lexicon_op {
+            op
+        } else if is_add {
+            ArithmeticOp::Add
+        } else if is_sub {
+            ArithmeticOp::Subtract
+        } else {
+            return None;
+        };
 
-        if let Some(val) = found_num {
-            if is_add {
-                plan.add_step(ArithmeticOp::Add, val);
-            } else if is_sub {
-                plan.add_step(ArithmeticOp::Subtract, val);
-            } else {
-                return None;
+        plan.add_step(resolved_op, val);
+        if plan.unit.is_none() || !sub_reductions.is_empty() || !plan.reductions.is_empty() {
+            for r in sub_reductions {
+                plan.add_reduction(r.left, r.op, r.right, r.result);
             }
+            let next_val = match resolved_op {
+                ArithmeticOp::Add => running + val,
+                ArithmeticOp::Subtract => running - val,
+                ArithmeticOp::Multiply => running * val,
+                ArithmeticOp::Divide => {
+                    if val.abs() >= 1e-12 {
+                        running / val
+                    } else {
+                        f64::NAN
+                    }
+                }
+            };
+            plan.add_reduction(running, resolved_op, val, next_val);
+            running = next_val;
         }
     }
 
-    if !plan.steps.is_empty() { Some(plan) } else { None }
+    if !plan.steps.is_empty() {
+        Some(plan)
+    } else {
+        None
+    }
+}
+
+/// Anota diagnósticos de reparto exacto vs resto entero cuando la consulta pide repartir/dividir.
+fn annotate_reparto_note(query_lower: &str, plan: &mut ArithmeticPlan) {
+    if !(query_lower.contains("repartir ") || query_lower.contains("reparte ")) {
+        return;
+    }
+    if let Some(last) = plan.reductions.last() {
+        if last.op == ArithmeticOp::Divide && last.right.abs() >= 1.0 {
+            let a = last.left;
+            let b = last.right;
+            if (a.fract()).abs() < 1e-6 && (b.fract()).abs() < 1e-6 {
+                let ai = a.round() as i64;
+                let bi = b.round() as i64;
+                if bi != 0 {
+                    let q = ai / bi;
+                    let rem = ai % bi;
+                    if rem == 0 {
+                        plan.exact_division_note = Some(format!("reparto exacto: cociente {q}, resto 0"));
+                    } else {
+                        plan.exact_division_note = Some(format!(
+                            "reparto inexacto: cociente entero {q}, resto {rem}"
+                        ));
+                    }
+                }
+            }
+        }
+    } else if plan.steps.len() == 1 && plan.steps[0].0 == ArithmeticOp::Divide {
+        let a = plan.initial;
+        let b = plan.steps[0].1;
+        if b.abs() >= 1.0 && (a.fract()).abs() < 1e-6 && (b.fract()).abs() < 1e-6 {
+            let ai = a.round() as i64;
+            let bi = b.round() as i64;
+            if bi != 0 {
+                let q = ai / bi;
+                let rem = ai % bi;
+                plan.add_reduction(a, ArithmeticOp::Divide, b, a / b);
+                if rem == 0 {
+                    plan.exact_division_note = Some(format!("reparto exacto: cociente {q}, resto 0"));
+                } else {
+                    plan.exact_division_note = Some(format!(
+                        "reparto inexacto: cociente entero {q}, resto {rem}"
+                    ));
+                }
+            }
+        }
+    }
 }
 
 pub fn parse_dispatch_intent(text: &str) -> DispatchIntent {
+    parse_dispatch_intent_with_lexicon(text, None)
+}
+
+pub fn parse_dispatch_intent_with_lexicon(
+    text: &str,
+    lexicon: Option<&LexiconView>,
+) -> DispatchIntent {
     let clean = text.trim();
     let lower = clean.to_lowercase();
 
@@ -123,15 +281,17 @@ pub fn parse_dispatch_intent(text: &str) -> DispatchIntent {
         };
     }
 
-    let inventory_keywords = ["tengo ", "hay ", "cuento con ", "poseo ", "tenía ", "tenia ", "contaba con "];
+    let inventory_keywords = [
+        "tengo ", "hay ", "cuento con ", "poseo ", "tenía ", "tenia ",
+        "contaba con ", "si gano ", "gano ", "si recibo ",
+    ];
     if inventory_keywords.iter().any(|k| lower.contains(k)) {
-        if let Some(plan) = parse_inventory_problem(clean) {
+        if let Some(plan) = parse_inventory_problem_with_lexicon(clean, lexicon) {
             return DispatchIntent::Arithmetic(plan);
         }
-        // Reintento sobre texto normalizado (numerales escritos: "veinte lápices" -> "20 lápices").
-        let norm_inventario = normalize_query(clean);
+        let norm_inventario = normalize_query_with_lexicon(clean, lexicon);
         if norm_inventario != clean {
-            if let Some(plan) = parse_inventory_problem(&norm_inventario) {
+            if let Some(plan) = parse_inventory_problem_with_lexicon(&norm_inventario, lexicon) {
                 return DispatchIntent::Arithmetic(plan);
             }
         }
@@ -141,12 +301,14 @@ pub fn parse_dispatch_intent(text: &str) -> DispatchIntent {
         };
     }
 
-    if let Some(plan) = parse_math_expression(clean) {
+    if let Some(mut plan) = parse_math_expression(clean) {
+        annotate_reparto_note(&lower, &mut plan);
         return DispatchIntent::Arithmetic(plan);
     }
-    let norm = normalize_query(clean);
+    let norm = normalize_query_with_lexicon(clean, lexicon);
     if norm != clean {
-        if let Some(plan) = parse_math_expression(&norm) {
+        if let Some(mut plan) = parse_math_expression(&norm) {
+            annotate_reparto_note(&lower, &mut plan);
             return DispatchIntent::Arithmetic(plan);
         }
     }

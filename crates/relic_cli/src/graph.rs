@@ -3,6 +3,19 @@
 
 use crate::dispatch::QuerySpec;
 
+fn extract_entity_token(rest: &str) -> Option<String> {
+    let mut words = rest.split_whitespace();
+    let mut token = words.next()?.trim_matches(|c: char| !c.is_alphanumeric() && c != '_');
+    if ["el", "la", "los", "las", "un", "una", "al", "del"].contains(&token.to_lowercase().as_str()) {
+        token = words.next()?.trim_matches(|c: char| !c.is_alphanumeric() && c != '_');
+    }
+    if token.is_empty() {
+        None
+    } else {
+        Some(token.to_string())
+    }
+}
+
 pub fn parse_query_to_spec(text: &str) -> QuerySpec {
     let clean = text.trim_matches(|c| c == '¿' || c == '?' || c == '¡' || c == '!' || c == '.');
     let lower = clean.to_lowercase();
@@ -14,16 +27,16 @@ pub fn parse_query_to_spec(text: &str) -> QuerySpec {
     };
 
     let avoid = ["sin pasar por ", "evitando ", "sin cruzar por ", "sin atravesar "].iter().find_map(|&prefix| {
-        lower.find(prefix).map(|idx| {
+        lower.find(prefix).and_then(|idx| {
             let rest = &clean[idx + prefix.len()..];
-            rest.split_whitespace().next().unwrap_or("").trim_matches(|c| c == '?' || c == '.' || c == ',').to_string()
+            extract_entity_token(rest)
         })
     });
 
     let via = ["pasando por ", "vía ", "via ", "a través de ", "haciendo escala en "].iter().find_map(|&prefix| {
-        lower.find(prefix).map(|idx| {
+        lower.find(prefix).and_then(|idx| {
             let rest = &clean[idx + prefix.len()..];
-            rest.split_whitespace().next().unwrap_or("").trim_matches(|c| c == '?' || c == '.' || c == ',').to_string()
+            extract_entity_token(rest)
         })
     });
 
@@ -53,37 +66,70 @@ pub fn parse_query_to_spec(text: &str) -> QuerySpec {
     }
 
     let mut initial = None;
-    for prefix in ["partiendo de ", "desde ", "salir de ", "ir de ", " de "] {
-        if let Some(idx) = lower.find(prefix) {
-            let rest = &clean[idx + prefix.len()..];
-            let token = rest.split_whitespace().next().unwrap_or("").trim_matches(|c| c == '?' || c == '.' || c == ',');
-            if !["la", "el", "los", "las", "un", "una", "ir", "salir", "llegar"].contains(&token.to_lowercase().as_str()) {
-                initial = Some(token.to_string());
+    let mut target = None;
+
+    // Estructura gramatical 1: Verbo modal + Sujeto + Verbo de movimiento/alcance (+ Destino)
+    // Ejemplos: "¿Puede Marta llegar a la biblioteca...?", "¿Podría el robot alcanzar la meta...?"
+    for modal in ["puede ", "podría ", "podria ", "logra ", "consigue "] {
+        if let Some(m_idx) = lower.find(modal) {
+            let after_modal = &clean[m_idx + modal.len()..];
+            let after_modal_lower = after_modal.to_lowercase();
+            for mv in ["llegar a ", "llegar hasta ", "ir a ", "ir hasta ", "alcanzar ", "acceder a ", "viajar a ", "viajar hasta "] {
+                if let Some(mv_idx) = after_modal_lower.find(mv) {
+                    let subject_clause = after_modal[..mv_idx].trim();
+                    let subj_lower = subject_clause.to_lowercase();
+                    // Evitar falsos sujetos impersonales como "se" ("se puede ir a...")
+                    if !subj_lower.is_empty() && subj_lower != "se" && subj_lower != "uno" {
+                        if let Some(subj) = extract_entity_token(subject_clause) {
+                            initial = Some(subj);
+                            let target_clause = &after_modal[mv_idx + mv.len()..];
+                            if let Some(t) = extract_entity_token(target_clause) {
+                                target = Some(t);
+                            }
+                            break;
+                        }
+                    }
+                }
+            }
+            if initial.is_some() {
                 break;
+            }
+        }
+    }
+
+    // Estructura gramatical 2: Preposiciones estándar de origen ("desde X", "de X", "partiendo de X", "salir de X", "ir de X")
+    if initial.is_none() {
+        for prefix in ["partiendo de ", "desde ", "salir de ", "ir de ", " de "] {
+            if let Some(idx) = lower.find(prefix) {
+                let rest = &clean[idx + prefix.len()..];
+                if let Some(token) = extract_entity_token(rest) {
+                    if !["ir", "salir", "llegar", "alcanzar"].contains(&token.to_lowercase().as_str()) {
+                        initial = Some(token);
+                        break;
+                    }
+                }
             }
         }
     }
     if initial.is_none() && lower.starts_with("de ") {
         let rest = &clean[3..];
-        let token = rest.split_whitespace().next().unwrap_or("").trim_matches(|c| c == '?' || c == '.' || c == ',');
-        if !["la", "el", "los", "las", "un", "una", "ir", "salir", "llegar"].contains(&token.to_lowercase().as_str()) {
-            initial = Some(token.to_string());
+        if let Some(token) = extract_entity_token(rest) {
+            if !["ir", "salir", "llegar", "alcanzar"].contains(&token.to_lowercase().as_str()) {
+                initial = Some(token);
+            }
         }
     }
 
-    if initial.is_none() && lower.contains("marta") && lower.contains("llegar a") {
-        initial = Some("Marta".to_string());
-    }
-
-    let mut target = None;
-    for prefix in ["hasta ", "hacia ", "llegar a ", "alcanzar ", " a "] {
-        if let Some(idx) = lower.find(prefix) {
-            let rest = &clean[idx + prefix.len()..];
-            let token = rest.split_whitespace().next().unwrap_or("").trim_matches(|c| c == '?' || c == '.' || c == ',');
-            if !["la", "el", "los", "las", "un", "una"].contains(&token.to_lowercase().as_str()) {
-                if Some(token) != initial.as_deref() {
-                    target = Some(token.to_string());
-                    break;
+    // Estructura gramatical 3: Preposiciones estándar de destino ("hasta Y", "hacia Y", "llegar a Y", "llegar hasta Y", "alcanzar Y", " a Y")
+    if target.is_none() {
+        for prefix in ["hasta ", "hacia ", "llegar a ", "llegar hasta ", "alcanzar ", " a "] {
+            if let Some(idx) = lower.find(prefix) {
+                let rest = &clean[idx + prefix.len()..];
+                if let Some(token) = extract_entity_token(rest) {
+                    if initial.as_deref() != Some(&token) {
+                        target = Some(token);
+                        break;
+                    }
                 }
             }
         }

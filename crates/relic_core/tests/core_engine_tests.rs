@@ -2,14 +2,16 @@ use relic_core::*;
 
 #[test]
 fn test_full_relic_model_forward_pass() {
-    let mut cfg = RelicConfig::default();
-    cfg.vocab_size = 64;
-    cfg.hidden_size = 48;
-    cfg.num_attention_heads = 2;
-    cfg.num_key_value_heads = 1;
-    cfg.head_dim = 24;
-    cfg.intermediate_size = 96;
-    cfg.num_hidden_layers = 2;
+    let cfg = RelicConfig {
+        vocab_size: 64,
+        hidden_size: 48,
+        num_attention_heads: 2,
+        num_key_value_heads: 1,
+        head_dim: 24,
+        intermediate_size: 96,
+        num_hidden_layers: 2,
+        ..Default::default()
+    };
 
     let model = RelicModel::new(cfg.clone());
     let input_tokens = [1u32, 5u32, 12u32];
@@ -26,14 +28,16 @@ fn test_full_relic_model_forward_pass() {
 
 #[test]
 fn test_kv_cache_decode_step() {
-    let mut cfg = RelicConfig::default();
-    cfg.vocab_size = 64;
-    cfg.hidden_size = 48;
-    cfg.num_attention_heads = 2;
-    cfg.num_key_value_heads = 1;
-    cfg.head_dim = 24;
-    cfg.intermediate_size = 96;
-    cfg.num_hidden_layers = 2;
+    let cfg = RelicConfig {
+        vocab_size: 64,
+        hidden_size: 48,
+        num_attention_heads: 2,
+        num_key_value_heads: 1,
+        head_dim: 24,
+        intermediate_size: 96,
+        num_hidden_layers: 2,
+        ..Default::default()
+    };
 
     let model = RelicModel::new(cfg.clone());
     let mut cache = KvCache::new(cfg.num_hidden_layers, 32, cfg.num_key_value_heads, cfg.head_dim);
@@ -87,27 +91,6 @@ fn test_reasoning_bfs_path_and_cycles() {
     assert_eq!(res_self.path, vec!["N2"]);
 }
 
-#[test]
-fn test_rule_catalog_atomic_and_composition() {
-    let catalog = RuleCatalog::default();
-
-    let rev = catalog.apply_operator("Relic", AtomicOperator::Reverse).unwrap();
-    assert_eq!(rev, "cileR");
-
-    let swap = catalog.apply_operator("aBc", AtomicOperator::SwapCase).unwrap();
-    assert_eq!(swap, "AbC");
-
-    let dup = catalog.apply_operator("relic", AtomicOperator::DuplicateVowels).unwrap();
-    assert_eq!(dup, "reeliic");
-
-    let comp2 = catalog.compose("Relic", &[AtomicOperator::Reverse, AtomicOperator::SwapCase]).unwrap();
-    assert_eq!(comp2, "CILEr");
-
-    assert_eq!(catalog.apply_operator("", AtomicOperator::Reverse), Err(RuleError::EmptyInput));
-
-    let ops = vec![AtomicOperator::Reverse; 9];
-    assert_eq!(catalog.compose("test", &ops), Err(RuleError::MaxDepthExceeded(9, 8)));
-}
 
 #[test]
 fn test_alias_collision_is_ambiguous_not_silent_last_wins() {

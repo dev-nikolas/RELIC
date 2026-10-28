@@ -87,10 +87,10 @@ impl RelicAttention {
             let q_vec = &q[h * self.head_dim..(h + 1) * self.head_dim];
             let mut scores = vec![0.0f32; pos + 1];
 
-            for t_k in 0..=pos {
+            for (t_k, score) in scores.iter_mut().enumerate().take(pos + 1) {
                 let k_start = t_k * kv_dim + kv_h * self.head_dim;
                 let k_vec = &cache.k_cache[k_start..k_start + self.head_dim];
-                scores[t_k] = vec_dot(q_vec, k_vec) * self.scaling;
+                *score = vec_dot(q_vec, k_vec) * self.scaling;
             }
             softmax(&mut scores);
 

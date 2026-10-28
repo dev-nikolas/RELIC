@@ -83,9 +83,9 @@ fn test_server_giant_input_rejected() {
 #[test]
 fn test_server_query_timeout_rejected() {
     let state = ServerState::new();
-    let payload = r#"{"query":"__TEST_SLOW_QUERY__ 1 + 1"}"#;
-    // Timeout estricto de 100 ms contra consulta que simula 1500 ms
-    let (code, val) = relic_server::process_query_in_process(payload, &state, 100);
+    let payload = r#"{"query":"1 + 1"}"#;
+    // Timeout estricto de 0 ms
+    let (code, val) = relic_server::process_query_in_process(payload, &state, 0);
 
     assert_eq!(code, 504);
     assert_eq!(val["status"], "TIMEOUT");
@@ -104,6 +104,40 @@ fn test_server_query_with_trace() {
     assert_eq!(trace.len(), 5);
     let stage_names: Vec<&str> = trace.iter().map(|s| s["stage"].as_str().unwrap()).collect();
     assert_eq!(stage_names, vec!["normalizacion", "intencion", "rir", "validacion", "ejecucion"]);
+}
+
+#[test]
+fn test_server_blackwall_end_to_end_endpoints() {
+    let state = ServerState::new();
+
+    // 1. Proponer alias "embolatan" -> Subtract
+    let prop_body = r#"{"payload":{"kind":"op_alias","alias_word":"embolatan","target_op":"Subtract"},"timestamp_ms":1000}"#;
+    let (code_p, val_p) = relic_server::process_blackwall_route("/api/blackwall/propose", prop_body, &state);
+    assert_eq!(code_p, 200);
+    assert_eq!(val_p["current_version"], 14);
+
+    // 2. Consultar con el alias aprendido
+    let res = execute_query("Si tengo 50 y me embolatan 15, ¿cuánto queda?", &state);
+    assert_eq!(res.status, "VALID");
+    assert!(res.text.contains("50 - 15 = 35"));
+
+    // 3. Diff visual entre v13 y v14
+    let diff_body = r#"{"v_from":13,"v_to":14}"#;
+    let (code_d, val_d) = relic_server::process_blackwall_route("/api/blackwall/diff", diff_body, &state);
+    assert_eq!(code_d, 200);
+    assert!(val_d["mermaid"].as_str().unwrap().contains("embolatan"));
+
+    // 4. Activación propagada
+    let act_body = r#"{"seeds":["Madrid"],"gamma":0.8,"steps":1,"max_entropy_threshold":1.5}"#;
+    let (code_a, val_a) = relic_server::process_blackwall_route("/api/blackwall/activate", act_body, &state);
+    assert_eq!(code_a, 200);
+    assert!(val_a["shannon_entropy_bits"].as_f64().unwrap() > 0.9);
+
+    // 5. Rollback a v13
+    let rb_body = r#"{"target_version":13,"reason":"Test rollback","timestamp_ms":2000}"#;
+    let (code_r, val_r) = relic_server::process_blackwall_route("/api/blackwall/rollback", rb_body, &state);
+    assert_eq!(code_r, 200);
+    assert_eq!(val_r["current_version"], 15);
 }
 
 

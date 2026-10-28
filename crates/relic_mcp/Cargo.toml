@@ -7,6 +7,8 @@ license.workspace = true
 
 [dependencies]
 relic_core = { path = "../relic_core" }
-relic_cli = { path = "../relic_cli" }
+relic_lexicon = { path = "../relic_lexicon" }
+relic_blackwall = { path = "../relic_blackwall" }
+relic_cli = { path = "../relic_cli", default-features = false }
 serde = { version = "1.0", features = ["derive"] }
 serde_json = "1.0"

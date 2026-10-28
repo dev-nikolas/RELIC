@@ -8,7 +8,7 @@ use std::io::BufReader;
 use std::path::Path;
 use std::time::Instant;
 use serde::Deserialize;
-use relic_core::{AtomicOperator, EpisodicMemory, ReasoningEngine, RuleCatalog};
+use relic_core::{EpisodicMemory, ReasoningEngine};
 
 #[derive(Debug, Deserialize)]
 #[allow(dead_code)]
@@ -93,17 +93,5 @@ fn main() {
     println!("Consultas Totales a Memoria:        {}", total_queries);
     println!("------------------------------------------------------------");
 
-    // Test de catálogo de reglas
-    let catalog = RuleCatalog::default();
-    let ops = [AtomicOperator::Reverse, AtomicOperator::SwapCase, AtomicOperator::DuplicateVowels];
-    let start_rules = Instant::now();
-    let iters = 10_000;
-    for _ in 0..iters {
-        let _ = catalog.compose("RelicCognitiveUnit2026", &ops);
-    }
-    let elapsed_rules = start_rules.elapsed();
-    let rules_us = (elapsed_rules.as_nanos() as f64 / iters as f64) / 1000.0;
-    println!("Latencia Reglas (3 composiciones):  {:.2} µs / pipeline", rules_us);
-    println!("Throughput Reglas:                  {:.0} ops/segundo", (iters as f64 / elapsed_rules.as_secs_f64()) * 3.0);
     println!("============================================================");
 }
