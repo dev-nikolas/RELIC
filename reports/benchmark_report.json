@@ -1,0 +1,7 @@
+{
+  "hardware": "Intel Core i5-9400F CPU @ 2.90GHz",
+  "pytorch_cpu_tok_sec": 125.86,
+  "rust_release_tok_sec": 180.3,
+  "speedup_factor": 1.43,
+  "dod_met": true
+}

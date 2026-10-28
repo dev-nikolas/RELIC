@@ -1,0 +1,35 @@
+{
+  "vocab_size": 4262,
+  "embed_dim": 128,
+  "hidden_dim": 64,
+  "num_layers": 2,
+  "id2intent": {
+    "0": "INVENTORY_UPDATE",
+    "1": "GRAPH_QUERY",
+    "2": "ARITHMETIC_QUERY",
+    "3": "RELATIONAL_QUERY",
+    "4": "INCOMPLETE",
+    "5": "UNSUPPORTED"
+  },
+  "id2slot": {
+    "0": "O",
+    "1": "B-INIT_QTY",
+    "2": "I-INIT_QTY",
+    "3": "B-ENTITY",
+    "4": "I-ENTITY",
+    "5": "B-OP_ADD",
+    "6": "I-OP_ADD",
+    "7": "B-OP_SUB",
+    "8": "I-OP_SUB",
+    "9": "B-ORIGIN",
+    "10": "I-ORIGIN",
+    "11": "B-TARGET",
+    "12": "I-TARGET",
+    "13": "B-VIA",
+    "14": "I-VIA",
+    "15": "B-AVOID",
+    "16": "I-AVOID",
+    "17": "B-NEGATION",
+    "18": "I-NEGATION"
+  }
+}

@@ -1,6 +1,7 @@
 //! # relic_server
 //!
 //! Servicio HTTP de inferencia sin estado para RELIC.
+//! Diagnóstico de arranque y traza de ejecución detallada.
 //! Menos de 180 líneas.
 
 use std::sync::Arc;
@@ -27,19 +28,25 @@ fn main() {
 
     let state = Arc::new(ServerState::new());
     let server = Arc::new(server);
-
-    println!("============================================================");
-    println!("  RELIC HTTP Server — Servicio de Inferencia Sin Estado");
-    println!("============================================================");
-    println!("  Escuchando en: http://127.0.0.1:{}", port);
-    println!("  Modo:          {}", if state.weights_loaded { "Completo (Pesos Cargados)" } else { "Degradado (Motor Determinista Activo)" });
-    println!("  Endpoints:");
-    println!("    * GET  /health           (Diagnóstico de salud)");
-    println!("    * POST /api/query        (Inferencia unificada RELIC)");
-    println!("    * POST /api/generate     (Streaming SSE token a token)");
-    println!("============================================================");
-
     let num_workers = 4;
+
+    println!("============================================================");
+    println!("  RELIC HTTP Server — Servicio de Inferencia y Razonamiento");
+    println!("============================================================");
+    println!("  [INIT] Puerto de escucha:      http://127.0.0.1:{}", port);
+    println!("  [INIT] Modo Operativo:         {}", if state.weights_loaded { "COMPLETO (Pesos Safetensors Activos)" } else { "DEGRADADO SEGURO (Motor Determinista RIR)" });
+    println!("  [INIT] Motor Determinista:     ACTIVO (Aritmética, Grafos BFS, RIR AST)");
+    println!("  [INIT] Memoria Episódica:      CARGADA (Axiomas relacionales S1 inicializados)");
+    println!("  [INIT] Tokenizador BPE:        {}", if state.tokenizer.is_some() { "CARGADO (Vocabulario activo)" } else { "NO REQUERIDO (Modo RIR Simbólico)" });
+    println!("  [INIT] Workers concurrentes:   {} hilos de despacho HTTP", num_workers);
+    println!("  [INIT] Endpoints Disponibles:");
+    println!("         * GET  /health           -> Diagnóstico de salud y procedencia");
+    println!("         * POST /api/query        -> Inferencia unificada RIR con traza de 5 etapas");
+    println!("         * POST /api/generate     -> Generación causal con streaming SSE");
+    println!("============================================================");
+    println!("  [RELIC READY] Servidor operativo a la espera de peticiones.");
+    println!("============================================================");
+
     let mut handles = Vec::new();
 
     for worker_id in 0..num_workers {
