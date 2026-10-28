@@ -244,7 +244,7 @@ Cada cambio en la capa mutable se almacena como una entrada en un archivo append
   "change_id": "chg_a8f9c102",
   "parent_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
   "timestamp": "2026-10-26T17:30:00Z",
-  "author": "operator_nicolas | llm_teacher_v1",
+  "author": "dev-nikolas | llm_teacher_v1",
   "target_layer": "lexicon_alias",
   "operation": "INSERT",
   "data": {

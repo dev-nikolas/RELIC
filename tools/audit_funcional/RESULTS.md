@@ -8,7 +8,7 @@
 
 ## FASE 0: VERIFICACIÓN DEL ESTADO REAL DE LOS REPOSITORIOS
 
-### RELIC (`d:\AltaPedagogia2\Desktop\Nicolas\Proyectos\RELIC`)
+### RELIC (`RELIC`)
 - **HEAD Commit:** `acb1780` [MEDIDO: `git rev-parse --short HEAD`]
 - **Último Commit:** `acb1780 docs(audit): add general audit and audit corrections report` [MEDIDO: `git log -1 --oneline`]
 - **Estado del Working Tree:**
@@ -23,7 +23,7 @@
   [MEDIDO: `git status --short`]
 - **Suite de Pruebas (`cargo test --workspace`):** **87 passed, 0 failed, 0 ignored (100% verde)** [MEDIDO: `cargo test --workspace`].
 
-### Domain_Simple (`d:\AltaPedagogia2\Desktop\Nicolas\Proyectos\Domain_Simple`)
+### Domain_Simple (`Domain_Simple`)
 - **HEAD Commit:** `20fea22` [MEDIDO: `git rev-parse --short HEAD`]
 - **Último Commit:** `20fea22 feat: add sandbox runner infrastructure and API routes for backend simulations` [MEDIDO: `git log -1 --oneline`]
 - **Estado del Working Tree:** Modificaciones locales preservadas en backend (`conversations.py`, `routes/`, storage) y frontend (`views/`, `components/`) [MEDIDO: `git status --short`].

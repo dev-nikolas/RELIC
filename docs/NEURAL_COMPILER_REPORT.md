@@ -178,24 +178,24 @@ El script `tools/evaluate_harness.py` implementa el protocolo de decisión para 
 
 ## 9. Lista de Archivos y Entregables de la Fase A
 
-1. [DISENO_SANDBOX_MCP.md](file:///c:/Users/Nicolas%20Pachon/Desktop/Seis%20Ojos/RELIC/docs/DISENO_SANDBOX_MCP.md): Documento de diseño arquitectónico corregido.
-2. [curriculum_level.json](file:///c:/Users/Nicolas%20Pachon/Desktop/Seis%20Ojos/RELIC/schemas/curriculum_level.json): Esquema JSON formal del currículo con umbrales de Wilson corregidos.
-3. [mcp_tools_spec.json](file:///c:/Users/Nicolas%20Pachon/Desktop/Seis%20Ojos/RELIC/schemas/mcp_tools_spec.json): Especificación de herramientas MCP compatible con la revisión 2025-03-26.
-4. [dev_suite_v1.json](file:///c:/Users/Nicolas%20Pachon/Desktop/Seis%20Ojos/RELIC/tests/dev_suite_v1.json): Suite de desarrollo de 30 casos.
-5. [external_human_gold_v1.json](file:///c:/Users/Nicolas%20Pachon/Desktop/Seis%20Ojos/RELIC/tests/external_human_gold_v1.json): Plantilla de 100 casos para evaluación humana externa.
-6. [measure_baseline.py](file:///c:/Users/Nicolas%20Pachon/Desktop/Seis%20Ojos/RELIC/tools/measure_baseline.py): Script de medición de línea base de reglas.
-7. [baseline_rules_report.json](file:///c:/Users/Nicolas%20Pachon/Desktop/Seis%20Ojos/RELIC/reports/baseline_rules_report.json): Reporte consolidado de línea base con intervalos Wilson 95%.
-8. [curriculum_dataset_v1.jsonl](file:///c:/Users/Nicolas%20Pachon/Desktop/Seis%20Ojos/RELIC/data/curriculum_dataset_v1.jsonl): Dataset generado (375 muestras, SHA-256 verificado).
-9. [leak_control.py](file:///c:/Users/Nicolas%20Pachon/Desktop/Seis%20Ojos/RELIC/tools/leak_control.py): Script de detección y reporte de fuga de 3-gramas.
-10. [relic_colab_train_fase_a.ipynb](file:///c:/Users/Nicolas%20Pachon/Desktop/Seis%20Ojos/RELIC/notebooks/relic_colab_train_fase_a.ipynb): Notebook de entrenamiento multi-semilla para Google Colab / Kaggle.
-11. [evaluate_harness.py](file:///c:/Users/Nicolas%20Pachon/Desktop/Seis%20Ojos/RELIC/tools/evaluate_harness.py): Arnés de evaluación comparativa Reglas vs Modelo con prueba de McNemar.
-12. [crates/relic_cli/src/generator/](file:///c:/Users/Nicolas%20Pachon/Desktop/Seis%20Ojos/RELIC/crates/relic_cli/src/generator): Código fuente del generador curricular modular en Rust (todas las partes $\le 180$ líneas).
+1. [DISENO_SANDBOX_MCP.md](RELIC/docs/DISENO_SANDBOX_MCP.md): Documento de diseño arquitectónico corregido.
+2. [curriculum_level.json](RELIC/schemas/curriculum_level.json): Esquema JSON formal del currículo con umbrales de Wilson corregidos.
+3. [mcp_tools_spec.json](RELIC/schemas/mcp_tools_spec.json): Especificación de herramientas MCP compatible con la revisión 2025-03-26.
+4. [dev_suite_v1.json](RELIC/tests/dev_suite_v1.json): Suite de desarrollo de 30 casos.
+5. [external_human_gold_v1.json](RELIC/tests/external_human_gold_v1.json): Plantilla de 100 casos para evaluación humana externa.
+6. [measure_baseline.py](RELIC/tools/measure_baseline.py): Script de medición de línea base de reglas.
+7. [baseline_rules_report.json](RELIC/reports/baseline_rules_report.json): Reporte consolidado de línea base con intervalos Wilson 95%.
+8. [curriculum_dataset_v1.jsonl](RELIC/data/curriculum_dataset_v1.jsonl): Dataset generado (375 muestras, SHA-256 verificado).
+9. [leak_control.py](RELIC/tools/leak_control.py): Script de detección y reporte de fuga de 3-gramas.
+10. [relic_colab_train_fase_a.ipynb](RELIC/notebooks/relic_colab_train_fase_a.ipynb): Notebook de entrenamiento multi-semilla para Google Colab / Kaggle.
+11. [evaluate_harness.py](RELIC/tools/evaluate_harness.py): Arnés de evaluación comparativa Reglas vs Modelo con prueba de McNemar.
+12. [crates/relic_cli/src/generator/](RELIC/crates/relic_cli/src/generator): Código fuente del generador curricular modular en Rust (todas las partes $\le 180$ líneas).
 
 ---
 
 ## 10. Cierre Experimental de Fase A: Evaluación Comparativa Per-Caso (N=75 Holdout)
 
-Tras re-entrenar el modelo neuronal en GPU sobre el currículo corregido (`data/relic_10m_trained.safetensors`, SHA-256 `328d5e70a41c...`), se ejecutó la evaluación comparativa caso a caso sobre los 75 ejemplos de holdout (`tests/holdout_templates_v1.json`) registrando cada predicción en [reports/eval/holdout_75_per_case.json](file:///c:/Users/Nicolas%20Pachon/Desktop/Seis%20Ojos/RELIC/reports/eval/holdout_75_per_case.json):
+Tras re-entrenar el modelo neuronal en GPU sobre el currículo corregido (`data/relic_10m_trained.safetensors`, SHA-256 `328d5e70a41c...`), se ejecutó la evaluación comparativa caso a caso sobre los 75 ejemplos de holdout (`tests/holdout_templates_v1.json`) registrando cada predicción en [reports/eval/holdout_75_per_case.json](RELIC/reports/eval/holdout_75_per_case.json):
 
 | Sistema | Exact Match (EM) | Falsa Aceptación (FA)* | Rechazo Sintaxis | McNemar vs Modelo ($b, c$) | $\chi^2$ (Edwards) | $p$-value |
 | :--- | :---: | :---: | :---: | :---: | :---: | :---: |

@@ -6,7 +6,8 @@
 
 import { spawn } from 'child_process';
 import { writeFileSync, mkdirSync } from 'fs';
-import { resolve, dirname } from 'path';
+import { resolve, dirname, join } from 'path';
+import { tmpdir } from 'os';
 import { fileURLToPath } from 'url';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -85,7 +86,7 @@ class CDPClient {
 
 async function main() {
   console.log('Iniciando auditoría frontend vía CDP...');
-  const tmpUserData = `C:\\Users\\Nicolas Pachon\\AppData\\Local\\Temp\\chrome_audit_${Date.now()}`;
+  const tmpUserData = join(tmpdir(), `chrome_audit_${Date.now()}`);
   const chromeProc = spawn(CHROME_PATH, [
     '--headless=new',
     '--remote-debugging-port=9222',

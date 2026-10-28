@@ -69,7 +69,7 @@ sequenceDiagram
 
 ## 3. Infraestructura de Evaluación Científica (`relic_benchmarks`)
 
-El espacio de trabajo incorpora el crate independiente [`relic_benchmarks`](file:///benchmarks), ejecutable vía `cargo run -p relic_benchmarks`. Evalúa:
+El espacio de trabajo incorpora el crate independiente [`relic_benchmarks`](benchmarks/), ejecutable vía `cargo run -p relic_benchmarks`. Evalúa:
 - **Ablación Cuántica vs. Clásica:** Anulación exacta por interferencia destructiva de fase.
 - **Abstención Epistémica:** Cero invención ante trampas de razonamiento.
 - **Auditoría Espectral de Telemetría:** Detección de balizas C2 y aislamiento topológico.

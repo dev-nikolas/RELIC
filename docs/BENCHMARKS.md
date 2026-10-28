@@ -8,7 +8,7 @@ Todos los valores numéricos reportados provienen de la ejecución real en CPU (
 
 ## 1. Organización del Entorno de Evaluación
 
-La infraestructura de validación de RELIC está completamente aislada en el crate de nivel superior [`relic_benchmarks`](file:///benchmarks):
+La infraestructura de validación de RELIC está completamente aislada en el crate de nivel superior [`relic_benchmarks`](benchmarks/):
 
 ```
 benchmarks/

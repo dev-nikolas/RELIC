@@ -17,20 +17,20 @@
   3. `rir`: Construcción sintáctica del Documento RIR v1.
   4. `validacion`: Validación de invariantes semánticos y epistémicos.
   5. `ejecucion`: Evaluación aritmética/gráfica determinista o respuesta al usuario.
-- **Pruebas**: Test unitario e integración `test_server_query_with_trace` añadido en [server_integration_tests.rs](file:///c:/Users/Nicolas%20Pachon/Desktop/Seis%20Ojos/RELIC/crates/relic_server/tests/server_integration_tests.rs). Pasó con 9/9 pruebas en verde `[MEDIDO: cargo test -p relic_server]`.
+- **Pruebas**: Test unitario e integración `test_server_query_with_trace` añadido en [server_integration_tests.rs](RELIC/crates/relic_server/tests/server_integration_tests.rs). Pasó con 9/9 pruebas en verde `[MEDIDO: cargo test -p relic_server]`.
 
 ### 1.2 RUNNER Lógico en `Simple_Domain`
-- **Componente**: [SandboxRunner](file:///c:/Users/Nicolas%20Pachon/Desktop/Seis%20Ojos/Simple_Domain/backend/src/simple_domain/jobs/sandbox_runner.py) (`<= 180 líneas`).
+- **Componente**: [SandboxRunner](./Simple_Domain/backend/src/simple_domain/jobs/sandbox_runner.py) (`<= 180 líneas`).
 - **Comportamiento**:
-  - Lee casos directamente desde [curriculum_dataset_v2_20k.jsonl](file:///c:/Users/Nicolas%20Pachon/Desktop/Seis%20Ojos/RELIC/data/curriculum_dataset_v2_20k.jsonl) (22.501 casos totales `[MEDIDO]`).
-  - Llama a `relic_server` a través de [RelicClient](file:///c:/Users/Nicolas%20Pachon/Desktop/Seis%20Ojos/Simple_Domain/backend/src/simple_domain/service/relic_client.py) activando `enable_trace=True`, con fallback local determinista a `relic_cli`.
+  - Lee casos directamente desde [curriculum_dataset_v2_20k.jsonl](RELIC/data/curriculum_dataset_v2_20k.jsonl) (22.501 casos totales `[MEDIDO]`).
+  - Llama a `relic_server` a través de [RelicClient](./Simple_Domain/backend/src/simple_domain/service/relic_client.py) activando `enable_trace=True`, con fallback local determinista a `relic_cli`.
   - Compara la salida con el oráculo gold del dataset y calcula la **recompensa asimétrica con penalización $\lambda$**:
     - $+1.00$ para aciertos exactos en resolubles (Exact Match).
     - $+0.50$ para abstenciones correctas en casos epistémicos (Correct Abstention).
     - $-0.20$ para abstenciones innecesarias en casos resolubles (Incomplete/Unsupported).
     - $-2.00$ para errores de sintaxis / quiebres semánticos.
     - $-\lambda$ (configurable, default $5.0$) para falsas aceptaciones (alucinación de resultado numérico en casos ambiguos o incompletos).
-  - Publica eventos en tiempo real mediante [EventBroker](file:///c:/Users/Nicolas%20Pachon/Desktop/Seis%20Ojos/Simple_Domain/backend/src/simple_domain/jobs/events.py):
+  - Publica eventos en tiempo real mediante [EventBroker](./Simple_Domain/backend/src/simple_domain/jobs/events.py):
     - `EPISODE_STARTED`: Datos iniciales del caso.
     - `RIR_PROPOSED`: Ruta asignada, estatus y traza de 5 etapas.
     - `VERIFIER_EVALUATED`: Cálculo de recompensa, bandera EM/FA y acumulados.
@@ -38,23 +38,23 @@
     - `sandbox.completed`: Cierre de la corrida y persistencia de métricas finales.
 
 ### 1.3 Repositorio y Rutas API (`/v1/sandbox`)
-- **Repositorio**: [SandboxRepository](file:///c:/Users/Nicolas%20Pachon/Desktop/Seis%20Ojos/Simple_Domain/backend/src/simple_domain/repositories/sandbox.py) (`<= 180 líneas`), persistiendo en `storage/sandbox_runs.json` y carpetas individuales `storage/sandbox_runs/{id}/`.
-- **Rutas implementadas** en [sandbox.py](file:///c:/Users/Nicolas%20Pachon/Desktop/Seis%20Ojos/Simple_Domain/backend/src/simple_domain/service/routes/sandbox.py):
+- **Repositorio**: [SandboxRepository](./Simple_Domain/backend/src/simple_domain/repositories/sandbox.py) (`<= 180 líneas`), persistiendo en `storage/sandbox_runs.json` y carpetas individuales `storage/sandbox_runs/{id}/`.
+- **Rutas implementadas** en [sandbox.py](./Simple_Domain/backend/src/simple_domain/service/routes/sandbox.py):
   - `POST /v1/sandbox/runs`: Recibe nivel (`L1_direct_lookup`, etc.), semilla, sistema (`rules`, `slot_filler`, `model`), $\lambda$ y max_episodes. Registra commit (`[LEÍDO]`), SHA256 del dataset (`[MEDIDO]`), SHA256 de pesos (`[MEDIDO: 328d5e70a41c...]`) y lanza la tarea asíncrona.
   - `GET /v1/sandbox/runs`: Lista todas las corridas con sus métricas consolidadas (EM, FA, Wilson 95%, recompensa).
   - `GET /v1/sandbox/runs/{id}`: Detalle del manifiesto con episodios y trazas.
   - `GET /v1/sandbox/runs/{id}/events`: Stream SSE nativo con soporte de cabecera `Last-Event-ID` y repetición desde storage.
 
 ### 1.4 Frontend: Pestaña "Sandbox Lab" en Investigación
-- **Ruta UI**: Integrado como pestaña principal en [ResearchView.tsx](file:///c:/Users/Nicolas%20Pachon/Desktop/Seis%20Ojos/Simple_Domain/frontend/src/views/ResearchView.tsx) (`[SANDBOX LAB | EXPERIMENTOS]`).
+- **Ruta UI**: Integrado como pestaña principal en [ResearchView.tsx](./Simple_Domain/frontend/src/views/ResearchView.tsx) (`[SANDBOX LAB | EXPERIMENTOS]`).
 - **Componentes modulares** (`<= 180 líneas cada uno`):
-  - [SandboxLab.tsx](file:///c:/Users/Nicolas%20Pachon/Desktop/Seis%20Ojos/Simple_Domain/frontend/src/views/components/SandboxLab.tsx): Barra de lanzamiento de corridas, orquestador SSE y tabla comparativa histórica con insignias de procedencia (`[REGLAS]`, `[SLOT-FILLER]`, `[MODELO]`).
-  - [SandboxChart.tsx](file:///c:/Users/Nicolas%20Pachon/Desktop/Seis%20Ojos/Simple_Domain/frontend/src/views/components/SandboxChart.tsx): Gráfico SVG en tiempo real (sin dependencias pesadas de canvas ni animaciones bloqueantes) mostrando la curva de Exact Match.
-  - [SandboxEpisodeViewer.tsx](file:///c:/Users/Nicolas%20Pachon/Desktop/Seis%20Ojos/Simple_Domain/frontend/src/views/components/SandboxEpisodeViewer.tsx): Línea de tiempo de episodios con estatus (`VALID`, `INCOMPLETE`, `UNSUPPORTED`) y panel auditor con la traza de 5 etapas (`normalizacion`, `intencion`, `rir`, `validacion`, `ejecucion`) y sus latencias en milisegundos.
+  - [SandboxLab.tsx](./Simple_Domain/frontend/src/views/components/SandboxLab.tsx): Barra de lanzamiento de corridas, orquestador SSE y tabla comparativa histórica con insignias de procedencia (`[REGLAS]`, `[SLOT-FILLER]`, `[MODELO]`).
+  - [SandboxChart.tsx](./Simple_Domain/frontend/src/views/components/SandboxChart.tsx): Gráfico SVG en tiempo real (sin dependencias pesadas de canvas ni animaciones bloqueantes) mostrando la curva de Exact Match.
+  - [SandboxEpisodeViewer.tsx](./Simple_Domain/frontend/src/views/components/SandboxEpisodeViewer.tsx): Línea de tiempo de episodios con estatus (`VALID`, `INCOMPLETE`, `UNSUPPORTED`) y panel auditor con la traza de 5 etapas (`normalizacion`, `intencion`, `rir`, `validacion`, `ejecucion`) y sus latencias en milisegundos.
 
 ### 1.5 Pruebas y Verificación
-- **Unitarias & Integración**: [test_sandbox_api.py](file:///c:/Users/Nicolas%20Pachon/Desktop/Seis%20Ojos/Simple_Domain/tests/test_sandbox_api.py) valida cálculo de intervalo de Wilson y el ciclo completo de creación, persistencia y streaming SSE con `Last-Event-ID`.
-- **Script de Humo**: [smoke_test_sandbox_lab.py](file:///c:/Users/Nicolas%20Pachon/Desktop/Seis%20Ojos/RELIC/tools/smoke_test_sandbox_lab.py) levanta la aplicación, inicia una corrida de 5 episodios, recibe 21 eventos SSE y valida la persistencia y coherencia de las métricas.
+- **Unitarias & Integración**: [test_sandbox_api.py](./Simple_Domain/tests/test_sandbox_api.py) valida cálculo de intervalo de Wilson y el ciclo completo de creación, persistencia y streaming SSE con `Last-Event-ID`.
+- **Script de Humo**: [smoke_test_sandbox_lab.py](RELIC/tools/smoke_test_sandbox_lab.py) levanta la aplicación, inicia una corrida de 5 episodios, recibe 21 eventos SSE y valida la persistencia y coherencia de las métricas.
 - **Resultado de Suites de Pruebas**:
   - `cargo test --workspace`: **100% verde (13+12+10+6+14+8+3+5+1+1+9+1+4 = 87 pruebas pasadas)** `[MEDIDO: cargo test --workspace]`.
   - `pytest`: **65 passed, 0 failed en 18.04s** `[MEDIDO: uv run --extra dev --extra server pytest]`.

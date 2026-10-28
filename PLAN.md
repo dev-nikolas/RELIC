@@ -16,36 +16,36 @@
 
 ## 2. Inventario Completo de Endpoints del Frontend
 
-Revisión exhaustiva de [`Simple_Domain/frontend/src/services/simpleDomainApi.ts`](file:///c:/Users/Nicolas%20Pachon/Desktop/Seis%20Ojos/Simple_Domain/frontend/src/services/simpleDomainApi.ts) y [`Simple_Domain/frontend/src/services/modularApi.ts`](file:///c:/Users/Nicolas%20Pachon/Desktop/Seis%20Ojos/Simple_Domain/frontend/src/services/modularApi.ts):
+Revisión exhaustiva de [`Simple_Domain/frontend/src/services/simpleDomainApi.ts`](./Simple_Domain/frontend/src/services/simpleDomainApi.ts) y [`Simple_Domain/frontend/src/services/modularApi.ts`](./Simple_Domain/frontend/src/services/modularApi.ts):
 
 ### 2.1 Telemetría y Diagnóstico
-1. `GET /health` ([`simpleDomainApi.ts:L58`](file:///c:/Users/Nicolas%20Pachon/Desktop/Seis%20Ojos/Simple_Domain/frontend/src/services/simpleDomainApi.ts#L58)):
+1. `GET /health` ([`simpleDomainApi.ts:L58`](./Simple_Domain/frontend/src/services/simpleDomainApi.ts#L58)):
    - **Retorno:** `{ "status": string, "detector_ready": boolean, "message": string }`.
    - **Semántica de `detector_ready` en RELIC:** En el sistema original significaba detector estadístico calibrado. En RELIC, `detector_ready: true` significa que el **motor de razonamiento determinista y el grafo episódico están inicializados y listos para ejecutar consultas**, independientemente de si los pesos Safetensors están presentes (modo completo) o ausentes (modo degradado determinista).
-2. `GET /v1/info` ([`simpleDomainApi.ts:L62`](file:///c:/Users/Nicolas%20Pachon/Desktop/Seis%20Ojos/Simple_Domain/frontend/src/services/simpleDomainApi.ts#L62)):
+2. `GET /v1/info` ([`simpleDomainApi.ts:L62`](./Simple_Domain/frontend/src/services/simpleDomainApi.ts#L62)):
    - **Retorno:** `{ "service_version": "0.1.0", "package_version": "...", "schema_version": "v1", "model_status": "ready" | "degraded", "capabilities": [...], "model_configuration": ... }`.
 3. `POST /v1/score`:
    - Declarado en el catálogo de endpoints de Simple Domain para compatibilidad hacia atrás.
 
 ### 2.2 Gestión de Sesiones y Espacio Conversacional
-4. `GET /v1/conversations` ([`modularApi.ts:L87`](file:///c:/Users/Nicolas%20Pachon/Desktop/Seis%20Ojos/Simple_Domain/frontend/src/services/modularApi.ts#L87)):
+4. `GET /v1/conversations` ([`modularApi.ts:L87`](./Simple_Domain/frontend/src/services/modularApi.ts#L87)):
    - Lista todas las conversaciones para la barra lateral (`Conversation[]`).
-5. `POST /v1/conversations` ([`modularApi.ts:L88-L89`](file:///c:/Users/Nicolas%20Pachon/Desktop/Seis%20Ojos/Simple_Domain/frontend/src/services/modularApi.ts#L88-L89)):
+5. `POST /v1/conversations` ([`modularApi.ts:L88-L89`](./Simple_Domain/frontend/src/services/modularApi.ts#L88-L89)):
    - Crea nueva conversación. Body: `{"title": string}`. Retorna `Conversation`.
-6. `GET /v1/conversations/{id}` ([`modularApi.ts:L90`](file:///c:/Users/Nicolas%20Pachon/Desktop/Seis%20Ojos/Simple_Domain/frontend/src/services/modularApi.ts#L90)):
+6. `GET /v1/conversations/{id}` ([`modularApi.ts:L90`](./Simple_Domain/frontend/src/services/modularApi.ts#L90)):
    - Retorna la conversación con todos sus `ChatMessage[]`.
-7. `POST /v1/conversations/{id}/messages` ([`modularApi.ts:L91-L95`](file:///c:/Users/Nicolas%20Pachon/Desktop/Seis%20Ojos/Simple_Domain/frontend/src/services/modularApi.ts#L91-L95)):
+7. `POST /v1/conversations/{id}/messages` ([`modularApi.ts:L91-L95`](./Simple_Domain/frontend/src/services/modularApi.ts#L91-L95)):
    - Body: `{"role": "user", "content": string}`.
    - **Contrato de persistencia:** Guarda el mensaje del usuario, invoca el router de RELIC, genera y guarda de inmediato el mensaje del asistente `{"role": "assistant", "content": ...}` con metadatos de latencia y ruta, retornando el mensaje creado.
 
 ### 2.3 Módulos de Investigación, Fuentes, Patrones y Configuración
-8. `GET /v1/research/experiments`, `POST /v1/research/experiments`, `DELETE /v1/research/experiments/{id}` ([`modularApi.ts:L49-L53`](file:///c:/Users/Nicolas%20Pachon/Desktop/Seis%20Ojos/Simple_Domain/frontend/src/services/modularApi.ts#L49-L53)).
-9. `GET /v1/data-sources`, `POST /v1/data-sources`, `DELETE /v1/data-sources/{id}` ([`modularApi.ts:L56-L60`](file:///c:/Users/Nicolas%20Pachon/Desktop/Seis%20Ojos/Simple_Domain/frontend/src/services/modularApi.ts#L56-L60)).
-10. `GET /v1/patterns`, `POST /v1/patterns`, `DELETE /v1/patterns/{id}` ([`modularApi.ts:L63-L67`](file:///c:/Users/Nicolas%20Pachon/Desktop/Seis%20Ojos/Simple_Domain/frontend/src/services/modularApi.ts#L63-L67)).
-11. `GET /v1/settings`, `PATCH /v1/settings`, `POST /v1/settings/reset` ([`modularApi.ts:L70-L73`](file:///c:/Users/Nicolas%20Pachon/Desktop/Seis%20Ojos/Simple_Domain/frontend/src/services/modularApi.ts#L70-L73)).
-12. `POST /v1/archive/submit`, `GET /v1/archive/{id}`, `GET /v1/archive/{id}/result`, `GET /v1/archive` ([`modularApi.ts:L76-L84`](file:///c:/Users/Nicolas%20Pachon/Desktop/Seis%20Ojos/Simple_Domain/frontend/src/services/modularApi.ts#L76-L84)).
-13. `GET /v1/archive/{id}/events` ([`ChatMessageBubble.tsx:L35`](file:///c:/Users/Nicolas%20Pachon/Desktop/Seis%20Ojos/Simple_Domain/frontend/src/components/ChatMessageBubble.tsx#L35)): SSE para tareas de ingesta de archivos.
-14. `POST /v1/analysis`, `GET /v1/analysis`, `GET /v1/analysis/{id}` ([`modularApi.ts:L98-L104`](file:///c:/Users/Nicolas%20Pachon/Desktop/Seis%20Ojos/Simple_Domain/frontend/src/services/modularApi.ts#L98-L104)).
+8. `GET /v1/research/experiments`, `POST /v1/research/experiments`, `DELETE /v1/research/experiments/{id}` ([`modularApi.ts:L49-L53`](./Simple_Domain/frontend/src/services/modularApi.ts#L49-L53)).
+9. `GET /v1/data-sources`, `POST /v1/data-sources`, `DELETE /v1/data-sources/{id}` ([`modularApi.ts:L56-L60`](./Simple_Domain/frontend/src/services/modularApi.ts#L56-L60)).
+10. `GET /v1/patterns`, `POST /v1/patterns`, `DELETE /v1/patterns/{id}` ([`modularApi.ts:L63-L67`](./Simple_Domain/frontend/src/services/modularApi.ts#L63-L67)).
+11. `GET /v1/settings`, `PATCH /v1/settings`, `POST /v1/settings/reset` ([`modularApi.ts:L70-L73`](./Simple_Domain/frontend/src/services/modularApi.ts#L70-L73)).
+12. `POST /v1/archive/submit`, `GET /v1/archive/{id}`, `GET /v1/archive/{id}/result`, `GET /v1/archive` ([`modularApi.ts:L76-L84`](./Simple_Domain/frontend/src/services/modularApi.ts#L76-L84)).
+13. `GET /v1/archive/{id}/events` ([`ChatMessageBubble.tsx:L35`](./Simple_Domain/frontend/src/components/ChatMessageBubble.tsx#L35)): SSE para tareas de ingesta de archivos.
+14. `POST /v1/analysis`, `GET /v1/analysis`, `GET /v1/analysis/{id}` ([`modularApi.ts:L98-L104`](./Simple_Domain/frontend/src/services/modularApi.ts#L98-L104)).
 
 ### 2.4 Endpoints Nativos de RELIC
 15. `POST /api/query`: Inferencia unificada (aritmética, grafo, red o rechazo epistémico).

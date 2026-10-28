@@ -2,7 +2,7 @@
 RELIC: CLÁUSULAS ADICIONALES DE PROPIEDAD INTELECTUAL, NOTIFICACIÓN Y ATRIBUCIÓN
 ADDITIONAL TERMS OF INTELLECTUAL PROPERTY, NOTIFICATION AND STRICT ATTRIBUTION
 ================================================================================
-Copyright (C) 2026 Nicolas Pachon. Todos los derechos reservados / All rights reserved.
+Copyright (C) 2026 dev-nikolas. Todos los derechos reservados / All rights reserved.
 
 El uso, estudio, modificación, distribución, bifurcación o integración del software
 RELIC, sus especificaciones (RIR), esquemas de memoria, algoritmos y código fuente
@@ -685,7 +685,7 @@ state the exclusion of warranty; and each file should have at least
 the "copyright" line and a pointer to where the full notice is found.
 
     RELIC — Deterministic Cognitive Runtime & Neural Architecture
-    Copyright (C) 2026 Nicolas Pachon.
+    Copyright (C) 2026 dev-nikolas.
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as published by

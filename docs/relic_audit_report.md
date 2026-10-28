@@ -2,7 +2,7 @@
 
 **Fecha de Ejecución:** 26 de Octubre de 2026  
 **Commit de Referencia:** `acb1780` (`master`)  
-**Workspace:** `d:\AltaPedagogia2\Desktop\Nicolas\Proyectos\RELIC`  
+**Workspace:** `RELIC`  
 **Estado del Working Tree:** Íntegro, sin modificaciones destructivas; builds y experimentos ejecutados en directorio aislado (`scratch/target`).  
 **Convención Epistémica:**
 - **[HECHO VERIFICADO]**: Comprobado directamente en el código fuente o en la estructura de archivos.
@@ -237,7 +237,7 @@ Generación Libre sin Criterio:             1 ( 1.8%)
 
 ## 11. Reproducción
 
-Comandos de PowerShell ejecutables en la raíz del repositorio (`d:\AltaPedagogia2\Desktop\Nicolas\Proyectos\RELIC`):
+Comandos de PowerShell ejecutables en la raíz del repositorio (`RELIC`):
 
 ```powershell
 # 1. Verificación de paridad numérica exacta PyTorch <-> Rust (max diff: 0.000002)

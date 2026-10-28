@@ -170,7 +170,7 @@ El servidor MCP se diseña conforme a la especificación **Streamable HTTP y std
    - Respuestas con soporte de streaming HTTP directo (chunked transfer encoding) sin necesidad de sesiones persistentes `Mcp-Session-Id`.
 
 #### Catálogo de Herramientas MCP (`tools/list`)
-El catálogo se define en [`schemas/mcp_tools_spec.json`](file:///c:/Users/Nicolas%20Pachon/Desktop/Seis%20Ojos/schemas/mcp_tools_spec.json):
+El catálogo se define en [`schemas/mcp_tools_spec.json`](./schemas/mcp_tools_spec.json):
 
 | Nombre de Herramienta | Permiso | Idempotente | Timeout Step | Propósito Operacional | Fallo Seguro |
 | :--- | :--- | :--- | :--- | :--- | :--- |
@@ -205,7 +205,7 @@ El catálogo se define en [`schemas/mcp_tools_spec.json`](file:///c:/Users/Nicol
 ### 1.4 Currículo, Controlador y Calibración Estadística de Wilson
 
 #### Catálogo de 8 Niveles
-El catálogo se define en [`schemas/curriculum_level.json`](file:///c:/Users/Nicolas%20Pachon/Desktop/Seis%20Ojos/schemas/curriculum_level.json):
+El catálogo se define en [`schemas/curriculum_level.json`](./schemas/curriculum_level.json):
 1. **L01_ARITH_DIRECT:** Expresiones matemáticas puras ($a \pm b$, $a \times b$, $a / b$).
 2. **L02_ARITH_INVENTORY:** Problemas de inventario con sustantivos y concordancia de unidad.
 3. **L03_EPISTEMIC_REJECTION:** Consultas con datos faltantes o fuera de dominio (rechazo epistémico obligatorio).
@@ -295,7 +295,7 @@ sequenceDiagram
 
 ### 1.7 Memoria Persistente con Hash-Chaining y HMAC
 
-La memoria episódica almacena sus hechos en `storage/episodic_memory.jsonl` bajo el esquema [`schemas/episodic_memory_log.json`](file:///c:/Users/Nicolas%20Pachon/Desktop/Seis%20Ojos/schemas/episodic_memory_log.json):
+La memoria episódica almacena sus hechos en `storage/episodic_memory.jsonl` bajo el esquema [`schemas/episodic_memory_log.json`](./schemas/episodic_memory_log.json):
 
 ```json
 {
