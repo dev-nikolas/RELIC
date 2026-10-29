@@ -4,9 +4,22 @@
 use std::fs::{File, OpenOptions};
 use std::io::{BufRead, BufReader, Write};
 use std::path::{Path, PathBuf};
+use serde::{Deserialize, Serialize};
 use crate::genesis::build_genesis_entries;
 use crate::log::{EntryStatus, IntegrityError, LexiconPayload, LogEntry, GENESIS_PREV_HASH};
 pub use crate::view::{ClassicalPolysemyResult, LexiconView, PolysemousEntry};
+
+/// Modo de durabilidad física del almacenamiento en disco.
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Default, Serialize, Deserialize)]
+pub enum DurabilityMode {
+    /// Fsync explícito (`sync_data`) tras cada transacción individual
+    Strict,
+    /// Agrupa escrituras en búfer y ejecuta un solo `sync_data` por lote de transacción
+    #[default]
+    Group,
+    /// Escritura en Page Cache (BufWriter) con flush al SO, pero persistencia física diferida
+    Relaxed,
+}
 
 #[derive(Debug, Clone)]
 pub struct EngramStore {
@@ -47,14 +60,31 @@ impl EngramStore {
             let mut reader = BufReader::new(file);
             let (mut offsets, mut entries, mut offset) = (Vec::new(), Vec::new(), 0u64);
             let mut line = String::new();
+            let mut torn_write_detected = false;
             while reader.read_line(&mut line).map_err(|e| IntegrityError::IoError(e.to_string()))? > 0 {
                 let trimmed = line.trim();
                 if !trimmed.is_empty() {
-                    offsets.push(offset);
-                    entries.push(serde_json::from_str(trimmed).map_err(|e| IntegrityError::ParseError { line: offsets.len(), details: e.to_string() })?);
+                    match serde_json::from_str::<LogEntry>(trimmed) {
+                        Ok(entry) => {
+                            offsets.push(offset);
+                            entries.push(entry);
+                            offset += line.len() as u64;
+                        }
+                        Err(_) => {
+                            torn_write_detected = true;
+                            break;
+                        }
+                    }
+                } else {
+                    offset += line.len() as u64;
                 }
-                offset += line.len() as u64;
                 line.clear();
+            }
+            if torn_write_detected {
+                drop(reader);
+                let f_truncate = OpenOptions::new().write(true).open(&path_buf)
+                    .map_err(|e| IntegrityError::IoError(e.to_string()))?;
+                f_truncate.set_len(offset).map_err(|e| IntegrityError::IoError(e.to_string()))?;
             }
             let active_view = Self::rebuild_active_view(&entries)?;
             Ok(Self { entries: Vec::new(), entry_offsets: offsets, active_view, backing_file: Some(path_buf) })
@@ -120,38 +150,92 @@ impl EngramStore {
         }
     }
 
-    pub fn append_entry(&mut self, timestamp_ms: u64, status: EntryStatus, payload: LexiconPayload) -> Result<LogEntry, IntegrityError> {
-        let entry = LogEntry::new_sealed(self.active_view.current_version + 1, timestamp_ms, self.active_view.head_hash.clone(), status, payload);
-        let is_rebuild_needed = matches!(entry.payload, LexiconPayload::Rollback { .. } | LexiconPayload::ConsolidationCheckpoint { .. });
+    pub fn append_batch(
+        &mut self,
+        items: &[(u64, EntryStatus, LexiconPayload)],
+        durability: DurabilityMode,
+    ) -> Result<Vec<LogEntry>, IntegrityError> {
+        if items.is_empty() { return Ok(Vec::new()); }
+        let mut entries = Vec::with_capacity(items.len());
+        let mut has_rebuild_needed = false;
 
         if let Some(ref path) = self.backing_file {
-            let line = serde_json::to_string(&entry).map_err(|e| IntegrityError::IoError(e.to_string()))?;
-            let mut file = OpenOptions::new().create(true).append(true).open(path).map_err(|e| IntegrityError::IoError(e.to_string()))?;
-            let offset = file.metadata().map_err(|e| IntegrityError::IoError(e.to_string()))?.len();
-            writeln!(file, "{line}").map_err(|e| IntegrityError::IoError(e.to_string()))?;
-            file.flush().map_err(|e| IntegrityError::IoError(e.to_string()))?;
-            self.entry_offsets.push(offset);
-            if is_rebuild_needed {
-                self.active_view = self.rebuild_view_at(None)?;
-            } else {
+            let file = OpenOptions::new().create(true).append(true).open(path)
+                .map_err(|e| IntegrityError::IoError(e.to_string()))?;
+            let mut current_offset = file.metadata()
+                .map_err(|e| IntegrityError::IoError(e.to_string()))?.len();
+            let mut writer = std::io::BufWriter::new(file);
+
+            for (ts, status, payload) in items {
+                let entry = LogEntry::new_sealed(
+                    self.active_view.current_version + 1,
+                    *ts,
+                    self.active_view.head_hash.clone(),
+                    *status,
+                    payload.clone(),
+                );
+                if matches!(entry.payload, LexiconPayload::Rollback { .. } | LexiconPayload::ConsolidationCheckpoint { .. }) {
+                    has_rebuild_needed = true;
+                }
+                let line = serde_json::to_string(&entry)
+                    .map_err(|e| IntegrityError::IoError(e.to_string()))?;
+                let bytes = line.as_bytes();
+                self.entry_offsets.push(current_offset);
+                writer.write_all(bytes).map_err(|e| IntegrityError::IoError(e.to_string()))?;
+                writer.write_all(b"\n").map_err(|e| IntegrityError::IoError(e.to_string()))?;
+                current_offset += bytes.len() as u64 + 1;
+
                 self.active_view.current_version = entry.version;
                 self.active_view.head_hash = entry.entry_hash.clone();
-                if entry.status != EntryStatus::Reverted { self.active_view.apply_payload(&entry.payload); }
+                if entry.status != EntryStatus::Reverted {
+                    self.active_view.apply_payload(&entry.payload);
+                }
+                entries.push(entry);
+            }
+
+            writer.flush().map_err(|e| IntegrityError::IoError(e.to_string()))?;
+            let inner_file = writer.into_inner().map_err(|e| IntegrityError::IoError(e.to_string()))?;
+            match durability {
+                DurabilityMode::Strict | DurabilityMode::Group => {
+                    inner_file.sync_data().map_err(|e| IntegrityError::IoError(e.to_string()))?;
+                }
+                DurabilityMode::Relaxed => {}
+            }
+
+            if has_rebuild_needed {
+                self.active_view = self.rebuild_view_at(None)?;
             }
         } else {
-            if is_rebuild_needed {
-                let mut candidate_entries = self.entries.clone();
-                candidate_entries.push(entry.clone());
-                self.active_view = Self::rebuild_active_view(&candidate_entries)?;
-                self.entries = candidate_entries;
-            } else {
+            for (ts, status, payload) in items {
+                let entry = LogEntry::new_sealed(
+                    self.active_view.current_version + 1,
+                    *ts,
+                    self.active_view.head_hash.clone(),
+                    *status,
+                    payload.clone(),
+                );
+                if matches!(entry.payload, LexiconPayload::Rollback { .. } | LexiconPayload::ConsolidationCheckpoint { .. }) {
+                    has_rebuild_needed = true;
+                }
                 self.active_view.current_version = entry.version;
                 self.active_view.head_hash = entry.entry_hash.clone();
-                if entry.status != EntryStatus::Reverted { self.active_view.apply_payload(&entry.payload); }
+                if entry.status != EntryStatus::Reverted {
+                    self.active_view.apply_payload(&entry.payload);
+                }
                 self.entries.push(entry.clone());
+                entries.push(entry);
+            }
+            if has_rebuild_needed {
+                let candidate = self.entries.clone();
+                self.active_view = Self::rebuild_active_view(&candidate)?;
             }
         }
-        Ok(entry)
+        Ok(entries)
+    }
+
+    pub fn append_entry(&mut self, timestamp_ms: u64, status: EntryStatus, payload: LexiconPayload) -> Result<LogEntry, IntegrityError> {
+        let mut list = self.append_batch(&[(timestamp_ms, status, payload)], DurabilityMode::Strict)?;
+        Ok(list.pop().unwrap())
     }
 
     pub fn rollback_to(&mut self, target_version: u64, timestamp_ms: u64, reason: impl Into<String>) -> Result<LogEntry, IntegrityError> {

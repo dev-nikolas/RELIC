@@ -111,3 +111,28 @@ fn test_read_last_entry_immediately_after_bufwriter_append() {
 
     let _ = fs::remove_file(path);
 }
+
+
+#[test]
+fn test_torn_write_recovery_truncates_file() {
+    use std::io::Write;
+    let path = temp_log_path();
+    {
+        let _store = EngramStore::open_or_init_file(&path).expect("crear store inicial");
+    }
+    let valid_len = fs::metadata(&path).unwrap().len();
+
+    // Simular un crash en mitad de una escritura: línea truncada al final
+    {
+        let mut file = fs::OpenOptions::new().append(true).open(&path).expect("abrir para corromper");
+        writeln!(file, "{{\"version\": 99, \"broken\": tr").expect("escribir torn write");
+    }
+    assert!(fs::metadata(&path).unwrap().len() > valid_len);
+
+    // Reabrir: debe detectar la línea corrupta, truncar el archivo al tamaño válido previo y cargar sin error
+    let reopened = EngramStore::open_or_init_file(&path).expect("reabrir con truncamiento automático");
+    assert_eq!(fs::metadata(&path).unwrap().len(), valid_len, "El archivo debe haber sido truncado al offset válido");
+    assert!(reopened.active_view().current_version > 0);
+
+    let _ = fs::remove_file(path);
+}

@@ -7,6 +7,7 @@ use relic_cli::{answer_intent, parse_dispatch_intent_with_lexicon, DispatchInten
 use relic_core::certificate::SearchOutcome;
 use relic_core::ReasoningEngine;
 use relic_lexicon::{LexiconPayload, LexiconView};
+use crate::catapult::CausalCatapult;
 use crate::regression::{canonical_regression_suite, RegressionCase, RegressionFailure};
 
 #[derive(Debug, Clone, Default)]
@@ -16,6 +17,7 @@ pub struct CausalDependencyIndex {
     pub query_tokens: Vec<(usize, String)>,
     pub independent_tests: HashSet<usize>,
     pub total_indexed: usize,
+    pub catapult: CausalCatapult,
 }
 
 impl CausalDependencyIndex {
@@ -23,6 +25,7 @@ impl CausalDependencyIndex {
         let base_cases = canonical_regression_suite();
         let all_cases: Vec<&RegressionCase> = base_cases.iter().chain(extra_cases.iter()).collect();
         let total = all_cases.len();
+        let max_nodes = view.episodic.interner.len();
 
         let mut idx = Self {
             edge_to_positive_tests: HashMap::new(),
@@ -30,6 +33,7 @@ impl CausalDependencyIndex {
             query_tokens: Vec::with_capacity(total),
             independent_tests: HashSet::new(),
             total_indexed: total,
+            catapult: CausalCatapult::new(max_nodes),
         };
 
         for (i, case) in all_cases.iter().enumerate() {
@@ -53,7 +57,9 @@ impl CausalDependencyIndex {
                                 }
                             }
                             SearchOutcome::Unreachable { closed_set_ids, .. } => {
+                                idx.catapult.unbounded_closed_cut_mask.set_bit(i);
                                 for node_id in closed_set_ids {
+                                    idx.catapult.register_cut_node(node_id, i);
                                     idx.cut_node_to_negative_tests.entry(node_id).or_default().push(i);
                                 }
                             }
@@ -66,15 +72,38 @@ impl CausalDependencyIndex {
         idx
     }
 
-    /// Retorna los índices de los tests cuyo cono causal se intersecta con la mutación propuesta.
+    /// Retorna los índices de los tests cuyo cono causal se intersecta con la mutación propuesta (con catapulta por defecto).
     pub fn find_affected_tests(&self, payload: &LexiconPayload, view: &LexiconView) -> Vec<usize> {
+        self.find_affected_tests_mode(payload, view, true)
+    }
+
+    /// Retorna los índices de los tests con opción explícita de Catapulta activa o inactiva (A/B testing).
+    pub fn find_affected_tests_mode(&self, payload: &LexiconPayload, view: &LexiconView, use_catapult: bool) -> Vec<usize> {
         let mut affected = HashSet::new();
         match payload {
-            LexiconPayload::GraphFact { from, to, .. } => {
-                // Inserción de arista nueva (u, v):
-                // Invariante: Solo puede romper tests negativos donde u pertenezca al corte inductivo S.
-                if let (Some(u), Some(_v)) = (view.episodic.interner.get_id(from), view.episodic.interner.get_id(to)) {
-                    if let Some(tests) = self.cut_node_to_negative_tests.get(&u) {
+            LexiconPayload::GraphFact { from, to, replaces, .. } => {
+                if let Some((r_from, _r_rel, r_to)) = replaces {
+                    if let (Some(ru), Some(rv)) = (view.episodic.interner.get_id(r_from), view.episodic.interner.get_id(r_to)) {
+                        if let Some(tests) = self.edge_to_positive_tests.get(&(ru, rv)) {
+                            for &t in tests { affected.insert(t); }
+                        }
+                    }
+                }
+                if let (Some(u), Some(v)) = (view.episodic.interner.get_id(from), view.episodic.interner.get_id(to)) {
+                    if use_catapult {
+                        let broken_cuts = self.catapult.evaluate_edge_addition(u, v);
+                        for test_idx in broken_cuts.iter_indices() {
+                            affected.insert(test_idx);
+                        }
+                    } else {
+                        if let Some(tests) = self.cut_node_to_negative_tests.get(&u) {
+                            for &t in tests { affected.insert(t); }
+                        }
+                        if let Some(tests) = self.cut_node_to_negative_tests.get(&v) {
+                            for &t in tests { affected.insert(t); }
+                        }
+                    }
+                    if let Some(tests) = self.edge_to_positive_tests.get(&(u, v)) {
                         for &t in tests { affected.insert(t); }
                     }
                 }

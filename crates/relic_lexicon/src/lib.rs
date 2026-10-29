@@ -22,5 +22,5 @@ pub use genesis::{build_genesis_entries, genesis_jsonl_seed, GENESIS_FACTS};
 pub use log::{
     compute_entry_hash, EntryStatus, IntegrityError, LexiconPayload, LogEntry, GENESIS_PREV_HASH,
 };
-pub use memory::{ClassicalPolysemyResult, EngramStore, PolysemousEntry};
+pub use memory::{ClassicalPolysemyResult, DurabilityMode, EngramStore, PolysemousEntry};
 pub use view::{InverseOp, LexiconView};

@@ -1,0 +1,22 @@
+{
+  "seeds": [
+    42,
+    7,
+    99
+  ],
+  "embed_dim": 16,
+  "reservoir_size": 64,
+  "spectral_radius": 0.9,
+  "input_scale": 1.0,
+  "rls_delta": 1.0,
+  "rls_forget": 0.999,
+  "norm_window": 6400,
+  "ecdf_window": 16000,
+  "min_historial": 288,
+  "peak_window": 24,
+  "tau": 2.0,
+  "spatial_tolerance": 0.05,
+  "spatial_warmup": 100,
+  "refractory_rest": 80,
+  "refractory_threshold": 0.99
+}

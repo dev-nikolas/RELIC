@@ -5,6 +5,7 @@
 //! Menos de 180 lineas.
 
 pub mod arithmetic;
+pub mod anomaly;
 pub mod attention;
 pub mod block;
 pub mod certificate;

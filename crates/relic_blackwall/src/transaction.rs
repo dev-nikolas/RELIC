@@ -8,7 +8,7 @@ use relic_core::{
     CollapseDecision, NetworkAlertSpec, SpectralOutcome, SpreadingActivationResult, VerifiedAlertReport,
 };
 use relic_lexicon::{
-    compute_consolidation_candidate, ClassicalPolysemyResult, EngramStore, EntryStatus,
+    compute_consolidation_candidate, ClassicalPolysemyResult, DurabilityMode, EngramStore, EntryStatus,
     IntegrityError, InverseOp, LexiconPayload, LexiconView, LogEntry, VersionDiff,
 };
 use serde::{Deserialize, Serialize};
@@ -33,6 +33,7 @@ pub enum TransactionOutcome {
     RejectedByRegression { failed_case: String, reason: String },
     RejectedByFidelity { fidelity_score: f64, required_fidelity: f64, degraded_cases: Vec<String> },
     RejectedByIntegrity { reason: String },
+    RejectedByAnomaly { channel_id: u32, reason: String },
 }
 
 #[derive(Debug, Clone)]
@@ -40,12 +41,29 @@ pub struct BlackwallGate {
     engram: EngramStore,
     custom_regression_cases: Vec<RegressionCase>,
     causal_index: Option<CausalDependencyIndex>,
+    pub enable_catapult: bool,
+    pub shadow_mode: bool,
+    pub durability: DurabilityMode,
+    pub telemetry_arena: crate::telemetry_arena::TelemetryArena,
 }
 
 impl Default for BlackwallGate { fn default() -> Self { Self::with_genesis() } }
 
 impl BlackwallGate {
-    pub fn new(engram: EngramStore) -> Self { Self { engram, custom_regression_cases: Vec::new(), causal_index: None } }
+    pub fn new(engram: EngramStore) -> Self {
+        Self {
+            engram,
+            custom_regression_cases: Vec::new(),
+            causal_index: None,
+            enable_catapult: false, // Por defecto desactivada (contención de riesgo)
+            shadow_mode: false,
+            durability: DurabilityMode::Group,
+            telemetry_arena: crate::telemetry_arena::TelemetryArena::new(
+                crate::telemetry_arena::AnomalyGateMode::PassiveMonitor,
+            )
+            .expect("Error al inicializar TelemetryArena con pesos Seis Ojos"),
+        }
+    }
     pub fn with_genesis() -> Self { Self::new(EngramStore::with_genesis()) }
     pub fn open_or_init_file(p: impl AsRef<Path>) -> Result<Self, IntegrityError> { Ok(Self::new(EngramStore::open_or_init_file(p)?)) }
     pub fn add_regression_case(&mut self, case: RegressionCase) { self.custom_regression_cases.push(case); self.causal_index = None; }
@@ -54,7 +72,7 @@ impl BlackwallGate {
         if self.causal_index.is_none() {
             self.causal_index = Some(CausalDependencyIndex::build(self.engram.active_view_mut(), &self.custom_regression_cases));
         }
-        let affected = self.causal_index.as_ref().unwrap().find_affected_tests(payload, self.engram.active_view());
+        let affected = self.causal_index.as_ref().unwrap().find_affected_tests_mode(payload, self.engram.active_view(), self.enable_catapult);
         let c_idx = self.causal_index.as_ref().unwrap();
         let reg_cases = &self.custom_regression_cases;
         c_idx.run_selective(self.engram.active_view_mut(), reg_cases, &affected)
@@ -65,38 +83,171 @@ impl BlackwallGate {
     }
 
     pub fn commit_batch_payloads(&mut self, payloads: &[LexiconPayload], ts: u64) -> TransactionOutcome {
-        if payloads.is_empty() { return TransactionOutcome::RejectedByIntegrity { reason: "Lote vacío.".to_string() }; }
-        let mut guard = UndoGuard { view: self.engram.active_view_mut(), ops: Vec::with_capacity(payloads.len()), committed: false };
+        match self.commit_transaction_with_telemetry(payloads, &[], ts) {
+            Ok(outcome) => outcome,
+            Err(err) => TransactionOutcome::RejectedByIntegrity { reason: err.to_string() },
+        }
+    }
+
+    /// Ejecuta una transacción completa que incluye mutaciones simbólicas del léxico y/o telemetría continua.
+    ///
+    /// Semántica de commit y rollback:
+    /// 1. Si la arena está en modo Enforcing y algún canal reporta anomalía (range_violation, drift_alarm o score_relic >= 0.990),
+    ///    la transacción es rechazada SIN mutar ni el estado del detector ni el grafo episódico.
+    /// 2. Si las mutaciones simbólicas son rechazadas por el oráculo o por regresión, `UndoGuard` revierte la memoria
+    ///    y la telemetría NO se compromete.
+    /// 3. Solo cuando el WAL (`engram.jsonl`) se persiste con éxito, se llama a `telemetry_arena.commit_batch`.
+    /// 4. En modo `PassiveMonitor`, los veredictos de telemetría van a un log de auditoría fuera de banda y NUNCA
+    ///    ensucian `engram.jsonl`.
+    pub fn commit_transaction_with_telemetry(
+        &mut self,
+        payloads: &[LexiconPayload],
+        telemetry: &[(u32, f64)],
+        ts: u64,
+    ) -> Result<TransactionOutcome, crate::telemetry_arena::BlackwallError> {
+        if payloads.is_empty() && telemetry.is_empty() {
+            return Ok(TransactionOutcome::RejectedByIntegrity {
+                reason: "Lote vacío (ni mutaciones ni telemetría).".to_string(),
+            });
+        }
+
+        // 1. Evaluación pura de la telemetría (falla si hay contención de canales o arena agotada)
+        let assessments = self.telemetry_arena.evaluate_batch_pure(telemetry)?;
+
+        // 2. Si está en Enforcing, auditar si hay alguna violación
+        if self.telemetry_arena.mode == crate::telemetry_arena::AnomalyGateMode::Enforcing {
+            for &(ch_id, _, ref assess) in &assessments {
+                if assess.range_violation || assess.drift_alarm || assess.score_relic >= 0.990 {
+                    return Ok(TransactionOutcome::RejectedByAnomaly {
+                        channel_id: ch_id,
+                        reason: format!(
+                            "Violación en canal {ch_id}: score_relic={:.4}, range_violation={}, drift_alarm={}",
+                            assess.score_relic, assess.range_violation, assess.drift_alarm
+                        ),
+                    });
+                }
+            }
+        }
+
+        // 3. Si no hay mutaciones simbólicas (solo telemetría continua), comprometer telemetría directamente
+        if payloads.is_empty() {
+            self.telemetry_arena.commit_batch(&assessments, ts);
+            return Ok(TransactionOutcome::Committed {
+                version: self.engram.current_version(),
+                entry_hash: self.engram.head_hash().to_string(),
+            });
+        }
+
+        // 4. Si hay mutaciones simbólicas, aplicar en UndoGuard y verificar
+        let mut guard = UndoGuard {
+            view: self.engram.active_view_mut(),
+            ops: Vec::with_capacity(payloads.len()),
+            committed: false,
+        };
         let reg_cases = &self.custom_regression_cases;
         for payload in payloads {
             guard.ops.push(guard.view.apply_payload_recording_undo(payload));
-            if let Err(v) = validate_proposal_oracle(payload, guard.view) { return TransactionOutcome::RejectedByOracle { reason: v.to_string() }; }
-        }
-        if self.causal_index.is_none() { self.causal_index = Some(CausalDependencyIndex::build(guard.view, reg_cases)); }
-        let c_idx = self.causal_index.as_ref().unwrap();
-        let mut affected = Vec::new();
-        for payload in payloads { affected.extend(c_idx.find_affected_tests(payload, guard.view)); }
-        affected.sort_unstable(); affected.dedup();
-
-        if let Err(reg) = c_idx.run_selective(guard.view, reg_cases, &affected) {
-            return TransactionOutcome::RejectedByRegression { failed_case: reg.case_id, reason: reg.reason };
-        }
-        guard.commit();
-        let (mut last_v, mut last_h) = (self.engram.current_version(), self.engram.head_hash().to_string());
-        for (i, payload) in payloads.iter().enumerate() {
-            let status = match payload {
-                LexiconPayload::GraphFact { .. } | LexiconPayload::EdgeReinforcement { .. } => EntryStatus::ConfirmedFact,
-                LexiconPayload::OpAlias { .. } | LexiconPayload::QuantumPolysemousAlias { .. }
-                | LexiconPayload::PhraseMacro { .. } | LexiconPayload::EntityAlias { .. } => EntryStatus::LexicalAlias,
-                LexiconPayload::ConsolidationCheckpoint { .. } => EntryStatus::ConsolidatedCheckpoint,
-                LexiconPayload::Rollback { .. } => EntryStatus::Reverted,
-            };
-            match self.engram.append_entry(ts + i as u64, status, payload.clone()) {
-                Ok(e) => { last_v = e.version; last_h = e.entry_hash; }
-                Err(err) => return TransactionOutcome::RejectedByIntegrity { reason: err.to_string() },
+            if let Err(v) = validate_proposal_oracle(payload, guard.view) {
+                // guard se descarta y revierte la vista. La telemetría NO se compromete.
+                return Ok(TransactionOutcome::RejectedByOracle { reason: v.to_string() });
             }
         }
-        TransactionOutcome::Committed { version: last_v, entry_hash: last_h }
+
+        if self.causal_index.is_none() {
+            self.causal_index = Some(CausalDependencyIndex::build(guard.view, reg_cases));
+        }
+        let c_idx = self.causal_index.as_ref().unwrap();
+        let mut affected = Vec::new();
+        let mut touched_nodes = std::collections::HashSet::new();
+        for payload in payloads {
+            match payload {
+                LexiconPayload::GraphFact { from, to, replaces, .. } => {
+                    let mut intra_batch_hazard = replaces.is_some();
+                    if let (Some(u), Some(v)) = (
+                        guard.view.episodic.interner.get_id(from),
+                        guard.view.episodic.interner.get_id(to),
+                    ) {
+                        if touched_nodes.contains(&u) || touched_nodes.contains(&v) {
+                            intra_batch_hazard = true;
+                        }
+                        touched_nodes.insert(u);
+                        touched_nodes.insert(v);
+                    }
+                    if intra_batch_hazard {
+                        for i in 0..c_idx.total_indexed {
+                            if !c_idx.independent_tests.contains(&i) {
+                                affected.push(i);
+                            }
+                        }
+                    } else {
+                        affected.extend(c_idx.find_affected_tests_mode(
+                            payload,
+                            guard.view,
+                            self.enable_catapult,
+                        ));
+                    }
+                }
+                _ => {
+                    affected.extend(c_idx.find_affected_tests_mode(
+                        payload,
+                        guard.view,
+                        self.enable_catapult,
+                    ));
+                }
+            }
+        }
+        affected.sort_unstable();
+        affected.dedup();
+
+        if let Err(reg) = c_idx.run_selective(guard.view, reg_cases, &affected) {
+            return Ok(TransactionOutcome::RejectedByRegression {
+                failed_case: reg.case_id,
+                reason: reg.reason,
+            });
+        }
+
+        // Modo sombra: si está activo, valida en paralelo contra la suite completa
+        if self.shadow_mode {
+            if let Err(full_fail) = run_regression_suite(guard.view, reg_cases) {
+                panic!(
+                    "FATAL SHADOW MODE VIOLATION: Catapult/Index filtered test but full suite failed! Case: '{}', reason: '{}'",
+                    full_fail.case_id, full_fail.reason
+                );
+            }
+        }
+
+        guard.commit();
+
+        let mut items = Vec::with_capacity(payloads.len());
+        for (i, payload) in payloads.iter().enumerate() {
+            let status = match payload {
+                LexiconPayload::GraphFact { .. } | LexiconPayload::EdgeReinforcement { .. } => {
+                    EntryStatus::ConfirmedFact
+                }
+                LexiconPayload::OpAlias { .. }
+                | LexiconPayload::QuantumPolysemousAlias { .. }
+                | LexiconPayload::PhraseMacro { .. }
+                | LexiconPayload::EntityAlias { .. } => EntryStatus::LexicalAlias,
+                LexiconPayload::ConsolidationCheckpoint { .. } => {
+                    EntryStatus::ConsolidatedCheckpoint
+                }
+                LexiconPayload::Rollback { .. } => EntryStatus::Reverted,
+            };
+            items.push((ts + i as u64, status, payload.clone()));
+        }
+
+        match self.engram.append_batch(&items, self.durability) {
+            Ok(entries) => {
+                // Commit atómico del lote de telemetría tras confirmación de WAL
+                self.telemetry_arena.commit_batch(&assessments, ts);
+                let last = entries.last().unwrap();
+                Ok(TransactionOutcome::Committed {
+                    version: last.version,
+                    entry_hash: last.entry_hash.clone(),
+                })
+            }
+            Err(err) => Ok(TransactionOutcome::RejectedByIntegrity { reason: err.to_string() }),
+        }
     }
 
     pub fn reinforce_edge(&mut self, from: &str, to: &str, delta: f64, ts: u64) -> TransactionOutcome {

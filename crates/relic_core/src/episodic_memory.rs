@@ -85,7 +85,14 @@ impl EpisodicMemory {
     }
     pub fn set_edge_world_mask_u32(&mut self, u: u32, v: u32, mask: u64) { self.edge_world_overrides.insert((u, v), [mask; 4]); }
     pub fn get_edge_world_mask_u32(&self, u: u32, v: u32) -> u64 { self.edge_world_overrides.get(&(u, v)).map(|m| m[0]).unwrap_or(!0u64) }
-    pub fn get_edge_mask256(&self, u: u32, v: u32) -> Mask256 { self.edge_world_overrides.get(&(u, v)).map(|&m| Mask256(m)).unwrap_or(Mask256::ALL) }
+    #[inline(always)]
+    pub fn get_edge_mask256(&self, u: u32, v: u32) -> Mask256 {
+        if self.edge_world_overrides.is_empty() {
+            Mask256::ALL
+        } else {
+            self.edge_world_overrides.get(&(u, v)).map(|&m| Mask256(m)).unwrap_or(Mask256::ALL)
+        }
+    }
 
     pub fn reinforce_edge(&mut self, u: &str, v: &str, delta: f64) -> Option<f64> {
         let pair = (self.interner.get_id(u)?, self.interner.get_id(v)?);
