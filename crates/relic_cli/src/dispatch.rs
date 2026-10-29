@@ -17,13 +17,20 @@ pub enum DispatchIntent {
     Incomplete { reason: String, missing: String },
 }
 
-#[derive(Debug, PartialEq, Eq)]
+#[derive(Debug, PartialEq, Eq, Clone)]
 pub struct QuerySpec {
     pub initial: Option<String>,
     pub target: Option<String>,
     pub via: Option<String>,
     pub avoid: Option<String>,
     pub is_negated: bool,
+    pub max_depth: Option<usize>,
+}
+
+impl QuerySpec {
+    pub fn new(initial: Option<String>, target: Option<String>, via: Option<String>, avoid: Option<String>, is_negated: bool) -> Self {
+        Self { initial, target, via, avoid, is_negated, max_depth: None }
+    }
 }
 
 fn annotate_reparto_note(query_lower: &str, plan: &mut ArithmeticPlan) {

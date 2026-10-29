@@ -36,3 +36,5 @@ pub use relational::{parse_relational_query, RelationalQuerySpec, RelationalQues
 
 #[cfg(feature = "offline-tools")]
 pub use generator::{generate_sample, generate_and_export_curriculum, CurriculumLevel, DatasetSplit};
+pub use relic_tokenizer;
+

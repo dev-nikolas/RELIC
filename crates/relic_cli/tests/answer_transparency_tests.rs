@@ -49,7 +49,7 @@ fn test_inventory_declares_units_formula() {
 
 #[test]
 fn test_graph_alias_collision_abstains_as_ambiguous() {
-    let spec = QuerySpec { initial: Some("bogota".to_string()), target: Some("Lima".to_string()), via: None, avoid: None, is_negated: false };
+    let spec = QuerySpec { initial: Some("bogota".to_string()), target: Some("Lima".to_string()), via: None, avoid: None, is_negated: false, max_depth: None };
     let mut mem = ambiguous_memory();
     let a = answer_intent(&DispatchIntent::GraphReachability(spec), &mut mem);
     assert_eq!(a.status, "AMBIGUOUS");
@@ -59,7 +59,7 @@ fn test_graph_alias_collision_abstains_as_ambiguous() {
 
 #[test]
 fn test_graph_unknown_entity_is_invalid_not_fake_route() {
-    let spec = QuerySpec { initial: Some("relic_cli".to_string()), target: Some("kodex".to_string()), via: None, avoid: None, is_negated: false };
+    let spec = QuerySpec { initial: Some("relic_cli".to_string()), target: Some("kodex".to_string()), via: None, avoid: None, is_negated: false, max_depth: None };
     let mut mem = EpisodicMemory::new();
     load_default_knowledge(&mut mem);
     let a = answer_intent(&DispatchIntent::GraphReachability(spec), &mut mem);
@@ -70,14 +70,14 @@ fn test_graph_unknown_entity_is_invalid_not_fake_route() {
 #[test]
 fn test_graph_ambiguous_via_or_avoid_abstains_silently_never() {
     // Evitar una entidad ambigua no debe degradarse a BFS sin restricciones en silencio.
-    let spec = QuerySpec { initial: Some("Madrid".to_string()), target: Some("Barcelona".to_string()), via: None, avoid: Some("bogota".to_string()), is_negated: false };
+    let spec = QuerySpec { initial: Some("Madrid".to_string()), target: Some("Barcelona".to_string()), via: None, avoid: Some("bogota".to_string()), is_negated: false, max_depth: None };
     let mut mem = ambiguous_memory();
     let a = answer_intent(&DispatchIntent::GraphReachability(spec), &mut mem);
     assert_eq!(a.status, "AMBIGUOUS");
     assert!(a.text.contains("restringida"), "Debe señalar el rol 'restringida': {}", a.text);
 
     // Via ambigua tampoco se ignora.
-    let spec2 = QuerySpec { initial: Some("Madrid".to_string()), target: Some("Paris".to_string()), via: Some("bogota".to_string()), avoid: None, is_negated: false };
+    let spec2 = QuerySpec { initial: Some("Madrid".to_string()), target: Some("Paris".to_string()), via: Some("bogota".to_string()), avoid: None, is_negated: false, max_depth: None };
     let mut mem2 = ambiguous_memory();
     let a2 = answer_intent(&DispatchIntent::GraphReachability(spec2), &mut mem2);
     assert_eq!(a2.status, "AMBIGUOUS");

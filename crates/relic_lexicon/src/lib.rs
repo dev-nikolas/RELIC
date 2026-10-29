@@ -12,6 +12,7 @@ pub mod genesis;
 pub mod log;
 pub mod memory;
 pub mod polysemy;
+pub mod view;
 
 pub use calibrator::{auto_calibrate_phases, ContextObservation, PhaseCalibrationReport};
 pub use capsule::{CapsuleEntry, EngramCapsule, CAPSULE_GENESIS_HASH, CAPSULE_SCHEMA_VERSION};
@@ -21,4 +22,5 @@ pub use genesis::{build_genesis_entries, genesis_jsonl_seed, GENESIS_FACTS};
 pub use log::{
     compute_entry_hash, EntryStatus, IntegrityError, LexiconPayload, LogEntry, GENESIS_PREV_HASH,
 };
-pub use memory::{ClassicalPolysemyResult, EngramStore, LexiconView, PolysemousEntry};
+pub use memory::{ClassicalPolysemyResult, EngramStore, PolysemousEntry};
+pub use view::{InverseOp, LexiconView};

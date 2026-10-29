@@ -1,0 +1,254 @@
+{
+  "timestamp_utc": "2026-10-28T21:10:00Z",
+  "git_commit": "b268ffaea91ae6a4da014b5eec95c8e7e2cb6e1e",
+  "scale_memory": {
+    "facts_loaded": 50000,
+    "private_heap_before_mb": 0.53515625,
+    "private_heap_after_mb": 19.4921875,
+    "private_heap_delta_mb": 18.95703125,
+    "rss_before_mb": 3.44921875,
+    "rss_after_mb": 20.98828125,
+    "rss_delta_mb": 17.5390625,
+    "query_samples": 1000,
+    "query_mean_latency_us": 23.858700000000034,
+    "query_p50_latency_us": 10.5,
+    "query_p99_latency_us": 97.3
+  },
+  "benchmarks_summary": {
+    "bench1_polysemy_ablation": {
+      "classical_contradiction_error_rate_pct": 83.33333333333334,
+      "classical_coverage_pct": 0.0,
+      "classical_f1": 0.0,
+      "classical_mean_latency_us": 2.466666666666667,
+      "classical_p99_latency_us": 12.2,
+      "classical_resolved_accuracy_pct": 0.0,
+      "quantum_contradiction_error_rate_pct": 0.0,
+      "quantum_coverage_pct": 100.0,
+      "quantum_f1": 1.0,
+      "quantum_mean_latency_us": 7.104166666666665,
+      "quantum_p99_latency_us": 58.9,
+      "quantum_resolved_accuracy_pct": 100.0,
+      "total_cases": 24
+    },
+    "bench2_reasoning_epistemic": {
+      "answerable_cases": 22,
+      "coverage_on_answerable_pct": 90.9090909090909,
+      "exact_trace_match_pct": 100.0,
+      "hallucination_rate_pct": 0.0,
+      "mean_latency_us": 52.890624999999986,
+      "p99_latency_us": 192.3,
+      "selective_accuracy_pct": 100.0,
+      "total_cases": 32,
+      "unanswerable_trap_cases": 10
+    },
+    "bench3_network_telemetry": {
+      "attack_traces": 5,
+      "beacon_detection_recall_pct": 100.0,
+      "benign_jitter_traces": 5,
+      "false_positive_rate_pct": 0.0,
+      "mean_latency_us": 41.17142857142857,
+      "p99_latency_us": 106.9,
+      "topological_isolation_exact_match_pct": 100.0,
+      "total_traces": 14,
+      "truncated_window_traces": 4,
+      "uncertainty_abstention_accuracy_pct": 100.0
+    },
+    "bench4_continual_learning": {
+      "clutrr_accuracy_pct": 100.0,
+      "clutrr_max_hops_tested": 10,
+      "efficacy_pct": 100.0,
+      "locality_retention_pct": 100.0,
+      "mean_edit_latency_us": 15.601499999999987,
+      "p99_edit_latency_us": 66.3,
+      "rollback_fidelity_pct": 100.0,
+      "successful_edits": 200,
+      "total_edits": 200
+    },
+    "bench5_kuramoto_transition": {
+      "aurc_risk_coverage": 0.002222222222222222,
+      "critical_coupling_kc_estimate": 0.25,
+      "subcritical_abstention_pct": 100.0,
+      "supercritical_consensus_pct": 100.0,
+      "sweep_points": [
+        {
+          "coupling_k": 0.0,
+          "is_synchronized": false,
+          "order_parameter_r": 0.41237166761806326,
+          "selective_decision": "IncoherentAbstention"
+        },
+        {
+          "coupling_k": 0.25,
+          "is_synchronized": true,
+          "order_parameter_r": 0.9988900329166172,
+          "selective_decision": "ConsensusAdopted"
+        },
+        {
+          "coupling_k": 0.5,
+          "is_synchronized": true,
+          "order_parameter_r": 0.9997232223734722,
+          "selective_decision": "ConsensusAdopted"
+        },
+        {
+          "coupling_k": 0.75,
+          "is_synchronized": true,
+          "order_parameter_r": 0.9998770408705931,
+          "selective_decision": "ConsensusAdopted"
+        },
+        {
+          "coupling_k": 1.0,
+          "is_synchronized": true,
+          "order_parameter_r": 0.9999308459429789,
+          "selective_decision": "ConsensusAdopted"
+        },
+        {
+          "coupling_k": 1.25,
+          "is_synchronized": true,
+          "order_parameter_r": 0.9999557444988989,
+          "selective_decision": "ConsensusAdopted"
+        },
+        {
+          "coupling_k": 1.5,
+          "is_synchronized": true,
+          "order_parameter_r": 0.9999692681805818,
+          "selective_decision": "ConsensusAdopted"
+        },
+        {
+          "coupling_k": 1.75,
+          "is_synchronized": true,
+          "order_parameter_r": 0.9999774220375544,
+          "selective_decision": "ConsensusAdopted"
+        },
+        {
+          "coupling_k": 2.0,
+          "is_synchronized": true,
+          "order_parameter_r": 0.9999827140044569,
+          "selective_decision": "ConsensusAdopted"
+        },
+        {
+          "coupling_k": 2.25,
+          "is_synchronized": true,
+          "order_parameter_r": 0.999986342068635,
+          "selective_decision": "ConsensusAdopted"
+        },
+        {
+          "coupling_k": 2.5,
+          "is_synchronized": true,
+          "order_parameter_r": 0.9999889371562358,
+          "selective_decision": "ConsensusAdopted"
+        },
+        {
+          "coupling_k": 2.75,
+          "is_synchronized": true,
+          "order_parameter_r": 0.9999908572032232,
+          "selective_decision": "ConsensusAdopted"
+        },
+        {
+          "coupling_k": 3.0,
+          "is_synchronized": true,
+          "order_parameter_r": 0.9999923175425546,
+          "selective_decision": "ConsensusAdopted"
+        },
+        {
+          "coupling_k": 3.5,
+          "is_synchronized": true,
+          "order_parameter_r": 0.9999943557778647,
+          "selective_decision": "ConsensusAdopted"
+        },
+        {
+          "coupling_k": 4.0,
+          "is_synchronized": true,
+          "order_parameter_r": 0.9999956786584849,
+          "selective_decision": "ConsensusAdopted"
+        }
+      ]
+    },
+    "bench6_stochastic_jitter_roc": {
+      "max_resilient_jitter_pct": 0.0,
+      "mean_donoho_distance_under_30pct": 5.7,
+      "null_false_positives": 0,
+      "null_traces_tested": 10000,
+      "period_samples": 20,
+      "roc_curve": [
+        {
+          "detected_beacon": true,
+          "donoho_stark_distance": 0.0,
+          "false_positive_rate": 0.0,
+          "jitter_pct": 0.0,
+          "true_positive_rate": 1.0
+        },
+        {
+          "detected_beacon": false,
+          "donoho_stark_distance": 6.6,
+          "false_positive_rate": 0.0,
+          "jitter_pct": 5.0,
+          "true_positive_rate": 0.0
+        },
+        {
+          "detected_beacon": false,
+          "donoho_stark_distance": 6.7,
+          "false_positive_rate": 0.0,
+          "jitter_pct": 10.0,
+          "true_positive_rate": 0.0
+        },
+        {
+          "detected_beacon": false,
+          "donoho_stark_distance": 6.55,
+          "false_positive_rate": 0.0,
+          "jitter_pct": 15.0,
+          "true_positive_rate": 0.0
+        },
+        {
+          "detected_beacon": false,
+          "donoho_stark_distance": 6.8,
+          "false_positive_rate": 0.0,
+          "jitter_pct": 20.0,
+          "true_positive_rate": 0.0
+        },
+        {
+          "detected_beacon": false,
+          "donoho_stark_distance": 6.45,
+          "false_positive_rate": 0.0,
+          "jitter_pct": 25.0,
+          "true_positive_rate": 0.0
+        },
+        {
+          "detected_beacon": false,
+          "donoho_stark_distance": 6.8,
+          "false_positive_rate": 0.0,
+          "jitter_pct": 30.0,
+          "true_positive_rate": 0.0
+        },
+        {
+          "detected_beacon": false,
+          "donoho_stark_distance": 6.6,
+          "false_positive_rate": 0.0,
+          "jitter_pct": 35.0,
+          "true_positive_rate": 0.0
+        },
+        {
+          "detected_beacon": false,
+          "donoho_stark_distance": 6.7,
+          "false_positive_rate": 0.0,
+          "jitter_pct": 40.0,
+          "true_positive_rate": 0.0
+        },
+        {
+          "detected_beacon": false,
+          "donoho_stark_distance": 6.7,
+          "false_positive_rate": 0.0,
+          "jitter_pct": 45.0,
+          "true_positive_rate": 0.0
+        },
+        {
+          "detected_beacon": false,
+          "donoho_stark_distance": 6.8,
+          "false_positive_rate": 0.0,
+          "jitter_pct": 50.0,
+          "true_positive_rate": 0.0
+        }
+      ],
+      "total_cycles": 8
+    },
+    "rss_mb": 23.046875
+  }
+}

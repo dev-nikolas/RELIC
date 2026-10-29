@@ -36,13 +36,25 @@ pub struct VersionDiff {
 
 impl EngramStore {
     pub fn diff_versions(&self, v_from: u64, v_to: u64) -> Result<VersionDiff, IntegrityError> {
-        diff_versions(self.entries(), v_from, v_to)
+        let (view_from, view_to) = (self.rebuild_view_at(Some(v_from))?, self.rebuild_view_at(Some(v_to))?);
+        let entries = if self.entries().is_empty() {
+            let mut es = Vec::new();
+            for idx in 0..self.entry_count() { es.push(self.read_entry_at(idx)?); }
+            es
+        } else {
+            self.entries().to_vec()
+        };
+        diff_from_views_and_entries(&entries, v_from, v_to, &view_from, &view_to)
     }
 }
 
 pub fn diff_versions(entries: &[LogEntry], v_from: u64, v_to: u64) -> Result<VersionDiff, IntegrityError> {
     let view_from = EngramStore::rebuild_view_at_version(entries, Some(v_from))?;
     let view_to = EngramStore::rebuild_view_at_version(entries, Some(v_to))?;
+    diff_from_views_and_entries(entries, v_from, v_to, &view_from, &view_to)
+}
+
+fn diff_from_views_and_entries(entries: &[LogEntry], v_from: u64, v_to: u64, view_from: &crate::view::LexiconView, view_to: &crate::view::LexiconView) -> Result<VersionDiff, IntegrityError> {
 
     let (mut added_facts, mut retained_facts, mut weight_deltas) = (Vec::new(), Vec::new(), Vec::new());
     for ((from, to), (rel, w_to, _)) in &view_to.active_facts {

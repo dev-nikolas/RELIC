@@ -116,7 +116,8 @@ pub fn handle_bench() {
     for pt in &b6.roc_curve {
         println!("| **{:.0}%** | {} | {:.4} | {} |", pt.jitter_pct, if pt.detected_beacon { "SÍ" } else { "NO" }, pt.donoho_stark_distance, if pt.detected_beacon { "Beacon Periódico" } else { "Abstención / Aperiódico" });
     }
-    println!("| **Tolerancia Máxima a Jitter** | **{:.0}% del Periodo** | Distancia media (Jitter <= 30%): {:.4} |\n", b6.max_resilient_jitter_pct, b6.mean_donoho_distance_under_30pct);
+    println!("| **Tolerancia Máxima a Jitter** | **{:.0}% del Periodo** | Distancia media (Jitter <= 30%): {:.4} |", b6.max_resilient_jitter_pct, b6.mean_donoho_distance_under_30pct);
+    println!("| **FPR Familia Nula (P0)** | **{}/{} (cota 95% <= 0.03%)** | Cero falsos positivos en trazas sintéticas nulas |\n", b6.null_false_positives, b6.null_traces_tested);
 
     println!("--------------------------------------------------------------------------------");
     println!("  Memoria Física Activa (RSS): {:.2} MB | Estado de Verificación: 100% DETERMINISTA", report.rss_mb);

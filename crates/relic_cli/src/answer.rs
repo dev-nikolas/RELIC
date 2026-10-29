@@ -104,39 +104,62 @@ fn answer_graph(spec: &QuerySpec, mem: &mut EpisodicMemory) -> Answer {
 
     let avoid_arr = c_avoid.as_deref().map(|s| [s]);
     let avoid_slice: &[&str] = avoid_arr.as_ref().map(|a| a.as_slice()).unwrap_or(&[]);
-    let (reachable, path, len, depth_hit) = if let Some(ref v) = c_via {
-        let r1 = ReasoningEngine::solve_reachability_bfs_constrained(mem, &c_orig, v, 8, avoid_slice);
-        let r2 = ReasoningEngine::solve_reachability_bfs_constrained(mem, v, &c_dest, 8, avoid_slice);
+    let budget = ReasoningEngine::default_budget(mem);
+    let (outcome, path, len) = if let Some(ref v) = c_via {
+        // Semántica de RECORRIDO: dos llamadas concatenadas (s -> via, via -> t)
+        let r1 = ReasoningEngine::solve_reachability_bidirectional(mem, &c_orig, v, spec.max_depth, avoid_slice, budget);
+        let r2 = ReasoningEngine::solve_reachability_bidirectional(mem, v, &c_dest, spec.max_depth, avoid_slice, budget);
         if r1.is_reachable && r2.is_reachable {
             let mut full = r1.path;
             full.extend(r2.path.into_iter().skip(1));
             let total_len = full.len() - 1;
-            (true, full, total_len, false)
+            (relic_core::SearchOutcome::Reachable { path: full.clone(), path_ids: Vec::new() }, full, total_len)
+        } else if matches!(r1.outcome, relic_core::SearchOutcome::BudgetExceeded { .. }) {
+            (r1.outcome, Vec::new(), 0)
+        } else if matches!(r2.outcome, relic_core::SearchOutcome::BudgetExceeded { .. }) {
+            (r2.outcome, Vec::new(), 0)
         } else {
-            (false, Vec::new(), 0, r1.depth_exhausted || r2.depth_exhausted)
+            (r1.outcome, Vec::new(), 0)
         }
     } else {
-        let res = ReasoningEngine::solve_reachability_bfs_constrained(mem, &c_orig, &c_dest, 8, avoid_slice);
-        (res.is_reachable, res.path, res.path_length, res.depth_exhausted)
+        let res = ReasoningEngine::solve_reachability_bidirectional(mem, &c_orig, &c_dest, spec.max_depth, avoid_slice, budget);
+        let l = res.path_length;
+        (res.outcome, res.path, l)
     };
 
-    if depth_hit {
-        return Answer::new(format!("Indeterminado: Se alcanzó el límite de profundidad (8 saltos) entre {} y {} sin hallar conexión.", c_orig, c_dest), "deterministic_graph", "INCOMPLETE");
-    }
-    let pstr = path.join(" -> ");
-    let extra = c_via.as_ref().map(|v| format!(" pasando por {}", v)).unwrap_or_default();
-    let msg = if reachable {
-        if spec.is_negated {
-            format!("Incorrecto: Sí existe conexión viable entre {} y {} (Ruta: {}, {} saltos).", c_orig, c_dest, pstr, len)
-        } else {
-            format!("Sí, es posible alcanzar {} desde {}{} (Ruta: {}, {} saltos).", c_dest, c_orig, extra, pstr, len)
+    match outcome {
+        relic_core::SearchOutcome::BudgetExceeded { levels_forward, levels_backward, frontier_size, operations_spent, .. } => {
+            let msg = if let Some(limit) = spec.max_depth {
+                format!("Indeterminado: Se alcanzó el límite solicitado ({} saltos) entre {} y {}.", limit, c_orig, c_dest)
+            } else {
+                format!("Indeterminado: Presupuesto de búsqueda agotado ({} operaciones gastadas, niveles: fwd={}/bwd={}, frontera={}) entre {} y {}.", operations_spent, levels_forward, levels_backward, frontier_size, c_orig, c_dest)
+            };
+            Answer::new(msg, "deterministic_graph", "INCOMPLETE")
         }
-    } else if spec.is_negated {
-        format!("Correcto: No existe ninguna ruta viable entre {} y {}.", c_orig, c_dest)
-    } else {
-        format!("No, no existe ninguna ruta viable desde {} hasta {}.", c_orig, c_dest)
-    };
-    Answer::new(msg, "deterministic_graph", "VALID")
+        relic_core::SearchOutcome::Unreachable { .. } => {
+            if let Some(limit) = spec.max_depth {
+                if path.is_empty() {
+                    return Answer::new(format!("Indeterminado: Se alcanzó el límite de profundidad ({} saltos) entre {} y {} sin hallar conexión.", limit, c_orig, c_dest), "deterministic_graph", "INCOMPLETE");
+                }
+            }
+            let msg = if spec.is_negated {
+                format!("Correcto: No existe ninguna ruta viable entre {} y {}.", c_orig, c_dest)
+            } else {
+                format!("No, no existe ninguna ruta viable desde {} hasta {}.", c_orig, c_dest)
+            };
+            Answer::new(msg, "deterministic_graph", "VALID")
+        }
+        relic_core::SearchOutcome::Reachable { .. } => {
+            let pstr = path.join(" -> ");
+            let extra = c_via.as_ref().map(|v| format!(" pasando por {}", v)).unwrap_or_default();
+            let msg = if spec.is_negated {
+                format!("Incorrecto: Sí existe conexión viable entre {} y {} (Ruta: {}, {} saltos).", c_orig, c_dest, pstr, len)
+            } else {
+                format!("Sí, es posible alcanzar {} desde {}{} (Ruta: {}, {} saltos).", c_dest, c_orig, extra, pstr, len)
+            };
+            Answer::new(msg, "deterministic_graph", "VALID")
+        }
+    }
 }
 
 fn answer_relational(rel: &RelationalQuerySpec) -> Answer {

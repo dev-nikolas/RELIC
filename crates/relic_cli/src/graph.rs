@@ -61,7 +61,7 @@ pub fn parse_query_to_spec(text: &str) -> QuerySpec {
             }
         }
         if initial.is_some() && target.is_some() {
-            return QuerySpec { initial, target, via, avoid, is_negated };
+            return QuerySpec { initial, target, via, avoid, is_negated, max_depth: None };
         }
     }
 
@@ -152,5 +152,5 @@ pub fn parse_query_to_spec(text: &str) -> QuerySpec {
         }
     }
 
-    QuerySpec { initial, target, via, avoid, is_negated }
+    QuerySpec { initial, target, via, avoid, is_negated, max_depth: None }
 }

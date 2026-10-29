@@ -16,12 +16,13 @@ $$\text{Proponer (Sandbox)} \longrightarrow \text{Verificar (Oráculo + Regresi�
 
 Un LLM autorregresivo aproxima la siguiente palabra por verosimilitud estadística: puede inventar rutas inexistentes, fallar en aritmética elemental o degradar su comportamiento previo al intentar aprender algo nuevo. RELIC separa **entender** (compilar lenguaje a RIR) de **calcular** (ejecutar de forma exacta), y hace que cada paso sea auditable.
 
-**Cuatro problemas de ingeniería que aborda:**
+**Cinco capacidades singulares de ingeniería:**
 
-1. **Cálculo exacto en los dominios que cubre.** Las operaciones numéricas (fracciones verbales como `"la mitad de"`, multiplicadores como `"el triple de"`, porcentajes `"20% de 150"`, variaciones `"200 más el 15%"` y reparto con resto), las consultas de alcanzabilidad en grafos (`BFS` con restricciones `via`/`avoid`) y los órdenes transitivos (`Kahn` con detección de ciclos) las ejecuta un **núcleo inmutable y determinista** sobre RIR v1. Fuera de los patrones que el parser reconoce, el sistema **se abstiene** en lugar de adivinar.
-2. **Aprendizaje one-shot sin olvido catastrófico.** Mediante `relic_lexicon` y `relic_blackwall`, el sistema incorpora jerga de usuario (`OpAlias`, `PhraseMacro`), alias de entidades (`EntityAlias`) y hechos relacionales (`GraphFact`). Antes de adoptar un cambio, `BlackwallGate` clona un sandbox efímero en RAM y ejecuta la batería de regresión canónica y de usuario; si un solo caso falla, la mutación se rechaza.
-3. **Bitácora append-only con hash-chain SHA-256 y rollback sin destrucción.** Cada cambio adoptado se sella y se encadena desde el bloque génesis (`0000...`). Un rollback no borra líneas del `.jsonl`: añade una cicatriz (`EntryStatus::Reverted`) que restaura la proyección en RAM conservando la trazabilidad, inspeccionable con `diff_versions` (exportable a Mermaid y Graphviz DOT).
-4. **Abstención explícita ante incertidumbre.** Cuando falta un operando, una entidad no existe, dos alias colisionan o la distribución de activación propagada (`propagate_activation`) supera el umbral de entropía de Shannon $H = -\sum p_i \log_2 p_i$ (o hay empate en el tope), RELIC emite una abstención formal (`INCOMPLETE`, `AMBIGUOUS` o `INVALID`) junto con la traza exacta.
+1. **Cálculo exacto con certificados formales en microsegundos.** Operaciones numéricas, alcanzabilidad (`BFS` bidireccional de horizonte elástico) y órdenes transitivos (`Kahn`). Toda consulta de grafo emite un testigo verificable: camino canónico $O(k)$ si es alcanzable, corte inductivo $S$ si es inalcanzable, o `INCOMPLETE` certificado si agota el presupuesto ($0.00\,\%$ alucinación de ejecución).
+2. **Edición causal continua sin aristas fantasma (MQuAKE).** Incorporación atómica de hechos con DAG de reemplazo (`replaces`), erradicando hechos obsoletos de la memoria activa sin olvido catastrófico ($100.00\,\%$ de consistencia transitiva).
+3. **Evaluación de 64 mundos contrafactuales en paralelo (MS-BFS).** Resolución simultánea de 64 hipótesis en $\approx 5\ \mu\text{s}$ mediante operaciones bitwise `u64` en ALU ($> 120\times$ aceleración frente a ejecución secuencial).
+4. **Frontera Blackwall y holonomía gauge en microsegundos.** Detección algebraica de contradicciones en ciclos en $< 2\ \mu\text{s}$ mediante potenciales discretos ($\mathbb{Z}, \mathbb{Z}_2$) y validación incremental local por conjuntos de lectura ($R_c$). Bitácora append-only con hash-chain SHA-256 y rollback con cicatriz.
+5. **Diagnóstico espectral robusto con martingalas de Ville.** Detección de balizas C2 bajo camuflaje estocástico (jitter de $35\text{–}45\,\%$) con cota analítica exacta de falsos positivos ($\text{FPR} \le 1/A$).
 
 ---
 
@@ -31,13 +32,14 @@ RELIC es un **programa de investigación activo**, y este README distingue lo qu
 
 | Componente | Estado |
 | :--- | :--- |
-| Núcleo determinista (aritmética, grafos, Kahn, validación RIR v1) | Estable, cubierto por suites de tests y bancos congelados |
-| Extractor / parser basado en reglas (español → RIR) | Funcional; cobertura limitada a los patrones soportados, fuera de ellos abstiene |
-| Léxico versionado + Blackwall (propose → verify → commit/rollback) | Funcional |
+| Núcleo determinista y certificados formales (aritmética, BFS bidireccional, Kahn) | Estable y verificado formalmente (< 35 µs, 197 tests) |
+| Evaluación contrafactual de 64 mundos (MS-BFS bitwise) | Estable y validado empíricamente (5.2 µs por lote) |
+| Edición causal MQuAKE y Blackwall incremental | Estable (reemplazo atómico, 100% consistencia, commit < 1 ms) |
+| Verificador espectral SPRT (martingala de Ville) | Validado empíricamente sobre 10^5 trazas (FPR <= 0.01) |
+| Extractor / parser basado en reglas (español → RIR) | Funcional; cobertura limitada a los patrones soportados |
 | Servidor HTTP y servidor MCP | Funcionales, orientados a uso local |
 | Cabeza aprendida (línea H1: lenguaje libre → RIR) | **Experimental, cerrada con veredicto negativo** (ver abajo) |
 | Modelo Transformer experimental (`RelicModel`) | **No activado en producción** |
-| Fase 5: núcleo cuántico-inspirado y verificador espectral | **Experimental**, con criterios de descarte documentados |
 
 **Sobre la cabeza aprendida.** En la última etapa evaluada, con un split v2 separado por construcción, la cabeza obtuvo alrededor de 2.1 % de acierto en tupla (mediana) y 1.1 % de extremo a extremo, por lo que el protocolo concluyó **DETENER**. Las mejoras de etapas anteriores dependían de entrenar con paráfrasis cercanas a la evaluación, es decir, memorización. Se mantuvieron las propiedades de seguridad (0 aceptaciones falsas, abstención 8/8). Los protocolos y cifras están en `docs/PROTOCOL_H1_RIR.md` y en `reports/`.
 

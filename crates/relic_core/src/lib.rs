@@ -7,27 +7,36 @@
 pub mod arithmetic;
 pub mod attention;
 pub mod block;
+pub mod certificate;
 pub mod config;
 pub mod episodic_memory;
 pub mod hash;
+pub mod interner;
 pub mod kuramoto;
 pub mod kv_cache;
 pub mod loader;
 pub mod mlp;
 pub mod model;
+pub mod model_mmap;
+pub mod ms_bfs;
 pub mod network_audit;
+pub mod node_resolution;
 pub mod norm;
 pub mod ops;
 pub mod quantum;
 pub mod reasoning_engine;
 pub mod rir;
 pub mod rotary;
+pub mod semantic_proposer;
 pub mod sampler;
+pub mod search_buffer;
 pub mod spectral;
+pub mod spectral_sprt;
 pub mod spreading_activation;
 pub mod temporal_graph;
 
 pub use arithmetic::{ArithmeticError, ArithmeticOp, ArithmeticPlan, ArithmeticReduction};
+pub use interner::NodeInterner;
 pub use kuramoto::{
     compute_kuramoto_order_parameter, simulate_kuramoto_synchronization, wrap_angle,
     KuramotoNetworkSpec, KuramotoOscillator, KuramotoTrace, SynchronizationOutcome,
@@ -41,6 +50,7 @@ pub use spectral::{
     compute_syn_ack_ratio, pearson_correlation_welford, verify_network_alert, NetworkAlertSpec,
     SpectralOutcome, VerifiedAlertReport,
 };
+pub use spectral_sprt::{SprtBeaconDetector, SprtConfig, SprtOutcome};
 pub use spreading_activation::{
     compute_shannon_entropy, propagate_activation, ActivationStatus, ActivationStepTrace,
     SpreadingActivationResult,
@@ -60,7 +70,14 @@ pub use kv_cache::{KvCache, LayerKvCache};
 pub use loader::SafetensorsLoader;
 pub use mlp::SwiGluMlp;
 pub use model::RelicModel;
+pub use model_mmap::{RelicLayerMmap, RelicModelMmap};
 pub use norm::RMSNorm;
-pub use reasoning_engine::{ReachabilityResult, ReasoningEngine};
+pub use certificate::{
+    verify_negative, verify_negative_backward, verify_positive, verify_unreachable,
+    ReachabilityResult, SearchOutcome,
+};
+pub use ms_bfs::{solve_ms_bfs_batch, solve_ms_bfs_counterfactual, MsBfsResult};
+pub use reasoning_engine::ReasoningEngine;
 pub use rotary::RotaryEmbedding;
 pub use sampler::Sampler;
+pub use semantic_proposer::propose_rir_from_text;

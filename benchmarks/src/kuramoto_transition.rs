@@ -101,7 +101,35 @@ pub fn run_kuramoto_phase_transition_benchmark() -> KuramotoTransitionMetrics {
         100.0
     };
 
-    let aurc_risk_coverage = 0.0;
+    // Cálculo numérico formal del AURC (Area Under Risk-Coverage Curve) por regla del trapecio
+    // variando el umbral de aceptación selectiva theta \in [0.0, 1.0] sobre el parámetro de orden r:
+    // Cobertura phi(theta): fracción de puntos donde r >= theta.
+    // Riesgo R(theta): fracción de puntos cubiertos donde K < Kc (falsos consensos en régimen subcrítico).
+    let mut risk_coverage_curve: Vec<(f64, f64)> = Vec::with_capacity(101);
+    for step in 0..=100 {
+        let theta = step as f64 / 100.0;
+        let covered: Vec<&PhaseTransitionPoint> = sweep_points.iter().filter(|p| p.order_parameter_r >= theta).collect();
+        let coverage = covered.len() as f64 / sweep_points.len() as f64;
+        let risk = if covered.is_empty() {
+            0.0
+        } else {
+            let false_consensuses = covered.iter().filter(|p| p.coupling_k < estimated_kc).count();
+            false_consensuses as f64 / covered.len() as f64
+        };
+        risk_coverage_curve.push((coverage, risk));
+    }
+    // Ordenamos por cobertura creciente para integración de Riemann/trapecios
+    risk_coverage_curve.sort_by(|a, b| a.0.partial_cmp(&b.0).unwrap_or(std::cmp::Ordering::Equal));
+
+    let mut aurc_risk_coverage = 0.0;
+    for i in 0..(risk_coverage_curve.len() - 1) {
+        let (x0, y0) = risk_coverage_curve[i];
+        let (x1, y1) = risk_coverage_curve[i + 1];
+        let dx = x1 - x0;
+        if dx > 0.0 {
+            aurc_risk_coverage += 0.5 * (y0 + y1) * dx;
+        }
+    }
 
     KuramotoTransitionMetrics {
         critical_coupling_kc_estimate: estimated_kc,

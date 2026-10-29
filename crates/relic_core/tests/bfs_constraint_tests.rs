@@ -99,3 +99,24 @@ fn test_case_10_cycle_with_avoid() {
     let res = ReasoningEngine::solve_reachability_bfs_constrained(&mut mem, "A", "D", 10, &["C"]);
     assert!(!res.is_reachable, "El ciclo A-B no debe colapsar y al bloquear C no debe llegar a D");
 }
+
+#[test]
+fn test_case_11_dynamic_budget_scales_with_large_graph_over_100k_edges() {
+    let mut mem = EpisodicMemory::new();
+    // 5.000 nodos con 21 aristas = 105.000 aristas
+    for i in 0..5_000 {
+        let u = format!("Hub_{i}");
+        for j in 1..=21 {
+            let v = format!("Node_{}_{j}", (i + j) % 5_000);
+            mem.insert_edge(&u, &v);
+        }
+    }
+    // Conecta Hub_0 a Hub_4999 explícitamente en cadena
+    mem.insert_edge("Hub_0", "DeepTarget");
+    let budget = ReasoningEngine::default_budget(&mem);
+    assert!(budget >= 400_000, "El presupuesto dinámico c*(V+E) debe ser >= 400k ops");
+
+    let res = ReasoningEngine::solve_reachability_bfs(&mut mem, "Hub_0", "DeepTarget", 10);
+    assert!(res.is_reachable);
+    assert_eq!(res.path_length, 1);
+}

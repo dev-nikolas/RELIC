@@ -41,6 +41,33 @@ pub fn vec_dot(a: &[f32], b: &[f32]) -> f32 {
 
 /// Proyeccion lineal estandar estilo PyTorch: y = x @ W^T.
 /// x: [in_dim], weight: [out_dim, in_dim], out: [out_dim].
+use crate::loader::half_to_f32;
+
+/// Producto interno entre f32 y tensor empaquetado F16 sin descompresion a heap.
+pub fn vec_dot_f16(a: &[f32], b_f16_bytes: &[u8]) -> f32 {
+    let (chunks, _) = b_f16_bytes.as_chunks::<2>();
+    let mut sum = 0.0f32;
+    for (&x, chunk) in a.iter().zip(chunks.iter()) {
+        let val_f16 = u16::from_le_bytes(*chunk);
+        sum += x * half_to_f32(val_f16);
+    }
+    sum
+}
+
+/// Proyeccion lineal zero-copy leyendo directo de paginas de memoria mmap F16.
+pub fn linear_forward_f16(out: &mut [f32], x: &[f32], weight_bytes: &[u8], in_dim: usize, out_dim: usize) {
+    debug_assert_eq!(x.len(), in_dim);
+    debug_assert_eq!(out.len(), out_dim);
+    debug_assert_eq!(weight_bytes.len(), out_dim * in_dim * 2);
+
+    let row_byte_len = in_dim * 2;
+    for (o, item) in out.iter_mut().enumerate().take(out_dim) {
+        let row_start = o * row_byte_len;
+        let row_bytes = &weight_bytes[row_start..row_start + row_byte_len];
+        *item = vec_dot_f16(x, row_bytes);
+    }
+}
+
 pub fn linear_forward(out: &mut [f32], x: &[f32], weight: &[f32], in_dim: usize, out_dim: usize) {
     debug_assert_eq!(x.len(), in_dim);
     debug_assert_eq!(out.len(), out_dim);

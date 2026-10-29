@@ -30,6 +30,8 @@ pub enum LexiconPayload {
         weight: f64,
         #[serde(default = "default_zero")]
         usage_count: u64,
+        #[serde(default, skip_serializing_if = "Option::is_none")]
+        replaces: Option<(String, String, String)>,
     },
     OpAlias {
         alias_word: String,
@@ -83,10 +85,13 @@ pub enum LexiconPayload {
 
 impl LexiconPayload {
     pub fn graph_fact(from: impl Into<String>, relation: impl Into<String>, to: impl Into<String>) -> Self {
-        Self::GraphFact { from: from.into(), relation: relation.into(), to: to.into(), weight: 1.0, usage_count: 0 }
+        Self::GraphFact { from: from.into(), relation: relation.into(), to: to.into(), weight: 1.0, usage_count: 0, replaces: None }
     }
     pub fn graph_fact_weighted(from: impl Into<String>, relation: impl Into<String>, to: impl Into<String>, weight: f64) -> Self {
-        Self::GraphFact { from: from.into(), relation: relation.into(), to: to.into(), weight, usage_count: 0 }
+        Self::GraphFact { from: from.into(), relation: relation.into(), to: to.into(), weight, usage_count: 0, replaces: None }
+    }
+    pub fn graph_fact_replacing(from: impl Into<String>, relation: impl Into<String>, to: impl Into<String>, replaces: (String, String, String)) -> Self {
+        Self::GraphFact { from: from.into(), relation: relation.into(), to: to.into(), weight: 1.0, usage_count: 0, replaces: Some(replaces) }
     }
     pub fn op_alias(alias_word: impl Into<String>, target_op: ArithmeticOp) -> Self {
         Self::OpAlias { alias_word: alias_word.into(), target_op, weight: 1.0, usage_count: 0 }

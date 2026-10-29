@@ -1,49 +1,17 @@
-//! Proyección en RAM y verificación de integridad O(N) del Engrama JSONL. Menos de 180 líneas.
+//! Proyección en RAM y bitácora de histórico fuera de RAM con índice de offsets.
+//! Menos de 180 líneas.
 
-use std::collections::{HashMap, HashSet};
 use std::fs::{File, OpenOptions};
 use std::io::{BufRead, BufReader, Write};
 use std::path::{Path, PathBuf};
-use relic_core::{ArithmeticOp, Complex, EpisodicMemory};
 use crate::genesis::build_genesis_entries;
 use crate::log::{EntryStatus, IntegrityError, LexiconPayload, LogEntry, GENESIS_PREV_HASH};
-pub use crate::polysemy::{ClassicalPolysemyResult, PolysemousEntry};
-
-#[derive(Debug, Clone)]
-pub struct LexiconView {
-    pub episodic: EpisodicMemory,
-    pub op_aliases: HashMap<String, ArithmeticOp>,
-    pub op_alias_weights: HashMap<String, (f64, u64)>,
-    pub quantum_polysemy: HashMap<String, Vec<PolysemousEntry>>,
-    pub phrase_macros: Vec<(String, String)>,
-    pub entity_aliases: HashMap<String, String>,
-    pub active_facts: HashMap<(String, String), (String, f64, u64)>,
-    pub current_version: u64,
-    pub head_hash: String,
-}
-
-impl Default for LexiconView {
-    fn default() -> Self {
-        Self {
-            episodic: EpisodicMemory::new(), op_aliases: HashMap::new(), op_alias_weights: HashMap::new(),
-            quantum_polysemy: HashMap::new(), phrase_macros: Vec::new(), entity_aliases: HashMap::new(),
-            active_facts: HashMap::new(), current_version: 0, head_hash: GENESIS_PREV_HASH.to_string(),
-        }
-    }
-}
-
-impl LexiconView {
-    pub fn resolve_op_alias(&self, word: &str) -> Option<ArithmeticOp> { self.op_aliases.get(&word.trim().to_lowercase()).copied() }
-    pub fn apply_phrase_macros(&self, text: &str) -> String {
-        let mut out = text.to_lowercase();
-        for (p, e) in &self.phrase_macros { if out.contains(p.as_str()) { out = out.replace(p.as_str(), e.as_str()); } }
-        out
-    }
-}
+pub use crate::view::{ClassicalPolysemyResult, LexiconView, PolysemousEntry};
 
 #[derive(Debug, Clone)]
 pub struct EngramStore {
     entries: Vec<LogEntry>,
+    entry_offsets: Vec<u64>,
     active_view: LexiconView,
     backing_file: Option<PathBuf>,
 }
@@ -51,11 +19,13 @@ pub struct EngramStore {
 impl Default for EngramStore { fn default() -> Self { Self::with_genesis() } }
 
 impl EngramStore {
-    pub fn new_empty() -> Self { Self { entries: Vec::new(), active_view: LexiconView::default(), backing_file: None } }
+    pub fn new_empty() -> Self { Self { entries: Vec::new(), entry_offsets: Vec::new(), active_view: LexiconView::default(), backing_file: None } }
+
     pub fn with_genesis() -> Self {
         let entries = build_genesis_entries();
-        Self { active_view: Self::rebuild_active_view(&entries).expect("Semilla génesis válida"), entries, backing_file: None }
+        Self { active_view: Self::rebuild_active_view(&entries).expect("Génesis válida"), entries, entry_offsets: Vec::new(), backing_file: None }
     }
+
     pub fn from_jsonl_reader<R: BufRead>(reader: R) -> Result<Self, IntegrityError> {
         let mut entries = Vec::new();
         for (idx, line_res) in reader.lines().enumerate() {
@@ -65,20 +35,34 @@ impl EngramStore {
                 entries.push(serde_json::from_str(trimmed).map_err(|e| IntegrityError::ParseError { line: idx + 1, details: e.to_string() })?);
             }
         }
-        Ok(Self { active_view: Self::rebuild_active_view(&entries)?, entries, backing_file: None })
+        Ok(Self { active_view: Self::rebuild_active_view(&entries)?, entries, entry_offsets: Vec::new(), backing_file: None })
     }
+
     pub fn from_jsonl_str(content: &str) -> Result<Self, IntegrityError> { Self::from_jsonl_reader(content.as_bytes()) }
+
     pub fn open_or_init_file(path: impl AsRef<Path>) -> Result<Self, IntegrityError> {
         let path_buf = path.as_ref().to_path_buf();
-        let mut store = if path_buf.exists() {
-            Self::from_jsonl_reader(BufReader::new(File::open(&path_buf).map_err(|e| IntegrityError::IoError(e.to_string()))?))?
+        if path_buf.exists() {
+            let file = File::open(&path_buf).map_err(|e| IntegrityError::IoError(e.to_string()))?;
+            let mut reader = BufReader::new(file);
+            let (mut offsets, mut entries, mut offset) = (Vec::new(), Vec::new(), 0u64);
+            let mut line = String::new();
+            while reader.read_line(&mut line).map_err(|e| IntegrityError::IoError(e.to_string()))? > 0 {
+                let trimmed = line.trim();
+                if !trimmed.is_empty() {
+                    offsets.push(offset);
+                    entries.push(serde_json::from_str(trimmed).map_err(|e| IntegrityError::ParseError { line: offsets.len(), details: e.to_string() })?);
+                }
+                offset += line.len() as u64;
+                line.clear();
+            }
+            let active_view = Self::rebuild_active_view(&entries)?;
+            Ok(Self { entries: Vec::new(), entry_offsets: offsets, active_view, backing_file: Some(path_buf) })
         } else {
             let s = Self::with_genesis();
             File::create(&path_buf).and_then(|mut f| f.write_all(s.to_jsonl_string().as_bytes())).map_err(|e| IntegrityError::IoError(e.to_string()))?;
-            s
-        };
-        store.backing_file = Some(path_buf);
-        Ok(store)
+            Self::open_or_init_file(path_buf)
+        }
     }
 
     pub fn rebuild_view_at_version(entries: &[LogEntry], max_version: Option<u64>) -> Result<LexiconView, IntegrityError> {
@@ -99,78 +83,91 @@ impl EngramStore {
                 _ => {}
             }
         }
-
         let mut view = LexiconView { current_version: last_ver, head_hash: expected_prev, ..LexiconView::default() };
-        let mut pruned_set: HashSet<(String, String)> = HashSet::new();
-
-        for (_, entry) in &active_entries {
-            match &entry.payload {
-                LexiconPayload::GraphFact { from, relation, to, weight, usage_count } => {
-                    let key = (from.clone(), to.clone());
-                    pruned_set.remove(&key);
-                    view.active_facts.insert(key, (relation.clone(), *weight, *usage_count));
-                }
-                LexiconPayload::EdgeReinforcement { from, to, new_weight, usage_count } => {
-                    if let Some(f) = view.active_facts.get_mut(&(from.clone(), to.clone())) { f.1 = *new_weight; f.2 = *usage_count; }
-                }
-                LexiconPayload::ConsolidationCheckpoint { pruned_edges, .. } => {
-                    for edge in pruned_edges { view.active_facts.remove(edge); pruned_set.insert(edge.clone()); }
-                }
-                LexiconPayload::OpAlias { alias_word, target_op, weight, usage_count } => {
-                    let k = alias_word.trim().to_lowercase();
-                    view.op_aliases.insert(k.clone(), *target_op);
-                    view.op_alias_weights.insert(k, (*weight, *usage_count));
-                }
-                LexiconPayload::QuantumPolysemousAlias { alias_word, target_op, amplitude_r, phase_theta, context_word } => {
-                    let k = alias_word.trim().to_lowercase();
-                    let ctx = context_word.as_ref().map(|s| s.trim().to_lowercase()).filter(|s| !s.is_empty());
-                    let amp = Complex::from_polar(*amplitude_r, *phase_theta);
-                    let list = view.quantum_polysemy.entry(k).or_default();
-                    if let Some(ex) = list.iter_mut().find(|e| e.target_op == *target_op && e.context_word == ctx) {
-                        ex.amplitude = amp;
-                    } else {
-                        list.push(PolysemousEntry { target_op: *target_op, amplitude: amp, context_word: ctx });
-                    }
-                }
-                LexiconPayload::PhraseMacro { phrase, expansion, .. } => {
-                    let (p, e) = (phrase.trim().to_lowercase(), expansion.trim().to_lowercase());
-                    view.phrase_macros.retain(|(existing, _)| existing != &p);
-                    view.phrase_macros.push((p, e));
-                }
-                LexiconPayload::EntityAlias { alias, canonical, .. } => { view.entity_aliases.insert(alias.trim().to_lowercase(), canonical.clone()); }
-                LexiconPayload::Rollback { .. } => {}
-            }
-        }
-        view.phrase_macros.sort_by_key(|a| std::cmp::Reverse(a.0.len()));
-        let mut sorted_facts: Vec<_> = view.active_facts.iter().collect();
-        sorted_facts.sort_by(|a, b| a.0.cmp(b.0));
-        for ((from, to), (_, weight, usage_count)) in sorted_facts {
-            view.episodic.insert_edge_with_weight(from.clone(), to.clone(), *weight);
-            view.episodic.set_edge_stats(from, to, *weight, *usage_count);
-        }
-        for (_, entry) in &active_entries {
-            if let LexiconPayload::EntityAlias { alias, canonical, .. } = &entry.payload {
-                view.episodic.register_entity_alias(alias.clone(), canonical.clone());
-            }
-        }
+        for (_, entry) in &active_entries { view.apply_payload(&entry.payload); }
         Ok(view)
     }
+
     pub fn rebuild_active_view(entries: &[LogEntry]) -> Result<LexiconView, IntegrityError> { Self::rebuild_view_at_version(entries, None) }
+
+    pub fn rebuild_view_at(&self, max_ver: Option<u64>) -> Result<LexiconView, IntegrityError> {
+        if let Some(ref path) = self.backing_file {
+            let file = File::open(path).map_err(|e| IntegrityError::IoError(e.to_string()))?;
+            let mut entries = Vec::new();
+            for (idx, line_res) in BufReader::new(file).lines().enumerate() {
+                let l = line_res.map_err(|e| IntegrityError::IoError(e.to_string()))?;
+                if !l.trim().is_empty() {
+                    entries.push(serde_json::from_str(l.trim()).map_err(|e| IntegrityError::ParseError { line: idx + 1, details: e.to_string() })?);
+                }
+            }
+            Self::rebuild_view_at_version(&entries, max_ver)
+        } else {
+            Self::rebuild_view_at_version(&self.entries, max_ver)
+        }
+    }
+
+    pub fn read_entry_at(&self, idx: usize) -> Result<LogEntry, IntegrityError> {
+        if let Some(ref path) = self.backing_file {
+            let &offset = self.entry_offsets.get(idx).ok_or_else(|| IntegrityError::IoError("Index out of bounds".to_string()))?;
+            let mut file = File::open(path).map_err(|e| IntegrityError::IoError(e.to_string()))?;
+            use std::io::Seek;
+            file.seek(std::io::SeekFrom::Start(offset)).map_err(|e| IntegrityError::IoError(e.to_string()))?;
+            let mut line = String::new();
+            BufReader::new(file).read_line(&mut line).map_err(|e| IntegrityError::IoError(e.to_string()))?;
+            serde_json::from_str(line.trim()).map_err(|e| IntegrityError::ParseError { line: idx + 1, details: e.to_string() })
+        } else {
+            self.entries.get(idx).cloned().ok_or_else(|| IntegrityError::IoError("Index out of bounds".to_string()))
+        }
+    }
+
     pub fn append_entry(&mut self, timestamp_ms: u64, status: EntryStatus, payload: LexiconPayload) -> Result<LogEntry, IntegrityError> {
         let entry = LogEntry::new_sealed(self.active_view.current_version + 1, timestamp_ms, self.active_view.head_hash.clone(), status, payload);
-        let mut candidate_entries = self.entries.clone();
-        candidate_entries.push(entry.clone());
-        let new_view = Self::rebuild_active_view(&candidate_entries)?;
+        let is_rebuild_needed = matches!(entry.payload, LexiconPayload::Rollback { .. } | LexiconPayload::ConsolidationCheckpoint { .. });
+
         if let Some(ref path) = self.backing_file {
             let line = serde_json::to_string(&entry).map_err(|e| IntegrityError::IoError(e.to_string()))?;
-            writeln!(OpenOptions::new().create(true).append(true).open(path).map_err(|e| IntegrityError::IoError(e.to_string()))?, "{line}").map_err(|e| IntegrityError::IoError(e.to_string()))?;
+            let mut file = OpenOptions::new().create(true).append(true).open(path).map_err(|e| IntegrityError::IoError(e.to_string()))?;
+            let offset = file.metadata().map_err(|e| IntegrityError::IoError(e.to_string()))?.len();
+            writeln!(file, "{line}").map_err(|e| IntegrityError::IoError(e.to_string()))?;
+            file.flush().map_err(|e| IntegrityError::IoError(e.to_string()))?;
+            self.entry_offsets.push(offset);
+            if is_rebuild_needed {
+                self.active_view = self.rebuild_view_at(None)?;
+            } else {
+                self.active_view.current_version = entry.version;
+                self.active_view.head_hash = entry.entry_hash.clone();
+                if entry.status != EntryStatus::Reverted { self.active_view.apply_payload(&entry.payload); }
+            }
+        } else {
+            if is_rebuild_needed {
+                let mut candidate_entries = self.entries.clone();
+                candidate_entries.push(entry.clone());
+                self.active_view = Self::rebuild_active_view(&candidate_entries)?;
+                self.entries = candidate_entries;
+            } else {
+                self.active_view.current_version = entry.version;
+                self.active_view.head_hash = entry.entry_hash.clone();
+                if entry.status != EntryStatus::Reverted { self.active_view.apply_payload(&entry.payload); }
+                self.entries.push(entry.clone());
+            }
         }
-        self.entries = candidate_entries;
-        self.active_view = new_view;
         Ok(entry)
     }
-    pub fn to_jsonl_string(&self) -> String { self.entries.iter().filter_map(|e| serde_json::to_string(e).ok()).map(|l| format!("{l}\n")).collect() }
+
+    pub fn rollback_to(&mut self, target_version: u64, timestamp_ms: u64, reason: impl Into<String>) -> Result<LogEntry, IntegrityError> {
+        let payload = LexiconPayload::Rollback { target_version, reason: reason.into() };
+        self.append_entry(timestamp_ms, EntryStatus::Reverted, payload)
+    }
+    pub fn to_jsonl_string(&self) -> String {
+        if let Some(ref path) = self.backing_file {
+            std::fs::read_to_string(path).unwrap_or_default()
+        } else {
+            self.entries.iter().filter_map(|e| serde_json::to_string(e).ok()).map(|l| format!("{l}\n")).collect()
+        }
+    }
     pub fn entries(&self) -> &[LogEntry] { &self.entries }
+    pub fn entry_count(&self) -> usize { if self.backing_file.is_some() { self.entry_offsets.len() } else { self.entries.len() } }
+    pub fn entry_offsets(&self) -> &[u64] { &self.entry_offsets }
     pub fn active_view(&self) -> &LexiconView { &self.active_view }
     pub fn active_view_mut(&mut self) -> &mut LexiconView { &mut self.active_view }
     pub fn current_version(&self) -> u64 { self.active_view.current_version }

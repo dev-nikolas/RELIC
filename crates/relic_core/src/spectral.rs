@@ -8,10 +8,8 @@ use std::f64::consts::PI;
 use serde::{Deserialize, Serialize};
 use crate::quantum::Complex;
 
-pub use crate::network_audit::{
-    compute_destination_entropy, compute_syn_ack_ratio, verify_network_alert, NetworkAlertSpec,
-    VerifiedAlertReport,
-};
+pub use crate::network_audit::{compute_destination_entropy, compute_syn_ack_ratio, verify_network_alert, NetworkAlertSpec, VerifiedAlertReport};
+pub use crate::spectral_sprt::{SprtBeaconDetector, SprtConfig, SprtOutcome};
 
 /// Resultado auditable del análisis espectral mediante DFT y Principio de Donoho-Stark.
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]

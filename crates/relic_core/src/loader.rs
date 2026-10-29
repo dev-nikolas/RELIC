@@ -48,6 +48,17 @@ impl SafetensorsLoader {
         })
     }
 
+    /// Obtiene una vista directa zero-copy a los bytes F16 de un tensor mapeado en memoria.
+    pub fn get_tensor_f16<'a>(&'a self, name: &str) -> Result<&'a [u8], String> {
+        let entry = self
+            .header
+            .get(name)
+            .ok_or_else(|| format!("Tensor '{name}' no encontrado en Safetensors"))?;
+        let start = self.data_base_offset + entry.data_offsets[0];
+        let end = self.data_base_offset + entry.data_offsets[1];
+        Ok(&self.mmap[start..end])
+    }
+
     /// Lee un tensor como vector de f32 (soporta F32 y conversion desde F16).
     pub fn get_tensor_f32(&self, name: &str) -> Result<Vec<f32>, String> {
         let entry = self
@@ -110,7 +121,7 @@ impl SafetensorsLoader {
 }
 
 /// Conversion determinista IEEE 754 de float16 (half) a float32.
-fn half_to_f32(h: u16) -> f32 {
+pub fn half_to_f32(h: u16) -> f32 {
     let sign = ((h >> 15) & 1) as u32;
     let exp = ((h >> 10) & 0x1f) as u32;
     let mant = (h & 0x3ff) as u32;

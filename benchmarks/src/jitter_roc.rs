@@ -27,9 +27,11 @@ pub struct JitterRocMetrics {
     pub max_resilient_jitter_pct: f64,
     pub roc_curve: Vec<JitterRocPoint>,
     pub mean_donoho_distance_under_30pct: f64,
+    pub null_traces_tested: usize,
+    pub null_false_positives: usize,
 }
 
-/// Genera una señal discreta de beaconing con periodo $P=4$ y desplazamiento por jitter determinista.
+/// Genera una señal discreta de beaconing con periodo nominal $P$ y desplazamiento por jitter determinista.
 fn synthesize_jittered_signal(period: usize, cycles: usize, jitter_fraction: f64) -> Vec<f64> {
     let total_len = period * cycles;
     let mut signal = vec![0.0; total_len];
@@ -49,10 +51,91 @@ fn synthesize_jittered_signal(period: usize, cycles: usize, jitter_fraction: f64
     signal
 }
 
-/// Ejecuta el barrido de Jitter estocástico desde 0% hasta 50% del periodo con incrementos del 5%.
+/// Genera una traza de la familia nula declarada $\mathcal{P}_0$:
+/// 1. Poisson / Bernoulli: eventos independientes con tasa $p = 1/P$.
+/// 2. Bursty renewal / Pareto discreto: ráfagas concentradas separadas por silencios.
+/// 3. Aperiódico uniforme disperso: eventos aleatorios sin armónicos de periodo $P$.
+fn synthesize_null_trace(family_kind: usize, total_len: usize, period: usize, seed: u64) -> Vec<f64> {
+    let mut sig = vec![0.0; total_len];
+    let mut state = seed.wrapping_mul(6364136223846793005).wrapping_add(1);
+
+    match family_kind % 3 {
+        0 => {
+            // Subfamilia 1: Proceso Poisson / Bernoulli independiente
+            for item in sig.iter_mut() {
+                state = state.wrapping_mul(6364136223846793005).wrapping_add(1);
+                if (state >> 33).is_multiple_of(period as u64) {
+                    *item = 1.0;
+                }
+            }
+        }
+        1 => {
+            // Subfamilia 2: Tráfico con ráfagas (clustering de eventos y silencios)
+            let mut in_burst = false;
+            let mut burst_remaining = 0usize;
+            for item in sig.iter_mut() {
+                state = state.wrapping_mul(6364136223846793005).wrapping_add(1);
+                if in_burst {
+                    *item = 1.0;
+                    burst_remaining -= 1;
+                    if burst_remaining == 0 {
+                        in_burst = false;
+                    }
+                } else if (state >> 33).is_multiple_of((period * 4) as u64) {
+                    in_burst = true;
+                    burst_remaining = 2 + ((state >> 40) % 3) as usize;
+                }
+            }
+        }
+        _ => {
+            // Subfamilia 3: Aperiódico uniforme disperso con número de pulsos ~ total_len / period
+            let n_pulses = (total_len / period).max(1);
+            for _ in 0..n_pulses {
+                state = state.wrapping_mul(6364136223846793005).wrapping_add(1);
+                let idx = ((state >> 32) as usize) % total_len;
+                sig[idx] = 1.0;
+            }
+        }
+    }
+    sig
+}
+
+/// Ejecuta el barrido de Jitter estocástico desde 0% hasta 50% del periodo con incrementos del 5%
+/// y evalúa la tasa de falsos positivos (FPR) real sobre una batería de $\ge 10^4$ trazas nulas.
 pub fn run_stochastic_jitter_roc_benchmark() -> JitterRocMetrics {
-    let period = 4usize;
+    let period = 20usize;
     let cycles = 8usize;
+    let total_len = period * cycles;
+    let total_null_traces = 10_000usize;
+
+    // 1. Evaluación empírica de falsos positivos sobre familia de nulos P_0
+    let num_cpus = std::thread::available_parallelism().map(|n| n.get()).unwrap_or(4);
+    let chunk_size = total_null_traces / num_cpus;
+
+    let null_false_positives: usize = std::thread::scope(|s| {
+        let mut handles = Vec::new();
+        for t_id in 0..num_cpus {
+            let start = t_id * chunk_size;
+            let end = if t_id == num_cpus - 1 { total_null_traces } else { start + chunk_size };
+            handles.push(s.spawn(move || {
+                let mut local_fps = 0usize;
+                for i in start..end {
+                    let family_kind = i % 3;
+                    let seed = (i as u64 + 1).wrapping_mul(2862933555777941757);
+                    let null_sig = synthesize_null_trace(family_kind, total_len, period, seed);
+                    let outcome = analyze_spectrum_donoho_stark(&null_sig, 0.05, 3.0, Some(period as f64));
+                    if matches!(outcome, SpectralOutcome::PeriodicBeaconDetected { .. }) {
+                        local_fps += 1;
+                    }
+                }
+                local_fps
+            }));
+        }
+        handles.into_iter().map(|h| h.join().unwrap_or(0)).sum()
+    });
+
+    let empirical_fpr = (null_false_positives as f64) / (total_null_traces as f64);
+
     let jitter_levels = [
         0.0, 0.05, 0.10, 0.15, 0.20, 0.25, 0.30, 0.35, 0.40, 0.45, 0.50,
     ];
@@ -89,7 +172,7 @@ pub fn run_stochastic_jitter_roc_benchmark() -> JitterRocMetrics {
             detected_beacon: detected,
             donoho_stark_distance: if d_ds.is_finite() { d_ds } else { 0.0 },
             true_positive_rate: if detected { 1.0 } else { 0.0 },
-            false_positive_rate: 0.0,
+            false_positive_rate: empirical_fpr,
         });
     }
 
@@ -105,5 +188,7 @@ pub fn run_stochastic_jitter_roc_benchmark() -> JitterRocMetrics {
         max_resilient_jitter_pct,
         roc_curve,
         mean_donoho_distance_under_30pct,
+        null_traces_tested: total_null_traces,
+        null_false_positives,
     }
 }
