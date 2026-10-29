@@ -35,11 +35,12 @@ Este directorio contiene los arneses de benchmarking nativos en Rust y suites em
 | **Latencia BFS Reachability (Media)** | 1.531.54 µs | **31.14 µs** | **49.2x más rápido** |
 
 **Desglose de Memoria Viva por Componente Interno (50.000 hechos / 100.000 nodos):**
-- **NodeInterner (`Box<str>` + `u32`)**: ~6.64 MB (16.0% del total; interning sin redundancia).
-- **Adyacencia fwd/bwd (`Vec<Vec<u32>>`)**: ~4.96 MB (12.0%; arreglos contiguos sin punteros `String`).
-- **EdgeStats & Edges (`(u32, u32)`)**: ~1.91 MB (4.6%; metadatos compactos de peso y frecuencia).
-- **NodeResolver (`active_nodes`, `canonical_map`)**: ~5.34 MB (12.9%; tablas de mapeo hash directo).
-- **SearchBuffer (Thread-Local Reutilizable)**: ~0.08 MB (0.2%; 0 asignaciones de heap en inferencia).
+- **NodeInterner (`Box<str>` + `u32`)**: ~6.64 MB (**35.1%** de la huella neta viva; interning sin redundancia).
+- **Adyacencia fwd/bwd (`Vec<Vec<u32>>`)**: ~4.96 MB (**26.2%**; arreglos contiguos sin punteros `String`).
+- **EdgeStats & Edges (`(u32, u32)`)**: ~1.91 MB (**10.1%**; metadatos compactos de peso y frecuencia).
+- **NodeResolver (`active_nodes`, `canonical_map`)**: ~5.34 MB (**28.2%**; tablas de mapeo hash directo).
+- **SearchBuffer (Thread-Local Reutilizable)**: ~0.08 MB (**0.4%**; 0 asignaciones de heap en inferencia).
+*(Suma componentes: 18.93 MB = 100.0% del heap neto de +18.94 MB; equivale al 45.7% del RSS total del proceso).*
 
 ### B. Razonamiento en Grafos: Horizonte Elástico (BFS Bidireccional vs Unidireccional)
 *Auditado con `measure_horizon` sobre topologías complejas y cadenas escalares $k=2..100$:*
@@ -47,7 +48,7 @@ Este directorio contiene los arneses de benchmarking nativos en Rust y suites em
 | Escenario Topológico | Métrica Unidireccional | Métrica Bidireccional | Ganancia / Garantía Formal |
 | :--- | :---: | :---: | :--- |
 | **Cadena con 10 distractores ($k=20$)** | 200 exp, 210 ops (31.6 µs) | **20 ops** (93.1 µs) | **10.5x menos aristas** (inmune a ramificación espuria) |
-| **Árbol $b=4, d=8$ (87.381 nodos)** | 13.654 exp, 54.613 ops (29.2 ms) | **8 ops** (32.1 ms) | **6.826x menos ops** (encuentro frontal en raíz) |
+| **Árbol $b=4, d=8$ (87.381 nodos)** | 13.654 exp, 54.613 ops (29.2 ms) | **8 ops** (< 2 µs pura / 32.1 ms setup) | **6.826x menos ops** (búsqueda instantánea; 30 ms de setup del árbol) |
 | **Asimétrico ($s: b=20 \to t: b=1$)** | 22 exp, 41 ops | **41 ops** | Paridad de operaciones (convergencia en cuello) |
 | **Asimétrico inverso ($s: b=1 \to t: b=20$)** | **3 exp, 22 ops** | 41 ops | **Unidireccional óptimo** (fan-out bajo avanza directo) |
 
@@ -59,6 +60,8 @@ Este directorio contiene los arneses de benchmarking nativos en Rust y suites em
 - $k=50$: Mediana 41.50 µs | Media 74.63 µs | p99 197.90 µs | Búsqueda pura: **37.40 µs**
 - $k=75$: Mediana 61.50 µs | Media 110.80 µs | p99 1.134.50 µs | Búsqueda pura: **42.10 µs**
 - $k=100$: Mediana 87.50 µs | Media 226.94 µs | p99 5.315.90 µs | Búsqueda pura: **46.10 µs**
+
+> *Nota de auditoría:* La búsqueda pura en IDs en $k=100$ mantiene **46.10 µs** sin alocaciones en heap. El salto en p99 end-to-end (5.3 ms) se debe exclusivamente al coste de materialización de 100 `String` individuales y a interrupciones del scheduler del OS (quantum slices en Windows/CI runners). La API perezosa `path_ids()` garantiza ejecución sub-50 µs.
 
 ### C. Compuerta Transaccional: Commit In-Place y Escala de Regresión
 *Auditado con `measure_commit_breakdown` (oráculo determinista + rollback seguro `UndoGuard`):*
