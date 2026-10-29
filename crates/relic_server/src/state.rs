@@ -55,6 +55,14 @@ impl ServerState {
             weights_loaded,
         }
     }
+
+    pub fn blackwall_read(&self) -> std::sync::RwLockReadGuard<'_, BlackwallGate> {
+        self.blackwall.read().unwrap_or_else(|p| p.into_inner())
+    }
+
+    pub fn blackwall_write(&self) -> std::sync::RwLockWriteGuard<'_, BlackwallGate> {
+        self.blackwall.write().unwrap_or_else(|p| p.into_inner())
+    }
 }
 
 impl Default for ServerState {

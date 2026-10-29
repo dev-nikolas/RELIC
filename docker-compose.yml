@@ -1,0 +1,43 @@
+services:
+  relic:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: relic:v1.1.0-core
+    container_name: relic_engine
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:5000:5000"
+    environment:
+      - PORT=5000
+      - RUST_BACKTRACE=0
+    # ==========================================================================
+    # SECOPS CONTAINER HARDENING
+    # ==========================================================================
+    user: "65532:65532"
+    read_only: true
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    volumes:
+      # Único directorio con permiso de persistencia para el log del Engrama
+      - relic_data:/relic/storage:rw
+      # Espacio volátil efímero en RAM sin permiso de ejecución de binarios
+      - type: tmpfs
+        target: /tmp
+        tmpfs:
+          size: 16M
+          mode: 1777
+    deploy:
+      resources:
+        limits:
+          cpus: "1.0"
+          memory: 64M
+        reservations:
+          memory: 16M
+
+volumes:
+  relic_data:
+    driver: local
+

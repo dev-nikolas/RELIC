@@ -131,6 +131,16 @@ pub fn handle_assimilate(word: &str, op_str: &str, engram_path: Option<&str>) {
 }
 
 pub fn handle_capsule(action: &str, path: &str, engram_path: Option<&str>) {
+    let p = std::path::Path::new(path);
+    if path.trim().is_empty() || p.is_dir() {
+        eprintln!("[ERROR CAPSULE]: Ruta inválida o vacía: '{path}'.");
+        return;
+    }
+    let ext = p.extension().and_then(|s| s.to_str()).unwrap_or("");
+    if !ext.eq_ignore_ascii_case("engram") && !ext.eq_ignore_ascii_case("jsonl") {
+        eprintln!("[ERROR CAPSULE]: Extensión no permitida en '{path}'. Solo se admite .engram o .jsonl");
+        return;
+    }
     let store = load_engram_store(engram_path);
     if action.eq_ignore_ascii_case("export") {
         if let Ok(cap) = store.export_capsule("relic_cli", 1, store.current_version()) {

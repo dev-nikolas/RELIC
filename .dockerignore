@@ -1,0 +1,14 @@
+target/
+.git/
+.github/
+**/*.pyc
+**/__pycache__/
+*.log
+docs/
+reports/
+tools/
+.vscode/
+.idea/
+.DS_Store
+*.tmp
+

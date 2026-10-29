@@ -12,6 +12,9 @@ use serde::{Deserialize, Serialize};
 use crate::quantum::Complex;
 use crate::spreading_activation::compute_shannon_entropy;
 
+pub const MAX_OSCILLATORS: usize = 256;
+pub const MAX_KURAMOTO_STEPS: usize = 10_000;
+
 /// Especificación de un oscilador acoplado de Kuramoto.
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
 pub struct KuramotoOscillator {
@@ -110,20 +113,20 @@ pub fn compute_kuramoto_order_parameter(thetas: &[f64], subset: Option<&[usize]>
 /// Ejecuta la integración determinista RK4 del sistema de Kuramoto y evalúa la compuerta de abstención física.
 pub fn simulate_kuramoto_synchronization(spec: &KuramotoNetworkSpec) -> SynchronizationOutcome {
     let n = spec.oscillators.len();
-    if n == 0 {
+    if n == 0 || n > MAX_OSCILLATORS {
         let trace = KuramotoTrace {
             initial_r: 0.0, final_r: 0.0, mean_phase_psi: 0.0, r_trajectory: Vec::new(),
             final_phases: Vec::new(), synchronized_cluster: Vec::new(), phase_entropy_bits: 0.0,
         };
+        let reason = if n == 0 { "Sistema vacío.".into() } else { format!("Exceso de osciladores: {n} > {MAX_OSCILLATORS}") };
         return SynchronizationOutcome::IncoherentAbstention {
-            order_parameter_r: 0.0, required_r: spec.required_r, entropy: 0.0,
-            reason: "Sistema de osciladores vacío.".to_string(), trace,
+            order_parameter_r: 0.0, required_r: spec.required_r, entropy: 0.0, reason, trace,
         };
     }
 
     let mut thetas: Vec<f64> = spec.oscillators.iter().map(|o| wrap_angle(o.initial_theta)).collect();
     let omegas: Vec<f64> = spec.oscillators.iter().map(|o| o.natural_omega).collect();
-    let (dt, steps) = (spec.dt.max(1e-5), spec.steps.max(1));
+    let (dt, steps) = (spec.dt.max(1e-5), spec.steps.clamp(1, MAX_KURAMOTO_STEPS));
     let mut r_trajectory = Vec::with_capacity(steps + 1);
     let (r0, _) = compute_kuramoto_order_parameter(&thetas, None);
     r_trajectory.push(r0);

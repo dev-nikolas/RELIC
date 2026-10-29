@@ -53,10 +53,13 @@ pub enum SpectralOutcome {
     },
 }
 
+pub const MAX_DFT_SIGNAL_LEN: usize = 2048;
+
 /// Calcula la Transformada Discreta de Fourier exacta (DFT): $X_k = \sum_{n=0}^{N-1} x_n e^{-2\pi i k n / N}$.
 pub fn compute_dft_exact(signal: &[f64]) -> Vec<Complex> {
-    let n = signal.len();
+    let n = signal.len().min(MAX_DFT_SIGNAL_LEN);
     if n == 0 { return Vec::new(); }
+    let signal = &signal[..n];
     let n_f64 = n as f64;
     let mut spectrum = Vec::with_capacity(n);
     for k in 0..n {
@@ -78,12 +81,16 @@ pub fn analyze_spectrum_donoho_stark(
 ) -> SpectralOutcome {
     let n = signal.len();
     let mut trace = Vec::new();
-    if n < 4 {
-        let reason = format!("Longitud de ventana N={n} demasiado corta para análisis espectral (mínimo 4 muestras).");
+    if !(4..=MAX_DFT_SIGNAL_LEN).contains(&n) {
+        let reason = if n < 4 {
+            format!("Ventana N={n} corta para análisis (mínimo 4).")
+        } else {
+            format!("Señal N={n} excede cota MAX_DFT_SIGNAL_LEN={MAX_DFT_SIGNAL_LEN}.")
+        };
         trace.push(reason.clone());
         return SpectralOutcome::InsufficientWindow {
             n_samples: n, candidate_period: expected_period_hint.unwrap_or(0.0), min_cycles_required: min_cycles,
-            min_samples_required: 4, spectral_resolution_df: if n > 0 { 1.0 / (n as f64) } else { 1.0 }, reason, trace,
+            min_samples_required: if n < 4 { 4 } else { MAX_DFT_SIGNAL_LEN }, spectral_resolution_df: if n > 0 { 1.0 / (n as f64) } else { 1.0 }, reason, trace,
         };
     }
     let n_f64 = n as f64;
@@ -91,9 +98,7 @@ pub fn analyze_spectrum_donoho_stark(
     if let Some(hint_p) = expected_period_hint {
         let required_n = (min_cycles * hint_p).ceil() as usize;
         if n < required_n {
-            let reason = format!(
-                "Abstención por ventana insuficiente: N={n} no cubre min_cycles={min_cycles:.1} del periodo candidato P={hint_p:.2} (requiere >= {required_n} muestras, resolución df={df:.4})."
-            );
+            let reason = format!("Abstención por ventana insuficiente: N={n} no cubre min_cycles={min_cycles:.1} de P={hint_p:.2} (req >= {required_n}, df={df:.4}).");
             trace.push(reason.clone());
             return SpectralOutcome::InsufficientWindow {
                 n_samples: n, candidate_period: hint_p, min_cycles_required: min_cycles,
@@ -115,9 +120,7 @@ pub fn analyze_spectrum_donoho_stark(
     let ds_holds = ds_product >= n;
     let ds_distance = (ds_product as f64) / n_f64 - 1.0;
 
-    trace.push(format!(
-        "DFT exacta calculada sobre N={n} muestras (df={df:.4}): |sop(x)|={temporal_support}, |sop(X)|={spectral_support}, producto={ds_product} >= {n} ({ds_holds}), D_DS={ds_distance:.4}"
-    ));
+    trace.push(format!("DFT exacta N={n} (df={df:.4}): |sop(x)|={temporal_support}, |sop(X)|={spectral_support}, producto={ds_product} >= {n} ({ds_holds}), D_DS={ds_distance:.4}"));
 
     let nyquist = n / 2;
     let (mut dominant_bin, mut max_ac_mag, mut sum_ac_mag) = (1, 0.0, 0.0);
@@ -128,14 +131,12 @@ pub fn analyze_spectrum_donoho_stark(
     let avg_ac_mag = if nyquist > 0 { sum_ac_mag / (nyquist as f64) } else { 0.0 };
     let par = if avg_ac_mag > 1e-12 { max_ac_mag / avg_ac_mag } else { 1.0 };
     let estimated_period = n_f64 / (dominant_bin as f64);
-    trace.push(format!("Frecuencia dominante AC: k*={dominant_bin} (|X_k*|={max_ac_mag:.4}), periodo estimado P={estimated_period:.2}, PAR={par:.4}"));
+    trace.push(format!("Frecuencia dominante AC: k*={dominant_bin} (|X_k*|={max_ac_mag:.4}), P={estimated_period:.2}, PAR={par:.4}"));
 
     let observed_cycles = dominant_bin as f64;
     if observed_cycles + 1e-9 < min_cycles {
         let required_n = (min_cycles * estimated_period).ceil() as usize;
-        let reason = format!(
-            "Abstención por Principio de Incertidumbre: el bin dominante k*={dominant_bin} (P={estimated_period:.2}) solo observa {observed_cycles:.1} ciclos en N={n}, inferior al mínimo exigido ({min_cycles:.1} ciclos, N >= {required_n})."
-        );
+        let reason = format!("Abstención: bin k*={dominant_bin} (P={estimated_period:.2}) solo observa {observed_cycles:.1} ciclos en N={n} (req {min_cycles:.1}, N >= {required_n}).");
         trace.push(reason.clone());
         return SpectralOutcome::InsufficientWindow {
             n_samples: n, candidate_period: estimated_period, min_cycles_required: min_cycles,
