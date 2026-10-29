@@ -74,8 +74,8 @@ pub fn propose_rir_from_text(text: &str) -> RirDocumentV1 {
             let cl = w.trim_matches(|c: char| !c.is_alphabetic());
             if (cl.eq_ignore_ascii_case("conecta") || cl.eq_ignore_ascii_case("de") || cl.eq_ignore_ascii_case("desde")) && i + 1 < words.len() {
                 let cand = words[i + 1].trim_matches(|c: char| !c.is_alphabetic());
-                if !["la", "el", "un", "una", "ruta", "marta"].contains(&cand.to_lowercase().as_str()) || cand.eq_ignore_ascii_case("marta") {
-                    if orig.is_empty() { orig = cand.to_string(); }
+                if (!["la", "el", "un", "una", "ruta", "marta"].contains(&cand.to_lowercase().as_str()) || cand.eq_ignore_ascii_case("marta")) && orig.is_empty() {
+                    orig = cand.to_string();
                 }
             }
             if (cl.eq_ignore_ascii_case("con") || cl.eq_ignore_ascii_case("hacia") || cl.eq_ignore_ascii_case("hasta") || cl.eq_ignore_ascii_case("a")) && i + 1 < words.len() {
@@ -93,7 +93,7 @@ pub fn propose_rir_from_text(text: &str) -> RirDocumentV1 {
     // 5. Inventario general con sintaxis invertida / voz pasiva / léxico abierto
     if let Some((init_val, unit)) = extract_num_and_unit(&lower) {
         let mut ops = Vec::new();
-        for token in lower.split(|c: char| c == ',' || c == '.' || c == ';' || c == '¿' || c == '?') {
+        for token in lower.split([',', '.', ';', '¿', '?']) {
             let trimmed = token.trim();
             if trimmed.is_empty() { continue; }
             let op_val = trimmed.split_whitespace().find_map(|w| {

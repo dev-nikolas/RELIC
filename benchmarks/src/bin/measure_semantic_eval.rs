@@ -52,7 +52,7 @@ fn main() {
     let file = File::open(ood_path).expect("abrir test_ood_slots.jsonl");
     let reader = BufReader::new(file);
     let mut samples: Vec<TestOodSample> = Vec::new();
-    for line in reader.lines().flatten() {
+    for line in reader.lines().map_while(Result::ok) {
         if let Ok(s) = serde_json::from_str::<TestOodSample>(&line) { samples.push(s); }
     }
     println!("[INFO] Muestras OOD cargadas: {}", samples.len());

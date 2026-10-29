@@ -64,8 +64,7 @@ pub fn solve_ms_bfs_batch(memory: &EpisodicMemory, queries: &[(u32, u32)]) -> Ms
     let mut unreached_mask = if k == 64 { !0u64 } else { (1u64 << k) - 1 };
     let mut distances = [None; 64];
 
-    for i in 0..k {
-        let (s, t) = queries[i];
+    for (i, &(s, t)) in queries.iter().enumerate().take(k) {
         if s == t {
             let bit = 1u64 << i;
             reachable_mask |= bit; distances[i] = Some(0); unreached_mask &= !bit;
@@ -78,13 +77,13 @@ pub fn solve_ms_bfs_batch(memory: &EpisodicMemory, queries: &[(u32, u32)]) -> Ms
         let mut buf = cell.borrow_mut();
         buf.prepare(n);
 
-        for i in 0..k {
+        for (i, &(s_id, _)) in queries.iter().enumerate().take(k) {
             let bit = 1u64 << i;
             if (unreached_mask & bit) != 0 {
-                let s = queries[i].0 as usize;
+                let s = s_id as usize;
                 if s < n {
-                    if buf.frontier[s] == 0 { buf.active_nodes.push(queries[i].0); }
-                    if buf.visited[s] == 0 { buf.touched_visited.push(queries[i].0); }
+                    if buf.frontier[s] == 0 { buf.active_nodes.push(s_id); }
+                    if buf.visited[s] == 0 { buf.touched_visited.push(s_id); }
                     buf.frontier[s] |= bit;
                     buf.visited[s] |= bit;
                 }
@@ -119,10 +118,10 @@ pub fn solve_ms_bfs_batch(memory: &EpisodicMemory, queries: &[(u32, u32)]) -> Ms
             }
 
             let mut newly_reached = 0u64;
-            for i in 0..k {
+            for (i, &(_, t_id)) in queries.iter().enumerate().take(k) {
                 let bit = 1u64 << i;
                 if (unreached_mask & bit) != 0 {
-                    let t = queries[i].1 as usize;
+                    let t = t_id as usize;
                     if t < n && (buf.visited[t] & bit) != 0 {
                         reachable_mask |= bit; distances[i] = Some(current_hop); newly_reached |= bit;
                     }
