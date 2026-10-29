@@ -100,12 +100,12 @@ fn bench_a7_k100_breakdown() {
 
     // Calentamiento
     for _ in 0..100 {
-        let _ = ReasoningEngine::solve_reachability_bfs(&mut mem, "Node_0", "Node_100", 100);
+        let _ = ReasoningEngine::solve_reachability_bfs_ids(&mut mem, "Node_0", "Node_100", 100);
     }
 
     for _ in 0..iters {
         let t0 = Instant::now();
-        let r = ReasoningEngine::solve_reachability_bfs(&mut mem, "Node_0", "Node_100", 100);
+        let r = ReasoningEngine::solve_reachability_bfs_ids(&mut mem, "Node_0", "Node_100", 100);
         let t1 = Instant::now();
 
         // Medir reconstrucción y conversión de 100 IDs a String

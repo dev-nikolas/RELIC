@@ -1,0 +1,142 @@
+//! Índice Invertido Causal para la Suite de Regresión del Blackwall (Fase 1).
+//! Garantiza completitud matemática estricta respetando los dos invariantes de F0-F7.
+//! Menos de 180 líneas.
+
+use std::collections::{HashMap, HashSet};
+use relic_cli::{answer_intent, parse_dispatch_intent_with_lexicon, DispatchIntent};
+use relic_core::certificate::SearchOutcome;
+use relic_core::ReasoningEngine;
+use relic_lexicon::{LexiconPayload, LexiconView};
+use crate::regression::{canonical_regression_suite, RegressionCase, RegressionFailure};
+
+#[derive(Debug, Clone, Default)]
+pub struct CausalDependencyIndex {
+    pub edge_to_positive_tests: HashMap<(u32, u32), Vec<usize>>,
+    pub cut_node_to_negative_tests: HashMap<u32, Vec<usize>>,
+    pub query_tokens: Vec<(usize, String)>,
+    pub independent_tests: HashSet<usize>,
+    pub total_indexed: usize,
+}
+
+impl CausalDependencyIndex {
+    pub fn build(view: &mut LexiconView, extra_cases: &[RegressionCase]) -> Self {
+        let base_cases = canonical_regression_suite();
+        let all_cases: Vec<&RegressionCase> = base_cases.iter().chain(extra_cases.iter()).collect();
+        let total = all_cases.len();
+
+        let mut idx = Self {
+            edge_to_positive_tests: HashMap::new(),
+            cut_node_to_negative_tests: HashMap::new(),
+            query_tokens: Vec::with_capacity(total),
+            independent_tests: HashSet::new(),
+            total_indexed: total,
+        };
+
+        for (i, case) in all_cases.iter().enumerate() {
+            idx.query_tokens.push((i, case.query.to_lowercase()));
+            if case.expected_route == "deterministic_arithmetic" || case.expected_route == "epistemic_rejection" {
+                idx.independent_tests.insert(i);
+                continue;
+            }
+            if case.expected_route == "deterministic_graph" {
+                let intent = parse_dispatch_intent_with_lexicon(&case.query, Some(view));
+                if let DispatchIntent::GraphReachability(spec) = intent {
+                    if let (Some(ref start), Some(ref target)) = (spec.initial, spec.target) {
+                        let depth = spec.max_depth.unwrap_or(30);
+                        let res = ReasoningEngine::solve_reachability_bfs(&mut view.episodic, start, target, depth);
+                        match res.outcome {
+                            SearchOutcome::Reachable { path_ids, .. } => {
+                                if path_ids.len() >= 2 {
+                                    for w in path_ids.windows(2) {
+                                        idx.edge_to_positive_tests.entry((w[0], w[1])).or_default().push(i);
+                                    }
+                                }
+                            }
+                            SearchOutcome::Unreachable { closed_set_ids, .. } => {
+                                for node_id in closed_set_ids {
+                                    idx.cut_node_to_negative_tests.entry(node_id).or_default().push(i);
+                                }
+                            }
+                            _ => { idx.independent_tests.insert(i); }
+                        }
+                    } else { idx.independent_tests.insert(i); }
+                } else { idx.independent_tests.insert(i); }
+            } else { idx.independent_tests.insert(i); }
+        }
+        idx
+    }
+
+    /// Retorna los índices de los tests cuyo cono causal se intersecta con la mutación propuesta.
+    pub fn find_affected_tests(&self, payload: &LexiconPayload, view: &LexiconView) -> Vec<usize> {
+        let mut affected = HashSet::new();
+        match payload {
+            LexiconPayload::GraphFact { from, to, .. } => {
+                // Inserción de arista nueva (u, v):
+                // Invariante: Solo puede romper tests negativos donde u pertenezca al corte inductivo S.
+                if let (Some(u), Some(_v)) = (view.episodic.interner.get_id(from), view.episodic.interner.get_id(to)) {
+                    if let Some(tests) = self.cut_node_to_negative_tests.get(&u) {
+                        for &t in tests { affected.insert(t); }
+                    }
+                }
+            }
+            LexiconPayload::EdgeReinforcement { .. } => {}
+            LexiconPayload::Rollback { .. } | LexiconPayload::ConsolidationCheckpoint { .. } => {
+                return (0..self.total_indexed).collect();
+            }
+            LexiconPayload::OpAlias { alias_word, .. } | LexiconPayload::QuantumPolysemousAlias { alias_word, .. } => {
+                let w = alias_word.to_lowercase();
+                for (idx, q) in &self.query_tokens {
+                    if q.contains(&w) { affected.insert(*idx); }
+                }
+            }
+            LexiconPayload::EntityAlias { alias, canonical, .. } => {
+                let a = alias.to_lowercase();
+                let c = canonical.to_lowercase();
+                for (idx, q) in &self.query_tokens {
+                    if q.contains(&a) || q.contains(&c) { affected.insert(*idx); }
+                }
+            }
+            LexiconPayload::PhraseMacro { phrase, expansion, .. } => {
+                let p = phrase.to_lowercase();
+                let e = expansion.to_lowercase();
+                for (idx, q) in &self.query_tokens {
+                    if q.contains(&p) || q.contains(&e) { affected.insert(*idx); }
+                }
+            }
+        }
+        let mut res: Vec<usize> = affected.into_iter().collect();
+        res.sort_unstable();
+        res
+    }
+
+    pub fn run_selective(
+        &self, view: &mut LexiconView, extra_cases: &[RegressionCase], test_indices: &[usize],
+    ) -> Result<usize, RegressionFailure> {
+        let base_cases = canonical_regression_suite();
+        let all_cases: Vec<&RegressionCase> = base_cases.iter().chain(extra_cases.iter()).collect();
+
+        for &idx in test_indices {
+            if idx >= all_cases.len() { continue; }
+            let case = all_cases[idx];
+            let intent = parse_dispatch_intent_with_lexicon(&case.query, Some(view));
+            let answer = answer_intent(&intent, &mut view.episodic);
+
+            let text_ok = answer.text.to_lowercase().contains(&case.expected_substring.to_lowercase());
+            let route_ok = answer.route == case.expected_route;
+            let status_ok = answer.status == case.expected_status;
+
+            if !text_ok || !route_ok || !status_ok {
+                return Err(RegressionFailure {
+                    case_id: case.id.clone(),
+                    query: case.query.clone(),
+                    reason: format!(
+                        "Esperaba [status={}, route={}, texto~='{}'], obtuvo [status={}, route={}, texto='{}']",
+                        case.expected_status, case.expected_route, case.expected_substring,
+                        answer.status, answer.route, answer.text
+                    ),
+                });
+            }
+        }
+        Ok(test_indices.len())
+    }
+}

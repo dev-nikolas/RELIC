@@ -28,6 +28,24 @@ pub struct ReachabilityResult {
     pub outcome: SearchOutcome,
 }
 
+impl ReachabilityResult {
+    #[inline]
+    pub fn path_ids(&self) -> &[u32] {
+        match &self.outcome {
+            SearchOutcome::Reachable { path_ids, .. } => path_ids,
+            _ => &[],
+        }
+    }
+
+    #[inline]
+    pub fn closed_set_ids(&self) -> &[u32] {
+        match &self.outcome {
+            SearchOutcome::Unreachable { closed_set_ids, .. } => closed_set_ids,
+            _ => &[],
+        }
+    }
+}
+
 /// Verifica independientemente un camino positivo en O(k).
 pub fn verify_positive(memory: &mut EpisodicMemory, path: &[String], avoid_nodes: &[&str]) -> Result<(), String> {
     if path.is_empty() { return Err("Camino vacío".to_string()); }

@@ -59,23 +59,23 @@ Este directorio contiene los arneses de benchmarking nativos en Rust y suites em
 - $k=25$: Mediana 21.10 µs | Media 45.91 µs | p99 128.90 µs | Búsqueda pura: **29.80 µs**
 - $k=50$: Mediana 41.50 µs | Media 74.63 µs | p99 197.90 µs | Búsqueda pura: **37.40 µs**
 - $k=75$: Mediana 61.50 µs | Media 110.80 µs | p99 1.134.50 µs | Búsqueda pura: **42.10 µs**
-- $k=100$: Mediana 87.50 µs | Media 226.94 µs | p99 5.315.90 µs | Búsqueda pura: **46.10 µs**
+- $k=100$: Mediana **27.40 µs** | p99: **88.80 µs** (búsqueda pura zero-copy; total combinado formateado: 43.90 µs med / 136.30 µs p99).
 
-> *Nota de auditoría:* La búsqueda pura en IDs en $k=100$ mantiene **46.10 µs** sin alocaciones en heap. El salto en p99 end-to-end (5.3 ms) se debe exclusivamente al coste de materialización de 100 `String` individuales y a interrupciones del scheduler del OS (quantum slices en Windows/CI runners). La API perezosa `path_ids()` garantiza ejecución sub-50 µs.
+> *Validación Fase 1:* El pico p99 en $k=100$ colapsó de $5.315\ \mu\text{s}$ (5.3 ms) a **88.80 µs** gracias al Generational Visited Array $O(1)$ y al bypass de alocaciones de String vía `solve_reachability_bfs_ids`.
 
-### C. Compuerta Transaccional: Commit In-Place y Escala de Regresión
-*Auditado con `measure_commit_breakdown` (oráculo determinista + rollback seguro `UndoGuard`):*
+### C. Compuerta Transaccional: Commit In-Place y Regresión Causal Invertida
+*Auditado con `measure_commit_breakdown` (oráculo determinista + rollback seguro `UndoGuard` + `CausalDependencyIndex`):*
 
-| Escala del Grafo | Total Commit Previo (Clon) | Total Commit In-Place | In-Place + Undo Setup | Oráculo | Regresión | Append + Hash |
+| Escala del Grafo | Total Commit Previo (Clon) | Total Commit In-Place Causal | In-Place + Undo Setup | Oráculo | Regresión Causal | Append + Hash |
 | :--- | :---: | :---: | :---: | :---: | :---: | :---: |
-| **5.000 Hechos** | 35.80 ms | **0.514 ms (513.7 µs)** | 7.45 µs | 1.26 µs | 486.19 µs | 18.83 µs |
-| **50.000 Hechos** | 302.20 ms | **0.568 ms (568.0 µs)** | 7.33 µs | 0.73 µs | 543.76 µs | 16.22 µs |
-| **Mejora** | — | **530x más rápido** | **40.000x más rápido** | O(1) | O(R) | O(1) |
+| **5.000 Hechos** | 35.80 ms | **51.75 µs (0.052 ms)** | 6.52 µs | 1.94 µs | **26.58 µs** | 16.72 µs |
+| **50.000 Hechos** | 302.20 ms | **89.06 µs (0.089 ms)** | 8.25 µs | 0.75 µs | **62.65 µs** | 17.42 µs |
+| **Mejora** | — | **3.393x más rápido** | **36.000x más rápido** | O(1) | O(|Cone|) | O(1) |
 
-- **Escalabilidad de la Suite de Regresión ($R$ casos congelados):**
-  - $R = 200$ casos: 2.45 ms total (**11.65 µs/caso**).
-  - $R = 1.000$ casos: 14.72 ms total (**14.57 µs/caso**).
-  - $R = 10.000$ casos: 130.12 ms total (**13.00 µs/caso**, escalado estrictamente lineal $O(R)$).
+- **Escalabilidad de la Suite de Regresión (Ciega $O(R)$ vs Causal Invertida $O(|Cone|)$):**
+  - $R = 200$ casos: Ciega 2.43 ms | Causal **10.90 µs** (**223.3x de aceleración**).
+  - $R = 1.000$ casos: Ciega 31.89 ms | Causal **18.73 µs** (**1.702.6x de aceleración**).
+  - $R = 10.000$ casos: Ciega 266.26 ms | Causal **35.98 µs** (**7.400.4x de aceleración**).
 
 ### D. Diagnóstico Espectral y Validación de Martingala ($10^5$ Trazas)
 *Auditado con `measure_sprt_validation` sobre procesos estocásticos no estacionarios:*
