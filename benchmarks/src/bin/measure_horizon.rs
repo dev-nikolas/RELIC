@@ -134,10 +134,31 @@ fn bench_a7_k100_breakdown() {
     println!("  * Propuesta: API perezosa 'path_ids()' sin asignación; resolver a String bajo demanda.");
 }
 
+fn bench_chains_ids() {
+    println!("\n=== Latencias en Cadenas k=2..100 (Búsqueda Zero-Copy en IDs) ===");
+    for &k in &[2, 5, 10, 25, 50, 75, 100] {
+        let mut mem = EpisodicMemory::new();
+        for i in 0..k { mem.insert_edge(format!("Node_{i}"), format!("Node_{}", i + 1)); }
+        let iters = 500;
+        let mut lats = Vec::with_capacity(iters);
+        for _ in 0..20 {
+            let _ = ReasoningEngine::solve_reachability_bfs_ids(&mut mem, "Node_0", &format!("Node_{k}"), k);
+        }
+        for _ in 0..iters {
+            let t0 = Instant::now();
+            let _ = ReasoningEngine::solve_reachability_bfs_ids(&mut mem, "Node_0", &format!("Node_{k}"), k);
+            lats.push(t0.elapsed().as_nanos() as f64 / 1000.0);
+        }
+        lats.sort_by(|a, b| a.partial_cmp(b).unwrap());
+        println!("k={:>3}: Mediana {:>5.2} µs | p99: {:>5.2} µs", k, lats[iters / 2], lats[(iters * 99) / 100]);
+    }
+}
+
 fn main() {
     println!("============================================================");
     println!("  RELIC — Medición de Horizonte Elástico (A1 y A7)");
     println!("============================================================");
     bench_balanced_random_graphs();
+    bench_chains_ids();
     bench_a7_k100_breakdown();
 }

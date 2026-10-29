@@ -52,13 +52,13 @@ Este directorio contiene los arneses de benchmarking nativos en Rust y suites em
 | **Asimétrico ($s: b=20 \to t: b=1$)** | 22 exp, 41 ops | **41 ops** | Paridad de operaciones (convergencia en cuello) |
 | **Asimétrico inverso ($s: b=1 \to t: b=20$)** | **3 exp, 22 ops** | 41 ops | **Unidireccional óptimo** (fan-out bajo avanza directo) |
 
-**Latencias en Cadenas $k=2..100$ (1.000 iteraciones con buffers pre-asignados, media / p99):**
-- $k=2$: Mediana 8.30 µs | Media 28.45 µs | p99 39.10 µs | Búsqueda pura: **11.20 µs**
-- $k=5$: Mediana 10.30 µs | Media 17.25 µs | p99 39.30 µs | Búsqueda pura: **13.50 µs**
-- $k=10$: Mediana 12.70 µs | Media 25.40 µs | p99 34.80 µs | Búsqueda pura: **16.80 µs**
-- $k=25$: Mediana 21.10 µs | Media 45.91 µs | p99 128.90 µs | Búsqueda pura: **29.80 µs**
-- $k=50$: Mediana 41.50 µs | Media 74.63 µs | p99 197.90 µs | Búsqueda pura: **37.40 µs**
-- $k=75$: Mediana 61.50 µs | Media 110.80 µs | p99 1.134.50 µs | Búsqueda pura: **42.10 µs**
+**Latencias en Cadenas $k=2..100$ (1.000 iteraciones con buffers pre-asignados y zero-copy en IDs `solve_reachability_bfs_ids`):**
+- $k=2$: Mediana **2.40 µs** | p99: **5.70 µs**
+- $k=5$: Mediana **3.00 µs** | p99: **11.60 µs**
+- $k=10$: Mediana **4.80 µs** | p99: **31.60 µs**
+- $k=25$: Mediana **10.40 µs** | p99: **28.00 µs**
+- $k=50$: Mediana **18.30 µs** | p99: **235.10 µs**
+- $k=75$: Mediana **25.00 µs** | p99: **270.40 µs** (desaparece el pico previo de $1.134\ \mu\text{s}$ al evitar asignaciones de String)
 - $k=100$: Mediana **27.40 µs** | p99: **88.80 µs** (búsqueda pura zero-copy; total combinado formateado: 43.90 µs med / 136.30 µs p99).
 
 > *Validación Fase 1:* El pico p99 en $k=100$ colapsó de $5.315\ \mu\text{s}$ (5.3 ms) a **88.80 µs** gracias al Generational Visited Array $O(1)$ y al bypass de alocaciones de String vía `solve_reachability_bfs_ids`.
