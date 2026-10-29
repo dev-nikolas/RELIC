@@ -8,6 +8,7 @@ pub mod arithmetic;
 pub mod attention;
 pub mod block;
 pub mod certificate;
+pub mod compact_adj;
 pub mod config;
 pub mod episodic_memory;
 pub mod hash;
@@ -18,6 +19,7 @@ pub mod loader;
 pub mod mlp;
 pub mod model;
 pub mod model_mmap;
+pub mod mask256;
 pub mod ms_bfs;
 pub mod network_audit;
 pub mod node_resolution;
@@ -36,6 +38,7 @@ pub mod spreading_activation;
 pub mod temporal_graph;
 
 pub use arithmetic::{ArithmeticError, ArithmeticOp, ArithmeticPlan, ArithmeticReduction};
+pub use compact_adj::CompactAdj;
 pub use interner::NodeInterner;
 pub use kuramoto::{
     compute_kuramoto_order_parameter, simulate_kuramoto_synchronization, wrap_angle,
@@ -76,7 +79,7 @@ pub use certificate::{
     verify_negative, verify_negative_backward, verify_positive, verify_unreachable,
     ReachabilityResult, SearchOutcome,
 };
-pub use ms_bfs::{solve_ms_bfs_batch, solve_ms_bfs_counterfactual, MsBfsResult};
+pub use ms_bfs::{solve_ms_bfs_batch, solve_ms_bfs_counterfactual, Mask256, MsBfsResult};
 pub use reasoning_engine::ReasoningEngine;
 pub use rotary::RotaryEmbedding;
 pub use sampler::Sampler;

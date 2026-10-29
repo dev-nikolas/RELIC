@@ -3,30 +3,30 @@
   "git_commit": "b268ffaea91ae6a4da014b5eec95c8e7e2cb6e1e",
   "scale_memory": {
     "facts_loaded": 50000,
-    "private_heap_before_mb": 0.53515625,
-    "private_heap_after_mb": 19.4921875,
-    "private_heap_delta_mb": 18.95703125,
-    "rss_before_mb": 3.44921875,
-    "rss_after_mb": 20.98828125,
-    "rss_delta_mb": 17.5390625,
+    "private_heap_before_mb": 0.54296875,
+    "private_heap_after_mb": 15.5,
+    "private_heap_delta_mb": 14.95703125,
+    "rss_before_mb": 3.45703125,
+    "rss_after_mb": 17.078125,
+    "rss_delta_mb": 13.62109375,
     "query_samples": 1000,
-    "query_mean_latency_us": 23.858700000000034,
-    "query_p50_latency_us": 10.5,
-    "query_p99_latency_us": 97.3
+    "query_mean_latency_us": 28.45719999999996,
+    "query_p50_latency_us": 15.2,
+    "query_p99_latency_us": 147.5
   },
   "benchmarks_summary": {
     "bench1_polysemy_ablation": {
       "classical_contradiction_error_rate_pct": 83.33333333333334,
       "classical_coverage_pct": 0.0,
       "classical_f1": 0.0,
-      "classical_mean_latency_us": 2.466666666666667,
-      "classical_p99_latency_us": 12.2,
+      "classical_mean_latency_us": 3.2416666666666676,
+      "classical_p99_latency_us": 14.9,
       "classical_resolved_accuracy_pct": 0.0,
       "quantum_contradiction_error_rate_pct": 0.0,
       "quantum_coverage_pct": 100.0,
       "quantum_f1": 1.0,
-      "quantum_mean_latency_us": 7.104166666666665,
-      "quantum_p99_latency_us": 58.9,
+      "quantum_mean_latency_us": 9.804166666666667,
+      "quantum_p99_latency_us": 92.0,
       "quantum_resolved_accuracy_pct": 100.0,
       "total_cases": 24
     },
@@ -35,8 +35,8 @@
       "coverage_on_answerable_pct": 90.9090909090909,
       "exact_trace_match_pct": 100.0,
       "hallucination_rate_pct": 0.0,
-      "mean_latency_us": 52.890624999999986,
-      "p99_latency_us": 192.3,
+      "mean_latency_us": 84.60937499999999,
+      "p99_latency_us": 207.5,
       "selective_accuracy_pct": 100.0,
       "total_cases": 32,
       "unanswerable_trap_cases": 10
@@ -46,8 +46,8 @@
       "beacon_detection_recall_pct": 100.0,
       "benign_jitter_traces": 5,
       "false_positive_rate_pct": 0.0,
-      "mean_latency_us": 41.17142857142857,
-      "p99_latency_us": 106.9,
+      "mean_latency_us": 12975.635714285712,
+      "p99_latency_us": 167053.0,
       "topological_isolation_exact_match_pct": 100.0,
       "total_traces": 14,
       "truncated_window_traces": 4,
@@ -58,8 +58,8 @@
       "clutrr_max_hops_tested": 10,
       "efficacy_pct": 100.0,
       "locality_retention_pct": 100.0,
-      "mean_edit_latency_us": 15.601499999999987,
-      "p99_edit_latency_us": 66.3,
+      "mean_edit_latency_us": 36.64149999999998,
+      "p99_edit_latency_us": 316.8,
       "rollback_fidelity_pct": 100.0,
       "successful_edits": 200,
       "total_edits": 200
@@ -249,6 +249,6 @@
       ],
       "total_cycles": 8
     },
-    "rss_mb": 23.046875
+    "rss_mb": 19.53515625
   }
 }

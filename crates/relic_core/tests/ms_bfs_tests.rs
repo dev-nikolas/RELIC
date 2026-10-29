@@ -123,3 +123,32 @@ fn test_ms_bfs_edge_cases() {
     assert_eq!(small_res.reachable_mask & !3u64, 0);
 }
 
+#[test]
+fn test_ms_bfs_256_worlds_simd() {
+    let mut memory = EpisodicMemory::new();
+    memory.insert_edge("S", "MidA");
+    memory.insert_edge("MidA", "T");
+    memory.insert_edge("S", "MidB");
+    memory.insert_edge("MidB", "T");
+
+    let even_mask = [0x5555_5555_5555_5555u64; 4];
+    let odd_mask = [0xAAAA_AAAA_AAAA_AAAAu64; 4];
+    memory.set_edge_world_mask_256("MidA", "T", even_mask);
+    memory.set_edge_world_mask_256("MidB", "T", odd_mask);
+
+    let s = memory.interner.get_id("S").unwrap();
+    let t = memory.interner.get_id("T").unwrap();
+    let res = solve_ms_bfs_counterfactual(&memory, s, t, 256);
+    for w in 0..256 {
+        assert!(res.is_reachable(w));
+        assert_eq!(res.distances[w], Some(2));
+    }
+
+    memory.set_edge_world_mask_256("MidB", "T", [0; 4]);
+    let res2 = solve_ms_bfs_counterfactual(&memory, s, t, 256);
+    for w in 0..256 {
+        if w % 2 == 0 { assert!(res2.is_reachable(w)); } else { assert!(!res2.is_reachable(w)); }
+    }
+}
+
+

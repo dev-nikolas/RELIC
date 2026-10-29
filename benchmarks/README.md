@@ -16,7 +16,7 @@ Este directorio contiene los arneses de benchmarking nativos en Rust y suites em
 | **`measure_sprt_validation`** | `cargo run --release -p relic_benchmarks --bin measure_sprt_validation` | Cota de martingala de Ville sobre $10^5$ trazas y nulos no estacionarios. |
 | **`measure_sprt_grid`** | `cargo run --release -p relic_benchmarks --bin measure_sprt_grid` | Barrido paramétrico $(\alpha, \beta, \gamma)$ para el detector espectral. |
 | **`measure_mquake_edits`** | `cargo run --release -p relic_benchmarks --bin measure_mquake_edits` | Edición causal continua (100 mutaciones MQuAKE) y tasa aristas fantasma. |
-| **`measure_ms_bfs_batch`** | `cargo run --release -p relic_benchmarks --bin measure_ms_bfs_batch` | Evaluación paralela de 64 mundos contrafactuales con bitwise `u64`. |
+| **`measure_ms_bfs_batch`** | `cargo run --release -p relic_benchmarks --bin measure_ms_bfs_batch` | Evaluación paralela de 256 mundos contrafactuales con bitwise SIMD AVX2. |
 | **`measure_relic_originality`** | `cargo run --release -p relic_benchmarks --bin measure_relic_originality` | Certificados inductivos duales, resistencia a manipulación y divergencia. |
 | **`measure_semantic_eval`** | `cargo run --release -p relic_benchmarks --bin measure_semantic_eval` | Generalización OOD léxica y proposición de RIR sobre slots no vistos. |
 
@@ -27,20 +27,20 @@ Este directorio contiene los arneses de benchmarking nativos en Rust y suites em
 ### A. Memoria Escalar y Huella en Heap (50.000 Hechos Relacionales)
 *Auditado con `measure_scale` y `measure_structures` (medición `GlobalAlloc` en Rust 1.85+):*
 
-| Métrica de Escala | Estado Inicial | Estado Optimizado (Topología `u32` + `Box<str>`) | Mejora Observada |
-| :--- | :---: | :---: | :---: |
-| **Private Heap Delta** | +39.59 MB | **+18.94 MB** | **-52.2%** |
-| **RSS Delta** | +38.36 MB | **+17.49 MB** | **-54.4%** |
-| **Consumo por Hecho** | ~830 bytes/hecho | **~378 bytes/hecho** | **-54.4%** |
-| **Latencia BFS Reachability (Media)** | 1.531.54 µs | **31.14 µs** | **49.2x más rápido** |
+| Métrica de Escala | Estado Inicial | Estado Baseline (`u32`) | Estado Compacto (`CompactAdj` + Arena) | Mejora Total |
+| :--- | :---: | :---: | :---: | :---: |
+| **Private Heap Delta** | +39.59 MB | +18.94 MB | **+14.96 MB** | **-62.2%** |
+| **RSS Delta** | +38.36 MB | +17.49 MB | **+13.62 MB** | **-64.5%** |
+| **Consumo por Hecho** | ~830 bytes/hecho | ~378 bytes/hecho | **~299 bytes/hecho** | **-64.0%** |
+| **Latencia BFS Reachability (Media)** | 1.531.54 µs | 31.14 µs | **28.46 µs** | **53.8x más rápido** |
 
 **Desglose de Memoria Viva por Componente Interno (50.000 hechos / 100.000 nodos):**
-- **NodeInterner (`Box<str>` + `u32`)**: ~6.64 MB (**35.1%** de la huella neta viva; interning sin redundancia).
-- **Adyacencia fwd/bwd (`Vec<Vec<u32>>`)**: ~4.96 MB (**26.2%**; arreglos contiguos sin punteros `String`).
-- **EdgeStats & Edges (`(u32, u32)`)**: ~1.91 MB (**10.1%**; metadatos compactos de peso y frecuencia).
-- **NodeResolver (`active_nodes`, `canonical_map`)**: ~5.34 MB (**28.2%**; tablas de mapeo hash directo).
-- **SearchBuffer (Thread-Local Reutilizable)**: ~0.08 MB (**0.4%**; 0 asignaciones de heap en inferencia).
-*(Suma componentes: 18.93 MB = 100.0% del heap neto de +18.94 MB; equivale al 45.7% del RSS total del proceso).*
+- **NodeInterner (String Arena Contiguo + Offsets)**: ~2.82 MB (interning en arena continua, 0 `Box<str>` dispersos).
+- **Adyacencia CompactAdj (Inlining $\le 4$ vecinos)**: ~1.60 MB (elimina 200.000 cabeceras `Vec<u32>` en heap).
+- **EdgeStats & Edges (`(u32, u32)`)**: ~1.91 MB (pesos de refuerzo y frecuencias).
+- **NodeResolver (`active_nodes`, `canonical_map`)**: ~5.34 MB (tablas hash directas).
+- **SearchBuffer (Thread-Local Reutilizable)**: ~0.08 MB (0 asignaciones de heap en inferencia).
+*(Huella neta en heap: +14.96 MB medidos vía `GlobalAlloc` / `measure_scale`).*
 
 ### B. Razonamiento en Grafos: Horizonte Elástico (BFS Bidireccional vs Unidireccional)
 *Auditado con `measure_horizon` sobre topologías complejas y cadenas escalares $k=2..100$:*
@@ -90,9 +90,9 @@ Este directorio contiene los arneses de benchmarking nativos en Rust y suites em
   - Latencia media de sustitución atómica: **38.68 µs**.
   - Retención de consistencia transitiva: **100.00% (100/100)**.
   - Tasa de aristas fantasma (*ghost edges* de hechos obsoletos): **0.00%**.
-- **Evaluación Paralela de 64 Mundos Contrafactuales (MS-BFS):**
-  - Tiempo por lote de 64 mundos: **5.23 µs** (frente a 1.260 µs secuencial tradicional).
-  - Factor de aceleración en un solo núcleo: **241.0x** (ratio lote vs individual: **0.27x**).
+- **Evaluación Paralela de 256 Mundos Contrafactuales (MS-BFS SIMD AVX2):**
+  - Tiempo por lote de 256 mundos: **8.55 µs** (frente a 2.172 µs secuencial tradicional).
+  - Factor de aceleración en un solo núcleo: **254.1x** (ratio lote vs mundo individual: **1.01x**).
 
 ### F. Suite de Originalidad y Certificados Epistémicos Duales
 *Auditado con `measure_relic_originality`:*

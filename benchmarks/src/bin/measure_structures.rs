@@ -51,20 +51,18 @@ fn evaluate_topology(name: &str, num_facts: usize, num_nodes_target: usize) {
         if let Some(s) = mem.interner.resolve(id) { str_bytes += s.len(); }
     }
     // 2. Desglose analítico
-    let box_ptrs = v_count * 16; // Box<str> en to_str
-    let interner_buckets = v_count.next_power_of_two() * 32; // HashMap<u64, Vec<u32>>
-    let interner_subvecs = v_count * 24; // Vec<u32> structs
-    let adj_outer = 2 * (v_count * 24); // adj_fwd y adj_bwd outer vectors
-    let adj_inner_payload = 2 * (e_count * 4); // u32 de aristas
-    let adj_inner_subvecs = 2 * (v_count * 24); // 2*V subvectores de adyacencia
-    let edges_hash_buckets = e_count.next_power_of_two() * 16; // HashSet<(u32, u32)>
-    let edge_stats_buckets = e_count.next_power_of_two() * 40; // HashMap<(u32, u32), EdgeStats>
-    let resolver_active = v_count.next_power_of_two() * 8; // HashSet<u32>
-    let resolver_canonical = v_count.next_power_of_two() * 32 + (v_count * 24); // HashMap + subvecs
+    let arena_payload = str_bytes;
+    let arena_offsets = v_count * 4;
+    let interner_buckets = v_count.next_power_of_two() * 32;
+    let interner_subvecs = v_count * 24;
+    let adj_compact = 2 * (v_count * std::mem::size_of::<relic_core::CompactAdj>());
+    let edges_hash_buckets = e_count.next_power_of_two() * 16;
+    let edge_stats_buckets = e_count.next_power_of_two() * 40;
+    let resolver_active = v_count.next_power_of_two() * 8;
+    let resolver_canonical = v_count.next_power_of_two() * 32 + (v_count * 24);
 
-    let accounted_pure = str_bytes + box_ptrs + interner_buckets + interner_subvecs
-        + adj_outer + adj_inner_payload + adj_inner_subvecs + edges_hash_buckets
-        + edge_stats_buckets + resolver_active + resolver_canonical;
+    let accounted_pure = arena_payload + arena_offsets + interner_buckets + interner_subvecs
+        + adj_compact + edges_hash_buckets + edge_stats_buckets + resolver_active + resolver_canonical;
     let slop_unused_capacity = total_alive.saturating_sub(accounted_pure);
 
     println!("\n============================================================");
@@ -74,19 +72,19 @@ fn evaluate_topology(name: &str, num_facts: usize, num_nodes_target: usize) {
     println!("  Bytes por hecho (motor puro)        : {:.1} bytes/hecho", total_alive as f64 / e_count as f64);
     println!("------------------------------------------------------------");
     println!("  Atribución del 100% de Bytes:");
-    println!("    1. Cadenas Box<str> en Arena       : {:>6.2} MB ({:>4.1}%)", (str_bytes + box_ptrs) as f64 / (1024.0 * 1024.0), ((str_bytes + box_ptrs) as f64 / total_alive as f64) * 100.0);
+    println!("    1. String Arena Contiguo + Offsets : {:>6.2} MB ({:>4.1}%)", (arena_payload + arena_offsets) as f64 / (1024.0 * 1024.0), ((arena_payload + arena_offsets) as f64 / total_alive as f64) * 100.0);
     println!("    2. Tablas Hash (Buckets 2^N)       : {:>6.2} MB ({:>4.1}%)", (interner_buckets + edges_hash_buckets + edge_stats_buckets + resolver_active) as f64 / (1024.0 * 1024.0), ((interner_buckets + edges_hash_buckets + edge_stats_buckets + resolver_active) as f64 / total_alive as f64) * 100.0);
-    println!("    3. Subvectores Vec<u32> (4x|V|)    : {:>6.2} MB ({:>4.1}%)", (interner_subvecs + adj_inner_subvecs + resolver_canonical) as f64 / (1024.0 * 1024.0), ((interner_subvecs + adj_inner_subvecs + resolver_canonical) as f64 / total_alive as f64) * 100.0);
-    println!("    4. Carga útil de Aristas (u32)     : {:>6.2} MB ({:>4.1}%)", adj_inner_payload as f64 / (1024.0 * 1024.0), (adj_inner_payload as f64 / total_alive as f64) * 100.0);
+    println!("    3. Adyacencia CompactAdj (Inlined) : {:>6.2} MB ({:>4.1}%)", adj_compact as f64 / (1024.0 * 1024.0), (adj_compact as f64 / total_alive as f64) * 100.0);
+    println!("    4. Subvectores Resolutor / Interner: {:>6.2} MB ({:>4.1}%)", (interner_subvecs + resolver_canonical) as f64 / (1024.0 * 1024.0), ((interner_subvecs + resolver_canonical) as f64 / total_alive as f64) * 100.0);
     println!("    5. Capacidad ociosa Vec/Hash (Slop): {:>6.2} MB ({:>4.1}%)", slop_unused_capacity as f64 / (1024.0 * 1024.0), (slop_unused_capacity as f64 / total_alive as f64) * 100.0);
     println!("    TOTAL ATRIBUIDO                   : {:>6.2} MB (100.0%)", total_alive as f64 / (1024.0 * 1024.0));
     println!("------------------------------------------------------------");
     let csr_est_mb = (2.0 * ((v_count + 1) * 4 + e_count * 4) as f64) / (1024.0 * 1024.0);
-    let adj_actual_mb = (adj_outer + adj_inner_subvecs + adj_inner_payload) as f64 / (1024.0 * 1024.0);
+    let adj_actual_mb = adj_compact as f64 / (1024.0 * 1024.0);
     println!("  Estimación de Reducción con CSR:");
-    println!("    - Adyacencia actual (Vec<Vec<u32>>): ~{:.2} MB", adj_actual_mb);
+    println!("    - Adyacencia CompactAdj inlined: ~{:.2} MB", adj_actual_mb);
     println!("    - Adyacencia con CSR (2 buffers planos): ~{:.2} MB", csr_est_mb);
-    println!("    - Ahorro proyectado de CSR: -{:.1}% en adyacencia", (1.0 - csr_est_mb / adj_actual_mb) * 100.0);
+    println!("    - Ahorro adicional proyectado con CSR estático: -{:.1}%", (1.0 - csr_est_mb / adj_actual_mb) * 100.0);
 }
 
 fn evaluate_search_buffers() {

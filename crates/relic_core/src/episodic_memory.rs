@@ -1,20 +1,22 @@
 //! # EpisodicMemory
 //!
-//! Almacenamiento explícito y determinista de hechos relacionales en grafos con pesos de refuerzo.
-//! Menos de 180 líneas.
+//! Almacenamiento explicito y determinista de hechos relacionales en grafos con pesos de refuerzo.
+//! Menos de 180 lineas.
 
 use std::collections::{HashMap, HashSet};
+use crate::compact_adj::CompactAdj;
 use crate::interner::NodeInterner;
+use crate::ms_bfs::Mask256;
 pub use crate::node_resolution::{canonical_node_key, EdgeStats, NodeResolution, NodeResolver};
 
 #[derive(Debug, Clone, Default)]
 pub struct EpisodicMemory {
     pub interner: NodeInterner,
-    adj_fwd: Vec<Vec<u32>>,
-    adj_bwd: Vec<Vec<u32>>,
+    adj_fwd: Vec<CompactAdj>,
+    adj_bwd: Vec<CompactAdj>,
     edges: HashSet<(u32, u32)>,
     edge_stats: HashMap<(u32, u32), EdgeStats>,
-    pub edge_world_overrides: HashMap<(u32, u32), u64>,
+    pub edge_world_overrides: HashMap<(u32, u32), [u64; 4]>,
     resolver: NodeResolver,
     query_counter: usize,
     query_cache: Vec<String>,
@@ -35,8 +37,8 @@ impl EpisodicMemory {
 
     fn ensure_adj_capacity(&mut self, id: u32) {
         let needed = id as usize + 1;
-        if self.adj_fwd.len() < needed { self.adj_fwd.resize_with(needed, Vec::new); }
-        if self.adj_bwd.len() < needed { self.adj_bwd.resize_with(needed, Vec::new); }
+        if self.adj_fwd.len() < needed { self.adj_fwd.resize_with(needed, CompactAdj::default); }
+        if self.adj_bwd.len() < needed { self.adj_bwd.resize_with(needed, CompactAdj::default); }
     }
 
     pub fn insert_edge_with_weight(&mut self, u: impl Into<String>, v: impl Into<String>, weight: f64) -> bool {
@@ -76,16 +78,14 @@ impl EpisodicMemory {
     }
 
     pub fn set_edge_world_mask(&mut self, u: &str, v: &str, mask: u64) -> bool {
-        let Some(pair) = self.interner.get_id(u).zip(self.interner.get_id(v)) else { return false; };
-        self.edge_world_overrides.insert(pair, mask);
-        true
+        self.interner.get_id(u).zip(self.interner.get_id(v)).map_or(false, |p| { self.edge_world_overrides.insert(p, [mask; 4]); true })
     }
-    pub fn set_edge_world_mask_u32(&mut self, u: u32, v: u32, mask: u64) {
-        self.edge_world_overrides.insert((u, v), mask);
+    pub fn set_edge_world_mask_256(&mut self, u: &str, v: &str, mask: [u64; 4]) -> bool {
+        self.interner.get_id(u).zip(self.interner.get_id(v)).map_or(false, |p| { self.edge_world_overrides.insert(p, mask); true })
     }
-    pub fn get_edge_world_mask_u32(&self, u: u32, v: u32) -> u64 {
-        self.edge_world_overrides.get(&(u, v)).copied().unwrap_or(!0u64)
-    }
+    pub fn set_edge_world_mask_u32(&mut self, u: u32, v: u32, mask: u64) { self.edge_world_overrides.insert((u, v), [mask; 4]); }
+    pub fn get_edge_world_mask_u32(&self, u: u32, v: u32) -> u64 { self.edge_world_overrides.get(&(u, v)).map(|m| m[0]).unwrap_or(!0u64) }
+    pub fn get_edge_mask256(&self, u: u32, v: u32) -> Mask256 { self.edge_world_overrides.get(&(u, v)).map(|&m| Mask256(m)).unwrap_or(Mask256::ALL) }
 
     pub fn reinforce_edge(&mut self, u: &str, v: &str, delta: f64) -> Option<f64> {
         let pair = (self.interner.get_id(u)?, self.interner.get_id(v)?);
@@ -109,7 +109,7 @@ impl EpisodicMemory {
 
     pub fn neighbors_with_weights(&self, node: &str) -> Vec<(String, f64)> {
         let (Some(u_id), Some(nbrs)) = (self.interner.get_id(node), self.interner.get_id(node).and_then(|id| self.adj_fwd.get(id as usize))) else { return Vec::new(); };
-        nbrs.iter().filter_map(|&n| Some((self.interner.resolve(n)?.to_string(), self.edge_stats.get(&(u_id, n)).map(|s| s.weight).unwrap_or(1.0)))).collect()
+        nbrs.as_slice().iter().filter_map(|&n| Some((self.interner.resolve(n)?.to_string(), self.edge_stats.get(&(u_id, n)).map(|s| s.weight).unwrap_or(1.0)))).collect()
     }
 
     pub fn register_entity_alias(&mut self, alias: impl Into<String>, canonical: impl Into<String>) {
@@ -141,7 +141,7 @@ impl EpisodicMemory {
         self.query_counter += 1; self.query_cache.clear();
         if let Some(u_id) = self.interner.get_id(node) {
             if let Some(nbrs) = self.adj_fwd.get(u_id as usize) {
-                for &v_id in nbrs { if let Some(s) = self.interner.resolve(v_id) { self.query_cache.push(s.to_string()); } }
+                for &v_id in nbrs.as_slice() { if let Some(s) = self.interner.resolve(v_id) { self.query_cache.push(s.to_string()); } }
             }
         }
         self.query_cache.as_slice()
