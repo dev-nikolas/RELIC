@@ -248,3 +248,4 @@ A continuación se detalla el perfil de consumo temporal y utilización de hardw
 Al corregir la separación de bucles temporales, sustituir los hashes planos por invariantes locales discriminantes, incorporar síntesis local de reparación para RIR v1, acotar el MS-BFS a su función rigurosa de poda de alcanzabilidad y acondicionar `Seis Ojos` mediante residuos topológicos, la arquitectura de RELIC queda teórica y físicamente blindada. 
 
 El sistema pasa de ser una propuesta vulnerable ante escrutinio técnico a un **Kernel Neuro-Simbólico de Control Determinista en Tiempo Real** robusto, defendible ante cualquier equipo de ingeniería de HFT, ingeniería de potencia o infraestructura crítica distribuida.
+
