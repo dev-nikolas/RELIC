@@ -17,7 +17,7 @@ A diferencia de los modelos de lenguaje tradicionales (LLMs) que predicen texto 
    - Responde si es posible conectar dos puntos cumpliendo restricciones (ej: *"¿puedo llegar de A a B pasando por C pero evitando D?"*), devolviendo el camino exacto o demostrando si es imposible.
 3. **Gestión de Memoria y Conocimiento sin Olvido Catastrófico:**
    - Guarda hechos y relaciones en un archivo seguro (`engram.jsonl`). Si un dato cambia (ej: *"el precio subió"* o *"el servidor cambió de IP"*), actualiza la información sin dejar datos obsoletos huérfanos.
-4. **Vigilancia de Sensores y Telemetría en Tiempo Real (Seis Ojos):**
+4. **Vigilancia de Sensores y Telemetría en Tiempo Real (RELIC:Seis Ojos):**
    - Monitorea lecturas numéricas continuas (como métricas de servidores o sensores IoT). Aprende el comportamiento normal y detecta fallas o anomalías al instante, aislando nodos defectuosos en memoria antes de que afecten al resto del sistema.
 5. **Comprobación de Seguridad antes de Guardar (Blackwall):**
    - Antes de confirmar cualquier cambio, comprueba que no cree contradicciones, ciclos infinitos ni rompa pruebas anteriores. Si algo falla, revierte todo exactamente al estado anterior.
@@ -28,7 +28,7 @@ A diferencia de los modelos de lenguaje tradicionales (LLMs) que predicen texto 
 
 ¿Cómo sabemos si el sistema es bueno? Contrastado directamente contra los estándares de la industria:
 
-### 1. Detección de Anomalías (Seis Ojos vs. Tablero Oficial NAB)
+### 1. Detección de Anomalías (RELIC:Seis Ojos vs. Tablero Oficial NAB)
 En el benchmark oficial **NAB (Numenta Anomaly Benchmark)** sobre 58 conjuntos de datos reales de servidores, tráfico y métricas en tiempo real:
 
 | Algoritmo / Detector | Standard Score | Low FP Score (Castigo a Falsas Alarmas) | Latencia y Memoria |
@@ -36,14 +36,14 @@ En el benchmark oficial **NAB (Numenta Anomaly Benchmark)** sobre 58 conjuntos d
 | **Detector Perfecto Teórico** | 100.0 | 100.0 | Límite matemático superior |
 | **Numenta HTM (Red Cortical)** | 70.1 | 63.1 | Pesado en CPU/RAM |
 | **knncad (K-Vecinos)** | 58.0 | 43.4 | Requiere almacenar buffer masivo |
-| **Seis Ojos en RELIC (Rust)** | **57.7** | **53.2** | **25 µs/punto, 278 KB RAM, 0 allocs** |
+| **RELIC:Seis Ojos (Rust)** | **57.7** | **53.2** | **25 µs/punto, 278 KB RAM, 0 allocs** |
 | **Relative Entropy (HP Labs)** | 54.6 | 47.6 | Métricas de entropía |
 | **Random Cut Forest (Amazon AWS)** | 51.7 | 38.4 | Árboles de aislamiento |
 | **Twitter ADVec (Twitter)** | 47.1 | 33.6 | Descomposición clásica |
 | **Windowed Gaussian (Media/Varianza)**| 39.6 | 20.9 | Baseline simple |
 | **Detector Cero / Nulo** | 0.0 | 0.0 | No emite alertas |
 
-*Seis Ojos supera los detectores oficiales de AWS (51.7) y Twitter (47.1), manteniendo una huella mínima de solo 278 KB por canal.*
+*RELIC:Seis Ojos supera los detectores oficiales de AWS (51.7) y Twitter (47.1), manteniendo una huella mínima de solo 278 KB por canal.*
 
 ### 2. Razonamiento y Grafos (RELIC vs. LLMs Tradicionales)
 
@@ -61,7 +61,7 @@ En el benchmark oficial **NAB (Numenta Anomaly Benchmark)** sobre 58 conjuntos d
 
 El sistema está dividido en componentes modulares e independientes:
 
-- **`relic_core`**: El motor central. Se encarga de los cálculos exactos, la búsqueda de caminos en grafos y el detector de anomalías Seis Ojos.
+- **`relic_core`**: El motor central. Se encarga de los cálculos exactos, la búsqueda de caminos en grafos y el detector de anomalías RELIC:Seis Ojos.
 - **`relic_lexicon`**: El almacén de conocimiento. Guarda el historial de hechos de forma segura y permite viajar en el tiempo entre versiones.
 - **`relic_blackwall`**: La compuerta de seguridad. Valida cada cambio antes de guardarlo y revierte automáticamente si detecta regresiones o datos sospechosos.
 - **`relic_cli`**: Interfaz de línea de comandos para hacerle consultas directas a RELIC desde la terminal.
@@ -113,8 +113,8 @@ cargo run -p relic_cli -- query "¿Puede Marta llegar a la biblioteca pasando po
 
 Para profundizar en la arquitectura interna y auditorías del proyecto, consulta la carpeta [`docs/`](docs/README.md):
 - [Arquitectura Técnica de RELIC](docs/ARCHITECTURE.md)
-- [Evaluación Empírica de Seis Ojos](INFORME_INTEGRACION_ESTRICTA_SEIS_OJOS_RELIC.md)
-- [Guía Rápida de Seis Ojos](GUIA_SIMPLE_SEIS_OJOS_RELIC.md)
+- [Evaluación Empírica de RELIC:Seis Ojos](INFORME_INTEGRACION_ESTRICTA_SEIS_OJOS_RELIC.md)
+- [Guía Rápida de RELIC:Seis Ojos](GUIA_SIMPLE_SEIS_OJOS_RELIC.md)
 - [Especificación del Servidor MCP](docs/DISENO_SANDBOX_MCP.md)
 
 ---

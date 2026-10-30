@@ -10,8 +10,8 @@ Bienvenido a la documentación de **RELIC**. Esta guía organiza los documentos 
 | :--- | :--- | :--- |
 | **Visión General y Uso Rápido** | [`README.md`](../README.md) | Qué es RELIC, para qué sirve, ejemplos de terminal y licencias. |
 | **Arquitectura del Sistema** | [`ARCHITECTURE.md`](ARCHITECTURE.md) | Estructura de anillos (`relic_core`, `relic_blackwall`, `relic_lexicon`) y flujo de transacciones. |
-| **Telemetría y Detección (Seis Ojos)** | [`../INFORME_INTEGRACION_ESTRICTA_SEIS_OJOS_RELIC.md`](../INFORME_INTEGRACION_ESTRICTA_SEIS_OJOS_RELIC.md) | Benchmark empírico sobre NAB, ablaciones, falsas alarmas y métricas de latencia. |
-| **Guía Simple de Seis Ojos** | [`../GUIA_SIMPLE_SEIS_OJOS_RELIC.md`](../GUIA_SIMPLE_SEIS_OJOS_RELIC.md) | Explicación intuitiva sin tecnicismos del motor de anomalías. |
+| **Telemetría y Detección (RELIC:Seis Ojos)** | [`../INFORME_INTEGRACION_ESTRICTA_SEIS_OJOS_RELIC.md`](../INFORME_INTEGRACION_ESTRICTA_SEIS_OJOS_RELIC.md) | Benchmark empírico sobre NAB, ablaciones, falsas alarmas y métricas de latencia. |
+| **Guía Simple de RELIC:Seis Ojos** | [`../GUIA_SIMPLE_SEIS_OJOS_RELIC.md`](../GUIA_SIMPLE_SEIS_OJOS_RELIC.md) | Explicación intuitiva sin tecnicismos del motor de anomalías. |
 | **Comparativa de Benchmarks** | [`BENCHMARKS.md`](BENCHMARKS.md) | Tiempos de ejecución, exactitud frente a baselines y evaluación de memoria. |
 | **Integración con Agentes (MCP)** | [`DISENO_SANDBOX_MCP.md`](DISENO_SANDBOX_MCP.md) | Especificación del servidor Model Context Protocol sobre `stdio`. |
 | **Hoja de Ruta y Planes** | [`../PLAN.md`](../PLAN.md) | Plan de desarrollo activo e hitos técnicos. |
