@@ -43,24 +43,23 @@ fn control_abstencion_sin_estado_inicial() {
 }
 
 // ---------------------------------------------------------------------------
-// Fase 2: dirección por rol, no por raíz léxica (falsadores)
 // ---------------------------------------------------------------------------
 
 #[test]
-#[ignore = "TDD rojo: requiere clasificador de dirección por rol (Fase 2)"]
+#[ignore = "TDD rojo: requiere clasificador de dirección por rol"]
 fn falsador_voz_pasiva_me_regalaron_es_inflow() {
     // Misma raíz "regal-" que "regalé", dirección opuesta (receptor = yo).
     assert!(approx(eval("Tenía 10 caramelos y me regalaron 2"), 12.0));
 }
 
 #[test]
-#[ignore = "TDD rojo: requiere clasificador de dirección por rol (Fase 2)"]
+#[ignore = "TDD rojo: requiere clasificador de dirección por rol"]
 fn falsador_voz_activa_regale_es_outflow() {
     assert!(approx(eval("Tenía 10 caramelos y regalé 2"), 8.0));
 }
 
 #[test]
-#[ignore = "TDD rojo: requiere clasificador de dirección por rol (Fase 2)"]
+#[ignore = "TDD rojo: requiere clasificador de dirección por rol"]
 fn falsador_par_minimo_misma_raiz_direccion_opuesta() {
     let sale = eval("Tenía 10 caramelos y regalé 2");
     let entra = eval("Tenía 10 caramelos y me regalaron 2");
@@ -69,32 +68,31 @@ fn falsador_par_minimo_misma_raiz_direccion_opuesta() {
 }
 
 #[test]
-#[ignore = "TDD rojo: sinónimo abierto fuera de listas (Fase 2)"]
+#[ignore = "TDD rojo: sinónimo abierto fuera de listas"]
 fn falsador_sinonimo_abierto_se_me_extraviaron() {
     assert!(approx(eval("Tengo 9 peras y se me extraviaron 4"), 5.0));
 }
 
 #[test]
-#[ignore = "TDD rojo: sinónimo abierto fuera de listas (Fase 2)"]
+#[ignore = "TDD rojo: sinónimo abierto fuera de listas"]
 fn falsador_sinonimo_abierto_inflow_me_obsequiaron() {
     assert!(approx(eval("Tengo 3 peras y me obsequiaron 4"), 7.0));
 }
 
 #[test]
-#[ignore = "TDD rojo: subcadena 'di' no debe decidir dirección (Fase 2)"]
+#[ignore = "TDD rojo: subcadena 'di' no debe decidir dirección"]
 fn falsador_subcadena_espuria_no_decide() {
     // "comida"/"medida" contienen 'di'/'como'/'mas' como subcadena; no son verbos de salida.
     assert_eq!(eval("Tengo 5 manzanas y me dieron una medida de 3"), None);
 }
 
 #[test]
-#[ignore = "TDD rojo: negación invierte/anula el evento (Fase 2)"]
+#[ignore = "TDD rojo: negación invierte/anula el evento"]
 fn falsador_negacion_no_regale_no_resta() {
     assert!(approx(eval("Tenía 10 caramelos y no regalé 2"), 10.0));
 }
 
 // ---------------------------------------------------------------------------
-// Fase 1: unidad contable vs contenedor (falsadores)
 // ---------------------------------------------------------------------------
 
 #[test]
@@ -105,25 +103,24 @@ fn falsador_contenedor_cajas_misma_dimension() {
 }
 
 #[test]
-#[ignore = "TDD rojo: multiplicador de contenedor (Fase 2)"]
+#[ignore = "TDD rojo: multiplicador de contenedor"]
 fn falsador_contenedor_con_multiplicador() {
     // 2 cajas de 10 caramelos => 20 unidades; 20 - 20 = 0.
     assert!(approx(eval("Tengo 20 caramelos y regalo 2 cajas de 10"), 0.0));
 }
 
 #[test]
-#[ignore = "TDD rojo: invariante física (Fase 3), se anticipa aquí"]
+#[ignore = "TDD rojo: invariante física, se anticipa aquí"]
 fn falsador_no_se_puede_regalar_mas_de_lo_que_se_tiene() {
     // Resultado negativo para objetos contables debe ser abstención, no -3.
     assert_eq!(eval("Tengo 2 caramelos y regalo 5"), None);
 }
 
 // ---------------------------------------------------------------------------
-// Fase 1: EntityId desacoplado de Token ID (placeholder de contrato)
 // ---------------------------------------------------------------------------
 
 #[test]
-#[ignore = "TDD rojo: EntityDescriptor aún no existe (Fase 1)"]
+#[ignore = "TDD rojo: EntityDescriptor aún no existe"]
 fn falsador_flexion_misma_entidad() {
     // Contrato futuro: "caramelo" / "caramelos" / "caramelito" => mismo entity_id.
     // Hoy no hay API; la prueba se completará al exponer EntityDescriptor.

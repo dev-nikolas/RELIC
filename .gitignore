@@ -5,6 +5,7 @@
 !/reports/eval/
 !/reports/eval/*.json
 *.bin
+!crates/relic_core/src/anomaly/data/*.bin
 *.pt
 *.safetensors
 __pycache__/
