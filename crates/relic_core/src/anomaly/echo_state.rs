@@ -81,6 +81,10 @@ impl RollingNorm {
     pub fn len(&self) -> usize {
         self.buffer.len()
     }
+
+    pub fn is_empty(&self) -> bool {
+        self.buffer.is_empty()
+    }
 }
 
 /// Buffer causal de incrustación de coordenadas de retardo (Takens).
@@ -107,6 +111,7 @@ impl DelayEmbedding {
     }
 
     /// Construye el vector Takens proyectado [z_t, z_{t-1}, ..., z_{t-15}].
+    #[allow(clippy::needless_range_loop)]
     pub fn construct_vector(&self, current_z: f64) -> Option<[f64; EMBED_DIM]> {
         if self.buffer.len() < self.dim - 1 {
             return None;
@@ -167,6 +172,7 @@ impl EchoStatePredictor {
 
     /// Inferencia pura inmutable.
     /// Retorna `(z, Option<TakensVector>, h_new, pred_z, err)`.
+    #[allow(clippy::needless_range_loop)]
     pub fn evaluate_pure(
         &self,
         value: f64,
@@ -212,6 +218,7 @@ impl EchoStatePredictor {
     }
 
     /// Actualización causal RLS idéntica a Python.
+    #[allow(clippy::needless_range_loop)]
     pub fn commit(
         &mut self,
         value: f64,
@@ -285,6 +292,12 @@ impl EchoStatePredictor {
         self.h = h_candidate;
         self.embed.ingest(z);
         self.norm.ingest(value);
+    }
+}
+
+impl Default for EchoStatePredictor {
+    fn default() -> Self {
+        Self::new()
     }
 }
 

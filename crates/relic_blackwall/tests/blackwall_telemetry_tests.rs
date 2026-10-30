@@ -263,7 +263,7 @@ fn test_wal_byte_for_byte_identity_between_disabled_and_passive_monitor_with_mix
         );
 
         let out_dis = gate_disabled
-            .commit_transaction_with_telemetry(&[payload.clone()], &[], ts)
+            .commit_transaction_with_telemetry(std::slice::from_ref(&payload), &[], ts)
             .expect("Commit en Disabled");
         let out_pas = gate_passive
             .commit_transaction_with_telemetry(&[payload], &[(1, 100.0 + (i as f64) * 0.5)], ts)

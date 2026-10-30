@@ -16,10 +16,14 @@ pub use peak_decay::StreamingPeakDecay;
 pub use refractory::RefractorySuppressor;
 pub use spatial_bypass::SpatialSpikeBypass;
 
+pub type ReservoirWeights = (
+    [[f64; EMBED_DIM]; RESERVOIR_SIZE],
+    [[f64; RESERVOIR_SIZE]; RESERVOIR_SIZE],
+);
+
 /// Carga estática de matrices W_in y W_res desde el archivo binario exportado.
-pub fn load_weights_from_bytes(
-    bytes: &[u8],
-) -> Result<([[f64; EMBED_DIM]; RESERVOIR_SIZE], [[f64; RESERVOIR_SIZE]; RESERVOIR_SIZE]), &'static str> {
+#[allow(clippy::needless_range_loop)]
+pub fn load_weights_from_bytes(bytes: &[u8]) -> Result<ReservoirWeights, &'static str> {
     const WIN_LEN: usize = RESERVOIR_SIZE * EMBED_DIM; // 1024 floats = 8192 bytes
     const WRES_LEN: usize = RESERVOIR_SIZE * RESERVOIR_SIZE; // 4096 floats = 32768 bytes
     const MIN_BYTES: usize = (WIN_LEN + WRES_LEN) * 8; // 40960 bytes

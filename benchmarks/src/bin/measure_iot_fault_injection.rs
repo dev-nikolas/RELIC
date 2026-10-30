@@ -12,7 +12,6 @@
 use relic_blackwall::{BindingTarget, BlackwallGate};
 use relic_core::anomaly::{load_weights_from_bytes, SixEyesChannel, WEIGHTS_SEED42_BYTES};
 use relic_lexicon::LexiconPayload;
-use serde_json;
 use std::fs;
 use std::time::Instant;
 
@@ -145,8 +144,8 @@ fn run_fault_sweep(
                 assess.score_relic = assess.nms_score;
             }
 
-            if step >= t_inj && detected_step.is_none() {
-                if assess.score_relic >= 0.990 || assess.range_violation || assess.drift_alarm {
+            if step >= t_inj && detected_step.is_none()
+                && (assess.score_relic >= 0.990 || assess.range_violation || assess.drift_alarm) {
                     detected_step = Some(step - t_inj);
                     if primary_trigger == "None" {
                         primary_trigger = if assess.range_violation {
@@ -158,7 +157,6 @@ fn run_fault_sweep(
                         };
                     }
                 }
-            }
 
             ch.commit(val, &assess);
 

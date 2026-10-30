@@ -113,3 +113,9 @@ impl EcdfWindow {
     }
 }
 
+impl Default for EcdfWindow {
+    fn default() -> Self {
+        Self::new()
+    }
+}
+

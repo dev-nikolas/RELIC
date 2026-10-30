@@ -97,3 +97,9 @@ impl TelemetryDriftMonitor {
     }
 }
 
+impl Default for TelemetryDriftMonitor {
+    fn default() -> Self {
+        Self::new()
+    }
+}
+

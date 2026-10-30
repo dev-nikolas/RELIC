@@ -17,6 +17,7 @@ use serde::{Deserialize, Serialize};
 use std::collections::{HashMap, HashSet, VecDeque};
 use thiserror::Error;
 
+pub type ChannelImpact = (Option<BindingTarget>, Vec<(String, String)>);
 pub const DEFAULT_MAX_CHANNELS: usize = 16;
 pub const DEFAULT_MAX_AUDIT_RECORDS: usize = 1000;
 pub const DEFAULT_MAX_QUARANTINE_SLOTS: usize = 16;
@@ -262,7 +263,7 @@ impl TelemetryArena {
     pub fn commit_batch_with_impact(
         &mut self,
         assessments: &[(u32, f64, TelemetryAssessment)],
-        impacts: &[(Option<BindingTarget>, Vec<(String, String)>)],
+        impacts: &[ChannelImpact],
         ts: u64,
     ) {
         if self.mode == AnomalyGateMode::Disabled {

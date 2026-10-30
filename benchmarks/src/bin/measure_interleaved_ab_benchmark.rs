@@ -82,7 +82,7 @@ fn main() {
     // Warm-up de 500 pares
     for i in 0..500 {
         let p_warm = LexiconPayload::graph_fact(format!("warm_{i}"), "rel", format!("node_{i}"));
-        let _ = gate_a.commit_transaction_with_telemetry(&[p_warm.clone()], &[], 500 + i as u64);
+        let _ = gate_a.commit_transaction_with_telemetry(std::slice::from_ref(&p_warm), &[], 500 + i as u64);
         let _ = gate_b.commit_transaction_with_telemetry(&[p_warm], &[], 500 + i as u64);
     }
 

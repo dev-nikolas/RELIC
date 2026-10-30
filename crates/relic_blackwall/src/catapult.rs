@@ -86,7 +86,7 @@ pub struct CausalCatapult {
 
 impl CausalCatapult {
     pub fn new(capacity: usize) -> Self {
-        let words = (capacity + 63) / 64;
+        let words = capacity.div_ceil(64);
         Self {
             in_cut_bitset: vec![0u64; words],
             node_to_mask_idx: vec![u32::MAX; capacity],

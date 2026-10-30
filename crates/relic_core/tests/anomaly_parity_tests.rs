@@ -561,7 +561,7 @@ fn test_cusum_arl0_statistical_simulation() {
 
     assert!(detected, "CUSUM con h=10.0 debe detectar un corrimiento de +1.0 sigma");
     assert!(
-        steps_to_alarm >= 15 && steps_to_alarm <= 35,
+        (15..=35).contains(&steps_to_alarm),
         "El tiempo hasta detección (ARL_1) debe rondar los 20-30 pasos (obtenido: {} pasos)",
         steps_to_alarm
     );

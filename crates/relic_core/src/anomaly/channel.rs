@@ -177,3 +177,9 @@ impl SixEyesChannel {
         }
     }
 }
+
+impl Default for SixEyesChannel {
+    fn default() -> Self {
+        Self::new()
+    }
+}
