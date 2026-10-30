@@ -1,0 +1,14 @@
+# NOTICE
+
+RELIC: Motor Neuro-Simbólico Determinista y Verificable en Rust.
+
+Copyright (C) 2026 Nicolás Pachón (dev-nikolas <pachonsergio2510@gmail.com>).
+Todos los derechos de autoría intelectual reservados.
+
+## Atribución y Reconocimiento de Autoría
+
+Este software, su arquitectura neuro-simbólica (Blackwall, Catapulta Causal, RIR v1)
+y sus especificaciones de diseño fueron concebidos y desarrollados por Nicolás Pachón.
+
+Cualquier trabajo derivado, cita académica, uso o redistribución en los términos de la
+licencia GNU AGPLv3 debe preservar este aviso y dar el debido crédito al autor original.

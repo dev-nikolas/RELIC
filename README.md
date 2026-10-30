@@ -24,6 +24,39 @@ A diferencia de los modelos de lenguaje tradicionales (LLMs) que predicen texto 
 
 ---
 
+## Comparativa con Métodos Estándar
+
+¿Cómo sabemos si el sistema es bueno? Contrastado directamente contra los estándares de la industria:
+
+### 1. Detección de Anomalías (Seis Ojos vs. Tablero Oficial NAB)
+En el benchmark oficial **NAB (Numenta Anomaly Benchmark)** sobre 58 conjuntos de datos reales de servidores, tráfico y métricas en tiempo real:
+
+| Algoritmo / Detector | Standard Score | Low FP Score (Castigo a Falsas Alarmas) | Latencia y Memoria |
+| :--- | :---: | :---: | :--- |
+| **Detector Perfecto Teórico** | 100.0 | 100.0 | Límite matemático superior |
+| **Numenta HTM (Red Cortical)** | 70.1 | 63.1 | Pesado en CPU/RAM |
+| **knncad (K-Vecinos)** | 58.0 | 43.4 | Requiere almacenar buffer masivo |
+| **Seis Ojos en RELIC (Rust)** | **57.7** | **53.2** | **25 µs/punto, 278 KB RAM, 0 allocs** |
+| **Relative Entropy (HP Labs)** | 54.6 | 47.6 | Métricas de entropía |
+| **Random Cut Forest (Amazon AWS)** | 51.7 | 38.4 | Árboles de aislamiento |
+| **Twitter ADVec (Twitter)** | 47.1 | 33.6 | Descomposición clásica |
+| **Windowed Gaussian (Media/Varianza)**| 39.6 | 20.9 | Baseline simple |
+| **Detector Cero / Nulo** | 0.0 | 0.0 | No emite alertas |
+
+*Seis Ojos supera los detectores oficiales de AWS (51.7) y Twitter (47.1), manteniendo una huella mínima de solo 278 KB por canal.*
+
+### 2. Razonamiento y Grafos (RELIC vs. LLMs Tradicionales)
+
+| Dimensión | LLMs Típicos (7B/13B o APIs en la nube) | RELIC (Núcleo Determinista) |
+| :--- | :--- | :--- |
+| **Aritmética y Números** | Propenso a errores en cifras largas y redondeos. | **100% exacto** (árbol aritmético evaluado en Rust). |
+| **Rutas en Grafos** | Puede alucinar atajos o conexiones inexistentes. | **Certificado de corte**: devuelve la ruta o demuestra imposibilidad. |
+| **Actualización de Memoria** | Olvido catastrófico al reentrenar o actualizar. | **Consistencia causal del 100%** mediante grafo de reemplazo. |
+| **Latencia por Consulta** | 300 ms – 2,500 ms (requiere GPU). | **< 35 microsegundos** en CPU local (> 1,000x más rápido). |
+| **Consumo de Memoria** | 4 GB – 16 GB VRAM. | **4.15 MB de RAM base**. |
+
+---
+
 ## Estructura del Proyecto
 
 El sistema está dividido en componentes modulares e independientes:
@@ -76,6 +109,16 @@ cargo run -p relic_cli -- query "¿Puede Marta llegar a la biblioteca pasando po
 
 ---
 
+## Documentación Técnica
+
+Para profundizar en la arquitectura interna y auditorías del proyecto, consulta la carpeta [`docs/`](docs/README.md):
+- [Arquitectura Técnica de RELIC](docs/ARCHITECTURE.md)
+- [Evaluación Empírica de Seis Ojos](INFORME_INTEGRACION_ESTRICTA_SEIS_OJOS_RELIC.md)
+- [Guía Rápida de Seis Ojos](GUIA_SIMPLE_SEIS_OJOS_RELIC.md)
+- [Especificación del Servidor MCP](docs/DISENO_SANDBOX_MCP.md)
+
+---
+
 ## Lo que hace y lo que no hace
 
 - **Lo que sí hace:** Si una consulta coincide con los patrones que conoce (aritmética, grafos, relaciones, telemetría), el resultado es **100% exacto, calculado y verificable**.
@@ -85,4 +128,4 @@ cargo run -p relic_cli -- query "¿Puede Marta llegar a la biblioteca pasando po
 
 ## Licencia
 
-Distribuido bajo la licencia **GNU Affero General Public License v3.0 (AGPL-3.0)**. Consulta el archivo [`LICENSE`](LICENSE) para más detalles.
+Distribuido bajo la licencia **GNU Affero General Public License v3.0 (AGPL-3.0)** pura. Consulta el archivo [`LICENSE`](LICENSE) para el texto completo de la licencia y el archivo [`NOTICE`](NOTICE) para la atribución de autoría.

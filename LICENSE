@@ -1,43 +1,4 @@
-================================================================================
-RELIC: CLÁUSULAS ADICIONALES DE PROPIEDAD INTELECTUAL, NOTIFICACIÓN Y ATRIBUCIÓN
-ADDITIONAL TERMS OF INTELLECTUAL PROPERTY, NOTIFICATION AND STRICT ATTRIBUTION
-================================================================================
-Copyright (C) 2026 dev-nikolas. Todos los derechos reservados / All rights reserved.
-
-El uso, estudio, modificación, distribución, bifurcación o integración del software
-RELIC, sus especificaciones (RIR), esquemas de memoria, algoritmos y código fuente
-están estrictamente condicionados al cumplimiento de los siguientes términos:
-
-1. ATRIBUCIÓN OBLIGATORIA DEL MÉRITO E IDEA (STRICT ATTRIBUTION):
-   Cualquier persona natural o jurídica que use, cite, analice, adapte o elabore obras
-   derivadas basadas en RELIC debe otorgar atribución directa, explícita y prominente
-   a NICOLÁS PACHÓN como autor original de la idea, la teoría de procedimiento, la
-   arquitectura cognitiva y la implementación.
-   - Queda expresamente prohibido atribuirse mérito propio, directo o indirecto sobre
-     las ideas conceptuales, formulaciones matemáticas o código fuente de este proyecto.
-   - En cualquier documentación, interfaz, artículo o repositorio derivado se debe
-     incluir de manera visible el aviso:
-     "Basado en la concepción arquitectónica y código RELIC creado por Nicolás Pachón".
-
-2. NOTIFICACIÓN PREVIA PARA COMPARTIR O DISTRIBUIR (MANDATORY PRIOR NOTIFICATION):
-   No se autoriza la redistribución, compartición pública masiva, transferencia a
-   terceros o puesta a disposición de este software (en código fuente o binario) ni
-   de sus obras derivadas sin haber INFORMADO PREVIA Y FORMALMENTE POR ESCRITO al
-   autor original (Nicolás Pachón).
-
-3. PROHIBICIÓN DE ELIMINACIÓN DE CRÉDITOS Y METADATOS:
-   Queda terminantemente prohibido alterar, remover, ocultar o manipular los encabezados
-   de copyright, metadatos en archivos fuente, licencias o menciones a Nicolás Pachón.
-
-4. RÉGIMEN BASE DE LICENCIAMIENTO:
-   Sujeto a las restricciones de atribución y notificación obligatorias señaladas
-   anteriormente (y al amparo de los términos adicionales de protección de autoría
-   y reputación permitidos por la Sección 7 de la GNU AGPLv3), el código se distribuye
-   bajo la Licencia GNU Affero General Public License Version 3 (GNU AGPL v3.0).
-
-================================================================================
-
-                    GNU AFFERO GENERAL PUBLIC LICENSE
+GNU AFFERO GENERAL PUBLIC LICENSE
                        Version 3, 19 November 2007
 
  Copyright (C) 2007 Free Software Foundation, Inc. <https://fsf.org/>
