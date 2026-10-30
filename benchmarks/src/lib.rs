@@ -7,6 +7,7 @@ pub mod continual;
 pub mod epistemic;
 pub mod jitter_roc;
 pub mod kuramoto_transition;
+pub mod nab_tsb;
 pub mod telemetry;
 
 use serde::{Deserialize, Serialize};
@@ -15,6 +16,7 @@ pub use continual::{run_continual_learning_benchmark, ContinualLearningMetrics};
 pub use epistemic::{run_bench2_reasoning_and_epistemic, ReasoningEpistemicMetrics};
 pub use jitter_roc::{run_stochastic_jitter_roc_benchmark, JitterRocMetrics};
 pub use kuramoto_transition::{run_kuramoto_phase_transition_benchmark, KuramotoTransitionMetrics};
+pub use nab_tsb::{compute_auc_metrics, compute_nab_score, run_nab_tsb_evaluation, NabProfile, NabTsbMetrics};
 pub use telemetry::{run_bench3_network_telemetry, NetworkTelemetryMetrics};
 use relic_cli::monitor::get_current_rss_kb;
 

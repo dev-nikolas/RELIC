@@ -7,6 +7,7 @@ pub mod echo_state;
 pub mod peak_decay;
 pub mod refractory;
 pub mod spatial_bypass;
+pub mod topology_coupling;
 
 pub use channel::{SixEyesChannel, TelemetryAssessment};
 pub use cusum::TelemetryDriftMonitor;
@@ -15,6 +16,10 @@ pub use echo_state::{EchoStatePredictor, EMBED_DIM, RESERVOIR_SIZE};
 pub use peak_decay::StreamingPeakDecay;
 pub use refractory::RefractorySuppressor;
 pub use spatial_bypass::SpatialSpikeBypass;
+pub use topology_coupling::{
+    NodeSpatialNeighborhood, ResidualSprtMartingale, TopologicalResidualEngine,
+    MAX_SPATIAL_NEIGHBORS,
+};
 
 pub type ReservoirWeights = (
     [[f64; EMBED_DIM]; RESERVOIR_SIZE],

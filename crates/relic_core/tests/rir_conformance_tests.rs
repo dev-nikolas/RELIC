@@ -1,4 +1,4 @@
-//! Pruebas de conformidad, verificación y casos adversariales para RIR v1 (Fase 4).
+//! Pruebas de conformidad, verificación y casos adversariales para el formato RIR v1.
 
 use relic_core::rir::{
     ArithmeticStep, DomainKind, RirArithmeticOp, RirDocumentV1, RirValidationError, ValidityStatus,
