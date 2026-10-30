@@ -1,4 +1,3 @@
-//! Capa de despacho y análisis sintáctico-estructural de consultas. Menos de 180 líneas.
 
 use relic_core::{ArithmeticOp, ArithmeticPlan};
 use relic_lexicon::LexiconView;

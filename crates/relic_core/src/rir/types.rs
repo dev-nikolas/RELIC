@@ -1,6 +1,4 @@
 //! Tipos fundamentales y especificaciones de datos para RIR v1.
-//! Menos de 180 líneas.
-
 use serde::{Deserialize, Serialize};
 use thiserror::Error;
 

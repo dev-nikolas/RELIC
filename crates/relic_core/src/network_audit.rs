@@ -1,8 +1,6 @@
 //! # relic_core::network_audit
 //!
 //! Auditoría defensiva determinista de telemetría de red (C2 beaconing + aislamiento topológico BFS).
-//! Menos de 180 líneas.
-
 use std::collections::{HashMap, HashSet};
 use serde::{Deserialize, Serialize};
 use crate::episodic_memory::EpisodicMemory;

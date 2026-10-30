@@ -1,4 +1,3 @@
-//! Normalización léxica y sintáctica previa al parseo aritmético. Menos de 180 líneas.
 
 use relic_core::ArithmeticOp;
 use relic_lexicon::LexiconView;

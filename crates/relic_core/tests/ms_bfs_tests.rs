@@ -1,6 +1,4 @@
 //! Tests para MS-BFS (Multi-Source Breadth-First Search) y evaluación contrafactual.
-//! Menos de 180 líneas.
-
 use relic_core::episodic_memory::EpisodicMemory;
 use relic_core::ms_bfs::{solve_ms_bfs_batch, solve_ms_bfs_counterfactual};
 use relic_core::reasoning_engine::ReasoningEngine;

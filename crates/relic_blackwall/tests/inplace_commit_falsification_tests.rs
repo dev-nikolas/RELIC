@@ -1,7 +1,5 @@
 //! Pruebas obligatorias de validación in-place con compensación inversa para BlackwallGate.
 //! Cubre: igualdad profunda tras rechazo, equivalencia con rebuild_active_view y secuencias mixtas largas.
-//! Menos de 180 líneas.
-
 use relic_blackwall::{BlackwallGate, TransactionOutcome};
 use relic_core::ArithmeticOp;
 use relic_lexicon::{EngramStore, LexiconPayload, LexiconView};

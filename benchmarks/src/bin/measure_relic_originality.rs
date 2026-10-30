@@ -1,6 +1,4 @@
 //! Demostración y medición de las propiedades singulares de originalidad de RELIC.
-//! Menos de 180 líneas.
-
 use std::time::Instant;
 use relic_core::certificate::{verify_negative, SearchOutcome};
 use relic_core::episodic_memory::EpisodicMemory;

@@ -2,8 +2,6 @@
 //!
 //! Motor espectral determinista y Principio de Incertidumbre Discreto de Donoho-Stark en Rust puro.
 //! Incluye Transformada Discreta de Fourier exacta (DFT), soporte temporal/espectral y
-//! correlación de Pearson numéricamente estable (Welford). Menos de 180 líneas.
-
 use std::f64::consts::PI;
 use serde::{Deserialize, Serialize};
 use crate::quantum::Complex;

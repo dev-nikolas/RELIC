@@ -1,8 +1,14 @@
-//! Ventana ECDF Causal Exacta y Compacta para Seis Ojos en Rust.
+//! Calibrador de Percentiles Empíricos (ECDF - Empirical Cumulative Distribution Function).
 //!
-//! Reemplaza la doble asignación de historial (256 KB) por un buffer circular
-//! de valores `f64` (128 KB) y un vector de punteros ordenados `u16` (32 KB).
-//! Total: 160 KB exactos (-37.5% de RAM), reduciendo 4x el movimiento de memoria.
+//! ¿Para qué sirve?
+//! Convierte el error de predicción en un porcentaje comprensible de 0.0 a 1.0.
+//! Por ejemplo, si el error actual supera al 99% de todos los errores pasados,
+//! el resultado es 0.99 (alta sospecha de anomalía).
+//!
+//! ¿Cómo funciona por dentro?
+//! - Mantiene una ventana circular con los últimos 16,000 errores de predicción.
+//! - Utiliza un vector de índices ordenados para buscar la posición del nuevo valor en tiempo logarítmico (búsqueda binaria).
+//! - Cuando la ventana se llena (16,000 elementos), el dato más viejo se expulsa de manera limpia.
 
 pub const ECDF_WINDOW: usize = 16000;
 pub const MIN_HISTORIAL: usize = 288;

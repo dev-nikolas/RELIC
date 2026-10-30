@@ -1,6 +1,4 @@
 //! Plantillas para Nivel 3: Fronteras epistémicas (consultas incompletas y dominios no soportados).
-//! Menos de 180 líneas.
-
 use super::types::DatasetSplit;
 use super::templates_l01::TemplateDef;
 

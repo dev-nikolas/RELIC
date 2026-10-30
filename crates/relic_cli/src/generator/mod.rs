@@ -1,6 +1,4 @@
 //! Módulo de generación y verificación curricular para Niveles 1 a 3.
-//! Menos de 180 líneas.
-
 pub mod types;
 pub mod templates_l01;
 pub mod templates_l02;

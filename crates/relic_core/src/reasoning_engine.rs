@@ -1,6 +1,4 @@
 //! Motor de razonamiento algorítmico determinista (BFS Bidireccional de Horizonte Elástico).
-//! Menos de 180 líneas.
-
 use crate::certificate::{ReachabilityResult, SearchOutcome};
 use crate::episodic_memory::EpisodicMemory;
 use crate::search_buffer::BUFFERS;

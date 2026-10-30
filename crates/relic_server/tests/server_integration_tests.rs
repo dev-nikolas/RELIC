@@ -1,6 +1,4 @@
 //! Pruebas de integración de motor y endpoints de relic_server sin estado.
-//! Menos de 180 líneas.
-
 use relic_server::engine::execute_query;
 use relic_server::generate::handle_generate_sse;
 use relic_server::state::ServerState;

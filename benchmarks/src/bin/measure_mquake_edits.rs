@@ -1,8 +1,6 @@
 //! # measure_mquake_edits
 //! Benchmark MQuAKE-style adaptado (traducción al español para evaluación determinista).
 //! Medición de consistencia tras 100 ediciones transitivas consecutivas vs degradación LLM.
-//! Menos de 180 líneas.
-
 use relic_core::ReasoningEngine;
 use relic_lexicon::{EngramStore, EntryStatus, LexiconPayload};
 use std::time::Instant;

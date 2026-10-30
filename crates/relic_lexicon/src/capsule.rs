@@ -3,8 +3,6 @@
 //! Exportación, verificación criptográfica SHA-256 e importación portátil de cápsulas `.engram`.
 //! Permite compartir conocimiento léxico y relacional entre dispositivos Edge/offline
 //! garantizando integridad de cadena de bloques ligera antes de pasar por el Sandbox del Blackwall.
-//! Menos de 180 líneas.
-
 use relic_core::sha256_hex;
 use serde::{Deserialize, Serialize};
 use crate::log::{compute_entry_hash, EntryStatus, IntegrityError, LexiconPayload};

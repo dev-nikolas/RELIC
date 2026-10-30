@@ -1,6 +1,4 @@
 //! Muestreador determinista y probabilistico de tokens.
-//! Soporta Greedy, temperatura y filtrado Top-P (Nucleus). Menos de 180 lineas.
-
 pub struct Sampler;
 
 impl Sampler {

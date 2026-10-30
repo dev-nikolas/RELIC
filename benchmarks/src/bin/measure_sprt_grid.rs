@@ -2,8 +2,6 @@
 //!
 //! Benchmark B4 (Grid Jitter 0..50% x Ventana 8..64 ciclos, >= 1000 trazas/celda).
 //! Paralelizado con std::thread::scope. Comparación SPRT vs DFT y evaluación B5.
-//! Menos de 180 líneas.
-
 use relic_core::{analyze_spectrum_donoho_stark, SpectralOutcome, SprtBeaconDetector, SprtConfig};
 use std::time::Instant;
 

@@ -3,8 +3,6 @@
 //! Frontera transaccional Sandbox / Núcleo de RELIC.
 //! Implementa el ciclo estricto:
 //! `Proponer (Sandbox) -> Verificar (Oráculo + Regresión) -> Adoptar o Revertir (Commit/Rollback en JSONL con Hash-Chain)`.
-//! Menos de 180 líneas.
-
 pub mod assimilation;
 pub mod catapult;
 pub mod causal_index;

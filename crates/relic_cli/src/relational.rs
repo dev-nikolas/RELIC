@@ -1,4 +1,3 @@
-//! Analizador composicional de roles semánticos y relaciones de orden (Opción 1). Menos de 180 líneas.
 
 use relic_core::TemporalGraph;
 

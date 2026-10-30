@@ -1,10 +1,17 @@
-//! Canal de Telemetría Completo Seis Ojos (SixEyesChannel).
+//! Canal de Telemetría Seis Ojos (SixEyesChannel).
 //!
-//! Integra la cadena completa:
-//! Takens (d=16) -> RollingNorm (W=6400) -> ESN (N=64, ρ=0.9) ->
-//! Full RLS (P: 64x64) -> EcdfWindow (W=16000) -> StreamingPeakDecay (K=24, τ=2.0) ->
-//! SpatialSpikeBypass (warmup=100, tol=0.05) -> Refractory (w=80, th=0.990) ->
-//! TelemetryDriftMonitor (CUSUM lateral).
+//! Este componente procesa datos numéricos continuos (como lecturas de sensores IoT)
+//! paso a paso para detectar anomalías en tiempo real.
+//!
+//! Flujo de procesamiento por cada punto recibido:
+//! 1. Normalización rodante: ajusta la escala restando la media y dividiendo por la desviación estándar.
+//! 2. Predicción con ESN (Echo State Network): una red neuronal recurrente ligera predice el siguiente valor.
+//! 3. Residuo de predicción: se calcula la diferencia entre lo que ocurrió y lo que la red predijo.
+//! 4. Calibración empírica (ECDF): convierte ese residuo en un percentil (0.0 a 1.0) comparándolo con la historia reciente.
+//! 5. Filtro de picos (Peak Decay): destaca picos anómalos y atenúa oscilaciones repetitivas.
+//! 6. Supresor refractario: evita alertas duplicadas consecutivas durante un periodo de enfriamiento.
+//! 7. Monitor de deriva CUSUM: detecta cambios lentos y sostenidos en el promedio de la señal.
+//! 8. Ruptura de rango (Spatial Bypass): detecta de inmediato valores que se salgan bruscamente de los límites conocidos.
 
 use crate::anomaly::cusum::TelemetryDriftMonitor;
 use crate::anomaly::ecdf::{EcdfWindow, MIN_HISTORIAL};
@@ -61,13 +68,15 @@ impl SixEyesChannel {
         self.drift.reset();
     }
 
-    /// Inferencia pura e inmutable ($0\text{ mallocs}$).
+    /// Evaluación pura e inmutable (no modifica el estado del canal y no hace allocs de memoria).
+    /// Permite calcular el score de anomalía antes de decidir si la transacción se confirma o se descarta.
     pub fn evaluate_pure(
         &self,
         value: f64,
         win: &[[f64; EMBED_DIM]; RESERVOIR_SIZE],
         wres: &[[f64; RESERVOIR_SIZE]; RESERVOIR_SIZE],
     ) -> TelemetryAssessment {
+        // Si el valor no es un número válido (NaN o Infinito), se rechaza de inmediato por seguridad.
         if !value.is_finite() {
             return TelemetryAssessment {
                 raw_residual: 0.0,
@@ -78,38 +87,41 @@ impl SixEyesChannel {
                 cal_score: 0.0,
                 is_peak: false,
                 nms_score: 0.0,
-                score_nab: 0.0,   // NAB omite NaNs
-                score_relic: 1.0, // RELIC bloquea NaNs como violación de invariante
+                score_nab: 0.0,   // Los benchmarks de NAB ignoran valores no numéricos
+                score_relic: 1.0, // RELIC bloquea valores NaN o Inf como una violación crítica
                 range_violation: true,
                 drift_alarm: false,
                 is_refractory_suppressed: false,
             };
         }
 
-        // 1. Chequeo de ruptura espacial
+        // Paso 1: Comprobar si el valor se sale de los límites históricos conocidos (mínimo y máximo).
         let spatial_anomaly = self.spatial.check_anomaly(value);
 
-        // 2. Inferencia en ESN (Takens + Reservorio + RLS)
+        // Paso 2: Ejecutar la predicción con la red neuronal recurrente (ESN) y el filtro RLS.
+        // Calcula qué valor se esperaba (pred_z) y el error de predicción (err).
         let (z, vec_opt, h_cand, pred_z, err) = self.esn.evaluate_pure(value, win, wres);
         let ready = vec_opt.is_some();
 
-        // 3. Calibrador Percentil ECDF
+        // Paso 3: Convertir el error en un percentil de 0.0 a 1.0 usando el historial empírico (ECDF).
+        // Un score de 0.99 significa que el 99% de los errores pasados fueron menores que este.
         let cal_score = self.ecdf.score(err);
 
-        // 4. Supresión de No-Máximos (NMS)
+        // Paso 4: Filtrar picos (NMS). Si el score es un pico local, se resalta; si decae, se suaviza.
         let (is_peak, nms_score) = self.decay.evaluate_pure(cal_score);
 
-        // Score crudo antes de refractario: ruptura espacial tiene precedencia
+        // Si hubo una ruptura física de rango, le damos prioridad máxima (score 1.0).
         let raw_detector_score = if spatial_anomaly { 1.0 } else { nms_score };
 
-        // 5. Compuerta Refractaria para NAB
+        // Paso 5: Compuerta refractaria. Evita emitir ráfagas de alertas consecutivas para el mismo evento.
         let (is_suppressed, score_nab) = self.refr.evaluate_pure(raw_detector_score);
 
-        // 6. Score para RELIC: evalúa la sorpresa dinámica pura y no suprime rupturas físicas
+        // Paso 6: Score de seguridad para RELIC. A diferencia de NAB, RELIC no suprime anomalías críticas
+        // para asegurar que las reglas de integridad no se silencien durante el enfriamiento.
         let score_relic = if spatial_anomaly { 1.0 } else { raw_detector_score };
 
-        // 7. Alarma lateral de deriva
-        let drift_alarm = self.drift.is_alarm();
+        // Paso 7: Monitor CUSUM para detectar si la media de la señal se desplazó gradualmente.
+        let (drift_alarm, _, _) = self.drift.evaluate_pure(value);
 
         TelemetryAssessment {
             raw_residual: err,
@@ -128,16 +140,17 @@ impl SixEyesChannel {
         }
     }
 
-    /// Actualización atómica de estado (sólo en confirmación de transacción).
+    /// Guarda los cambios en el estado interno del detector.
+    /// Solo se llama cuando la transacción completa fue aprobada y confirmada.
     pub fn commit(&mut self, value: f64, assess: &TelemetryAssessment) {
         if !value.is_finite() {
             return;
         }
 
-        // 1. Cotas espaciales
+        // 1. Actualizar los límites mínimo y máximo observados.
         self.spatial.commit(value);
 
-        // 2. ESN y RLS
+        // 2. Avanzar el estado de la red neuronal y los pesos adaptativos del filtro RLS.
         self.esn.commit(
             value,
             assess.z_value,
@@ -146,22 +159,19 @@ impl SixEyesChannel {
             assess.pred_z,
         );
 
-        // 3. ECDF
+        // 3. Registrar el error en la ventana de percentiles ECDF.
         self.ecdf.push(assess.raw_residual);
 
-        // 4. Peak Decay: almacena estrictamente cal_score (magnitud un-decayed)
+        // 4. Registrar el pico para el decaimiento temporal.
         self.decay.commit(assess.cal_score, assess.is_peak);
 
-        // 5. Refractario: se alimenta con el score de NAB
+        // 5. Actualizar el temporizador de la compuerta refractaria.
         self.refr.commit(assess.score_nab);
 
-        // 6. Monitor CUSUM
+        // 6. Calibrar o actualizar el monitor de deriva CUSUM con la media inicial tras 288 lecturas.
         if self.spatial.count() == MIN_HISTORIAL {
-            let n = self.esn.norm.len() as f64;
-            if n > 1.0 {
-                let _mean = self.esn.norm.standardize(value); // calibración relativa
-                self.drift.calibrate(value, 1.0);
-            }
+            let (mean, std) = self.esn.norm.mean_and_std();
+            self.drift.calibrate(mean, std);
         } else if self.spatial.count() > MIN_HISTORIAL {
             self.drift.update(value);
         }

@@ -2,9 +2,7 @@
 //! NO modifica despacho ni ejecutor de produccion: SOLO elige, por caso,
 //! entre caminos ya existentes (parse_inventory_problem / parse_dispatch_intent /
 //! intentos de abstencion canonica) y emite el mismo formato de dump que eval_dump.
-//! Los textos de abstencion provienen SIEMPRE de la maquinaria existente (0 frases nuevas).
-//! Menos de 180 lineas.
-//!
+//! Los textos de abstencion provienen SIEMPRE de la maquinaria existente (0 frases nuevas).//!
 //! Uso: cargo run -p relic_cli --example bridge_dump -- --cases reports/eval/prot_h1rir_bridge_cases.json
 //!           --preds reports/eval/prot_h1rir_bridge_preds.json --out reports/eval/dump_bridge_seedN.json
 

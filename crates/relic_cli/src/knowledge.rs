@@ -1,7 +1,5 @@
 //! Inicializador de hechos del mundo en la memoria episódica a partir de la semilla génesis
 //! verificada de `relic_lexicon` (cero aristas imperativas hardcodeadas en CLI).
-//! Menos de 180 líneas.
-
 use relic_core::EpisodicMemory;
 use relic_lexicon::EngramStore;
 

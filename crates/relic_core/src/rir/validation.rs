@@ -1,6 +1,4 @@
 //! Constructores y validación semántica de RIR v1.
-//! Menos de 180 líneas.
-
 use super::types::*;
 
 impl RirDocumentV1 {

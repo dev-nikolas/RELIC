@@ -1,4 +1,3 @@
-//! Bitácora append-only con encadenamiento criptográfico SHA-256 (Hash-Chain). Menos de 180 líneas.
 
 use relic_core::{sha256_hex, ArithmeticOp};
 use serde::{Deserialize, Serialize};

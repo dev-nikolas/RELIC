@@ -1,4 +1,3 @@
-//! Suite de pruebas para `relic_lexicon` y `relic_blackwall` (Fase 2). Menos de 180 líneas.
 
 use relic_blackwall::{BlackwallGate, RegressionCase, TransactionOutcome};
 use relic_core::ArithmeticOp;

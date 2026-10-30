@@ -5,8 +5,6 @@
 //! y fases de interferencia ($\theta = 0$ constructiva para la operación observada
 //! y $\theta = \pi$ destructiva hacia las operaciones competidoras) a partir de
 //! observaciones empíricas `(palabra_ambigua, token_contexto, operacion_objetivo)`.
-//! Menos de 180 líneas.
-
 use std::collections::{BTreeMap, BTreeSet};
 use std::f64::consts::PI;
 use relic_core::ArithmeticOp;

@@ -2,8 +2,6 @@
 //!
 //! Pruebas de regresión SecOps: validación de cotas defensivas contra OOM,
 //! agotamiento de CPU por complejidad cuadrática y saturación de memoria.
-//! Menos de 180 líneas.
-
 use std::time::Instant;
 use relic_core::kuramoto::{
     simulate_kuramoto_synchronization, KuramotoNetworkSpec, KuramotoOscillator,

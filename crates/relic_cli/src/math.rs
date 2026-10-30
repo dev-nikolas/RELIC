@@ -1,6 +1,4 @@
 //! Analizador sintáctico de expresiones matemáticas puras, con precedencia y paréntesis anidados.
-//! Detección estricta de operadores colgantes y división por cero en RIR. Menos de 180 líneas.
-
 use relic_core::{ArithmeticOp, ArithmeticPlan, ArithmeticReduction};
 
 #[derive(Debug, Clone, PartialEq)]

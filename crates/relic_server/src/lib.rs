@@ -1,8 +1,6 @@
 //! # relic_server
 //!
 //! Servidor HTTP nativo ultraliviano y servicio de inferencia sin estado para RELIC.
-//! Menos de 180 líneas.
-
 pub mod engine;
 pub mod generate;
 pub mod router;

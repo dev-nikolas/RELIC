@@ -1,4 +1,3 @@
-//! Paso 2 del Blackwall: Suite de Regresión sobre Sandbox Efímero. Menos de 180 líneas.
 
 use relic_cli::{answer_intent, parse_dispatch_intent_with_lexicon};
 use relic_lexicon::LexiconView;

@@ -1,8 +1,6 @@
 //! # relic_cli
 //!
 //! Binario de ejecución local y CLI unificado para RELIC en Rust nativo.
-//! Menos de 180 líneas.
-
 use relic_cli::demo::handle_demo;
 use relic_cli::query::{
     handle_activate, handle_assimilate, handle_capsule, handle_diff, handle_query,

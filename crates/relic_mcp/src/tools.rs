@@ -1,6 +1,4 @@
 //! Catálogo de herramientas MCP de RELIC y manejadores base (`interpret`, `verify`, `retrieve`).
-//! Menos de 180 líneas.
-
 use relic_blackwall::BlackwallGate;
 use relic_cli::DispatchIntent;
 use relic_core::RirDocumentV1;

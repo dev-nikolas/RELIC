@@ -1,7 +1,5 @@
 //! Pruebas de consistencia de mutación y reemplazo de hechos (MQuAKE-Style).
 //! Criterio: 100 reemplazos consecutivos en cadena transitiva sin aristas fantasma.
-//! Menos de 180 líneas.
-
 use relic_lexicon::{EngramStore, EntryStatus, LexiconPayload};
 
 #[test]

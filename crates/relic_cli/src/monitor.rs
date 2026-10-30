@@ -1,6 +1,4 @@
 //! Monitor nativo de memoria física (RSS) para Windows (Kernel32 / PSAPI) y plataformas POSIX.
-//! Menos de 180 líneas.
-
 #[cfg(windows)]
 pub fn get_current_rss_kb() -> usize {
     #[repr(C)]

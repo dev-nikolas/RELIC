@@ -1,8 +1,6 @@
 //! # relic_cli (Library Interface)
 //!
 //! Exporta los módulos de análisis sintáctico, despacho, inferencia y (opcionalmente) herramientas offline.
-//! Menos de 180 líneas.
-
 pub mod answer;
 pub mod demo;
 pub mod dispatch;

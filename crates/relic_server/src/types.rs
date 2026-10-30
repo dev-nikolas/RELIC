@@ -1,8 +1,6 @@
 //! # relic_server::types
 //!
 //! Estructuras de datos serializables para el servicio HTTP y los endpoints transaccionales del Blackwall.
-//! Menos de 180 líneas.
-
 use relic_core::{ArithmeticOp, KuramotoNetworkSpec, NetworkAlertSpec};
 use relic_lexicon::{EngramCapsule, LexiconPayload};
 use serde::{Deserialize, Serialize};

@@ -1,6 +1,4 @@
 //! Medición de Horizonte Elástico: Unidireccional vs Bidireccional, Grafos Balanceados y Desglose k=100.
-//! Menos de 180 líneas.
-
 use std::collections::{HashSet, VecDeque};
 use std::time::Instant;
 use relic_core::{EpisodicMemory, ReasoningEngine, SearchOutcome};

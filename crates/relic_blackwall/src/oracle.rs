@@ -1,4 +1,3 @@
-//! Paso 1 del Blackwall: Oráculo de Invariantes Inmutables. Menos de 180 líneas.
 
 use relic_lexicon::{LexiconPayload, LexiconView};
 use thiserror::Error;

@@ -1,8 +1,6 @@
 //! # node_resolution
 //!
 //! Resolucion canonica de entidades, alias y estadisticas de aristas.
-//! Menos de 180 lineas.
-
 use std::collections::{HashMap, HashSet};
 use serde::{Deserialize, Serialize};
 use crate::interner::NodeInterner;

@@ -2,8 +2,6 @@
 //!
 //! Servicio HTTP de inferencia sin estado para RELIC.
 //! Diagnóstico de arranque y traza de ejecución detallada.
-//! Menos de 180 líneas.
-
 use std::sync::Arc;
 use std::thread;
 use tiny_http::Server;

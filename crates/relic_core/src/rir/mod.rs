@@ -2,8 +2,6 @@
 //!
 //! Contrato formal, tipado y versionado entre la interpretación lingüística y la
 //! ejecución determinista en RELIC.
-//! Menos de 180 líneas.
-
 pub mod types;
 pub mod validation;
 

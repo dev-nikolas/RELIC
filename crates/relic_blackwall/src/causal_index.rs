@@ -1,7 +1,5 @@
 //! Índice Invertido Causal para la Suite de Regresión del Blackwall (Fase 1).
 //! Garantiza completitud matemática estricta respetando los dos invariantes de F0-F7.
-//! Menos de 180 líneas.
-
 use std::collections::{HashMap, HashSet};
 use relic_cli::{answer_intent, parse_dispatch_intent_with_lexicon, DispatchIntent};
 use relic_core::certificate::SearchOutcome;

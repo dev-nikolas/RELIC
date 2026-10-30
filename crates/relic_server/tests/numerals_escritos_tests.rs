@@ -1,6 +1,4 @@
 //! Numerales escritos >15 y veinti-serie: regresión para la extensión de normalize.rs.
-//! No toca suites congeladas; solo agrega casos nuevos. Menos de 180 líneas.
-
 use relic_server::engine::execute_query;
 use relic_server::state::ServerState;
 

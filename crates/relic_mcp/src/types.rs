@@ -1,6 +1,4 @@
 //! Tipos y estructuras para el protocolo Model Context Protocol (MCP 2025-03-26) y JSON-RPC 2.0.
-//! Menos de 180 líneas.
-
 use serde::{Deserialize, Serialize};
 use serde_json::Value;
 

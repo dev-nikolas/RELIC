@@ -4,8 +4,6 @@
 //! Valida la cota de Donoho-Stark frente a perturbaciones estocásticas gaussianas/uniformes en el beaconing:
 //! $t_n = n \cdot P + \mathcal{U}(-\delta, +\delta)$. Mide la distancia de Donoho-Stark $D_{\text{DS}}(\delta)$
 //! y determina el límite crítico de jitter donde el beacon deja de ser distinguible del ruido.
-//! Menos de 180 líneas.
-
 use relic_core::{analyze_spectrum_donoho_stark, SpectralOutcome};
 use serde::{Deserialize, Serialize};
 

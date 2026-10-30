@@ -1,6 +1,4 @@
 //! Catálogo central de plantillas y numerales en español para el generador.
-//! Menos de 180 líneas.
-
 pub use super::templates_l01::{TemplateDef, L01_TEMPLATES};
 pub use super::templates_l02::L02_TEMPLATES;
 pub use super::templates_l03::L03_TEMPLATES;

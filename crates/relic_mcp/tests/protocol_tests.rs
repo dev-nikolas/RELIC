@@ -1,4 +1,3 @@
-//! Pruebas de integración del protocolo MCP stdio (revisión 2025-03-26). Menos de 180 líneas.
 
 use relic_mcp::McpServer;
 use serde_json::{json, Value};

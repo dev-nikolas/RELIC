@@ -1,7 +1,5 @@
 //! Suite de Fidelidad de Extremo a Extremo (E2E Fidelity & Failure Decoupling).
 //! Evalúa: (1) Texto, (2) Aristas extraídas, (3) Cláusulas sin resolver, (4) Conclusión, (5) Derivabilidad.
-//! Menos de 180 líneas.
-
 use relic_cli::relational::{parse_relational_query, RelationalQuestionType};
 
 #[derive(Debug, PartialEq, Eq)]

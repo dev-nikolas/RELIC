@@ -1,7 +1,5 @@
 //! Proponente semántico no confiable para consultas fuera de gramática estricta.
 //! Todo RIR propuesto debe someterse a `validate_semantic()` en el Blackwall.
-//! Menos de 180 líneas.
-
 use crate::rir::{ArithmeticStep, DomainKind, RirArithmeticOp, RirDocumentV1, ValidityStatus};
 
 const KNOWN_ENTITIES: [&str; 9] = [

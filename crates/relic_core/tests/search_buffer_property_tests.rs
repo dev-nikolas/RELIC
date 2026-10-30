@@ -1,6 +1,4 @@
 //! Pruebas de propiedades de search_buffer: aislamiento, orden aleatorio y concurrencia.
-//! Menos de 180 líneas.
-
 use std::sync::Arc;
 use std::thread;
 use relic_core::{EpisodicMemory, ReasoningEngine};

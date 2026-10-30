@@ -292,3 +292,153 @@ fn test_wal_byte_for_byte_identity_between_disabled_and_passive_monitor_with_mix
     assert_eq!(gate_disabled.telemetry_arena.audit_log.len(), 0);
     assert_eq!(gate_passive.telemetry_arena.audit_log.len(), 50);
 }
+
+#[test]
+fn test_quarantine_pool_ephemeral_ram_and_overflow_handling() {
+    let mut gate = BlackwallGate::with_genesis();
+    gate.telemetry_arena.max_channels = 32;
+    gate.telemetry_arena.max_quarantine_slots = 16;
+
+    // Registrar 17 canales enlazados a aristas
+    for ch in 1..=17 {
+        gate.telemetry_arena
+            .register_channel(
+                ch,
+                BindingTarget::Edge {
+                    source: format!("node_{ch}"),
+                    target: format!("node_{}", ch + 100),
+                },
+            )
+            .expect("Registro de canal exitoso");
+    }
+
+    // Inyectar anomalía severa (f64::NAN) en los primeros 16 canales
+    for ch in 1..=16 {
+        let ts = 10_000 + ch as u64;
+        gate.commit_transaction_with_telemetry(&[], &[(ch, f64::NAN)], ts)
+            .expect("Transacción en PassiveMonitor exitosa");
+    }
+
+    // Verificar que los 16 están en el pool de cuarentena en RAM
+    assert_eq!(gate.telemetry_arena.quarantine_pool.len(), 16);
+    assert_eq!(gate.telemetry_arena.audit_log.len(), 16);
+    for record in &gate.telemetry_arena.audit_log {
+        assert!(!record.pool_overflow, "No debe haber overflow con 16 slots");
+        assert!(record.quarantine_target.is_some());
+    }
+
+    // Intentar cuarentenar el canal 17 (debe desbordar el pool sin pánico ni crecimiento ilimitado)
+    gate.commit_transaction_with_telemetry(&[], &[(17, f64::NAN)], 20_000)
+        .expect("Transacción 17 exitosa");
+
+    assert_eq!(
+        gate.telemetry_arena.quarantine_pool.len(),
+        16,
+        "El pool de cuarentena debe permanecer acotado a 16 slots"
+    );
+    let last_record = gate.telemetry_arena.audit_log.back().unwrap();
+    assert_eq!(last_record.channel_id, 17);
+    assert!(last_record.pool_overflow, "El registro 17 debe marcar pool_overflow=true");
+
+    // Verificar liberación y limpieza de cuarentena
+    assert!(gate.telemetry_arena.release_quarantine(1));
+    assert_eq!(gate.telemetry_arena.quarantine_pool.len(), 15);
+    gate.telemetry_arena.clear_quarantine_pool();
+    assert_eq!(gate.telemetry_arena.quarantine_pool.len(), 0);
+
+    // Invariante de WAL: 0 mutaciones en disco
+    assert_eq!(gate.current_version(), 13);
+    println!("✓ Aislamiento estricto de QuarantinePool en RAM (capacidad acotada a 16) y control de desbordamiento certificados.");
+}
+
+#[test]
+fn test_topological_impact_set_via_ms_bfs_in_memory() {
+    let mut gate = BlackwallGate::with_genesis();
+
+    // 1. Construir topología en el grafo:
+    // sensor_A -> gateway_1 -> hub_core -> actuator_B
+    // backup_path -> hub_core
+    let facts = [
+        LexiconPayload::graph_fact("sensor_A", "routes_to", "gateway_1"),
+        LexiconPayload::graph_fact("gateway_1", "routes_to", "hub_core"),
+        LexiconPayload::graph_fact("hub_core", "routes_to", "actuator_B"),
+        LexiconPayload::graph_fact("backup_path", "routes_to", "hub_core"),
+    ];
+
+    gate.commit_transaction_with_telemetry(&facts, &[], 1_000)
+        .expect("Construcción de topología exitosa");
+
+    // 2. Registrar pares críticos de SLO
+    // Par 1: ("sensor_A", "actuator_B") - Depende críticamente de ("gateway_1", "hub_core")
+    // Par 2: ("backup_path", "actuator_B") - NO depende de ("gateway_1", "hub_core")
+    gate.telemetry_arena.register_critical_pair("sensor_A", "actuator_B");
+    gate.telemetry_arena.register_critical_pair("backup_path", "actuator_B");
+
+    // Enlazar canal 42 a la arista crítica ("gateway_1", "hub_core")
+    gate.telemetry_arena
+        .register_channel(
+            42,
+            BindingTarget::Edge {
+                source: "gateway_1".to_string(),
+                target: "hub_core".to_string(),
+            },
+        )
+        .expect("Enlace de canal exitoso");
+
+    // Verificar que antes de la anomalía, el fast-path de MS-BFS está activo (overrides vacío)
+    assert!(
+        gate.active_view().episodic.edge_world_overrides.is_empty(),
+        "El fast-path debe estar activo antes de la evaluación"
+    );
+
+    // 3. Priming: Ingerir 105 puntos normales en canal 42 para superar warmup (100 pasos)
+    for step in 1..=105 {
+        let val = 20.0 + (step as f64) * 0.05;
+        gate.commit_transaction_with_telemetry(&[], &[(42, val)], step as u64)
+            .expect("Priming exitoso");
+    }
+    assert_eq!(gate.telemetry_arena.quarantine_pool.len(), 0, "No debe haber cuarentenas durante el régimen normal");
+
+    // 4. Inyectar anomalía severa en el canal 42 (999.0 supera holgadamente la cota histórica [20.0, 25.25])
+    let ts = 2_000;
+    gate.commit_transaction_with_telemetry(&[], &[(42, 999.0)], ts)
+        .expect("Transacción de telemetría exitosa");
+
+    // 5. Verificar auditoría y resultado del impacto topológico
+    let record = gate.telemetry_arena.audit_log.back().unwrap();
+    assert_eq!(record.channel_id, 42);
+    assert!(record.score_relic >= 0.990 || record.range_violation);
+    assert_eq!(
+        record.quarantine_target,
+        Some(BindingTarget::Edge {
+            source: "gateway_1".to_string(),
+            target: "hub_core".to_string(),
+        })
+    );
+
+    // Debe identificar que SOLO ("sensor_A", "actuator_B") pierde conectividad
+    assert_eq!(
+        record.lost_reachability,
+        vec![("sensor_A".to_string(), "actuator_B".to_string())],
+        "MS-BFS debe detectar exactamente el par crítico afectado"
+    );
+
+    // 6. Verificar que el elemento está en cuarentena con el impacto registrado
+    assert_eq!(gate.telemetry_arena.quarantine_pool.len(), 1);
+    let q_item = &gate.telemetry_arena.quarantine_pool[0];
+    assert_eq!(q_item.channel_id, 42);
+    assert_eq!(
+        q_item.lost_reachability,
+        vec![("sensor_A".to_string(), "actuator_B".to_string())]
+    );
+
+    // 7. INVARIANTE CRÍTICO DE RENDIMIENTO:
+    // La máscara temporal contrafactual fue eliminada inmediatamente;
+    // edge_world_overrides DEBE estar vacío para no penalizar consultas normales.
+    assert!(
+        gate.active_view().episodic.edge_world_overrides.is_empty(),
+        "edge_world_overrides DEBE limpiarse de inmediato para no penalizar el fast-path O(1) de MS-BFS"
+    );
+
+    println!("✓ Cálculo de conjunto de impacto topológico vía MS-BFS contrafactual y preservación de fast-path certificados.");
+}

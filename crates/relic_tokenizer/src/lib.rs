@@ -2,8 +2,6 @@
 //!
 //! Tokenizador BPE nativo en Rust puro para RELIC-10M.
 //! Soporta mapeo biyectivo ByteLevel y lectura directa de tokenizer.json.
-//! Menos de 180 lineas.
-
 pub mod bpe;
 pub mod byte_level;
 pub mod vocab;

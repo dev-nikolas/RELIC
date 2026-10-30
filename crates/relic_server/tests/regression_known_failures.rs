@@ -1,6 +1,4 @@
 //! Pruebas de regresión automatizadas sobre el banco tests/known_failures.json.
-//! Menos de 180 líneas.
-
 use std::fs;
 use std::path::Path;
 use serde::Deserialize;

@@ -1,7 +1,5 @@
 //! Mapeo biyectivo byte-a-caracter para BPE a nivel de bytes.
 //! Garantiza paridad total con Hugging Face ByteLevel sin dependencias externas.
-//! Menos de 180 lineas.
-
 use std::collections::HashMap;
 
 /// Construye la tabla biyectiva de mapeo de bytes (0..=255) a caracteres Unicode.

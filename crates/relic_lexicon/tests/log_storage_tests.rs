@@ -2,8 +2,6 @@
 //!
 //! Pruebas de almacenamiento de log fuera de RAM, reconstrucción de offsets,
 //! reversión y diff de versiones inmediatos.
-//! Menos de 180 líneas.
-
 use std::fs;
 use std::time::{SystemTime, UNIX_EPOCH};
 use relic_lexicon::{EngramStore, EntryStatus, LexiconPayload};

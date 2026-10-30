@@ -3,8 +3,6 @@
 //! Benchmark 4 — ContinualEditStress (Estilo CounterFact / zsRE / CLUTRR).
 //! Valida la retención de conocimiento, ausencia de olvido catastrófico (Locality 100%),
 //! eficacia de asimilación continua (Efficacy 100%) y escalabilidad multi-salto ($k=2 \dots 10$).
-//! Menos de 180 líneas.
-
 use std::time::Instant;
 use relic_core::ArithmeticOp;
 use relic_lexicon::{EngramStore, EntryStatus, LexiconPayload};

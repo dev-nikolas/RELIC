@@ -21,6 +21,7 @@ pub struct TelemetryDriftMonitor {
     pub k: f64,
     pub h: f64,
     pub calibrated: bool,
+    pub alarm_fired: bool,
 }
 
 impl TelemetryDriftMonitor {
@@ -37,6 +38,7 @@ impl TelemetryDriftMonitor {
             k,
             h,
             calibrated: false,
+            alarm_fired: false,
         }
     }
 
@@ -46,28 +48,52 @@ impl TelemetryDriftMonitor {
         self.s_pos = 0.0;
         self.s_neg = 0.0;
         self.calibrated = true;
+        self.alarm_fired = false;
     }
 
     pub fn reset(&mut self) {
         self.s_pos = 0.0;
         self.s_neg = 0.0;
         self.calibrated = false;
+        self.alarm_fired = false;
+    }
+
+    /// Evaluación pura causal sin mutar el acumulador.
+    pub fn evaluate_pure(&self, val: f64) -> (bool, f64, f64) {
+        if !self.calibrated || !val.is_finite() {
+            return (false, self.s_pos, self.s_neg);
+        }
+        let z = (val - self.mu_0) / self.sigma_0;
+        let s_pos_cand = (self.s_pos + z - self.k).max(0.0);
+        let s_neg_cand = (self.s_neg - z - self.k).max(0.0);
+        let alarm = s_pos_cand > self.h || s_neg_cand > self.h;
+        (alarm, s_pos_cand, s_neg_cand)
     }
 
     /// Actualiza los acumuladores CUSUM y retorna `true` si se dispara una alarma de deriva.
+    /// Al dispararse la alarma, reinicia los acumuladores (esquema de Page 1954).
     pub fn update(&mut self, val: f64) -> bool {
         if !self.calibrated || !val.is_finite() {
+            self.alarm_fired = false;
             return false;
         }
         let z = (val - self.mu_0) / self.sigma_0;
         self.s_pos = (self.s_pos + z - self.k).max(0.0);
         self.s_neg = (self.s_neg - z - self.k).max(0.0);
-        self.s_pos > self.h || self.s_neg > self.h
+        if self.s_pos > self.h || self.s_neg > self.h {
+            self.s_pos = 0.0;
+            self.s_neg = 0.0;
+            self.alarm_fired = true;
+            true
+        } else {
+            self.alarm_fired = false;
+            false
+        }
     }
 
     #[inline]
     pub fn is_alarm(&self) -> bool {
-        self.s_pos > self.h || self.s_neg > self.h
+        self.alarm_fired
     }
 }
 

@@ -1,6 +1,4 @@
 //! Atencion Causal Multi-Cabeza GQA con QK-RMSNorm, RoPE y soporte de KV-Cache.
-//! Menos de 180 lineas.
-
 use crate::config::RelicConfig;
 use crate::kv_cache::LayerKvCache;
 use crate::norm::RMSNorm;

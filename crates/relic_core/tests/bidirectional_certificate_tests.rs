@@ -2,8 +2,6 @@
 //!
 //! Pruebas formales de certificados de búsqueda (positivos, negativos y parciales)
 //! y resistencia adversarial ante certificados manipulados.
-//! Menos de 180 líneas.
-
 use relic_core::{
     verify_negative, verify_positive, EpisodicMemory, ReasoningEngine, SearchOutcome,
 };

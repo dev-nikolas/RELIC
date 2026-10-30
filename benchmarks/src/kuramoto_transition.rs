@@ -4,8 +4,6 @@
 //! Valida el fenómeno físico de transición de fase de segundo orden:
 //! para $K < K_c$, $r < r^*$ (abstención física obligada con $0\%$ falsos positivos);
 //! en $K \ge K_c$, el orden emerge espontáneamente ($r \to 1.0$) y la exactitud es $100\%$.
-//! Menos de 180 líneas.
-
 use relic_core::{
     simulate_kuramoto_synchronization, KuramotoNetworkSpec, KuramotoOscillator, SynchronizationOutcome,
 };

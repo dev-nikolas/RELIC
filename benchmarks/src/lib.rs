@@ -2,8 +2,6 @@
 //!
 //! Crate dedicado para la Suite Científica de Benchmarks, Estudios de Ablación
 //! y Experimentos Físicos de RELIC.
-//! Menos de 180 líneas.
-
 pub mod ablation;
 pub mod continual;
 pub mod epistemic;

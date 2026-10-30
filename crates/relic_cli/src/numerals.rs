@@ -1,6 +1,4 @@
 //! Reescritura de numerales en español y expansión de marcadores proporcionales/porcentuales a RPN.
-//! Menos de 180 líneas.
-
 /// Extrae una expresión balanceada o término numérico al inicio de `s`, devolviendo `(term, rest)`.
 pub fn take_leading_term(s: &str) -> Option<(String, String)> {
     let trimmed = s.trim_start();

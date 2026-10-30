@@ -1,6 +1,4 @@
 //! Pruebas de regresión causal y de despacho para RELIC (Aritmética y Grafos).
-//! Menos de 180 líneas.
-
 use relic_core::{
     ArithmeticOp, ArithmeticPlan, ArithmeticStep,
     RirArithmeticOp, RirDocumentV1,

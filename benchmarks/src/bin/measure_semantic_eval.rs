@@ -1,6 +1,4 @@
 //! # measure_semantic_ood
-//! Medición empírica de exactitud y latencia del compilador semántico RIR v1 frente al baseline. Menos de 180 líneas.
-
 use relic_cli::dispatch::{parse_dispatch_intent, DispatchIntent};
 use relic_core::rir::{RirArithmeticOp, RirDocumentV1};
 use relic_core::{RelicConfig, RelicModelMmap, SafetensorsLoader};

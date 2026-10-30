@@ -1,6 +1,4 @@
 //! Plantillas para Nivel 2: Inventario con unidades, modismos y sintaxis invertida.
-//! Menos de 180 líneas.
-
 use super::types::DatasetSplit;
 use super::templates_l01::TemplateDef;
 

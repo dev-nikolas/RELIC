@@ -1,6 +1,4 @@
 //! Medición y atribución del 100% de memoria en EpisodicMemory con GlobalAlloc.
-//! Menos de 180 líneas.
-
 use std::alloc::{GlobalAlloc, Layout, System};
 use std::sync::atomic::{AtomicUsize, Ordering};
 use relic_core::EpisodicMemory;

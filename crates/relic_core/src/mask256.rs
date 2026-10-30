@@ -1,8 +1,6 @@
 //! # mask256
 //!
 //! Mascara SIMD de 256 bits alineada a 32 bytes para operaciones contrafactuales paralelas.
-//! Menos de 180 lineas.
-
 use std::ops::{BitAnd, BitAndAssign, BitOr, BitOrAssign, Not};
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Default)]

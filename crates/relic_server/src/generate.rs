@@ -1,8 +1,6 @@
 //! # relic_server::generate
 //!
 //! Generación autorregresiva causal con emisión Server-Sent Events (SSE) token a token.
-//! Menos de 180 líneas.
-
 use std::time::Instant;
 use relic_core::{KvCache, Sampler};
 use crate::state::ServerState;

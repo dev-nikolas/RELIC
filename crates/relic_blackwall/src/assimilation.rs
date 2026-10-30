@@ -1,8 +1,6 @@
 //! # relic_blackwall::assimilation
 //!
 //! Asimilación Autónoma ("Shadow Distillation"), Auto-Calibración de Fase
-//! e Importación/Exportación Transaccional de Cápsulas `.engram`. Menos de 180 líneas.
-
 use relic_core::{
     simulate_kuramoto_synchronization, ArithmeticOp, KuramotoNetworkSpec, SynchronizationOutcome,
 };

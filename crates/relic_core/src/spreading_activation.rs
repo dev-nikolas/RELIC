@@ -3,8 +3,6 @@
 //! Motor determinista de Activación Propagada (Spreading Activation) sobre `EpisodicMemory`.
 //! Calcula energía por paso, entropía de Shannon $H = -\sum p_i \log_2 p_i$ y emite abstención
 //! formal (`AMBIGUOUS`) cuando la incertidumbre supera el umbral o existe empate en el tope.
-//! Menos de 180 líneas.
-
 use std::collections::{BTreeMap, HashSet};
 use serde::{Deserialize, Serialize};
 use crate::episodic_memory::EpisodicMemory;

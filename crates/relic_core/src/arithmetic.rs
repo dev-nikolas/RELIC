@@ -3,8 +3,6 @@
 //! Motor de razonamiento aritmético determinista y cuantitativo para RELIC.
 //! Ejecuta operaciones matemáticas con tipos nativos, comprobación de desbordamiento
 //! y soporte para inventarios de unidades (singular/plural) y trazas RPN exactas.
-//! Menos de 180 líneas.
-
 use serde::{Deserialize, Serialize};
 use thiserror::Error;
 

@@ -1,6 +1,4 @@
 //! Arquitectura neuronal completa RELIC-10M con soporte de prefill y decode con KV-Cache.
-//! Menos de 180 lineas.
-
 use crate::block::RelicBlock;
 use crate::config::RelicConfig;
 use crate::kv_cache::KvCache;

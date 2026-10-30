@@ -2,8 +2,6 @@
 //!
 //! Estado de inferencia compartido en memoria protegido por `BlackwallGate`.
 //! Prohibida la mutación directa de memoria fuera del ciclo transaccional del Blackwall.
-//! Menos de 180 líneas.
-
 use std::path::Path;
 use std::sync::{Arc, RwLock};
 use relic_blackwall::BlackwallGate;

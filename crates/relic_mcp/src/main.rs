@@ -1,7 +1,5 @@
 //! Punto de entrada stdio para el servidor MCP de RELIC.
 //! Lee peticiones JSON-RPC 2.0 por stdin línea a línea y emite respuestas por stdout.
-//! Menos de 180 líneas.
-
 use std::io::{self, BufRead, Write};
 use relic_mcp::McpServer;
 

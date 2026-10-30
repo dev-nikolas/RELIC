@@ -1,6 +1,4 @@
 //! Demostración de inferencia autorregresiva causal con KV-Cache y parada estricta en EOS.
-//! Menos de 180 líneas.
-
 use std::path::Path;
 use std::time::Instant;
 use relic_core::{KvCache, RelicConfig, RelicModel, SafetensorsLoader, Sampler};

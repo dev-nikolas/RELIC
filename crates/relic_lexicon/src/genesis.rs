@@ -1,7 +1,5 @@
 //! Semilla Génesis auditable del engrama RELIC.
 //! Migra las 13 aristas base a entradas formales `LogEntry` selladas con SHA-256.
-//! Menos de 180 líneas.
-
 use crate::log::{EntryStatus, LexiconPayload, LogEntry, GENESIS_PREV_HASH};
 
 /// Las 13 relaciones base (espaciales y dependencias de crates) que conforman el bloque génesis.

@@ -1,6 +1,4 @@
 //! Tipos de datos para el generador curricular determinista.
-//! Menos de 180 líneas.
-
 use serde::{Deserialize, Serialize};
 use relic_core::RirDocumentV1;
 

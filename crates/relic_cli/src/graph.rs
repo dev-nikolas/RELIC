@@ -1,6 +1,4 @@
 //! Analizador sintáctico para consultas de grafos y dependencias de software.
-//! Menos de 180 líneas.
-
 use crate::dispatch::QuerySpec;
 
 fn extract_entity_token(rest: &str) -> Option<String> {

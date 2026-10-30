@@ -1,6 +1,4 @@
 //! Proyección en RAM y bitácora de histórico fuera de RAM con índice de offsets.
-//! Menos de 180 líneas.
-
 use std::fs::{File, OpenOptions};
 use std::io::{BufRead, BufReader, Write};
 use std::path::{Path, PathBuf};

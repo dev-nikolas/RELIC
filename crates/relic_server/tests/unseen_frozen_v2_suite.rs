@@ -1,8 +1,6 @@
 //! Suite congelada v2 "no vista" (tests/unseen_frozen_v2.json): banco de 16 casos jamás
 //! usados para iterar el código, ejecutado AUTOMÁTICAMENTE por el pipeline completo
 //! (despacho -> RIR -> motor determinista) con guarda de no-regresión sobre la línea
-//! base registrada. Menos de 180 líneas.
-
 use std::fs;
 use std::path::Path;
 use serde::Deserialize;

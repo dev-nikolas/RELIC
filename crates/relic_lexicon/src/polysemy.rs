@@ -1,8 +1,6 @@
 //! # relic_lexicon::polysemy
 //!
 //! Resolución de polisemia léxica mediante el Baseline Clásico (pesos positivos)
-//! y mediante Interferencia Cuántica de Fase + Regla de Costo Asimétrico. Menos de 180 líneas.
-
 use std::collections::HashMap;
 use relic_core::{ArithmeticOp, CollapseDecision, Complex, QuantumSuperposition};
 use serde::{Deserialize, Serialize};

@@ -1,7 +1,5 @@
 //! Motor de Consolidación ("Sueño") y poda de episodios efímeros de bajo peso.
 //! Preserva la inmutabilidad del log original emitiendo un `ConsolidationCheckpoint`.
-//! Menos de 180 líneas.
-
 use serde::{Deserialize, Serialize};
 use crate::memory::{EngramStore, LexiconView};
 

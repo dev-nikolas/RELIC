@@ -1,8 +1,6 @@
 //! # ms_bfs
 //!
 //! Motor MS-BFS con evaluacion paralela bitwise SIMD para 256 mundos contrafactuales.
-//! Menos de 180 lineas.
-
 use std::cell::RefCell;
 use crate::episodic_memory::EpisodicMemory;
 pub use crate::mask256::Mask256;

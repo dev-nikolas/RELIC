@@ -1,4 +1,3 @@
-//! # Suite de Verificación de Baseline Congelado (Mejora 1) — Menos de 180 líneas.
 
 use relic_core::episodic_memory::EpisodicMemory;
 use relic_core::reasoning_engine::ReasoningEngine;

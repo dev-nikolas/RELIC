@@ -1,8 +1,6 @@
 //! # relic_cli::parity
 //!
 //! Subcomando para verificación estricta de paridad numérica PyTorch vs Rust.
-//! Menos de 180 líneas.
-
 use std::path::Path;
 use relic_core::{RelicConfig, RelicModel, SafetensorsLoader};
 

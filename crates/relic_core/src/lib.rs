@@ -2,8 +2,6 @@
 //!
 //! Motor neuronal e inferencia para RELIC-10M en Rust nativo.
 //! Diseno modular, cero dependencias C++, multiplataforma.
-//! Menos de 180 lineas.
-
 pub mod arithmetic;
 pub mod anomaly;
 pub mod attention;

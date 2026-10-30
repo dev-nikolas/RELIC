@@ -1,6 +1,4 @@
 //! KV-Cache dinamico preasignado para inferencia autoregresiva eficiente.
-//! Memoria acotada (< 2 MB) para contexto de hasta 256 tokens. Menos de 180 lineas.
-
 #[derive(Debug, Clone)]
 pub struct LayerKvCache {
     pub k_cache: Vec<f32>, // [max_seq_len, num_kv_heads * head_dim]

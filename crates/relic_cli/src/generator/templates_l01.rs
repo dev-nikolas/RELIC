@@ -1,6 +1,4 @@
 //! Plantillas para Nivel 1: Aritmética directa y variaciones sintácticas.
-//! Menos de 180 líneas.
-
 use super::types::DatasetSplit;
 
 #[derive(Debug, Clone, Copy)]

@@ -1,6 +1,4 @@
 //! Scratch buffers reutilizables para BFS bidireccional determinista sin reasignaciones en el heap.
-//! Menos de 180 líneas.
-
 use std::cell::RefCell;
 
 #[derive(Default)]

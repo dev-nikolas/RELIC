@@ -1,4 +1,3 @@
-//! eval_dump: harness de evaluación (SOLO medición, no afecta el motor). Menos de 180 líneas.
 
 use std::time::Instant;
 use relic_cli::answer::answer_intent;

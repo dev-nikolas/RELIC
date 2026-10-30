@@ -1,6 +1,4 @@
 //! Feed-Forward Network con SwiGLU en Rust puro.
-//! Menos de 180 lineas.
-
 use crate::config::RelicConfig;
 use crate::ops::{linear_forward, swiglu_forward};
 

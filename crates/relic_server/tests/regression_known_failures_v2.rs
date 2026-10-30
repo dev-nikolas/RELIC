@@ -2,8 +2,6 @@
 //! re-define el oro del caso Bogotá→Tokio como abstención epistémica correcta.
 //! A diferencia de v1 (ledger suave), esta suite exige que TODOS los casos pasen:
 //! si el pipeline retrocede hacia una respuesta inválida o un falso acepte, muere aquí.
-//! Menos de 180 líneas.
-
 use std::fs;
 use std::path::Path;
 use serde::Deserialize;

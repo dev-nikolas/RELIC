@@ -1,6 +1,4 @@
 //! Ejecutor verificado de intenciones: produce (texto, ruta, estado) sin efectos secundarios.
-//! Punto único de respuestas para CLI, servidor y suites congeladas. Menos de 180 líneas.
-
 use relic_core::{ArithmeticOp, ArithmeticPlan, ArithmeticStep, EpisodicMemory, NodeResolution,
     ReasoningEngine, RirArithmeticOp, RirDocumentV1, RirDomainKind};
 use crate::dispatch::{DispatchIntent, QuerySpec};

@@ -2,8 +2,6 @@
 //!
 //! Sistema de Engrama Versionado (JSONL append-only con Hash-Chain SHA-256)
 //! y proyección en RAM O(N) para aprendizaje léxico y relacional sin olvido catastrófico.
-//! Menos de 180 líneas.
-
 pub mod calibrator;
 pub mod capsule;
 pub mod consolidation;

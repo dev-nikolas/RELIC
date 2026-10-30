@@ -1,6 +1,4 @@
 //! Algoritmo de tokenizacion Byte-Pair Encoding (BPE) determinista.
-//! Menos de 180 lineas.
-
 use std::collections::HashMap;
 use crate::byte_level::{bytelevel_to_text, bytes_to_unicode, text_to_bytelevel};
 use crate::vocab::Vocab;

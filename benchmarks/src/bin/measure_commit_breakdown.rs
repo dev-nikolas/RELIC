@@ -1,6 +1,4 @@
 //! Descomposición empírica de latencia de commit in-place y benchmark de suite de regresión causal.
-//! Menos de 180 líneas.
-
 use std::time::Instant;
 use relic_blackwall::causal_index::CausalDependencyIndex;
 use relic_blackwall::oracle::validate_proposal_oracle;

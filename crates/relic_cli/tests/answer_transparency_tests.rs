@@ -1,6 +1,4 @@
 //! Transparencia de interpretación ("Entendí: 3 - 10 = -7") y abstención honesta
-//! ante ambigüedades de alias y entidades fuera de la memoria. Menos de 180 líneas.
-
 use relic_cli::answer::answer_intent;
 use relic_cli::dispatch::{parse_dispatch_intent, DispatchIntent, QuerySpec};
 use relic_cli::knowledge::load_default_knowledge;

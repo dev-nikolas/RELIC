@@ -1,6 +1,4 @@
 //! Evaluación nativa de alta velocidad de Reglas y Slot-Filler sobre el Hold-Out v2 (N=4.500).
-//! Menos de 180 líneas.
-
 use std::fs::File;
 use std::io::{BufRead, BufReader};
 use std::path::Path;

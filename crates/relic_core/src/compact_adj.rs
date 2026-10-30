@@ -1,8 +1,6 @@
 //! # compact_adj
 //!
 //! Representacion compacta de adyacencia para evitar asignaciones de heap en nodos de grado <= 4.
-//! Menos de 180 lineas.
-
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub enum CompactAdj {
     Inline(u8, [u32; 4]),

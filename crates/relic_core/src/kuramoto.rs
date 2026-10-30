@@ -5,8 +5,6 @@
 //! ($\frac{d\theta_i}{dt} = \omega_i + \sum_j K_{ij} \sin(\theta_j - \theta_i)$)
 //! con integración Runge-Kutta de 4to orden (RK4), parámetro de orden complejo
 //! ($r e^{i\psi} = \frac{1}{|C|} \sum_{j \in C} e^{i\theta_j}$) y abstención física
-//! cuando $r(t_{\text{final}}) < r^*$. Menos de 180 líneas.
-
 use std::f64::consts::PI;
 use serde::{Deserialize, Serialize};
 use crate::quantum::Complex;

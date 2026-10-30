@@ -1,6 +1,4 @@
 //! Motor determinista por semilla y verificador independiente.
-//! Menos de 180 líneas.
-
 use relic_core::{ArithmeticOp, ArithmeticPlan, ArithmeticStep, RirArithmeticOp, RirDocumentV1, RirValidityStatus};
 use super::types::{CurriculumLevel, CurriculumSample, DatasetSplit};
 use super::templates::{num_to_text, NOUN_UNITS, TemplateDef, L01_TEMPLATES, L02_TEMPLATES, L03_TEMPLATES};

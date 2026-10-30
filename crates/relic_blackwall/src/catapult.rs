@@ -1,7 +1,5 @@
 //! Catapulta Causal Bitwise para la frontera del Blackwall.
 //! Evalúa cortes inductivos en 1 ciclo de ALU para omitir regresiones inocuas.
-//! Menos de 180 líneas.
-
 use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Default, Serialize, Deserialize)]

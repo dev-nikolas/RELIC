@@ -52,6 +52,17 @@ impl RollingNorm {
         }
     }
 
+    pub fn mean_and_std(&self) -> (f64, f64) {
+        let n = self.buffer.len();
+        if n < 2 {
+            return (0.0, 1.0);
+        }
+        let mean = self.sum / (n as f64);
+        let var = ((self.sum_sq / (n as f64)) - mean * mean).max(0.0);
+        let std = var.sqrt();
+        (mean, if std > 1e-9 { std } else { 1.0 })
+    }
+
     pub fn ingest(&mut self, val: f64) {
         if !val.is_finite() {
             return;

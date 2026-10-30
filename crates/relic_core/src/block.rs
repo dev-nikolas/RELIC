@@ -1,6 +1,4 @@
 //! Bloque decodificador Transformer completo en Rust puro.
-//! Menos de 180 lineas.
-
 use crate::attention::RelicAttention;
 use crate::config::RelicConfig;
 use crate::kv_cache::LayerKvCache;

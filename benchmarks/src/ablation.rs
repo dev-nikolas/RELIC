@@ -1,6 +1,4 @@
 //! Benchmark 1 — Estudio de Ablación: Léxico Clásico (Fase 4) vs. Interferencia Cuántica de Fase (Fase 5).
-//! Menos de 180 líneas.
-
 use std::f64::consts::PI;
 use std::time::Instant;
 use relic_core::{ArithmeticOp, CollapseDecision};

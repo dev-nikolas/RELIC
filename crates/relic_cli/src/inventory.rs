@@ -1,6 +1,4 @@
 //! Extractor y evaluador de problemas de inventario con expresiones anidadas, porcentajes y reparto.
-//! Menos de 180 líneas.
-
 use relic_core::{ArithmeticOp, ArithmeticPlan, ArithmeticReduction, CollapseDecision};
 use relic_lexicon::LexiconView;
 use crate::math::{evaluate_math_tokens_with_reductions, tokenize_math};

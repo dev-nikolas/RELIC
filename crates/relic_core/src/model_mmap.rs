@@ -1,7 +1,5 @@
 //! Arquitectura decodificadora zero-copy RELIC-10M sobre páginas mmap F16.
 //! Inferencia directa sin alojar los tensores en el heap anónimo privado.
-//! Menos de 180 líneas.
-
 use crate::config::RelicConfig;
 use crate::kv_cache::KvCache;
 use crate::loader::{half_to_f32, SafetensorsLoader};

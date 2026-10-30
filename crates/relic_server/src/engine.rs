@@ -1,6 +1,4 @@
 //! # relic_server::engine
-//! Despacho determinista y neuronal bajo custodia de `BlackwallGate`. Menos de 180 líneas.
-
 use std::time::Instant;
 use serde_json::json;
 use relic_cli::answer::is_generation_request;

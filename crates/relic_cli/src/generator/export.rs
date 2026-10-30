@@ -1,6 +1,4 @@
 //! Exportador de datasets JSONL con hash SHA-256 y control de fugas de n-gramas.
-//! Menos de 180 líneas.
-
 use std::collections::HashSet;
 use std::fs::File;
 use std::io::{BufWriter, Write};

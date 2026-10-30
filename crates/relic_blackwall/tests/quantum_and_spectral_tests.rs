@@ -1,4 +1,3 @@
-//! Suite Científica de Interferencia Cuántica y Verificador Espectral (`quantum_and_spectral_tests.rs`). Menos de 180 líneas.
 
 use std::collections::HashMap;
 use std::f64::consts::PI;

@@ -1,7 +1,4 @@
 //! # relic_server::router
-//!
-//! Despacho central de rutas HTTP y endpoints transaccionales del Blackwall. Menos de 180 líneas.
-
 use std::io::Read;
 use std::time::{Duration, Instant};
 use relic_lexicon::{to_dot_diff, to_mermaid_diff};

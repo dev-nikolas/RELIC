@@ -1,6 +1,4 @@
 //! Configuracion arquitectonica formal de RELIC-10M.
-//! Valida todas las invariantes estructurales. Menos de 180 lineas.
-
 use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Clone, Serialize, Deserialize)]

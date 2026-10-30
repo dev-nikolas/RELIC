@@ -1,8 +1,6 @@
 //! Suite de Pruebas de Sistemas Complejos: Dinámica de Sincronización de Kuramoto,
 //! Auto-Calibración de Fase (Cero Ángulos Hardcodeados), Destilación en la Sombra
 //! e Inmunidad Transaccional ante Cápsulas `.engram` Corruptas o Troyanas.
-//! Menos de 180 líneas.
-
 use std::f64::consts::PI;
 use relic_blackwall::{BlackwallGate, TransactionOutcome};
 use relic_core::{

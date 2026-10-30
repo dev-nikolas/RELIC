@@ -1,6 +1,4 @@
 //! Ejecución del despacho verificado, validación RIR v1, activación propagada y diff visual.
-//! Menos de 180 líneas.
-
 use std::path::Path;
 use std::time::Instant;
 use relic_core::{

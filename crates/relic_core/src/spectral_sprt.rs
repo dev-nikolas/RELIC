@@ -2,8 +2,6 @@
 //!
 //! Detector secuencial SPRT con mezcla de hipótesis para beaconing periódico con jitter.
 //! Martingala de prueba con familia nula compuesta (Poisson, ráfagas, disperso) con supremo
-//! en el denominador. Garantiza la cota de Ville: P(sup Λ_n >= A) <= 1/A. Menos de 180 líneas.
-
 use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]

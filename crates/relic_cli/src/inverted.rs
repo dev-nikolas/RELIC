@@ -7,9 +7,6 @@
 //! Fallback de parse_inventory_problem: se invoca SOLO si el camino canónico
 //! fallo. No se inventan operaciones ni cantidades; lexicos ESPEJO del
 //! original (dispatch.rs:64-74, snapshot ff64fc2).
-//!
-//! Menos de 180 lineas.
-
 use relic_core::{ArithmeticOp, ArithmeticPlan};
 use crate::normalize::normalize_query;
 

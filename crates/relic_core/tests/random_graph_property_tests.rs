@@ -2,8 +2,6 @@
 //!
 //! Prueba formal de propiedades sobre 1.000 grafos aleatorios (Erdős-Rényi y dirigidos).
 //! Comprueba optimalidad estricta contra BFS de libro y verificación de certificados.
-//! Menos de 180 líneas.
-
 use std::collections::{HashSet, VecDeque};
 use relic_core::{
     verify_positive, verify_unreachable, EpisodicMemory, ReasoningEngine, SearchOutcome,

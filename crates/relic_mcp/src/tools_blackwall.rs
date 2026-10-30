@@ -1,6 +1,4 @@
 //! Implementación de los manejadores transaccionales Blackwall para RELIC MCP.
-//! Menos de 180 líneas.
-
 use relic_blackwall::BlackwallGate;
 use relic_core::{ArithmeticOp, KuramotoNetworkSpec, NetworkAlertSpec};
 use relic_lexicon::{to_dot_diff, to_mermaid_diff, EngramCapsule, LexiconPayload};

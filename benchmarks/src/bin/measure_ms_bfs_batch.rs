@@ -1,6 +1,4 @@
 //! Benchmark empírico: MS-BFS (256 Mundos SIMD y Lotes) vs BFS Secuencial.
-//! Menos de 180 líneas.
-
 use std::time::Instant;
 use relic_core::episodic_memory::EpisodicMemory;
 use relic_core::ms_bfs::{solve_ms_bfs_batch, solve_ms_bfs_counterfactual};

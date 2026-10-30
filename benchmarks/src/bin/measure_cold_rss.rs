@@ -24,7 +24,7 @@ fn main() {
     println!("   Heap: {:>6.2} MB ({:>7} KB) | Delta: {:>+6} KB", disabled_heap_kb as f64 / 1024.0, disabled_heap_kb, disabled_heap_kb.saturating_sub(cold_heap_kb));
 
     // 3. BlackwallGate con Génesis y Telemetría en PassiveMonitor (0 canales alojados, lazy)
-    let gate_passive = BlackwallGate::with_genesis();
+    let _gate_passive = BlackwallGate::with_genesis();
     let passive_rss_kb = get_current_rss_kb();
     let passive_heap_kb = get_current_private_heap_kb();
 

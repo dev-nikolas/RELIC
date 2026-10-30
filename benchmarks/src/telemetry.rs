@@ -1,6 +1,4 @@
 //! Benchmark 3 — Auditoría de Telemetría y Ciberseguridad (N-BaIoT / CTU-13 / Mirai).
-//! Menos de 180 líneas.
-
 use std::collections::HashMap;
 use std::time::Instant;
 use relic_core::{analyze_spectrum_donoho_stark, verify_network_alert, NetworkAlertSpec, SpectralOutcome};

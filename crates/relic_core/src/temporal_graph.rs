@@ -1,8 +1,6 @@
 //! # TemporalGraph
 //!
 //! Grafo de razonamiento efímero para inferencias relacionales al vuelo (Mejora 5).
-//! Cero contaminación de la memoria episódica permanente. Menos de 180 líneas.
-
 use std::collections::{HashMap, HashSet};
 
 /// Relación dirigida tipada entre dos entidades.

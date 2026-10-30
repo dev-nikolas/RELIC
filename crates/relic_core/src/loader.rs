@@ -1,6 +1,4 @@
 //! Cargador zero-copy de pesos en formato Safetensors con memmap2.
-//! Menos de 180 lineas.
-
 use std::collections::HashMap;
 use std::fs::File;
 use std::path::Path;

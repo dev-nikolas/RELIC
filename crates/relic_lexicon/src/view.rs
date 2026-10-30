@@ -1,6 +1,4 @@
 //! Proyección en RAM de la vista activa del léxico y hechos episódicos.
-//! Menos de 180 líneas.
-
 use std::collections::HashMap;
 use relic_core::{ArithmeticOp, Complex, EpisodicMemory};
 use crate::log::LexiconPayload;

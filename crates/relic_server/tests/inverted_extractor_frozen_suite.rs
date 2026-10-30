@@ -1,8 +1,6 @@
 ﻿//! Suite congelada de etapa 4: extractor de cláusulas invertidas.
 //! Lea tests/f6_inverted_oro_v1.json (congelado ANTES de la implementación).
 //! ROJO antes del extractor, VERDE después SIN retroceso del resto.
-//! menos de 180 líneas.
-
 use relic_cli::dispatch::parse_inventory_problem;
 use relic_cli::normalize::normalize_query;
 use serde_json::Value;

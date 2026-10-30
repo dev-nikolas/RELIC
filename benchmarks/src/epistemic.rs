@@ -1,6 +1,4 @@
 //! Benchmark 2 — Razonamiento Estándar (GSM8K-ES / SVAMP / bAbI) y Trampas Epistémicas.
-//! Menos de 180 líneas.
-
 use std::time::Instant;
 use relic_core::{propagate_activation, ActivationStatus, ArithmeticOp};
 use relic_lexicon::{EngramStore, EntryStatus, LexiconPayload};

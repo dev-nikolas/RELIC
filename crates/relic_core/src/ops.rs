@@ -1,6 +1,4 @@
 //! Operadores tensoriales fundamentales y funciones de activacion optimizadas.
-//! Menos de 180 lineas.
-
 /// Suma vectorial elemento a elemento: out[i] = a[i] + b[i].
 pub fn vec_add(out: &mut [f32], a: &[f32], b: &[f32]) {
     for (o, (&x, &y)) in out.iter_mut().zip(a.iter().zip(b.iter())) {

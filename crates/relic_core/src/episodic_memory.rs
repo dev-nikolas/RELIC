@@ -1,8 +1,6 @@
 //! # EpisodicMemory
 //!
 //! Almacenamiento explicito y determinista de hechos relacionales en grafos con pesos de refuerzo.
-//! Menos de 180 lineas.
-
 use std::collections::{HashMap, HashSet};
 use crate::compact_adj::CompactAdj;
 use crate::interner::NodeInterner;

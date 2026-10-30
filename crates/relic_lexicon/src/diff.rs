@@ -1,6 +1,4 @@
 //! Motor de inspección y Diff Estructurado entre versiones del Engrama (`relic_lexicon::diff`).
-//! Incluye exportadores deterministas a Mermaid y Graphviz DOT. Menos de 180 líneas.
-
 use serde::{Deserialize, Serialize};
 use crate::log::{IntegrityError, LexiconPayload, LogEntry};
 use crate::memory::EngramStore;

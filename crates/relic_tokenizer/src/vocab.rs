@@ -1,6 +1,4 @@
 //! Gestion del vocabulario y reglas de fusion (merges) para BPE.
-//! Compatible con tokenizer.json estandar. Menos de 180 lineas.
-
 use std::collections::HashMap;
 use std::fs::File;
 use std::io::BufReader;

@@ -1,6 +1,4 @@
 //! Normalizacion Root Mean Square (RMSNorm) en Rust puro.
-//! Menos de 180 lineas.
-
 #[derive(Debug, Clone)]
 pub struct RMSNorm {
     pub weight: Vec<f32>,

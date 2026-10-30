@@ -1,8 +1,6 @@
 //! # certificate
 //!
 //! Certificados formales de alcanzabilidad y verificadores independientes O(k) y O(deg).
-//! Menos de 180 líneas.
-
 use std::collections::HashSet;
 use crate::episodic_memory::EpisodicMemory;
 

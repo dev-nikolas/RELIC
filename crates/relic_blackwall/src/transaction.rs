@@ -1,6 +1,10 @@
-//! Paso 3 del Blackwall: Compuerta Transaccional (`Propose -> Verify -> Regression -> Commit/Rollback/Consolidate`).
-//! Menos de 180 líneas.
-
+//! Motor de Transacciones Seguras del Blackwall.
+//!
+//! Este módulo procesa cualquier cambio en el sistema mediante 4 fases seguras:
+//! 1. Propose: se propone un nuevo hecho o actualización de sensor.
+//! 2. Verify: se verifica que no rompa reglas lógicas ni de seguridad.
+//! 3. Regression: se asegura de que el nuevo dato no arruine conocimientos anteriores.
+//! 4. Commit o Rollback: si pasa todo, se guarda; si algo falla, se revierte exactamente al estado original.
 use std::path::Path;
 use relic_cli::{answer_intent, parse_dispatch_intent_with_lexicon, Answer, DispatchIntent};
 use relic_core::{
@@ -16,11 +20,51 @@ use crate::causal_index::CausalDependencyIndex;
 use crate::oracle::validate_proposal_oracle;
 use crate::regression::{compute_consolidation_fidelity, run_regression_suite, RegressionCase};
 
+/// Guardián para restaurar el estado si una transacción falla.
+/// Si la transacción no se completa exitosamente, al salir del bloque
+/// deshace en orden inverso todos los cambios aplicados en memoria.
 struct UndoGuard<'a> { view: &'a mut LexiconView, ops: Vec<InverseOp>, committed: bool }
 impl<'a> UndoGuard<'a> { fn commit(mut self) { self.committed = true; } }
 impl<'a> Drop for UndoGuard<'a> {
     fn drop(&mut self) {
         if !self.committed { for op in self.ops.drain(..).rev() { self.view.apply_inverse_op(op); } }
+    }
+}
+
+/// Guardián de seguridad para sobrescrituras de aristas en memoria durante simulaciones de impacto.
+/// Garantiza que cualquier arista desconectada temporalmente en RAM se restaure automáticamente
+/// al terminar la función, evitando estados corruptos en el grafo.
+struct EdgeOverrideGuard<'a> {
+    episodic: &'a mut relic_core::EpisodicMemory,
+    overridden_edges: Vec<(u32, u32)>,
+}
+
+impl<'a> EdgeOverrideGuard<'a> {
+    fn new(episodic: &'a mut relic_core::EpisodicMemory) -> Self {
+        Self {
+            episodic,
+            overridden_edges: Vec::new(),
+        }
+    }
+
+    fn set_override(&mut self, u: u32, v: u32, mask: [u64; 4]) {
+        self.episodic.edge_world_overrides.insert((u, v), mask);
+        self.overridden_edges.push((u, v));
+    }
+}
+
+impl<'a> std::ops::Deref for EdgeOverrideGuard<'a> {
+    type Target = relic_core::EpisodicMemory;
+    fn deref(&self) -> &Self::Target {
+        self.episodic
+    }
+}
+
+impl<'a> Drop for EdgeOverrideGuard<'a> {
+    fn drop(&mut self) {
+        for edge in self.overridden_edges.drain(..) {
+            self.episodic.edge_world_overrides.remove(&edge);
+        }
     }
 }
 
@@ -114,24 +158,44 @@ impl BlackwallGate {
         // 1. Evaluación pura de la telemetría (falla si hay contención de canales o arena agotada)
         let assessments = self.telemetry_arena.evaluate_batch_pure(telemetry)?;
 
-        // 2. Si está en Enforcing, auditar si hay alguna violación
+        let alert_thresh = self.telemetry_arena.alert_threshold;
+        let block_thresh = self.telemetry_arena.enforcing_block_threshold;
+
+        // 2. Calcular impactos topológicos mediante MS-BFS en RAM si hay anomalías (nivel alerta: >= 0.990)
+        let mut impacts = Vec::with_capacity(assessments.len());
+        for &(ch_id, _, ref assess) in &assessments {
+            let is_anomaly = assess.range_violation || assess.drift_alarm || assess.score_relic >= alert_thresh;
+            let binding = self.telemetry_arena.get_binding(ch_id).cloned();
+            let lost = if is_anomaly {
+                if let Some(ref target) = binding {
+                    self.compute_topological_impact_set(target)
+                } else {
+                    Vec::new()
+                }
+            } else {
+                Vec::new()
+            };
+            impacts.push((binding, lost));
+        }
+
+        // 3. Si está en Enforcing, bloquear solo si se supera el umbral estricto de bloqueo (ej. 0.999 o range_violation)
         if self.telemetry_arena.mode == crate::telemetry_arena::AnomalyGateMode::Enforcing {
             for &(ch_id, _, ref assess) in &assessments {
-                if assess.range_violation || assess.drift_alarm || assess.score_relic >= 0.990 {
+                if assess.range_violation || assess.drift_alarm || assess.score_relic >= block_thresh {
                     return Ok(TransactionOutcome::RejectedByAnomaly {
                         channel_id: ch_id,
                         reason: format!(
-                            "Violación en canal {ch_id}: score_relic={:.4}, range_violation={}, drift_alarm={}",
-                            assess.score_relic, assess.range_violation, assess.drift_alarm
+                            "Violación / Bloqueo en canal {ch_id} (umbral={:.4}): score_relic={:.4}, range_violation={}, drift_alarm={}",
+                            block_thresh, assess.score_relic, assess.range_violation, assess.drift_alarm
                         ),
                     });
                 }
             }
         }
 
-        // 3. Si no hay mutaciones simbólicas (solo telemetría continua), comprometer telemetría directamente
+        // 4. Si no hay mutaciones simbólicas (solo telemetría continua), comprometer telemetría directamente
         if payloads.is_empty() {
-            self.telemetry_arena.commit_batch(&assessments, ts);
+            self.telemetry_arena.commit_batch_with_impact(&assessments, &impacts, ts);
             return Ok(TransactionOutcome::Committed {
                 version: self.engram.current_version(),
                 entry_hash: self.engram.head_hash().to_string(),
@@ -239,7 +303,7 @@ impl BlackwallGate {
         match self.engram.append_batch(&items, self.durability) {
             Ok(entries) => {
                 // Commit atómico del lote de telemetría tras confirmación de WAL
-                self.telemetry_arena.commit_batch(&assessments, ts);
+                self.telemetry_arena.commit_batch_with_impact(&assessments, &impacts, ts);
                 let last = entries.last().unwrap();
                 Ok(TransactionOutcome::Committed {
                     version: last.version,
@@ -247,6 +311,131 @@ impl BlackwallGate {
                 })
             }
             Err(err) => Ok(TransactionOutcome::RejectedByIntegrity { reason: err.to_string() }),
+        }
+    }
+
+    /// Calcula el conjunto de impacto topológico mediante MS-BFS en memoria.
+    ///
+    /// Evalúa en paralelo qué pares críticos de la SLO pierden alcanzabilidad si
+    /// el objetivo (arista o nodo) es puesto en cuarentena.
+    /// Restaura de forma inmediata e incondicional cualquier máscara temporal,
+    /// garantizando que `edge_world_overrides.is_empty()` permanezca `true`.
+    pub fn compute_topological_impact_set(
+        &mut self,
+        target: &crate::telemetry_arena::BindingTarget,
+    ) -> Vec<(String, String)> {
+        let critical_pairs = self.telemetry_arena.critical_pairs.clone();
+        if critical_pairs.is_empty() {
+            return Vec::new();
+        }
+
+        let view = self.engram.active_view_mut();
+        match target {
+            crate::telemetry_arena::BindingTarget::ObservabilityOnly => Vec::new(),
+            crate::telemetry_arena::BindingTarget::Edge { source, target } => {
+                let (Some(u_id), Some(v_id)) = (
+                    view.episodic.interner.get_id(source),
+                    view.episodic.interner.get_id(target),
+                ) else {
+                    return Vec::new();
+                };
+
+                let mut valid_pairs = Vec::new();
+                for (s, t) in &critical_pairs {
+                    if let (Some(s_id), Some(t_id)) = (
+                        view.episodic.interner.get_id(s),
+                        view.episodic.interner.get_id(t),
+                    ) {
+                        valid_pairs.push((s.clone(), t.clone(), s_id, t_id));
+                    }
+                }
+
+                if valid_pairs.is_empty() {
+                    return Vec::new();
+                }
+
+                let m = valid_pairs.len().min(128);
+                let mut queries = Vec::with_capacity(2 * m);
+                let mut edge_mask = [0u64; 4];
+
+                for (k, (_, _, s_id, t_id)) in valid_pairs.iter().take(m).enumerate() {
+                    queries.push((*s_id, *t_id));
+                    let bit_intact = 2 * k;
+                    edge_mask[bit_intact / 64] |= 1u64 << (bit_intact % 64);
+
+                    queries.push((*s_id, *t_id));
+                }
+
+                // INVARIANTE RAII: EdgeOverrideGuard asegura que el override se elimine incluso ante retornos tempranos o errores
+                let result = {
+                    let mut guard = EdgeOverrideGuard::new(&mut view.episodic);
+                    guard.set_override(u_id, v_id, edge_mask);
+                    relic_core::ms_bfs::solve_ms_bfs_batch(&guard, &queries)
+                };
+
+                let mut lost = Vec::new();
+                for (k, (s, t, _, _)) in valid_pairs.iter().take(m).enumerate() {
+                    let intact_reachable = result.is_reachable(2 * k);
+                    let severed_reachable = result.is_reachable(2 * k + 1);
+                    if intact_reachable && !severed_reachable {
+                        lost.push((s.clone(), t.clone()));
+                    }
+                }
+                lost
+            }
+            crate::telemetry_arena::BindingTarget::Node(node) => {
+                let Some(node_id) = view.episodic.interner.get_id(node) else {
+                    return Vec::new();
+                };
+                let neighbors = view.episodic.get_neighbors_u32(node_id).to_vec();
+                if neighbors.is_empty() {
+                    return Vec::new();
+                }
+
+                let mut valid_pairs = Vec::new();
+                for (s, t) in &critical_pairs {
+                    if let (Some(s_id), Some(t_id)) = (
+                        view.episodic.interner.get_id(s),
+                        view.episodic.interner.get_id(t),
+                    ) {
+                        valid_pairs.push((s.clone(), t.clone(), s_id, t_id));
+                    }
+                }
+
+                if valid_pairs.is_empty() {
+                    return Vec::new();
+                }
+
+                let m = valid_pairs.len().min(128);
+                let mut queries = Vec::with_capacity(2 * m);
+                let mut edge_mask = [0u64; 4];
+
+                for (k, (_, _, s_id, t_id)) in valid_pairs.iter().take(m).enumerate() {
+                    queries.push((*s_id, *t_id));
+                    let bit_intact = 2 * k;
+                    edge_mask[bit_intact / 64] |= 1u64 << (bit_intact % 64);
+                    queries.push((*s_id, *t_id));
+                }
+
+                // INVARIANTE RAII para todas las aristas salientes del nodo
+                let result = {
+                    let mut guard = EdgeOverrideGuard::new(&mut view.episodic);
+                    for &nbr in &neighbors {
+                        guard.set_override(node_id, nbr, edge_mask);
+                    }
+                    relic_core::ms_bfs::solve_ms_bfs_batch(&guard, &queries)
+                };
+
+                let mut lost = Vec::new();
+                for (k, (s, t, _, _)) in valid_pairs.iter().take(m).enumerate() {
+                    let intact_reachable = result.is_reachable(2 * k);
+                    let severed_reachable = result.is_reachable(2 * k + 1);
+                    if intact_reachable && !severed_reachable {
+                        lost.push((s.clone(), t.clone()));
+                    }
+                }
+                lost
+            }
         }
     }
 

@@ -2,8 +2,6 @@
 //!
 //! Validación B7 (Monte Carlo >= 10^5 trazas de martingala Ville) y
 //! B3 (FPR en familias nulas declaradas y reservadas con Clopper-Pearson 95%).
-//! Menos de 180 líneas.
-
 use relic_core::{SprtBeaconDetector, SprtConfig};
 use std::time::Instant;
 

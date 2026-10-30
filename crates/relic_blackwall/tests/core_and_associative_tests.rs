@@ -1,4 +1,3 @@
-//! Suite de pruebas de núcleo aritmético, activación propagada, consolidación y diff (`core_and_associative_tests.rs`). Menos de 180 líneas.
 
 use relic_blackwall::{BlackwallGate, RegressionCase, TransactionOutcome};
 use relic_cli::DispatchIntent;

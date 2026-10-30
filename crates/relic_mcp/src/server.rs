@@ -1,7 +1,5 @@
 //! Servidor JSON-RPC 2.0 y gestor del ciclo de vida MCP stdio (2025-03-26).
 //! Estado protegido por `BlackwallGate`: cero escrituras directas sin verificación.
-//! Menos de 180 líneas.
-
 use std::time::{Duration, Instant};
 use relic_blackwall::BlackwallGate;
 use serde_json::{json, Value};

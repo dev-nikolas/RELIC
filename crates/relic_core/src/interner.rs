@@ -1,7 +1,5 @@
 //! Internador de identificadores compactos `String <-> u32`.
 //! Almacena cadenas en un arena contigua de bytes con offsets u32.
-//! Menos de 180 lineas.
-
 use std::collections::HashMap;
 use std::hash::{DefaultHasher, Hash, Hasher};
 
