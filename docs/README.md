@@ -28,3 +28,4 @@ Los siguientes documentos recogen el proceso de investigación rigurosa, auditor
 - [`PROTOCOL_H1_RIR.md`](PROTOCOL_H1_RIR.md): Protocolo científico y veredicto de cierre sobre la cabeza aprendida de lenguaje natural (H1).
 - [`NEURAL_COMPILER_REPORT.md`](NEURAL_COMPILER_REPORT.md): Reporte de evaluación del compilador neuronal y lecciones aprendidas.
 - [`SANDBOX_LAB.md`](SANDBOX_LAB.md): Especificaciones del entorno de experimentación y aislamiento transaccional.
+
