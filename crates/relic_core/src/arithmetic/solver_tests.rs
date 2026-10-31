@@ -1,4 +1,4 @@
-//! Matriz M1–M22 del solver: contratos de grado, certificación y abstención.
+//! Suite de pruebas del solver algebraico: contratos de grado, certificación y abstención.
 
 use super::certify::{Certification, Certified};
 use super::dual::DomainFault;

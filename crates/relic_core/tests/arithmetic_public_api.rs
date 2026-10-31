@@ -1,4 +1,4 @@
-//! Gate de Fase 5: la superficie pública de `arithmetic` está congelada.
+//! Congelamiento formal de contrato: la superficie pública de `arithmetic` está congelada.
 //!
 //! Este test vive fuera del crate a propósito: si un nombre deja de ser
 //! `pub`, deja de compilar. No prueba rendimiento, solo contrato.

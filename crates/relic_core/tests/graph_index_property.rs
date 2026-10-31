@@ -1,4 +1,4 @@
-//! Gate de Fase 6: el índice coincide con BFS exhaustivo.
+//! Verificación formal de propiedad: el índice coincide con BFS exhaustivo.
 //!
 //! - 120 grafos aleatorios dirigidos (2..=23 nodos): todas las parejas.
 //! - Un grafo fijo contrastado contra `ReasoningEngine` (motor ya en producción).

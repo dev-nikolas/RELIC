@@ -1,19 +1,19 @@
-# Auditoría Fase 0 + Fase 1 — Línea base y extracción de `arithmetic`
+# Línea Base y Refactorización de Módulo Aritmético
 
 **Fecha:** 2026-10-30
 **Commit de partida:** `ebbfd2c` (`refactor: implement core neuro-symbolic engine with anomaly detection and tactical dispatch`)
 **Toolchain:** `rustc 1.99.1` / `cargo 1.99.1`, perfil `dev` (debug), `resolver = "2"`
 
-Este documento registra dos cosas distintas y no intercambiables:
+Este documento registra dos estados distintos:
 
-1. **Fase 0** — el estado *medido* de la suite antes de tocar código. Sirve como línea base para detectar regresiones.
-2. **Fase 1** — el renombrado puro `arithmetic.rs` → `arithmetic/{mod.rs, plan.rs}`, con 0 líneas de lógica modificadas.
+1. **Línea Base** — el estado *medido* de la suite antes de modificar código. Sirve como referencia para detectar regresiones.
+2. **Refactorización** — el renombrado puro `arithmetic.rs` → `arithmetic/{mod.rs, plan.rs}`, con 0 líneas de lógica modificadas.
 
 > **Nota metodológica:** no se declara ninguna mejora de rendimiento. Los únicos números de este documento son conteos de tests y los valores de latencia que los propios tests imprimen cuando fallan, reproducidos tal cual para dejar constancia de que son **preexistentes**.
 
 ---
 
-## 1. Línea base (Fase 0)
+## 1. Línea Base
 
 ### 1.1 Resultado por crate
 
@@ -62,7 +62,7 @@ Corrección al diseño previo: no son "12 puntos", son **~20 archivos de código
 
 ---
 
-## 2. Fase 1 — Renombrado puro
+## 2. Refactorización — Renombrado Puro
 
 ### 2.1 Cambios aplicados
 
@@ -76,9 +76,9 @@ A  crates/relic_core/src/arithmetic/mod.rs                                      
 - `crates/relic_core/src/lib.rs:44` **sin tocar**: `pub use arithmetic::{ArithmeticError, ArithmeticOp, ArithmeticPlan, ArithmeticReduction};` sigue resolviendo, porque un módulo directorio expone los mismos nombres que el archivo anterior.
 - Se preservaron los finales de línea CRLF del repositorio (`core.autocrlf = true`, sin `.gitattributes`).
 
-### 2.2 Gates de aceptación
+### 2.2 Criterios de aceptación
 
-| Gate | Comando | Resultado |
+| Criterio | Comando | Resultado |
 |---|---|---|
 | Renombrado 100 %, sin cambios de lógica | `git diff --cached -M --summary` | `rename ... (100%)` ✓ |
 | Compila todo el workspace, incluidos tests, ejemplos y benches | `cargo check --workspace --all-targets` | exit 0 ✓ |
@@ -98,6 +98,6 @@ Los informes históricos citan el path antiguo y sus números de línea:
 
 Los números de línea siguen siendo correctos porque el archivo se movió **verbatim**; solo cambió el path (`arithmetic.rs` → `arithmetic/plan.rs`). Reescribir un informe de auditoría histórica para "actualizar" una cita es falsificar el registro, así que no se hizo. Si se desea, se corrige en un commit aparte y explícito.
 
-### 2.4 Estado de partida para la Fase 2
+### 2.4 Estado de Partida para Motor Dual
 
 `crates/relic_core/src/arithmetic/` contiene únicamente `mod.rs` y `plan.rs`. El siguiente paso es `dual.rs` + `dual_transcendental.rs` con los `const _: () = assert!(size_of::<DualNumber>() == 16)` y la matriz de casos M7–M14 (dominio, polos, singularidades), sin tocar `plan.rs`.

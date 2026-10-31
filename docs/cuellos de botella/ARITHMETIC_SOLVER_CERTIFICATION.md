@@ -1,14 +1,11 @@
-# Auditoría Fase 4 — Segundo orden, extracción exacta y solver
+# Solver de Ecuaciones con Certificación de Residuo
 
 **Fecha:** 2026-10-30
 **Commit de partida:** `ebbfd2c`
 **Toolchain:** `rustc 1.99.1` / `cargo 1.99.1`, perfil `dev`
-**Documentos previos:** `AUDITORIA_FASES_0_1_BASELINE.md`, `AUDITORIA_FASES_2_3_MOTOR_DUAL.md`
+**Documentos previos:** `ARITHMETIC_BASELINE_REFRACTOR.md`, `ARITHMETIC_DUAL_RPN_ENGINE.md`
 
-Fase 4 cierra el primer cuello de botella: el motor ya no solo evalúa y deriva,
-también **resuelve** y **certifica**, con abstención formal cuando no puede
-hacerlo. No se declara ninguna latencia: solo cotas $O(\cdot)$, bytes exactos y
-valores que los tests imprimen o fijan.
+El motor ahora no solo evalúa y deriva, también **resuelve** y **certifica**, con abstención formal cuando no puede hacerlo. No se declara ninguna latencia: solo cotas $O(\cdot)$, bytes exactos y valores que los tests imprimen o fijan.
 
 ---
 
@@ -58,7 +55,7 @@ Representa `(f, f', f'')`. Reglas implementadas:
 | `abs u` | `sign(a)·u'` | `sign(a)·u''` |
 
 donde `q = a/b`, `u = a'/b`, `v = b'/b`. El cociente **no forma `b²`**, igual
-que en Fase 2. Un exponente variable (`b' ≠ 0` o `b'' ≠ 0`) se rechaza con
+que en Motor Dual. Un exponente variable (`b' ≠ 0` o `b'' ≠ 0`) se rechaza con
 `DomainFault::Pow`: la regla general exige `ln a` y no se improvisa.
 
 `HyperStack` = 32 × 24 + 4 + 4 = **776 B**, alineado a 8.
@@ -233,7 +230,7 @@ Resultado: `ALLOC_COUNT == 0`, `ALLOC_BYTES == 0`, checksum finito. La ruta
 | Unitarios `relic_core` | `cargo test -p relic_core --lib` | **62/62** |
 | Zero-alloc | `cargo test -p relic_core --test solver_zero_alloc` | **1/1**, 0 asignaciones |
 | Kernel preexistente | `cargo test -p relic_core --test kernel_end_to_end_stress_audit` | 1/1 (el assert `< 64 KB` sigue intacto) |
-| Regresión `relic_core` | `cargo test -p relic_core --no-fail-fast` | 149 verdes, solo los 2 rojos de Fase 0 |
+| Regresión `relic_core` | `cargo test -p relic_core --no-fail-fast` | 149 verdes, solo los 2 rojos de Línea Base |
 | `relic_blackwall` | `cargo test -p relic_blackwall` | exit 0, 10 targets |
 | `relic_cli` | `cargo test -p relic_cli` | exit 0, 11 targets |
 | `relic_server` | `cargo test -p relic_server` | exit 0, 9 targets |
@@ -263,24 +260,24 @@ base, con los mismos nombres y sin tocar umbrales.
 5. **`Certified::residual` en la rama `Relative` puede ser `0.0`** cuando el
    cociente real cae por debajo de `f64::MIN_POSITIVE`; significa
    "despreciable", no "exactamente cero". El `criterion` lo distingue.
-6. **La superficie pública creció otra vez** (Fase 4 re-exporta 17 nombres más:
+6. **La superficie pública creció otra vez** (Solver re-exporta 17 nombres más:
    `HyperDual`, `Poly2`, `Certified`, `SolveOutcome`, etc.). La revisión en bloque
-   llegó en Fase 5: ver `docs/API_ARITMETICA.md`.
+   llegó en API Pública: ver `docs/API_ARITMETICA.md`.
 
 ---
 
-## 10. Estado para la Fase 5
+## 10. Estado para la API Pública
 
 El solver ya devuelve un estado formal para cada entrada: raíz certificada con
 criterio declarado, `NoRealRoots`, `InfinitelyMany` o un `SolveFault` concreto.
-La Fase 5 puede exponerlo sin inventar semántica: no hay `Option<f64>` ambiguo
+La API Pública puede exponerlo sin inventar semántica: no hay `Option<f64>` ambiguo
 ni `NaN` que interpretar. Lo que falta es decidir la superficie pública final
 y si `SolveOutcome` debe implementar conversiones hacia el contrato histórico
 de `ArithmeticPlan` sin tocar `ArithmeticOp`.
 
 ---
 
-> **Actualización (Fase 5):** la superficie quedó congelada. Los módulos de
+> **Actualización (API Pública):** la superficie quedó congelada. Los módulos de
 > implementación pasaron a privados, se re-exportan 39 nombres (4 históricos +
 > 35 nuevos), se añadió `extract` y el gate `tests/arithmetic_public_api.rs`.
 > El contrato completo vive en `docs/API_ARITMETICA.md`. El punto 6 de la deuda

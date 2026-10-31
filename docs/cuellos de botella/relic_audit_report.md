@@ -205,7 +205,7 @@ Generación Libre sin Criterio:             1 ( 1.8%)
 
 ### Fases de Implementación del Plan de Cero-Hardcoding
 
-#### Fase 1: Generación y Validación del Dataset de Secuencias Slot-BIO
+#### Etapa 1: Generación y Validación del Dataset de Secuencias Slot-BIO
 - Generar datos de entrenamiento y evaluación en `data/semantic_compiler/slot_tagged/` con etiquetas BIO exhaustivas (`B-INIT_QTY`, `B-ENTITY`, `B-OP_ADD`, `B-OP_SUB`, `B-ORIGIN`, `B-TARGET`, `B-VIA`, `B-AVOID`, `B-NEGATION`).
 - Incluir variaciones sintácticas ricas (directas, invertidas, compuestas, sinónimos) para asegurar que el modelo aprenda la semántica profunda sin requerir reglas léxicas.
 

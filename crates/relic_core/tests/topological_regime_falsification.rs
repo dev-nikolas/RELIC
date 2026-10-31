@@ -43,7 +43,7 @@ fn test_topological_regime_immunity_and_causal_fault_detection() {
 
     let channels: Vec<SixEyesChannel> = (0..NUM_NODES).map(|_| SixEyesChannel::new()).collect();
 
-    // 1. Fase Estacionaria
+    // 1. Régimen Estacionario
     for _ in 0..200 {
         let base_signal = rng.next_gaussian(100.0, 1.0);
         let mut snapshot = [0.0f32; NUM_NODES];

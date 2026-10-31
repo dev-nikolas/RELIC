@@ -1,13 +1,11 @@
-# Auditoría Fase 2 + Fase 3 — Motor dual y compilador RPN
+# Motor Algebraico Diferencial y Compilador RPN
 
 **Fecha:** 2026-10-30
 **Commit de partida:** `ebbfd2c`
 **Toolchain:** `rustc 1.99.1` / `cargo 1.99.1`, perfil `dev` (debug)
-**Documento previo:** `docs/AUDITORIA_FASES_0_1_BASELINE.md`
+**Documento previo:** `docs/ARITHMETIC_BASELINE_REFRACTOR.md`
 
-Este documento cubre el motor algebraico dual (Fase 2) y el compilador/evaluador RPN
-(Fase 3). No declara ninguna mejora de latencia: los únicos números son conteos de
-líneas, conteos de tests, bytes exactos de `size_of`/`align_of` y cotas $O(\cdot)$.
+Este documento cubre el motor algebraico diferencial (números duales) y el compilador/evaluador RPN. No declara ninguna mejora de latencia: los únicos números son conteos de líneas, conteos de tests, bytes exactos de `size_of`/`align_of` y cotas $O(\cdot)$.
 
 ---
 
@@ -47,17 +45,17 @@ pub fn checked_div(self, rhs: Self) -> DualResult {
 3. **Determinismo.** Una sola división final reutiliza $q$; no hay FMA ni reasociación,
    así que el bit de resultado es reproducible entre targets.
 
-### 0.2 Lo que la Fase 1 **no** podía blindar
+### 0.2 Lo que la Refactorización **no** podía blindar
 
-La Fase 1 fue un renombrado puro (`git diff -cached -M --numstat` = `0 0` en `plan.rs`).
+La Refactorización fue un renombrado puro (`git diff -cached -M --numstat` = `0 0` en `plan.rs`).
 No contenía una sola línea de derivada, así que **no podía** blindar el signo: no había
-nada que corregir allí. El blindaje efectivo es doble y vive en Fase 2:
+nada que corregir allí. El blindaje efectivo es doble y vive en Motor Dual:
 
 - la fórmula implementada, y
 - el test `quotient_rule_has_correct_sign`, que falla si alguien vuelve a intercambiar
   $\alpha$ y $\beta$.
 
-Lo único que garantizó la Fase 1 es **atribuibilidad**: al no tocar `plan.rs`, cualquier
+Lo único que garantizó la Refactorización es **atribuibilidad**: al no tocar `plan.rs`, cualquier
 cambio numérico posterior es necesariamente atribuible a un archivo nuevo, nunca a una
 edición encubierta del contrato histórico.
 
@@ -86,7 +84,7 @@ edición encubierta del contrato histórico.
 - **No** se modifica `plan.rs` ni su contrato (`ArithmeticPlan`, `ArithmeticError`,
   `ArithmeticReduction`).
 - **No** hay solver de ecuaciones todavía: `classify.rs` solo expone la inferencia que
-  la Fase 4 consumirá.
+  la Solver consumirá.
 - **No** hay traza RPN (`RpnTrace`): diferida.
 - **No** se integra nada en `TacticalKernelContext`.
 
@@ -316,7 +314,7 @@ base; no se relajó ningún umbral.
 
 ## 10. Deuda registrada (no corregida a propósito)
 
-1. **Superficie pública adelantada a Fase 3.** `mod.rs` expone `dual`, `program`,
+1. **Superficie pública adelantada a Compilador RPN.** `mod.rs` expone `dual`, `program`,
    `classify`, `lexer`, `rpn_eval` como `pub`, más **17** nombres nuevos re-exportados
    (4 históricos intactos). El diseño
    reservaba esto para la Fase 5. Se adelantó porque el gate de equivalencia necesita
@@ -334,25 +332,25 @@ base; no se relajó ningún umbral.
 5. **`RpnTrace` no existe.** No hay registro de qué instrucción produjo qué abstención;
    el `EvalFault` solo identifica la causa. Necesario antes de exponer el motor al
    usuario final.
-6. **`arithmetic/mod.rs` ya no es el `mod.rs` de 13 líneas de Fase 1.** Creció a 30 por
+6. **`arithmetic/mod.rs` ya no es el `mod.rs` de 13 líneas de Refactorización.** Creció a 30 por
    los re-exports. Sigue por debajo de 180.
 
 ---
 
-## 11. Estado de partida para la Fase 4
+## 11. Estado de partida para la Solver
 
 `classify.rs` entrega exactamente lo que el solver necesita: `is_linear()` e
 `is_quadratic()` sobre una cota **sintáctica** de grado, con `UNKNOWN_DEGREE = u16::MAX`
-significando "no demostrable", nunca "grado medido". La Fase 4 puede por tanto:
+significando "no demostrable", nunca "grado medido". La Solver puede por tanto:
 
 - resolver lineal/cuadrático por fórmula cerrada cuando `is_linear`/`is_quadratic`;
 - usar Newton solo cuando la clasificación no concluya;
 - abstenerse cuando `has_transcendental` o `var_in_denominator` impidan garantizar
   convergencia.
 
-Nada de eso está implementado todavía. Este documento no anticipa métricas de la Fase 4.
+Nada de eso está implementado todavía. Este documento no anticipa métricas de la Solver.
 
 ---
 
-> **Actualización (Fase 4):** implementado en `docs/AUDITORIA_FASE_4_SOLVER.md`.
-> Este documento se conserva como registro del estado al cerrar la Fase 3.
+> **Actualización (Solver):** implementado en `docs/ARITHMETIC_SOLVER_CERTIFICATION.md`.
+> Este documento se conserva como registro del estado al cerrar la Compilador RPN.

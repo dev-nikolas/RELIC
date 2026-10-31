@@ -1,4 +1,4 @@
-//! Gate de Fase 4: la ruta `solve` no asigna memoria dinámica.
+//! Verificación Zero-Alloc: la ruta `solve` no asigna memoria dinámica.
 //!
 //! Es un binario de test independiente: un `#[global_allocator]` solo puede
 //! declararse una vez por binario, así que se replica el patrón de

@@ -1,4 +1,4 @@
-//! Gate de Fase 6: construir y consultar el índice no asigna memoria.
+//! Verificación Zero-Alloc: construir y consultar el índice no asigna memoria.
 //!
 //! Binario propio: un `#[global_allocator]` solo puede declararse una vez por
 //! binario, así que se replica el patrón de `solver_zero_alloc.rs`.

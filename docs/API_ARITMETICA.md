@@ -4,8 +4,8 @@
 **Commit de partida:** `ebbfd2c`
 **Toolchain:** `rustc 1.99.1` / `cargo 1.99.1`
 **Gate ejecutable:** `crates/relic_core/tests/arithmetic_public_api.rs` (6 tests)
-**Documentos de fase:** `docs/AUDITORIA_FASES_0_1_BASELINE.md`,
-`docs/AUDITORIA_FASES_2_3_MOTOR_DUAL.md`, `docs/AUDITORIA_FASE_4_SOLVER.md`
+**Documentos de implementación:** `docs/cuellos de botella/ARITHMETIC_BASELINE_REFRACTOR.md`,
+`docs/cuellos de botella/ARITHMETIC_DUAL_RPN_ENGINE.md`, `docs/cuellos de botella/ARITHMETIC_SOLVER_CERTIFICATION.md`
 
 Este documento es el contrato, no la historia. Si algo cambia aquí, cambia la API.
 Si cambia la implementación sin cambiar este documento, es un bug.

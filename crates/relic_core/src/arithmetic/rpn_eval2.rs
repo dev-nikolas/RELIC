@@ -1,11 +1,11 @@
 //! # Evaluador RPN hyperdual
 //!
 //! Pila de 32 valores `(f, f', f'')` (776 B) en la pila del hilo. Reutiliza
-//! `DiffOp` y `RpnProgram` de la Fase 3; solo cambia el tipo de celda.
+//! `DiffOp` y `RpnProgram`; solo cambia el tipo de celda.
 //!
 //! La duplicación de `rpn_eval` es deliberada: unificar ambos evaluadores con
 //! un trait exigiría despacho dinámico o monomorfización sobre toda la
-//! superficie pública, y la Fase 4 no debe tocar el evaluador ya certificado.
+//! superficie pública, preservando el evaluador de primer orden verificado.
 
 use super::dual2::{HyperDual, HyperResult};
 use super::program::{DiffOp, RpnProgram, MAX_INSTRUCTIONS};

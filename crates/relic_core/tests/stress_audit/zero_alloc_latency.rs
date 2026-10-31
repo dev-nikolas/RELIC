@@ -51,7 +51,7 @@ pub fn run_zero_alloc_and_latency_audit() {
     let wl1_sig = WL1Signature::compute_canonical(1, 1, &[token], &[token]);
     let clean_snapshot = [250.0f32, 250.0, 250.0, 0.0];
 
-    // Fase de pre-calentamiento (warm-up) para eliminar fallos de página y cebar caché
+    // Pre-calentamiento (warm-up) para eliminar fallos de página y cebar caché
     for i in 0..WARMUP_CYCLES as u64 {
         let mut env = StagedEnvelope::new(i + 1);
         env.add_op(1, 300.0, 200.0, 0).unwrap();

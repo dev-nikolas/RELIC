@@ -1,4 +1,4 @@
-//! # EmpiricalFailureToken & Falsification Gate
+//! # EmpiricalFailureToken & Falsification Certificate
 //!
 //! Token de prueba tipado para certificar que una falla física ocurrió realmente
 //! en el entorno ciberfísico, emitido únicamente cuando la martingala SPRT

@@ -53,6 +53,9 @@ pub use contingency_bfs::{
     BitAdjacencyGraph, CausalReachabilityFilter, ContingencyOutcome, LinearizedSensitivityMatrix,
     PreCertifiedContingencyLibrary, PreCertifiedTopology, SwitchAction, SwitchActionType,
     MAX_CONTINGENCIES, MAX_GRAPH_NODES, MAX_SENSITIVITY_EDGES,
+    BridgeError, BridgeRegistry, HierarchicalNode, InterClusterBridge,
+    HierarchicalBitGraph, HierarchicalContingencyLibrary, HierarchicalContingencyPlan,
+    HierarchicalSwitchAction, MAX_BRIDGES, MAX_CLUSTERS,
 };
 pub use interner::NodeInterner;
 pub use kuramoto::{

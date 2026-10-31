@@ -1,11 +1,11 @@
-# Auditoría Fase 6 — Índice jerárquico de alcanzabilidad sin heap
+# Índice Jerárquico de Alcanzabilidad Sin Heap
 
 **Fecha:** 2026-10-30
-**Commit de partida:** `5c569e6` (checkpoint de Fases 0–5)
+**Commit de partida:** `5c569e6` (checkpoint de módulos aritméticos)
 **Toolchain:** `rustc 1.99.1` / `cargo 1.99.1`, perfil `dev`
-**Documentos previos:** `docs/API_ARITMETICA.md` y las auditorías de Fases 0–4
+**Documentos previos:** `docs/API_ARITMETICA.md` y los documentos de motor aritmético
 
-Esta fase ataca el segundo cuello de botella: la consulta de alcanzabilidad de
+Este componente ataca el cuello de botella de consulta de alcanzabilidad de
 `reasoning_engine.rs`, que asigna `Vec` por frontera, clona los buffers de
 `search_buffer.rs` y materializa `String` por cada nodo del camino.
 
@@ -22,7 +22,7 @@ conteos de tests, cotas $O(\cdot)$ y los resultados que los gates imprimen.
 | `clone()` del conjunto cerrado | `reasoning_engine.rs:128` |
 | `to_string()` por nodo del camino y del conjunto cerrado | `reasoning_engine.rs:131,152` |
 | `BitAdjacencyGraph` existente: 64 nodos, 512 B | `contingency_bfs/graph.rs:6-15` |
-| No existe especificación de Fase 6 en el repositorio | `git log -S "Fase 6"` vacío |
+| No existe especificación de Índice de Grafos en el repositorio | `git log -S "Índice de Grafos"` vacío |
 
 `reasoning_engine.rs` no se modifica en esta fase. El índice es aditivo.
 
@@ -184,16 +184,16 @@ No se afirma nada sobre tiempos de pared.
 
 ---
 
-## 6. Gates ejecutados
+## 6. Criterios ejecutados
 
-| Gate | Comando | Resultado |
+| Criterio | Comando | Resultado |
 |---|---|---|
 | Compilación total | `cargo check --workspace --all-targets` | exit 0, **0 warnings** |
 | Unitarios del índice | `cargo test -p relic_core --lib graph_index` | **13/13** |
 | Unitarios `relic_core` | `cargo test -p relic_core --lib` | **75/75** |
 | Propiedad vs BFS | `cargo test -p relic_core --test graph_index_property` | **3/3** |
 | Cero asignaciones | `cargo test -p relic_core --test graph_index_zero_alloc` | **1/1** |
-| Regresión `relic_core` | `cargo test -p relic_core --no-fail-fast` | **173 verdes**, 27 targets, solo los 2 rojos de Fase 0 |
+| Regresión `relic_core` | `cargo test -p relic_core --no-fail-fast` | **173 verdes**, 27 targets, solo los 2 rojos de Línea Base |
 | Límite de 180 líneas | recuento por archivo | máximo **149** |
 
 ### 6.1 Qué prueba cada gate
@@ -231,14 +231,14 @@ No se afirma nada sobre tiempos de pared.
 4. **Construcción $O(C^2 W)$.** Con $C = 512$ son ~2 M operaciones de palabra;
    aceptable una vez, no para reconstruir por consulta.
 5. **No integrado.** `ReasoningEngine` sigue siendo la única ruta de producción.
-   La Fase 7 tendría que decidir el despacho: índice para grafos dentro de
+   La Integración con ReasoningEngine tendría que decidir el despacho: índice para grafos dentro de
    capacidad, respaldo al motor actual para el resto.
 6. **Sin métrica de latencia comparativa.** No se ha medido el índice contra el
    motor; esta fase solo fija exactitud, memoria y ausencia de asignación.
 
 ---
 
-## 8. Estado para la Fase 7
+## 8. Estado para la Integración con ReasoningEngine
 
 El índice ya responde con exactitud y sin heap para grafos dentro de capacidad.
 Lo que falta es la política de convivencia con `ReasoningEngine`:

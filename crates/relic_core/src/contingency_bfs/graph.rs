@@ -24,6 +24,8 @@ impl BitAdjacencyGraph {
 
     #[inline(always)]
     pub fn add_bidirectional_edge(&mut self, u: u8, v: u8) {
+        debug_assert!((u as usize) < MAX_GRAPH_NODES, "Verificación de cotas sin aliasing silencioso u={}", u);
+        debug_assert!((v as usize) < MAX_GRAPH_NODES, "Verificación de cotas sin aliasing silencioso v={}", v);
         let u_idx = (u as usize) % MAX_GRAPH_NODES;
         let v_idx = (v as usize) % MAX_GRAPH_NODES;
         self.adj[u_idx] |= 1u64 << v_idx;
@@ -32,6 +34,8 @@ impl BitAdjacencyGraph {
 
     #[inline(always)]
     pub fn quarantine_edge(&mut self, u: u8, v: u8) {
+        debug_assert!((u as usize) < MAX_GRAPH_NODES, "Verificación de cotas sin aliasing silencioso u={}", u);
+        debug_assert!((v as usize) < MAX_GRAPH_NODES, "Verificación de cotas sin aliasing silencioso v={}", v);
         let u_idx = (u as usize) % MAX_GRAPH_NODES;
         let v_idx = (v as usize) % MAX_GRAPH_NODES;
         self.adj[u_idx] &= !(1u64 << v_idx);
@@ -40,6 +44,8 @@ impl BitAdjacencyGraph {
 
     #[inline(always)]
     pub fn restore_edge(&mut self, u: u8, v: u8) {
+        debug_assert!((u as usize) < MAX_GRAPH_NODES, "Verificación de cotas sin aliasing silencioso u={}", u);
+        debug_assert!((v as usize) < MAX_GRAPH_NODES, "Verificación de cotas sin aliasing silencioso v={}", v);
         let u_idx = (u as usize) % MAX_GRAPH_NODES;
         let v_idx = (v as usize) % MAX_GRAPH_NODES;
         self.adj[u_idx] |= 1u64 << v_idx;
