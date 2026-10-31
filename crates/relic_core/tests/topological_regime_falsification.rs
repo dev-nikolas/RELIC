@@ -47,8 +47,8 @@ fn test_topological_regime_immunity_and_causal_fault_detection() {
     for _ in 0..200 {
         let base_signal = rng.next_gaussian(100.0, 1.0);
         let mut snapshot = [0.0f32; NUM_NODES];
-        for i in 0..NUM_NODES {
-            snapshot[i] = (base_signal + rng.next_gaussian(0.0, 0.2)) as f32;
+        for val in snapshot.iter_mut() {
+            *val = (base_signal + rng.next_gaussian(0.0, 0.2)) as f32;
         }
 
         for i in 0..NUM_NODES {
@@ -63,8 +63,8 @@ fn test_topological_regime_immunity_and_causal_fault_detection() {
     for _ in 0..100 {
         let base_regime = rng.next_gaussian(500.0, 2.0);
         let mut snapshot = [0.0f32; NUM_NODES];
-        for i in 0..NUM_NODES {
-            snapshot[i] = (base_regime + rng.next_gaussian(0.0, 0.2)) as f32;
+        for val in snapshot.iter_mut() {
+            *val = (base_regime + rng.next_gaussian(0.0, 0.2)) as f32;
         }
 
         for i in 0..NUM_NODES {
@@ -80,8 +80,8 @@ fn test_topological_regime_immunity_and_causal_fault_detection() {
     for sample in 1..=50 {
         let mut snapshot = [0.0f32; NUM_NODES];
         snapshot[0] = (250.0 + rng.next_gaussian(0.0, 0.2)) as f32;
-        for i in 1..NUM_NODES {
-            snapshot[i] = (500.0 + rng.next_gaussian(0.0, 0.2)) as f32;
+        for val in snapshot.iter_mut().skip(1) {
+            *val = (500.0 + rng.next_gaussian(0.0, 0.2)) as f32;
         }
 
         let assessment0 = channels[0].evaluate_with_topology(
