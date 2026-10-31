@@ -51,8 +51,8 @@ fn test_topological_regime_immunity_and_causal_fault_detection() {
             *val = (base_signal + rng.next_gaussian(0.0, 0.2)) as f32;
         }
 
-        for i in 0..NUM_NODES {
-            let assessment = channels[i].evaluate_with_topology(
+        for (i, channel) in channels.iter().enumerate() {
+            let assessment = channel.evaluate_with_topology(
                 snapshot[i] as f64, &topo_engine.neighborhoods[i], &snapshot, &win, &wres,
             );
             assert!(!assessment.martingale_alarm);
@@ -67,8 +67,8 @@ fn test_topological_regime_immunity_and_causal_fault_detection() {
             *val = (base_regime + rng.next_gaussian(0.0, 0.2)) as f32;
         }
 
-        for i in 0..NUM_NODES {
-            let assessment = channels[i].evaluate_with_topology(
+        for (i, channel) in channels.iter().enumerate() {
+            let assessment = channel.evaluate_with_topology(
                 snapshot[i] as f64, &topo_engine.neighborhoods[i], &snapshot, &win, &wres,
             );
             assert!(!assessment.martingale_alarm, "Salto global no debe disparar falsos positivos");
@@ -101,8 +101,8 @@ fn test_topological_regime_immunity_and_causal_fault_detection() {
     let start = Instant::now();
 
     for _ in 0..BENCH_TICKS {
-        for i in 0..NUM_NODES {
-            let res = channels[i].evaluate_with_topology(
+        for (i, channel) in channels.iter().enumerate() {
+            let res = channel.evaluate_with_topology(
                 bench_snapshot[i] as f64, &topo_engine.neighborhoods[i], &bench_snapshot, &win, &wres,
             );
             std::hint::black_box(res);

@@ -5,6 +5,7 @@ use std::alloc::{GlobalAlloc, Layout, System};
 use std::mem::size_of;
 use std::sync::atomic::{AtomicBool, AtomicUsize, Ordering};
 use std::time::Instant;
+use itertools::izip;
 
 use relic_core::arithmetic::{compile, eval, solve, DualNumber};
 use relic_core::contingency_bfs::{
@@ -60,10 +61,10 @@ fn benchmark_architecture_evolution() {
 
     ALLOC_COUNT.store(0, Ordering::SeqCst);
     TRACKING.store(true, Ordering::SeqCst);
-    for i in 0..ITERS {
-        let t0 = Instant::now(); let _ = eval(&p_dual, DualNumber::variable(0.5)); t_dual[i] = t0.elapsed().as_nanos() as f64;
-        let t0 = Instant::now(); let _ = solve(&p_linear, None); t_linear[i] = t0.elapsed().as_nanos() as f64;
-        let t0 = Instant::now(); let _ = solve(&p_trans, Some(0.5)); t_trans[i] = t0.elapsed().as_nanos() as f64;
+    for (t_dual_val, t_linear_val, t_trans_val) in izip!(t_dual.iter_mut(), t_linear.iter_mut(), t_trans.iter_mut()) {
+        let t0 = Instant::now(); let _ = eval(&p_dual, DualNumber::variable(0.5)); *t_dual_val = t0.elapsed().as_nanos() as f64;
+        let t0 = Instant::now(); let _ = solve(&p_linear, None); *t_linear_val = t0.elapsed().as_nanos() as f64;
+        let t0 = Instant::now(); let _ = solve(&p_trans, Some(0.5)); *t_trans_val = t0.elapsed().as_nanos() as f64;
     }
     TRACKING.store(false, Ordering::SeqCst);
     assert_eq!(ALLOC_COUNT.load(Ordering::SeqCst), 0, "Vector 1 violó Zero-Alloc");
@@ -102,10 +103,10 @@ fn benchmark_architecture_evolution() {
 
     let mut t_k1 = vec![0.0f64; ITERS]; let mut t_k16 = vec![0.0f64; ITERS]; let mut t_k64 = vec![0.0f64; ITERS];
     ALLOC_COUNT.store(0, Ordering::SeqCst); TRACKING.store(true, Ordering::SeqCst);
-    for i in 0..ITERS {
-        let t0 = Instant::now(); let _ = g1.verify_hierarchical_pairs(&s_1, &sc_1, &sm_1); t_k1[i] = t0.elapsed().as_nanos() as f64;
-        let t0 = Instant::now(); let _ = gk16.verify_hierarchical_pairs(&s_16, &sc_16, &sm_16); t_k16[i] = t0.elapsed().as_nanos() as f64;
-        let t0 = Instant::now(); let _ = gk64.verify_hierarchical_pairs(&s_64, &sc_64, &sm_64); t_k64[i] = t0.elapsed().as_nanos() as f64;
+    for (t_k1_val, t_k16_val, t_k64_val) in izip!(t_k1.iter_mut(), t_k16.iter_mut(), t_k64.iter_mut()) {
+        let t0 = Instant::now(); let _ = g1.verify_hierarchical_pairs(&s_1, &sc_1, &sm_1); *t_k1_val = t0.elapsed().as_nanos() as f64;
+        let t0 = Instant::now(); let _ = gk16.verify_hierarchical_pairs(&s_16, &sc_16, &sm_16); *t_k16_val = t0.elapsed().as_nanos() as f64;
+        let t0 = Instant::now(); let _ = gk64.verify_hierarchical_pairs(&s_64, &sc_64, &sm_64); *t_k64_val = t0.elapsed().as_nanos() as f64;
     }
     TRACKING.store(false, Ordering::SeqCst);
     assert_eq!(ALLOC_COUNT.load(Ordering::SeqCst), 0, "Vector 2 violó Zero-Alloc");
@@ -154,11 +155,11 @@ fn benchmark_architecture_evolution() {
 
     let mut t_c = vec![0.0f64; ITERS];
     ALLOC_COUNT.store(0, Ordering::SeqCst); TRACKING.store(true, Ordering::SeqCst);
-    for i in 0..ITERS {
+    for t_c_val in t_c.iter_mut() {
         let _ = gc.restore_bridge(node(0, 1), node(1, 0)); bounds[1].quarantined = false;
         let t0 = Instant::now();
         let _ = lib.select_and_apply_contingency_hierarchical(&mut gc, &mut bounds, (node(0, 1), node(1, 0), 1), ctx);
-        t_c[i] = t0.elapsed().as_nanos() as f64;
+        *t_c_val = t0.elapsed().as_nanos() as f64;
     }
     TRACKING.store(false, Ordering::SeqCst);
     assert_eq!(ALLOC_COUNT.load(Ordering::SeqCst), 0, "Vector 3 violó Zero-Alloc");
