@@ -15,7 +15,8 @@ pub use graph::{BitAdjacencyGraph, MAX_GRAPH_NODES};
 pub use bridge::{BridgeError, BridgeRegistry, HierarchicalNode, InterClusterBridge, MAX_BRIDGES, MAX_CLUSTERS};
 pub use hierarchy::HierarchicalBitGraph;
 pub use hierarchical_library::{
-    HierarchicalContingencyLibrary, HierarchicalContingencyPlan, HierarchicalSwitchAction,
+    ContingencyContext, HierarchicalContingencyLibrary, HierarchicalContingencyPlan,
+    HierarchicalSwitchAction,
 };
 pub use reachability::{AlignedSimd, CausalReachabilityFilter};
 pub use library::{

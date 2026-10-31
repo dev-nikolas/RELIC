@@ -55,7 +55,7 @@ fn matches_exhaustive_bfs_on_random_digraphs() {
         }
         for u in 0..n {
             for v in 0..n {
-                if next(&mut seed) % 8 == 0 {
+                if next(&mut seed).is_multiple_of(8) {
                     mem.insert_edge(names[u].as_str(), names[v].as_str());
                 }
             }
@@ -63,8 +63,7 @@ fn matches_exhaustive_bfs_on_random_digraphs() {
         let index = ReachHierarchy::build(&mem).expect("grafo dentro de capacidad");
         for u in 0..n {
             let truth = bfs(&mem, n, u as u32);
-            for v in 0..n {
-                let expected = truth[v];
+            for (v, &expected) in truth.iter().enumerate() {
                 let actual = verdict(&index, u as u32, v as u32);
                 assert_eq!(
                     actual, expected,
