@@ -1,4 +1,9 @@
 //! Scratch buffers reutilizables para BFS bidireccional determinista sin reasignaciones en el heap.
+//!
+//! Todos los buffers de trabajo conservan su capacidad entre consultas: el
+//! motor solo vacía (`clear`) y reutiliza. Una consulta que encuentra el grafo
+//! ya caliente no pide memoria al allocator para las fronteras, los niveles ni
+//! la reconstrucción del camino.
 use std::cell::RefCell;
 
 #[derive(Default)]
@@ -13,6 +18,16 @@ pub struct SearchBuffers {
     pub dist_bwd: Vec<u32>,
     pub touched_fwd: Vec<u32>,
     pub touched_bwd: Vec<u32>,
+    /// Frontera activa de la búsqueda hacia delante.
+    pub frontier: Vec<u32>,
+    /// Frontera activa de la búsqueda hacia atrás.
+    pub frontier_bwd: Vec<u32>,
+    /// Nodos del siguiente nivel; se intercambia con la frontera activa.
+    pub next: Vec<u32>,
+    /// Cruces detectados en el nivel actual: `(u, v, longitud)`.
+    pub meets: Vec<(u32, u32, u32)>,
+    /// Reconstrucción del camino y ensamblado del conjunto cerrado.
+    pub path: Vec<u32>,
 }
 
 impl SearchBuffers {
@@ -34,8 +49,14 @@ impl SearchBuffers {
         }
         self.touched_fwd.clear();
         self.touched_bwd.clear();
+        self.frontier.clear();
+        self.frontier_bwd.clear();
+        self.next.clear();
+        self.meets.clear();
+        self.path.clear();
     }
 
+    /// Vacía solo los conjuntos tocados, conservando el resto del estado.
     #[inline]
     pub fn reset(&mut self) {
         self.touched_fwd.clear();

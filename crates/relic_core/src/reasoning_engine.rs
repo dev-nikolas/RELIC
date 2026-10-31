@@ -1,4 +1,10 @@
 //! Motor de razonamiento algorítmico determinista (BFS Bidireccional de Horizonte Elástico).
+//!
+//! Las fronteras, los cruces y la reconstrucción del camino viven en
+//! `search_buffer::BUFFERS`: cada nivel reutiliza la capacidad ya reservada en
+//! lugar de crear un `Vec` nuevo. Tras la primera consulta sobre un grafo, el
+//! número de asignaciones por consulta es constante e independiente del tamaño
+//! del grafo y de la profundidad.
 use crate::certificate::{ReachabilityResult, SearchOutcome};
 use crate::episodic_memory::EpisodicMemory;
 use crate::search_buffer::BUFFERS;
@@ -38,43 +44,41 @@ impl ReasoningEngine {
             if a == start { return Self::unreachable_res(vec![start.to_string()], vec![s_id], 0, false); }
             if a == target { return Self::unreachable_res(vec![target.to_string()], vec![t_id], 0, false); }
         }
-        if s_id == t_id {
-            let p = if mat_str { vec![start.to_string()] } else { Vec::new() };
-            return Self::reachable_res(p, vec![s_id], 0);
-        }
+        if s_id == t_id { return Self::reachable_res(mem, vec![s_id], 0, mat_str); }
         let n = mem.interner.len();
 
         BUFFERS.with(|cell| {
-            let mut b = cell.borrow_mut();
+            let b = &mut *cell.borrow_mut();
             b.prepare(n);
             let gen = b.current_gen;
             for &a in avoid_nodes {
                 if let Some(id) = mem.interner.get_id(a) { if (id as usize) < n { b.avoid_gen[id as usize] = gen; } }
             }
             if b.avoid_gen[s_id as usize] == gen {
-                b.reset();
                 let p = if mat_str { vec![start.to_string()] } else { Vec::new() };
                 return Self::unreachable_res(p, vec![s_id], 0, false);
             }
 
-            b.visited_gen_fwd[s_id as usize] = gen; b.dist_fwd[s_id as usize] = 0; b.parent_fwd[s_id as usize] = s_id; b.touched_fwd.push(s_id);
-            let (mut frontier_fwd, mut frontier_bwd) = (vec![s_id], Vec::new());
+            b.visited_gen_fwd[s_id as usize] = gen; b.dist_fwd[s_id as usize] = 0;
+            b.parent_fwd[s_id as usize] = s_id; b.touched_fwd.push(s_id);
+            b.frontier.push(s_id);
             let avoid_t = b.avoid_gen[t_id as usize] == gen;
             if !avoid_t {
-                b.visited_gen_bwd[t_id as usize] = gen; b.dist_bwd[t_id as usize] = 0; b.parent_bwd[t_id as usize] = t_id;
-                b.touched_bwd.push(t_id); frontier_bwd.push(t_id);
+                b.visited_gen_bwd[t_id as usize] = gen; b.dist_bwd[t_id as usize] = 0;
+                b.parent_bwd[t_id as usize] = t_id; b.touched_bwd.push(t_id);
+                b.frontier_bwd.push(t_id);
             }
             let (mut ops, mut lf, mut lb) = (0usize, 0usize, 0usize);
 
-            while !frontier_fwd.is_empty() && (!frontier_bwd.is_empty() || avoid_t) {
-                let cf: usize = frontier_fwd.iter().map(|&u| mem.get_neighbors_u32(u).len()).sum();
-                let cb: usize = if frontier_bwd.is_empty() { usize::MAX } else { frontier_bwd.iter().map(|&v| mem.get_predecessors_u32(v).len()).sum() };
+            while !b.frontier.is_empty() && (!b.frontier_bwd.is_empty() || avoid_t) {
+                let cf: usize = b.frontier.iter().map(|&u| mem.get_neighbors_u32(u).len()).sum();
+                let cb: usize = if b.frontier_bwd.is_empty() { usize::MAX } else { b.frontier_bwd.iter().map(|&v| mem.get_predecessors_u32(v).len()).sum() };
                 let exp_fwd = cf <= cb;
                 let cost = if exp_fwd { cf } else { cb };
                 if ops + cost > budget_ops {
                     let out = SearchOutcome::BudgetExceeded {
                         levels_forward: lf, levels_backward: lb,
-                        frontier_size: if exp_fwd { frontier_fwd.len() } else { frontier_bwd.len() },
+                        frontier_size: if exp_fwd { b.frontier.len() } else { b.frontier_bwd.len() },
                         estimated_next_cost: cost, operations_spent: ops,
                     };
                     b.reset();
@@ -82,52 +86,55 @@ impl ReasoningEngine {
                 }
                 if let Some(lim) = max_hops { if lf + lb >= lim { break; } }
 
+                b.next.clear(); b.meets.clear();
                 if exp_fwd {
                     lf += 1;
-                    let (mut nxt, mut meets) = (Vec::new(), Vec::new());
-                    frontier_fwd.sort_by(|&a, &b_id| mem.interner.resolve(a).cmp(&mem.interner.resolve(b_id)));
-                    for curr in frontier_fwd {
+                    b.frontier.sort_by(|&a, &c| mem.interner.resolve(a).cmp(&mem.interner.resolve(c)));
+                    for curr in b.frontier.iter().copied() {
+                        let dist_curr = b.dist_fwd[curr as usize];
                         for &nbr in mem.get_neighbors_u32(curr) {
                             ops += 1;
                             let idx = nbr as usize;
-                            if idx < n && b.avoid_gen[idx] == gen { continue; }
-                            if idx < n && b.visited_gen_bwd[idx] == gen { meets.push((curr, nbr, b.dist_fwd[curr as usize] + 1 + b.dist_bwd[idx])); }
-                            if idx < n && b.visited_gen_fwd[idx] != gen {
-                                b.visited_gen_fwd[idx] = gen; b.dist_fwd[idx] = b.dist_fwd[curr as usize] + 1;
-                                b.parent_fwd[idx] = curr; b.touched_fwd.push(nbr); nxt.push(nbr);
+                            if idx >= n || b.avoid_gen[idx] == gen { continue; }
+                            if b.visited_gen_bwd[idx] == gen { b.meets.push((curr, nbr, dist_curr + 1 + b.dist_bwd[idx])); }
+                            if b.visited_gen_fwd[idx] != gen {
+                                b.visited_gen_fwd[idx] = gen; b.dist_fwd[idx] = dist_curr + 1;
+                                b.parent_fwd[idx] = curr; b.touched_fwd.push(nbr); b.next.push(nbr);
                             }
                         }
                     }
-                    if let Some(res) = Self::try_resolve(mem, meets, max_hops, &b.parent_fwd, &b.parent_bwd, s_id, t_id, ops, mat_str) {
-                        b.reset(); return res;
-                    }
-                    frontier_fwd = nxt;
+                    std::mem::swap(&mut b.frontier, &mut b.next);
                 } else {
                     lb += 1;
-                    let (mut nxt, mut meets) = (Vec::new(), Vec::new());
-                    frontier_bwd.sort_by(|&a, &b_id| mem.interner.resolve(a).cmp(&mem.interner.resolve(b_id)));
-                    for curr in frontier_bwd {
+                    b.frontier_bwd.sort_by(|&a, &c| mem.interner.resolve(a).cmp(&mem.interner.resolve(c)));
+                    for curr in b.frontier_bwd.iter().copied() {
+                        let dist_curr = b.dist_bwd[curr as usize];
                         for &pred in mem.get_predecessors_u32(curr) {
                             ops += 1;
                             let idx = pred as usize;
-                            if idx < n && b.avoid_gen[idx] == gen { continue; }
-                            if idx < n && b.visited_gen_fwd[idx] == gen { meets.push((pred, curr, b.dist_fwd[idx] + 1 + b.dist_bwd[curr as usize])); }
-                            if idx < n && b.visited_gen_bwd[idx] != gen {
-                                b.visited_gen_bwd[idx] = gen; b.dist_bwd[idx] = b.dist_bwd[curr as usize] + 1;
-                                b.parent_bwd[idx] = curr; b.touched_bwd.push(pred); nxt.push(pred);
+                            if idx >= n || b.avoid_gen[idx] == gen { continue; }
+                            if b.visited_gen_fwd[idx] == gen { b.meets.push((pred, curr, b.dist_fwd[idx] + 1 + dist_curr)); }
+                            if b.visited_gen_bwd[idx] != gen {
+                                b.visited_gen_bwd[idx] = gen; b.dist_bwd[idx] = dist_curr + 1;
+                                b.parent_bwd[idx] = curr; b.touched_bwd.push(pred); b.next.push(pred);
                             }
                         }
                     }
-                    if let Some(res) = Self::try_resolve(mem, meets, max_hops, &b.parent_fwd, &b.parent_bwd, s_id, t_id, ops, mat_str) {
-                        b.reset(); return res;
-                    }
-                    frontier_bwd = nxt;
+                    std::mem::swap(&mut b.frontier_bwd, &mut b.next);
+                }
+                if let Some(res) = Self::try_resolve(mem, &mut b.meets, max_hops, &b.parent_fwd, &b.parent_bwd, s_id, t_id, ops, mat_str, &mut b.path) {
+                    b.reset(); return res;
                 }
             }
 
-            let mut c_ids = if frontier_bwd.is_empty() && !avoid_t { b.touched_bwd.clone() } else { b.touched_fwd.clone() };
+            let backward = b.frontier_bwd.is_empty() && !avoid_t;
+            {
+                let source = if backward { &b.touched_bwd } else { &b.touched_fwd };
+                b.path.extend_from_slice(source);
+            }
             b.reset();
-            c_ids.sort_unstable();
+            b.path.sort_unstable();
+            let c_ids = b.path.clone();
             let c_set = if mat_str { c_ids.iter().filter_map(|&id| mem.interner.resolve(id).map(|s| s.to_string())).collect() } else { Vec::new() };
             Self::unreachable_res(c_set, c_ids, ops, max_hops.is_some() && (lf + lb >= max_hops.unwrap()))
         })
@@ -135,26 +142,27 @@ impl ReasoningEngine {
 
     #[allow(clippy::too_many_arguments)]
     fn try_resolve(
-        mem: &EpisodicMemory, mut meets: Vec<(u32, u32, u32)>, max_h: Option<usize>,
-        pf: &[u32], pb: &[u32], sid: u32, tid: u32, ops: usize, mat_str: bool,
+        mem: &EpisodicMemory, meets: &mut Vec<(u32, u32, u32)>, max_h: Option<usize>,
+        pf: &[u32], pb: &[u32], sid: u32, tid: u32, ops: usize, mat_str: bool, scratch: &mut Vec<u32>,
     ) -> Option<ReachabilityResult> {
         if let Some(lim) = max_h { meets.retain(|&(_, _, len)| len as usize <= lim); }
         if meets.is_empty() { return None; }
         meets.sort_by(|a, b| a.2.cmp(&b.2).then_with(|| mem.interner.resolve(a.1).cmp(&mem.interner.resolve(b.1))));
         let (u, v, _) = meets[0];
-        let (mut ids, mut curr) = (Vec::new(), u);
-        ids.push(curr);
-        while curr != sid { curr = pf[curr as usize]; ids.push(curr); }
-        ids.reverse();
+        scratch.clear();
+        let mut curr = u;
+        scratch.push(curr);
+        while curr != sid { curr = pf[curr as usize]; scratch.push(curr); }
+        scratch.reverse();
         curr = v;
-        ids.push(curr);
-        while curr != tid { curr = pb[curr as usize]; ids.push(curr); }
-        let path = if mat_str { ids.iter().map(|&id| mem.interner.resolve(id).unwrap().to_string()).collect() } else { Vec::new() };
-        Some(Self::reachable_res(path, ids, ops))
+        scratch.push(curr);
+        while curr != tid { curr = pb[curr as usize]; scratch.push(curr); }
+        Some(Self::reachable_res(mem, scratch.clone(), ops, mat_str))
     }
 
-    fn reachable_res(p: Vec<String>, ids: Vec<u32>, ops: usize) -> ReachabilityResult {
-        let len = if !ids.is_empty() { ids.len() - 1 } else if !p.is_empty() { p.len() - 1 } else { 0 };
+    fn reachable_res(mem: &EpisodicMemory, ids: Vec<u32>, ops: usize, mat_str: bool) -> ReachabilityResult {
+        let p: Vec<String> = if mat_str { ids.iter().map(|&id| mem.interner.resolve(id).unwrap_or("?").to_string()).collect() } else { Vec::new() };
+        let len = ids.len().saturating_sub(1);
         ReachabilityResult { is_reachable: true, path_length: len, path: p.clone(), queries_used: ops, depth_exhausted: false, outcome: SearchOutcome::Reachable { path: p, path_ids: ids } }
     }
 
