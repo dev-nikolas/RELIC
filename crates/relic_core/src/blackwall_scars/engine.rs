@@ -33,12 +33,7 @@ impl StructuralDiscriminationEngine {
     #[inline(always)]
     fn find_slot_idx(&self, key: u64) -> Option<usize> {
         let count = (self.slot_count as usize).min(MAX_TRACKED_EDGES);
-        for i in 0..count {
-            if self.edge_keys[i] == key {
-                return Some(i);
-            }
-        }
-        None
+        (0..count).find(|&i| self.edge_keys[i] == key)
     }
 
     pub fn assimilate_failure(

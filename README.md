@@ -109,16 +109,6 @@ cargo run -p relic_cli -- query "¿Puede Marta llegar a la biblioteca pasando po
 
 ---
 
-## Documentación Técnica
-
-Para profundizar en la arquitectura interna y auditorías del proyecto, consulta la carpeta [`docs/`](docs/README.md):
-- [Arquitectura Técnica de RELIC](docs/ARCHITECTURE.md)
-- [Evaluación Empírica de RELIC:Seis Ojos](INFORME_INTEGRACION_ESTRICTA_SEIS_OJOS_RELIC.md)
-- [Guía Rápida de RELIC:Seis Ojos](GUIA_SIMPLE_SEIS_OJOS_RELIC.md)
-- [Especificación del Servidor MCP](docs/DISENO_SANDBOX_MCP.md)
-
----
-
 ## Lo que hace y lo que no hace
 
 - **Lo que sí hace:** Si una consulta coincide con los patrones que conoce (aritmética, grafos, relaciones, telemetría), el resultado es **100% exacto, calculado y verificable**.

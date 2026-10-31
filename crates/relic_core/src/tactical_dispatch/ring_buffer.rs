@@ -60,11 +60,10 @@ unsafe impl Send for StagedOrderRingBuffer {}
 
 impl StagedOrderRingBuffer {
     pub const fn new() -> Self {
-        const EMPTY_SLOT: UnsafeCell<StagedPolicySlot> = UnsafeCell::new(StagedPolicySlot::empty());
         Self {
             head: CachePaddedAtomicUsize::new(0),
             tail: CachePaddedAtomicUsize::new(0),
-            slots: [EMPTY_SLOT; RING_CAPACITY],
+            slots: [const { UnsafeCell::new(StagedPolicySlot::empty()) }; RING_CAPACITY],
         }
     }
 

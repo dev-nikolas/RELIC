@@ -143,8 +143,8 @@ impl<const K: usize> HierarchicalBitGraph<K> {
             // Prohibición de satisfacción vacua: si la máscara del carril es 0, el bit queda apagado.
             let base = CausalReachabilityFilter::verify_critical_pairs(&self.islands[0], &flat, sinks_local_mask);
             let mut result = 0u8;
-            for lane in 0..4 {
-                if sinks_local_mask[lane] != 0 && (base & (1u8 << lane)) != 0 {
+            for (lane, &mask) in sinks_local_mask.iter().enumerate().take(4) {
+                if mask != 0 && (base & (1u8 << lane)) != 0 {
                     result |= 1u8 << lane;
                 }
             }
@@ -169,5 +169,11 @@ impl<const K: usize> HierarchicalBitGraph<K> {
             if ok { mask |= 1u8 << lane; }
         }
         mask
+    }
+}
+
+impl<const K: usize> Default for HierarchicalBitGraph<K> {
+    fn default() -> Self {
+        Self::new()
     }
 }

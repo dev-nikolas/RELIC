@@ -129,6 +129,7 @@ impl TacticalReflexKernel {
 
     /// Wrapper limpio para compatibilidad directa.
     #[inline(always)]
+    #[allow(clippy::too_many_arguments)]
     pub fn execute_reflex_tick(
         current_tick: u64,
         target_edge: (u8, u8, u32),

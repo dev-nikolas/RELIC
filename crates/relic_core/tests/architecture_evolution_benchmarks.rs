@@ -10,6 +10,7 @@ use relic_core::arithmetic::{compile, eval, solve, DualNumber};
 use relic_core::contingency_bfs::{
     BitAdjacencyGraph, HierarchicalBitGraph, HierarchicalContingencyLibrary,
     HierarchicalContingencyPlan, HierarchicalNode, HierarchicalSwitchAction, SwitchActionType,
+    ContingencyContext,
 };
 use relic_core::repair::EdgeOperatingBounds;
 
@@ -137,9 +138,18 @@ fn benchmark_architecture_evolution() {
     lib.register_plan(plan).unwrap();
     let (sc_c, scc_c, smc_c) = ([node(0, 0); 4], [1u8; 4], [1u64 << 1; 4]);
 
+    let ctx = ContingencyContext {
+        sources: &sc_c,
+        sinks_c: &scc_c,
+        sinks_m: &smc_c,
+        sens: None,
+        flows: None,
+        limits: None,
+    };
+
     for _ in 0..WARMUP {
         let _ = gc.restore_bridge(node(0, 1), node(1, 0)); bounds[1].quarantined = false;
-        let _ = lib.select_and_apply_contingency_hierarchical(&mut gc, &mut bounds, (node(0, 1), node(1, 0), 1), &sc_c, &scc_c, &smc_c, None, None, None);
+        let _ = lib.select_and_apply_contingency_hierarchical(&mut gc, &mut bounds, (node(0, 1), node(1, 0), 1), ctx);
     }
 
     let mut t_c = vec![0.0f64; ITERS];
@@ -147,7 +157,7 @@ fn benchmark_architecture_evolution() {
     for i in 0..ITERS {
         let _ = gc.restore_bridge(node(0, 1), node(1, 0)); bounds[1].quarantined = false;
         let t0 = Instant::now();
-        let _ = lib.select_and_apply_contingency_hierarchical(&mut gc, &mut bounds, (node(0, 1), node(1, 0), 1), &sc_c, &scc_c, &smc_c, None, None, None);
+        let _ = lib.select_and_apply_contingency_hierarchical(&mut gc, &mut bounds, (node(0, 1), node(1, 0), 1), ctx);
         t_c[i] = t0.elapsed().as_nanos() as f64;
     }
     TRACKING.store(false, Ordering::SeqCst);

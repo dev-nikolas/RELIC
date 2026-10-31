@@ -48,9 +48,8 @@ impl CausalReachabilityFilter {
         }
 
         let mut satisfaction_mask = 0u8;
-        for k in 0..4 {
+        for (k, &required) in sinks_mask.iter().enumerate().take(4) {
             let reached = visited.0[k];
-            let required = sinks_mask[k];
             if (reached & required) == required {
                 satisfaction_mask |= 1 << k;
             }

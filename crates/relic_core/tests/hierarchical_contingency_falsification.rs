@@ -1,7 +1,7 @@
 //! Verificación formal de conmutación de contingencias jerárquicas con rollback diferencial O(1).
 
 use relic_core::contingency_bfs::{
-    ContingencyOutcome, HierarchicalBitGraph, HierarchicalContingencyLibrary,
+    ContingencyContext, ContingencyOutcome, HierarchicalBitGraph, HierarchicalContingencyLibrary,
     HierarchicalContingencyPlan, HierarchicalNode, HierarchicalSwitchAction, SwitchActionType,
 };
 use relic_core::repair::EdgeOperatingBounds;
@@ -45,8 +45,17 @@ fn inter_island_contingency_scar_discrimination() {
     let sc = [1u8; 4];
     let sm = [1u64 << 4, 1u64 << 5, 1u64 << 6, 1u64 << 7];
 
+    let ctx = ContingencyContext {
+        sources: &srcs,
+        sinks_c: &sc,
+        sinks_m: &sm,
+        sens: None,
+        flows: None,
+        limits: None,
+    };
+
     let outcome = lib.select_and_apply_contingency_hierarchical(
-        &mut g, &mut bounds, (node(0, 10), node(1, 0), 1), &srcs, &sc, &sm, None, None, None,
+        &mut g, &mut bounds, (node(0, 10), node(1, 0), 1), ctx,
     );
 
     assert_eq!(outcome, ContingencyOutcome::Applied { contingency_id: 102, thermal_safety_margin: 0.5, backup_edge_id: 4 });
@@ -77,8 +86,17 @@ fn exact_rollback_invariant_on_candidate_rejection() {
     let sc = [1u8; 4];
     let sm = [1u64 << 21; 4];
 
+    let ctx = ContingencyContext {
+        sources: &srcs,
+        sinks_c: &sc,
+        sinks_m: &sm,
+        sens: None,
+        flows: None,
+        limits: None,
+    };
+
     let outcome = lib.select_and_apply_contingency_hierarchical(
-        &mut g, &mut bounds, (node(0, 1), node(1, 20), 1), &srcs, &sc, &sm, None, None, None,
+        &mut g, &mut bounds, (node(0, 1), node(1, 20), 1), ctx,
     );
 
     assert_eq!(outcome, ContingencyOutcome::NoViableTopologyFound);
@@ -99,8 +117,17 @@ fn deterministic_safe_halt_on_exhaustion() {
     let sc = [0u8; 4];
     let sm = [1u64 << 1; 4];
 
+    let ctx = ContingencyContext {
+        sources: &srcs,
+        sinks_c: &sc,
+        sinks_m: &sm,
+        sens: None,
+        flows: None,
+        limits: None,
+    };
+
     let outcome = lib.select_and_apply_contingency_hierarchical(
-        &mut g, &mut bounds, (node(0, 0), node(0, 1), 0), &srcs, &sc, &sm, None, None, None,
+        &mut g, &mut bounds, (node(0, 0), node(0, 1), 0), ctx,
     );
 
     assert_eq!(outcome, ContingencyOutcome::NoViableTopologyFound);
@@ -128,11 +155,20 @@ fn zero_alloc_k16_contingency_churn_continuous() {
     let sc = [1u8; 4];
     let sm = [1u64 << 1; 4];
 
+    let ctx = ContingencyContext {
+        sources: &srcs,
+        sinks_c: &sc,
+        sinks_m: &sm,
+        sens: None,
+        flows: None,
+        limits: None,
+    };
+
     for _ in 0..1_000 {
         let _ = g.restore_bridge(node(0, 1), node(1, 0));
         bounds[1].quarantined = false;
         let out = lib.select_and_apply_contingency_hierarchical(
-            &mut g, &mut bounds, (node(0, 1), node(1, 0), 1), &srcs, &sc, &sm, None, None, None,
+            &mut g, &mut bounds, (node(0, 1), node(1, 0), 1), ctx,
         );
         assert!(matches!(out, ContingencyOutcome::Applied { .. }));
     }

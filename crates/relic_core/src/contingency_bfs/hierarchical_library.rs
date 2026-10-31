@@ -8,6 +8,19 @@ use super::library::{ContingencyOutcome, SwitchActionType, MAX_CONTINGENCIES};
 use super::sensitivity::{LinearizedSensitivityMatrix, MAX_SENSITIVITY_EDGES};
 use crate::repair::EdgeOperatingBounds;
 
+type IntraDelta = Option<(u8, u8, u8, u64, u64)>;
+type InterDelta = Option<bool>;
+
+#[derive(Clone, Copy)]
+pub struct ContingencyContext<'a> {
+    pub sources: &'a [HierarchicalNode; 4],
+    pub sinks_c: &'a [u8; 4],
+    pub sinks_m: &'a [u64; 4],
+    pub sens: Option<&'a LinearizedSensitivityMatrix>,
+    pub flows: Option<&'a [f32; MAX_SENSITIVITY_EDGES]>,
+    pub limits: Option<&'a [f32; MAX_SENSITIVITY_EDGES]>,
+}
+
 #[repr(C)]
 #[derive(Copy, Clone, Debug, PartialEq)]
 pub struct HierarchicalSwitchAction {
@@ -51,7 +64,7 @@ impl HierarchicalContingencyLibrary {
         self.plans[self.count as usize] = plan; self.count += 1; Ok(())
     }
 
-    fn apply_in_place<const K: usize>(graph: &mut HierarchicalBitGraph<K>, act: &HierarchicalSwitchAction) -> (Option<(u8, u8, u8, u64, u64)>, Option<bool>) {
+    fn apply_in_place<const K: usize>(graph: &mut HierarchicalBitGraph<K>, act: &HierarchicalSwitchAction) -> (IntraDelta, InterDelta) {
         let (s, d) = (act.src, act.dst);
         if s.cluster == d.cluster {
             let (c, u, v) = (s.cluster as usize, s.local as usize, d.local as usize);
@@ -71,7 +84,7 @@ impl HierarchicalContingencyLibrary {
         }
     }
 
-    fn rollback_in_place<const K: usize>(graph: &mut HierarchicalBitGraph<K>, act: &HierarchicalSwitchAction, d_intra: Option<(u8, u8, u8, u64, u64)>, d_inter: Option<bool>) {
+    fn rollback_in_place<const K: usize>(graph: &mut HierarchicalBitGraph<K>, act: &HierarchicalSwitchAction, d_intra: IntraDelta, d_inter: InterDelta) {
         if let Some((c, u, v, pu, pv)) = d_intra {
             graph.islands[c as usize].adj[u as usize] = pu; graph.islands[c as usize].adj[v as usize] = pv;
         } else if let Some(true) = d_inter {
@@ -84,11 +97,12 @@ impl HierarchicalContingencyLibrary {
 
     pub fn select_and_apply_contingency_hierarchical<const K: usize>(
         &self, graph: &mut HierarchicalBitGraph<K>, bounds: &mut [EdgeOperatingBounds],
-        failed: (HierarchicalNode, HierarchicalNode, u32), sources: &[HierarchicalNode; 4],
-        sinks_c: &[u8; 4], sinks_m: &[u64; 4], sens: Option<&LinearizedSensitivityMatrix>,
-        flows: Option<&[f32; MAX_SENSITIVITY_EDGES]>, limits: Option<&[f32; MAX_SENSITIVITY_EDGES]>,
+        failed: (HierarchicalNode, HierarchicalNode, u32), ctx: ContingencyContext,
     ) -> ContingencyOutcome {
         let (sf, df, fid) = failed;
+        let sources = ctx.sources;
+        let sinks_c = ctx.sinks_c;
+        let sinks_m = ctx.sinks_m;
         let iso = HierarchicalSwitchAction { src: sf, dst: df, action: SwitchActionType::OpenIsolate, edge_id: fid, new_max_capacity: 0.0 };
         let _ = Self::apply_in_place(graph, &iso);
 
@@ -106,7 +120,7 @@ impl HierarchicalContingencyLibrary {
             }
             if scarred { continue; }
 
-            if let (Some(s), Some(f), Some(lim)) = (sens, flows, limits) {
+            if let (Some(s), Some(f), Some(lim)) = (ctx.sens, ctx.flows, ctx.limits) {
                 let out_e = (fid as u8).min(MAX_SENSITIVITY_EDGES as u8 - 1);
                 let mut scratch = [0.0f32; MAX_SENSITIVITY_EDGES];
                 if s.evaluate_post_contingency_flows(f, &[out_e], lim, &mut scratch).is_err() { continue; }
@@ -114,7 +128,9 @@ impl HierarchicalContingencyLibrary {
 
             let n_act = plan.action_count as usize;
             let mut deltas = [(None, None); 4];
-            for j in 0..n_act { deltas[j] = Self::apply_in_place(graph, &plan.actions[j]); }
+            for (j, delta) in deltas.iter_mut().enumerate().take(n_act) {
+                *delta = Self::apply_in_place(graph, &plan.actions[j]);
+            }
             let mask = graph.verify_hierarchical_pairs(sources, sinks_c, sinks_m);
             for j in (0..n_act).rev() { Self::rollback_in_place(graph, &plan.actions[j], deltas[j].0, deltas[j].1); }
 

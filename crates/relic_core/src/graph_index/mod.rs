@@ -34,7 +34,7 @@ pub const MAX_COMPONENTS: usize = 512;
 pub(crate) const WORDS: usize = MAX_COMPONENTS / 64;
 pub(crate) const NODE_WORDS: usize = MAX_INDEX_NODES / 64;
 
-const _: () = assert!(MAX_COMPONENTS % 64 == 0 && MAX_INDEX_NODES % 64 == 0);
+const _: () = assert!(MAX_COMPONENTS.is_multiple_of(64) && MAX_INDEX_NODES.is_multiple_of(64));
 
 /// Motivo formal por el que el índice no se construye.
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]

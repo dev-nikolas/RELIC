@@ -18,6 +18,7 @@ pub enum VetoReason {
 
 /// Decisión táctica emitida en el bucle reflejo de microsegundos.
 #[derive(Copy, Clone, Debug, PartialEq)]
+#[allow(clippy::large_enum_variant)]
 pub enum TacticalDecision {
     TransmitDMA {
         envelope: StagedEnvelope,

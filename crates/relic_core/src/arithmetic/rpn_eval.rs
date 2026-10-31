@@ -34,6 +34,15 @@ impl DualStack {
             _pad: [0u8; 12],
         }
     }
+}
+
+impl Default for DualStack {
+    fn default() -> Self {
+        Self::new()
+    }
+}
+
+impl DualStack {
 
     #[inline]
     fn push(&mut self, value: DualNumber) -> Result<(), EvalFault> {

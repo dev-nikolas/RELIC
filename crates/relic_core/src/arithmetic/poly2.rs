@@ -66,13 +66,13 @@ impl Poly2 {
         }
     }
 
-    pub fn add(self, o: Self) -> PolyResult { Self { c0: self.c0 + o.c0, c1: self.c1 + o.c1, c2: self.c2 + o.c2 }.finite() }
+    pub fn checked_add(self, o: Self) -> PolyResult { Self { c0: self.c0 + o.c0, c1: self.c1 + o.c1, c2: self.c2 + o.c2 }.finite() }
 
-    pub fn sub(self, o: Self) -> PolyResult { Self { c0: self.c0 - o.c0, c1: self.c1 - o.c1, c2: self.c2 - o.c2 }.finite() }
+    pub fn checked_sub(self, o: Self) -> PolyResult { Self { c0: self.c0 - o.c0, c1: self.c1 - o.c1, c2: self.c2 - o.c2 }.finite() }
 
-    pub fn neg(self) -> PolyResult { Self { c0: -self.c0, c1: -self.c1, c2: -self.c2 }.finite() }
+    pub fn checked_neg(self) -> PolyResult { Self { c0: -self.c0, c1: -self.c1, c2: -self.c2 }.finite() }
 
-    pub fn mul(self, o: Self) -> PolyResult {
+    pub fn checked_mul(self, o: Self) -> PolyResult {
         let c3 = self.c1 * o.c2 + self.c2 * o.c1;
         let c4 = self.c2 * o.c2;
         if c3 != 0.0 || c4 != 0.0 {
@@ -86,7 +86,7 @@ impl Poly2 {
         .finite()
     }
 
-    pub fn div(self, o: Self) -> PolyResult {
+    pub fn checked_div(self, o: Self) -> PolyResult {
         if o.c1 != 0.0 || o.c2 != 0.0 {
             return Err(PolyFault::NonConstantDivisor);
         }
@@ -115,7 +115,7 @@ impl Poly2 {
         } else if exp == 1.0 {
             Ok(self)
         } else if exp == 2.0 {
-            self.mul(self)
+            self.checked_mul(self)
         } else {
             Err(PolyFault::DegreeExceeded)
         }
@@ -146,12 +146,12 @@ pub fn extract(program: &RpnProgram) -> Result<Poly2, PolyFault> {
                 if sp == 0 {
                     return Err(PolyFault::StackUnderflow);
                 }
-                st[sp - 1] = st[sp - 1].neg()?;
+                st[sp - 1] = st[sp - 1].checked_neg()?;
             }
-            DiffOp::Add => binary(&mut st, &mut sp, Poly2::add)?,
-            DiffOp::Sub => binary(&mut st, &mut sp, Poly2::sub)?,
-            DiffOp::Mul => binary(&mut st, &mut sp, Poly2::mul)?,
-            DiffOp::Div => binary(&mut st, &mut sp, Poly2::div)?,
+            DiffOp::Add => binary(&mut st, &mut sp, Poly2::checked_add)?,
+            DiffOp::Sub => binary(&mut st, &mut sp, Poly2::checked_sub)?,
+            DiffOp::Mul => binary(&mut st, &mut sp, Poly2::checked_mul)?,
+            DiffOp::Div => binary(&mut st, &mut sp, Poly2::checked_div)?,
             DiffOp::Pow => binary(&mut st, &mut sp, Poly2::pow)?,
             _ => return Err(PolyFault::NonPolynomial),
         }

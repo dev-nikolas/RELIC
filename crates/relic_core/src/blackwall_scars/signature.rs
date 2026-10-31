@@ -102,12 +102,8 @@ impl WL1Signature {
         let u_count = u_neighbors.len().min(8);
         let v_count = v_neighbors.len().min(8);
 
-        for i in 0..u_count {
-            u_sorted[i] = u_neighbors[i];
-        }
-        for i in 0..v_count {
-            v_sorted[i] = v_neighbors[i];
-        }
+        u_sorted[..u_count].copy_from_slice(&u_neighbors[..u_count]);
+        v_sorted[..v_count].copy_from_slice(&v_neighbors[..v_count]);
 
         Self::branchless_sort_8(&mut u_sorted);
         Self::branchless_sort_8(&mut v_sorted);
@@ -123,13 +119,13 @@ impl WL1Signature {
         }
 
         let mut h_u = 0x9e3779b97f4a7c15u64 ^ ((u_role as u64) << 32) ^ (u_count as u64);
-        for i in 0..u_count {
-            h_u = fmix64(h_u ^ ((u_sorted[i] as u64) << (i * 8)));
+        for (i, &val) in u_sorted.iter().enumerate().take(u_count) {
+            h_u = fmix64(h_u ^ ((val as u64) << (i * 8)));
         }
 
         let mut h_v = 0xbf58476d1ce4e5b9u64 ^ ((v_role as u64) << 32) ^ (v_count as u64);
-        for i in 0..v_count {
-            h_v = fmix64(h_v ^ ((v_sorted[i] as u64) << (i * 8)));
+        for (i, &val) in v_sorted.iter().enumerate().take(v_count) {
+            h_v = fmix64(h_v ^ ((val as u64) << (i * 8)));
         }
 
         let mut sig = [0u8; 16];

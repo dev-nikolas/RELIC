@@ -10,12 +10,12 @@
 use super::signature::CriticalEdgeKey;
 
 /// Token formal de falsación empírica.
+#[non_exhaustive]
 #[derive(Copy, Clone, Debug, PartialEq)]
 pub struct EmpiricalFailureToken {
     pub tick: u64,
     pub edge_key: CriticalEdgeKey,
     pub log_martingale: f32,
-    _private: (),
 }
 
 impl EmpiricalFailureToken {
@@ -34,7 +34,6 @@ impl EmpiricalFailureToken {
             tick,
             edge_key,
             log_martingale,
-            _private: (),
         })
     }
 
@@ -45,7 +44,6 @@ impl EmpiricalFailureToken {
             tick,
             edge_key,
             log_martingale: 14.0,
-            _private: (),
         }
     }
 }

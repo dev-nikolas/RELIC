@@ -16,7 +16,7 @@ pub struct LinearizedSensitivityMatrix {
     pub _pad: [u8; 63],
 }
 
-const _: () = assert!(std::mem::size_of::<LinearizedSensitivityMatrix>() == 16448 || std::mem::size_of::<LinearizedSensitivityMatrix>() % 64 == 0);
+const _: () = assert!(std::mem::size_of::<LinearizedSensitivityMatrix>() == 16448 || std::mem::size_of::<LinearizedSensitivityMatrix>().is_multiple_of(64));
 const _: () = assert!(std::mem::align_of::<LinearizedSensitivityMatrix>() == 64);
 
 impl LinearizedSensitivityMatrix {
