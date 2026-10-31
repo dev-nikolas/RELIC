@@ -1,8 +1,8 @@
 //! # WL-1 Canonical Signature & AVX2 Scar Discrimination Falsification Test Suite
 
 use relic_core::blackwall_scars::{
-    Avx2PredicateBlock, CriticalEdgeKey, NeighborTopologyToken, StructuralDiscriminationEngine,
-    WL1Signature,
+    Avx2PredicateBlock, CriticalEdgeKey, EmpiricalFailureToken, NeighborTopologyToken,
+    StructuralDiscriminationEngine, WL1Signature,
 };
 use relic_core::hash::sha256_hex;
 use relic_core::repair::{
@@ -29,7 +29,8 @@ fn test_wl1_scar_discrimination_and_avx2_rete_engine() {
         let mut thresh = [f32::INFINITY; 8];
         thresh[0] = 400.0;
         let pred = Avx2PredicateBlock::new(thresh, 0b0000_0001);
-        assert!(!engine.assimilate_failure(edge_key, 1, sig_orig, pred).unwrap());
+        let token = EmpiricalFailureToken::test_token(1, edge_key);
+        assert!(!engine.assimilate_failure(&token, edge_key, 1, sig_orig, pred).unwrap());
 
         let u_perm = [token_tx, token_gen, token_sub];
         let v_perm = [token_gen, token_sub];
@@ -82,11 +83,12 @@ fn test_wl1_scar_discrimination_and_avx2_rete_engine() {
         let sig = WL1Signature::compute_canonical(1, 2, &u_n, &v_n);
 
         let thresholds = [450.0, 440.0, 430.0, 420.0, 410.0, 400.0, 390.0, 385.0, 380.0, 375.0];
+        let token_b = EmpiricalFailureToken::test_token(2, edge_b);
         for (i, &t) in thresholds.iter().enumerate() {
             let mut pred = Avx2PredicateBlock::empty();
             pred.thresholds[0] = t;
             pred.active_lane_mask = 0b0000_0001;
-            let subsumed = engine.assimilate_failure(edge_b, 5, sig, pred).unwrap();
+            let subsumed = engine.assimilate_failure(&token_b, edge_b, 5, sig, pred).unwrap();
             assert_eq!(subsumed, i > 0);
         }
 

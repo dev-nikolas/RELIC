@@ -44,36 +44,43 @@ impl Avx2PredicateBlock {
             return false;
         }
 
-        #[cfg(target_arch = "x86_64")]
+        #[cfg(all(target_arch = "x86_64", target_feature = "avx2"))]
         {
-            #[cfg(target_feature = "avx2")]
-            {
-                return unsafe {
+            unsafe {
+                use core::arch::x86_64::*;
+                let v_telem = _mm256_loadu_ps(telemetry.as_ptr());
+                let v_thresh = _mm256_load_ps(self.thresholds.as_ptr());
+                let cmp = _mm256_cmp_ps(v_telem, v_thresh, 0x1d);
+                let mask = _mm256_movemask_ps(cmp) as u8;
+                (mask & self.active_lane_mask) == self.active_lane_mask
+            }
+        }
+        #[cfg(all(target_arch = "x86_64", not(target_feature = "avx2")))]
+        {
+            if is_x86_feature_detected!("avx2") {
+                unsafe {
                     use core::arch::x86_64::*;
                     let v_telem = _mm256_loadu_ps(telemetry.as_ptr());
                     let v_thresh = _mm256_load_ps(self.thresholds.as_ptr());
                     let cmp = _mm256_cmp_ps(v_telem, v_thresh, 0x1d);
                     let mask = _mm256_movemask_ps(cmp) as u8;
                     (mask & self.active_lane_mask) == self.active_lane_mask
-                };
-            }
-            #[cfg(not(target_feature = "avx2"))]
-            {
-                if is_x86_feature_detected!("avx2") {
-                    return unsafe {
-                        use core::arch::x86_64::*;
-                        let v_telem = _mm256_loadu_ps(telemetry.as_ptr());
-                        let v_thresh = _mm256_load_ps(self.thresholds.as_ptr());
-                        let cmp = _mm256_cmp_ps(v_telem, v_thresh, 0x1d);
-                        let mask = _mm256_movemask_ps(cmp) as u8;
-                        (mask & self.active_lane_mask) == self.active_lane_mask
-                    };
                 }
+            } else {
+                Self::scalar_matches(self.active_lane_mask, telemetry, &self.thresholds)
             }
         }
+        #[cfg(not(target_arch = "x86_64"))]
+        {
+            Self::scalar_matches(self.active_lane_mask, telemetry, &self.thresholds)
+        }
+    }
 
+    #[inline(always)]
+    #[allow(dead_code)]
+    fn scalar_matches(active_mask: u8, telemetry: &[f32; 8], thresholds: &[f32; 8]) -> bool {
         for k in 0..8 {
-            if (self.active_lane_mask & (1 << k)) != 0 && telemetry[k] < self.thresholds[k] {
+            if (active_mask & (1 << k)) != 0 && telemetry[k] < thresholds[k] {
                 return false;
             }
         }

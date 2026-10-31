@@ -74,30 +74,18 @@ impl WL1Signature {
     /// Red de ordenamiento fija Bose-Nelson para 8 elementos: 100% Branchless.
     #[inline(always)]
     fn branchless_sort_8(arr: &mut [u16; 8]) {
-        Self::sort_pair(arr, 0, 1);
-        Self::sort_pair(arr, 2, 3);
-        Self::sort_pair(arr, 4, 5);
-        Self::sort_pair(arr, 6, 7);
+        Self::sort_pair(arr, 0, 1); Self::sort_pair(arr, 2, 3);
+        Self::sort_pair(arr, 4, 5); Self::sort_pair(arr, 6, 7);
 
-        Self::sort_pair(arr, 0, 2);
-        Self::sort_pair(arr, 1, 3);
-        Self::sort_pair(arr, 4, 6);
-        Self::sort_pair(arr, 5, 7);
+        Self::sort_pair(arr, 0, 2); Self::sort_pair(arr, 1, 3);
+        Self::sort_pair(arr, 4, 6); Self::sort_pair(arr, 5, 7);
 
-        Self::sort_pair(arr, 1, 2);
-        Self::sort_pair(arr, 5, 6);
-        Self::sort_pair(arr, 0, 4);
-        Self::sort_pair(arr, 3, 7);
+        Self::sort_pair(arr, 1, 2); Self::sort_pair(arr, 5, 6);
+        Self::sort_pair(arr, 0, 4); Self::sort_pair(arr, 3, 7);
 
-        Self::sort_pair(arr, 1, 5);
-        Self::sort_pair(arr, 2, 6);
-
-        Self::sort_pair(arr, 1, 4);
-        Self::sort_pair(arr, 3, 6);
-
-        Self::sort_pair(arr, 2, 4);
-        Self::sort_pair(arr, 3, 5);
-
+        Self::sort_pair(arr, 1, 5); Self::sort_pair(arr, 2, 6);
+        Self::sort_pair(arr, 1, 4); Self::sort_pair(arr, 3, 6);
+        Self::sort_pair(arr, 2, 4); Self::sort_pair(arr, 3, 5);
         Self::sort_pair(arr, 2, 3);
     }
 
@@ -153,31 +141,33 @@ impl WL1Signature {
     /// Comparación SIMD SSE4.1 ultra-rápida en 1 ciclo de reloj.
     #[inline(always)]
     pub fn matches_simd(&self, other: &Self) -> bool {
-        #[cfg(target_arch = "x86_64")]
+        #[cfg(all(target_arch = "x86_64", target_feature = "sse4.1"))]
         {
-            #[cfg(target_feature = "sse4.1")]
-            {
-                return unsafe {
+            unsafe {
+                use core::arch::x86_64::*;
+                let a = _mm_load_si128(self.0.as_ptr() as *const __m128i);
+                let b = _mm_load_si128(other.0.as_ptr() as *const __m128i);
+                let xor_res = _mm_xor_si128(a, b);
+                _mm_testz_si128(xor_res, xor_res) == 1
+            }
+        }
+        #[cfg(all(target_arch = "x86_64", not(target_feature = "sse4.1")))]
+        {
+            if is_x86_feature_detected!("sse4.1") {
+                unsafe {
                     use core::arch::x86_64::*;
                     let a = _mm_load_si128(self.0.as_ptr() as *const __m128i);
                     let b = _mm_load_si128(other.0.as_ptr() as *const __m128i);
                     let xor_res = _mm_xor_si128(a, b);
                     _mm_testz_si128(xor_res, xor_res) == 1
-                };
-            }
-            #[cfg(not(target_feature = "sse4.1"))]
-            {
-                if is_x86_feature_detected!("sse4.1") {
-                    return unsafe {
-                        use core::arch::x86_64::*;
-                        let a = _mm_load_si128(self.0.as_ptr() as *const __m128i);
-                        let b = _mm_load_si128(other.0.as_ptr() as *const __m128i);
-                        let xor_res = _mm_xor_si128(a, b);
-                        _mm_testz_si128(xor_res, xor_res) == 1
-                    };
                 }
+            } else {
+                self.0 == other.0
             }
         }
-        self.0 == other.0
+        #[cfg(not(target_arch = "x86_64"))]
+        {
+            self.0 == other.0
+        }
     }
 }

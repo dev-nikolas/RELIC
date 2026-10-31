@@ -5,10 +5,12 @@
 pub mod signature;
 pub mod predicates;
 pub mod engine;
+pub mod token;
 
 pub use signature::{CriticalEdgeKey, NeighborTopologyToken, WL1Signature};
 pub use predicates::{
     Avx2PredicateBlock, EdgeScarSlot, LocalScarRule, MAX_SCARS_PER_EDGE, MAX_TRACKED_EDGES,
 };
+pub use token::EmpiricalFailureToken;
 pub use engine::StructuralDiscriminationEngine;
 

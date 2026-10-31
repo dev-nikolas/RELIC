@@ -4,7 +4,10 @@
 //! contingencias y disyuntor lógico en un pipeline determinista <= 351.5 µs.
 
 use crate::anomaly::topology_coupling::{NodeSpatialNeighborhood, ResidualSprtMartingale};
-use crate::blackwall_scars::{Avx2PredicateBlock, CriticalEdgeKey, StructuralDiscriminationEngine, WL1Signature};
+use crate::blackwall_scars::{
+    Avx2PredicateBlock, CriticalEdgeKey, EmpiricalFailureToken, StructuralDiscriminationEngine,
+    WL1Signature,
+};
 use crate::contingency_bfs::{BitAdjacencyGraph, ContingencyOutcome, PreCertifiedContingencyLibrary};
 use crate::repair::EdgeOperatingBounds;
 use super::circuit_breaker::{CircuitBreaker, TacticalDecision, VetoReason};
@@ -60,16 +63,23 @@ impl TacticalReflexKernel {
                 pred.active_lane_mask = 0b0000_0011;
 
                 let scar_id = (edge_id % 64) as u8;
-                let _ = ctx.scar_engine.assimilate_failure(edge_key, scar_id, *input.wl1_sig, pred);
-                if (edge_id as usize) < ctx.bounds.len() {
-                    ctx.scar_engine.sync_operating_bounds(
-                        edge_key,
-                        input.wl1_sig,
-                        &telem_features,
-                        &mut ctx.bounds[edge_id as usize],
-                    );
+                if let Ok(tok) = EmpiricalFailureToken::issue_after_martingale_alarm(
+                    input.current_tick,
+                    edge_key,
+                    ctx.martingale.log_martingale,
+                    ctx.martingale.threshold_h,
+                ) {
+                    let _ = ctx.scar_engine.assimilate_failure(&tok, edge_key, scar_id, *input.wl1_sig, pred);
+                    if (edge_id as usize) < ctx.bounds.len() {
+                        ctx.scar_engine.sync_operating_bounds(
+                            edge_key,
+                            input.wl1_sig,
+                            &telem_features,
+                            &mut ctx.bounds[edge_id as usize],
+                        );
+                    }
+                    scar_assimilated = true;
                 }
-                scar_assimilated = true;
             }
 
             let contingency = ctx.contingency_lib.select_and_apply_contingency(

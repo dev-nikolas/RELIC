@@ -1,11 +1,15 @@
-//! # Topological Coupling and Spatial Residual Engine
+//! # Topological Coupling, Quiescent Calibration & Bounded-Scale SPRT
 //!
-//! Acoplamiento topológico causal y flujo de residuos espaciales.
-//! Elimina el flapping y los falsos positivos ante cambios de régimen globales.
+//! Módulo de acoplamiento espacial, calibración en línea Quiescence-Gated NLMS
+//! y martingala SPRT normalizada con estimador de Welford acotado.
 
-pub mod types;
+pub mod calibration;
 pub mod martingale;
+pub mod types;
 
-pub use types::{NodeSpatialNeighborhood, TopologicalResidualEngine, MAX_SPATIAL_NEIGHBORS};
-pub use martingale::ResidualSprtMartingale;
-
+pub use calibration::QuiescentCalibrator;
+pub use martingale::{ResidualSprtMartingale, WALD_THRESHOLD_ALPHA_1E6};
+pub use types::{
+    NodeSpatialNeighborhood, TopologicalResidualEngine, DEFAULT_TOLERANCE_RATIO,
+    MAX_BOUNDED_NEIGHBORS, MAX_SPATIAL_NEIGHBORS,
+};

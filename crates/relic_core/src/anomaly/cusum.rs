@@ -1,7 +1,7 @@
 //! Monitor Lateral de Deriva Causal (TelemetryDriftMonitor).
 //!
 //! Implementa CUSUM bilateral estandarizado con referencia fija (mu_0, sigma_0)
-//! calculada durante la fase de calibración inicial. Opera exclusivamente como
+//! calculada durante el periodo de calibración inicial. Opera exclusivamente como
 //! compuerta lateral de seguridad sin alterar el score NAB.
 //!
 //! Calibración de Page (1954):

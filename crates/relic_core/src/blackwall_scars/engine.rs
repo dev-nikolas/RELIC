@@ -6,6 +6,7 @@
 use crate::repair::EdgeOperatingBounds;
 use super::predicates::{Avx2PredicateBlock, EdgeScarSlot, LocalScarRule, MAX_SCARS_PER_EDGE, MAX_TRACKED_EDGES};
 use super::signature::{CriticalEdgeKey, WL1Signature};
+use super::token::EmpiricalFailureToken;
 
 /// Motor de Discriminación Estructural de Cicatrices en Tiempo Real (Zero-Alloc, SoA).
 #[repr(C)]
@@ -42,6 +43,7 @@ impl StructuralDiscriminationEngine {
 
     pub fn assimilate_failure(
         &mut self,
+        _token: &EmpiricalFailureToken,
         edge_key: CriticalEdgeKey,
         scar_id: u8,
         wl1_sig: WL1Signature,
@@ -65,17 +67,22 @@ impl StructuralDiscriminationEngine {
         let slot = &mut self.slots[slot_idx];
         let n_scars = slot.scar_count as usize;
 
+        // Subsunción por Dominancia Convexa in-place para la misma firma WL-1
         for i in 0..n_scars {
             let existing = &mut slot.scars[i];
             if existing.active && existing.wl1_sig.matches_simd(&wl1_sig) {
-                if existing.predicates.subsumes(&predicates) {
-                    return Ok(true);
+                for k in 0..8 {
+                    if (predicates.active_lane_mask & (1 << k)) != 0 {
+                        if (existing.predicates.active_lane_mask & (1 << k)) != 0 {
+                            existing.predicates.thresholds[k] =
+                                existing.predicates.thresholds[k].min(predicates.thresholds[k]);
+                        } else {
+                            existing.predicates.thresholds[k] = predicates.thresholds[k];
+                        }
+                    }
                 }
-                if predicates.subsumes(&existing.predicates) {
-                    existing.predicates = predicates;
-                    existing.scar_id = scar_id;
-                    return Ok(true);
-                }
+                existing.predicates.active_lane_mask |= predicates.active_lane_mask;
+                return Ok(true);
             }
         }
 

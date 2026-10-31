@@ -6,6 +6,7 @@
 pub mod graph;
 pub mod reachability;
 pub mod library;
+pub mod sensitivity;
 
 pub use graph::{BitAdjacencyGraph, MAX_GRAPH_NODES};
 pub use reachability::{AlignedSimd, CausalReachabilityFilter};
@@ -13,4 +14,5 @@ pub use library::{
     ContingencyOutcome, PreCertifiedContingencyLibrary, PreCertifiedTopology, SwitchAction,
     SwitchActionType, MAX_CONTINGENCIES,
 };
+pub use sensitivity::{LinearizedSensitivityMatrix, MAX_SENSITIVITY_EDGES};
 

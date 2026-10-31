@@ -37,18 +37,21 @@ pub mod search_buffer;
 pub mod spectral;
 pub mod spectral_sprt;
 pub mod spreading_activation;
+pub mod syndrome;
 pub mod tactical_dispatch;
 pub mod temporal_graph;
 
 pub use arithmetic::{ArithmeticError, ArithmeticOp, ArithmeticPlan, ArithmeticReduction};
 pub use blackwall_scars::{
-    Avx2PredicateBlock, CriticalEdgeKey, EdgeScarSlot, LocalScarRule, NeighborTopologyToken,
-    StructuralDiscriminationEngine, WL1Signature, MAX_SCARS_PER_EDGE, MAX_TRACKED_EDGES,
+    Avx2PredicateBlock, CriticalEdgeKey, EdgeScarSlot, EmpiricalFailureToken, LocalScarRule,
+    NeighborTopologyToken, StructuralDiscriminationEngine, WL1Signature, MAX_SCARS_PER_EDGE,
+    MAX_TRACKED_EDGES,
 };
 pub use compact_adj::CompactAdj;
 pub use contingency_bfs::{
-    BitAdjacencyGraph, CausalReachabilityFilter, ContingencyOutcome, PreCertifiedContingencyLibrary,
-    PreCertifiedTopology, SwitchAction, SwitchActionType, MAX_CONTINGENCIES, MAX_GRAPH_NODES,
+    BitAdjacencyGraph, CausalReachabilityFilter, ContingencyOutcome, LinearizedSensitivityMatrix,
+    PreCertifiedContingencyLibrary, PreCertifiedTopology, SwitchAction, SwitchActionType,
+    MAX_CONTINGENCIES, MAX_GRAPH_NODES, MAX_SENSITIVITY_EDGES,
 };
 pub use interner::NodeInterner;
 pub use kuramoto::{
@@ -73,6 +76,10 @@ pub use spectral_sprt::{SprtBeaconDetector, SprtConfig, SprtOutcome};
 pub use spreading_activation::{
     compute_shannon_entropy, propagate_activation, ActivationStatus, ActivationStepTrace,
     SpreadingActivationResult,
+};
+pub use syndrome::{
+    CausalParityMatrix, CausalSyndromeDecoder, EpistemicScratchpad, FaultCandidate, FaultClass,
+    ScratchpadEntry, SyndromeVerdict, MAX_SYNDROME_NODES, SCRATCHPAD_CAPACITY,
 };
 pub use tactical_dispatch::{
     CachePaddedAtomicUsize, CircuitBreaker, ReflexTickInput, StagedOrderRingBuffer, StagedPolicySlot,

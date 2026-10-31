@@ -1,85 +1,90 @@
 //! # NodeSpatialNeighborhood & TopologicalResidualEngine
 //!
-//! Representación SoA y cálculo diferencial de residuos espaciales.
-//! Layout alineado a 64 bytes para garantizar residencia en 1 línea de caché L1.
+//! Representación de memoria contigua para vecindarios espaciales y motores de residuos.
+//! Layout alineado a 128 bytes (2 líneas de caché L1 contiguas) con cotas convexas
+//! `[weight_min, weight_max]` para prevenir el ataque de deriva lenta (*Boiling Frog*).
 
 /// Capacidad máxima de vecinos directos 1-hop por nodo.
 pub const MAX_SPATIAL_NEIGHBORS: usize = 8;
+/// Capacidad máxima de vecinos calibrables con cotas politópicas.
+pub const MAX_BOUNDED_NEIGHBORS: usize = 4;
+/// Ratio de tolerancia física por defecto (±25% sobre impedancia nominal).
+pub const DEFAULT_TOLERANCE_RATIO: f32 = 0.25;
 
-/// Representación SoA de la vecindad causal de un nodo alineada a 64 bytes.
-///
-/// Memoria:
-/// - weights: [f32; 8]  => 32 bytes (offset 0)
-/// - indices: [u16; 8]  => 16 bytes (offset 32)
-/// - count:   u8        => 1 byte   (offset 48)
-/// - _pad:    [u8; 15]  => 15 bytes (offset 49)
-/// Total = 64 bytes, alineado a 64 bytes. Coincide exactamente con 1 línea de caché L1.
+/// Vecindad causal alineada a 2 líneas de caché L1 (128 bytes).
+/// Incluye cotas duras convexas `[weight_min, weight_max]` para evitar deriva adversarial.
 #[repr(C, align(64))]
 #[derive(Clone, Copy, Debug)]
 pub struct NodeSpatialNeighborhood {
-    pub weights: [f32; MAX_SPATIAL_NEIGHBORS],
-    pub indices: [u16; MAX_SPATIAL_NEIGHBORS],
-    pub count: u8,
-    pub _padding: [u8; 15],
+    pub weights: [f32; MAX_SPATIAL_NEIGHBORS],    // 32 bytes (offset 0)
+    pub indices: [u16; MAX_SPATIAL_NEIGHBORS],    // 16 bytes (offset 32)
+    pub count: u8,                                // 1 byte   (offset 48)
+    pub _pad_header: [u8; 15],                    // 15 bytes (offset 49) -> Total 64B
+    pub weight_min: [f32; MAX_BOUNDED_NEIGHBORS], // 16 bytes (offset 64)
+    pub weight_max: [f32; MAX_BOUNDED_NEIGHBORS], // 16 bytes (offset 80)
+    pub _pad_tail: [u8; 32],                      // 32 bytes (offset 96) -> Total 128B
 }
 
-const _: () = assert!(std::mem::size_of::<NodeSpatialNeighborhood>() == 64);
+const _: () = assert!(std::mem::size_of::<NodeSpatialNeighborhood>() == 128);
 const _: () = assert!(std::mem::align_of::<NodeSpatialNeighborhood>() == 64);
 
 impl NodeSpatialNeighborhood {
-    /// Construye una vecindad vacía (nodo aislado / sin acoplamiento espacial).
     #[inline(always)]
     pub const fn empty() -> Self {
         Self {
-            weights: [0.0f32; MAX_SPATIAL_NEIGHBORS],
-            indices: [0u16; MAX_SPATIAL_NEIGHBORS],
-            count: 0,
-            _padding: [0u8; 15],
+            weights: [0.0f32; MAX_SPATIAL_NEIGHBORS], indices: [0u16; MAX_SPATIAL_NEIGHBORS],
+            count: 0, _pad_header: [0u8; 15],
+            weight_min: [0.0f32; MAX_BOUNDED_NEIGHBORS], weight_max: [1.0f32; MAX_BOUNDED_NEIGHBORS],
+            _pad_tail: [0u8; 32],
         }
     }
 
-    /// Construye una vecindad normalizada a partir de una lista de pares (nodo_vecino, peso).
     pub fn new(neighbors: &[(u16, f32)]) -> Result<Self, &'static str> {
+        Self::with_tolerance(neighbors, DEFAULT_TOLERANCE_RATIO)
+    }
+
+    pub fn with_tolerance(neighbors: &[(u16, f32)], tolerance_ratio: f32) -> Result<Self, &'static str> {
         if neighbors.len() > MAX_SPATIAL_NEIGHBORS {
-            return Err("El número de vecinos espaciales excede MAX_SPATIAL_NEIGHBORS (8)");
+            return Err("Supera MAX_SPATIAL_NEIGHBORS (8)");
         }
-
         let mut node = Self::empty();
-        let mut sum_weights = 0.0f32;
+        let mut sum = 0.0f32;
+        let tol = tolerance_ratio.clamp(0.0, 1.0);
 
-        for (i, &(idx, weight)) in neighbors.iter().enumerate() {
-            if !weight.is_finite() || weight < 0.0 {
-                return Err("Los pesos espaciales deben ser números finitos no negativos");
+        for (i, &(idx, w)) in neighbors.iter().enumerate() {
+            if !w.is_finite() || w < 0.0 {
+                return Err("Los pesos deben ser finitos y no negativos");
             }
             node.indices[i] = idx;
-            node.weights[i] = weight;
-            sum_weights += weight;
+            node.weights[i] = w;
+            sum += w;
         }
 
         node.count = neighbors.len() as u8;
-
         if node.count > 0 {
-            if sum_weights <= 1e-7 {
-                return Err("La suma de pesos espaciales debe ser estrictamente positiva");
+            if sum <= 1e-7 {
+                return Err("La suma de pesos debe ser positiva");
             }
-            let inv_sum = 1.0f32 / sum_weights;
+            let inv_sum = 1.0f32 / sum;
             for i in 0..node.count as usize {
                 node.weights[i] *= inv_sum;
+                if i < MAX_BOUNDED_NEIGHBORS {
+                    let nominal = node.weights[i];
+                    node.weight_min[i] = (nominal * (1.0 - tol)).max(0.0);
+                    node.weight_max[i] = (nominal * (1.0 + tol)).min(1.0);
+                }
             }
         }
-
         Ok(node)
     }
 
-    /// Registra un vecino espacial individual. Si se supera el límite de 8, retorna error.
     pub fn add_neighbor(&mut self, node_id: u16, weight: f32) -> Result<(), &'static str> {
         if (self.count as usize) >= MAX_SPATIAL_NEIGHBORS {
-            return Err("Vecindad saturada: no se pueden agregar más de 8 vecinos");
+            return Err("Vecindad saturada: máximo 8 vecinos");
         }
         if !weight.is_finite() || weight < 0.0 {
-            return Err("El peso espacial debe ser un valor finito no negativo");
+            return Err("El peso espacial debe ser finito y no negativo");
         }
-
         let idx = self.count as usize;
         self.indices[idx] = node_id;
         self.weights[idx] = weight;
@@ -87,27 +92,23 @@ impl NodeSpatialNeighborhood {
         Ok(())
     }
 
-    /// Normaliza los pesos de los vecinos registrados para que sumen exactamente 1.0.
     pub fn normalize(&mut self) {
-        if self.count == 0 {
-            return;
-        }
-        let mut sum = 0.0f32;
+        if self.count == 0 { return; }
         let c = (self.count as usize).min(MAX_SPATIAL_NEIGHBORS);
-        for i in 0..c {
-            sum += self.weights[i];
-        }
+        let sum: f32 = self.weights[..c].iter().sum();
         if sum > 1e-7 {
             let inv_sum = 1.0 / sum;
             for i in 0..c {
                 self.weights[i] *= inv_sum;
+                if i < MAX_BOUNDED_NEIGHBORS {
+                    let nominal = self.weights[i];
+                    self.weight_min[i] = (nominal * (1.0 - DEFAULT_TOLERANCE_RATIO)).max(0.0);
+                    self.weight_max[i] = (nominal * (1.0 + DEFAULT_TOLERANCE_RATIO)).min(1.0);
+                }
             }
         }
     }
 
-    /// Calcula el residuo diferencial topológico \varepsilon_i(t) en tiempo constante.
-    ///
-    /// Utiliza FMA (`f32::mul_add`) para calcular `weights[k] * snapshot[idx] + acc` en 1 ciclo.
     #[inline(always)]
     pub fn compute_residual(&self, target_val: f32, sensor_snapshot: &[f32]) -> f32 {
         let n = (self.count as usize).min(MAX_SPATIAL_NEIGHBORS);
@@ -122,7 +123,6 @@ impl NodeSpatialNeighborhood {
                 }
             }
         }
-
         target_val - predicted
     }
 }
@@ -148,11 +148,7 @@ impl<const MAX_NODES: usize> TopologicalResidualEngine<MAX_NODES> {
         }
     }
 
-    pub fn set_neighborhood(
-        &mut self,
-        node_id: usize,
-        neighborhood: NodeSpatialNeighborhood,
-    ) -> Result<(), &'static str> {
+    pub fn set_neighborhood(&mut self, node_id: usize, neighborhood: NodeSpatialNeighborhood) -> Result<(), &'static str> {
         if node_id >= MAX_NODES {
             return Err("node_id fuera de los límites de MAX_NODES");
         }
@@ -162,30 +158,19 @@ impl<const MAX_NODES: usize> TopologicalResidualEngine<MAX_NODES> {
 
     #[inline(always)]
     pub fn compute_node_residual(&self, node_id: usize, snapshot: &[f32; MAX_NODES]) -> f32 {
-        if node_id >= MAX_NODES {
-            return 0.0f32;
-        }
-        let target = snapshot[node_id];
-        self.neighborhoods[node_id].compute_residual(target, snapshot)
+        if node_id >= MAX_NODES { return 0.0f32; }
+        self.neighborhoods[node_id].compute_residual(snapshot[node_id], snapshot)
     }
 
     #[inline(always)]
-    pub fn compute_all_residuals(
-        &self,
-        snapshot: &[f32; MAX_NODES],
-        out_residuals: &mut [f32; MAX_NODES],
-    ) {
+    pub fn compute_all_residuals(&self, snapshot: &[f32; MAX_NODES], out_residuals: &mut [f32; MAX_NODES]) {
         for i in 0..MAX_NODES {
-            let target = snapshot[i];
-            out_residuals[i] = self.neighborhoods[i].compute_residual(target, snapshot);
+            out_residuals[i] = self.neighborhoods[i].compute_residual(snapshot[i], snapshot);
         }
     }
 }
 
 impl<const MAX_NODES: usize> Default for TopologicalResidualEngine<MAX_NODES> {
     #[inline]
-    fn default() -> Self {
-        Self::new()
-    }
+    fn default() -> Self { Self::new() }
 }
-

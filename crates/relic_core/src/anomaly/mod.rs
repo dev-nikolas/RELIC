@@ -17,8 +17,9 @@ pub use peak_decay::StreamingPeakDecay;
 pub use refractory::RefractorySuppressor;
 pub use spatial_bypass::SpatialSpikeBypass;
 pub use topology_coupling::{
-    NodeSpatialNeighborhood, ResidualSprtMartingale, TopologicalResidualEngine,
-    MAX_SPATIAL_NEIGHBORS,
+    NodeSpatialNeighborhood, QuiescentCalibrator, ResidualSprtMartingale,
+    TopologicalResidualEngine, DEFAULT_TOLERANCE_RATIO, MAX_BOUNDED_NEIGHBORS,
+    MAX_SPATIAL_NEIGHBORS, WALD_THRESHOLD_ALPHA_1E6,
 };
 
 pub type ReservoirWeights = (

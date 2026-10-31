@@ -61,11 +61,25 @@ impl CausalReachabilityFilter {
 
     #[inline(always)]
     fn avx2_step(frontier: &mut [u64; 4], visited: &mut [u64; 4], next_raw: &[u64; 4]) -> bool {
-        #[cfg(target_arch = "x86_64")]
+        #[cfg(all(target_arch = "x86_64", target_feature = "avx2"))]
         {
-            #[cfg(target_feature = "avx2")]
-            {
-                return unsafe {
+            unsafe {
+                use core::arch::x86_64::*;
+                let v_vis = _mm256_load_si256(visited.as_ptr() as *const __m256i);
+                let v_raw = _mm256_load_si256(next_raw.as_ptr() as *const __m256i);
+                let v_new = _mm256_andnot_si256(v_vis, v_raw);
+                let v_updated_vis = _mm256_or_si256(v_vis, v_new);
+
+                _mm256_store_si256(visited.as_mut_ptr() as *mut __m256i, v_updated_vis);
+                _mm256_store_si256(frontier.as_mut_ptr() as *mut __m256i, v_new);
+
+                _mm256_testz_si256(v_new, v_new) == 0
+            }
+        }
+        #[cfg(all(target_arch = "x86_64", not(target_feature = "avx2")))]
+        {
+            if is_x86_feature_detected!("avx2") {
+                unsafe {
                     use core::arch::x86_64::*;
                     let v_vis = _mm256_load_si256(visited.as_ptr() as *const __m256i);
                     let v_raw = _mm256_load_si256(next_raw.as_ptr() as *const __m256i);
@@ -76,27 +90,20 @@ impl CausalReachabilityFilter {
                     _mm256_store_si256(frontier.as_mut_ptr() as *mut __m256i, v_new);
 
                     _mm256_testz_si256(v_new, v_new) == 0
-                };
-            }
-            #[cfg(not(target_feature = "avx2"))]
-            {
-                if is_x86_feature_detected!("avx2") {
-                    return unsafe {
-                        use core::arch::x86_64::*;
-                        let v_vis = _mm256_load_si256(visited.as_ptr() as *const __m256i);
-                        let v_raw = _mm256_load_si256(next_raw.as_ptr() as *const __m256i);
-                        let v_new = _mm256_andnot_si256(v_vis, v_raw);
-                        let v_updated_vis = _mm256_or_si256(v_vis, v_new);
-
-                        _mm256_store_si256(visited.as_mut_ptr() as *mut __m256i, v_updated_vis);
-                        _mm256_store_si256(frontier.as_mut_ptr() as *mut __m256i, v_new);
-
-                        _mm256_testz_si256(v_new, v_new) == 0
-                    };
                 }
+            } else {
+                Self::scalar_step(frontier, visited, next_raw)
             }
         }
+        #[cfg(not(target_arch = "x86_64"))]
+        {
+            Self::scalar_step(frontier, visited, next_raw)
+        }
+    }
 
+    #[inline(always)]
+    #[allow(dead_code)]
+    fn scalar_step(frontier: &mut [u64; 4], visited: &mut [u64; 4], next_raw: &[u64; 4]) -> bool {
         let mut changed = false;
         for k in 0..4 {
             let new_bits = next_raw[k] & !visited[k];

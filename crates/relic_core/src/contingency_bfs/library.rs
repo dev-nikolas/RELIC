@@ -19,14 +19,12 @@ pub enum SwitchActionType {
 #[repr(C)]
 #[derive(Copy, Clone, Debug, PartialEq)]
 pub struct SwitchAction {
-    pub u: u8,
-    pub v: u8,
-    pub action: SwitchActionType,
-    pub edge_id: u32,
-    pub new_max_capacity: f64,
+    pub u: u8, pub v: u8, pub action: SwitchActionType,
+    pub edge_id: u32, pub new_max_capacity: f64,
 }
 
 impl SwitchAction {
+    #[inline(always)]
     pub const fn empty() -> Self {
         Self { u: 0, v: 0, action: SwitchActionType::OpenIsolate, edge_id: 0, new_max_capacity: 0.0 }
     }
@@ -35,23 +33,17 @@ impl SwitchAction {
 #[repr(C)]
 #[derive(Copy, Clone, Debug, PartialEq)]
 pub struct PreCertifiedTopology {
-    pub contingency_id: u16,
-    pub failed_edge_id: u32,
-    pub actions: [SwitchAction; 4],
-    pub action_count: u8,
-    pub thermal_safety_margin: f32,
-    pub _padding: [u8; 1],
+    pub contingency_id: u16, pub failed_edge_id: u32,
+    pub actions: [SwitchAction; 4], pub action_count: u8,
+    pub thermal_safety_margin: f32, pub _padding: [u8; 1],
 }
 
 impl PreCertifiedTopology {
+    #[inline(always)]
     pub const fn empty() -> Self {
         Self {
-            contingency_id: 0,
-            failed_edge_id: 0,
-            actions: [SwitchAction::empty(); 4],
-            action_count: 0,
-            thermal_safety_margin: 0.0,
-            _padding: [0u8; 1],
+            contingency_id: 0, failed_edge_id: 0, actions: [SwitchAction::empty(); 4],
+            action_count: 0, thermal_safety_margin: 0.0, _padding: [0u8; 1],
         }
     }
 }
@@ -95,19 +87,17 @@ impl PreCertifiedContingencyLibrary {
         let mut sim_base = *graph;
         sim_base.quarantine_edge(u_fail, v_fail);
 
-        let total = self.count as usize;
         let mut best_candidate_idx = None;
         let mut max_thermal_margin = -1.0f32;
 
-        for i in 0..total {
+        for i in 0..self.count as usize {
             let topo = &self.topologies[i];
             if topo.failed_edge_id != edge_fail_id {
                 continue;
             }
 
             let mut scar_violated = false;
-            let n_actions = topo.action_count as usize;
-            for j in 0..n_actions {
+            for j in 0..topo.action_count as usize {
                 let action = &topo.actions[j];
                 if action.action == SwitchActionType::CloseBackup {
                     let b_idx = action.edge_id as usize;
@@ -117,16 +107,15 @@ impl PreCertifiedContingencyLibrary {
                     }
                 }
             }
-            if scar_violated {
-                continue;
-            }
+            if scar_violated { continue; }
+
+            let n_actions = topo.action_count as usize;
 
             // Aplicación diferencial O(1) de las acciones sobre sim_base
             for j in 0..n_actions {
-                let action = &topo.actions[j];
-                match action.action {
-                    SwitchActionType::OpenIsolate => sim_base.quarantine_edge(action.u, action.v),
-                    SwitchActionType::CloseBackup => sim_base.restore_edge(action.u, action.v),
+                match topo.actions[j].action {
+                    SwitchActionType::OpenIsolate => sim_base.quarantine_edge(topo.actions[j].u, topo.actions[j].v),
+                    SwitchActionType::CloseBackup => sim_base.restore_edge(topo.actions[j].u, topo.actions[j].v),
                 }
             }
 
@@ -134,10 +123,9 @@ impl PreCertifiedContingencyLibrary {
 
             // Reversión diferencial O(1) inmediata para evitar re-copias del grafo
             for j in 0..n_actions {
-                let action = &topo.actions[j];
-                match action.action {
-                    SwitchActionType::OpenIsolate => sim_base.restore_edge(action.u, action.v),
-                    SwitchActionType::CloseBackup => sim_base.quarantine_edge(action.u, action.v),
+                match topo.actions[j].action {
+                    SwitchActionType::OpenIsolate => sim_base.restore_edge(topo.actions[j].u, topo.actions[j].v),
+                    SwitchActionType::CloseBackup => sim_base.quarantine_edge(topo.actions[j].u, topo.actions[j].v),
                 }
             }
 
@@ -157,19 +145,17 @@ impl PreCertifiedContingencyLibrary {
             }
 
             let mut applied_backup_id = 0u32;
-            let n_actions = best_topo.action_count as usize;
-            for j in 0..n_actions {
+            for j in 0..best_topo.action_count as usize {
                 let action = &best_topo.actions[j];
-                match action.action {
-                    SwitchActionType::OpenIsolate => graph.quarantine_edge(action.u, action.v),
-                    SwitchActionType::CloseBackup => {
-                        graph.restore_edge(action.u, action.v);
-                        applied_backup_id = action.edge_id;
-                        let b_idx = action.edge_id as usize;
-                        if b_idx < bounds.len() {
-                            bounds[b_idx].quarantined = false;
-                            bounds[b_idx].max_val = action.new_max_capacity;
-                        }
+                if action.action == SwitchActionType::OpenIsolate {
+                    graph.quarantine_edge(action.u, action.v);
+                } else {
+                    graph.restore_edge(action.u, action.v);
+                    applied_backup_id = action.edge_id;
+                    let b_idx = action.edge_id as usize;
+                    if b_idx < bounds.len() {
+                        bounds[b_idx].quarantined = false;
+                        bounds[b_idx].max_val = action.new_max_capacity;
                     }
                 }
             }

@@ -1,136 +1,10 @@
-//! Predictor Recurrente ESN con Adaptación Lineal RLS Completa.
+//! # EchoStatePredictor
 //!
-//! Port fiel de `echo_state.py` (N=64, ρ=0.9, Takens d=16, RLS λ=0.999).
-//! Predice el estado latente mediante proyección en el espacio atractor y mide
-//! el error cuadrático respecto a la dinámica aprendida.
+//! Predictor neuronal recurrente ESN con adaptación causal RLS y anti-windup estricto.
 
-use std::collections::VecDeque;
-
-pub const EMBED_DIM: usize = 16;
-pub const RESERVOIR_SIZE: usize = 64;
-pub const NORM_WINDOW: usize = 6400;
-pub const RLS_FORGET: f64 = 0.999;
-pub const RLS_DELTA: f64 = 1.0;
-
-/// Buffer circular para normalización rodante W=6400.
-#[derive(Clone, Debug)]
-pub struct RollingNorm {
-    buffer: VecDeque<f64>,
-    sum: f64,
-    sum_sq: f64,
-    max_len: usize,
-}
-
-impl RollingNorm {
-    pub fn new(max_len: usize) -> Self {
-        Self {
-            buffer: VecDeque::with_capacity(max_len),
-            sum: 0.0,
-            sum_sq: 0.0,
-            max_len,
-        }
-    }
-
-    pub fn reset(&mut self) {
-        self.buffer.clear();
-        self.sum = 0.0;
-        self.sum_sq = 0.0;
-    }
-
-    pub fn standardize(&self, val: f64) -> f64 {
-        let n = self.buffer.len();
-        if n < 2 {
-            return 0.0;
-        }
-        let mean = self.sum / (n as f64);
-        let var = ((self.sum_sq / (n as f64)) - mean * mean).max(0.0);
-        let std = var.sqrt();
-        if std <= 1e-9 {
-            0.0
-        } else {
-            (val - mean) / std
-        }
-    }
-
-    pub fn mean_and_std(&self) -> (f64, f64) {
-        let n = self.buffer.len();
-        if n < 2 {
-            return (0.0, 1.0);
-        }
-        let mean = self.sum / (n as f64);
-        let var = ((self.sum_sq / (n as f64)) - mean * mean).max(0.0);
-        let std = var.sqrt();
-        (mean, if std > 1e-9 { std } else { 1.0 })
-    }
-
-    pub fn ingest(&mut self, val: f64) {
-        if !val.is_finite() {
-            return;
-        }
-        if self.buffer.len() == self.max_len {
-            if let Some(old) = self.buffer.pop_front() {
-                self.sum -= old;
-                self.sum_sq -= old * old;
-            }
-        }
-        self.buffer.push_back(val);
-        self.sum += val;
-        self.sum_sq += val * val;
-    }
-
-    pub fn len(&self) -> usize {
-        self.buffer.len()
-    }
-
-    pub fn is_empty(&self) -> bool {
-        self.buffer.is_empty()
-    }
-}
-
-/// Buffer causal de incrustación de coordenadas de retardo (Takens).
-#[derive(Clone, Debug)]
-pub struct DelayEmbedding {
-    buffer: VecDeque<f64>,
-    dim: usize,
-}
-
-impl DelayEmbedding {
-    pub fn new(dim: usize) -> Self {
-        Self {
-            buffer: VecDeque::with_capacity(dim),
-            dim,
-        }
-    }
-
-    pub fn reset(&mut self) {
-        self.buffer.clear();
-    }
-
-    pub fn is_ready(&self) -> bool {
-        self.buffer.len() >= self.dim
-    }
-
-    /// Construye el vector Takens proyectado [z_t, z_{t-1}, ..., z_{t-15}].
-    #[allow(clippy::needless_range_loop)]
-    pub fn construct_vector(&self, current_z: f64) -> Option<[f64; EMBED_DIM]> {
-        if self.buffer.len() < self.dim - 1 {
-            return None;
-        }
-        let mut vec = [0.0; EMBED_DIM];
-        vec[0] = current_z;
-        for i in 1..self.dim {
-            vec[i] = self.buffer[self.buffer.len() - i];
-        }
-        Some(vec)
-    }
-
-    pub fn ingest(&mut self, z: f64) {
-        if self.buffer.len() == self.dim {
-            self.buffer.pop_front();
-        }
-        self.buffer.push_back(z);
-    }
-}
+use super::embedding::DelayEmbedding;
+use super::norm::RollingNorm;
+use super::types::{EMBED_DIM, NORM_WINDOW, RESERVOIR_SIZE, RLS_DELTA, RLS_FORGET};
 
 /// Predictor recurrente ESN con pesos estáticos compartidos.
 #[derive(Clone)]
@@ -171,7 +45,6 @@ impl EchoStatePredictor {
     }
 
     /// Inferencia pura inmutable.
-    /// Retorna `(z, Option<TakensVector>, h_new, pred_z, err)`.
     #[allow(clippy::needless_range_loop)]
     pub fn evaluate_pure(
         &self,
@@ -205,11 +78,7 @@ impl EchoStatePredictor {
             }
 
             let resid = z - pred_z;
-            let err = if resid.is_nan() {
-                0.0
-            } else {
-                (resid * resid).min(1e12)
-            };
+            let err = if resid.is_nan() { 0.0 } else { (resid * resid).min(1e12) };
 
             (z, Some(vec), h_new, pred_z, err)
         } else {
@@ -217,7 +86,7 @@ impl EchoStatePredictor {
         }
     }
 
-    /// Actualización causal RLS idéntica a Python.
+    /// Actualización causal RLS idéntica al modelo original.
     #[allow(clippy::needless_range_loop)]
     pub fn commit(
         &mut self,
