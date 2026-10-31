@@ -36,14 +36,14 @@ En el benchmark oficial **NAB (Numenta Anomaly Benchmark)** sobre 58 conjuntos d
 | **Detector Perfecto Teórico** | 100.0 | 100.0 | Límite matemático superior |
 | **Numenta HTM (Red Cortical)** | 70.1 | 63.1 | Pesado en CPU/RAM |
 | **knncad (K-Vecinos)** | 58.0 | 43.4 | Requiere almacenar buffer masivo |
-| **RELIC:Seis Ojos (Rust)** | **57.7** | **53.2** | **25 µs/punto, 278 KB RAM, 0 allocs** |
+| **RELIC:Seis Ojos (Rust)** | **57.7** | **53.2** | **45.94 µs/punto, 4.99 MB RAM, 0 allocs** |
 | **Relative Entropy (HP Labs)** | 54.6 | 47.6 | Métricas de entropía |
 | **Random Cut Forest (Amazon AWS)** | 51.7 | 38.4 | Árboles de aislamiento |
 | **Twitter ADVec (Twitter)** | 47.1 | 33.6 | Descomposición clásica |
 | **Windowed Gaussian (Media/Varianza)**| 39.6 | 20.9 | Baseline simple |
 | **Detector Cero / Nulo** | 0.0 | 0.0 | No emite alertas |
 
-*RELIC:Seis Ojos supera los detectores oficiales de AWS (51.7) y Twitter (47.1), manteniendo una huella mínima de solo 278 KB por canal.*
+*RELIC:Seis Ojos supera los detectores oficiales de AWS (51.7) y Twitter (47.1), manteniendo una huella de 4.99 MB.*
 
 ### 2. Razonamiento y Grafos (RELIC vs. LLMs Tradicionales)
 
@@ -53,7 +53,7 @@ En el benchmark oficial **NAB (Numenta Anomaly Benchmark)** sobre 58 conjuntos d
 | **Rutas en Grafos** | Puede alucinar atajos o conexiones inexistentes. | **Certificado de corte**: devuelve la ruta o demuestra imposibilidad. |
 | **Actualización de Memoria** | Olvido catastrófico al reentrenar o actualizar. | **Consistencia causal del 100%** mediante grafo de reemplazo. |
 | **Latencia por Consulta** | 300 ms – 2,500 ms (requiere GPU). | **< 35 microsegundos** en CPU local (> 1,000x más rápido). |
-| **Consumo de Memoria** | 4 GB – 16 GB VRAM. | **4.15 MB de RAM base**. |
+| **Consumo de Memoria** | 4 GB – 16 GB VRAM. | **4.99 MB de RAM base**. |
 
 ---
 

@@ -64,12 +64,12 @@ pub fn run_nab_tsb_evaluation() -> NabTsbMetrics {
             if pos + window_len < local_series.len() {
                 total_anomalies += 1;
                 local_windows.push((offset + pos, offset + pos + window_len));
-                for step in pos..(pos + window_len) {
+                for (rel_step, val) in local_series.iter_mut().enumerate().skip(pos).take(window_len) {
                     match kind {
-                        "step" | "drop" => local_series[step] += amp * std,
+                        "step" | "drop" => *val += amp * std,
                         "ramp" => {
-                            let factor = (step - pos + 1) as f64 / window_len as f64;
-                            local_series[step] += amp * std * factor;
+                            let factor = (rel_step - pos + 1) as f64 / window_len as f64;
+                            *val += amp * std * factor;
                         }
                         _ => {}
                     }
