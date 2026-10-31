@@ -31,7 +31,7 @@ pub(super) fn fill(
     for k in 0..count {
         let row = closure[k];
         let (word, bit) = (k >> 6, 1u64 << (k & 63));
-        for (i, row_i) in closure.iter_mut().enumerate().take(count) {
+        for (_i, row_i) in closure.iter_mut().enumerate().take(count) {
             if row_i[word] & bit != 0 {
                 for w in 0..WORDS {
                     row_i[w] |= row[w];
