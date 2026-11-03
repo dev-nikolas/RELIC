@@ -2,7 +2,7 @@
 [![M8ven Score](https://m8ven.ai/badge/mcp/dev-nikolas-relic-bziaik?v=dbd37b1e39cc51eb203b176f16d0b8c2)](https://m8ven.ai/mcp/dev-nikolas-relic-bziaik?s=readme)
 
 [![M8ven Score](https://m8ven.ai/badge/mcp/dev-nikolas-relic-bziaik)](https://m8ven.ai/mcp/dev-nikolas-relic-bziaik?s=readme)
-
+<a href="https://m8ven.ai/mcp/dev-nikolas/relic?s=docs" rel="noopener"><img src="https://m8ven.ai/badge/mcp/dev-nikolas/relic" alt="M8ven Score" height="20"></a>
 
 #Motor de consultas determinista con validación transaccional, escrito en Rust. Funciona completamente en local sin depender de internet ni APIs externas.
 
