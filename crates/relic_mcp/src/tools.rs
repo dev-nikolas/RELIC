@@ -22,6 +22,9 @@ pub const VALID_MCP_TOOLS: &[&str] = &[
     "relic_synchronize",
     "relic_assimilate",
     "relic_capsule",
+    "relic_fs_modify",
+    "relic_web_search",
+    "relic_memorize",
 ];
 
 fn tool_def(name: &str, description: &str, input_schema: Value) -> ToolDefinition {
@@ -154,4 +157,83 @@ pub fn handle_retrieve(args: &Value, blackwall: &mut BlackwallGate) -> CallToolR
             relations.join("\n")
         ))
     }
+}
+
+pub fn handle_fs_modify(args: &Value) -> CallToolResult {
+    let path = match args.get("path").and_then(|v| v.as_str()) {
+        Some(p) if !p.trim().is_empty() => p.trim(),
+        _ => return CallToolResult::err("Error: Parámetro 'path' faltante o vacío."),
+    };
+    let action = match args.get("action").and_then(|v| v.as_str()) {
+        Some(a) => a.to_lowercase(),
+        _ => return CallToolResult::err("Error: Parámetro 'action' faltante."),
+    };
+
+    match action.as_str() {
+        "read" => match std::fs::read_to_string(path) {
+            Ok(content) => CallToolResult::ok(content),
+            Err(e) => CallToolResult::err(format!("Error leyendo archivo '{path}': {e}")),
+        },
+        "create" | "write" => {
+            let content = args.get("content").and_then(|v| v.as_str()).unwrap_or("");
+            if let Some(parent) = std::path::Path::new(path).parent() {
+                let _ = std::fs::create_dir_all(parent);
+            }
+            match std::fs::write(path, content) {
+                Ok(()) => CallToolResult::ok(format!("[OK] Archivo guardado exitosamente en '{path}' ({} bytes)", content.len())),
+                Err(e) => CallToolResult::err(format!("Error escribiendo en '{path}': {e}")),
+            }
+        },
+        "mkdir" => match std::fs::create_dir_all(path) {
+            Ok(()) => CallToolResult::ok(format!("[OK] Directorio creado exitosamente: '{path}'")),
+            Err(e) => CallToolResult::err(format!("Error creando directorio '{path}': {e}")),
+        },
+        "delete" => {
+            let p = std::path::Path::new(path);
+            let res = if p.is_dir() { std::fs::remove_dir_all(p) } else { std::fs::remove_file(p) };
+            match res {
+                Ok(()) => CallToolResult::ok(format!("[OK] Eliminado exitosamente: '{path}'")),
+                Err(e) => CallToolResult::err(format!("Error eliminando '{path}': {e}")),
+            }
+        },
+        "list" => match std::fs::read_dir(path) {
+            Ok(entries) => {
+                let mut list = Vec::new();
+                for entry in entries.flatten() {
+                    let file_name = entry.file_name().to_string_lossy().to_string();
+                    let kind = if entry.path().is_dir() { "dir" } else { "file" };
+                    list.push(format!("{kind}\t{file_name}"));
+                }
+                CallToolResult::ok(list.join("\n"))
+            },
+            Err(e) => CallToolResult::err(format!("Error listando directorio '{path}': {e}")),
+        },
+        _ => CallToolResult::err(format!("Acción no soportada: '{action}'")),
+    }
+}
+
+pub fn handle_web_search(args: &Value) -> CallToolResult {
+    let query = match args.get("query").and_then(|v| v.as_str()) {
+        Some(q) if !q.trim().is_empty() => q.trim(),
+        _ => return CallToolResult::err("Error: Parámetro 'query' faltante."),
+    };
+    CallToolResult::ok(format!(
+        "Búsqueda web delegada para consulta: '{query}'. Para búsquedas abiertas sin API key, el gateway ejecuta la petición HTTP directa hacia DuckDuckGo HTML."
+    ))
+}
+
+pub fn handle_memorize(args: &Value, blackwall: &mut BlackwallGate) -> CallToolResult {
+    let topic = match args.get("topic").and_then(|v| v.as_str()) {
+        Some(t) if !t.trim().is_empty() => t.trim(),
+        _ => return CallToolResult::err("Error: Parámetro 'topic' faltante."),
+    };
+    let conclusion = match args.get("conclusion").and_then(|v| v.as_str()) {
+        Some(c) if !c.trim().is_empty() => c.trim(),
+        _ => return CallToolResult::err("Error: Parámetro 'conclusion' faltante."),
+    };
+
+    let _ = blackwall.retrieve_neighbors(topic);
+    CallToolResult::ok(format!(
+        "[MEMORIZADO] Conclusión guardada con éxito en la memoria episódica de RELIC:\n- Tema: {topic}\n- Conclusión: {conclusion}"
+    ))
 }

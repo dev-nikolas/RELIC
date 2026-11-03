@@ -2,7 +2,7 @@
 
 <a href="https://m8ven.ai/mcp/dev-nikolas/relic?s=docs" rel="noopener"><img src="https://m8ven.ai/badge/mcp/dev-nikolas/relic" alt="M8ven Score" height="20"></a>
 
-#Motor de consultas determinista con validación transaccional, escrito en Rust. Funciona completamente en local sin depender de internet ni APIs externas.
+Motor de consultas determinista con validación transaccional, escrito en Rust. Funciona completamente en local sin depender de internet ni APIs externas.
 
 RELIC no predice texto ni genera respuestas. Lo que hace es calcular de forma exacta y verificar antes de guardar cambios:
 - Los cálculos aritméticos son matemáticamente exactos (sin aproximaciones).

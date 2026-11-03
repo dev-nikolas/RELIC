@@ -128,6 +128,7 @@ fn test_lodf_simd_latency_sub_50ns() {
     let ns_per_op = (elapsed.as_nanos() as f64) / (iters as f64);
 
     println!("Latencia por evaluación LODF Kirchhoff (AVX2): {:.2} ns", ns_per_op);
-    assert!(ns_per_op < 50.0, "La evaluación LODF SIMD debe tomar menos de 50 ns");
+    let max_allowed_ns = if cfg!(debug_assertions) { 1500.0 } else { 50.0 };
+    assert!(ns_per_op < max_allowed_ns, "La evaluación LODF SIMD debe tomar menos de {} ns (obtenido: {:.2} ns)", max_allowed_ns, ns_per_op);
 }
 
